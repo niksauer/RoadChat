@@ -14,6 +14,7 @@
 		243F1EB92048422100B45955 /* CommunityBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EB82048422100B45955 /* CommunityBoardController.swift */; };
 		243F1EBB204842A200B45955 /* TrafficBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBA204842A200B45955 /* TrafficBoardController.swift */; };
 		243F1EBD204842CF00B45955 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBC204842CF00B45955 /* ProfileController.swift */; };
+		248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 248D378D20485DC100B21C3D /* RoadChat.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		243F1EB82048422100B45955 /* CommunityBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoardController.swift; sourceTree = "<group>"; };
 		243F1EBA204842A200B45955 /* TrafficBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficBoardController.swift; sourceTree = "<group>"; };
 		243F1EBC204842CF00B45955 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		248D378E20485DC100B21C3D /* RoadChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RoadChat.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				240D110120481843008C5E39 /* Assets.xcassets */,
 				240D110320481843008C5E39 /* LaunchScreen.storyboard */,
 				240D110620481844008C5E39 /* Info.plist */,
+				248D378D20485DC100B21C3D /* RoadChat.xcdatamodeld */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				243F1EBB204842A200B45955 /* TrafficBoardController.swift in Sources */,
 				243F1EB92048422100B45955 /* CommunityBoardController.swift in Sources */,
 				240D10F920481843008C5E39 /* AppDelegate.swift in Sources */,
+				248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */,
 				243F1EBD204842CF00B45955 /* ProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,6 +374,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		248D378D20485DC100B21C3D /* RoadChat.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				248D378E20485DC100B21C3D /* RoadChat.xcdatamodel */,
+			);
+			currentVersion = 248D378E20485DC100B21C3D /* RoadChat.xcdatamodel */;
+			path = RoadChat.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 240D10ED20481843008C5E39 /* Project object */;
 }

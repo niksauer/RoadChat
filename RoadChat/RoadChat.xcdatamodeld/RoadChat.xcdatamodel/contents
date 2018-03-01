@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17D102" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Car" representedClassName="Car" syncable="YES" codeGenerationType="class">
+        <attribute name="color" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manufacturer" attributeType="String" syncable="YES"/>
+        <attribute name="model" attributeType="String" syncable="YES"/>
+        <attribute name="performance" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="production" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="userID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="cars" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="CommunityMessage" representedClassName="CommunityMessage" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="locationID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="message" attributeType="String" syncable="YES"/>
+        <attribute name="senderID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="time" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="upvotes" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="communityMessages" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Conversation" representedClassName="Conversation" syncable="YES" codeGenerationType="class">
+        <attribute name="creation" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="creatorID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DirectMessage" inverseName="conversation" inverseEntity="DirectMessage" syncable="YES"/>
+        <relationship name="participants" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Participant" inverseName="conversation" inverseEntity="Participant" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="conversations" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="DirectMessage" representedClassName="DirectMessage" syncable="YES" codeGenerationType="class">
+        <attribute name="message" attributeType="String" syncable="YES"/>
+        <attribute name="senderID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="time" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="conversation" maxCount="1" deletionRule="Deny" destinationEntity="Conversation" inverseName="messages" inverseEntity="Conversation" syncable="YES"/>
+    </entity>
+    <entity name="Location" representedClassName="Location" syncable="YES" codeGenerationType="class">
+        <attribute name="altitude" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="course" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="horizontalAccuracy" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="latitude" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longitude" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="speed" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="verticalAccurarcy" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="location" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Participant" representedClassName="Participant" syncable="YES" codeGenerationType="class">
+        <attribute name="approvalStatus" attributeType="String" syncable="YES"/>
+        <attribute name="joining" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="userID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="conversation" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Conversation" inverseName="participants" inverseEntity="Conversation" syncable="YES"/>
+    </entity>
+    <entity name="Privacy" representedClassName="Privacy" syncable="YES" codeGenerationType="class">
+        <attribute name="shareLocation" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="showAddress" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="showBirth" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="showFirstName" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="showLastName" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="showMemo" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="showSex" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="user" maxCount="1" deletionRule="Deny" destinationEntity="User" inverseName="privacy" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Profile" representedClassName="Profile" syncable="YES" codeGenerationType="class">
+        <attribute name="birth" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" attributeType="String" syncable="YES"/>
+        <attribute name="memo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postalCode" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="sex" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="streetName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="streetNumber" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="profile" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Settings" representedClassName="Settings" syncable="YES" codeGenerationType="class">
+        <attribute name="communityRadius" attributeType="Integer 16" defaultValueString="10" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="trafficTradius" attributeType="Integer 16" defaultValueString="5" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="user" maxCount="1" deletionRule="Deny" destinationEntity="User" inverseName="settings" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Token" representedClassName="Token" syncable="YES" codeGenerationType="class">
+        <attribute name="token" attributeType="String" syncable="YES"/>
+        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="token" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="TrafficMessage" representedClassName="TrafficMessage" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="locationID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="senderID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="time" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" attributeType="String" syncable="YES"/>
+        <attribute name="upvotes" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="validations" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="trafficMessages" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="email" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="registry" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="username" attributeType="String" syncable="YES"/>
+        <relationship name="cars" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Car" inverseName="user" inverseEntity="Car" syncable="YES"/>
+        <relationship name="communityMessages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CommunityMessage" inverseName="user" inverseEntity="CommunityMessage" syncable="YES"/>
+        <relationship name="conversations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversation" inverseName="user" inverseEntity="Conversation" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="user" inverseEntity="Location" syncable="YES"/>
+        <relationship name="privacy" maxCount="1" deletionRule="Cascade" destinationEntity="Privacy" inverseName="user" inverseEntity="Privacy" syncable="YES"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Profile" inverseName="user" inverseEntity="Profile" syncable="YES"/>
+        <relationship name="settings" maxCount="1" deletionRule="Cascade" destinationEntity="Settings" inverseName="user" inverseEntity="Settings" syncable="YES"/>
+        <relationship name="token" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Token" inverseName="user" inverseEntity="Token" syncable="YES"/>
+        <relationship name="trafficMessages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TrafficMessage" inverseName="user" inverseEntity="TrafficMessage" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Car" positionX="-137" positionY="-72" width="128" height="163"/>
+        <element name="CommunityMessage" positionX="-299" positionY="513" width="128" height="148"/>
+        <element name="Conversation" positionX="-414" positionY="-315" width="128" height="148"/>
+        <element name="DirectMessage" positionX="-218" positionY="-378" width="128" height="103"/>
+        <element name="Location" positionX="-722" positionY="-301" width="128" height="193"/>
+        <element name="Participant" positionX="-218" positionY="-243" width="128" height="103"/>
+        <element name="Privacy" positionX="-749" positionY="-91" width="128" height="163"/>
+        <element name="Profile" positionX="-747" positionY="86" width="128" height="193"/>
+        <element name="Settings" positionX="-137" positionY="117" width="128" height="88"/>
+        <element name="Token" positionX="-722" positionY="323" width="128" height="73"/>
+        <element name="TrafficMessage" positionX="-486" positionY="513" width="128" height="178"/>
+        <element name="User" positionX="-396" positionY="9" width="128" height="238"/>
+    </elements>
+</model>
