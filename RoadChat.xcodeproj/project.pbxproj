@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		240D10F920481843008C5E39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D10F820481843008C5E39 /* AppDelegate.swift */; };
-		240D10FB20481843008C5E39 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D10FA20481843008C5E39 /* FirstViewController.swift */; };
-		240D10FD20481843008C5E39 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D10FC20481843008C5E39 /* SecondViewController.swift */; };
 		240D110020481843008C5E39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D10FE20481843008C5E39 /* Main.storyboard */; };
 		240D110220481843008C5E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D110120481843008C5E39 /* Assets.xcassets */; };
 		240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D110320481843008C5E39 /* LaunchScreen.storyboard */; };
+		243F1EB92048422100B45955 /* CommunityBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EB82048422100B45955 /* CommunityBoardController.swift */; };
+		243F1EBB204842A200B45955 /* TrafficBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBA204842A200B45955 /* TrafficBoardController.swift */; };
+		243F1EBD204842CF00B45955 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBC204842CF00B45955 /* ProfileController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		240D10F520481843008C5E39 /* RoadChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		240D10F820481843008C5E39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		240D10FA20481843008C5E39 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		240D10FC20481843008C5E39 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		240D10FF20481843008C5E39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		240D110120481843008C5E39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		240D110420481843008C5E39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		240D110620481844008C5E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		243F1EB82048422100B45955 /* CommunityBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoardController.swift; sourceTree = "<group>"; };
+		243F1EBA204842A200B45955 /* TrafficBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficBoardController.swift; sourceTree = "<group>"; };
+		243F1EBC204842CF00B45955 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,56 @@
 		240D10F720481843008C5E39 /* RoadChat */ = {
 			isa = PBXGroup;
 			children = (
+				243F1EB720483FD800B45955 /* Support */,
+				243F1EB320483BAD00B45955 /* Controller */,
+			);
+			path = RoadChat;
+			sourceTree = "<group>";
+		};
+		243F1EB320483BAD00B45955 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				243F1EB620483BD100B45955 /* Community */,
+				243F1EB520483BC500B45955 /* Traffic */,
+				243F1EB420483BC100B45955 /* User */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		243F1EB420483BC100B45955 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				243F1EBC204842CF00B45955 /* ProfileController.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		243F1EB520483BC500B45955 /* Traffic */ = {
+			isa = PBXGroup;
+			children = (
+				243F1EBA204842A200B45955 /* TrafficBoardController.swift */,
+			);
+			path = Traffic;
+			sourceTree = "<group>";
+		};
+		243F1EB620483BD100B45955 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				243F1EB82048422100B45955 /* CommunityBoardController.swift */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
+		243F1EB720483FD800B45955 /* Support */ = {
+			isa = PBXGroup;
+			children = (
 				240D10F820481843008C5E39 /* AppDelegate.swift */,
-				240D10FA20481843008C5E39 /* FirstViewController.swift */,
-				240D10FC20481843008C5E39 /* SecondViewController.swift */,
 				240D10FE20481843008C5E39 /* Main.storyboard */,
 				240D110120481843008C5E39 /* Assets.xcassets */,
 				240D110320481843008C5E39 /* LaunchScreen.storyboard */,
 				240D110620481844008C5E39 /* Info.plist */,
 			);
-			path = RoadChat;
+			name = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,9 +182,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				240D10FD20481843008C5E39 /* SecondViewController.swift in Sources */,
+				243F1EBB204842A200B45955 /* TrafficBoardController.swift in Sources */,
+				243F1EB92048422100B45955 /* CommunityBoardController.swift in Sources */,
 				240D10F920481843008C5E39 /* AppDelegate.swift in Sources */,
-				240D10FB20481843008C5E39 /* FirstViewController.swift in Sources */,
+				243F1EBD204842CF00B45955 /* ProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
