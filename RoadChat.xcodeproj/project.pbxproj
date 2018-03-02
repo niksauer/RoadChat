@@ -16,6 +16,17 @@
 		243F1EBD204842CF00B45955 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBC204842CF00B45955 /* ProfileController.swift */; };
 		248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 248D378D20485DC100B21C3D /* RoadChat.xcdatamodeld */; };
 		248D379120493EC800B21C3D /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379020493EC800B21C3D /* ConversationsController.swift */; };
+		248D379820494D0900B21C3D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379720494D0800B21C3D /* User.swift */; };
+		248D379C20494E1F00B21C3D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379B20494E1F00B21C3D /* Settings.swift */; };
+		248D379E20494EA400B21C3D /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379D20494EA400B21C3D /* Profile.swift */; };
+		248D37A020494EC000B21C3D /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379F20494EC000B21C3D /* Privacy.swift */; };
+		248D37A220494F1600B21C3D /* TrafficMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37A120494F1600B21C3D /* TrafficMessage.swift */; };
+		248D37A720494F7E00B21C3D /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37A620494F7E00B21C3D /* Conversation.swift */; };
+		248D37A920494F9900B21C3D /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37A820494F9900B21C3D /* Participant.swift */; };
+		248D37AB20494FE200B21C3D /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37AA20494FE200B21C3D /* Location.swift */; };
+		248D37AD20494FFB00B21C3D /* DirectMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37AC20494FFB00B21C3D /* DirectMessage.swift */; };
+		248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37AE2049501100B21C3D /* CommunityMessage.swift */; };
+		248D37B12049504B00B21C3D /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37B02049504B00B21C3D /* Car.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +41,17 @@
 		243F1EBC204842CF00B45955 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		248D378E20485DC100B21C3D /* RoadChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RoadChat.xcdatamodel; sourceTree = "<group>"; };
 		248D379020493EC800B21C3D /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
+		248D379720494D0800B21C3D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		248D379B20494E1F00B21C3D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		248D379D20494EA400B21C3D /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		248D379F20494EC000B21C3D /* Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy.swift; sourceTree = "<group>"; };
+		248D37A120494F1600B21C3D /* TrafficMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficMessage.swift; sourceTree = "<group>"; };
+		248D37A620494F7E00B21C3D /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		248D37A820494F9900B21C3D /* Participant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
+		248D37AA20494FE200B21C3D /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		248D37AC20494FFB00B21C3D /* DirectMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessage.swift; sourceTree = "<group>"; };
+		248D37AE2049501100B21C3D /* CommunityMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessage.swift; sourceTree = "<group>"; };
+		248D37B02049504B00B21C3D /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				243F1EB720483FD800B45955 /* Support */,
+				248D379920494D0F00B21C3D /* Model */,
 				243F1EB320483BAD00B45955 /* Controller */,
 			);
 			path = RoadChat;
@@ -122,6 +145,56 @@
 				248D379020493EC800B21C3D /* ConversationsController.swift */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		248D379920494D0F00B21C3D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				248D37B22049506000B21C3D /* Chat */,
+				248D37B32049506D00B21C3D /* Community */,
+				248D37A320494F1C00B21C3D /* Traffic */,
+				248D379A20494D1800B21C3D /* User */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		248D379A20494D1800B21C3D /* User */ = {
+			isa = PBXGroup;
+			children = (
+				248D37B02049504B00B21C3D /* Car.swift */,
+				248D37AA20494FE200B21C3D /* Location.swift */,
+				248D379720494D0800B21C3D /* User.swift */,
+				248D379B20494E1F00B21C3D /* Settings.swift */,
+				248D379D20494EA400B21C3D /* Profile.swift */,
+				248D379F20494EC000B21C3D /* Privacy.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		248D37A320494F1C00B21C3D /* Traffic */ = {
+			isa = PBXGroup;
+			children = (
+				248D37A120494F1600B21C3D /* TrafficMessage.swift */,
+			);
+			path = Traffic;
+			sourceTree = "<group>";
+		};
+		248D37B22049506000B21C3D /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				248D37A620494F7E00B21C3D /* Conversation.swift */,
+				248D37AC20494FFB00B21C3D /* DirectMessage.swift */,
+				248D37A820494F9900B21C3D /* Participant.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		248D37B32049506D00B21C3D /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				248D37AE2049501100B21C3D /* CommunityMessage.swift */,
+			);
+			path = Community;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,12 +269,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				248D37AD20494FFB00B21C3D /* DirectMessage.swift in Sources */,
+				248D37A720494F7E00B21C3D /* Conversation.swift in Sources */,
 				243F1EBB204842A200B45955 /* TrafficBoardController.swift in Sources */,
 				243F1EB92048422100B45955 /* CommunityBoardController.swift in Sources */,
+				248D379C20494E1F00B21C3D /* Settings.swift in Sources */,
+				248D37A920494F9900B21C3D /* Participant.swift in Sources */,
+				248D37A220494F1600B21C3D /* TrafficMessage.swift in Sources */,
+				248D37AB20494FE200B21C3D /* Location.swift in Sources */,
 				240D10F920481843008C5E39 /* AppDelegate.swift in Sources */,
 				248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */,
 				248D379120493EC800B21C3D /* ConversationsController.swift in Sources */,
+				248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */,
+				248D37B12049504B00B21C3D /* Car.swift in Sources */,
+				248D37A020494EC000B21C3D /* Privacy.swift in Sources */,
 				243F1EBD204842CF00B45955 /* ProfileController.swift in Sources */,
+				248D379E20494EA400B21C3D /* Profile.swift in Sources */,
+				248D379820494D0900B21C3D /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

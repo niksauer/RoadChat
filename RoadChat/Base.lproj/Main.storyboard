@@ -184,7 +184,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Chats" id="5rd-Ze-Rn9">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="create_new" id="aRv-KZ-xZ8"/>
+                        <barButtonItem key="rightBarButtonItem" image="create_new" id="aRv-KZ-xZ8"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xUT-IB-MWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
