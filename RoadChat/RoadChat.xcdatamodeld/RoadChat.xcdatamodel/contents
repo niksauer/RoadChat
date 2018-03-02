@@ -50,7 +50,7 @@
         <attribute name="approvalStatus" attributeType="String" syncable="YES"/>
         <attribute name="joining" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="userID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="conversation" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Conversation" inverseName="participants" inverseEntity="Conversation" syncable="YES"/>
+        <relationship name="conversation" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="participants" inverseEntity="Conversation" syncable="YES"/>
     </entity>
     <entity name="Privacy" representedClassName="Privacy" syncable="YES" codeGenerationType="class">
         <attribute name="shareLocation" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -115,12 +115,12 @@
         <element name="Conversation" positionX="-414" positionY="-315" width="128" height="148"/>
         <element name="DirectMessage" positionX="-218" positionY="-378" width="128" height="103"/>
         <element name="Location" positionX="-722" positionY="-301" width="128" height="193"/>
-        <element name="Participant" positionX="-218" positionY="-243" width="128" height="103"/>
+        <element name="Participant" positionX="-218" positionY="-243" width="128" height="28"/>
         <element name="Privacy" positionX="-749" positionY="-91" width="128" height="163"/>
         <element name="Profile" positionX="-747" positionY="86" width="128" height="193"/>
         <element name="Settings" positionX="-137" positionY="117" width="128" height="88"/>
         <element name="Token" positionX="-722" positionY="323" width="128" height="73"/>
-        <element name="TrafficMessage" positionX="-486" positionY="513" width="128" height="178"/>
+        <element name="TrafficMessage" positionX="-479" positionY="515" width="128" height="178"/>
         <element name="User" positionX="-396" positionY="9" width="128" height="238"/>
     </elements>
 </model>

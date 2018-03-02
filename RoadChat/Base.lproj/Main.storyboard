@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommunityMessageCell" id="iRR-yV-JsH">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="communityMessageCell" id="iRR-yV-JsH">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iRR-yV-JsH" id="UeX-Nx-Aev">
@@ -49,7 +49,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrafficMessageCell" id="6Sf-6k-Mik">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="trafficMessageCell" id="6Sf-6k-Mik">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Sf-6k-Mik" id="tZb-M6-4Z1">
@@ -80,7 +80,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileCell" id="Fk6-0L-CBt">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileCell" id="Fk6-0L-CBt">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fk6-0L-CBt" id="JCV-6D-8YP">
@@ -100,7 +100,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KC6-Aa-uyb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1566" y="1102"/>
+            <point key="canvasLocation" x="1566" y="1838"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -114,12 +114,13 @@
                     <connections>
                         <segue destination="dlA-MH-V0U" kind="relationship" relationship="viewControllers" id="4Lr-vM-Lzn"/>
                         <segue destination="eFg-cb-OGc" kind="relationship" relationship="viewControllers" id="JrU-kz-tBC"/>
+                        <segue destination="sIC-1n-hWA" kind="relationship" relationship="viewControllers" id="X6b-dL-4X8"/>
                         <segue destination="Lnk-sS-Xte" kind="relationship" relationship="viewControllers" id="yrz-YS-cO2"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-36" y="653"/>
+            <point key="canvasLocation" x="-38" y="1492"/>
         </scene>
         <!--Community-->
         <scene sceneID="FTN-Ta-KTB">
@@ -159,6 +160,37 @@
             </objects>
             <point key="canvasLocation" x="748.79999999999995" y="375.11244377811096"/>
         </scene>
+        <!--Chats-->
+        <scene sceneID="3qJ-Dj-ub2">
+            <objects>
+                <tableViewController id="TnE-G6-0gk" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="M2S-jR-3lh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="conversationCell" id="Dgi-wS-ZkG">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dgi-wS-ZkG" id="vPi-iJ-1ou">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="TnE-G6-0gk" id="GJX-NA-6Mo"/>
+                            <outlet property="delegate" destination="TnE-G6-0gk" id="RX5-ob-8gi"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Chats" id="5rd-Ze-Rn9">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="create_new" id="aRv-KZ-xZ8"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xUT-IB-MWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1566" y="1073"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="nNm-K8-m1X">
             <objects>
@@ -176,7 +208,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jqi-K7-8JM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="748.79999999999995" y="1102.8485757121441"/>
+            <point key="canvasLocation" x="748" y="1839"/>
+        </scene>
+        <!--Chats-->
+        <scene sceneID="JVz-hG-ZEL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sIC-1n-hWA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Chats" image="sms" id="acF-o8-InK"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cQ7-Uk-XoU">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="TnE-G6-0gk" kind="relationship" relationship="rootViewController" id="cp4-Ua-egB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eD3-iG-1eI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="748" y="1073"/>
         </scene>
     </scenes>
     <resources>
@@ -185,5 +236,6 @@
         <image name="contact_card" width="30" height="30"/>
         <image name="create_new" width="30" height="30"/>
         <image name="settings" width="30" height="30"/>
+        <image name="sms" width="30" height="30"/>
     </resources>
 </document>

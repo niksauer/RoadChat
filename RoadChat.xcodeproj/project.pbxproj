@@ -15,6 +15,7 @@
 		243F1EBB204842A200B45955 /* TrafficBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBA204842A200B45955 /* TrafficBoardController.swift */; };
 		243F1EBD204842CF00B45955 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBC204842CF00B45955 /* ProfileController.swift */; };
 		248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 248D378D20485DC100B21C3D /* RoadChat.xcdatamodeld */; };
+		248D379120493EC800B21C3D /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379020493EC800B21C3D /* ConversationsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		243F1EBA204842A200B45955 /* TrafficBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficBoardController.swift; sourceTree = "<group>"; };
 		243F1EBC204842CF00B45955 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		248D378E20485DC100B21C3D /* RoadChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RoadChat.xcdatamodel; sourceTree = "<group>"; };
+		248D379020493EC800B21C3D /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 		243F1EB320483BAD00B45955 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				248D379220493ED000B21C3D /* Chat */,
 				243F1EB620483BD100B45955 /* Community */,
 				243F1EB520483BC500B45955 /* Traffic */,
 				243F1EB420483BC100B45955 /* User */,
@@ -111,6 +114,14 @@
 				248D378D20485DC100B21C3D /* RoadChat.xcdatamodeld */,
 			);
 			name = Support;
+			sourceTree = "<group>";
+		};
+		248D379220493ED000B21C3D /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				248D379020493EC800B21C3D /* ConversationsController.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +200,7 @@
 				243F1EB92048422100B45955 /* CommunityBoardController.swift in Sources */,
 				240D10F920481843008C5E39 /* AppDelegate.swift in Sources */,
 				248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */,
+				248D379120493EC800B21C3D /* ConversationsController.swift in Sources */,
 				243F1EBD204842CF00B45955 /* ProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
