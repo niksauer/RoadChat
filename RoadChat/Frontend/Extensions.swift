@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  Extensions.swift
 //  RoadChat
 //
 //  Created by Niklas Sauer on 02.03.18.
@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import CoreData
 
-class User: NSManagedObject {
-    
+extension CodingUserInfoKey {
+    static let context = CodingUserInfoKey(rawValue: "context")
 }
