@@ -89,7 +89,7 @@
 		240D10F720481843008C5E39 /* RoadChat */ = {
 			isa = PBXGroup;
 			children = (
-				243F1EB720483FD800B45955 /* Support */,
+				24491C7E204AE7AC00BF4D81 /* Support */,
 				248D37B42049528A00B21C3D /* Frontend */,
 				248D37B8204952C300B21C3D /* Backend */,
 			);
@@ -131,7 +131,7 @@
 			path = Community;
 			sourceTree = "<group>";
 		};
-		243F1EB720483FD800B45955 /* Support */ = {
+		24491C7E204AE7AC00BF4D81 /* Support */ = {
 			isa = PBXGroup;
 			children = (
 				240D10F820481843008C5E39 /* AppDelegate.swift */,
