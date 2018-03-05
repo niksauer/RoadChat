@@ -29,7 +29,25 @@
 		248D37AD20494FFB00B21C3D /* DirectMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37AC20494FFB00B21C3D /* DirectMessage.swift */; };
 		248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37AE2049501100B21C3D /* CommunityMessage.swift */; };
 		248D37B12049504B00B21C3D /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37B02049504B00B21C3D /* Car.swift */; };
+		24AED4B7204CC2F2002A1703 /* RoadChatKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		24AED4B3204CC2EB002A1703 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "RoadChatKit::RoadChatKitTests::Product";
+			remoteInfo = RoadChatKitTests;
+		};
+		24AED4B5204CC2EB002A1703 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "RoadChatKit::RoadChatKit::Product";
+			remoteInfo = RoadChatKit;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		240D10F520481843008C5E39 /* RoadChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +74,7 @@
 		248D37AC20494FFB00B21C3D /* DirectMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessage.swift; sourceTree = "<group>"; };
 		248D37AE2049501100B21C3D /* CommunityMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessage.swift; sourceTree = "<group>"; };
 		248D37B02049504B00B21C3D /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24AED4B7204CC2F2002A1703 /* RoadChatKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +92,7 @@
 		240D10EC20481843008C5E39 = {
 			isa = PBXGroup;
 			children = (
+				24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */,
 				240D10F720481843008C5E39 /* RoadChat */,
 				240D10F620481843008C5E39 /* Products */,
 				244BFB7D2049A6EE00B2481D /* Frameworks */,
@@ -227,6 +248,15 @@
 			path = Backend;
 			sourceTree = "<group>";
 		};
+		24AED4AD204CC2EB002A1703 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				24AED4B4204CC2EB002A1703 /* RoadChatKitTests.xctest */,
+				24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -274,12 +304,35 @@
 			mainGroup = 240D10EC20481843008C5E39;
 			productRefGroup = 240D10F620481843008C5E39 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 24AED4AD204CC2EB002A1703 /* Products */;
+					ProjectRef = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				240D10F420481843008C5E39 /* RoadChat */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		24AED4B4204CC2EB002A1703 /* RoadChatKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			path = RoadChatKitTests.xctest;
+			remoteRef = 24AED4B3204CC2EB002A1703 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RoadChatKit.framework;
+			remoteRef = 24AED4B5204CC2EB002A1703 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		240D10F320481843008C5E39 /* Resources */ = {

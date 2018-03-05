@@ -1,0 +1,3 @@
+[submodule "Frameworks/RoadChatKit"]
+	path = Frameworks/RoadChatKit
+	url = https://github.com/niksauer/RoadChatKit
