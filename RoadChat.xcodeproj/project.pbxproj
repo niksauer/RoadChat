@@ -29,10 +29,18 @@
 		248D37AD20494FFB00B21C3D /* DirectMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37AC20494FFB00B21C3D /* DirectMessage.swift */; };
 		248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37AE2049501100B21C3D /* CommunityMessage.swift */; };
 		248D37B12049504B00B21C3D /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37B02049504B00B21C3D /* Car.swift */; };
-		24AED4B7204CC2F2002A1703 /* RoadChatKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; };
+		24901691204CE52E00515AAF /* RoadChatKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; };
+		24901692204CE52E00515AAF /* RoadChatKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		24901693204CE52E00515AAF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "RoadChatKit::RoadChatKit";
+			remoteInfo = RoadChatKit;
+		};
 		24AED4B3204CC2EB002A1703 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
@@ -48,6 +56,20 @@
 			remoteInfo = RoadChatKit;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		24901695204CE52E00515AAF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				24901692204CE52E00515AAF /* RoadChatKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		240D10F520481843008C5E39 /* RoadChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,7 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24AED4B7204CC2F2002A1703 /* RoadChatKit.framework in Frameworks */,
+				24901691204CE52E00515AAF /* RoadChatKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,10 +289,12 @@
 				240D10F120481843008C5E39 /* Sources */,
 				240D10F220481843008C5E39 /* Frameworks */,
 				240D10F320481843008C5E39 /* Resources */,
+				24901695204CE52E00515AAF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				24901694204CE52E00515AAF /* PBXTargetDependency */,
 			);
 			name = RoadChat;
 			productName = RoadChat;
@@ -375,6 +399,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		24901694204CE52E00515AAF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RoadChatKit;
+			targetProxy = 24901693204CE52E00515AAF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		240D10FE20481843008C5E39 /* Main.storyboard */ = {
@@ -506,6 +538,7 @@
 		240D110A20481844008C5E39 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JPC698935F;
@@ -521,6 +554,7 @@
 		240D110B20481844008C5E39 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JPC698935F;
