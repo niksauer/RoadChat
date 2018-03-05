@@ -11,8 +11,9 @@
 		240D110020481843008C5E39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D10FE20481843008C5E39 /* Main.storyboard */; };
 		240D110220481843008C5E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D110120481843008C5E39 /* Assets.xcassets */; };
 		240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D110320481843008C5E39 /* LaunchScreen.storyboard */; };
+		242F8F2E204D6EA80052087B /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F8F2D204D6EA80052087B /* LoginService.swift */; };
 		2433562320496D4C00CD5F87 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433562220496D4C00CD5F87 /* Extensions.swift */; };
-		243357262049817A00CD5F87 /* JSendAPIConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243357252049817A00CD5F87 /* JSendAPIConnector.swift */; };
+		243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243357252049817A00CD5F87 /* JSendAPIClient.swift */; };
 		243F1EB92048422100B45955 /* CommunityBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EB82048422100B45955 /* CommunityBoardController.swift */; };
 		243F1EBB204842A200B45955 /* TrafficBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBA204842A200B45955 /* TrafficBoardController.swift */; };
 		243F1EBD204842CF00B45955 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBC204842CF00B45955 /* ProfileController.swift */; };
@@ -78,8 +79,9 @@
 		240D110120481843008C5E39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		240D110420481843008C5E39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		240D110620481844008C5E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		242F8F2D204D6EA80052087B /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		2433562220496D4C00CD5F87 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		243357252049817A00CD5F87 /* JSendAPIConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JSendAPIConnector.swift; path = RoadChat/Backend/JSendAPIConnector.swift; sourceTree = SOURCE_ROOT; };
+		243357252049817A00CD5F87 /* JSendAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JSendAPIClient.swift; path = RoadChat/Backend/JSendAPIClient.swift; sourceTree = SOURCE_ROOT; };
 		243F1EB82048422100B45955 /* CommunityBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoardController.swift; sourceTree = "<group>"; };
 		243F1EBA204842A200B45955 /* TrafficBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficBoardController.swift; sourceTree = "<group>"; };
 		243F1EBC204842CF00B45955 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
@@ -265,7 +267,8 @@
 		248D37B8204952C300B21C3D /* Backend */ = {
 			isa = PBXGroup;
 			children = (
-				243357252049817A00CD5F87 /* JSendAPIConnector.swift */,
+				243357252049817A00CD5F87 /* JSendAPIClient.swift */,
+				242F8F2D204D6EA80052087B /* LoginService.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -380,9 +383,10 @@
 				248D37A720494F7E00B21C3D /* Conversation.swift in Sources */,
 				243F1EBB204842A200B45955 /* TrafficBoardController.swift in Sources */,
 				243F1EB92048422100B45955 /* CommunityBoardController.swift in Sources */,
-				243357262049817A00CD5F87 /* JSendAPIConnector.swift in Sources */,
+				243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */,
 				248D379C20494E1F00B21C3D /* Settings.swift in Sources */,
 				248D37A920494F9900B21C3D /* Participant.swift in Sources */,
+				242F8F2E204D6EA80052087B /* LoginService.swift in Sources */,
 				248D37A220494F1600B21C3D /* TrafficMessage.swift in Sources */,
 				248D37AB20494FE200B21C3D /* Location.swift in Sources */,
 				240D10F920481843008C5E39 /* AppDelegate.swift in Sources */,

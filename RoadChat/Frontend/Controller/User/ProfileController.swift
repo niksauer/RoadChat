@@ -7,12 +7,23 @@
 //
 
 import UIKit
+import RoadChatKit
 
 class ProfileController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let loginService = LoginService()
+        
+        do {
+            try loginService.login(user: LoginRequest(user: "inik", password: "helloword")) { token in
+                print(token)
+            }
+        } catch {
+            print(error)
+        }
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
