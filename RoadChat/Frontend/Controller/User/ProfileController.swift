@@ -16,7 +16,7 @@ class ProfileController: UITableViewController {
 
         let userService = UserService()
         
-        userService.getUser(id: 1, completion: { user, error  in
+        userService.get(userID: 1, completion: { user, error  in
             guard let user = user else {
                 print("error: \(error!)")
                 return

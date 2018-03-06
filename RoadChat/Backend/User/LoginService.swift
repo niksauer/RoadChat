@@ -14,10 +14,16 @@ final class LoginService: JSendService {
     
     private let client = JSendAPIClient(baseURL: "http://localhost:8080/user", token: nil)
     
-    func login(user: LoginRequest, completion: @escaping (RoadChatKit.BearerToken.PublicBearerToken?, Error?) -> Void) throws {
-        try client.makePOSTRequest(to: "/login", body: user, completion: { result in
+    func login(_ user: LoginRequest, completion: @escaping (Resource?, Error?) -> Void) throws {
+        try client.makePOSTRequest(to: "/login", body: user) { result in
             let result = self.decodeResource(from: result)
             completion(result.instance, result.error)
-        })
+        }
+    }
+    
+    func logout(completion: @escaping (Error?) -> Void) {
+        client.makeGETRequest(to: "/logout", params: nil) { result in
+            completion(self.getError(from: result))
+        }
     }
 }

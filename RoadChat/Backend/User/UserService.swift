@@ -14,15 +14,15 @@ final class UserService: JSendService {
     
     private let client = JSendAPIClient(baseURL: "http://localhost:8080/user", token: nil)
     
-    func createUser(_ user: RegisterRequest, completion: @escaping (RoadChatKit.User.PublicUser?, Error?) -> Void) throws {
+    func create(_ user: RoadChatKit.RegisterRequest, completion: @escaping (Resource?, Error?) -> Void) throws {
         try client.makePOSTRequest(to: nil, body: user) { result in
             let result = self.decodeResource(from: result)
             completion(result.instance, result.error)
         }
     }
     
-    func getUser(id: Int, completion: @escaping (RoadChatKit.User.PublicUser?, Error?) -> Void) {
-        client.makeGETRequest(to: "/\(id)", params: nil) { result in
+    func get(userID: Int, completion: @escaping (Resource?, Error?) -> Void) {
+        client.makeGETRequest(to: "/\(userID)", params: nil) { result in
             let result = self.decodeResource(from: result)
             completion(result.instance, result.error)
         }

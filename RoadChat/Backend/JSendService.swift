@@ -46,4 +46,13 @@ extension JSendService {
     func decodeResource(from result: JSendAPIResult) -> (instance: Resource?, error: Error?) {
         return decode(Resource.self, from: result)
     }
+
+    func getError(from result: JSendAPIResult) -> Error? {
+        switch result {
+        case .success(_):
+            return nil
+        case .failure(let error):
+            return error
+        }
+    }
 }
