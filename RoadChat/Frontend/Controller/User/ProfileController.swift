@@ -14,15 +14,16 @@ class ProfileController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let loginService = LoginService()
+        let userService = UserService()
         
-        do {
-            try loginService.login(user: LoginRequest(user: "inik", password: "helloword")) { token in
-                print(token)
+        userService.getUser(id: 1, completion: { user, error  in
+            guard let user = user else {
+                print("error: \(error!)")
+                return
             }
-        } catch {
-            print(error)
-        }
+            
+            print("success: \(user)")
+        })
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

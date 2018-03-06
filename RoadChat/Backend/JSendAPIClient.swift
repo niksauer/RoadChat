@@ -11,19 +11,14 @@ import Foundation
 typealias JSON = [String: Any]
 
 enum JSendAPIResult {
-    case success(JSendResponse)
+    case success(Data)
     case failure(Error)
-}
-
-enum JSendResponse {
-    case success(JSON)
-    case fail(String?)
-    case error(String?)
 }
 
 enum JSendAPIError: Error {
     case invalidData
     case invalidJSON
+    case custom(String?)
 }
 
 enum HTTPMethod: String {
@@ -36,31 +31,37 @@ enum HTTPMethod: String {
 struct JSendAPIClient {
     private let session = URLSession(configuration: .default)
     
+    private enum JSendResponse {
+        case success(JSON)
+        case fail(String?)
+        case error(String?)
+    }
+    
     let baseURL: String
     let token: String?
 
-    func makeGETRequest(to path: String, params: JSON?, completion: @escaping (JSendAPIResult) -> Void) {
+    func makeGETRequest(to path: String?, params: JSON?, completion: @escaping (JSendAPIResult) -> Void) {
         let url = URL(baseURL: baseURL, path: path, params: params)
         let request = URLRequest(url: url, method: .get)
         
         executeSessionDataTask(request: request, completion: completion)
     }
     
-    func makePOSTRequest<T: Encodable>(to path: String, body: T, completion: @escaping (JSendAPIResult) -> Void) throws {
+    func makePOSTRequest<T: Encodable>(to path: String?, body: T, completion: @escaping (JSendAPIResult) -> Void) throws {
         let url = URL(baseURL: baseURL, path: path, params: nil)
         let request = try URLRequest(url: url, method: .post, body: body)
         
         executeSessionDataTask(request: request, completion: completion)
     }
 
-    func makePUTRequest<T: Encodable>(to path: String, body: T, completion: @escaping (JSendAPIResult) -> Void) throws {
+    func makePUTRequest<T: Encodable>(to path: String?, body: T, completion: @escaping (JSendAPIResult) -> Void) throws {
         let url = URL(baseURL: baseURL, path: path, params: nil)
         let request = try URLRequest(url: url, method: .put, body: body)
         
         executeSessionDataTask(request: request, completion: completion)
     }
     
-    func makeDELETERequest(to path: String, params: JSON?, completion: @escaping (JSendAPIResult) -> Void) {
+    func makeDELETERequest(to path: String?, params: JSON?, completion: @escaping (JSendAPIResult) -> Void) {
         let url = URL(baseURL: baseURL, path: path, params: nil)
         let request = URLRequest(url: url, method: .delete)
         
@@ -82,7 +83,7 @@ struct JSendAPIClient {
             
             if let data = data {
                 do {
-                    result = JSendAPIResult.success(try self.getResponse(for: data))
+                    result = try self.getResult(for: try self.getResponse(for: data))
                 } catch {
                     result = JSendAPIResult.failure(error)
                 }
@@ -116,16 +117,26 @@ struct JSendAPIClient {
         case "fail":
             return JSendResponse.fail(json["data"] as? String)
         case "error":
-            return JSendResponse.error(json["error"] as? String)
+            return JSendResponse.error(json["message"] as? String)
         default:
             throw JSendAPIError.invalidJSON
+        }
+    }
+    
+    private func getResult(for response: JSendResponse) throws -> JSendAPIResult {
+        switch response {
+        case .error(let message), .fail(let message):
+            return JSendAPIResult.failure(JSendAPIError.custom(message))
+        case .success(let json):
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+            return JSendAPIResult.success(jsonData)
         }
     }
 }
 
 extension URL {
-    init(baseURL: String, path: String, params: JSON?) {
-        var components = URLComponents(string: "\(baseURL)/\(path)")!
+    init(baseURL: String, path: String?, params: JSON?) {
+        var components = URLComponents(string: "\(baseURL)\(path ?? "")")!
 
         if let params = params {
             for (key, value) in params {
