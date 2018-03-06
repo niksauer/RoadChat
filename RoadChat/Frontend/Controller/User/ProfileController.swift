@@ -13,17 +13,6 @@ class ProfileController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let userService = UserService()
-        
-        userService.get(userID: 1, completion: { user, error  in
-            guard let user = user else {
-                print("error: \(error!)")
-                return
-            }
-            
-            print("success: \(user)")
-        })
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -32,6 +21,20 @@ class ProfileController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let userService = UserService()
+        
+        do {
+            try userService.create(RegisterRequest(email: "nik.sauer@me.com", username: "inik", password: "helloworld")) { user, error in
+                print(user, error)
+            }
+        } catch {
+            // handle error
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
