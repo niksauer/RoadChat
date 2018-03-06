@@ -7,12 +7,24 @@
 //
 
 import UIKit
+import RoadChatKit
 
 class ProfileController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let userService = UserService()
+        
+        userService.getUser(id: 1, completion: { user, error  in
+            guard let user = user else {
+                print("error: \(error!)")
+                return
+            }
+            
+            print("success: \(user)")
+        })
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
