@@ -72,8 +72,10 @@ struct JSendAPIClient {
         var request = request
         
         // set bearer authorization header
-        request.setValue(token, forHTTPHeaderField: "Authorization: Bearer")
-        
+        if let token = token {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+    
         let task = session.dataTask(with: request) { (data, response, error) -> Void in
             let result: JSendAPIResult
             
