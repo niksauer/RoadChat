@@ -71,13 +71,11 @@ struct JSendAPIClient {
     private func executeSessionDataTask(request: URLRequest, completion: @escaping (JSendAPIResult) -> Void) {
         var request = request
         
-        // set content type headers
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
         // set bearer authorization header
-        request.setValue(token, forHTTPHeaderField: "Authorization: Bearer")
-        
+        if let token = token {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+    
         let task = session.dataTask(with: request) { (data, response, error) -> Void in
             let result: JSendAPIResult
             
@@ -162,6 +160,10 @@ extension URLRequest {
         
         switch method {
         case .post, .put:
+            // set content type headers
+            setValue("application/json", forHTTPHeaderField: "Content-Type")
+            setValue("application/json", forHTTPHeaderField: "Accept")
+        
             // set body content
             httpBody = try JSONEncoder().encode(body)
         default:
