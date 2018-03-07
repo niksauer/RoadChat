@@ -28,6 +28,12 @@ enum HTTPMethod: String {
     case delete = "DELETE"
 }
 
+protocol APICredentialStore {
+    var userID: Int? { get }
+    func getToken() -> String?
+    func setToken(_ token: String) throws
+}
+
 struct JSendAPIClient {
     private let session = URLSession(configuration: .default)
     
@@ -38,7 +44,7 @@ struct JSendAPIClient {
     }
     
     let baseURL: String
-    let token: String?
+    let credentials: APICredentialStore
 
     func makeGETRequest(to path: String?, params: JSON?, completion: @escaping (JSendAPIResult) -> Void) {
         let url = URL(baseURL: baseURL, path: path, params: params)
@@ -72,7 +78,7 @@ struct JSendAPIClient {
         var request = request
         
         // set bearer authorization header
-        if let token = token {
+        if let token = credentials.getToken() {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
     
