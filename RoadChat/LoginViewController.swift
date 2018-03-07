@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import RoadChatKit
+import Strongbox
 
 class LoginViewController: UIViewController {
     
@@ -31,8 +32,9 @@ class LoginViewController: UIViewController {
                     print(error!)
                     return
                 }
-                
-                
+                let keyChainClient = Strongbox()
+                _ = keyChainClient.archive(token, key: "AuthToken")
+                print(keyChainClient.unarchive(objectForKey: "AuthToken") as! String)
             }
         } catch {
             print(error)

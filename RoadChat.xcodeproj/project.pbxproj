@@ -36,6 +36,8 @@
 		24901691204CE52E00515AAF /* RoadChatKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; };
 		24901692204CE52E00515AAF /* RoadChatKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D48274E220503FF800A46FA9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48274E120503FF800A46FA9 /* LoginViewController.swift */; };
+		D48274EF20505CF000A46FA9 /* Strongbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D48274EE20505CDB00A46FA9 /* Strongbox.framework */; };
+		D48274F020505CF000A46FA9 /* Strongbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D48274EE20505CDB00A46FA9 /* Strongbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,20 @@
 			remoteGlobalIDString = "RoadChatKit::RoadChatKit::Product";
 			remoteInfo = RoadChatKit;
 		};
+		D48274ED20505CDB00A46FA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D48274E920505CDB00A46FA9 /* Strongbox.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1E3AD2051F2007B10034FBDE;
+			remoteInfo = Strongbox;
+		};
+		D48274F120505CF000A46FA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D48274E920505CDB00A46FA9 /* Strongbox.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E3AD2041F2007B10034FBDE;
+			remoteInfo = Strongbox;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -70,6 +86,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				24901692204CE52E00515AAF /* RoadChatKit.framework in Embed Frameworks */,
+				D48274F020505CF000A46FA9 /* Strongbox.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,6 +124,7 @@
 		248D37B02049504B00B21C3D /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
 		D48274E120503FF800A46FA9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = RoadChat/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
+		D48274E920505CDB00A46FA9 /* Strongbox.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Strongbox.xcodeproj; path = Frameworks/Strongbox/Strongbox.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24901691204CE52E00515AAF /* RoadChatKit.framework in Frameworks */,
+				D48274EF20505CF000A46FA9 /* Strongbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +153,7 @@
 		240D10EC20481843008C5E39 = {
 			isa = PBXGroup;
 			children = (
+				D48274E920505CDB00A46FA9 /* Strongbox.xcodeproj */,
 				24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */,
 				240D10F720481843008C5E39 /* RoadChat */,
 				240D10F620481843008C5E39 /* Products */,
@@ -310,6 +330,14 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		D48274EA20505CDB00A46FA9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D48274EE20505CDB00A46FA9 /* Strongbox.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -326,6 +354,7 @@
 			);
 			dependencies = (
 				24901694204CE52E00515AAF /* PBXTargetDependency */,
+				D48274F220505CF000A46FA9 /* PBXTargetDependency */,
 			);
 			name = RoadChat;
 			productName = RoadChat;
@@ -364,6 +393,10 @@
 					ProductGroup = 24AED4AD204CC2EB002A1703 /* Products */;
 					ProjectRef = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
 				},
+				{
+					ProductGroup = D48274EA20505CDB00A46FA9 /* Products */;
+					ProjectRef = D48274E920505CDB00A46FA9 /* Strongbox.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -385,6 +418,13 @@
 			fileType = wrapper.framework;
 			path = RoadChatKit.framework;
 			remoteRef = 24AED4B5204CC2EB002A1703 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D48274EE20505CDB00A46FA9 /* Strongbox.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Strongbox.framework;
+			remoteRef = D48274ED20505CDB00A46FA9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -441,6 +481,11 @@
 			isa = PBXTargetDependency;
 			name = RoadChatKit;
 			targetProxy = 24901693204CE52E00515AAF /* PBXContainerItemProxy */;
+		};
+		D48274F220505CF000A46FA9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Strongbox;
+			targetProxy = D48274F120505CF000A46FA9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
