@@ -22,7 +22,7 @@ final class LoginService: JSendService {
     }
     
     func logout(completion: @escaping (Error?) -> Void) {
-        client.makeGETRequest(to: "/logout", params: nil) { result in
+        client.makeGETRequest(to: "/logout") { result in
             completion(self.getError(from: result))
         }
     }
