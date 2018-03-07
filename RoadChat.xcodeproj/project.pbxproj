@@ -35,6 +35,7 @@
 		248D37B12049504B00B21C3D /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37B02049504B00B21C3D /* Car.swift */; };
 		24901691204CE52E00515AAF /* RoadChatKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; };
 		24901692204CE52E00515AAF /* RoadChatKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C9CF4FF72050369700E9E697 /* TrafficService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CF4FF62050369700E9E697 /* TrafficService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		248D37AE2049501100B21C3D /* CommunityMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessage.swift; sourceTree = "<group>"; };
 		248D37B02049504B00B21C3D /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
+		C9CF4FF62050369700E9E697 /* TrafficService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +287,7 @@
 			children = (
 				2404A25A204EAFAC009AC7E1 /* JSendService.swift */,
 				243357252049817A00CD5F87 /* JSendAPIClient.swift */,
+				C9CF4FF22050359C00E9E697 /* Traffic */,
 				2404A25C204ED13A009AC7E1 /* User */,
 			);
 			path = Backend;
@@ -297,6 +300,14 @@
 				24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C9CF4FF22050359C00E9E697 /* Traffic */ = {
+			isa = PBXGroup;
+			children = (
+				C9CF4FF62050369700E9E697 /* TrafficService.swift */,
+			);
+			path = Traffic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,6 +422,7 @@
 				248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */,
 				248D379120493EC800B21C3D /* ConversationsController.swift in Sources */,
 				248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */,
+				C9CF4FF72050369700E9E697 /* TrafficService.swift in Sources */,
 				2404A256204E92D2009AC7E1 /* UserService.swift in Sources */,
 				248D37B12049504B00B21C3D /* Car.swift in Sources */,
 				2433562320496D4C00CD5F87 /* Extensions.swift in Sources */,
