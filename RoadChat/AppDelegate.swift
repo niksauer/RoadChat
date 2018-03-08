@@ -15,8 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginNavigationVC = mainStoryBoard.instantiateViewController(withIdentifier: "loginNavigationVC")
+        let tabBarVC = mainStoryBoard.instantiateViewController(withIdentifier: "tabBarVC")
+        //if a token exists (user is logged in)
+        if CredientialManager.shared.getToken() != nil {
+            self.window?.rootViewController = tabBarVC;
+        } else {
+            self.window?.rootViewController = loginNavigationVC;
+        }
         
-        // Override point for customization after application launch.
+        
         return true
     }
 
