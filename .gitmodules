@@ -3,6 +3,7 @@
 	url = https://github.com/niksauer/RoadChatKit
 	branch = master
 	ignore = dirty
-[submodule "Frameworks/Strongbox"]
-	path = Frameworks/Strongbox
-	url = https://github.com/granoff/Strongbox
+[submodule "Frameworks/Locksmith"]
+	path = Frameworks/Locksmith
+	url = https://github.com/matthewpalmer/Locksmith.git
+	branch = master

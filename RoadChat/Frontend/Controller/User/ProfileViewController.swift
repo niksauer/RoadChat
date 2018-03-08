@@ -1,5 +1,5 @@
 //
-//  ProfileController.swift
+//  ProfileViewController.swift
 //  RoadChat
 //
 //  Created by Niklas Sauer on 01.03.18.
@@ -9,7 +9,7 @@
 import UIKit
 import RoadChatKit
 
-class ProfileController: UITableViewController {
+class ProfileViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
