@@ -31,7 +31,14 @@ class LoginViewController: UIViewController {
         let loginRequest = LoginRequest(user: user, password: password)
         
         User.login(loginRequest, completion: { error in
-            
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            print("login successfull")
+            self.performSegue(withIdentifier: "dashboardSegue", sender: self)
         })
+        
+        
     }
 }
