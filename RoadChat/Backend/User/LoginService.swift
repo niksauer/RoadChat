@@ -12,7 +12,7 @@ import RoadChatKit
 final class LoginService: JSendService {
     typealias Resource = RoadChatKit.BearerToken.PublicBearerToken
     
-    private let client = JSendAPIClient(baseURL: "http://^48080/user", token: nil)
+    private let client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/user", token: nil)
     
     func login(_ user: LoginRequest, completion: @escaping (Resource?, Error?) -> Void) throws {
         try client.makePOSTRequest(to: "/login", body: user) { result in
