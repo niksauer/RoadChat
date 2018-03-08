@@ -176,7 +176,6 @@ extension URLRequest {
             setValue("application/json", forHTTPHeaderField: "Accept")
         
             // set body content
-
             let encoder = JSONEncoder()
             
             encoder.dateEncodingStrategy = .formatted({
@@ -186,7 +185,8 @@ extension URLRequest {
                 formatter.timeZone = TimeZone(secondsFromGMT: 0)
                 formatter.locale = Locale(identifier: "en_US_POSIX")
                 return formatter
-                }())
+            }())
+            
             httpBody = try encoder.encode(body)
         default:
             break
