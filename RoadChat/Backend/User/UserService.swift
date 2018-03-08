@@ -47,7 +47,7 @@ final class UserService: JSendService {
             completion(result.instance, result.error)
         }
     }
-    
+
     func updateSettings(userID: RoadChatKit.User.ID, to settings: RoadChatKit.SettingsRequest, completion: @escaping (Error?) -> Void) throws {
         try client.makePUTRequest(to: "/\(userID)/settings", body: settings) { result in
             completion(self.getError(from: result))
@@ -73,7 +73,7 @@ final class UserService: JSendService {
             completion(result.instance, result.error)
         }
     }
-    
+
     func createCar(_ car: RoadChatKit.CarRequest, userID: RoadChatKit.User.ID, completion: @escaping (RoadChatKit.Car.PublicCar?, Error?) -> Void) throws {
         try client.makePOSTRequest(to: "/\(userID)/cars", body: car) { result in
             let result = self.decode(RoadChatKit.Car.PublicCar.self, from: result)

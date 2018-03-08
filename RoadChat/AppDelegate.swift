@@ -13,10 +13,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
         // Override point for customization after application launch.
+        let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginNavigationVC = mainStoryBoard.instantiateViewController(withIdentifier: "loginNavigationVC")
+        let tabBarVC = mainStoryBoard.instantiateViewController(withIdentifier: "tabBarVC")
+        
+        // user is logged in a token exists
+        if CredientialManager.shared.getToken() != nil {
+            self.window?.rootViewController = tabBarVC;
+        } else {
+            self.window?.rootViewController = loginNavigationVC;
+        }
+        
         return true
     }
 
@@ -42,6 +51,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
-
