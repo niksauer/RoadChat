@@ -284,6 +284,9 @@
                                 <rect key="frame" x="195" y="347" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="registerButtonPressed:" destination="5iU-UL-VIl" eventType="touchUpInside" id="wgP-Kl-Hk2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJ8-ib-bGm">
                                 <rect key="frame" x="121" y="347" width="46" height="30"/>

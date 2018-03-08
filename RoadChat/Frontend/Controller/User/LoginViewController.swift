@@ -15,6 +15,13 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    
+    @IBAction func registerButtonPressed(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "registerSegue", sender: self)
+        
+    }
+    
     @IBAction func loginButtonPressed(_ sender: Any) {
         let loginClient = LoginService()
         let loginRequest = LoginRequest(user: usernameTextField.text!, password: passwordTextField.text!)
