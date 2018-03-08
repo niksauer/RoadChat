@@ -46,28 +46,28 @@ struct JSendAPIClient {
     let baseURL: String
     let credentials: APICredentialStore
 
-    func makeGETRequest(to path: String?, params: JSON?, completion: @escaping (JSendAPIResult) -> Void) {
+    func makeGETRequest(to path: String? = nil, params: JSON? = nil, completion: @escaping (JSendAPIResult) -> Void) {
         let url = URL(baseURL: baseURL, path: path, params: params)
         let request = URLRequest(url: url, method: .get)
         
         executeSessionDataTask(request: request, completion: completion)
     }
     
-    func makePOSTRequest<T: Encodable>(to path: String?, body: T, completion: @escaping (JSendAPIResult) -> Void) throws {
+    func makePOSTRequest<T: Encodable>(to path: String? = nil, params: JSON? = nil, body: T, completion: @escaping (JSendAPIResult) -> Void) throws {
         let url = URL(baseURL: baseURL, path: path, params: nil)
         let request = try URLRequest(url: url, method: .post, body: body)
         
         executeSessionDataTask(request: request, completion: completion)
     }
 
-    func makePUTRequest<T: Encodable>(to path: String?, body: T, completion: @escaping (JSendAPIResult) -> Void) throws {
+    func makePUTRequest<T: Encodable>(to path: String? = nil, params: JSON? = nil, body: T, completion: @escaping (JSendAPIResult) -> Void) throws {
         let url = URL(baseURL: baseURL, path: path, params: nil)
         let request = try URLRequest(url: url, method: .put, body: body)
         
         executeSessionDataTask(request: request, completion: completion)
     }
     
-    func makeDELETERequest(to path: String?, params: JSON?, completion: @escaping (JSendAPIResult) -> Void) {
+    func makeDELETERequest(to path: String? = nil, params: JSON? = nil, completion: @escaping (JSendAPIResult) -> Void) {
         let url = URL(baseURL: baseURL, path: path, params: nil)
         let request = URLRequest(url: url, method: .delete)
         

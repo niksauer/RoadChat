@@ -20,7 +20,6 @@
 		240D110220481843008C5E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D110120481843008C5E39 /* Assets.xcassets */; };
 		240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D110320481843008C5E39 /* LaunchScreen.storyboard */; };
 		242F8F2E204D6EA80052087B /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F8F2D204D6EA80052087B /* LoginService.swift */; };
-		2433562320496D4C00CD5F87 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433562220496D4C00CD5F87 /* Extensions.swift */; };
 		243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243357252049817A00CD5F87 /* JSendAPIClient.swift */; };
 		243F1EB92048422100B45955 /* CommunityBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EB82048422100B45955 /* CommunityBoardController.swift */; };
 		243F1EBB204842A200B45955 /* TrafficBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBA204842A200B45955 /* TrafficBoardController.swift */; };
@@ -151,7 +150,6 @@
 		240D110420481843008C5E39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		240D110620481844008C5E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		242F8F2D204D6EA80052087B /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
-		2433562220496D4C00CD5F87 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		243357252049817A00CD5F87 /* JSendAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JSendAPIClient.swift; path = RoadChat/Backend/JSendAPIClient.swift; sourceTree = SOURCE_ROOT; };
 		243F1EB82048422100B45955 /* CommunityBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoardController.swift; sourceTree = "<group>"; };
 		243F1EBA204842A200B45955 /* TrafficBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficBoardController.swift; sourceTree = "<group>"; };
@@ -362,7 +360,6 @@
 			children = (
 				248D379920494D0F00B21C3D /* Model */,
 				243F1EB320483BAD00B45955 /* Controller */,
-				2433562220496D4C00CD5F87 /* Extensions.swift */,
 			);
 			path = Frontend;
 			sourceTree = "<group>";
@@ -562,7 +559,6 @@
 				24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */,
 				2404A256204E92D2009AC7E1 /* UserService.swift in Sources */,
 				248D37B12049504B00B21C3D /* Car.swift in Sources */,
-				2433562320496D4C00CD5F87 /* Extensions.swift in Sources */,
 				248D37A020494EC000B21C3D /* Privacy.swift in Sources */,
 				243F1EBD204842CF00B45955 /* ProfileViewController.swift in Sources */,
 				2404A25B204EAFAC009AC7E1 /* JSendService.swift in Sources */,
