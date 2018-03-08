@@ -297,13 +297,22 @@
                                     <action selector="loginButtonPressed:" destination="5iU-UL-VIl" eventType="touchUpInside" id="YBO-ho-YGj"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ejv-g8-FTs">
+                                <rect key="frame" x="139" y="302" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="password"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="qnn-DO-QkN"/>
                     </view>
                     <navigationItem key="navigationItem" id="KZI-j5-c8O"/>
                     <connections>
+                        <outlet property="passwordLabel" destination="fUR-gu-fOv" id="bR2-NO-Oak"/>
                         <outlet property="passwordTextField" destination="Ejv-g8-FTs" id="2ye-Hm-xjn"/>
+                        <outlet property="usernameLabel" destination="GBo-ce-Stn" id="TPU-yy-dDR"/>
                         <outlet property="usernameTextField" destination="QxS-iB-oHG" id="E0b-ft-iBi"/>
                         <segue destination="49e-Tb-3d3" kind="show" identifier="showTabBarVC" id="LU1-JC-F2m"/>
                         <segue destination="2dG-9l-aBT" kind="show" identifier="showRegisterView" id="Syu-cH-y2m"/>

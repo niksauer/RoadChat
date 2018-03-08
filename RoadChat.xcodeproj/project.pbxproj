@@ -16,7 +16,6 @@
 		240AB0192050877000324028 /* RoadChatKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		240AB01D2050878100324028 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240AB01C2050878100324028 /* Security.framework */; };
 		240D10F920481843008C5E39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D10F820481843008C5E39 /* AppDelegate.swift */; };
-		240D110020481843008C5E39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D10FE20481843008C5E39 /* Main.storyboard */; };
 		240D110220481843008C5E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D110120481843008C5E39 /* Assets.xcassets */; };
 		240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D110320481843008C5E39 /* LaunchScreen.storyboard */; };
 		242F8F2E204D6EA80052087B /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F8F2D204D6EA80052087B /* LoginService.swift */; };
@@ -121,6 +120,48 @@
 			remoteGlobalIDString = "RoadChatKit::RoadChatKit::Product";
 			remoteInfo = RoadChatKit;
 		};
+		24F1DD3620517B8E00A726AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9EDCE3E41C09D211002FA4A7;
+			remoteInfo = "SwiftyBeaver (iOS)";
+		};
+		24F1DD3820517B8E00A726AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9EDCE3EE1C09D211002FA4A7;
+			remoteInfo = SwiftyBeaverTests;
+		};
+		24F1DD3A20517B8E00A726AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ACE597841C1882DF0031451F;
+			remoteInfo = "SwiftyBeaver (watchOS)";
+		};
+		24F1DD3C20517B8E00A726AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ACE597951C18830D0031451F;
+			remoteInfo = "SwiftyBeaver (tvOS)";
+		};
+		24F1DD3E20517B8E00A726AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ACE597A61C18832E0031451F;
+			remoteInfo = "SwiftyBeaver (macOS)";
+		};
+		24F1DD4220517B9D00A726AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9EDCE3E31C09D211002FA4A7;
+			remoteInfo = "SwiftyBeaver (iOS)";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -131,6 +172,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				240AB0142050870000324028 /* Locksmith.framework in Embed Frameworks */,
+				24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */,
 				240AB0192050877000324028 /* RoadChatKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -147,7 +189,6 @@
 		240AB01C2050878100324028 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		240D10F520481843008C5E39 /* RoadChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		240D10F820481843008C5E39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		240D10FF20481843008C5E39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		240D110120481843008C5E39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		240D110420481843008C5E39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		240D110620481844008C5E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -182,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				240AB01D2050878100324028 /* Security.framework in Frameworks */,
+				24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */,
 				240AB0132050870000324028 /* Locksmith.framework in Frameworks */,
 				240AB0182050877000324028 /* RoadChatKit.framework in Frameworks */,
 			);
@@ -218,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				240AAFFB205086ED00324028 /* Locksmith.xcodeproj */,
+				24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */,
 				24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */,
 				240D10F720481843008C5E39 /* RoadChat */,
 				240D10F620481843008C5E39 /* Products */,
@@ -302,8 +345,8 @@
 			children = (
 				240AB0172050871500324028 /* RoadChat.entitlements */,
 				240D10F820481843008C5E39 /* AppDelegate.swift */,
-				240D10FE20481843008C5E39 /* Main.storyboard */,
 				240D110120481843008C5E39 /* Assets.xcassets */,
+				D40B20E220519652000823E4 /* Main.storyboard */,
 				240D110320481843008C5E39 /* LaunchScreen.storyboard */,
 				240D110620481844008C5E39 /* Info.plist */,
 				248D378D20485DC100B21C3D /* RoadChat.xcdatamodeld */,
@@ -414,6 +457,26 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		24F1DD2620517B8E00A726AA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */,
+				24F1DD3920517B8E00A726AA /* SwiftyBeaverTests.xctest */,
+				24F1DD3B20517B8E00A726AA /* SwiftyBeaver.framework */,
+				24F1DD3D20517B8E00A726AA /* SwiftyBeaver.framework */,
+				24F1DD3F20517B8E00A726AA /* SwiftyBeaver.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C93155432051920C00F4C429 /* Traffic */ = {
+			isa = PBXGroup;
+			children = (
+				C93155442051920C00F4C429 /* TrafficService.swift */,
+			);
+			path = Traffic;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -431,6 +494,7 @@
 			dependencies = (
 				240AB0162050870000324028 /* PBXTargetDependency */,
 				240AB01B2050877000324028 /* PBXTargetDependency */,
+				24F1DD4320517B9D00A726AA /* PBXTargetDependency */,
 			);
 			name = RoadChat;
 			productName = RoadChat;
@@ -477,6 +541,10 @@
 				{
 					ProductGroup = 24AED4AD204CC2EB002A1703 /* Products */;
 					ProjectRef = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
+				},
+				{
+					ProductGroup = 24F1DD2620517B8E00A726AA /* Products */;
+					ProjectRef = 24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -550,6 +618,41 @@
 			remoteRef = 24AED4B5204CC2EB002A1703 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftyBeaver.framework;
+			remoteRef = 24F1DD3620517B8E00A726AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24F1DD3920517B8E00A726AA /* SwiftyBeaverTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftyBeaverTests.xctest;
+			remoteRef = 24F1DD3820517B8E00A726AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24F1DD3B20517B8E00A726AA /* SwiftyBeaver.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftyBeaver.framework;
+			remoteRef = 24F1DD3A20517B8E00A726AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24F1DD3D20517B8E00A726AA /* SwiftyBeaver.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftyBeaver.framework;
+			remoteRef = 24F1DD3C20517B8E00A726AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24F1DD3F20517B8E00A726AA /* SwiftyBeaver.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftyBeaver.framework;
+			remoteRef = 24F1DD3E20517B8E00A726AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -557,9 +660,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D40B20E420519652000823E4 /* Main.storyboard in Resources */,
 				240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */,
 				240D110220481843008C5E39 /* Assets.xcassets in Resources */,
-				240D110020481843008C5E39 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,23 +715,28 @@
 			name = RoadChatKit;
 			targetProxy = 240AB01A2050877000324028 /* PBXContainerItemProxy */;
 		};
+		24F1DD4320517B9D00A726AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SwiftyBeaver (iOS)";
+			targetProxy = 24F1DD4220517B9D00A726AA /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		240D10FE20481843008C5E39 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				240D10FF20481843008C5E39 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		240D110320481843008C5E39 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				240D110420481843008C5E39 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D40B20E220519652000823E4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D40B20E320519652000823E4 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -749,10 +857,15 @@
 				CODE_SIGN_ENTITLEMENTS = RoadChat/RoadChat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C23UW3NA42;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FacebookSDK/FacebookSDKs-iOS-4",
+				);
 				INFOPLIST_FILE = RoadChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hpe.dhbw.RoadChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -766,10 +879,15 @@
 				CODE_SIGN_ENTITLEMENTS = RoadChat/RoadChat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C23UW3NA42;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FacebookSDK/FacebookSDKs-iOS-4",
+				);
 				INFOPLIST_FILE = RoadChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hpe.dhbw.RoadChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

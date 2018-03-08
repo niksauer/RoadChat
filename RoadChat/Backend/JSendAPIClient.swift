@@ -11,7 +11,7 @@ import Foundation
 typealias JSON = [String: Any]
 
 enum JSendAPIResult {
-    case success(Data)
+    case success(Data?)
     case failure(Error)
 }
 
@@ -32,14 +32,14 @@ protocol APICredentialStore {
     func getUserID() -> Int?
     func setUserID(_ userID: Int) throws
     func getToken() -> String?
-    func setToken(_ token: String) throws
+    func setToken(_ token: String?) throws
 }
 
 struct JSendAPIClient {
     private let session = URLSession(configuration: .default)
     
     private enum JSendResponse {
-        case success(JSON)
+        case success(Data?)
         case fail(String?)
         case error(String?)
     }
@@ -115,10 +115,16 @@ struct JSendAPIClient {
         
         switch status {
         case "success":
-            guard let data = json["data"] as? JSON else {
+            guard let json = json["data"] else {
                 throw JSendAPIError.invalidJSON
             }
-            return JSendResponse.success(data)
+            
+            if let _ = json as? NSNull {
+                 return JSendResponse.success(nil)
+            } else {
+                let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+                return JSendResponse.success(jsonData)
+            }
         case "fail":
             return JSendResponse.fail(json["data"] as? String)
         case "error":
@@ -132,9 +138,8 @@ struct JSendAPIClient {
         switch response {
         case .error(let message), .fail(let message):
             return JSendAPIResult.failure(JSendAPIError.custom(message))
-        case .success(let json):
-            let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
-            return JSendAPIResult.success(jsonData)
+        case .success(let data):
+            return JSendAPIResult.success(data)
         }
     }
 }
@@ -172,7 +177,18 @@ extension URLRequest {
             setValue("application/json", forHTTPHeaderField: "Accept")
         
             // set body content
-            httpBody = try JSONEncoder().encode(body)
+            let encoder = JSONEncoder()
+            
+            encoder.dateEncodingStrategy = .formatted({
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+                formatter.calendar = Calendar(identifier: .iso8601)
+                formatter.timeZone = TimeZone(secondsFromGMT: 0)
+                formatter.locale = Locale(identifier: "en_US_POSIX")
+                return formatter
+            }())
+            
+            httpBody = try encoder.encode(body)
         default:
             break
         }
