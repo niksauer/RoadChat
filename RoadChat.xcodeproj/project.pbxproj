@@ -41,10 +41,8 @@
 		248D37B12049504B00B21C3D /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37B02049504B00B21C3D /* Car.swift */; };
 		24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; };
 		24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C93155452051920C00F4C429 /* TrafficService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93155442051920C00F4C429 /* TrafficService.swift */; };
 		D48274E220503FF800A46FA9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48274E120503FF800A46FA9 /* LoginViewController.swift */; };
-		24901691204CE52E00515AAF /* RoadChatKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; };
-		24901692204CE52E00515AAF /* RoadChatKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C9CF4FF72050369700E9E697 /* TrafficService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CF4FF62050369700E9E697 /* TrafficService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -220,8 +218,8 @@
 		248D37B02049504B00B21C3D /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
 		24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyBeaver.xcodeproj; path = Frameworks/SwiftyBeaver/SwiftyBeaver.xcodeproj; sourceTree = "<group>"; };
+		C93155442051920C00F4C429 /* TrafficService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficService.swift; sourceTree = "<group>"; };
 		D48274E120503FF800A46FA9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = RoadChat/Frontend/Controller/User/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
-		C9CF4FF62050369700E9E697 /* TrafficService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -433,7 +431,7 @@
 				243357252049817A00CD5F87 /* JSendAPIClient.swift */,
 				24615DA420508E5400ED11A1 /* CredentialManager.swift */,
 				245EAE3D2051346C00821B4B /* Chat */,
-				C9CF4FF22050359C00E9E697 /* Traffic */,
+				C93155432051920C00F4C429 /* Traffic */,
 				2404A25C204ED13A009AC7E1 /* User */,
 			);
 			path = Backend;
@@ -458,10 +456,12 @@
 				24F1DD3F20517B8E00A726AA /* SwiftyBeaver.framework */,
 			);
 			name = Products;
-		C9CF4FF22050359C00E9E697 /* Traffic */ = {
+			sourceTree = "<group>";
+		};
+		C93155432051920C00F4C429 /* Traffic */ = {
 			isa = PBXGroup;
 			children = (
-				C9CF4FF62050369700E9E697 /* TrafficService.swift */,
+				C93155442051920C00F4C429 /* TrafficService.swift */,
 			);
 			path = Traffic;
 			sourceTree = "<group>";
@@ -679,13 +679,13 @@
 				248D379120493EC800B21C3D /* ConversationsController.swift in Sources */,
 				248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */,
 				24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */,
-				C9CF4FF72050369700E9E697 /* TrafficService.swift in Sources */,
 				2404A256204E92D2009AC7E1 /* UserService.swift in Sources */,
 				248D37B12049504B00B21C3D /* Car.swift in Sources */,
 				245EAE332051346600821B4B /* ConversationService.swift in Sources */,
 				248D37A020494EC000B21C3D /* Privacy.swift in Sources */,
 				243F1EBD204842CF00B45955 /* ProfileViewController.swift in Sources */,
 				2404A25B204EAFAC009AC7E1 /* JSendService.swift in Sources */,
+				C93155452051920C00F4C429 /* TrafficService.swift in Sources */,
 				248D379E20494EA400B21C3D /* Profile.swift in Sources */,
 				248D379820494D0900B21C3D /* User.swift in Sources */,
 			);

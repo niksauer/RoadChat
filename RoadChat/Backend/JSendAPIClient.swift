@@ -139,12 +139,6 @@ struct JSendAPIClient {
             return JSendAPIResult.failure(JSendAPIError.custom(message))
         case .success(let data):
             return JSendAPIResult.success(data)
-//            if let json = json {
-//                let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
-//                return JSendAPIResult.success(jsonData)
-//            } else {
-//                return JSendAPIResult.success(nil)
-//            }
         }
     }
 }
