@@ -23,7 +23,7 @@ struct CredentialManager: APICredentialStore {
         try Locksmith.updateData(data: [key: value], forUserAccount: userAccount)
     }
     
-    static var shared = CredentialManager()
+    static var shared = CredientialManager()
     
     func getUserID() -> Int? {
         return getValue(for: "UserID") as? Int
@@ -37,8 +37,8 @@ struct CredentialManager: APICredentialStore {
         return getValue(for: "AccessToken") as? String
     }
     
-    func setToken(_ token: String?) throws {
-         try Locksmith.updateData(data: ["AccessToken": token as Any], forUserAccount: "RoadChatUser")
+    func setToken(_ token: String) throws {
+        try setValue(token, for: "AccessToken")
     }
     
 }
