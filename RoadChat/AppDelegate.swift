@@ -20,10 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarVC = mainStoryBoard.instantiateViewController(withIdentifier: "tabBarVC")
         
         // user is logged in a token exists
-        if CredientialManager.shared.getToken() != nil {
-            self.window?.rootViewController = tabBarVC;
-        } else {
+        if CredientialManager.shared.getToken() == nil {
             self.window?.rootViewController = loginNavigationVC;
+        } else {
+            self.window?.rootViewController = tabBarVC;
         }
         
         return true

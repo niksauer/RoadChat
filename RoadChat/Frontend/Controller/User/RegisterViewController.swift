@@ -43,8 +43,8 @@ class RegisterViewController: UIViewController {
                     return
                 }
 
-                       self.performSegue(withIdentifier: "loginSegue", sender: self)
-                    print("successful registration")
+                self.performSegue(withIdentifier: "showLoginView", sender: self)
+                print("successful registration")
             }
         } catch {
             //handle body encoding error

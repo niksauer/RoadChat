@@ -24,7 +24,7 @@ class User: NSManagedObject {
                 
                 do {
                     try CredientialManager.shared.setToken(token.token)
-                    try CredientialManager.shared.setUserID(token.userID)
+//                    try CredientialManager.shared.setUserID(token.userID)
                     completion(nil)
                 } catch {
                     // handle keychain error

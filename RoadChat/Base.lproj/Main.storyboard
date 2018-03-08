@@ -231,11 +231,12 @@
                         <outlet property="emailTextField" destination="ZdQ-xS-hZC" id="QVT-EQ-Ma3"/>
                         <outlet property="passwordTextField" destination="ylN-YU-WPi" id="UEs-L2-ERS"/>
                         <outlet property="usernameTextField" destination="2hI-Nn-kgL" id="4AB-x0-MF5"/>
+                        <segue destination="5iU-UL-VIl" kind="show" identifier="showLoginView" id="93O-sV-pyp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHD-se-V8T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-330.39999999999998" y="-58.020989505247378"/>
+            <point key="canvasLocation" x="-190" y="-457"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="gDU-gc-hIG">
@@ -304,6 +305,8 @@
                     <connections>
                         <outlet property="passwordTextField" destination="Ejv-g8-FTs" id="2ye-Hm-xjn"/>
                         <outlet property="usernameTextField" destination="QxS-iB-oHG" id="E0b-ft-iBi"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="showTabBarVC" id="LU1-JC-F2m"/>
+                        <segue destination="2dG-9l-aBT" kind="show" identifier="showRegisterView" id="Syu-cH-y2m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="90J-2A-iHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -409,15 +412,14 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="5iU-UL-VIl" kind="relationship" relationship="rootViewController" id="h7Y-Yj-Nyn"/>
                         <segue destination="2dG-9l-aBT" kind="show" identifier="registerSegue" id="6rk-uF-fZl"/>
-                        <segue destination="49e-Tb-3d3" kind="show" identifier="dashboardSegue" id="UUg-ey-ukT"/>
                         <segue destination="5iU-UL-VIl" kind="show" identifier="loginSegue" id="nIt-fV-7ZG"/>
+                        <segue destination="5iU-UL-VIl" kind="relationship" relationship="rootViewController" id="ztm-AA-C27"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C4e-KJ-yIn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1103" y="618"/>
+            <point key="canvasLocation" x="-1383" y="618"/>
         </scene>
     </scenes>
     <resources>
@@ -430,5 +432,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="nIt-fV-7ZG"/>
+        <segue reference="6rk-uF-fZl"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -15,11 +15,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    
     @IBAction func registerButtonPressed(_ sender: Any) {
-        
-        self.performSegue(withIdentifier: "registerSegue", sender: self)
-        
+        self.performSegue(withIdentifier: "showRegisterView", sender: self)
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
@@ -35,10 +32,10 @@ class LoginViewController: UIViewController {
                 print(error!)
                 return
             }
+            
             print("login successfull")
-            self.performSegue(withIdentifier: "dashboardSegue", sender: self)
+            self.performSegue(withIdentifier: "showTabBarVC", sender: self)
         })
-        
-        
     }
+    
 }
