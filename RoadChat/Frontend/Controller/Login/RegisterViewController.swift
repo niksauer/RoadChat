@@ -27,83 +27,76 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func confirmRegistrationButtonPressed(_ sender: Any) {
-        guard let email = emailTextField.text, let username = usernameTextField.text, let password = passwordTextField.text, let confirmPassword = confirmPasswordTextField.text else {
+        guard let email = emailTextField.text, let username = usernameTextField.text, let password = passwordTextField.text, let passwordRepeat = confirmPasswordTextField.text else {
             // handle missing fields error
+            log.warning("Missing required fields for registration.")
             return
         }
        
-        if (checkUserInputs(email: email, username: username, password: password, password2: confirmPassword)){
-            
-        let registerRequest = RegisterRequest(email: email, username: username, password: password)
+        if isValidUserInput(email: email, username: username, password: password, passwordRepeat: passwordRepeat) {
+            let registerRequest = RegisterRequest(email: email, username: username, password: password)
         
-        User.create(registerRequest) { error in
-            guard error == nil else {
-                print(error!)
-                return
+            User.create(registerRequest) { error in
+                guard error == nil else {
+                    print(error!)
+                    return
+                }
             }
+            
+            log.info("Successful registration.")
+            self.performSegue(withIdentifier: "showLoginView", sender: self)
+        } else {
+            // wrong input
         }
-        
-        print("sucessfull registration")
-        self.performSegue(withIdentifier: "showLoginView", sender: self)
-        }else{
-            //wrong input
-        }
-        
-        
     }
 
-    func checkUserInputs(email: String, username: String, password: String, password2: String) -> Bool{
+    func isValidUserInput(email: String, username: String, password: String, passwordRepeat: String) -> Bool {
+        var isValid = true
         
-        var validInputs: Bool = true
-        
-        if checkUsernameValidity(username: username){
-            print("valid username")
-        } else {
-            print("invalid username")
+        if !isValidUsername(username) {
+            log.warning("Invalid username.")
             usernameLabel.textColor = .red
-            validInputs = false
+            isValid = false
         }
-        if checkEmailValidity(email: email){
-            print("valid email")
-        } else {
-            print("invalid email")
+        
+        if !isValidEmail(email) {
+            log.warning("Invalid email.")
             emailLabel.textColor = .red
-            validInputs = false
+            isValid = false
         }
-        if checkPasswordValidity(password: password){
-            print("valid password")
-        } else {
-            print("invalid password")
+        
+        if !isValidPassword(password){
+            log.warning("Invalid password.")
             passwordLabel.textColor = .red
-            validInputs = false
+            isValid = false
         }
-        if confirmPassword(password1: password, password2: password2){
-            print("passwords match")
-        } else {
-            print("passwords don't match")
+        
+        if password != passwordRepeat {
+            log.warning("Passwords don't match.")
             passwordLabel.textColor = .red
             confirmPasswordLabel.textColor = .red
-            validInputs = false
+            isValid = false
         }
-        return validInputs
+    
+        return isValid
     }
-    func checkEmailValidity(email: String) -> Bool{
+    
+    func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: email)
     }
-    func checkPasswordValidity(password: String) -> Bool{
+    
+    func isValidPassword(_ password: String) -> Bool {
         let passwordRegEx = "[A-Z0-9a-z!§$%&/()=?`´*'+#',;.:-_@<>^°]{8,}"
         let passwordTest = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
         return passwordTest.evaluate(with: password)
     }
-    func checkUsernameValidity(username: String) -> Bool{
+    
+    func isValidUsername(_ username: String) -> Bool {
         let usernameRegEx = "[A-Z0-9a-z]{4,}"
         let usernameTest = NSPredicate(format:"SELF MATCHES %@", usernameRegEx)
         return usernameTest.evaluate(with: username)
-    }
-    func confirmPassword(password1: String, password2: String) -> Bool{
-        return password1 == password2
     }
     
     /*

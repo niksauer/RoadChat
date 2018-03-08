@@ -1,5 +1,5 @@
 //
-//  TrafficBoardController.swift
+//  TrafficBoardViewController.swift
 //  RoadChat
 //
 //  Created by Niklas Sauer on 01.03.18.
@@ -9,7 +9,7 @@
 import UIKit
 import RoadChatKit
 
-class TrafficBoardController: UITableViewController {
+class TrafficBoardViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

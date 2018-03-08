@@ -1,5 +1,5 @@
 //
-//  CommunityBoardController.swift
+//  CommunityBoardViewController.swift
 //  RoadChat
 //
 //  Created by Niklas Sauer on 01.03.18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CommunityBoardController: UITableViewController {
+class CommunityBoardViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

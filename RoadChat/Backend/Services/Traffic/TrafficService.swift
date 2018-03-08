@@ -10,6 +10,7 @@ import Foundation
 import RoadChatKit
 
 final class TrafficService: JSendService {
+    
     typealias Resource = RoadChatKit.TrafficMessage.PublicTrafficMessage
     
     private let client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/traffic", credentials: CredentialManager.shared)
@@ -52,4 +53,5 @@ final class TrafficService: JSendService {
             completion(self.getError(from: result))
         }
     }
+    
 }
