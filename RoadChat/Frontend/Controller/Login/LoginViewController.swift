@@ -9,28 +9,18 @@
 import UIKit
 import RoadChatKit
 import Locksmith
-import FBSDKLoginKit
-import FBSDKCoreKit
+//import FBSDKLoginKit
+//import FBSDKCoreKit
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
-   
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        //do something
-    }
-    
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        print("logout")
-    }
-    
+class LoginViewController: UIViewController {
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
-    @IBOutlet weak var fbLoginButton: FBSDKButton!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var passwordLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       self.fbLoginButton.delegate = self.view.center
         
     }
     
@@ -49,6 +39,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         User.login(loginRequest) { error in
             guard error == nil else {
                 print(error!)
+                self.usernameLabel.textColor = .red
+                self.passwordLabel.textColor = .red
                 return
             }
             

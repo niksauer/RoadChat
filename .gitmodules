@@ -7,3 +7,6 @@
 	path = Frameworks/Locksmith
 	url = https://github.com/matthewpalmer/Locksmith.git
 	branch = master
+[submodule "Frameworks/Facebook"]
+	path = Frameworks/Facebook
+	url = https://github.com/facebook/facebook-ios-sdk
