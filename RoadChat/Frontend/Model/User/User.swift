@@ -23,7 +23,7 @@ class User: NSManagedObject {
                 }
                 
                 do {
-                    try CredientialManager.shared.setUserID(user.id)
+                    try CredentialManager.shared.setUserID(user.id)
                 } catch {
                     // pass keychain error
                     completion(error)
@@ -46,8 +46,8 @@ class User: NSManagedObject {
                 }
                 
                 do {
-                    try CredientialManager.shared.setToken(token.token)
-                    try CredientialManager.shared.setUserID(token.userID)
+                    try CredentialManager.shared.setToken(token.token)
+                    try CredentialManager.shared.setUserID(token.userID)
                     completion(nil)
                 } catch {
                     // pass keychain error

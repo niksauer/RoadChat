@@ -9,8 +9,8 @@
 import Foundation
 import Locksmith
 
-struct CredientialManager: APICredentialStore {
-    
+struct CredentialManager: APICredentialStore {
+
     private var userAccount = "RoadChatUser"
     
     private init() {}

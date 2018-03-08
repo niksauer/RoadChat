@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     
         // user is logged in a token exists
-        if CredientialManager.shared.getToken() == nil {
+        if CredentialManager.shared.getToken() == nil {
             self.window?.rootViewController = loginNavigationVC;
         } else {
             self.window?.rootViewController = tabBarVC;
