@@ -12,11 +12,34 @@ import RoadChatKit
 
 class User: NSManagedObject {
     
-    static func login(_ request: LoginRequest, completion: @escaping (Error?) -> Void) {
+    static func create(_ user: RegisterRequest, completion: @escaping (Error?) -> Void) {
+        let userService = UserService()
+        
+        do {
+            try userService.create(user) { user, error in
+                guard let user = user else {
+                    completion(error!)
+                    return
+                }
+                
+                do {
+                    try CredientialManager.shared.setUserID(user.id)
+                } catch {
+                    // pass keychain error
+                    completion(error)
+                }
+            }
+        } catch {
+            // pass body encoding error
+            completion(error)
+        }
+    }
+    
+    static func login(_ user: LoginRequest, completion: @escaping (Error?) -> Void) {
         let loginClient = LoginService()
         
         do {
-            try loginClient.login(request) { token, error in
+            try loginClient.login(user) { token, error in
                 guard let token = token else {
                     completion(error!)
                     return
@@ -27,12 +50,12 @@ class User: NSManagedObject {
 //                    try CredientialManager.shared.setUserID(token.userID)
                     completion(nil)
                 } catch {
-                    // handle keychain error
+                    // pass keychain error
                     completion(error)
                 }
             }
         } catch {
-            // handle body encoding error
+            // pass body encoding error
             completion(error)
         }
     }

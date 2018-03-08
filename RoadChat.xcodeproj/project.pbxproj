@@ -243,6 +243,15 @@
 			path = RoadChat;
 			sourceTree = "<group>";
 		};
+		2422D00120514FEA0081A552 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				245EAE3D2051346C00821B4B /* Chat */,
+				2404A25C204ED13A009AC7E1 /* User */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		243F1EB320483BAD00B45955 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,8 +392,7 @@
 				2404A25A204EAFAC009AC7E1 /* JSendService.swift */,
 				243357252049817A00CD5F87 /* JSendAPIClient.swift */,
 				24615DA420508E5400ED11A1 /* CredentialManager.swift */,
-				245EAE3D2051346C00821B4B /* Chat */,
-				2404A25C204ED13A009AC7E1 /* User */,
+				2422D00120514FEA0081A552 /* Services */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
