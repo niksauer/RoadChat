@@ -173,7 +173,7 @@
 		248D37B02049504B00B21C3D /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
 		D40B2058205145B1000823E4 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		D48274E120503FF800A46FA9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = RoadChat/Frontend/Controller/User/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
+		D48274E120503FF800A46FA9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,9 +252,19 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		2422D01B205155CF0081A552 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D48274E120503FF800A46FA9 /* LoginViewController.swift */,
+				D40B2058205145B1000823E4 /* RegisterViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		243F1EB320483BAD00B45955 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2422D01B205155CF0081A552 /* Login */,
 				248D379220493ED000B21C3D /* Chat */,
 				243F1EB620483BD100B45955 /* Community */,
 				243F1EB520483BC500B45955 /* Traffic */,
@@ -266,9 +276,7 @@
 		243F1EB420483BC100B45955 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				D48274E120503FF800A46FA9 /* LoginViewController.swift */,
 				243F1EBC204842CF00B45955 /* ProfileViewController.swift */,
-				D40B2058205145B1000823E4 /* RegisterViewController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";

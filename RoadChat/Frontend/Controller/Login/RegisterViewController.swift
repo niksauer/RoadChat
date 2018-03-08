@@ -12,47 +12,34 @@ import Locksmith
 
 class RegisterViewController: UIViewController {
 
-    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
     @IBAction func confirmRegistrationButtonPressed(_ sender: Any) {
-        
-        let registerClient = UserService()
-        let registerRequest = RegisterRequest(email: emailTextField.text!, username: usernameTextField.text!, password: passwordTextField.text!)
-        
-        do{
-            try registerClient.create(registerRequest) { user, error in
-                guard let user = user else {
-                    print(error!)
-                    return
-                }
-
-                self.performSegue(withIdentifier: "showLoginView", sender: self)
-                print("successful registration")
-            }
-        } catch {
-            //handle body encoding error
+        guard let email = emailTextField.text, let username = usernameTextField.text, let password = passwordTextField.text else {
+            // handle missing fields error
+            return
         }
         
+        let registerRequest = RegisterRequest(email: email, username: username, password: password)
         
+        User.create(registerRequest) { error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+        }
+        
+        print("sucessfull registration")
+        self.performSegue(withIdentifier: "showLoginView", sender: self)
     }
-    
 
     /*
     // MARK: - Navigation
