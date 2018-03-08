@@ -3,3 +3,10 @@
 	url = https://github.com/niksauer/RoadChatKit
 	branch = master
 	ignore = dirty
+[submodule "Frameworks/Locksmith"]
+	path = Frameworks/Locksmith
+	url = https://github.com/matthewpalmer/Locksmith.git
+	branch = master
+[submodule "Frameworks/SwiftyBeaver"]
+	path = Frameworks/SwiftyBeaver
+	url = https://github.com/SwiftyBeaver/SwiftyBeaver

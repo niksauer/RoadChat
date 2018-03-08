@@ -7,15 +7,38 @@
 //
 
 import UIKit
+import SwiftyBeaver
+
+let log = SwiftyBeaver.self
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let console = ConsoleDestination()
+        log.addDestination(console)
+        
+        let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginNavigationVC = mainStoryBoard.instantiateViewController(withIdentifier: "loginNavigationVC")
+        let tabBarVC = mainStoryBoard.instantiateViewController(withIdentifier: "tabBarVC")
+        
+        do {
+            try CredentialManager.shared.setToken(nil)
+            log.info("Reset token.")
+        } catch {
+            log.error("Failed to reset token: \(error)")
+        }
+    
+        // user is logged in a token exists
+        if CredentialManager.shared.getToken() != nil {
+            self.window?.rootViewController = tabBarVC;
+        } else {
+            self.window?.rootViewController = loginNavigationVC;
+        }
+        
         return true
     }
 
@@ -41,6 +64,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
-
