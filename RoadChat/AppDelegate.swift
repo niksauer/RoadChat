@@ -7,9 +7,9 @@
 //
 
 import UIKit
-//import FBSDKCoreKit
-//import FBSDKCoreKit.h
+import SwiftyBeaver
 
+let log = SwiftyBeaver.self
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,16 +17,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        //FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        
         // Override point for customization after application launch.
+        let console = ConsoleDestination()
+        log.addDestination(console)
+        
         let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let loginNavigationVC = mainStoryBoard.instantiateViewController(withIdentifier: "loginNavigationVC")
         let tabBarVC = mainStoryBoard.instantiateViewController(withIdentifier: "tabBarVC")
         
+        do {
+            try CredentialManager.shared.setToken(nil)
+            log.info("Reset token.")
+        } catch {
+            log.error("Failed to reset token: \(error)")
+        }
+    
         // user is logged in a token exists
-        if CredientialManager.shared.getToken() == nil {
+        if CredentialManager.shared.getToken() == nil {
             self.window?.rootViewController = loginNavigationVC;
         } else {
             self.window?.rootViewController = tabBarVC;
@@ -34,17 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    
-    /*func application(application: UIApplication,
-                     openURL url: NSURL,
-                     sourceApplication: String?,
-                     annotation: AnyObject?) -> Bool {
-        return FBSDKApplicationDelegate.sharedInstance().application(
-            application,
-            open: url as URL?,
-            sourceApplication: sourceApplication,
-            annotation: annotation)
-    }*/
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

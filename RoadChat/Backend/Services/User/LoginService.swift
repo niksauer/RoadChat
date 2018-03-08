@@ -13,7 +13,7 @@ final class LoginService: JSendService {
     
     typealias Resource = RoadChatKit.BearerToken.PublicBearerToken
     
-    private let client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/user", credentials: CredientialManager.shared)
+    private let client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/user", credentials: CredentialManager.shared)
     
     func login(_ user: LoginRequest, completion: @escaping (Resource?, Error?) -> Void) throws {
         try client.makePOSTRequest(to: "/login", body: user) { result in
