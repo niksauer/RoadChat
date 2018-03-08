@@ -23,25 +23,15 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
-        let loginClient = LoginService()
-        let loginRequest = LoginRequest(user: usernameTextField.text!, password: passwordTextField.text!)
-        
-        do {
-            try loginClient.login(loginRequest) { token, error in
-                guard let token = token else {
-                    print(error!)
-                    return
-                }
-                
-                do {
-                    try CredientialManager.shared.setToken(token.token)
-                    print("successful login")
-                } catch {
-                    // handle keychain error
-                }
-            }
-        } catch {
-            // handle body encoding error
+        guard let user = usernameTextField.text, let password = passwordTextField.text else {
+            // handle missing fields error
+            return
         }
+        
+        let loginRequest = LoginRequest(user: user, password: password)
+        
+        User.login(loginRequest, completion: { error in
+            
+        })
     }
 }

@@ -27,7 +27,7 @@
 		245EAE332051346600821B4B /* ConversationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245EAE322051346600821B4B /* ConversationService.swift */; };
 		24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24615DA420508E5400ED11A1 /* CredentialManager.swift */; };
 		248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 248D378D20485DC100B21C3D /* RoadChat.xcdatamodeld */; };
-		248D379120493EC800B21C3D /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379020493EC800B21C3D /* ConversationsController.swift */; };
+		248D379120493EC800B21C3D /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379020493EC800B21C3D /* ConversationsViewController.swift */; };
 		248D379820494D0900B21C3D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379720494D0800B21C3D /* User.swift */; };
 		248D379C20494E1F00B21C3D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379B20494E1F00B21C3D /* Settings.swift */; };
 		248D379E20494EA400B21C3D /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379D20494EA400B21C3D /* Profile.swift */; };
@@ -159,7 +159,7 @@
 		245EAE322051346600821B4B /* ConversationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationService.swift; sourceTree = "<group>"; };
 		24615DA420508E5400ED11A1 /* CredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialManager.swift; sourceTree = "<group>"; };
 		248D378E20485DC100B21C3D /* RoadChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RoadChat.xcdatamodel; sourceTree = "<group>"; };
-		248D379020493EC800B21C3D /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
+		248D379020493EC800B21C3D /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
 		248D379720494D0800B21C3D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		248D379B20494E1F00B21C3D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		248D379D20494EA400B21C3D /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -313,7 +313,7 @@
 		248D379220493ED000B21C3D /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				248D379020493EC800B21C3D /* ConversationsController.swift */,
+				248D379020493EC800B21C3D /* ConversationsViewController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -568,7 +568,7 @@
 				240D10F920481843008C5E39 /* AppDelegate.swift in Sources */,
 				D48274E220503FF800A46FA9 /* LoginViewController.swift in Sources */,
 				248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */,
-				248D379120493EC800B21C3D /* ConversationsController.swift in Sources */,
+				248D379120493EC800B21C3D /* ConversationsViewController.swift in Sources */,
 				248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */,
 				24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */,
 				2404A256204E92D2009AC7E1 /* UserService.swift in Sources */,
