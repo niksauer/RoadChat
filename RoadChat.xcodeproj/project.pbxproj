@@ -39,6 +39,8 @@
 		248D37AD20494FFB00B21C3D /* DirectMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37AC20494FFB00B21C3D /* DirectMessage.swift */; };
 		248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37AE2049501100B21C3D /* CommunityMessage.swift */; };
 		248D37B12049504B00B21C3D /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37B02049504B00B21C3D /* Car.swift */; };
+		24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; };
+		24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D48274E220503FF800A46FA9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48274E120503FF800A46FA9 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +122,48 @@
 			remoteGlobalIDString = "RoadChatKit::RoadChatKit::Product";
 			remoteInfo = RoadChatKit;
 		};
+		24F1DD3620517B8E00A726AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9EDCE3E41C09D211002FA4A7;
+			remoteInfo = "SwiftyBeaver (iOS)";
+		};
+		24F1DD3820517B8E00A726AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9EDCE3EE1C09D211002FA4A7;
+			remoteInfo = SwiftyBeaverTests;
+		};
+		24F1DD3A20517B8E00A726AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ACE597841C1882DF0031451F;
+			remoteInfo = "SwiftyBeaver (watchOS)";
+		};
+		24F1DD3C20517B8E00A726AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ACE597951C18830D0031451F;
+			remoteInfo = "SwiftyBeaver (tvOS)";
+		};
+		24F1DD3E20517B8E00A726AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ACE597A61C18832E0031451F;
+			remoteInfo = "SwiftyBeaver (macOS)";
+		};
+		24F1DD4220517B9D00A726AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9EDCE3E31C09D211002FA4A7;
+			remoteInfo = "SwiftyBeaver (iOS)";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -130,6 +174,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				240AB0142050870000324028 /* Locksmith.framework in Embed Frameworks */,
+				24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */,
 				240AB0192050877000324028 /* RoadChatKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -171,6 +216,7 @@
 		248D37AE2049501100B21C3D /* CommunityMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessage.swift; sourceTree = "<group>"; };
 		248D37B02049504B00B21C3D /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
+		24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyBeaver.xcodeproj; path = Frameworks/SwiftyBeaver/SwiftyBeaver.xcodeproj; sourceTree = "<group>"; };
 		D48274E120503FF800A46FA9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = RoadChat/Frontend/Controller/User/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -180,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				240AB01D2050878100324028 /* Security.framework in Frameworks */,
+				24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */,
 				240AB0132050870000324028 /* Locksmith.framework in Frameworks */,
 				240AB0182050877000324028 /* RoadChatKit.framework in Frameworks */,
 			);
@@ -216,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				240AAFFB205086ED00324028 /* Locksmith.xcodeproj */,
+				24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */,
 				24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */,
 				240D10F720481843008C5E39 /* RoadChat */,
 				240D10F620481843008C5E39 /* Products */,
@@ -395,6 +443,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		24F1DD2620517B8E00A726AA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */,
+				24F1DD3920517B8E00A726AA /* SwiftyBeaverTests.xctest */,
+				24F1DD3B20517B8E00A726AA /* SwiftyBeaver.framework */,
+				24F1DD3D20517B8E00A726AA /* SwiftyBeaver.framework */,
+				24F1DD3F20517B8E00A726AA /* SwiftyBeaver.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -412,6 +472,7 @@
 			dependencies = (
 				240AB0162050870000324028 /* PBXTargetDependency */,
 				240AB01B2050877000324028 /* PBXTargetDependency */,
+				24F1DD4320517B9D00A726AA /* PBXTargetDependency */,
 			);
 			name = RoadChat;
 			productName = RoadChat;
@@ -458,6 +519,10 @@
 				{
 					ProductGroup = 24AED4AD204CC2EB002A1703 /* Products */;
 					ProjectRef = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
+				},
+				{
+					ProductGroup = 24F1DD2620517B8E00A726AA /* Products */;
+					ProjectRef = 24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -531,6 +596,41 @@
 			remoteRef = 24AED4B5204CC2EB002A1703 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftyBeaver.framework;
+			remoteRef = 24F1DD3620517B8E00A726AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24F1DD3920517B8E00A726AA /* SwiftyBeaverTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftyBeaverTests.xctest;
+			remoteRef = 24F1DD3820517B8E00A726AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24F1DD3B20517B8E00A726AA /* SwiftyBeaver.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftyBeaver.framework;
+			remoteRef = 24F1DD3A20517B8E00A726AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24F1DD3D20517B8E00A726AA /* SwiftyBeaver.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftyBeaver.framework;
+			remoteRef = 24F1DD3C20517B8E00A726AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24F1DD3F20517B8E00A726AA /* SwiftyBeaver.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftyBeaver.framework;
+			remoteRef = 24F1DD3E20517B8E00A726AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -591,6 +691,11 @@
 			isa = PBXTargetDependency;
 			name = RoadChatKit;
 			targetProxy = 240AB01A2050877000324028 /* PBXContainerItemProxy */;
+		};
+		24F1DD4320517B9D00A726AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SwiftyBeaver (iOS)";
+			targetProxy = 24F1DD4220517B9D00A726AA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

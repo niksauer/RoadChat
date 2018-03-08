@@ -22,19 +22,22 @@ class LoginViewController: UIViewController {
         do {
             try loginClient.login(loginRequest) { token, error in
                 guard let token = token else {
-                    print(error!)
+                    log.error("Failed login: \(error!)")
                     return
                 }
                 
                 do {
-                    try CredientialManager.shared.setToken(token.token)
-                    print("successful login")
+                    try CredentialManager.shared.setToken(token.token)
+                    log.info("Successful login.")
                 } catch {
                     // handle keychain error
+                    log.error("Failed to set token in keychain: \(error)")
                 }
             }
         } catch {
-            // handle body encoding error
+            // handle request error
+            log.error("Failed to execute HTTPRequest: \(error)")
         }
     }
+
 }

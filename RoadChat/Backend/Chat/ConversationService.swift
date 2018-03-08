@@ -13,7 +13,7 @@ final class ConversationService: JSendService {
     
     typealias Resource = RoadChatKit.Conversation.PublicConversation
     
-    private let client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/chat", credentials: CredientialManager.shared)
+    private let client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/chat", credentials: CredentialManager.shared)
     
     func create(_ conversation: RoadChatKit.ConversationRequest, completion: @escaping (Resource?, Error?) -> Void) throws {
         try client.makePOSTRequest(body: conversation) { result in
