@@ -75,7 +75,7 @@
         <!--Profile-->
         <scene sceneID="q0m-Ac-MWR">
             <objects>
-                <tableViewController id="50z-Ix-lWj" customClass="ProfileController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="50z-Ix-lWj" customClass="ProfileViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="RbC-ax-Txt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -324,6 +324,7 @@
                     <connections>
                         <segue destination="5iU-UL-VIl" kind="relationship" relationship="rootViewController" id="h7Y-Yj-Nyn"/>
                         <segue destination="2dG-9l-aBT" kind="show" id="6rk-uF-fZl"/>
+                        <segue destination="49e-Tb-3d3" kind="show" id="UUg-ey-ukT"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C4e-KJ-yIn" userLabel="First Responder" sceneMemberID="firstResponder"/>

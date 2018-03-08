@@ -18,13 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let loginNavigationVC = mainStoryBoard.instantiateViewController(withIdentifier: "loginNavigationVC")
         let tabBarVC = mainStoryBoard.instantiateViewController(withIdentifier: "tabBarVC")
-        //if a token exists (user is logged in)
+        
+        // user is logged in a token exists
         if CredientialManager.shared.getToken() != nil {
             self.window?.rootViewController = tabBarVC;
         } else {
             self.window?.rootViewController = loginNavigationVC;
         }
-        
         
         return true
     }
