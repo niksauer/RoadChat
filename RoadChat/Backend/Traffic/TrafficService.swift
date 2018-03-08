@@ -10,20 +10,20 @@ import Foundation
 import RoadChatKit
 
 final class TrafficService: JSendService {
-    typealias Resource = RoadChatKit.TrafficMessage
+    typealias Resource = RoadChatKit.TrafficMessage.PublicTrafficMessage
     
-    private let client = JSendAPIClient(baseURL: "http://localhost:8080/traffic", token: nil)
+    private let client = JSendAPIClient(baseURL: "http://localhost:8080/traffic", token: "79A266CD-B9B3-44F9-A566-7C75FBA9EF29")
     
-    func create(trafficMessage: RoadChatKit.TrafficMessageRequest, completion: @escaping (Resource?, Error?) -> Void) throws {
+    func create(_ trafficMessage: RoadChatKit.TrafficMessageRequest, completion: @escaping (Resource?, Error?) -> Void) throws {
         try client.makePOSTRequest(to: "/board", body: trafficMessage) { result in
             let result = self.decodeResource(from: result)
             completion(result.instance, result.error)
         }
     }
     
-    func index(completion: @escaping (Resource?, Error?) -> Void) throws {
+    func index(completion: @escaping ([Resource]?, Error?) -> Void) throws {
         client.makeGETRequest(to: "/board", params: nil) { result in
-            let result = self.decodeResource(from: result)
+            let result = self.decode([Resource].self, from: result)
             completion(result.instance, result.error)
         }
     }
@@ -42,13 +42,13 @@ final class TrafficService: JSendService {
     }
     
     func upvote(messageID: Int, completion: @escaping (Error?) -> Void) throws {
-        client.makeGETRequest(to: "message/\(messageID)/upvote", params: nil) { result in
+        client.makeGETRequest(to: "/message/\(messageID)/upvote", params: nil) { result in
             completion(self.getError(from: result))
         }
     }
     
     func downvote(messageID: Int, completion: @escaping (Error?) -> Void) throws {
-        client.makeGETRequest(to: "message/\(messageID)/downvote", params: nil) { result in
+        client.makeGETRequest(to: "/message/\(messageID)/downvote", params: nil) { result in
             completion(self.getError(from: result))
         }
     }

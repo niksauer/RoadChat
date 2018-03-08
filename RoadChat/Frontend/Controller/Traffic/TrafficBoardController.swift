@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RoadChatKit
 
 class TrafficBoardController: UITableViewController {
 
@@ -18,6 +19,34 @@ class TrafficBoardController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let trafficService = TrafficService()
+        let request = TrafficMessageRequest(type: "jam", time: Date(timeIntervalSince1970: 1519240586), message: "hi", latitude: 72.4, longitude: 20.0, altitude: 123.04, horizontalAccuracy: 20, verticalAccuracy: 20, course: 330, speed: 60.0)
+        print()
+        do {
+            try trafficService.create(request) { message, error in
+                print(message as Any, error as Any, "CREATE")
+            }
+//            try trafficService.upvote(messageID: 1) { error in
+//                print(error as Any, "UPVOTE")
+//            }
+//            try trafficService.index() { message, error in
+//                print(message as Any, error as Any, "INDEX")
+//            }
+//            try trafficService.get(messageID: 1) { message, error in
+//                print(message as Any, error as Any, "GET")
+//            }
+//            try trafficService.delete(messageID: 1) { error in
+//                print(error as Any, "DELETE")
+//            }
+            
+        } catch {
+            // handle error
+        }
     }
 
     override func didReceiveMemoryWarning() {

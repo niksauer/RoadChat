@@ -37,6 +37,9 @@ extension JSendService {
     func decode<T: Decodable>(_ type: T.Type, from result: JSendAPIResult) -> (instance: T?, error: Error?) {
         switch result {
         case .success(let data):
+            guard let data = data else {
+                return (nil, nil)
+            }
             return decode(T.self, from: data)
         case .failure(let error):
             return (nil, error)
