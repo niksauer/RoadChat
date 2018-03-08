@@ -10,6 +10,7 @@ import Foundation
 import RoadChatKit
 
 final class LoginService: JSendService {
+    
     typealias Resource = RoadChatKit.BearerToken.PublicBearerToken
     
     private let client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/user", credentials: CredientialManager.shared)
@@ -26,4 +27,5 @@ final class LoginService: JSendService {
             completion(self.getError(from: result))
         }
     }
+    
 }
