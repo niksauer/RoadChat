@@ -33,10 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     
         // user is logged in a token exists
-        if CredentialManager.shared.getToken() != nil {
-            self.window?.rootViewController = tabBarVC;
-        } else {
+        if CredentialManager.shared.getToken() == nil {
             self.window?.rootViewController = loginNavigationVC;
+        } else {
+            self.window?.rootViewController = tabBarVC;
         }
         
         return true
@@ -63,5 +63,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
 
 }

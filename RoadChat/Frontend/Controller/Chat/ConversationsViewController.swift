@@ -1,5 +1,5 @@
 //
-//  ConversationsController.swift
+//  ConversationsViewController.swift
 //  RoadChat
 //
 //  Created by Niklas Sauer on 02.03.18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationsController: UITableViewController {
+class ConversationsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -10,21 +10,35 @@ import Foundation
 import Locksmith
 
 struct CredentialManager: APICredentialStore {
-    static var shared = CredentialManager()
+
+    private var userAccount = "RoadChatUser"
     
     private init() {}
+
+    private func getValue(for key: String) -> Any? {
+        return Locksmith.loadDataForUserAccount(userAccount: userAccount)?[key]
+    }
     
-    var userID: Int?
+    private func setValue(_ value: Any, for key: String) throws {
+        try Locksmith.updateData(data: [key: value], forUserAccount: userAccount)
+    }
+    
+    static var shared = CredentialManager()
+    
+    func getUserID() -> Int? {
+        return getValue(for: "UserID") as? Int
+    }
+    
+    func setUserID(_ userID: Int) throws {
+        try setValue(userID, for: "UserID")
+    }
     
     func getToken() -> String? {
-        if let dictionary = Locksmith.loadDataForUserAccount(userAccount: "RoadChatUser") {
-            return dictionary["AccessToken"] as? String
-        } else {
-            return nil
-        }
+        return getValue(for: "AccessToken") as? String
     }
     
     func setToken(_ token: String?) throws {
          try Locksmith.updateData(data: ["AccessToken": token as Any], forUserAccount: "RoadChatUser")
     }
+    
 }

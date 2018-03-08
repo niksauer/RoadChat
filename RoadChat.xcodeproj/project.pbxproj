@@ -16,7 +16,6 @@
 		240AB0192050877000324028 /* RoadChatKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		240AB01D2050878100324028 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240AB01C2050878100324028 /* Security.framework */; };
 		240D10F920481843008C5E39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D10F820481843008C5E39 /* AppDelegate.swift */; };
-		240D110020481843008C5E39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D10FE20481843008C5E39 /* Main.storyboard */; };
 		240D110220481843008C5E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D110120481843008C5E39 /* Assets.xcassets */; };
 		240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D110320481843008C5E39 /* LaunchScreen.storyboard */; };
 		242F8F2E204D6EA80052087B /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F8F2D204D6EA80052087B /* LoginService.swift */; };
@@ -27,7 +26,7 @@
 		245EAE332051346600821B4B /* ConversationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245EAE322051346600821B4B /* ConversationService.swift */; };
 		24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24615DA420508E5400ED11A1 /* CredentialManager.swift */; };
 		248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 248D378D20485DC100B21C3D /* RoadChat.xcdatamodeld */; };
-		248D379120493EC800B21C3D /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379020493EC800B21C3D /* ConversationsController.swift */; };
+		248D379120493EC800B21C3D /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379020493EC800B21C3D /* ConversationsViewController.swift */; };
 		248D379820494D0900B21C3D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379720494D0800B21C3D /* User.swift */; };
 		248D379C20494E1F00B21C3D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379B20494E1F00B21C3D /* Settings.swift */; };
 		248D379E20494EA400B21C3D /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379D20494EA400B21C3D /* Profile.swift */; };
@@ -42,6 +41,8 @@
 		24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; };
 		24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C93155452051920C00F4C429 /* TrafficService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93155442051920C00F4C429 /* TrafficService.swift */; };
+		D40B2059205145B1000823E4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B2058205145B1000823E4 /* RegisterViewController.swift */; };
+		D40B20E420519652000823E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40B20E220519652000823E4 /* Main.storyboard */; };
 		D48274E220503FF800A46FA9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48274E120503FF800A46FA9 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -192,7 +193,6 @@
 		240AB01C2050878100324028 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		240D10F520481843008C5E39 /* RoadChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		240D10F820481843008C5E39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		240D10FF20481843008C5E39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		240D110120481843008C5E39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		240D110420481843008C5E39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		240D110620481844008C5E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 		245EAE322051346600821B4B /* ConversationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationService.swift; sourceTree = "<group>"; };
 		24615DA420508E5400ED11A1 /* CredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialManager.swift; sourceTree = "<group>"; };
 		248D378E20485DC100B21C3D /* RoadChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RoadChat.xcdatamodel; sourceTree = "<group>"; };
-		248D379020493EC800B21C3D /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
+		248D379020493EC800B21C3D /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
 		248D379720494D0800B21C3D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		248D379B20494E1F00B21C3D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		248D379D20494EA400B21C3D /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -219,7 +219,9 @@
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
 		24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyBeaver.xcodeproj; path = Frameworks/SwiftyBeaver/SwiftyBeaver.xcodeproj; sourceTree = "<group>"; };
 		C93155442051920C00F4C429 /* TrafficService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficService.swift; sourceTree = "<group>"; };
-		D48274E120503FF800A46FA9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = RoadChat/Frontend/Controller/User/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
+		D40B2058205145B1000823E4 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		D40B20E320519652000823E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D48274E120503FF800A46FA9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,9 +293,29 @@
 			path = RoadChat;
 			sourceTree = "<group>";
 		};
+		2422D00120514FEA0081A552 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				245EAE3D2051346C00821B4B /* Chat */,
+				C93155432051920C00F4C429 /* Traffic */,
+				2404A25C204ED13A009AC7E1 /* User */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2422D01B205155CF0081A552 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D48274E120503FF800A46FA9 /* LoginViewController.swift */,
+				D40B2058205145B1000823E4 /* RegisterViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		243F1EB320483BAD00B45955 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2422D01B205155CF0081A552 /* Login */,
 				248D379220493ED000B21C3D /* Chat */,
 				243F1EB620483BD100B45955 /* Community */,
 				243F1EB520483BC500B45955 /* Traffic */,
@@ -305,7 +327,6 @@
 		243F1EB420483BC100B45955 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				D48274E120503FF800A46FA9 /* LoginViewController.swift */,
 				243F1EBC204842CF00B45955 /* ProfileViewController.swift */,
 			);
 			path = User;
@@ -332,8 +353,8 @@
 			children = (
 				240AB0172050871500324028 /* RoadChat.entitlements */,
 				240D10F820481843008C5E39 /* AppDelegate.swift */,
-				240D10FE20481843008C5E39 /* Main.storyboard */,
 				240D110120481843008C5E39 /* Assets.xcassets */,
+				D40B20E220519652000823E4 /* Main.storyboard */,
 				240D110320481843008C5E39 /* LaunchScreen.storyboard */,
 				240D110620481844008C5E39 /* Info.plist */,
 				248D378D20485DC100B21C3D /* RoadChat.xcdatamodeld */,
@@ -360,7 +381,7 @@
 		248D379220493ED000B21C3D /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				248D379020493EC800B21C3D /* ConversationsController.swift */,
+				248D379020493EC800B21C3D /* ConversationsViewController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -430,9 +451,7 @@
 				2404A25A204EAFAC009AC7E1 /* JSendService.swift */,
 				243357252049817A00CD5F87 /* JSendAPIClient.swift */,
 				24615DA420508E5400ED11A1 /* CredentialManager.swift */,
-				245EAE3D2051346C00821B4B /* Chat */,
-				C93155432051920C00F4C429 /* Traffic */,
-				2404A25C204ED13A009AC7E1 /* User */,
+				2422D00120514FEA0081A552 /* Services */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -649,9 +668,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D40B20E420519652000823E4 /* Main.storyboard in Resources */,
 				240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */,
 				240D110220481843008C5E39 /* Assets.xcassets in Resources */,
-				240D110020481843008C5E39 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -676,7 +695,7 @@
 				240D10F920481843008C5E39 /* AppDelegate.swift in Sources */,
 				D48274E220503FF800A46FA9 /* LoginViewController.swift in Sources */,
 				248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */,
-				248D379120493EC800B21C3D /* ConversationsController.swift in Sources */,
+				248D379120493EC800B21C3D /* ConversationsViewController.swift in Sources */,
 				248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */,
 				24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */,
 				2404A256204E92D2009AC7E1 /* UserService.swift in Sources */,
@@ -686,6 +705,7 @@
 				243F1EBD204842CF00B45955 /* ProfileViewController.swift in Sources */,
 				2404A25B204EAFAC009AC7E1 /* JSendService.swift in Sources */,
 				C93155452051920C00F4C429 /* TrafficService.swift in Sources */,
+				D40B2059205145B1000823E4 /* RegisterViewController.swift in Sources */,
 				248D379E20494EA400B21C3D /* Profile.swift in Sources */,
 				248D379820494D0900B21C3D /* User.swift in Sources */,
 			);
@@ -712,20 +732,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		240D10FE20481843008C5E39 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				240D10FF20481843008C5E39 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		240D110320481843008C5E39 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				240D110420481843008C5E39 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D40B20E220519652000823E4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D40B20E320519652000823E4 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -846,10 +866,15 @@
 				CODE_SIGN_ENTITLEMENTS = RoadChat/RoadChat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C23UW3NA42;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FacebookSDK/FacebookSDKs-iOS-4",
+				);
 				INFOPLIST_FILE = RoadChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hpe.dhbw.RoadChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -863,10 +888,15 @@
 				CODE_SIGN_ENTITLEMENTS = RoadChat/RoadChat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C23UW3NA42;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FacebookSDK/FacebookSDKs-iOS-4",
+				);
 				INFOPLIST_FILE = RoadChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hpe.dhbw.RoadChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
