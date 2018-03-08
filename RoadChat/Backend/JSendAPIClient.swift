@@ -29,7 +29,8 @@ enum HTTPMethod: String {
 }
 
 protocol APICredentialStore {
-    var userID: Int? { get }
+    func getUserID() -> Int?
+    func setUserID(_ userID: Int) throws
     func getToken() -> String?
     func setToken(_ token: String) throws
 }
