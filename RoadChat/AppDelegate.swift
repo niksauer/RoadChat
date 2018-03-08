@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let console = ConsoleDestination()
-        console.format = "$DHH:mm:ss$d $L $M"
         log.addDestination(console)
         
         let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
