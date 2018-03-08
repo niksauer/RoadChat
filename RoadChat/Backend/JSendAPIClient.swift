@@ -31,7 +31,7 @@ enum HTTPMethod: String {
 protocol APICredentialStore {
     var userID: Int? { get }
     func getToken() -> String?
-    func setToken(_ token: String) throws
+    func setToken(_ token: String?) throws
 }
 
 struct JSendAPIClient {

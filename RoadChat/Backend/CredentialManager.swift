@@ -9,8 +9,8 @@
 import Foundation
 import Locksmith
 
-struct CredientialManager: APICredentialStore {
-    static var shared = CredientialManager()
+struct CredentialManager: APICredentialStore {
+    static var shared = CredentialManager()
     
     private init() {}
     
@@ -24,7 +24,7 @@ struct CredientialManager: APICredentialStore {
         }
     }
     
-    func setToken(_ token: String) throws {
+    func setToken(_ token: String?) throws {
          try Locksmith.updateData(data: ["AccessToken": token as Any], forUserAccount: "RoadChatUser")
     }
 }

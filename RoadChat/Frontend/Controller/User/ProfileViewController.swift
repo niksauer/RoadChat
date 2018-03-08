@@ -23,16 +23,6 @@ class ProfileViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let userService = UserService()
-        
-        do {
-            try userService.create(RegisterRequest(email: "nik.sauer@me.com", username: "inik", password: "helloworld")) { user, error in
-                print(user, error)
-            }
-        } catch {
-            // handle error
-        }
     }
     
     override func didReceiveMemoryWarning() {
