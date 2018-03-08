@@ -66,7 +66,7 @@ final class UserService: JSendService {
             completion(self.getError(from: result))
         }
     }
-    
+
     func getCars(userID: RoadChatKit.User.ID, completion: @escaping ([RoadChatKit.Car.PublicCar]?, Error?) -> Void) {
         client.makeGETRequest(to: "/\(userID)/cars") { result in
             let result = self.decode([RoadChatKit.Car.PublicCar].self, from: result)
@@ -114,5 +114,5 @@ final class UserService: JSendService {
             completion(result.instance, result.error)
         }
     }
-    
+
 }
