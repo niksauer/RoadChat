@@ -40,6 +40,10 @@
 		248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37AE2049501100B21C3D /* CommunityMessage.swift */; };
 		248D37B12049504B00B21C3D /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37B02049504B00B21C3D /* Car.swift */; };
 		D40B2059205145B1000823E4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B2058205145B1000823E4 /* RegisterViewController.swift */; };
+		D40B206B20516E5D000823E4 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40B205E20516E5C000823E4 /* FBSDKCoreKit.framework */; };
+		D40B206C20516E5D000823E4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40B206820516E5D000823E4 /* Bolts.framework */; };
+		D40B206D20516E5D000823E4 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40B206920516E5D000823E4 /* FBSDKLoginKit.framework */; };
+		D40B206E20516E5D000823E4 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40B206A20516E5D000823E4 /* FBSDKShareKit.framework */; };
 		D48274E220503FF800A46FA9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48274E120503FF800A46FA9 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -173,6 +177,11 @@
 		248D37B02049504B00B21C3D /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
 		D40B2058205145B1000823E4 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		D40B205E20516E5C000823E4 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "FacebookSDK/FacebookSDKs-iOS-4/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		D40B206820516E5D000823E4 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "FacebookSDK/FacebookSDKs-iOS-4/Bolts.framework"; sourceTree = "<group>"; };
+		D40B206920516E5D000823E4 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "FacebookSDK/FacebookSDKs-iOS-4/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		D40B206A20516E5D000823E4 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "FacebookSDK/FacebookSDKs-iOS-4/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		D40B206F2051777C000823E4 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		D48274E120503FF800A46FA9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -181,7 +190,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D40B206C20516E5D000823E4 /* Bolts.framework in Frameworks */,
 				240AB01D2050878100324028 /* Security.framework in Frameworks */,
+				D40B206D20516E5D000823E4 /* FBSDKLoginKit.framework in Frameworks */,
+				D40B206E20516E5D000823E4 /* FBSDKShareKit.framework in Frameworks */,
+				D40B206B20516E5D000823E4 /* FBSDKCoreKit.framework in Frameworks */,
 				240AB0132050870000324028 /* Locksmith.framework in Frameworks */,
 				240AB0182050877000324028 /* RoadChatKit.framework in Frameworks */,
 			);
@@ -307,6 +320,7 @@
 				240D110320481843008C5E39 /* LaunchScreen.storyboard */,
 				240D110620481844008C5E39 /* Info.plist */,
 				248D378D20485DC100B21C3D /* RoadChat.xcdatamodeld */,
+				D40B206F2051777C000823E4 /* Bridging-Header.h */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -314,6 +328,10 @@
 		244BFB7D2049A6EE00B2481D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D40B206820516E5D000823E4 /* Bolts.framework */,
+				D40B205E20516E5C000823E4 /* FBSDKCoreKit.framework */,
+				D40B206920516E5D000823E4 /* FBSDKLoginKit.framework */,
+				D40B206A20516E5D000823E4 /* FBSDKShareKit.framework */,
 				240AB01C2050878100324028 /* Security.framework */,
 			);
 			name = Frameworks;
@@ -749,10 +767,15 @@
 				CODE_SIGN_ENTITLEMENTS = RoadChat/RoadChat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C23UW3NA42;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FacebookSDK/FacebookSDKs-iOS-4",
+				);
 				INFOPLIST_FILE = RoadChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hpe.dhbw.RoadChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RoadChat/Support/Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -766,10 +789,15 @@
 				CODE_SIGN_ENTITLEMENTS = RoadChat/RoadChat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C23UW3NA42;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FacebookSDK/FacebookSDKs-iOS-4",
+				);
 				INFOPLIST_FILE = RoadChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hpe.dhbw.RoadChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RoadChat/Support/Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -9,15 +9,29 @@
 import UIKit
 import RoadChatKit
 import Locksmith
+import FBSDKLoginKit
+import FBSDKCoreKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
+   
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        //do something
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("logout")
+    }
+    
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    @IBOutlet weak var fbLoginButton: FBSDKButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+       self.fbLoginButton.delegate = self.view.center
+        
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
