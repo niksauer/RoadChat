@@ -10,6 +10,11 @@
 		2404A256204E92D2009AC7E1 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404A255204E92D2009AC7E1 /* UserService.swift */; };
 		2404A25B204EAFAC009AC7E1 /* JSendService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404A25A204EAFAC009AC7E1 /* JSendService.swift */; };
 		2404A25E204ED162009AC7E1 /* CarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404A25D204ED162009AC7E1 /* CarService.swift */; };
+		240AB0132050870000324028 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240AB006205086ED00324028 /* Locksmith.framework */; };
+		240AB0142050870000324028 /* Locksmith.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 240AB006205086ED00324028 /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		240AB0182050877000324028 /* RoadChatKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; };
+		240AB0192050877000324028 /* RoadChatKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		240AB01D2050878100324028 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240AB01C2050878100324028 /* Security.framework */; };
 		240D10F920481843008C5E39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D10F820481843008C5E39 /* AppDelegate.swift */; };
 		240D110020481843008C5E39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D10FE20481843008C5E39 /* Main.storyboard */; };
 		240D110220481843008C5E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D110120481843008C5E39 /* Assets.xcassets */; };
@@ -18,7 +23,8 @@
 		243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243357252049817A00CD5F87 /* JSendAPIClient.swift */; };
 		243F1EB92048422100B45955 /* CommunityBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EB82048422100B45955 /* CommunityBoardController.swift */; };
 		243F1EBB204842A200B45955 /* TrafficBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBA204842A200B45955 /* TrafficBoardController.swift */; };
-		243F1EBD204842CF00B45955 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBC204842CF00B45955 /* ProfileController.swift */; };
+		243F1EBD204842CF00B45955 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBC204842CF00B45955 /* ProfileViewController.swift */; };
+		24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24615DA420508E5400ED11A1 /* CredentialManager.swift */; };
 		248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 248D378D20485DC100B21C3D /* RoadChat.xcdatamodeld */; };
 		248D379120493EC800B21C3D /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379020493EC800B21C3D /* ConversationsController.swift */; };
 		248D379820494D0900B21C3D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379720494D0800B21C3D /* User.swift */; };
@@ -32,12 +38,67 @@
 		248D37AD20494FFB00B21C3D /* DirectMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37AC20494FFB00B21C3D /* DirectMessage.swift */; };
 		248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37AE2049501100B21C3D /* CommunityMessage.swift */; };
 		248D37B12049504B00B21C3D /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37B02049504B00B21C3D /* Car.swift */; };
-		24901691204CE52E00515AAF /* RoadChatKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; };
-		24901692204CE52E00515AAF /* RoadChatKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D48274E220503FF800A46FA9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48274E120503FF800A46FA9 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		24901693204CE52E00515AAF /* PBXContainerItemProxy */ = {
+		240AB005205086ED00324028 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 240AAFFB205086ED00324028 /* Locksmith.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0EC25C591BA385AA004191AF;
+			remoteInfo = "Locksmith iOS";
+		};
+		240AB007205086ED00324028 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 240AAFFB205086ED00324028 /* Locksmith.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0EC25C621BA385AB004191AF;
+			remoteInfo = "Locksmith iOS Tests";
+		};
+		240AB009205086ED00324028 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 240AAFFB205086ED00324028 /* Locksmith.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0EC25C751BA385F6004191AF;
+			remoteInfo = "Locksmith OS X";
+		};
+		240AB00B205086ED00324028 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 240AAFFB205086ED00324028 /* Locksmith.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0EC25C7E1BA385F6004191AF;
+			remoteInfo = "Locksmith OS X Tests";
+		};
+		240AB00D205086ED00324028 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 240AAFFB205086ED00324028 /* Locksmith.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0EC25CA71BA39C9F004191AF;
+			remoteInfo = "Locksmith watchOS";
+		};
+		240AB00F205086ED00324028 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 240AAFFB205086ED00324028 /* Locksmith.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FBD0C9491C1866BE00291F2A;
+			remoteInfo = "Locksmith tvOS";
+		};
+		240AB011205086ED00324028 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 240AAFFB205086ED00324028 /* Locksmith.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E3DD3B341D84356500A59312;
+			remoteInfo = "Test Host";
+		};
+		240AB0152050870000324028 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 240AAFFB205086ED00324028 /* Locksmith.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0EC25C581BA385AA004191AF;
+			remoteInfo = "Locksmith iOS";
+		};
+		240AB01A2050877000324028 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
 			proxyType = 1;
@@ -67,7 +128,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				24901692204CE52E00515AAF /* RoadChatKit.framework in Embed Frameworks */,
+				240AB0142050870000324028 /* Locksmith.framework in Embed Frameworks */,
+				240AB0192050877000324028 /* RoadChatKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -78,6 +140,9 @@
 		2404A255204E92D2009AC7E1 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		2404A25A204EAFAC009AC7E1 /* JSendService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSendService.swift; sourceTree = "<group>"; };
 		2404A25D204ED162009AC7E1 /* CarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarService.swift; sourceTree = "<group>"; };
+		240AAFFB205086ED00324028 /* Locksmith.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Locksmith.xcodeproj; path = Frameworks/Locksmith/Locksmith.xcodeproj; sourceTree = "<group>"; };
+		240AB0172050871500324028 /* RoadChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RoadChat.entitlements; sourceTree = "<group>"; };
+		240AB01C2050878100324028 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		240D10F520481843008C5E39 /* RoadChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		240D10F820481843008C5E39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		240D10FF20481843008C5E39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,7 +153,8 @@
 		243357252049817A00CD5F87 /* JSendAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JSendAPIClient.swift; path = RoadChat/Backend/JSendAPIClient.swift; sourceTree = SOURCE_ROOT; };
 		243F1EB82048422100B45955 /* CommunityBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoardController.swift; sourceTree = "<group>"; };
 		243F1EBA204842A200B45955 /* TrafficBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficBoardController.swift; sourceTree = "<group>"; };
-		243F1EBC204842CF00B45955 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		243F1EBC204842CF00B45955 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		24615DA420508E5400ED11A1 /* CredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialManager.swift; sourceTree = "<group>"; };
 		248D378E20485DC100B21C3D /* RoadChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RoadChat.xcdatamodel; sourceTree = "<group>"; };
 		248D379020493EC800B21C3D /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
 		248D379720494D0800B21C3D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -103,6 +169,7 @@
 		248D37AE2049501100B21C3D /* CommunityMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessage.swift; sourceTree = "<group>"; };
 		248D37B02049504B00B21C3D /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
+		D48274E120503FF800A46FA9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = RoadChat/Frontend/Controller/User/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +177,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24901691204CE52E00515AAF /* RoadChatKit.framework in Frameworks */,
+				240AB01D2050878100324028 /* Security.framework in Frameworks */,
+				240AB0132050870000324028 /* Locksmith.framework in Frameworks */,
+				240AB0182050877000324028 /* RoadChatKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,9 +196,24 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		240AAFFC205086ED00324028 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				240AB006205086ED00324028 /* Locksmith.framework */,
+				240AB008205086ED00324028 /* Locksmith iOS Tests.xctest */,
+				240AB00A205086ED00324028 /* Locksmith.framework */,
+				240AB00C205086ED00324028 /* Locksmith OS X Tests.xctest */,
+				240AB00E205086ED00324028 /* Locksmith.framework */,
+				240AB010205086ED00324028 /* Locksmith.framework */,
+				240AB012205086ED00324028 /* Test Host.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		240D10EC20481843008C5E39 = {
 			isa = PBXGroup;
 			children = (
+				240AAFFB205086ED00324028 /* Locksmith.xcodeproj */,
 				24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */,
 				240D10F720481843008C5E39 /* RoadChat */,
 				240D10F620481843008C5E39 /* Products */,
@@ -169,7 +253,8 @@
 		243F1EB420483BC100B45955 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				243F1EBC204842CF00B45955 /* ProfileController.swift */,
+				D48274E120503FF800A46FA9 /* LoginViewController.swift */,
+				243F1EBC204842CF00B45955 /* ProfileViewController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -193,6 +278,7 @@
 		24491C7E204AE7AC00BF4D81 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				240AB0172050871500324028 /* RoadChat.entitlements */,
 				240D10F820481843008C5E39 /* AppDelegate.swift */,
 				240D10FE20481843008C5E39 /* Main.storyboard */,
 				240D110120481843008C5E39 /* Assets.xcassets */,
@@ -206,6 +292,7 @@
 		244BFB7D2049A6EE00B2481D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				240AB01C2050878100324028 /* Security.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -282,6 +369,7 @@
 			children = (
 				2404A25A204EAFAC009AC7E1 /* JSendService.swift */,
 				243357252049817A00CD5F87 /* JSendAPIClient.swift */,
+				24615DA420508E5400ED11A1 /* CredentialManager.swift */,
 				2404A25C204ED13A009AC7E1 /* User */,
 			);
 			path = Backend;
@@ -311,7 +399,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				24901694204CE52E00515AAF /* PBXTargetDependency */,
+				240AB0162050870000324028 /* PBXTargetDependency */,
+				240AB01B2050877000324028 /* PBXTargetDependency */,
 			);
 			name = RoadChat;
 			productName = RoadChat;
@@ -331,6 +420,11 @@
 					240D10F420481843008C5E39 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -347,6 +441,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 240AAFFC205086ED00324028 /* Products */;
+					ProjectRef = 240AAFFB205086ED00324028 /* Locksmith.xcodeproj */;
+				},
+				{
 					ProductGroup = 24AED4AD204CC2EB002A1703 /* Products */;
 					ProjectRef = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
 				},
@@ -359,6 +457,55 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		240AB006205086ED00324028 /* Locksmith.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Locksmith.framework;
+			remoteRef = 240AB005205086ED00324028 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		240AB008205086ED00324028 /* Locksmith iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Locksmith iOS Tests.xctest";
+			remoteRef = 240AB007205086ED00324028 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		240AB00A205086ED00324028 /* Locksmith.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Locksmith.framework;
+			remoteRef = 240AB009205086ED00324028 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		240AB00C205086ED00324028 /* Locksmith OS X Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Locksmith OS X Tests.xctest";
+			remoteRef = 240AB00B205086ED00324028 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		240AB00E205086ED00324028 /* Locksmith.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Locksmith.framework;
+			remoteRef = 240AB00D205086ED00324028 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		240AB010205086ED00324028 /* Locksmith.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Locksmith.framework;
+			remoteRef = 240AB00F205086ED00324028 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		240AB012205086ED00324028 /* Test Host.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Test Host.app";
+			remoteRef = 240AB011205086ED00324028 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		24AED4B4204CC2EB002A1703 /* RoadChatKitTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = file;
@@ -405,13 +552,15 @@
 				248D37A220494F1600B21C3D /* TrafficMessage.swift in Sources */,
 				248D37AB20494FE200B21C3D /* Location.swift in Sources */,
 				240D10F920481843008C5E39 /* AppDelegate.swift in Sources */,
+				D48274E220503FF800A46FA9 /* LoginViewController.swift in Sources */,
 				248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */,
 				248D379120493EC800B21C3D /* ConversationsController.swift in Sources */,
 				248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */,
+				24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */,
 				2404A256204E92D2009AC7E1 /* UserService.swift in Sources */,
 				248D37B12049504B00B21C3D /* Car.swift in Sources */,
 				248D37A020494EC000B21C3D /* Privacy.swift in Sources */,
-				243F1EBD204842CF00B45955 /* ProfileController.swift in Sources */,
+				243F1EBD204842CF00B45955 /* ProfileViewController.swift in Sources */,
 				2404A25B204EAFAC009AC7E1 /* JSendService.swift in Sources */,
 				248D379E20494EA400B21C3D /* Profile.swift in Sources */,
 				248D379820494D0900B21C3D /* User.swift in Sources */,
@@ -421,10 +570,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		24901694204CE52E00515AAF /* PBXTargetDependency */ = {
+		240AB0162050870000324028 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Locksmith iOS";
+			targetProxy = 240AB0152050870000324028 /* PBXContainerItemProxy */;
+		};
+		240AB01B2050877000324028 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RoadChatKit;
-			targetProxy = 24901693204CE52E00515AAF /* PBXContainerItemProxy */;
+			targetProxy = 240AB01A2050877000324028 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -560,6 +714,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RoadChat/RoadChat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C23UW3NA42;
 				INFOPLIST_FILE = RoadChat/Info.plist;
@@ -576,6 +731,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RoadChat/RoadChat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C23UW3NA42;
 				INFOPLIST_FILE = RoadChat/Info.plist;
