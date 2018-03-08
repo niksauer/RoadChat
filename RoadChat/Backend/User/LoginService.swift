@@ -10,9 +10,10 @@ import Foundation
 import RoadChatKit
 
 final class LoginService: JSendService {
+    
     typealias Resource = RoadChatKit.BearerToken.PublicBearerToken
     
-    private let client = JSendAPIClient(baseURL: "http://localhost:8080/user", token: nil)
+    private let client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/user", credentials: CredientialManager.shared)
     
     func login(_ user: LoginRequest, completion: @escaping (Resource?, Error?) -> Void) throws {
         try client.makePOSTRequest(to: "/login", body: user) { result in
@@ -22,8 +23,9 @@ final class LoginService: JSendService {
     }
     
     func logout(completion: @escaping (Error?) -> Void) {
-        client.makeGETRequest(to: "/logout", params: nil) { result in
+        client.makeGETRequest(to: "/logout") { result in
             completion(self.getError(from: result))
         }
     }
+    
 }
