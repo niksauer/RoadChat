@@ -190,7 +190,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
-                                    <action selector="confirmRegistrationButtonPressed:" destination="2dG-9l-aBT" eventType="touchUpInside" id="vdA-fZ-z9h"/>
+                                    <action selector="registerButtonPressed:" destination="2dG-9l-aBT" eventType="touchUpInside" id="ykj-cf-Lt0"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IhE-le-cG9">
@@ -227,11 +227,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="Pqw-iV-uqY"/>
                     <connections>
-                        <outlet property="confirmPasswordLabel" destination="UM1-hm-ixM" id="oA4-Jr-qhR"/>
-                        <outlet property="confirmPasswordTextField" destination="IhE-le-cG9" id="3dL-WP-pgJ"/>
                         <outlet property="emailLabel" destination="QXs-YA-roQ" id="4Wu-GL-gYh"/>
                         <outlet property="emailTextField" destination="ZdQ-xS-hZC" id="QVT-EQ-Ma3"/>
                         <outlet property="passwordLabel" destination="Dyh-an-a95" id="yfu-HW-FTJ"/>
+                        <outlet property="passwordRepeatLabel" destination="UM1-hm-ixM" id="WSR-Wh-K6a"/>
+                        <outlet property="passwordRepeatTextField" destination="IhE-le-cG9" id="7gR-sf-Tos"/>
                         <outlet property="passwordTextField" destination="ylN-YU-WPi" id="UEs-L2-ERS"/>
                         <outlet property="usernameLabel" destination="e88-si-z7X" id="EsM-YF-z1i"/>
                         <outlet property="usernameTextField" destination="2hI-Nn-kgL" id="4AB-x0-MF5"/>

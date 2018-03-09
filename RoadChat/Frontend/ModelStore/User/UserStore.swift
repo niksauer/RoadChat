@@ -11,7 +11,7 @@ import RoadChatKit
 
 struct UserStore {
     
-    static func create(_ user: RegisterRequest, completion: @escaping (Error?) -> Void) {
+    func create(_ user: RegisterRequest, completion: @escaping (Error?) -> Void) {
         let userService = UserService()
         
         do {
@@ -23,8 +23,11 @@ struct UserStore {
                 
                 do {
                     try CredentialManager.shared.setUserID(user.id)
+                    _ = try User.create(from: user, in: CoreDataStack.shared.viewContext)
+                    CoreDataStack.shared.saveViewContext()
                 } catch {
                     // pass keychain error
+                    // pass core data error
                     completion(error)
                 }
             }
