@@ -299,42 +299,56 @@
 		240D10F720481843008C5E39 /* RoadChat */ = {
 			isa = PBXGroup;
 			children = (
-				24491C7E204AE7AC00BF4D81 /* Support */,
+				240AB0172050871500324028 /* RoadChat.entitlements */,
+				240D110620481844008C5E39 /* Info.plist */,
+				D40B20E220519652000823E4 /* Main.storyboard */,
+				241017FF2052F3AC002AEC9A /* Support */,
 				248D37B42049528A00B21C3D /* Frontend */,
 				248D37B8204952C300B21C3D /* Backend */,
 			);
 			path = RoadChat;
 			sourceTree = "<group>";
 		};
+		241017FF2052F3AC002AEC9A /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				248D378D20485DC100B21C3D /* RoadChat.xcdatamodeld */,
+				240D10F820481843008C5E39 /* AppDelegate.swift */,
+				240D110120481843008C5E39 /* Assets.xcassets */,
+				240D110320481843008C5E39 /* LaunchScreen.storyboard */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		2422D00120514FEA0081A552 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				242F8F2D204D6EA80052087B /* AuthenticationService.swift */,
-				D44F4B7B20528045009A6239 /* Community */,
-				245EAE3D2051346C00821B4B /* Chat */,
-				C93155432051920C00F4C429 /* Traffic */,
 				2404A25C204ED13A009AC7E1 /* User */,
+				D44F4B7B20528045009A6239 /* Community */,
+				C93155432051920C00F4C429 /* Traffic */,
+				245EAE3D2051346C00821B4B /* Chat */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		2422D01B205155CF0081A552 /* Login */ = {
+		2422D01B205155CF0081A552 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
 				D48274E120503FF800A46FA9 /* LoginViewController.swift */,
 				D40B2058205145B1000823E4 /* RegisterViewController.swift */,
 			);
-			path = Login;
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		243F1EB320483BAD00B45955 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				2422D01B205155CF0081A552 /* Login */,
-				248D379220493ED000B21C3D /* Chat */,
+				2422D01B205155CF0081A552 /* Authentication */,
+				243F1EB420483BC100B45955 /* User */,
 				243F1EB620483BD100B45955 /* Community */,
 				243F1EB520483BC500B45955 /* Traffic */,
-				243F1EB420483BC100B45955 /* User */,
+				248D379220493ED000B21C3D /* Chat */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -364,20 +378,6 @@
 			path = Community;
 			sourceTree = "<group>";
 		};
-		24491C7E204AE7AC00BF4D81 /* Support */ = {
-			isa = PBXGroup;
-			children = (
-				240AB0172050871500324028 /* RoadChat.entitlements */,
-				240D10F820481843008C5E39 /* AppDelegate.swift */,
-				240D110120481843008C5E39 /* Assets.xcassets */,
-				D40B20E220519652000823E4 /* Main.storyboard */,
-				240D110320481843008C5E39 /* LaunchScreen.storyboard */,
-				240D110620481844008C5E39 /* Info.plist */,
-				248D378D20485DC100B21C3D /* RoadChat.xcdatamodeld */,
-			);
-			name = Support;
-			sourceTree = "<group>";
-		};
 		244BFB7D2049A6EE00B2481D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -405,11 +405,11 @@
 		248D379920494D0F00B21C3D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				24A069B02051EFC8006F8401 /* CoreDataStack.swift */,
-				248D37B22049506000B21C3D /* Chat */,
+				248D37AA20494FE200B21C3D /* Location.swift */,
+				248D379A20494D1800B21C3D /* User */,
 				248D37B32049506D00B21C3D /* Community */,
 				248D37A320494F1C00B21C3D /* Traffic */,
-				248D379A20494D1800B21C3D /* User */,
+				248D37B22049506000B21C3D /* Chat */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -418,7 +418,6 @@
 			isa = PBXGroup;
 			children = (
 				248D37B02049504B00B21C3D /* Car.swift */,
-				248D37AA20494FE200B21C3D /* Location.swift */,
 				248D379720494D0800B21C3D /* User.swift */,
 				248D379B20494E1F00B21C3D /* Settings.swift */,
 				248D379D20494EA400B21C3D /* Profile.swift */,
@@ -456,9 +455,9 @@
 		248D37B42049528A00B21C3D /* Frontend */ = {
 			isa = PBXGroup;
 			children = (
+				243F1EB320483BAD00B45955 /* ViewController */,
 				24A069B620520073006F8401 /* ModelStore */,
 				248D379920494D0F00B21C3D /* Model */,
-				243F1EB320483BAD00B45955 /* ViewController */,
 			);
 			path = Frontend;
 			sourceTree = "<group>";
@@ -477,10 +476,13 @@
 		24A069B620520073006F8401 /* ModelStore */ = {
 			isa = PBXGroup;
 			children = (
-				D44F4B7E205282B7009A6239 /* Community */,
+				24A069B02051EFC8006F8401 /* CoreDataStack.swift */,
 				24A069BA20520367006F8401 /* AuthenticationManager.swift */,
 				C988ACA42052BB3200EDCEAC /* LocationManager.swift */,
 				24A069B92052013C006F8401 /* User */,
+				D44F4B7E205282B7009A6239 /* Community */,
+				24DF5D112052F52400772B00 /* Traffic */,
+				24DF5D122052F55500772B00 /* Chat */,
 			);
 			path = ModelStore;
 			sourceTree = "<group>";
@@ -500,6 +502,20 @@
 				24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		24DF5D112052F52400772B00 /* Traffic */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Traffic;
+			sourceTree = "<group>";
+		};
+		24DF5D122052F55500772B00 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		24F1DD2620517B8E00A726AA /* Products */ = {

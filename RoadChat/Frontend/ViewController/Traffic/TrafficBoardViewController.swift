@@ -23,8 +23,6 @@ class TrafficBoardViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let locationManager = LocationManager()
-        locationManager.pollLocation()
     }
 
     override func didReceiveMemoryWarning() {
