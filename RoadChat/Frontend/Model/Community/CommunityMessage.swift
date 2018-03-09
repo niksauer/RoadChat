@@ -35,11 +35,10 @@ class CommunityMessage: NSManagedObject {
         post.locationID = Int32(prototype.locationID)
         post.message = prototype.message
         post.senderID = Int32(prototype.senderID)
-        post.time = prototype.time.timeIntervalSince1970
+        post.time = prototype.time
         post.upvotes = Int16(prototype.upvotes)
         
         return post
     }
-    
     
 }
