@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17D102" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Car" representedClassName="Car" syncable="YES" codeGenerationType="category">
+    <entity name="Car" representedClassName=".Car" syncable="YES" codeGenerationType="category">
         <attribute name="color" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="manufacturer" attributeType="String" syncable="YES"/>
@@ -10,7 +10,7 @@
         <attribute name="userID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="cars" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="CommunityMessage" representedClassName="CommunityMessage" syncable="YES" codeGenerationType="category">
+    <entity name="CommunityMessage" representedClassName=".CommunityMessage" syncable="YES" codeGenerationType="category">
         <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="locationID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="message" attributeType="String" syncable="YES"/>
@@ -19,7 +19,7 @@
         <attribute name="upvotes" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="communityMessages" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="Conversation" representedClassName="Conversation" syncable="YES" codeGenerationType="category">
+    <entity name="Conversation" representedClassName=".Conversation" syncable="YES" codeGenerationType="category">
         <attribute name="creation" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="creatorID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
@@ -28,13 +28,13 @@
         <relationship name="participants" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Participant" inverseName="conversation" inverseEntity="Participant" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="conversations" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="DirectMessage" representedClassName="DirectMessage" syncable="YES" codeGenerationType="category">
+    <entity name="DirectMessage" representedClassName=".DirectMessage" syncable="YES" codeGenerationType="category">
         <attribute name="message" attributeType="String" syncable="YES"/>
         <attribute name="senderID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="time" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="conversation" maxCount="1" deletionRule="Deny" destinationEntity="Conversation" inverseName="messages" inverseEntity="Conversation" syncable="YES"/>
     </entity>
-    <entity name="Location" representedClassName="Location" syncable="YES" codeGenerationType="category">
+    <entity name="Location" representedClassName=".Location" syncable="YES" codeGenerationType="category">
         <attribute name="altitude" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="course" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="horizontalAccuracy" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
@@ -46,13 +46,13 @@
         <attribute name="verticalAccurarcy" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="location" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="Participant" representedClassName="Participant" syncable="YES" codeGenerationType="category">
+    <entity name="Participant" representedClassName=".Participant" syncable="YES" codeGenerationType="category">
         <attribute name="approvalStatus" attributeType="String" syncable="YES"/>
         <attribute name="joining" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="userID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="conversation" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="participants" inverseEntity="Conversation" syncable="YES"/>
     </entity>
-    <entity name="Privacy" representedClassName="Privacy" syncable="YES" codeGenerationType="category">
+    <entity name="Privacy" representedClassName=".Privacy" syncable="YES" codeGenerationType="category">
         <attribute name="shareLocation" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="showAddress" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="showBirth" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -62,7 +62,7 @@
         <attribute name="showSex" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="user" maxCount="1" deletionRule="Deny" destinationEntity="User" inverseName="privacy" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="Profile" representedClassName="Profile" syncable="YES" codeGenerationType="category">
+    <entity name="Profile" representedClassName=".Profile" syncable="YES" codeGenerationType="category">
         <attribute name="birth" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" attributeType="String" syncable="YES"/>
@@ -74,12 +74,12 @@
         <attribute name="streetNumber" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="profile" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="Settings" representedClassName="Settings" syncable="YES" codeGenerationType="category">
+    <entity name="Settings" representedClassName=".Settings" syncable="YES" codeGenerationType="category">
         <attribute name="communityRadius" attributeType="Integer 16" defaultValueString="10" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="trafficTradius" attributeType="Integer 16" defaultValueString="5" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="user" maxCount="1" deletionRule="Deny" destinationEntity="User" inverseName="settings" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="TrafficMessage" representedClassName="TrafficMessage" syncable="YES" codeGenerationType="category">
+    <entity name="TrafficMessage" representedClassName=".TrafficMessage" syncable="YES" codeGenerationType="category">
         <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="locationID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
@@ -90,7 +90,7 @@
         <attribute name="validations" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="trafficMessages" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="category">
+    <entity name="User" representedClassName=".User" syncable="YES" codeGenerationType="category">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="registry" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -99,9 +99,9 @@
         <relationship name="communityMessages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CommunityMessage" inverseName="user" inverseEntity="CommunityMessage" syncable="YES"/>
         <relationship name="conversations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversation" inverseName="user" inverseEntity="Conversation" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="user" inverseEntity="Location" syncable="YES"/>
-        <relationship name="privacy" maxCount="1" deletionRule="Cascade" destinationEntity="Privacy" inverseName="user" inverseEntity="Privacy" syncable="YES"/>
+        <relationship name="privacy" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Privacy" inverseName="user" inverseEntity="Privacy" syncable="YES"/>
         <relationship name="profile" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Profile" inverseName="user" inverseEntity="Profile" syncable="YES"/>
-        <relationship name="settings" maxCount="1" deletionRule="Cascade" destinationEntity="Settings" inverseName="user" inverseEntity="Settings" syncable="YES"/>
+        <relationship name="settings" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Settings" inverseName="user" inverseEntity="Settings" syncable="YES"/>
         <relationship name="trafficMessages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TrafficMessage" inverseName="user" inverseEntity="TrafficMessage" syncable="YES"/>
     </entity>
     <elements>

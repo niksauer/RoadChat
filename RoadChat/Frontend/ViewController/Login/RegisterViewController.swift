@@ -14,6 +14,7 @@ class RegisterViewController: UIViewController {
 
     // MARK: - Public Properties
     let userStore = UserStore()
+    let authenticationManager = AuthenticationManager()
     
     // MARK: - Outlets
     @IBOutlet weak var usernameTextField: UITextField!
@@ -44,21 +45,32 @@ class RegisterViewController: UIViewController {
             log.warning("Missing required fields for registration.")
             return
         }
-       
-        if isValidUserInput(email: email, username: username, password: password, passwordRepeat: passwordRepeat) {
-            let registerRequest = RegisterRequest(email: email, username: username, password: password)
         
-            userStore.create(registerRequest) { error in
+        guard isValidUserInput(email: email, username: username, password: password, passwordRepeat: passwordRepeat) else {
+            log.warning("Invalid user input.")
+            return
+        }
+       
+        let registerRequest = RegisterRequest(email: email, username: username, password: password)
+        
+        userStore.create(registerRequest) { error in
+            guard error == nil else {
+                // handle registration error
+                return
+            }
+            
+            // auto-login
+            let loginRequest = LoginRequest(user: email, password: password)
+            
+            self.authenticationManager.login(loginRequest) { error in
                 guard error == nil else {
-                    log.error("Failed to register user: \(error.debugDescription)")
+                    // handle login error
+                    self.performSegue(withIdentifier: "showLoginView", sender: self)
                     return
                 }
                 
-                log.info("Successful registration.")
-                self.performSegue(withIdentifier: "showLoginView", sender: self)
+                self.performSegue(withIdentifier: "showTabBarVC", sender: self)
             }
-        } else {
-            // handle wrong input
         }
     }
 

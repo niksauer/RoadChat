@@ -18,6 +18,7 @@ struct AuthenticationManager {
             try loginClient.login(user) { token, error in
                 guard let token = token else {
                     // pass service error
+                    log.error("Failed to login user: \(error!)")
                     completion(error!)
                     return
                 }
@@ -25,14 +26,17 @@ struct AuthenticationManager {
                 do {
                     try CredentialManager.shared.setToken(token.token)
                     try CredentialManager.shared.setUserID(token.userID)
+                    log.info("Successful login.")
                     completion(nil)
                 } catch {
                     // pass keychain error
+                    log.error("Failed to save credentials to keychain: \(error)")
                     completion(error)
                 }
             }
         } catch {
             // pass body encoding error
+            log.error("Failed to send login request: \(error)")
             completion(error)
         }
     }
