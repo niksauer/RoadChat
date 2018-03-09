@@ -23,6 +23,7 @@
 		243F1EB92048422100B45955 /* CommunityBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EB82048422100B45955 /* CommunityBoardViewController.swift */; };
 		243F1EBB204842A200B45955 /* TrafficBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBA204842A200B45955 /* TrafficBoardViewController.swift */; };
 		243F1EBD204842CF00B45955 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBC204842CF00B45955 /* ProfileViewController.swift */; };
+		245982642052FB5200B799EC /* ConversationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245982632052FB5200B799EC /* ConversationStore.swift */; };
 		245EAE332051346600821B4B /* ConversationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245EAE322051346600821B4B /* ConversationService.swift */; };
 		24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24615DA420508E5400ED11A1 /* CredentialManager.swift */; };
 		248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 248D378D20485DC100B21C3D /* RoadChat.xcdatamodeld */; };
@@ -208,6 +209,7 @@
 		243F1EB82048422100B45955 /* CommunityBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoardViewController.swift; sourceTree = "<group>"; };
 		243F1EBA204842A200B45955 /* TrafficBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficBoardViewController.swift; sourceTree = "<group>"; };
 		243F1EBC204842CF00B45955 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		245982632052FB5200B799EC /* ConversationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConversationStore.swift; path = RoadChat/Frontend/ModelStore/Chat/ConversationStore.swift; sourceTree = SOURCE_ROOT; };
 		245EAE322051346600821B4B /* ConversationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationService.swift; sourceTree = "<group>"; };
 		24615DA420508E5400ED11A1 /* CredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialManager.swift; sourceTree = "<group>"; };
 		248D378E20485DC100B21C3D /* RoadChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RoadChat.xcdatamodel; sourceTree = "<group>"; };
@@ -514,6 +516,7 @@
 		24DF5D122052F55500772B00 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				245982632052FB5200B799EC /* ConversationStore.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -758,6 +761,7 @@
 				243F1EB92048422100B45955 /* CommunityBoardViewController.swift in Sources */,
 				243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */,
 				248D379C20494E1F00B21C3D /* Settings.swift in Sources */,
+				245982642052FB5200B799EC /* ConversationStore.swift in Sources */,
 				248D37A920494F9900B21C3D /* Participant.swift in Sources */,
 				24A069B12051EFC8006F8401 /* CoreDataStack.swift in Sources */,
 				2404A25E204ED162009AC7E1 /* CarService.swift in Sources */,
@@ -942,10 +946,7 @@
 				CODE_SIGN_ENTITLEMENTS = RoadChat/RoadChat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C23UW3NA42;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/FacebookSDK/FacebookSDKs-iOS-4",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = RoadChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hpe.dhbw.RoadChat;
@@ -964,10 +965,7 @@
 				CODE_SIGN_ENTITLEMENTS = RoadChat/RoadChat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C23UW3NA42;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/FacebookSDK/FacebookSDKs-iOS-4",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = RoadChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hpe.dhbw.RoadChat;
