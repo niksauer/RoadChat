@@ -12,6 +12,7 @@ import RoadChatKit
 struct ConversationStore {
     
     private let conversationService = ConversationService()
+    private let userService = UserService()
     
     func create(_ conversation: ConversationRequest, completion: @escaping (Error?) -> Void) {
         do {
@@ -36,6 +37,39 @@ struct ConversationStore {
             // pass body encoding error
             log.error("Failed to send 'ConversationRequest': \(error)")
             completion(error)
+        }
+    }
+
+    func updateConversations(completion: @escaping (Error?) -> Void) {
+        guard let userID = CredentialManager.shared.getUserID() else {
+            log.error("No userID set, i.e. not logged in, but attempting to retrieve personal conversations.")
+            completion(CredentialError.noUserIDSet)
+            return
+        }
+        
+        userService.getConversations(userID: userID) { conversations, error in
+            guard let conversations = conversations else {
+                // pass service error
+                log.error("Failed to get conversations for user '\(userID)': \(error!)")
+                completion(error!)
+                return
+            }
+            
+            CoreDataStack.shared.persistentContainer.performBackgroundTask {  context in
+//                _ = conversations.map { _ = try? Conversation.create(from: $0, in: context) }
+
+                _ = conversations.map {
+                    do {
+                        _ = try Conversation.create(from: $0, in: context)
+                    } catch {
+                        log.error("Failed to create Core Data 'Conversation' entity: \(error)")
+                    }
+                }
+                
+                OperationQueue.main.addOperation {
+                    completion(nil)
+                }
+            }
         }
     }
 }

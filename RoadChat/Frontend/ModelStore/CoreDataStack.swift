@@ -20,14 +20,7 @@ class CoreDataStack: NSObject {
 //        viewContext.automaticallyMergesChangesFromParent = true
         return viewContext
     }
-    
-    var backgroundContext: NSManagedObjectContext {
-        let backgroundContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        backgroundContext.parent = viewContext
-        backgroundContext.automaticallyMergesChangesFromParent = true
-        return backgroundContext
-    }
-    
+        
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "RoadChat")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in

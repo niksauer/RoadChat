@@ -9,6 +9,10 @@
 import Foundation
 import Locksmith
 
+enum CredentialError: Error {
+    case noUserIDSet
+}
+
 struct CredentialManager: APICredentialStore {
     
     private enum keys: String {
