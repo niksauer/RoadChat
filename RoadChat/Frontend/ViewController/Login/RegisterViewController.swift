@@ -36,7 +36,7 @@ class RegisterViewController: UIViewController {
         if isValidUserInput(email: email, username: username, password: password, passwordRepeat: passwordRepeat) {
             let registerRequest = RegisterRequest(email: email, username: username, password: password)
         
-            User.create(registerRequest) { error in
+            UserStore.create(registerRequest) { error in
                 guard error == nil else {
                     print(error!)
                     return
