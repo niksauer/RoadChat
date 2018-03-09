@@ -9,8 +9,7 @@
 import Foundation
 import RoadChatKit
 
-class CommunityService: JSendService {
-    
+struct CommunityService: JSendService {
     
     typealias Resource = RoadChatKit.CommunityMessage.PublicCommunityMessage
     
@@ -53,5 +52,6 @@ class CommunityService: JSendService {
         client.makeGETRequest(to: "/message/\(messageID)/downvote", params: nil) { result in
             completion(self.getError(from: result))
         }
-}
+    }
+    
 }

@@ -9,7 +9,7 @@
 import Foundation
 import RoadChatKit
 
-final class ConversationService: JSendService {
+struct ConversationService: JSendService {
     
     typealias Resource = RoadChatKit.Conversation.PublicConversation
     

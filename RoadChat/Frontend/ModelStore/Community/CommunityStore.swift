@@ -9,14 +9,16 @@
 import Foundation
 import RoadChatKit
 
-class CommunityStore{
+struct CommunityStore {
     
-    func create(_ post: CommunityMessageRequest, completion: @escaping (Error?) -> Void){
-        let communityService = CommunityService()
-        
-        do{
+    private let communityService = CommunityService()
+    
+    func create(_ post: CommunityMessageRequest, completion: @escaping (Error?) -> Void) {
+        do {
             try communityService.create(post) { post, error in
                 guard let post = post else {
+                    // pass service error
+                    log.error("Failed to create post: \(error!)")
                     completion(error!)
                     return
                 }
@@ -24,27 +26,19 @@ class CommunityStore{
                 do {
                     _ = try CommunityMessage.create(from: post, in: CoreDataStack.shared.viewContext)
                     CoreDataStack.shared.saveViewContext()
-                } catch{
+                    log.info("Successfully created community message.")
+                    completion(nil)
+                } catch {
+                    // pass core data error
+                    log.error("Failed to create Core Data 'CommunityMessage' entity: \(error)")
                     completion(error)
-                    }
+                }
             }
         } catch {
-            
+            // pass body encoding error
+            log.error("Failed to send community message request: \(error)")
             completion(error)
-            
-            }
         }
-                
-    func getCommunityPosts(){
-        
-        
-        
     }
     
 }
-            
-            
-            
-            
-
-
