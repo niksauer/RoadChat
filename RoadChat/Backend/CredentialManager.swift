@@ -10,7 +10,7 @@ import Foundation
 import Locksmith
 
 struct CredentialManager: APICredentialStore {
-
+    
     private var userAccount = "RoadChatUser"
     
     private init() {}
@@ -29,8 +29,8 @@ struct CredentialManager: APICredentialStore {
         return getValue(for: "UserID") as? Int
     }
     
-    func setUserID(_ userID: Int) throws {
-        try setValue(userID, for: "UserID")
+    func setUserID(_ userID: Int?) throws {
+        try setValue(userID as Any, for: "UserID")
     }
     
     func getToken() -> String? {
@@ -38,7 +38,7 @@ struct CredentialManager: APICredentialStore {
     }
     
     func setToken(_ token: String?) throws {
-         try Locksmith.updateData(data: ["AccessToken": token as Any], forUserAccount: "RoadChatUser")
+         try setValue(token as Any, for: "AccessToken")
     }
     
 }

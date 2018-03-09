@@ -36,7 +36,7 @@ class LoginViewController: UIViewController {
         
         let loginRequest = LoginRequest(user: user, password: password)
         
-        User.login(loginRequest) { error in
+        AuthenticationManager.login(loginRequest) { error in
             guard error == nil else {
                 print(error!)
                 self.usernameLabel.textColor = .red

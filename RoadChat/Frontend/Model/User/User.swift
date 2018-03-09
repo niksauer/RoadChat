@@ -10,54 +10,33 @@ import Foundation
 import CoreData
 import RoadChatKit
 
+enum UserError: Error {
+    case duplicate
+}
+
 class User: NSManagedObject {
     
-    static func create(_ user: RegisterRequest, completion: @escaping (Error?) -> Void) {
-        let userService = UserService()
+    class func create(from prototype: RoadChatKit.User.PublicUser, in context: NSManagedObjectContext) throws -> User {
+        let request: NSFetchRequest<User> = User.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@ AND username = %@", prototype.id, prototype.username)
         
         do {
-            try userService.create(user) { user, error in
-                guard let user = user else {
-                    completion(error!)
-                    return
-                }
-                
-                do {
-                    try CredentialManager.shared.setUserID(user.id)
-                } catch {
-                    // pass keychain error
-                    completion(error)
-                }
+            let matches = try context.fetch(request)
+            if matches.count > 0 {
+                assert(matches.count >= 1, "Transaction.createTransaction -- Database Inconsistency")
+                throw UserError.duplicate
             }
         } catch {
-            // pass body encoding error
-            completion(error)
+            throw error
         }
-    }
-    
-    static func login(_ user: LoginRequest, completion: @escaping (Error?) -> Void) {
-        let loginClient = LoginService()
         
-        do {
-            try loginClient.login(user) { token, error in
-                guard let token = token else {
-                    completion(error!)
-                    return
-                }
-                
-                do {
-                    try CredentialManager.shared.setToken(token.token)
-                    try CredentialManager.shared.setUserID(token.userID)
-                    completion(nil)
-                } catch {
-                    // pass keychain error
-                    completion(error)
-                }
-            }
-        } catch {
-            // pass body encoding error
-            completion(error)
-        }
+        let user = User(context: context)
+        user.id = Int32(prototype.id)
+        user.email = prototype.email
+        user.username = prototype.username
+        user.registry = prototype.registry
+        
+        return user
     }
 
 }
