@@ -301,6 +301,7 @@
                         <outlet property="usernameLabel" destination="e88-si-z7X" id="EsM-YF-z1i"/>
                         <outlet property="usernameTextField" destination="2hI-Nn-kgL" id="4AB-x0-MF5"/>
                         <segue destination="49e-Tb-3d3" kind="show" identifier="showTabBarVC" id="upA-jO-L79"/>
+                        <segue destination="5iU-UL-VIl" kind="show" identifier="showLoginView" id="g3R-YT-keD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHD-se-V8T" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -501,6 +502,7 @@
         <image name="sms" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LU1-JC-F2m"/>
+        <segue reference="Syu-cH-y2m"/>
+        <segue reference="upA-jO-L79"/>
     </inferredMetricsTieBreakers>
 </document>
