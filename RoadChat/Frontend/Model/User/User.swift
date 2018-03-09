@@ -18,12 +18,12 @@ class User: NSManagedObject {
     
     class func create(from prototype: RoadChatKit.User.PublicUser, in context: NSManagedObjectContext) throws -> User {
         let request: NSFetchRequest<User> = User.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %@ AND username = %@", prototype.id, prototype.username)
+        request.predicate = NSPredicate(format: "id = %d AND username = %@", prototype.id, prototype.username)
         
         do {
             let matches = try context.fetch(request)
             if matches.count > 0 {
-                assert(matches.count >= 1, "Transaction.createTransaction -- Database Inconsistency")
+                assert(matches.count >= 1, "User.create -- Database Inconsistency")
                 throw UserError.duplicate
             }
         } catch {

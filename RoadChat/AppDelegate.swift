@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         log.addDestination(console)
         
         let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let loginNavigationVC = mainStoryBoard.instantiateViewController(withIdentifier: "loginNavigationVC")
+        let loginNavigationVC = mainStoryBoard.instantiateViewController(withIdentifier: "loginVC")
         let tabBarVC = mainStoryBoard.instantiateViewController(withIdentifier: "tabBarVC")
         
         do {

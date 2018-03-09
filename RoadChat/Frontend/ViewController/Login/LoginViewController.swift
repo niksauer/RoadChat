@@ -25,7 +25,6 @@ class LoginViewController: UIViewController {
     // MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     // MARK: - Navigation
@@ -46,17 +45,16 @@ class LoginViewController: UIViewController {
             return
         }
         
-        let request = LoginRequest(user: user, password: password)
+        let loginRequest = LoginRequest(user: user, password: password)
         
-        authenticationManager.login(request) { error in
+        authenticationManager.login(loginRequest) { error in
             guard error == nil else {
-                log.error("Failed to login user: \(error.debugDescription)")
+                // handle login error
                 self.usernameLabel.textColor = .red
                 self.passwordLabel.textColor = .red
                 return
             }
             
-            log.info("Successful login.")
             self.performSegue(withIdentifier: "showTabBarVC", sender: self)
         }
     }

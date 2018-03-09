@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aTc-t4-g0b">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
         <!--CommunityBoard-->
         <scene sceneID="HUR-NR-4f0">
             <objects>
-                <tableViewController id="Srb-Xj-dBj" customClass="CommunityBoardController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Srb-Xj-dBj" customClass="CommunityBoardViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cgv-hA-9Eg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,7 +43,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="259-c8-Ud8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1566" y="-379"/>
+            <point key="canvasLocation" x="145" y="-379"/>
         </scene>
         <!--Pop Up Community Post View Controller-->
         <scene sceneID="mhZ-HK-Gdj">
@@ -99,7 +99,7 @@
         <!--TrafficBoard-->
         <scene sceneID="c1M-5r-TcP">
             <objects>
-                <tableViewController id="0JP-4x-fFS" customClass="TrafficBoardController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="0JP-4x-fFS" customClass="TrafficBoardViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="T4S-sy-ede">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -125,7 +125,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zCz-aV-9m4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1904.8" y="374.66266866566718"/>
+            <point key="canvasLocation" x="145" y="375"/>
         </scene>
         <!--Profile-->
         <scene sceneID="q0m-Ac-MWR">
@@ -156,7 +156,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KC6-Aa-uyb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1566" y="1838"/>
+            <point key="canvasLocation" x="170" y="1836"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -176,7 +176,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-38" y="1492"/>
+            <point key="canvasLocation" x="-1486" y="1073"/>
         </scene>
         <!--Community-->
         <scene sceneID="FTN-Ta-KTB">
@@ -195,7 +195,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xcb-E4-hXI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="748.79999999999995" y="-378.71064467766121"/>
+            <point key="canvasLocation" x="-695" y="-379"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="aEx-j5-cNH">
@@ -290,17 +290,17 @@
                         <outlet property="passwordTextField" destination="ylN-YU-WPi" id="UEs-L2-ERS"/>
                         <outlet property="usernameLabel" destination="e88-si-z7X" id="EsM-YF-z1i"/>
                         <outlet property="usernameTextField" destination="2hI-Nn-kgL" id="4AB-x0-MF5"/>
-                        <segue destination="5iU-UL-VIl" kind="show" identifier="showLoginView" id="93O-sV-pyp"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="showTabBarVC" id="upA-jO-L79"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHD-se-V8T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-191.19999999999999" y="-457.42128935532236"/>
+            <point key="canvasLocation" x="-1935" y="303"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="gDU-gc-hIG">
             <objects>
-                <viewController id="5iU-UL-VIl" customClass="LoginViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5iU-UL-VIl" customClass="LoginViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4nC-D2-hPe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -321,13 +321,6 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUR-gu-fOv">
                                 <rect key="frame" x="49" y="307" width="82" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jon-dY-KbZ">
-                                <rect key="frame" x="166" y="115" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -356,6 +349,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="password"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jII-dJ-Jit">
+                                <rect key="frame" x="139" y="47" width="110" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="qnn-DO-QkN"/>
@@ -372,7 +372,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="90J-2A-iHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-330.39999999999998" y="617.54122938530736"/>
+            <point key="canvasLocation" x="-2714" y="1073"/>
         </scene>
         <!--Traffic-->
         <scene sceneID="1eq-Cx-T3Q">
@@ -391,12 +391,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VNH-52-zhi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1087.2" y="374.66266866566718"/>
+            <point key="canvasLocation" x="-695" y="375"/>
         </scene>
         <!--Chats-->
         <scene sceneID="3qJ-Dj-ub2">
             <objects>
-                <tableViewController id="TnE-G6-0gk" sceneMemberID="viewController">
+                <tableViewController id="TnE-G6-0gk" customClass="ConversationsViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="M2S-jR-3lh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -422,7 +422,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xUT-IB-MWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1904.8" y="1072.7136431784108"/>
+            <point key="canvasLocation" x="145" y="1073"/>
         </scene>
         <!--Profile-->
         <scene sceneID="nNm-K8-m1X">
@@ -441,7 +441,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jqi-K7-8JM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="748" y="1839"/>
+            <point key="canvasLocation" x="-695" y="1837"/>
         </scene>
         <!--Chats-->
         <scene sceneID="JVz-hG-ZEL">
@@ -460,27 +460,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eD3-iG-1eI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1087.2" y="1072.7136431784108"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="GbD-0N-Kvb">
-            <objects>
-                <navigationController storyboardIdentifier="loginNavigationVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aTc-t4-g0b" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ee8-CV-FGu">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="2dG-9l-aBT" kind="show" identifier="registerSegue" id="6rk-uF-fZl"/>
-                        <segue destination="5iU-UL-VIl" kind="show" identifier="loginSegue" id="nIt-fV-7ZG"/>
-                        <segue destination="5iU-UL-VIl" kind="relationship" relationship="rootViewController" id="ztm-AA-C27"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="C4e-KJ-yIn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1383" y="618"/>
+            <point key="canvasLocation" x="-695" y="1073"/>
         </scene>
     </scenes>
     <resources>
@@ -492,7 +472,6 @@
         <image name="sms" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="93O-sV-pyp"/>
-        <segue reference="Syu-cH-y2m"/>
+        <segue reference="LU1-JC-F2m"/>
     </inferredMetricsTieBreakers>
 </document>
