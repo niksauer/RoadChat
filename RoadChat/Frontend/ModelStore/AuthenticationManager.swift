@@ -11,7 +11,7 @@ import RoadChatKit
 
 struct AuthenticationManager {
     
-    static func login(_ user: LoginRequest, completion: @escaping (Error?) -> Void) {
+    func login(_ user: LoginRequest, completion: @escaping (Error?) -> Void) {
         let loginClient = LoginService()
         
         do {
@@ -37,7 +37,7 @@ struct AuthenticationManager {
         }
     }
     
-    static func logout(completion: @escaping (Error?) -> Void) {
+    func logout(completion: @escaping (Error?) -> Void) {
         let loginClient = LoginService()
         
         loginClient.logout { error in
