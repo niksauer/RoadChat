@@ -16,10 +16,9 @@ enum CommunityError: Error {
 
 class CommunityMessage: NSManagedObject {
     
-    
     class func create(from prototype: RoadChatKit.CommunityMessage.PublicCommunityMessage, in context: NSManagedObjectContext) throws -> CommunityMessage {
         let request: NSFetchRequest<CommunityMessage> = CommunityMessage.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %@", prototype.id)
+        request.predicate = NSPredicate(format: "id = %d", prototype.id)
         
         do {
             let matches = try context.fetch(request)

@@ -11,6 +11,11 @@ import Locksmith
 
 struct CredentialManager: APICredentialStore {
     
+    private enum keys: String {
+        case userID
+        case accessToken
+    }
+    
     private var userAccount = "RoadChatUser"
     
     private init() {}
@@ -26,19 +31,19 @@ struct CredentialManager: APICredentialStore {
     static var shared = CredentialManager()
     
     func getUserID() -> Int? {
-        return getValue(for: "UserID") as? Int
+        return getValue(for: keys.userID.rawValue) as? Int
     }
     
     func setUserID(_ userID: Int?) throws {
-        try setValue(userID as Any, for: "UserID")
+        try setValue(userID as Any, for: keys.userID.rawValue)
     }
     
     func getToken() -> String? {
-        return getValue(for: "AccessToken") as? String
+        return getValue(for: keys.accessToken.rawValue) as? String
     }
     
     func setToken(_ token: String?) throws {
-         try setValue(token as Any, for: "AccessToken")
+        try setValue(token as Any, for: keys.accessToken.rawValue)
     }
     
 }

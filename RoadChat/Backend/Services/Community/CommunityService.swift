@@ -13,7 +13,7 @@ struct CommunityService: JSendService {
     
     typealias Resource = RoadChatKit.CommunityMessage.PublicCommunityMessage
     
-    private let client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/traffic", credentials: CredentialManager.shared)
+    private let client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/community", credentials: CredentialManager.shared)
     
     func create(_ communityMessage: RoadChatKit.CommunityMessageRequest, completion: @escaping (Resource?, Error?) -> Void) throws {
         try client.makePOSTRequest(to: "/board", body: communityMessage) { result in
