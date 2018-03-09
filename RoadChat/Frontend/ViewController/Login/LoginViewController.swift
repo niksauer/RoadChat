@@ -19,9 +19,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var passwordLabel: UILabel!
-    
     // MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +47,6 @@ class LoginViewController: UIViewController {
         authenticationManager.login(loginRequest) { error in
             guard error == nil else {
                 // handle login error
-                self.usernameLabel.textColor = .red
-                self.passwordLabel.textColor = .red
                 return
             }
             
