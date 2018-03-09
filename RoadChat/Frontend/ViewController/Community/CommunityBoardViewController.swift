@@ -8,8 +8,18 @@
 
 import UIKit
 
-class CommunityBoardViewController: UITableViewController {
+class CommunityBoardViewController: UITableViewController  {
 
+    @IBAction func createCommunityPost(_ sender: Any) {
+        
+        let popUpCommunityPostVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CommunityPostForm") as! PopUpCommunityPostViewController
+        self.addChildViewController(popUpCommunityPostVC)
+        popUpCommunityPostVC.view.frame = self.view.frame
+        self.view.addSubview(popUpCommunityPostVC.view)
+        popUpCommunityPostVC.didMove(toParentViewController: self)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
