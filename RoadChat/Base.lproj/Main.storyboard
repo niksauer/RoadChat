@@ -45,7 +45,7 @@
             </objects>
             <point key="canvasLocation" x="145" y="-379"/>
         </scene>
-        <!--Pop Up Community Post View Controller-->
+        <!--Post-->
         <scene sceneID="mhZ-HK-Gdj">
             <objects>
                 <viewController storyboardIdentifier="CommunityPostForm" id="Raf-jx-6De" customClass="PopUpCommunityPostViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
@@ -53,48 +53,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eNb-lV-cm9">
-                                <rect key="frame" x="0.0" y="133" width="375" height="401"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="CTl-cU-Ng2">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eYb-Mb-YMb">
-                                        <rect key="frame" x="20" y="129" width="334" height="180"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.95794203367875652" green="0.95794203367875652" blue="0.95794203367875652" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gHM-1A-77Q">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="31.5"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" red="0.52691871761658038" green="0.52691871761658038" blue="0.52691871761658038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Abc-DL-jOM">
+                                        <rect key="frame" x="0.0" y="47.5" width="375" height="555.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDh-Wk-Rjc">
-                                        <rect key="frame" x="50" y="351" width="100" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Post"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMh-Lh-9JB">
-                                        <rect key="frame" x="228" y="351" width="100" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Cancel"/>
-                                        <connections>
-                                            <action selector="cancelButtonPressed:" destination="Raf-jx-6De" eventType="touchUpInside" id="hoD-C0-6Ew"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter Post" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aM-yl-KJH">
-                                        <rect key="frame" x="117" y="38" width="140" height="59"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="CTl-cU-Ng2" firstAttribute="top" secondItem="f2P-f1-lja" secondAttribute="top" id="IBY-M7-zoH"/>
+                            <constraint firstItem="f2P-f1-lja" firstAttribute="bottom" secondItem="CTl-cU-Ng2" secondAttribute="bottom" id="NS8-tK-P5u"/>
+                            <constraint firstItem="f2P-f1-lja" firstAttribute="trailing" secondItem="CTl-cU-Ng2" secondAttribute="trailing" id="qpf-qh-XLd"/>
+                            <constraint firstItem="CTl-cU-Ng2" firstAttribute="leading" secondItem="f2P-f1-lja" secondAttribute="leading" id="uus-96-Iyz"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="f2P-f1-lja"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Post" id="ndD-7U-gJH">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="6qX-bE-3Lw">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="Raf-jx-6De" id="etm-GL-48Q"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="jhS-3m-Ael">
+                            <connections>
+                                <action selector="postButtonPressed:" destination="Raf-jx-6De" id="c5K-lQ-xVG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="communityMessageTextArea" destination="Abc-DL-jOM" id="liW-uB-rst"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xiv-dk-ARx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2213.5999999999999" y="-379.16041979010498"/>
+            <point key="canvasLocation" x="2925.5999999999999" y="-379.16041979010498"/>
         </scene>
         <!--TrafficBoard-->
         <scene sceneID="c1M-5r-TcP">
@@ -461,6 +470,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eD3-iG-1eI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-695" y="1073"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bxl-IG-KEJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2PA-uP-Zhe" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d5T-Zf-hJC">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Raf-jx-6De" kind="relationship" relationship="rootViewController" id="M4I-pT-6oK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aya-Ey-vk5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2212.8000000000002" y="-379.61019490254876"/>
         </scene>
     </scenes>
     <resources>
