@@ -11,11 +11,11 @@ import RoadChatKit
 
 struct AuthenticationManager {
     
+    private let authenticationService = AuthenticationService()
+    
     func login(_ user: LoginRequest, completion: @escaping (Error?) -> Void) {
-        let loginClient = LoginService()
-        
         do {
-            try loginClient.login(user) { token, error in
+            try authenticationService.login(user) { token, error in
                 guard let token = token else {
                     // pass service error
                     log.error("Failed to login user: \(error!)")
@@ -26,7 +26,7 @@ struct AuthenticationManager {
                 do {
                     try CredentialManager.shared.setToken(token.token)
                     try CredentialManager.shared.setUserID(token.userID)
-                    log.info("Successful login.")
+                    log.info("Successfully logged in user.")
                     completion(nil)
                 } catch {
                     // pass keychain error
@@ -36,17 +36,16 @@ struct AuthenticationManager {
             }
         } catch {
             // pass body encoding error
-            log.error("Failed to send login request: \(error)")
+            log.error("Failed to send 'LoginRequest': \(error)")
             completion(error)
         }
     }
     
     func logout(completion: @escaping (Error?) -> Void) {
-        let loginClient = LoginService()
-        
-        loginClient.logout { error in
+        authenticationService.logout { error in
             guard error == nil else {
                 // pass service error
+                log.error("Failed to log out user: \(error!)")
                 completion(error!)
                 return
             }
@@ -54,9 +53,11 @@ struct AuthenticationManager {
             do {
                 try CredentialManager.shared.setToken(nil)
                 try CredentialManager.shared.setUserID(nil)
+                log.info("Successfully logged out user.")
                 completion(nil)
             } catch {
                 // pass keychain error
+                log.error("Failed to remove credentials from keychain: \(error)")
             }
         }
     }

@@ -1,5 +1,5 @@
 //
-//  LoginService.swift
+//  AuthenticationService.swift
 //  RoadChat
 //
 //  Created by Niklas Sauer on 05.03.18.
@@ -9,7 +9,7 @@
 import Foundation
 import RoadChatKit
 
-final class LoginService: JSendService {
+struct AuthenticationService: JSendService {
     
     typealias Resource = RoadChatKit.BearerToken.PublicBearerToken
     
