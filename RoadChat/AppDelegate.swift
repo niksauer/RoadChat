@@ -20,11 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let console = ConsoleDestination()
         log.addDestination(console)
-        
-        let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let loginNavigationVC = mainStoryBoard.instantiateViewController(withIdentifier: "loginVC")
-        let tabBarVC = mainStoryBoard.instantiateViewController(withIdentifier: "tabBarVC")
-        
+                
         do {
             try CredentialManager.shared.setToken(nil)
             log.info("Reset token.")
@@ -32,11 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             log.error("Failed to reset token: \(error)")
         }
     
-        // user is logged in a token exists
+        // user is logged if a token exists
         if CredentialManager.shared.getToken() == nil {
-            self.window?.rootViewController = loginNavigationVC;
-        } else {
-            self.window?.rootViewController = tabBarVC;
+            let rootController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "loginNavigationVC")
+            self.window?.rootViewController = rootController
         }
         
         return true
