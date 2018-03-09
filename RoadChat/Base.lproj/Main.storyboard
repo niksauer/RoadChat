@@ -54,7 +54,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eNb-lV-cm9">
-                                <rect key="frame" x="0.0" y="133" width="375" height="401"/>
+                                <rect key="frame" x="0.0" y="39" width="375" height="586"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eYb-Mb-YMb">
@@ -68,6 +68,9 @@
                                         <rect key="frame" x="50" y="351" width="100" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Post"/>
+                                        <connections>
+                                            <action selector="postButtonPressed:" destination="Raf-jx-6De" eventType="touchUpInside" id="Tqk-nJ-GbK"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMh-Lh-9JB">
                                         <rect key="frame" x="228" y="351" width="100" height="30"/>
@@ -91,6 +94,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="f2P-f1-lja"/>
                     </view>
+                    <connections>
+                        <outlet property="communityMessageTextArea" destination="eYb-Mb-YMb" id="pRj-l5-WW0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xiv-dk-ARx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
