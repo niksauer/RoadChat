@@ -43,6 +43,7 @@ class PopUpCommunityPostViewController: UIViewController {
                 //handle post error
                 return
             }
+            log.info("Successfull Post")
             
         }
     }
