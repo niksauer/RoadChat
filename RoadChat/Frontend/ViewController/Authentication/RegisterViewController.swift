@@ -22,11 +22,6 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordRepeatTextField: UITextField!
     
-    @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var passwordLabel: UILabel!
-    @IBOutlet weak var passwordRepeatLabel: UILabel!
-    
     // MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,25 +76,21 @@ class RegisterViewController: UIViewController {
         
         if !isValidUsername(username) {
             log.warning("Invalid username.")
-            usernameLabel.textColor = .red
             isValid = false
         }
         
         if !isValidEmail(email) {
             log.warning("Invalid email.")
-            emailLabel.textColor = .red
             isValid = false
         }
         
         if !isValidPassword(password){
             log.warning("Invalid password.")
-            passwordLabel.textColor = .red
             isValid = false
         }
         
         if password != passwordRepeat {
             log.warning("Passwords don't match.")
-            passwordLabel.textColor = .red
             passwordRepeatTextField.textColor = .red
             isValid = false
         }
