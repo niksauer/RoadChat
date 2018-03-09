@@ -13,7 +13,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate{
     
     let locationManager = CLLocationManager()
     
-    func pollLocation() {
+    func startPollingLocation() {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()

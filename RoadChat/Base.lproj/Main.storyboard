@@ -355,8 +355,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="KZI-j5-c8O"/>
                     <connections>
-                        <outlet property="passwordTextField" destination="O1d-Rc-2EC" id="hIf-dO-Ed8"/>
-                        <outlet property="usernameTextField" destination="rVP-qL-VW8" id="19b-Vx-hWm"/>
+                        <outlet property="passwordTextField" destination="O1d-Rc-2EC" id="CQy-pA-gCl"/>
+                        <outlet property="usernameTextField" destination="rVP-qL-VW8" id="Pvc-xi-i4s"/>
                         <segue destination="2dG-9l-aBT" kind="show" identifier="showRegisterView" id="Syu-cH-y2m"/>
                     </connections>
                 </viewController>
