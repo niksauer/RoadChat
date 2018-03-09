@@ -19,8 +19,6 @@ class PopUpCommunityPostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
-        self.showAnimate()
         // Do any additional setup after loading the view.
     }
 
@@ -72,10 +70,14 @@ class PopUpCommunityPostViewController: UIViewController {
             {
                 self.view.removeFromSuperview()
             }
-        });
+            log.info("Successfull Post")
+            
+        }
     }
     
-    
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     /*
     // MARK: - Navigation
