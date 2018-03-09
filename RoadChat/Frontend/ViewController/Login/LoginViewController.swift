@@ -55,7 +55,8 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            self.performSegue(withIdentifier: "showTabBarVC", sender: self)
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            appDelegate?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController()
         }
     }
     
