@@ -36,7 +36,7 @@ struct UserStore {
                     CoreDataStack.shared.saveViewContext()
                 } catch {
                     // pass core data error
-                    log.error("Failed to create Core Data 'User' entity: \(error)")
+                    log.error("Failed to create Core Data 'User' instance: \(error)")
                     completion(error)
                 }
                 

@@ -16,15 +16,25 @@ enum ConversationError: Error {
 
 class Conversation: NSManagedObject {
     
-    class func create(from prototype: RoadChatKit.Conversation.PublicConversation, in context: NSManagedObjectContext) throws -> Conversation {
+    let client = ConversationService()
+    
+    class func createOrUpdate(from prototype: RoadChatKit.Conversation.PublicConversation, in context: NSManagedObjectContext) throws -> Conversation {
         let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
         request.predicate = NSPredicate(format: "id = %d", prototype.id)
         
         do {
             let matches = try context.fetch(request)
+            
             if matches.count > 0 {
                 assert(matches.count >= 1, "Conversation.create -- Database Inconsistency")
+                
                 throw ConversationError.duplicate
+                
+                // add update logic by adding lastChanged property
+//                let conversation = matches.first!
+//                conversation.title = prototype.title
+                
+//                return conversation  
             }
         } catch {
             throw error
@@ -37,6 +47,20 @@ class Conversation: NSManagedObject {
         conversation.creation = prototype.creation
         
         return conversation
+    }
+    
+    func delete(completion: @escaping (Error?) -> Void) {
+        client.delete(conversationID: Int(id)) { error in
+            guard error == nil else {
+                log.error("Failed to delete conversation '\(self.id)': \(error!)")
+                completion(error!)
+                return
+            }
+    
+            CoreDataStack.shared.viewContext.delete(self)
+            CoreDataStack.shared.saveViewContext()
+            completion(nil)
+        }
     }
     
 }

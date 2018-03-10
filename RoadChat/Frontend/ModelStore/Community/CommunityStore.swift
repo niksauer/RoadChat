@@ -26,11 +26,11 @@ struct CommunityStore {
                 do {
                     _ = try CommunityMessage.create(from: post, in: CoreDataStack.shared.viewContext)
                     CoreDataStack.shared.saveViewContext()
-                    log.info("Successfully created community message.")
+                    log.info("Successfully created Core Data 'CommunityMessage' instance.")
                     completion(nil)
                 } catch {
                     // pass core data error
-                    log.error("Failed to create Core Data 'CommunityMessage' entity: \(error)")
+                    log.error("Failed to create Core Data 'CommunityMessage' instance: \(error)")
                     completion(error)
                 }
             }
