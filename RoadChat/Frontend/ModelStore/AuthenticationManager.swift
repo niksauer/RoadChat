@@ -58,6 +58,7 @@ struct AuthenticationManager {
             } catch {
                 // pass keychain error
                 log.error("Failed to remove credentials from keychain: \(error)")
+                completion(error)
             }
         }
     }

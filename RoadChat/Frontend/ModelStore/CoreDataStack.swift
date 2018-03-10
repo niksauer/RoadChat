@@ -17,7 +17,6 @@ class CoreDataStack: NSObject {
     // MARK: - Core Data Stack
     var viewContext: NSManagedObjectContext {
         let viewContext = persistentContainer.viewContext
-//        viewContext.automaticallyMergesChangesFromParent = true
         return viewContext
     }
         
@@ -49,6 +48,7 @@ class CoreDataStack: NSObject {
         if context.hasChanges {
             do {
                 try context.save()
+                log.debug("Successfully saved changes to Core Data.")
             } catch {
                 let nsError = error as NSError
                 log.error("Failed to save view context: \(nsError), \(nsError.userInfo)")

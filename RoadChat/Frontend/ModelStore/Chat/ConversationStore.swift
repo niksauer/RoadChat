@@ -28,6 +28,7 @@ struct ConversationStore {
                     _ = try Conversation.createOrUpdate(from: conversation, in: CoreDataStack.shared.viewContext)
                     CoreDataStack.shared.saveViewContext()
                     log.info("Successfully created Core Data 'Conversation' instance.")
+                    completion(nil)
                 } catch {
                     // pass core data error
                     log.error("Failed to create Core Data 'Conversation' instance: \(error)")
@@ -57,8 +58,6 @@ struct ConversationStore {
             }
             
             CoreDataStack.shared.persistentContainer.performBackgroundTask {  context in
-//                _ = conversations.map { _ = try? Conversation.create(from: $0, in: context) }
-
                 _ = conversations.map {
                     do {
                         _ = try Conversation.createOrUpdate(from: $0, in: context)
@@ -67,18 +66,27 @@ struct ConversationStore {
                     }
                 }
                 
+//                _ = conversations.map { _ = try? Conversation.create(from: $0, in: context) }
+                
                 if context.hasChanges {
                     do {
                         try context.save()
                         log.info("Successfully saved created Core Data 'Conversation' instances.")
+                        
+                        OperationQueue.main.addOperation {
+                            completion(nil)
+                        }
                     } catch {
                         log.error("Failed to save Core Data 'Conversation' instances: \(error)")
-                        completion(error)
+                        
+                        OperationQueue.main.addOperation {
+                            completion(error)
+                        }
                     }
-                }
-            
-                OperationQueue.main.addOperation {
-                    completion(nil)
+                } else {
+                    OperationQueue.main.addOperation {
+                        completion(nil)
+                    }
                 }
             }
         }
