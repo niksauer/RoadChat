@@ -25,7 +25,7 @@ struct AuthenticationManager {
                 
                 do {
                     try CredentialManager.shared.setToken(token.token)
-//                    try CredentialManager.shared.setUserID(token.userID)
+                    try CredentialManager.shared.setUserID(token.userID)
                     log.info("Successfully logged in user.")
                     completion(nil)
                 } catch {

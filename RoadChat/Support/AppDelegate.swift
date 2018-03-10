@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        } catch {
 //            log.error("Failed to reset token: \(error)")
 //        }
-    
+        
         // user is logged if a token exists
         if CredentialManager.shared.getToken() == nil {
             let rootController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "loginNavigationVC")
