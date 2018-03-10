@@ -34,14 +34,13 @@ struct UserStore {
                 do {
                     _ = try User.create(from: user, in: CoreDataStack.shared.viewContext)
                     CoreDataStack.shared.saveViewContext()
+                    log.info("Successfully registered user.")
+                    completion(nil)
                 } catch {
                     // pass core data error
-                    log.error("Failed to create Core Data 'User' entity: \(error)")
+                    log.error("Failed to create Core Data 'User' instance: \(error)")
                     completion(error)
                 }
-                
-                log.info("Successfully registered user.")
-                completion(nil)
             }
         } catch {
             // pass body encoding error

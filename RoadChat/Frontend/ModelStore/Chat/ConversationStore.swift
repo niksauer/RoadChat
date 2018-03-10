@@ -25,11 +25,13 @@ struct ConversationStore {
                 }
                 
                 do {
-                    _ = try Conversation.create(from: conversation, in: CoreDataStack.shared.viewContext)
+                    _ = try Conversation.createOrUpdate(from: conversation, in: CoreDataStack.shared.viewContext)
                     CoreDataStack.shared.saveViewContext()
+                    log.info("Successfully created Core Data 'Conversation' instance.")
+                    completion(nil)
                 } catch {
                     // pass core data error
-                    log.error("Failed to create Core Data 'Conversation' entity: \(error)")
+                    log.error("Failed to create Core Data 'Conversation' instance: \(error)")
                     completion(error)
                 }
             }
@@ -56,20 +58,38 @@ struct ConversationStore {
             }
             
             CoreDataStack.shared.persistentContainer.performBackgroundTask {  context in
-//                _ = conversations.map { _ = try? Conversation.create(from: $0, in: context) }
-
                 _ = conversations.map {
                     do {
-                        _ = try Conversation.create(from: $0, in: context)
+                        _ = try Conversation.createOrUpdate(from: $0, in: context)
                     } catch {
-                        log.error("Failed to create Core Data 'Conversation' entity: \(error)")
+                        log.error("Failed to create Core Data 'Conversation' instance: \(error)")
                     }
                 }
                 
-                OperationQueue.main.addOperation {
-                    completion(nil)
+//                _ = conversations.map { _ = try? Conversation.create(from: $0, in: context) }
+                
+                if context.hasChanges {
+                    do {
+                        try context.save()
+                        log.info("Successfully saved created Core Data 'Conversation' instances.")
+                        
+                        OperationQueue.main.addOperation {
+                            completion(nil)
+                        }
+                    } catch {
+                        log.error("Failed to save Core Data 'Conversation' instances: \(error)")
+                        
+                        OperationQueue.main.addOperation {
+                            completion(error)
+                        }
+                    }
+                } else {
+                    OperationQueue.main.addOperation {
+                        completion(nil)
+                    }
                 }
             }
         }
     }
+
 }

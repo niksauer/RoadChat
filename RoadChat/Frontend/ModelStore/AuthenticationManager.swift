@@ -25,7 +25,7 @@ struct AuthenticationManager {
                 
                 do {
                     try CredentialManager.shared.setToken(token.token)
-//                    try CredentialManager.shared.setUserID(token.userID)
+                    try CredentialManager.shared.setUserID(token.userID)
                     log.info("Successfully logged in user.")
                     completion(nil)
                 } catch {
@@ -58,6 +58,7 @@ struct AuthenticationManager {
             } catch {
                 // pass keychain error
                 log.error("Failed to remove credentials from keychain: \(error)")
+                completion(error)
             }
         }
     }

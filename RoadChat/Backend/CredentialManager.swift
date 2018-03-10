@@ -29,7 +29,12 @@ struct CredentialManager: APICredentialStore {
     }
     
     private func setValue(_ value: Any, for key: String) throws {
-        try Locksmith.updateData(data: [key: value], forUserAccount: userAccount)
+        if var dataDictionary = Locksmith.loadDataForUserAccount(userAccount: userAccount) {
+            dataDictionary[key] = value
+            try Locksmith.updateData(data: dataDictionary, forUserAccount: userAccount)
+        } else {
+            try Locksmith.saveData(data: [key: value], forUserAccount: userAccount)
+        }
     }
     
     static var shared = CredentialManager()
