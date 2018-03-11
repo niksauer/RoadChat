@@ -12,12 +12,12 @@ import RoadChatKit
 
 enum ConversationError: Error {
     case duplicate
+    case notParticipating
 }
 
 class Conversation: NSManagedObject {
     
-    let conversationService = ConversationService()
-    
+    // MARK: - Public Static Methods
     static func create(_ conversation: ConversationRequest, completion: @escaping (Error?) -> Void) {
         do {
             try ConversationService().create(conversation) { conversation, error in
@@ -46,6 +46,7 @@ class Conversation: NSManagedObject {
         }
     }
     
+    // MARK: - Public Class Methods
     class func createOrUpdate(from response: RoadChatKit.Conversation.PublicConversation, in context: NSManagedObjectContext) throws -> Conversation {
         let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
         request.predicate = NSPredicate(format: "id = %d", response.id)
@@ -74,12 +75,29 @@ class Conversation: NSManagedObject {
         return conversation
     }
     
-    func update(completion: @escaping (Error?) -> Void) {
+    // MARK: - Public Properties
+    let conversationService = ConversationService()
+    
+    var storedParticipants: [Participant] {
+        return Array(participants!) as! [Participant]
+    }
+    
+    // MARK: - Initialization
+    private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+        
+        update(completion: nil)
+        getMessages(completion: nil)
+        getParticipants(completion: nil)
+    }
+    
+    // MARK: - Public Methods
+    func update(completion: ((Error?) -> Void)?) {
         conversationService.get(conversationID: Int(id)) { conversation, error in
             guard let conversation = conversation else {
                 // pass service error
                 log.error("Failed to update conversation '\(self.id)': \(error!)")
-                completion(error!)
+                completion?(error!)
                 return
             }
             
@@ -87,10 +105,10 @@ class Conversation: NSManagedObject {
                 _ = try Conversation.createOrUpdate(from: conversation, in: CoreDataStack.shared.viewContext)
                 CoreDataStack.shared.saveViewContext()
                 log.info("Successfully saved updated Core Data 'Conversation' instance.")
-                completion(nil)
+                completion?(nil)
             } catch {
                 log.error("Failed to save updated Core Data 'Conversation' instance: \(error)")
-                completion(error)
+                completion?(error)
             }
         }
     }
@@ -111,12 +129,12 @@ class Conversation: NSManagedObject {
         }
     }
  
-    func getMessages(completion: @escaping (Error?) -> Void) {
+    func getMessages(completion: ((Error?) -> Void)?) {
         conversationService.getMessages(conversationID: Int(id)) { messages, error in
             guard let messages = messages else {
                 // pass service error
                 log.error("Failed to get messages for conversation '\(self.id)': \(error!)")
-                completion(error!)
+                completion?(error!)
                 return
             }
             
@@ -137,18 +155,18 @@ class Conversation: NSManagedObject {
                         log.info("Successfully saved created Core Data 'DirectMessage' instances.")
                         
                         OperationQueue.main.addOperation {
-                            completion(nil)
+                            completion?(nil)
                         }
                     } catch {
                         log.error("Failed to save Core Data 'DirectMessage' instances: \(error)")
                         
                         OperationQueue.main.addOperation {
-                            completion(error)
+                            completion?(error)
                         }
                     }
                 } else {
                     OperationQueue.main.addOperation {
-                        completion(nil)
+                        completion?(nil)
                     }
                 }
             }
@@ -183,12 +201,12 @@ class Conversation: NSManagedObject {
         }
     }
     
-    func getParticipants(completion: @escaping (Error?) -> Void) {
+    func getParticipants(completion: ((Error?) -> Void)?) {
         conversationService.getParticipants(conversationID: Int(id)) { participants, error in
             guard let participants = participants else {
                 // pass service error
                 log.error("Failed to get participants for conversation '\(self.id)': \(error!)")
-                completion(error!)
+                completion?(error!)
                 return
             }
             
@@ -209,18 +227,18 @@ class Conversation: NSManagedObject {
                         log.info("Successfully saved created Core Data 'Participant' instances.")
                         
                         OperationQueue.main.addOperation {
-                            completion(nil)
+                            completion?(nil)
                         }
                     } catch {
                         log.error("Failed to save Core Data 'Participant' instances: \(error)")
                         
                         OperationQueue.main.addOperation {
-                            completion(error)
+                            completion?(error)
                         }
                     }
                 } else {
                     OperationQueue.main.addOperation {
-                        completion(nil)
+                        completion?(nil)
                     }
                 }
             }
@@ -236,8 +254,15 @@ class Conversation: NSManagedObject {
                 return
             }
             
-//            let user = participants as? NSSet<Participant>
-//            CoreDataStack.shared.saveViewContext()
+            guard let participation = self.storedParticipants.first(where: { $0.userID == self.user?.id }) else {
+                // pass model validation error
+                completion(ConversationError.notParticipating)
+                return
+            }
+            
+            participation.setApprovalStatus(.accepted)
+            CoreDataStack.shared.saveViewContext()
+            
             completion(nil)
         }
     }
@@ -251,8 +276,15 @@ class Conversation: NSManagedObject {
                 return
             }
             
-//            let user = participants as? NSSet<Participant>
-//            CoreDataStack.shared.saveViewContext()
+            guard let participation = self.storedParticipants.first(where: { $0.userID == self.user?.id }) else {
+                // pass model validation error
+                completion(ConversationError.notParticipating)
+                return
+            }
+            
+            participation.setApprovalStatus(.denied)
+            CoreDataStack.shared.saveViewContext()
+            
             completion(nil)
         }
     }

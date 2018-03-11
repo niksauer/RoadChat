@@ -16,8 +16,7 @@ enum UserError: Error {
 
 class User: NSManagedObject {
     
-    let userService = UserService()
-    
+    // MARK: - Public Static Methods
     static func create(_ user: RegisterRequest, completion: @escaping (Error?) -> Void) {
         do {
             try UserService().create(user) { user, error in
@@ -54,9 +53,10 @@ class User: NSManagedObject {
         }
     }
     
-    class func create(from prototype: RoadChatKit.User.PublicUser, in context: NSManagedObjectContext) throws -> User {
+    // MARK: - Public Class Methods
+    class func create(from response: RoadChatKit.User.PublicUser, in context: NSManagedObjectContext) throws -> User {
         let request: NSFetchRequest<User> = User.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %d AND username = %@", prototype.id, prototype.username)
+        request.predicate = NSPredicate(format: "id = %d AND username = %@", response.id, response.username)
         
         do {
             let matches = try context.fetch(request)
@@ -69,39 +69,84 @@ class User: NSManagedObject {
         }
         
         let user = User(context: context)
-        user.id = Int32(prototype.id)
-        user.email = prototype.email
-        user.username = prototype.username
-        user.registry = prototype.registry
+        user.id = Int32(response.id)
+        user.email = response.email
+        user.username = response.username
+        user.registry = response.registry
         
         return user
     }
 
-    func getProfile(completion: @escaping (Error?) -> Void) {
+    // MARK: - Public Properties
+    let userService = UserService()
+    
+    // MARK: - Initialization
+    private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+        
+        getProfile(completion: nil)
+        getConversations(completion: nil)
+    }
+    
+    // MARK: - Public Methods
+    func createOrUpdateProfile(from request: ProfileRequest, completion: @escaping (Error?) -> Void) {
+        do {
+            try userService.createOrUpdateProfile(userID: Int(id), to: request) { error in
+                guard error == nil else {
+                    // pass service error
+                    log.error("Failed to update profile for user '\(self.id)': \(error!)")
+                    completion(error!)
+                    return
+                }
+                
+                do {
+                    let profile = try Profile.createOrUpdate(from: request, user: self, in: CoreDataStack.shared.viewContext)
+                    self.profile = profile
+                    CoreDataStack.shared.saveViewContext()
+                    log.info("Successfully saved created or updated Core Data 'Profile' instance.")
+                    completion(nil)
+                } catch {
+                    // pass core data error
+                    log.error("Failed to create Core Data 'Profile' instance: \(error)")
+                    completion(error)
+                }
+            }
+        } catch {
+            // pass body encoding error
+            log.error("Failed to send 'ProfileRequest': \(error)")
+            completion(error)
+        }
+    }
+    
+    func getProfile(completion: ((Error?) -> Void)?) {
         userService.getProfile(userID: Int(id)) { profile, error in
             guard let profile = profile else {
+                // pass service error
                 log.error("Failed to get profile for user '\(self.id)': \(error!)")
-                completion(error!)
+                completion?(error!)
                 return
             }
             
             do {
-                let profile = try Profile.createOrUpdate(from: profile, userID: Int(self.id), in: CoreDataStack.shared.viewContext)
+                let profile = try Profile.createOrUpdate(from: profile, user: self, in: CoreDataStack.shared.viewContext)
                 self.profile = profile
                 CoreDataStack.shared.saveViewContext()
-                completion(nil)
+                log.info("Successfully saved created or updated Core Data 'Profile' instance.")
+                completion?(nil)
             } catch {
-                completion(error)
+                // pass core data error
+                log.error("Failed to create Core Data 'Profile' instance: \(error)")
+                completion?(error)
             }
         }
     }
     
-    func getConversations(completion: @escaping (Error?) -> Void) {
+    func getConversations(completion: ((Error?) -> Void)?) {
         userService.getConversations(userID: Int(id)) { conversations, error in
             guard let conversations = conversations else {
                 // pass service error
                 log.error("Failed to get conversations for user '\(self.id)': \(error!)")
-                completion(error!)
+                completion?(error!)
                 return
             }
             
@@ -114,7 +159,7 @@ class User: NSManagedObject {
                     }
                 }
                 
-                //                _ = conversations.map { _ = try? Conversation.create(from: $0, in: context) }
+//                _ = conversations.map { _ = try? Conversation.create(from: $0, in: context) }
                 
                 if context.hasChanges {
                     do {
@@ -122,18 +167,18 @@ class User: NSManagedObject {
                         log.info("Successfully saved created Core Data 'Conversation' instances.")
                         
                         OperationQueue.main.addOperation {
-                            completion(nil)
+                            completion?(nil)
                         }
                     } catch {
                         log.error("Failed to save Core Data 'Conversation' instances: \(error)")
                         
                         OperationQueue.main.addOperation {
-                            completion(error)
+                            completion?(error)
                         }
                     }
                 } else {
                     OperationQueue.main.addOperation {
-                        completion(nil)
+                        completion?(nil)
                     }
                 }
             }

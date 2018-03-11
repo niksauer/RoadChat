@@ -8,34 +8,13 @@
 
 import Foundation
 
-typealias JSON = [String: Any]
-
-enum JSendAPIResult {
-    case success(Data?)
-    case failure(Error)
-}
-
 enum JSendAPIError: Error {
     case invalidData
     case invalidJSON
     case custom(String?)
 }
 
-enum HTTPMethod: String {
-    case get = "GET"
-    case post = "POST"
-    case put = "PUT"
-    case delete = "DELETE"
-}
-
-protocol APICredentialStore {
-    func getUserID() -> Int?
-    func setUserID(_ userID: Int?) throws
-    func getToken() -> String?
-    func setToken(_ token: String?) throws
-}
-
-struct JSendAPIClient {
+struct JSendAPIClient: APIClient {
     private let session = URLSession(configuration: .default)
     
     private enum JSendResponse {
@@ -47,35 +26,35 @@ struct JSendAPIClient {
     let baseURL: String
     let credentials: APICredentialStore
 
-    func makeGETRequest(to path: String? = nil, params: JSON? = nil, completion: @escaping (JSendAPIResult) -> Void) {
+    func makeGETRequest(to path: String? = nil, params: JSON? = nil, completion: @escaping (APIResult) -> Void) {
         let url = URL(baseURL: baseURL, path: path, params: params)
         let request = URLRequest(url: url, method: .get)
         
         executeSessionDataTask(request: request, completion: completion)
     }
     
-    func makePOSTRequest<T: Encodable>(to path: String? = nil, params: JSON? = nil, body: T, completion: @escaping (JSendAPIResult) -> Void) throws {
+    func makePOSTRequest<T: Encodable>(to path: String? = nil, params: JSON? = nil, body: T, completion: @escaping (APIResult) -> Void) throws {
         let url = URL(baseURL: baseURL, path: path, params: nil)
         let request = try URLRequest(url: url, method: .post, body: body)
         
         executeSessionDataTask(request: request, completion: completion)
     }
 
-    func makePUTRequest<T: Encodable>(to path: String? = nil, params: JSON? = nil, body: T, completion: @escaping (JSendAPIResult) -> Void) throws {
+    func makePUTRequest<T: Encodable>(to path: String? = nil, params: JSON? = nil, body: T, completion: @escaping (APIResult) -> Void) throws {
         let url = URL(baseURL: baseURL, path: path, params: nil)
         let request = try URLRequest(url: url, method: .put, body: body)
         
         executeSessionDataTask(request: request, completion: completion)
     }
     
-    func makeDELETERequest(to path: String? = nil, params: JSON? = nil, completion: @escaping (JSendAPIResult) -> Void) {
+    func makeDELETERequest(to path: String? = nil, params: JSON? = nil, completion: @escaping (APIResult) -> Void) {
         let url = URL(baseURL: baseURL, path: path, params: nil)
         let request = URLRequest(url: url, method: .delete)
         
         executeSessionDataTask(request: request, completion: completion)
     }
     
-    private func executeSessionDataTask(request: URLRequest, completion: @escaping (JSendAPIResult) -> Void) {
+    private func executeSessionDataTask(request: URLRequest, completion: @escaping (APIResult) -> Void) {
         var request = request
         
         // set bearer authorization header
@@ -84,16 +63,16 @@ struct JSendAPIClient {
         }
     
         let task = session.dataTask(with: request) { (data, response, error) -> Void in
-            let result: JSendAPIResult
+            let result: APIResult
             
             if let data = data {
                 do {
                     result = try self.getResult(for: try self.getResponse(for: data))
                 } catch {
-                    result = JSendAPIResult.failure(error)
+                    result = APIResult.failure(error)
                 }
             } else {
-                result = JSendAPIResult.failure(error!)
+                result = APIResult.failure(error!)
             }
             
             OperationQueue.main.addOperation {
@@ -134,63 +113,12 @@ struct JSendAPIClient {
         }
     }
     
-    private func getResult(for response: JSendResponse) throws -> JSendAPIResult {
+    private func getResult(for response: JSendResponse) throws -> APIResult {
         switch response {
         case .error(let message), .fail(let message):
-            return JSendAPIResult.failure(JSendAPIError.custom(message))
+            return APIResult.failure(JSendAPIError.custom(message))
         case .success(let data):
-            return JSendAPIResult.success(data)
-        }
-    }
-}
-
-extension URL {
-    init(baseURL: String, path: String?, params: JSON?) {
-        var components = URLComponents(string: "\(baseURL)\(path ?? "")")!
-
-        if let params = params {
-            for (key, value) in params {
-                let queryItem = URLQueryItem(name: key, value: String(describing: value))
-                components.queryItems?.append(queryItem)
-            }
-        }
-        
-        self = components.url!
-    }
-}
-
-extension URLRequest {
-    init(url: URL, method: HTTPMethod) {
-        self.init(url: url)
-        
-        // set http method
-        httpMethod = method.rawValue
-    }
-    
-    init<T: Encodable>(url: URL, method: HTTPMethod, body: T) throws {
-        self.init(url: url, method: method)
-        
-        switch method {
-        case .post, .put:
-            // set content type headers
-            setValue("application/json", forHTTPHeaderField: "Content-Type")
-            setValue("application/json", forHTTPHeaderField: "Accept")
-        
-            // set body content
-            let encoder = JSONEncoder()
-            
-            encoder.dateEncodingStrategy = .formatted({
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-                formatter.calendar = Calendar(identifier: .iso8601)
-                formatter.timeZone = TimeZone(secondsFromGMT: 0)
-                formatter.locale = Locale(identifier: "en_US_POSIX")
-                return formatter
-            }())
-            
-            httpBody = try encoder.encode(body)
-        default:
-            break
+            return APIResult.success(data)
         }
     }
 }
