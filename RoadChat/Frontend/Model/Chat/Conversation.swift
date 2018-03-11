@@ -18,72 +18,95 @@ class Conversation: NSManagedObject {
     
     let conversationService = ConversationService()
     
-    class func createOrUpdate(from prototype: RoadChatKit.Conversation.PublicConversation, in context: NSManagedObjectContext) throws -> Conversation {
+    static func create(_ conversation: ConversationRequest, completion: @escaping (Error?) -> Void) {
+        do {
+            try ConversationService().create(conversation) { conversation, error in
+                guard let conversation = conversation else {
+                    // pass service error
+                    log.error("Failed to create conversation: \(error!)")
+                    completion(error!)
+                    return
+                }
+                
+                do {
+                    _ = try Conversation.createOrUpdate(from: conversation, in: CoreDataStack.shared.viewContext)
+                    CoreDataStack.shared.saveViewContext()
+                    log.info("Successfully created Core Data 'Conversation' instance.")
+                    completion(nil)
+                } catch {
+                    // pass core data error
+                    log.error("Failed to create Core Data 'Conversation' instance: \(error)")
+                    completion(error)
+                }
+            }
+        } catch {
+            // pass body encoding error
+            log.error("Failed to send 'ConversationRequest': \(error)")
+            completion(error)
+        }
+    }
+    
+    class func createOrUpdate(from response: RoadChatKit.Conversation.PublicConversation, in context: NSManagedObjectContext) throws -> Conversation {
         let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %d", prototype.id)
+        request.predicate = NSPredicate(format: "id = %d", response.id)
         
         do {
             let matches = try context.fetch(request)
             
             if matches.count > 0 {
                 assert(matches.count >= 1, "Conversation.create -- Database Inconsistency")
-                throw ConversationError.duplicate
                 
-                // add update logic by adding lastChanged property
-//                let conversation = matches.first!
-//                conversation.title = prototype.title
+                let conversation = matches.first!
+                conversation.title = response.title
                 
-//                return conversation  
+                return conversation
             }
         } catch {
             throw error
         }
         
         let conversation = Conversation(context: context)
-        conversation.id = Int32(prototype.id)
-        conversation.creatorID = Int32(prototype.creatorID)
-        conversation.title = prototype.title
-        conversation.creation = prototype.creation
+        conversation.id = Int32(response.id)
+        conversation.creatorID = Int32(response.creatorID)
+        conversation.title = response.title
+        conversation.creation = response.creation
         
         return conversation
     }
     
-    func accept(completion: @escaping (Error?) -> Void) {
-        conversationService.accept(conversationID: Int(id)) { error in
-            guard error == nil else {
-                log.error("Failed to accept conversation '\(self.id)': \(error!)")
+    func update(completion: @escaping (Error?) -> Void) {
+        conversationService.get(conversationID: Int(id)) { conversation, error in
+            guard let conversation = conversation else {
+                // pass service error
+                log.error("Failed to update conversation '\(self.id)': \(error!)")
                 completion(error!)
                 return
             }
             
-            CoreDataStack.shared.saveViewContext()
-            completion(nil)
-        }
-    }
-    
-    func deny(completion: @escaping (Error?) -> Void) {
-        conversationService.delete(conversationID: Int(id)) { error in
-            guard error == nil else {
-                log.error("Failed to deny conversation '\(self.id)': \(error!)")
-                completion(error!)
-                return
+            do {
+                _ = try Conversation.createOrUpdate(from: conversation, in: CoreDataStack.shared.viewContext)
+                CoreDataStack.shared.saveViewContext()
+                log.info("Successfully saved updated Core Data 'Conversation' instance.")
+                completion(nil)
+            } catch {
+                log.error("Failed to save updated Core Data 'Conversation' instance: \(error)")
+                completion(error)
             }
-            
-            CoreDataStack.shared.saveViewContext()
-            completion(nil)
         }
     }
     
     func delete(completion: @escaping (Error?) -> Void) {
         conversationService.delete(conversationID: Int(id)) { error in
             guard error == nil else {
+                // pass service error
                 log.error("Failed to delete conversation '\(self.id)': \(error!)")
                 completion(error!)
                 return
             }
-    
+
             CoreDataStack.shared.viewContext.delete(self)
             CoreDataStack.shared.saveViewContext()
+            log.info("Successfully deleted Core Data 'Conversation' instance.")
             completion(nil)
         }
     }
@@ -91,7 +114,8 @@ class Conversation: NSManagedObject {
     func getMessages(completion: @escaping (Error?) -> Void) {
         conversationService.getMessages(conversationID: Int(id)) { messages, error in
             guard let messages = messages else {
-                log.error("Failed to retrieve messages for conversation '\(self.id)': \(error!)")
+                // pass service error
+                log.error("Failed to get messages for conversation '\(self.id)': \(error!)")
                 completion(error!)
                 return
             }
@@ -99,13 +123,13 @@ class Conversation: NSManagedObject {
             CoreDataStack.shared.persistentContainer.performBackgroundTask { context in
                 _ = messages.map {
                     do {
-                        _ = try DirectMessage.create(from: $0, in: context)
+                        _ = try DirectMessage.create(from: $0, conversation: self, in: context)
                     } catch {
                         log.error("Failed to create Core Data 'DirectMessage' instance: \(error)")
                     }
                 }
                 
-//                _ = messages.map { try? DirectMessage.create(from: $0, in: context) }
+//                _ = messages.map { try? DirectMessage.create(from: $0, conversation: self, in: context) }
                 
                 if context.hasChanges {
                     do {
@@ -129,29 +153,28 @@ class Conversation: NSManagedObject {
                 }
             }
         }
-    
     }
 
     func createMessage(_ message: DirectMessageRequest, completion: @escaping (Error?) -> Void) {
         do {
-            try conversationService.createMessage(message, conversationID: Int(id)) { error in
-                guard error == nil else {
+            try conversationService.createMessage(message, conversationID: Int(id)) { message, error in
+                guard let message = message else {
                     // pass service error
-                    log.error("Failed to create message: \(error!)")
+                    log.error("Failed to create message for conversation '\(self.id)': \(error!)")
                     completion(error!)
                     return
                 }
                 
-//                do {
-//                    _ = try DirectMessage.create(from: <#T##DirectMessage.PublicDirectMessage#>, in: CoreDataStack.shared.viewContext)
-//                    CoreDataStack.shared.saveViewContext()
-//                    log.info("Successfully created Core Data 'DirectMessage' instance.")
-//                    completion(nil)
-//                } catch {
-//                    // pass core data error
-//                    log.error("Failed to create Core Data 'Conversation' instance: \(error)")
-//                    completion(error)
-//                }
+                do {
+                    _ = try DirectMessage.create(from: message, conversation: self, in: CoreDataStack.shared.viewContext)
+                    CoreDataStack.shared.saveViewContext()
+                    log.info("Successfully created Core Data 'DirectMessage' instance.")
+                    completion(nil)
+                } catch {
+                    // pass core data error
+                    log.error("Failed to create Core Data 'DirectMessage' instance: \(error)")
+                    completion(error)
+                }
             }
         } catch {
             // pass body encoding error
@@ -172,13 +195,13 @@ class Conversation: NSManagedObject {
             CoreDataStack.shared.persistentContainer.performBackgroundTask { context in
                 _ = participants.map {
                     do {
-                        _ = try Participant.createOrUpdate(from: $0, in: context)
+                        _ = try Participant.createOrUpdate(from: $0, conversation: self, in: context)
                     } catch {
                         log.error("Failed to create Core Data 'Participant' instance: \(error)")
                     }
                 }
                 
-//                _ = conversations.map { _ = try? Conversation.create(from: $0, in: context) }
+//                _ = participants.map { try? Participant.createOrUpdate(from: $0, conversation: self, in: context) }
                 
                 if context.hasChanges {
                     do {
@@ -201,6 +224,36 @@ class Conversation: NSManagedObject {
                     }
                 }
             }
+        }
+    }
+    
+    func accept(completion: @escaping (Error?) -> Void) {
+        conversationService.accept(conversationID: Int(id)) { error in
+            guard error == nil else {
+                // pass service error
+                log.error("Failed to accept conversation '\(self.id)': \(error!)")
+                completion(error!)
+                return
+            }
+            
+//            let user = participants as? NSSet<Participant>
+//            CoreDataStack.shared.saveViewContext()
+            completion(nil)
+        }
+    }
+    
+    func deny(completion: @escaping (Error?) -> Void) {
+        conversationService.delete(conversationID: Int(id)) { error in
+            guard error == nil else {
+                // pass service error
+                log.error("Failed to deny conversation '\(self.id)': \(error!)")
+                completion(error!)
+                return
+            }
+            
+//            let user = participants as? NSSet<Participant>
+//            CoreDataStack.shared.saveViewContext()
+            completion(nil)
         }
     }
     

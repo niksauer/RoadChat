@@ -10,41 +10,32 @@ import Foundation
 import CoreData
 import RoadChatKit
 
+enum DirectMessageError: Error {
+    case duplicate
+}
+
 class DirectMessage: NSManagedObject {
     
-//    class func create(from prototype: RoadChatKit.DirectMessageRequest, in context: NSManagedObjectContext) -> DirectMessage {
-//        guard let userID = CredentialManager.shared.getUserID() else {
-//            //
-//            return
-//        }
-//        
-//        let message = DirectMessage(context: context)
-//        message.senderID = Int32(userID)
-//        message.time = prototype.time
-//        message.message = prototype.message
-//        
-//        return message
-//    }
-    
-    class func create(from prototype: RoadChatKit.DirectMessage.PublicDirectMessage, in context: NSManagedObjectContext) throws -> DirectMessage {
+    class func create(from response: RoadChatKit.DirectMessage.PublicDirectMessage, conversation: Conversation, in context: NSManagedObjectContext) throws -> DirectMessage {
         let request: NSFetchRequest<DirectMessage> = DirectMessage.fetchRequest()
-        request.predicate = NSPredicate(format: "senderID = %d", prototype.senderID)
+        request.predicate = NSPredicate(format: "conversation.id = %d AND senderID = %d AND time = %@ ", conversation.id, response.senderID, response.time as CVarArg)
         
         do {
             let matches = try context.fetch(request)
             
             if matches.count > 0 {
-                assert(matches.count >= 1, "Conversation.create -- Database Inconsistency")
-                throw ConversationError.duplicate
+                assert(matches.count >= 1, "DirectMessage.create -- Database Inconsistency")
+                throw DirectMessageError.duplicate
             }
         } catch {
             throw error
         }
         
         let message = DirectMessage(context: context)
-        message.senderID = Int32(prototype.senderID)
-        message.time = prototype.time
-        message.message = prototype.message
+        message.senderID = Int32(response.senderID)
+        message.time = response.time
+        message.message = response.message
+        message.conversation = conversation
         
         return message
     }

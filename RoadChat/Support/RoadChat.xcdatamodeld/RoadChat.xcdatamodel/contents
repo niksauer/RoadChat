@@ -63,11 +63,11 @@
         <relationship name="user" maxCount="1" deletionRule="Deny" destinationEntity="User" inverseName="privacy" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Profile" representedClassName=".Profile" syncable="YES" codeGenerationType="category">
+        <attribute name="biography" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="birth" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" attributeType="String" syncable="YES"/>
         <attribute name="lastName" attributeType="String" syncable="YES"/>
-        <attribute name="memo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postalCode" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="sex" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="streetName" optional="YES" attributeType="String" syncable="YES"/>
