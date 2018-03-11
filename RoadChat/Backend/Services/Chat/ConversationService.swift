@@ -49,9 +49,10 @@ struct ConversationService: JSendService {
         }
     }
     
-    func createMessage(_ message: RoadChatKit.DirectMessageRequest, conversationID: RoadChatKit.Conversation.ID, completion: @escaping (Error?) -> Void) throws {
+    func createMessage(_ message: RoadChatKit.DirectMessageRequest, conversationID: RoadChatKit.Conversation.ID, completion: @escaping (RoadChatKit.DirectMessage.PublicDirectMessage?, Error?) -> Void) throws {
         try client.makePOSTRequest(to: "/chat/\(conversationID)/messages", body: message) { result in
-            completion(self.getError(from: result))
+            let result = self.decode(RoadChatKit.DirectMessage.PublicDirectMessage.self, from: result)
+            completion(result.instance, result.error)
         }
     }
     
