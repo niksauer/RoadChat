@@ -13,7 +13,6 @@ import Locksmith
 class RegisterViewController: UIViewController {
 
     // MARK: - Public Properties
-    let userStore = UserStore()
     let authenticationManager = AuthenticationManager()
     
     // MARK: - Outlets
@@ -48,7 +47,7 @@ class RegisterViewController: UIViewController {
        
         let registerRequest = RegisterRequest(email: email, username: username, password: password)
         
-        userStore.create(registerRequest) { error in
+        User.create(registerRequest) { error in
             guard error == nil else {
                 // handle registration error
                 return

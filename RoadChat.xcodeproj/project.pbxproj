@@ -24,7 +24,6 @@
 		243F1EB92048422100B45955 /* CommunityBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EB82048422100B45955 /* CommunityBoardViewController.swift */; };
 		243F1EBB204842A200B45955 /* TrafficBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBA204842A200B45955 /* TrafficBoardViewController.swift */; };
 		243F1EBD204842CF00B45955 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBC204842CF00B45955 /* ProfileViewController.swift */; };
-		245982642052FB5200B799EC /* ConversationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245982632052FB5200B799EC /* ConversationStore.swift */; };
 		245EAE332051346600821B4B /* ConversationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245EAE322051346600821B4B /* ConversationService.swift */; };
 		24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24615DA420508E5400ED11A1 /* CredentialManager.swift */; };
 		248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 248D378D20485DC100B21C3D /* RoadChat.xcdatamodeld */; };
@@ -41,7 +40,6 @@
 		248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37AE2049501100B21C3D /* CommunityMessage.swift */; };
 		248D37B12049504B00B21C3D /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37B02049504B00B21C3D /* Car.swift */; };
 		24A069B12051EFC8006F8401 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A069B02051EFC8006F8401 /* CoreDataStack.swift */; };
-		24A069B820520100006F8401 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A069B720520100006F8401 /* UserStore.swift */; };
 		24A069BB20520367006F8401 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A069BA20520367006F8401 /* AuthenticationManager.swift */; };
 		24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; };
 		24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -211,7 +209,6 @@
 		243F1EB82048422100B45955 /* CommunityBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoardViewController.swift; sourceTree = "<group>"; };
 		243F1EBA204842A200B45955 /* TrafficBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficBoardViewController.swift; sourceTree = "<group>"; };
 		243F1EBC204842CF00B45955 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		245982632052FB5200B799EC /* ConversationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConversationStore.swift; path = RoadChat/Frontend/ModelStore/Chat/ConversationStore.swift; sourceTree = SOURCE_ROOT; };
 		245EAE322051346600821B4B /* ConversationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationService.swift; sourceTree = "<group>"; };
 		24615DA420508E5400ED11A1 /* CredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialManager.swift; sourceTree = "<group>"; };
 		248D378E20485DC100B21C3D /* RoadChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RoadChat.xcdatamodel; sourceTree = "<group>"; };
@@ -228,7 +225,6 @@
 		248D37AE2049501100B21C3D /* CommunityMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessage.swift; sourceTree = "<group>"; };
 		248D37B02049504B00B21C3D /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		24A069B02051EFC8006F8401 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		24A069B720520100006F8401 /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserStore.swift; path = RoadChat/Frontend/ModelStore/User/UserStore.swift; sourceTree = SOURCE_ROOT; };
 		24A069BA20520367006F8401 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthenticationManager.swift; path = RoadChat/Frontend/ModelStore/AuthenticationManager.swift; sourceTree = SOURCE_ROOT; };
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
 		24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyBeaver.xcodeproj; path = Frameworks/SwiftyBeaver/SwiftyBeaver.xcodeproj; sourceTree = "<group>"; };
@@ -484,20 +480,10 @@
 				24A069B02051EFC8006F8401 /* CoreDataStack.swift */,
 				24A069BA20520367006F8401 /* AuthenticationManager.swift */,
 				C988ACA42052BB3200EDCEAC /* LocationManager.swift */,
-				24A069B92052013C006F8401 /* User */,
 				D44F4B7E205282B7009A6239 /* Community */,
 				24DF5D112052F52400772B00 /* Traffic */,
-				24DF5D122052F55500772B00 /* Chat */,
 			);
 			path = ModelStore;
-			sourceTree = "<group>";
-		};
-		24A069B92052013C006F8401 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				24A069B720520100006F8401 /* UserStore.swift */,
-			);
-			path = User;
 			sourceTree = "<group>";
 		};
 		24AED4AD204CC2EB002A1703 /* Products */ = {
@@ -514,14 +500,6 @@
 			children = (
 			);
 			path = Traffic;
-			sourceTree = "<group>";
-		};
-		24DF5D122052F55500772B00 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				245982632052FB5200B799EC /* ConversationStore.swift */,
-			);
-			path = Chat;
 			sourceTree = "<group>";
 		};
 		24F1DD2620517B8E00A726AA /* Products */ = {
@@ -764,7 +742,6 @@
 				243F1EB92048422100B45955 /* CommunityBoardViewController.swift in Sources */,
 				243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */,
 				248D379C20494E1F00B21C3D /* Settings.swift in Sources */,
-				245982642052FB5200B799EC /* ConversationStore.swift in Sources */,
 				248D37A920494F9900B21C3D /* Participant.swift in Sources */,
 				240B9B8620534FAA00216E68 /* FetchedResultsTableViewController.swift in Sources */,
 				24A069B12051EFC8006F8401 /* CoreDataStack.swift in Sources */,
@@ -788,7 +765,6 @@
 				243F1EBD204842CF00B45955 /* ProfileViewController.swift in Sources */,
 				2404A25B204EAFAC009AC7E1 /* JSendService.swift in Sources */,
 				C93155452051920C00F4C429 /* TrafficService.swift in Sources */,
-				24A069B820520100006F8401 /* UserStore.swift in Sources */,
 				D40B2059205145B1000823E4 /* RegisterViewController.swift in Sources */,
 				248D379E20494EA400B21C3D /* Profile.swift in Sources */,
 				248D379820494D0900B21C3D /* User.swift in Sources */,

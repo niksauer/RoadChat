@@ -11,13 +11,14 @@ import CoreData
 
 class ConversationsViewController: FetchedResultsTableViewController {
     
+    var user: User!
+    
     private var fetchedResultsController: NSFetchedResultsController<Conversation>?
     
     override func viewDidLoad() {
         updateUI()
-        
-        let conversationStore = ConversationStore()
-        conversationStore.updateConversations { error in
+    
+        user.getConversations { error in
             guard error == nil else {
                 // handle retrieval error
                 return
