@@ -28,14 +28,6 @@ class User: NSManagedObject {
                 }
                 
                 do {
-                    try CredentialManager.shared.setUserID(user.id)
-                } catch {
-                    // pass keychain error
-                    log.error("Failed to save credentials to keychain: \(error)")
-                    completion(error)
-                }
-                
-                do {
                     _ = try User.create(from: user, in: CoreDataStack.shared.viewContext)
                     CoreDataStack.shared.saveViewContext()
                     log.info("Successfully registered user.")
@@ -56,7 +48,7 @@ class User: NSManagedObject {
     // MARK: - Public Class Methods
     class func create(from response: RoadChatKit.User.PublicUser, in context: NSManagedObjectContext) throws -> User {
         let request: NSFetchRequest<User> = User.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %d AND username = %@", response.id, response.username)
+        request.predicate = NSPredicate(format: "id = %d", response.id)
         
         do {
             let matches = try context.fetch(request)
@@ -75,6 +67,24 @@ class User: NSManagedObject {
         user.registry = response.registry
         
         return user
+    }
+    
+    class func findById(_ id: Int) throws -> User? {
+        let request: NSFetchRequest<User> = User.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %d", id)
+        
+        do {
+            let matches = try CoreDataStack.shared.viewContext.fetch(request)
+            
+            if matches.count > 0 {
+                assert(matches.count >= 1, "User.create -- Database Inconsistency")
+                return matches.first!
+            } else {
+                return nil
+            }
+        } catch {
+            throw error
+        }
     }
 
     // MARK: - Public Properties
