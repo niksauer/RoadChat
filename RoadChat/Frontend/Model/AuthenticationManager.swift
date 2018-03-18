@@ -12,15 +12,7 @@ import RoadChatKit
 struct AuthenticationManager {
     
     // MARK: - Private Properties
-    private let authenticationService = AuthenticationService(credentials: CredentialManager.shared)
-    
-    // MARK: - Public Properties
-    let credentials: APICredentialStore
-
-    // MARK: - Initialization
-    init(credentials: APICredentialStore) {
-        self.credentials = credentials
-    }
+    let authenticationService = AuthenticationService(credentials: CredentialManager.shared)
     
     // MARK: - Public Methods
     func login(_ user: LoginRequest, completion: @escaping (User?, Error?) -> Void) {
