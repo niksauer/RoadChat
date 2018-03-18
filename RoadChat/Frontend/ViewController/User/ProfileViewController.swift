@@ -11,6 +11,9 @@ import RoadChatKit
 
 class ProfileViewController: UITableViewController {
 
+    let authenticationManager = AuthenticationManager(credentials: CredentialManager.shared)
+    let navigator = NavigationHelper()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,11 +28,12 @@ class ProfileViewController: UITableViewController {
         super.viewWillAppear(animated)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
+        authenticationManager.logout { error in
+            self.navigator.showLogin()
+        }
     }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

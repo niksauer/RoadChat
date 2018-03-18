@@ -13,7 +13,8 @@ import Locksmith
 class RegisterViewController: UIViewController {
 
     // MARK: - Public Properties
-    let authenticationManager = AuthenticationManager()
+    let authenticationManager = AuthenticationManager(credentials: CredentialManager.shared)
+    let navigator = NavigationHelper()
     
     // MARK: - Outlets
     @IBOutlet weak var usernameTextField: UITextField!
@@ -56,15 +57,15 @@ class RegisterViewController: UIViewController {
             // auto-login
             let loginRequest = LoginRequest(user: email, password: password)
             
-            self.authenticationManager.login(loginRequest) { error in
-                guard error == nil else {
+            self.authenticationManager.login(loginRequest) { user, error in
+                guard let _ = user else {
                     // handle login error
                     self.performSegue(withIdentifier: "showLoginView", sender: self)
                     return
                 }
                 
-                let appDelegate = UIApplication.shared.delegate as? AppDelegate
-                appDelegate?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController()
+                // show home screen
+                self.navigator.showHome()
             }
         }
     }

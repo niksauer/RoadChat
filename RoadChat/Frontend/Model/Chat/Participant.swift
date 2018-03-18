@@ -10,12 +10,9 @@ import Foundation
 import CoreData
 import RoadChatKit
 
-enum ParticipantError: Error {
-    case duplicate
-}
-
 class Participant: NSManagedObject {
     
+    // MARK: - Public Class Methods
     class func createOrUpdate(from response: RoadChatKit.Participation.PublicParticipant, conversation: Conversation, in context: NSManagedObjectContext) throws -> Participant {
         let request: NSFetchRequest<Participant> = Participant.fetchRequest()
         request.predicate = NSPredicate(format: "conversation.id = %d AND userID = %d", conversation.id, response.userID)
@@ -43,6 +40,11 @@ class Participant: NSManagedObject {
         participant.conversation = conversation
         
         return participant
+    }
+
+    // MARK: - Public Methods
+    func setApprovalStatus(_ status: ApprovalStatus) {
+        approvalStatus = status.rawValue
     }
     
 }
