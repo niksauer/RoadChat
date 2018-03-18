@@ -10,17 +10,17 @@ import Foundation
 import CoreData
 import RoadChatKit
 
-enum CommunityError: Error {
+enum CommunityMessageError: Error {
     case duplicate
 }
 
 class CommunityMessage: NSManagedObject {
     
     // MARK: - Public Static Methods
-    static func create(_ post: CommunityMessageRequest, completion: @escaping (Error?) -> Void) {
+    static func create(_ message: CommunityMessageRequest, completion: @escaping (Error?) -> Void) {
         do {
-            try CommunityService(credentials: CredentialManager.shared).create(post) { post, error in
-                guard let post = post else {
+            try CommunityService(credentials: CredentialManager.shared).create(message) { message, error in
+                guard let message = message else {
                     // pass service error
                     log.error("Failed to create post: \(error!)")
                     completion(error!)
@@ -28,7 +28,7 @@ class CommunityMessage: NSManagedObject {
                 }
                 
                 do {
-                    _ = try CommunityMessage.create(from: post, in: CoreDataStack.shared.viewContext)
+                    _ = try CommunityMessage.create(from: message, in: CoreDataStack.shared.viewContext)
                     CoreDataStack.shared.saveViewContext()
                     log.info("Successfully created Core Data 'CommunityMessage' instance.")
                     completion(nil)
@@ -53,8 +53,8 @@ class CommunityMessage: NSManagedObject {
         do {
             let matches = try context.fetch(request)
             if matches.count > 0 {
-                assert(matches.count >= 1, "Transaction.createTransaction -- Database Inconsistency")
-                throw CommunityError.duplicate
+                assert(matches.count >= 1, "CommunityMessage.create -- Database Inconsistency")
+                throw CommunityMessageError.duplicate
             }
         } catch {
             throw error

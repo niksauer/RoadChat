@@ -11,7 +11,6 @@ import CoreData
 import RoadChatKit
 
 enum ConversationError: Error {
-    case duplicate
     case notParticipating
 }
 

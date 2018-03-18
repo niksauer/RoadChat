@@ -10,10 +10,6 @@ import Foundation
 import CoreData
 import RoadChatKit
 
-enum UserError: Error {
-    case duplicate
-}
-
 class User: NSManagedObject {
     
     // MARK: - Public Static Methods
@@ -28,7 +24,7 @@ class User: NSManagedObject {
                 }
                 
                 do {
-                    _ = try User.create(from: user, in: CoreDataStack.shared.viewContext)
+                    _ = try User.createOrUpdate(from: user, in: CoreDataStack.shared.viewContext)
                     CoreDataStack.shared.saveViewContext()
                     log.info("Successfully registered user.")
                     completion(nil)
@@ -46,7 +42,7 @@ class User: NSManagedObject {
     }
     
     // MARK: - Public Class Methods
-    class func create(from response: RoadChatKit.User.PublicUser, in context: NSManagedObjectContext) throws -> User {
+    class func createOrUpdate(from response: RoadChatKit.User.PublicUser, in context: NSManagedObjectContext) throws -> User {
         let request: NSFetchRequest<User> = User.fetchRequest()
         request.predicate = NSPredicate(format: "id = %d", response.id)
         
@@ -54,7 +50,12 @@ class User: NSManagedObject {
             let matches = try context.fetch(request)
             if matches.count > 0 {
                 assert(matches.count >= 1, "User.create -- Database Inconsistency")
-                throw UserError.duplicate
+                
+                let user = matches.first!
+                user.email = response.email
+                user.username = response.username
+                
+                return user
             }
         } catch {
             throw error
@@ -69,39 +70,25 @@ class User: NSManagedObject {
         return user
     }
     
-    class func findOrRetrieveById(_ id: Int, completion: @escaping (User?, Error?) -> Void) {
-        let request: NSFetchRequest<User> = User.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %d", id)
-        
-        do {
-            let matches = try CoreDataStack.shared.viewContext.fetch(request)
-            
-            if matches.count > 0 {
-                assert(matches.count >= 1, "User.create -- Database Inconsistency")
-                completion(matches.first!, nil)
-            } else {
-                UserService(credentials: CredentialManager.shared).get(userID: id) { user, error in
-                    guard let user = user else {
-                        // pass service error
-                        log.error("Failed to retrieve user: \(error!)")
-                        completion(nil, error!)
-                        return
-                    }
-                    
-                    do {
-                        let user = try User.create(from: user, in: CoreDataStack.shared.viewContext)
-                        CoreDataStack.shared.saveViewContext()
-                        log.info("Successfully retrieved user.")
-                        completion(user, nil)
-                    } catch {
-                        // pass core data error
-                        log.error("Failed to create Core Data 'User' instance: \(error)")
-                        completion(nil, error)
-                    }
-                }
+    class func getById(_ id: Int, completion: @escaping (User?, Error?) -> Void) {
+        UserService(credentials: CredentialManager.shared).get(userID: id) { user, error in
+            guard let user = user else {
+                // pass service error
+                log.error("Failed to retrieve user: \(error!)")
+                completion(nil, error!)
+                return
             }
-        } catch {
-            log.error("Failed to retrieve Core Data 'User': \(error)")
+            
+            do {
+                let user = try User.createOrUpdate(from: user, in: CoreDataStack.shared.viewContext)
+                CoreDataStack.shared.saveViewContext()
+                log.debug("Successfully retrieved user '\(user.id)'.")
+                completion(user, nil)
+            } catch {
+                // pass core data error
+                log.error("Failed to create Core Data 'User' instance: \(error)")
+                completion(nil, error)
+            }
         }
     }
 
@@ -111,12 +98,34 @@ class User: NSManagedObject {
     // MARK: - Initialization
     private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto: context)
-        
+    
+        update(completion: nil)
         getProfile(completion: nil)
         getConversations(completion: nil)
     }
     
     // MARK: - Public Methods
+    func update(completion: ((Error?) -> Void)?) {
+        userService.get(userID: Int(id)) { user, error in
+            guard let user = user else {
+                // pass service error
+                log.error("Failed to update user '\(self.id)': \(error!)")
+                completion?(error!)
+                return
+            }
+            
+            do {
+                _ = try User.createOrUpdate(from: user, in: CoreDataStack.shared.viewContext)
+                CoreDataStack.shared.saveViewContext()
+                log.debug("Successfully saved created or updated Core Data 'User' instance.")
+                completion?(nil)
+            } catch {
+                log.error("Failed to save updated Core Data 'User' instance: \(error)")
+                completion?(error)
+            }
+        }
+    }
+    
     func createOrUpdateProfile(from request: ProfileRequest, completion: @escaping (Error?) -> Void) {
         do {
             try userService.createOrUpdateProfile(userID: Int(id), to: request) { error in
@@ -128,7 +137,7 @@ class User: NSManagedObject {
                 }
                 
                 do {
-                    let profile = try Profile.createOrUpdate(from: request, user: self, in: CoreDataStack.shared.viewContext)
+                    let profile = try Profile.createOrUpdate(request, user: self, in: CoreDataStack.shared.viewContext)
                     self.profile = profile
                     CoreDataStack.shared.saveViewContext()
                     log.info("Successfully saved created or updated Core Data 'Profile' instance.")

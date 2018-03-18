@@ -14,6 +14,7 @@ class RegisterViewController: UIViewController {
 
     // MARK: - Public Properties
     let authenticationManager = AuthenticationManager(credentials: CredentialManager.shared)
+    let navigator = NavigationHelper()
     
     // MARK: - Outlets
     @IBOutlet weak var usernameTextField: UITextField!
@@ -63,8 +64,8 @@ class RegisterViewController: UIViewController {
                     return
                 }
                 
-                let appDelegate = UIApplication.shared.delegate as? AppDelegate
-                appDelegate?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController()
+                // show home screen
+                self.navigator.showHome()
             }
         }
     }

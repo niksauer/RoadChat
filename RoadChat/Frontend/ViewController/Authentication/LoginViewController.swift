@@ -14,6 +14,7 @@ class LoginViewController: UIViewController {
     
     // MARK: - Public Properties
     let authenticationManager = AuthenticationManager(credentials: CredentialManager.shared)
+    let navigator = NavigationHelper()
     
     // MARK: - Outlets
     @IBOutlet weak var usernameTextField: UITextField!
@@ -50,8 +51,7 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            let appDelegate = UIApplication.shared.delegate as? AppDelegate
-            appDelegate?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController()
+            self.navigator.showHome()
         }
     }
     

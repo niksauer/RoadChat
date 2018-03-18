@@ -10,10 +10,6 @@ import Foundation
 import CoreData
 import RoadChatKit
 
-enum ParticipantError: Error {
-    case duplicate
-}
-
 class Participant: NSManagedObject {
     
     // MARK: - Public Class Methods

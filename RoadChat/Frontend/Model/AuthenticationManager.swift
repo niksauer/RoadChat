@@ -9,10 +9,19 @@
 import Foundation
 import RoadChatKit
 
-struct AuthenticationManager {
+class AuthenticationManager {
     
-    // MARK: - Private Properties
-    let authenticationService = AuthenticationService(credentials: CredentialManager.shared)
+    // MARK: - Public Properties
+    let credentials: APICredentialStore
+    let authenticationService: AuthenticationService
+    
+    var activeUser: User?
+    
+    // MARK: - Initialization
+    init(credentials: APICredentialStore) {
+        self.credentials = credentials
+        self.authenticationService = AuthenticationService(credentials: credentials)
+    }
     
     // MARK: - Public Methods
     func login(_ user: LoginRequest, completion: @escaping (User?, Error?) -> Void) {
@@ -25,23 +34,28 @@ struct AuthenticationManager {
                     return
                 }
                 
-                User.findOrRetrieveById(token.userID) { user, error in
-                    guard let user = user else {
-                        // pass service / core data error
-                        completion(nil, error!)
-                        return
-                    }
+                do {
+                    // save credentials
+                    try self.credentials.setToken(token.token)
+                    try self.credentials.setUserID(token.userID)
+                    log.info("Successfully logged in user.")
                     
-                    do {
-                        try self.credentials.setToken(token.token)
-                        try self.credentials.setUserID(token.userID)
-                        log.info("Successfully logged in user.")
+                    User.getById(token.userID) { user, error in
+                        guard let user = user else {
+                            // pass service / core data error
+                            completion(nil, error!)
+                            return
+                        }
+                        
+                        // set active user
+                        self.activeUser = user
+                        log.debug("Set currently active user '\(user.id)'.")
                         completion(user, nil)
-                    } catch {
-                        // pass keychain error
-                        log.error("Failed to save credentials to keychain: \(error)")
-                        completion(nil, error)
                     }
+                } catch {
+                    // pass keychain error
+                    log.error("Failed to save credentials to keychain: \(error)")
+                    completion(nil, error)
                 }
             }
         } catch {
@@ -61,9 +75,14 @@ struct AuthenticationManager {
             }
             
             do {
+                // remove credentials
                 try self.credentials.setToken(nil)
                 try self.credentials.setUserID(nil)
                 log.info("Successfully logged out user.")
+                
+                // unset active user
+                self.activeUser = nil
+                log.debug("Unset currently active user.")
                 completion(nil)
             } catch {
                 // pass keychain error
@@ -72,5 +91,5 @@ struct AuthenticationManager {
             }
         }
     }
-    
+
 }
