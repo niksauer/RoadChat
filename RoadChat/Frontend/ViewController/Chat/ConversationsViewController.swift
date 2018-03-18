@@ -17,13 +17,19 @@ class ConversationsViewController: FetchedResultsTableViewController {
     
     override func viewDidLoad() {
         updateUI()
-    
-        user.getConversations { error in
-            guard error == nil else {
-                // handle retrieval error
-                return
-            }
-        }
+        
+//        User.findOrRetrieveById(CredentialManager.shared.getUserID()!) { user, error in
+//            guard let user = user else {
+//                return
+//            }
+//
+//            user.getConversations { error in
+//                guard error == nil else {
+//                    // handle retrieval error
+//                    return
+//                }
+//            }
+//        }
     }
     
     private func updateUI() {

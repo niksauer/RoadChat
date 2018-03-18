@@ -13,7 +13,11 @@ struct TrafficService: JSendService {
     
     typealias Resource = RoadChatKit.TrafficMessage.PublicTrafficMessage
     
-    let client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/traffic", credentials: CredentialManager.shared)
+    let client: JSendAPIClient
+    
+    init(credentials: APICredentialStore) {
+        self.client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/traffic", credentials: credentials)
+    }
     
     func create(_ trafficMessage: RoadChatKit.TrafficMessageRequest, completion: @escaping (Resource?, Error?) -> Void) throws {
         try client.makePOSTRequest(to: "/board", body: trafficMessage) { result in

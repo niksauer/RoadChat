@@ -11,12 +11,8 @@ import RoadChatKit
 
 class PopUpCommunityPostViewController: UIViewController {
     
-    
-    let communityStore = CommunityStore()
     @IBOutlet weak var communityMessageTextArea: UITextView!
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -36,7 +32,7 @@ class PopUpCommunityPostViewController: UIViewController {
         }
         
         let communityRequest = CommunityMessageRequest(time: time, message: postText, latitude: 100, longitude: 100, altitude: 100, horizontalAccuracy: 10, verticalAccuracy: 10, course: 10, speed: 10)
-        communityStore.create(communityRequest) { error in
+        CommunityMessage.create(communityRequest) { error in
             guard error == nil else {
                 //handle post error
                 return

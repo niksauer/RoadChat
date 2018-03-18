@@ -13,7 +13,11 @@ struct UserService: JSendService {
     
     typealias Resource = RoadChatKit.User.PublicUser
     
-    let client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/user", credentials: CredentialManager.shared)
+    let client: JSendAPIClient
+    
+    init(credentials: APICredentialStore) {
+        self.client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/user", credentials: credentials)
+    }
     
     func create(_ user: RoadChatKit.RegisterRequest, completion: @escaping (Resource?, Error?) -> Void) throws {
         try client.makePOSTRequest(body: user) { result in

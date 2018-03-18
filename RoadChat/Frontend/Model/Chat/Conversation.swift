@@ -20,7 +20,7 @@ class Conversation: NSManagedObject {
     // MARK: - Public Static Methods
     static func create(_ conversation: ConversationRequest, completion: @escaping (Error?) -> Void) {
         do {
-            try ConversationService().create(conversation) { conversation, error in
+            try ConversationService(credentials: CredentialManager.shared).create(conversation) { conversation, error in
                 guard let conversation = conversation else {
                     // pass service error
                     log.error("Failed to create conversation: \(error!)")
@@ -76,7 +76,7 @@ class Conversation: NSManagedObject {
     }
     
     // MARK: - Public Properties
-    let conversationService = ConversationService()
+    let conversationService = ConversationService(credentials: CredentialManager.shared)
     
     var storedParticipants: [Participant] {
         return Array(participants!) as! [Participant]

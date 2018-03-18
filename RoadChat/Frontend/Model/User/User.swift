@@ -19,7 +19,7 @@ class User: NSManagedObject {
     // MARK: - Public Static Methods
     static func create(_ user: RegisterRequest, completion: @escaping (Error?) -> Void) {
         do {
-            try UserService().create(user) { user, error in
+            try UserService(credentials: CredentialManager.shared).create(user) { user, error in
                 guard let user = user else {
                     // pass service error
                     log.error("Failed to register user: \(error!)")
@@ -69,7 +69,7 @@ class User: NSManagedObject {
         return user
     }
     
-    class func findById(_ id: Int) throws -> User? {
+    class func findOrRetrieveById(_ id: Int, completion: @escaping (User?, Error?) -> Void) {
         let request: NSFetchRequest<User> = User.fetchRequest()
         request.predicate = NSPredicate(format: "id = %d", id)
         
@@ -78,17 +78,35 @@ class User: NSManagedObject {
             
             if matches.count > 0 {
                 assert(matches.count >= 1, "User.create -- Database Inconsistency")
-                return matches.first!
+                completion(matches.first!, nil)
             } else {
-                return nil
+                UserService(credentials: CredentialManager.shared).get(userID: id) { user, error in
+                    guard let user = user else {
+                        // pass service error
+                        log.error("Failed to retrieve user: \(error!)")
+                        completion(nil, error!)
+                        return
+                    }
+                    
+                    do {
+                        let user = try User.create(from: user, in: CoreDataStack.shared.viewContext)
+                        CoreDataStack.shared.saveViewContext()
+                        log.info("Successfully retrieved user.")
+                        completion(user, nil)
+                    } catch {
+                        // pass core data error
+                        log.error("Failed to create Core Data 'User' instance: \(error)")
+                        completion(nil, error)
+                    }
+                }
             }
         } catch {
-            throw error
+            log.error("Failed to retrieve Core Data 'User': \(error)")
         }
     }
 
     // MARK: - Public Properties
-    let userService = UserService()
+    let userService = UserService(credentials: CredentialManager.shared)
     
     // MARK: - Initialization
     private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {

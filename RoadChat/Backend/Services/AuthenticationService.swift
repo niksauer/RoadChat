@@ -12,8 +12,12 @@ import RoadChatKit
 struct AuthenticationService: JSendService {
     
     typealias Resource = RoadChatKit.BearerToken.PublicBearerToken
+
+    let client: JSendAPIClient
     
-    let client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/user", credentials: CredentialManager.shared)
+    init(credentials: APICredentialStore) {
+        self.client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/user", credentials: credentials)
+    }
     
     func login(_ user: LoginRequest, completion: @escaping (Resource?, Error?) -> Void) throws {
         try client.makePOSTRequest(to: "/login", body: user) { result in

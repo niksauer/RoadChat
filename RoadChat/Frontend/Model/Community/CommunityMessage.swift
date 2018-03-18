@@ -16,9 +16,39 @@ enum CommunityError: Error {
 
 class CommunityMessage: NSManagedObject {
     
-    class func create(from prototype: RoadChatKit.CommunityMessage.PublicCommunityMessage, in context: NSManagedObjectContext) throws -> CommunityMessage {
+    // MARK: - Public Static Methods
+    static func create(_ post: CommunityMessageRequest, completion: @escaping (Error?) -> Void) {
+        do {
+            try CommunityService(credentials: CredentialManager.shared).create(post) { post, error in
+                guard let post = post else {
+                    // pass service error
+                    log.error("Failed to create post: \(error!)")
+                    completion(error!)
+                    return
+                }
+                
+                do {
+                    _ = try CommunityMessage.create(from: post, in: CoreDataStack.shared.viewContext)
+                    CoreDataStack.shared.saveViewContext()
+                    log.info("Successfully created Core Data 'CommunityMessage' instance.")
+                    completion(nil)
+                } catch {
+                    // pass core data error
+                    log.error("Failed to create Core Data 'CommunityMessage' instance: \(error)")
+                    completion(error)
+                }
+            }
+        } catch {
+            // pass body encoding error
+            log.error("Failed to send community message request: \(error)")
+            completion(error)
+        }
+    }
+    
+    // MARK: - Public Class Methods
+    class func create(from response: RoadChatKit.CommunityMessage.PublicCommunityMessage, in context: NSManagedObjectContext) throws -> CommunityMessage {
         let request: NSFetchRequest<CommunityMessage> = CommunityMessage.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %d", prototype.id)
+        request.predicate = NSPredicate(format: "id = %d", response.id)
         
         do {
             let matches = try context.fetch(request)
@@ -31,12 +61,12 @@ class CommunityMessage: NSManagedObject {
         }
         
         let post = CommunityMessage(context: context)
-        post.id = Int32(prototype.id)
-        post.locationID = Int32(prototype.locationID)
-        post.message = prototype.message
-        post.senderID = Int32(prototype.senderID)
-        post.time = prototype.time
-        post.upvotes = Int16(prototype.upvotes)
+        post.id = Int32(response.id)
+        post.locationID = Int32(response.locationID)
+        post.message = response.message
+        post.senderID = Int32(response.senderID)
+        post.time = response.time
+        post.upvotes = Int16(response.upvotes)
         
         return post
     }

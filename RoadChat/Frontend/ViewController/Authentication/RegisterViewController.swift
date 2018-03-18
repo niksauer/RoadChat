@@ -13,7 +13,7 @@ import Locksmith
 class RegisterViewController: UIViewController {
 
     // MARK: - Public Properties
-    let authenticationManager = AuthenticationManager()
+    let authenticationManager = AuthenticationManager(credentials: CredentialManager.shared)
     
     // MARK: - Outlets
     @IBOutlet weak var usernameTextField: UITextField!
@@ -56,8 +56,8 @@ class RegisterViewController: UIViewController {
             // auto-login
             let loginRequest = LoginRequest(user: email, password: password)
             
-            self.authenticationManager.login(loginRequest) { error in
-                guard error == nil else {
+            self.authenticationManager.login(loginRequest) { user, error in
+                guard let _ = user else {
                     // handle login error
                     self.performSegue(withIdentifier: "showLoginView", sender: self)
                     return

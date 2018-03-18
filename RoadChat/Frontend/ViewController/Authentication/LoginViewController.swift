@@ -13,7 +13,7 @@ import Locksmith
 class LoginViewController: UIViewController {
     
     // MARK: - Public Properties
-    let authenticationManager = AuthenticationManager()
+    let authenticationManager = AuthenticationManager(credentials: CredentialManager.shared)
     
     // MARK: - Outlets
     @IBOutlet weak var usernameTextField: UITextField!
@@ -44,8 +44,8 @@ class LoginViewController: UIViewController {
         
         let loginRequest = LoginRequest(user: user, password: password)
         
-        authenticationManager.login(loginRequest) { error in
-            guard error == nil else {
+        authenticationManager.login(loginRequest) { user, error in
+            guard let _ = user else {
                 // handle login error
                 return
             }
