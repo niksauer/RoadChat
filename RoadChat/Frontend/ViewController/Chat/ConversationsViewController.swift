@@ -11,27 +11,25 @@ import CoreData
 
 class ConversationsViewController: FetchedResultsTableViewController {
     
-    var user: User!
+    // MARK: - Public Properties
+    let user = AuthenticationManager(credentials: CredentialManager.shared).activeUser!
     
+    // MARK: - Private Properties
     private var fetchedResultsController: NSFetchedResultsController<Conversation>?
     
+    // MARK: - Initialization
     override func viewDidLoad() {
         updateUI()
         
-//        User.findOrRetrieveById(CredentialManager.shared.getUserID()!) { user, error in
-//            guard let user = user else {
-//                return
-//            }
-//
-//            user.getConversations { error in
-//                guard error == nil else {
-//                    // handle retrieval error
-//                    return
-//                }
-//            }
-//        }
+        user.getConversations { error in
+            guard error == nil else {
+                // handle retrieval error
+                return
+            }
+        }
     }
     
+    // MARK: - Private Methods
     private func updateUI() {
         guard let userID = CredentialManager.shared.getUserID() else {
             // handle missing userID error of logged in user
@@ -51,6 +49,7 @@ class ConversationsViewController: FetchedResultsTableViewController {
         tableView.reloadData()
     }
     
+    // MARK: - Table View Data Source
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "conversationCell", for: indexPath)
         
@@ -59,8 +58,10 @@ class ConversationsViewController: FetchedResultsTableViewController {
         
         return cell
     }
+
 }
 
+// MARK: - Table View Data Source
 extension ConversationsViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController?.sections?.count ?? 1

@@ -12,35 +12,6 @@ import RoadChatKit
 
 class User: NSManagedObject {
     
-    // MARK: - Public Static Methods
-    static func create(_ user: RegisterRequest, completion: @escaping (Error?) -> Void) {
-        do {
-            try UserService(credentials: CredentialManager.shared).create(user) { user, error in
-                guard let user = user else {
-                    // pass service error
-                    log.error("Failed to register user: \(error!)")
-                    completion(error!)
-                    return
-                }
-                
-                do {
-                    _ = try User.createOrUpdate(from: user, in: CoreDataStack.shared.viewContext)
-                    CoreDataStack.shared.saveViewContext()
-                    log.info("Successfully registered user.")
-                    completion(nil)
-                } catch {
-                    // pass core data error
-                    log.error("Failed to create Core Data 'User' instance: \(error)")
-                    completion(error)
-                }
-            }
-        } catch {
-            // pass body encoding error
-            log.error("Failed to send 'RegisterRequest': \(error)")
-            completion(error)
-        }
-    }
-    
     // MARK: - Public Class Methods
     class func createOrUpdate(from response: RoadChatKit.User.PublicUser, in context: NSManagedObjectContext) throws -> User {
         let request: NSFetchRequest<User> = User.fetchRequest()
@@ -70,30 +41,9 @@ class User: NSManagedObject {
         return user
     }
     
-    class func getById(_ id: Int, completion: @escaping (User?, Error?) -> Void) {
-        UserService(credentials: CredentialManager.shared).get(userID: id) { user, error in
-            guard let user = user else {
-                // pass service error
-                log.error("Failed to retrieve user: \(error!)")
-                completion(nil, error!)
-                return
-            }
-            
-            do {
-                let user = try User.createOrUpdate(from: user, in: CoreDataStack.shared.viewContext)
-                CoreDataStack.shared.saveViewContext()
-                log.debug("Successfully retrieved user '\(user.id)'.")
-                completion(user, nil)
-            } catch {
-                // pass core data error
-                log.error("Failed to create Core Data 'User' instance: \(error)")
-                completion(nil, error)
-            }
-        }
-    }
-
     // MARK: - Public Properties
     let userService = UserService(credentials: CredentialManager.shared)
+    let conversationService = ConversationService(credentials: CredentialManager.shared)
     
     // MARK: - Initialization
     private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
@@ -126,9 +76,9 @@ class User: NSManagedObject {
         }
     }
     
-    func createOrUpdateProfile(from request: ProfileRequest, completion: @escaping (Error?) -> Void) {
+    func createOrUpdateProfile(_ profile: ProfileRequest, completion: @escaping (Error?) -> Void) {
         do {
-            try userService.createOrUpdateProfile(userID: Int(id), to: request) { error in
+            try userService.createOrUpdateProfile(userID: Int(id), to: profile) { error in
                 guard error == nil else {
                     // pass service error
                     log.error("Failed to update profile for user '\(self.id)': \(error!)")
@@ -137,8 +87,10 @@ class User: NSManagedObject {
                 }
                 
                 do {
-                    let profile = try Profile.createOrUpdate(request, user: self, in: CoreDataStack.shared.viewContext)
-                    self.profile = profile
+                    let privacy = RoadChatKit.Privacy(userID: Int(self.id))
+                    let profile = RoadChatKit.Profile(userID: Int(self.id), profileRequest: profile)
+                    let publicProfile = RoadChatKit.Profile.PublicProfile(profile: profile, privacy: privacy, isOwner: true)
+                    let _ = try Profile.createOrUpdate(from: publicProfile, user: self, in: CoreDataStack.shared.viewContext)
                     CoreDataStack.shared.saveViewContext()
                     log.info("Successfully saved created or updated Core Data 'Profile' instance.")
                     completion(nil)
@@ -175,6 +127,34 @@ class User: NSManagedObject {
                 log.error("Failed to create Core Data 'Profile' instance: \(error)")
                 completion?(error)
             }
+        }
+    }
+    
+    func createConversation(_ conversation: ConversationRequest, completion: @escaping (Error?) -> Void) {
+        do {
+            try conversationService.create(conversation) { conversation, error in
+                guard let conversation = conversation else {
+                    // pass service error
+                    log.error("Failed to create conversation: \(error!)")
+                    completion(error!)
+                    return
+                }
+                
+                do {
+                    _ = try Conversation.createOrUpdate(from: conversation, in: CoreDataStack.shared.viewContext)
+                    CoreDataStack.shared.saveViewContext()
+                    log.info("Successfully created Core Data 'Conversation' instance.")
+                    completion(nil)
+                } catch {
+                    // pass core data error
+                    log.error("Failed to create Core Data 'Conversation' instance: \(error)")
+                    completion(error)
+                }
+            }
+        } catch {
+            // pass body encoding error
+            log.error("Failed to send 'ConversationRequest': \(error)")
+            completion(error)
         }
     }
     

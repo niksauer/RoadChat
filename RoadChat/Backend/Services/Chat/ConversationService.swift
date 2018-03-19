@@ -11,15 +11,17 @@ import RoadChatKit
 
 struct ConversationService: JSendService {
     
-    typealias Resource = RoadChatKit.Conversation.PublicConversation
-    
+    // MARK: - Public Properties
+    typealias PrimaryResource = RoadChatKit.Conversation.PublicConversation
     let client: JSendAPIClient
     
+    // MARK: - Initialization
     init(credentials: APICredentialStore) {
         self.client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/chat", credentials: credentials)
     }
     
-    func create(_ conversation: RoadChatKit.ConversationRequest, completion: @escaping (Resource?, Error?) -> Void) throws {
+    // MARK: - Public Methods
+    func create(_ conversation: RoadChatKit.ConversationRequest, completion: @escaping (PrimaryResource?, Error?) -> Void) throws {
         try client.makePOSTRequest(body: conversation) { result in
             let result = self.decodeResource(from: result)
             completion(result.instance, result.error)
@@ -33,7 +35,7 @@ struct ConversationService: JSendService {
         }
     }
     
-    func get(conversationID: RoadChatKit.Conversation.ID, completion: @escaping (Resource?, Error?) -> Void) {
+    func get(conversationID: RoadChatKit.Conversation.ID, completion: @escaping (PrimaryResource?, Error?) -> Void) {
         client.makeGETRequest(to: "/chat/\(conversationID)") { result in
             let result = self.decodeResource(from: result)
             completion(result.instance, result.error)

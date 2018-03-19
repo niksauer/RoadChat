@@ -11,10 +11,13 @@ import CoreData
 
 class CoreDataStack: NSObject {
     
+    // MARK: - Singleton
     static let shared = CoreDataStack()
+    
+    // MARK: - Initialization
     private override init() {}
     
-    // MARK: - Core Data Stack
+    // MARK: - Public Properties
     var viewContext: NSManagedObjectContext {
         let viewContext = persistentContainer.viewContext
         return viewContext
@@ -41,7 +44,7 @@ class CoreDataStack: NSObject {
         return container
     }()
     
-    // MARK: - Core Data Saving Support
+    // MARK: - Public Methods
     func saveViewContext () {
         let context = viewContext
         

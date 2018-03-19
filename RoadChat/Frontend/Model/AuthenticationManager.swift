@@ -14,6 +14,7 @@ class AuthenticationManager {
     // MARK: - Public Properties
     let credentials: APICredentialStore
     let authenticationService: AuthenticationService
+    let userManager: UserManager
     
     var activeUser: User?
     
@@ -21,6 +22,7 @@ class AuthenticationManager {
     init(credentials: APICredentialStore) {
         self.credentials = credentials
         self.authenticationService = AuthenticationService(credentials: credentials)
+        self.userManager = UserManager(credentials: credentials)
     }
     
     // MARK: - Public Methods
@@ -40,7 +42,7 @@ class AuthenticationManager {
                     try self.credentials.setUserID(token.userID)
                     log.info("Successfully logged in user.")
                     
-                    User.getById(token.userID) { user, error in
+                    self.userManager.getUserById(token.userID) { user, error in
                         guard let user = user else {
                             // pass service / core data error
                             completion(nil, error!)

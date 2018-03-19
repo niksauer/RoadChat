@@ -15,6 +15,7 @@ class RegisterViewController: UIViewController {
     // MARK: - Public Properties
     let authenticationManager = AuthenticationManager(credentials: CredentialManager.shared)
     let navigator = NavigationHelper()
+    let userManager = UserManager(credentials: CredentialManager.shared)
     
     // MARK: - Outlets
     @IBOutlet weak var usernameTextField: UITextField!
@@ -48,7 +49,7 @@ class RegisterViewController: UIViewController {
        
         let registerRequest = RegisterRequest(email: email, username: username, password: password)
         
-        User.create(registerRequest) { error in
+        userManager.createUser(registerRequest) { error in
             guard error == nil else {
                 // handle registration error
                 return

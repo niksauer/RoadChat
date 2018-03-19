@@ -10,10 +10,13 @@ import UIKit
 
 class SetupViewController: UIViewController {
     
-    let credentials = CredentialManager.shared
+    // MARK: - Public Properties
     let navigator = NavigationHelper()
+    let credentials = CredentialManager.shared
     let authenticationManager = AuthenticationManager(credentials: CredentialManager.shared)
+    let userManager = UserManager(credentials: CredentialManager.shared)
     
+    // MARK: - Initialization
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -32,7 +35,7 @@ class SetupViewController: UIViewController {
         if let token = token, let userID = userID {
             log.info("User '\(userID)' is already logged in: \(token)")
             
-            User.getById(userID) { user, error in
+            userManager.getUserById(userID) { user, error in
                 guard let user = user else {
                     return
                 }
@@ -60,14 +63,10 @@ class SetupViewController: UIViewController {
         }
     }
     
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
 
 }

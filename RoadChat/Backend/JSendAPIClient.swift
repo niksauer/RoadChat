@@ -15,6 +15,8 @@ enum JSendAPIError: Error {
 }
 
 struct JSendAPIClient: APIClient {
+    
+    // MARK: - Private Properties
     private let session = URLSession(configuration: .default)
     
     private enum JSendResponse {
@@ -23,9 +25,11 @@ struct JSendAPIClient: APIClient {
         case error(String?)
     }
     
+    // MARK: - Public Properties
     let baseURL: String
     let credentials: APICredentialStore
 
+    // MARK: - Public Methods
     func makeGETRequest(to path: String? = nil, params: JSON? = nil, completion: @escaping (APIResult) -> Void) {
         let url = URL(baseURL: baseURL, path: path, params: params)
         let request = URLRequest(url: url, method: .get)
@@ -54,6 +58,7 @@ struct JSendAPIClient: APIClient {
         executeSessionDataTask(request: request, completion: completion)
     }
     
+    // MARK: - Private Methods
     private func executeSessionDataTask(request: URLRequest, completion: @escaping (APIResult) -> Void) {
         var request = request
         
@@ -121,4 +126,5 @@ struct JSendAPIClient: APIClient {
             return APIResult.success(data)
         }
     }
+
 }

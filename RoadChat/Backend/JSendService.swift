@@ -9,7 +9,7 @@
 import Foundation
 
 protocol Service {
-    associatedtype Resource: Decodable
+    associatedtype PrimaryResource: Decodable
 }
 
 protocol JSendService: Service {
@@ -50,8 +50,8 @@ extension JSendService {
         }
     }
     
-    func decodeResource(from result: APIResult) -> (instance: Resource?, error: Error?) {
-        return decode(Resource.self, from: result)
+    func decodeResource(from result: APIResult) -> (instance: PrimaryResource?, error: Error?) {
+        return decode(PrimaryResource.self, from: result)
     }
 
     func getError(from result: APIResult) -> Error? {

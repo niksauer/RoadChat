@@ -16,35 +16,6 @@ enum ConversationError: Error {
 
 class Conversation: NSManagedObject {
     
-    // MARK: - Public Static Methods
-    static func create(_ conversation: ConversationRequest, completion: @escaping (Error?) -> Void) {
-        do {
-            try ConversationService(credentials: CredentialManager.shared).create(conversation) { conversation, error in
-                guard let conversation = conversation else {
-                    // pass service error
-                    log.error("Failed to create conversation: \(error!)")
-                    completion(error!)
-                    return
-                }
-                
-                do {
-                    _ = try Conversation.createOrUpdate(from: conversation, in: CoreDataStack.shared.viewContext)
-                    CoreDataStack.shared.saveViewContext()
-                    log.info("Successfully created Core Data 'Conversation' instance.")
-                    completion(nil)
-                } catch {
-                    // pass core data error
-                    log.error("Failed to create Core Data 'Conversation' instance: \(error)")
-                    completion(error)
-                }
-            }
-        } catch {
-            // pass body encoding error
-            log.error("Failed to send 'ConversationRequest': \(error)")
-            completion(error)
-        }
-    }
-    
     // MARK: - Public Class Methods
     class func createOrUpdate(from response: RoadChatKit.Conversation.PublicConversation, in context: NSManagedObjectContext) throws -> Conversation {
         let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()

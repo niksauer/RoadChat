@@ -11,9 +11,11 @@ import RoadChatKit
 
 class ProfileViewController: UITableViewController {
 
+    // MARK: - Public Properties
     let authenticationManager = AuthenticationManager(credentials: CredentialManager.shared)
     let navigator = NavigationHelper()
     
+    // MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,14 +30,20 @@ class ProfileViewController: UITableViewController {
         super.viewWillAppear(animated)
     }
     
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    
+    // MARK: - Public Methods
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
         authenticationManager.logout { error in
             self.navigator.showLogin()
         }
     }
     
-    // MARK: - Table view data source
-
+    // MARK: - Table View Data Source
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
@@ -91,14 +99,6 @@ class ProfileViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+ 
 
 }

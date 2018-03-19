@@ -19,7 +19,7 @@ class DirectMessage: NSManagedObject {
     // MARK: - Public Class Methods
     class func create(from response: RoadChatKit.DirectMessage.PublicDirectMessage, conversation: Conversation, in context: NSManagedObjectContext) throws -> DirectMessage {
         let request: NSFetchRequest<DirectMessage> = DirectMessage.fetchRequest()
-        request.predicate = NSPredicate(format: "conversation.id = %d AND senderID = %d AND time = %@ ", conversation.id, response.senderID, response.time as CVarArg)
+        request.predicate = NSPredicate(format: "conversation.id = %d AND id = %d", conversation.id, response.id)
         
         do {
             let matches = try context.fetch(request)

@@ -11,29 +11,31 @@ import RoadChatKit
 
 struct CommunityService: JSendService {
     
-    typealias Resource = RoadChatKit.CommunityMessage.PublicCommunityMessage
-    
+    // MARK: - Public Properties
+    typealias PrimaryResource = RoadChatKit.CommunityMessage.PublicCommunityMessage
     let client: JSendAPIClient
     
+    // MARK: - Initialization
     init(credentials: APICredentialStore) {
         self.client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/community", credentials: credentials)
     }
     
-    func create(_ communityMessage: RoadChatKit.CommunityMessageRequest, completion: @escaping (Resource?, Error?) -> Void) throws {
+    // MARK: - Public Methods
+    func create(_ communityMessage: RoadChatKit.CommunityMessageRequest, completion: @escaping (PrimaryResource?, Error?) -> Void) throws {
         try client.makePOSTRequest(to: "/board", body: communityMessage) { result in
             let result = self.decodeResource(from: result)
             completion(result.instance, result.error)
         }
     }
     
-    func index(completion: @escaping ([Resource]?, Error?) -> Void) throws {
+    func index(completion: @escaping ([PrimaryResource]?, Error?) -> Void) throws {
         client.makeGETRequest(to: "/board", params: nil) { result in
-            let result = self.decode([Resource].self, from: result)
+            let result = self.decode([PrimaryResource].self, from: result)
             completion(result.instance, result.error)
         }
     }
     
-    func get(messageID: Int, completion: @escaping (Resource?, Error?) -> Void) throws {
+    func get(messageID: Int, completion: @escaping (PrimaryResource?, Error?) -> Void) throws {
         client.makeGETRequest(to: "/message/\(messageID)", params: nil) { result in
             let result = self.decodeResource(from: result)
             completion(result.instance, result.error)

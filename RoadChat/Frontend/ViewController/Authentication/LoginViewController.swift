@@ -13,8 +13,8 @@ import Locksmith
 class LoginViewController: UIViewController {
     
     // MARK: - Public Properties
-    let authenticationManager = AuthenticationManager(credentials: CredentialManager.shared)
     let navigator = NavigationHelper()
+    let authenticationManager = AuthenticationManager(credentials: CredentialManager.shared)
     
     // MARK: - Outlets
     @IBOutlet weak var usernameTextField: UITextField!

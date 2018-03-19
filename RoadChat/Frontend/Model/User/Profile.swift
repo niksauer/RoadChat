@@ -12,14 +12,6 @@ import RoadChatKit
 
 class Profile: NSManagedObject {
     
-    // MARK: - Public Static Methods
-    static func createOrUpdate(_ profile: ProfileRequest, user: User, in context: NSManagedObjectContext) throws -> Profile {
-        let privacy = RoadChatKit.Privacy(userID: Int(user.id))
-        let profile = RoadChatKit.Profile(userID: Int(user.id), profileRequest: profile)
-        let publicProfile = RoadChatKit.Profile.PublicProfile(profile: profile, privacy: privacy, isOwner: true)
-        return try createOrUpdate(from: publicProfile, user: user, in: context)
-    }
-    
     // MARK: - Public Class Methods
     class func createOrUpdate(from response: RoadChatKit.Profile.PublicProfile, user: User, in context: NSManagedObjectContext) throws -> Profile {
         let request: NSFetchRequest<Profile> = Profile.fetchRequest()

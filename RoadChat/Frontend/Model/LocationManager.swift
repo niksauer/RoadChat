@@ -11,13 +11,16 @@ import CoreLocation
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
     
+    // MARK: - Public Properties
     let locationManager = CLLocationManager()
     
+    // MARK: - Initialization
     override init() {
         super.init()
         locationManager.delegate = self
     }
     
+    // MARK: - Public Methods
     func startPolling() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()

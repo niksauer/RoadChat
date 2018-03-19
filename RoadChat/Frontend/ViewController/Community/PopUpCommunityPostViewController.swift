@@ -11,18 +11,25 @@ import RoadChatKit
 
 class PopUpCommunityPostViewController: UIViewController {
     
+    // MARK: - Public Properties
+    let communityBoard = CommunityBoard()
+    
+    // MARK: - Outlets
     @IBOutlet weak var communityMessageTextArea: UITextView!
-
+    
+    // MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
     
+    // MARK: - Public Methods
     @IBAction func postButtonPressed(_ sender: Any) {
         let time = Date()
         guard let postText = communityMessageTextArea.text else {
@@ -31,8 +38,8 @@ class PopUpCommunityPostViewController: UIViewController {
             return
         }
         
-        let communityRequest = CommunityMessageRequest(time: time, message: postText, latitude: 100, longitude: 100, altitude: 100, horizontalAccuracy: 10, verticalAccuracy: 10, course: 10, speed: 10)
-        CommunityMessage.create(communityRequest) { error in
+        let communityMessageRequest = CommunityMessageRequest(time: time, message: postText, latitude: 100, longitude: 100, altitude: 100, horizontalAccuracy: 10, verticalAccuracy: 10, course: 10, speed: 10)
+        communityBoard.postMessage(communityMessageRequest) { error in
             guard error == nil else {
                 //handle post error
                 return
@@ -45,15 +52,5 @@ class PopUpCommunityPostViewController: UIViewController {
     @IBAction func cancelButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+
 }
