@@ -9,19 +9,31 @@
 import Foundation
 import CoreLocation
 
-class LocationManager: NSObject, CLLocationManagerDelegate{
+class LocationManager: NSObject, CLLocationManagerDelegate {
     
+    // MARK: - Public Properties
     let locationManager = CLLocationManager()
+    var lastLocation: CLLocation?
     
-    func startPollingLocation() {
+    // MARK: - Initialization
+    override init() {
+        super.init()
         locationManager.delegate = self
+    }
+    
+    // MARK: - Public Methods
+    func startPolling() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        for currentLocation in locations {
-            print(index, ": ", currentLocation)
-        }
+    func stopPolling() {
+        locationManager.stopUpdatingLocation()
     }
+    
+    // MARK: - CLLocationManagerDelegate
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        lastLocation = locations.last
+    }
+
 }

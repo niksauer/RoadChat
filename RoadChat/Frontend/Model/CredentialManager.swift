@@ -15,6 +15,10 @@ enum CredentialError: Error {
 
 struct CredentialManager: APICredentialStore {
     
+    // MARK: - Singleton
+    static var shared = CredentialManager()
+    
+    // MARK: - Private Properties
     private enum keys: String {
         case userID
         case accessToken
@@ -22,8 +26,10 @@ struct CredentialManager: APICredentialStore {
     
     private var userAccount = "RoadChatUser"
     
+    // MARK: - Initialization
     private init() {}
 
+    // MARK: - Private Methods
     private func getValue(for key: String) -> Any? {
         return Locksmith.loadDataForUserAccount(userAccount: userAccount)?[key]
     }
@@ -37,8 +43,7 @@ struct CredentialManager: APICredentialStore {
         }
     }
     
-    static var shared = CredentialManager()
-    
+    // MARK: - Public Methods
     func getUserID() -> Int? {
         return getValue(for: keys.userID.rawValue) as? Int
     }

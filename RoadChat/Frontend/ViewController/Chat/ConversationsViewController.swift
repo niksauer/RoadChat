@@ -11,32 +11,24 @@ import CoreData
 
 class ConversationsViewController: FetchedResultsTableViewController {
     
-    var user: User!
+    // MARK: - Public Properties
+    let user = AuthenticationManager.activeUser!
     
+    // MARK: - Private Properties
     private var fetchedResultsController: NSFetchedResultsController<Conversation>?
     
+    // MARK: - Initialization
     override func viewDidLoad() {
         updateUI()
-    
-        user.getConversations { error in
-            guard error == nil else {
-                // handle retrieval error
-                return
-            }
-        }
     }
     
+    // MARK: - Private Methods
     private func updateUI() {
-        guard let userID = CredentialManager.shared.getUserID() else {
-            // handle missing userID error of logged in user
-            return
-        }
-        
         let context = CoreDataStack.shared.viewContext
         let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
 //        NSSortDescriptor(key: "", ascending: <#T##Bool#>)
         request.sortDescriptors = []
-        request.predicate = NSPredicate(format: "any participants.userID = %d", userID)
+        request.predicate = NSPredicate(format: "any participants.userID = %d", user.id)
         
         fetchedResultsController = NSFetchedResultsController<Conversation>(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: "Conversations")
         
@@ -45,6 +37,7 @@ class ConversationsViewController: FetchedResultsTableViewController {
         tableView.reloadData()
     }
     
+    // MARK: - Table View Data Source
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "conversationCell", for: indexPath)
         
@@ -53,8 +46,10 @@ class ConversationsViewController: FetchedResultsTableViewController {
         
         return cell
     }
+
 }
 
+// MARK: - Table View Data Source
 extension ConversationsViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController?.sections?.count ?? 1

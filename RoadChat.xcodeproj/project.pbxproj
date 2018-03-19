@@ -19,6 +19,7 @@
 		240D10F920481843008C5E39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D10F820481843008C5E39 /* AppDelegate.swift */; };
 		240D110220481843008C5E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D110120481843008C5E39 /* Assets.xcassets */; };
 		240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D110320481843008C5E39 /* LaunchScreen.storyboard */; };
+		242089BE205EB1C700FFEC90 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242089BD205EB1C700FFEC90 /* SetupViewController.swift */; };
 		242F8F2E204D6EA80052087B /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F8F2D204D6EA80052087B /* AuthenticationService.swift */; };
 		243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243357252049817A00CD5F87 /* JSendAPIClient.swift */; };
 		243F1EB92048422100B45955 /* CommunityBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EB82048422100B45955 /* CommunityBoardViewController.swift */; };
@@ -26,6 +27,10 @@
 		243F1EBD204842CF00B45955 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBC204842CF00B45955 /* ProfileViewController.swift */; };
 		245EAE332051346600821B4B /* ConversationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245EAE322051346600821B4B /* ConversationService.swift */; };
 		24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24615DA420508E5400ED11A1 /* CredentialManager.swift */; };
+		247F6CF8205EBF940006FBC7 /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6CF7205EBF940006FBC7 /* NavigationHelper.swift */; };
+		247F6D1D205F26AE0006FBC7 /* CommunityBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D1C205F26AE0006FBC7 /* CommunityBoard.swift */; };
+		247F6D21205F3C9C0006FBC7 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D20205F3C9C0006FBC7 /* UserManager.swift */; };
+		2489C4B72055E01E005C937E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489C4B62055E01E005C937E /* APIClient.swift */; };
 		248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 248D378D20485DC100B21C3D /* RoadChat.xcdatamodeld */; };
 		248D379120493EC800B21C3D /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379020493EC800B21C3D /* ConversationsViewController.swift */; };
 		248D379820494D0900B21C3D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379720494D0800B21C3D /* User.swift */; };
@@ -44,12 +49,10 @@
 		24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; };
 		24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C93155452051920C00F4C429 /* TrafficService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93155442051920C00F4C429 /* TrafficService.swift */; };
-		C947689C20544590001FE7C5 /* TrafficBoardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C947689B20544590001FE7C5 /* TrafficBoardStore.swift */; };
 		C988ACA52052BB3200EDCEAC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988ACA42052BB3200EDCEAC /* LocationManager.swift */; };
 		D40B2059205145B1000823E4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B2058205145B1000823E4 /* RegisterViewController.swift */; };
 		D40B20E420519652000823E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40B20E220519652000823E4 /* Main.storyboard */; };
 		D44F4B7D20528076009A6239 /* CommunityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F4B7C20528076009A6239 /* CommunityService.swift */; };
-		D44F4B80205282CC009A6239 /* CommunityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F4B7F205282CC009A6239 /* CommunityStore.swift */; };
 		D44F4B88205297A7009A6239 /* PopUpCommunityPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F4B87205297A7009A6239 /* PopUpCommunityPostViewController.swift */; };
 		D48274E220503FF800A46FA9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48274E120503FF800A46FA9 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
@@ -205,13 +208,18 @@
 		240D110120481843008C5E39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		240D110420481843008C5E39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		240D110620481844008C5E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		242F8F2D204D6EA80052087B /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthenticationService.swift; path = User/AuthenticationService.swift; sourceTree = "<group>"; };
+		242089BD205EB1C700FFEC90 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
+		242F8F2D204D6EA80052087B /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		243357252049817A00CD5F87 /* JSendAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JSendAPIClient.swift; path = RoadChat/Backend/JSendAPIClient.swift; sourceTree = SOURCE_ROOT; };
 		243F1EB82048422100B45955 /* CommunityBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoardViewController.swift; sourceTree = "<group>"; };
 		243F1EBA204842A200B45955 /* TrafficBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficBoardViewController.swift; sourceTree = "<group>"; };
 		243F1EBC204842CF00B45955 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		245EAE322051346600821B4B /* ConversationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationService.swift; sourceTree = "<group>"; };
 		24615DA420508E5400ED11A1 /* CredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialManager.swift; sourceTree = "<group>"; };
+		247F6CF7205EBF940006FBC7 /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
+		247F6D1C205F26AE0006FBC7 /* CommunityBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoard.swift; sourceTree = "<group>"; };
+		247F6D20205F3C9C0006FBC7 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		2489C4B62055E01E005C937E /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		248D378E20485DC100B21C3D /* RoadChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RoadChat.xcdatamodel; sourceTree = "<group>"; };
 		248D379020493EC800B21C3D /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
 		248D379720494D0800B21C3D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -226,16 +234,14 @@
 		248D37AE2049501100B21C3D /* CommunityMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessage.swift; sourceTree = "<group>"; };
 		248D37B02049504B00B21C3D /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		24A069B02051EFC8006F8401 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		24A069BA20520367006F8401 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthenticationManager.swift; path = RoadChat/Frontend/ModelStore/AuthenticationManager.swift; sourceTree = SOURCE_ROOT; };
+		24A069BA20520367006F8401 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthenticationManager.swift; path = RoadChat/Frontend/Model/AuthenticationManager.swift; sourceTree = SOURCE_ROOT; };
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
 		24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyBeaver.xcodeproj; path = Frameworks/SwiftyBeaver/SwiftyBeaver.xcodeproj; sourceTree = "<group>"; };
 		C93155442051920C00F4C429 /* TrafficService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficService.swift; sourceTree = "<group>"; };
-		C947689B20544590001FE7C5 /* TrafficBoardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrafficBoardStore.swift; path = RoadChat/Frontend/ModelStore/TrafficBoardStore.swift; sourceTree = SOURCE_ROOT; };
 		C988ACA42052BB3200EDCEAC /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		D40B2058205145B1000823E4 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		D40B20E320519652000823E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D44F4B7C20528076009A6239 /* CommunityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityService.swift; sourceTree = "<group>"; };
-		D44F4B7F205282CC009A6239 /* CommunityStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityStore.swift; sourceTree = "<group>"; };
 		D44F4B87205297A7009A6239 /* PopUpCommunityPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpCommunityPostViewController.swift; sourceTree = "<group>"; };
 		D48274E120503FF800A46FA9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -258,6 +264,7 @@
 		2404A25C204ED13A009AC7E1 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				242F8F2D204D6EA80052087B /* AuthenticationService.swift */,
 				2404A255204E92D2009AC7E1 /* UserService.swift */,
 				2404A25D204ED162009AC7E1 /* CarService.swift */,
 			);
@@ -325,7 +332,6 @@
 		2422D00120514FEA0081A552 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				242F8F2D204D6EA80052087B /* AuthenticationService.swift */,
 				2404A25C204ED13A009AC7E1 /* User */,
 				D44F4B7B20528045009A6239 /* Community */,
 				C93155432051920C00F4C429 /* Traffic */,
@@ -346,7 +352,7 @@
 		243F1EB320483BAD00B45955 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				240B9B8520534FAA00216E68 /* FetchedResultsTableViewController.swift */,
+				242089BD205EB1C700FFEC90 /* SetupViewController.swift */,
 				2422D01B205155CF0081A552 /* Authentication */,
 				243F1EB420483BC100B45955 /* User */,
 				243F1EB620483BD100B45955 /* Community */,
@@ -397,6 +403,15 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		247F6D06205F097D0006FBC7 /* UIHelper */ = {
+			isa = PBXGroup;
+			children = (
+				240B9B8520534FAA00216E68 /* FetchedResultsTableViewController.swift */,
+				247F6CF7205EBF940006FBC7 /* NavigationHelper.swift */,
+			);
+			path = UIHelper;
+			sourceTree = "<group>";
+		};
 		248D379220493ED000B21C3D /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,7 +423,10 @@
 		248D379920494D0F00B21C3D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				248D37AA20494FE200B21C3D /* Location.swift */,
+				24615DA420508E5400ED11A1 /* CredentialManager.swift */,
+				24A069B02051EFC8006F8401 /* CoreDataStack.swift */,
+				24A069BA20520367006F8401 /* AuthenticationManager.swift */,
+				C988ACA42052BB3200EDCEAC /* LocationManager.swift */,
 				248D379A20494D1800B21C3D /* User */,
 				248D37B32049506D00B21C3D /* Community */,
 				248D37A320494F1C00B21C3D /* Traffic */,
@@ -420,8 +438,10 @@
 		248D379A20494D1800B21C3D /* User */ = {
 			isa = PBXGroup;
 			children = (
-				248D37B02049504B00B21C3D /* Car.swift */,
+				247F6D20205F3C9C0006FBC7 /* UserManager.swift */,
 				248D379720494D0800B21C3D /* User.swift */,
+				248D37B02049504B00B21C3D /* Car.swift */,
+				248D37AA20494FE200B21C3D /* Location.swift */,
 				248D379B20494E1F00B21C3D /* Settings.swift */,
 				248D379D20494EA400B21C3D /* Profile.swift */,
 				248D379F20494EC000B21C3D /* Privacy.swift */,
@@ -450,6 +470,7 @@
 		248D37B32049506D00B21C3D /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				247F6D1C205F26AE0006FBC7 /* CommunityBoard.swift */,
 				248D37AE2049501100B21C3D /* CommunityMessage.swift */,
 			);
 			path = Community;
@@ -459,7 +480,7 @@
 			isa = PBXGroup;
 			children = (
 				243F1EB320483BAD00B45955 /* ViewController */,
-				24A069B620520073006F8401 /* ModelStore */,
+				247F6D06205F097D0006FBC7 /* UIHelper */,
 				248D379920494D0F00B21C3D /* Model */,
 			);
 			path = Frontend;
@@ -468,24 +489,12 @@
 		248D37B8204952C300B21C3D /* Backend */ = {
 			isa = PBXGroup;
 			children = (
-				2404A25A204EAFAC009AC7E1 /* JSendService.swift */,
+				2489C4B62055E01E005C937E /* APIClient.swift */,
 				243357252049817A00CD5F87 /* JSendAPIClient.swift */,
-				24615DA420508E5400ED11A1 /* CredentialManager.swift */,
+				2404A25A204EAFAC009AC7E1 /* JSendService.swift */,
 				2422D00120514FEA0081A552 /* Services */,
 			);
 			path = Backend;
-			sourceTree = "<group>";
-		};
-		24A069B620520073006F8401 /* ModelStore */ = {
-			isa = PBXGroup;
-			children = (
-				24A069B02051EFC8006F8401 /* CoreDataStack.swift */,
-				24A069BA20520367006F8401 /* AuthenticationManager.swift */,
-				C988ACA42052BB3200EDCEAC /* LocationManager.swift */,
-				D44F4B7E205282B7009A6239 /* Community */,
-				24DF5D112052F52400772B00 /* Traffic */,
-			);
-			path = ModelStore;
 			sourceTree = "<group>";
 		};
 		24AED4AD204CC2EB002A1703 /* Products */ = {
@@ -495,14 +504,6 @@
 				24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		24DF5D112052F52400772B00 /* Traffic */ = {
-			isa = PBXGroup;
-			children = (
-				C947689B20544590001FE7C5 /* TrafficBoardStore.swift */,
-			);
-			path = Traffic;
 			sourceTree = "<group>";
 		};
 		24F1DD2620517B8E00A726AA /* Products */ = {
@@ -529,14 +530,6 @@
 			isa = PBXGroup;
 			children = (
 				D44F4B7C20528076009A6239 /* CommunityService.swift */,
-			);
-			path = Community;
-			sourceTree = "<group>";
-		};
-		D44F4B7E205282B7009A6239 /* Community */ = {
-			isa = PBXGroup;
-			children = (
-				D44F4B7F205282CC009A6239 /* CommunityStore.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -738,13 +731,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				248D37AD20494FFB00B21C3D /* DirectMessage.swift in Sources */,
-				D44F4B80205282CC009A6239 /* CommunityStore.swift in Sources */,
 				248D37A720494F7E00B21C3D /* Conversation.swift in Sources */,
+				247F6D21205F3C9C0006FBC7 /* UserManager.swift in Sources */,
 				243F1EBB204842A200B45955 /* TrafficBoardViewController.swift in Sources */,
 				24A069BB20520367006F8401 /* AuthenticationManager.swift in Sources */,
 				243F1EB92048422100B45955 /* CommunityBoardViewController.swift in Sources */,
 				243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */,
 				248D379C20494E1F00B21C3D /* Settings.swift in Sources */,
+				2489C4B72055E01E005C937E /* APIClient.swift in Sources */,
 				248D37A920494F9900B21C3D /* Participant.swift in Sources */,
 				240B9B8620534FAA00216E68 /* FetchedResultsTableViewController.swift in Sources */,
 				24A069B12051EFC8006F8401 /* CoreDataStack.swift in Sources */,
@@ -754,6 +748,7 @@
 				248D37AB20494FE200B21C3D /* Location.swift in Sources */,
 				240D10F920481843008C5E39 /* AppDelegate.swift in Sources */,
 				D44F4B7D20528076009A6239 /* CommunityService.swift in Sources */,
+				247F6D1D205F26AE0006FBC7 /* CommunityBoard.swift in Sources */,
 				D48274E220503FF800A46FA9 /* LoginViewController.swift in Sources */,
 				D44F4B88205297A7009A6239 /* PopUpCommunityPostViewController.swift in Sources */,
 				C988ACA52052BB3200EDCEAC /* LocationManager.swift in Sources */,
@@ -762,6 +757,7 @@
 				248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */,
 				24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */,
 				2404A256204E92D2009AC7E1 /* UserService.swift in Sources */,
+				247F6CF8205EBF940006FBC7 /* NavigationHelper.swift in Sources */,
 				248D37B12049504B00B21C3D /* Car.swift in Sources */,
 				245EAE332051346600821B4B /* ConversationService.swift in Sources */,
 				248D37A020494EC000B21C3D /* Privacy.swift in Sources */,
@@ -769,9 +765,9 @@
 				2404A25B204EAFAC009AC7E1 /* JSendService.swift in Sources */,
 				C93155452051920C00F4C429 /* TrafficService.swift in Sources */,
 				D40B2059205145B1000823E4 /* RegisterViewController.swift in Sources */,
-				C947689C20544590001FE7C5 /* TrafficBoardStore.swift in Sources */,
 				248D379E20494EA400B21C3D /* Profile.swift in Sources */,
 				248D379820494D0900B21C3D /* User.swift in Sources */,
+				242089BE205EB1C700FFEC90 /* SetupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

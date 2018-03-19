@@ -10,35 +10,42 @@ import Foundation
 import CoreData
 import RoadChatKit
 
-enum CommunityError: Error {
+enum CommunityMessageError: Error {
     case duplicate
 }
 
 class CommunityMessage: NSManagedObject {
     
-    class func create(from prototype: RoadChatKit.CommunityMessage.PublicCommunityMessage, in context: NSManagedObjectContext) throws -> CommunityMessage {
+    // MARK: - Public Class Methods
+    class func createOrUpdate(from response: RoadChatKit.CommunityMessage.PublicCommunityMessage, in context: NSManagedObjectContext) throws -> CommunityMessage {
         let request: NSFetchRequest<CommunityMessage> = CommunityMessage.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %d", prototype.id)
+        request.predicate = NSPredicate(format: "id = %d", response.id)
         
         do {
             let matches = try context.fetch(request)
+            
             if matches.count > 0 {
-                assert(matches.count >= 1, "Transaction.createTransaction -- Database Inconsistency")
-                throw CommunityError.duplicate
+                assert(matches.count >= 1, "CommunityMessage.create -- Database Inconsistency")
+                
+                let message = matches.first!
+                message.message = response.message
+                message.upvotes = Int16(response.upvotes)
+                
+                return message
             }
         } catch {
             throw error
         }
         
-        let post = CommunityMessage(context: context)
-        post.id = Int32(prototype.id)
-        post.locationID = Int32(prototype.locationID)
-        post.message = prototype.message
-        post.senderID = Int32(prototype.senderID)
-        post.time = prototype.time
-        post.upvotes = Int16(prototype.upvotes)
+        let message = CommunityMessage(context: context)
+        message.id = Int32(response.id)
+        message.locationID = Int32(response.locationID)
+        message.message = response.message
+        message.senderID = Int32(response.senderID)
+        message.time = response.time
+        message.upvotes = Int16(response.upvotes)
         
-        return post
+        return message
     }
     
 }

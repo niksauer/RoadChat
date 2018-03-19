@@ -1,22 +1,24 @@
 //
-//  CommunityStore.swift
+//  CommunityBoard.swift
 //  RoadChat
 //
-//  Created by Malcolm Malam on 09.03.18.
+//  Created by Niklas Sauer on 18.03.18.
 //  Copyright © 2018 Niklas Sauer. All rights reserved.
 //
 
 import Foundation
 import RoadChatKit
 
-struct CommunityStore {
+struct CommunityBoard {
     
-    private let communityService = CommunityService()
+    // MARK: - Public Properties
+    let communityService = CommunityService(credentials: CredentialManager.shared)
     
-    func create(_ post: CommunityMessageRequest, completion: @escaping (Error?) -> Void) {
+    // MARK: - Public Methods
+    func postMessage(_ message: CommunityMessageRequest, completion: @escaping (Error?) -> Void) {
         do {
-            try communityService.create(post) { post, error in
-                guard let post = post else {
+            try communityService.create(message) { message, error in
+                guard let message = message else {
                     // pass service error
                     log.error("Failed to create post: \(error!)")
                     completion(error!)
@@ -24,7 +26,7 @@ struct CommunityStore {
                 }
                 
                 do {
-                    _ = try CommunityMessage.create(from: post, in: CoreDataStack.shared.viewContext)
+                    _ = try CommunityMessage.createOrUpdate(from: message, in: CoreDataStack.shared.viewContext)
                     CoreDataStack.shared.saveViewContext()
                     log.info("Successfully created Core Data 'CommunityMessage' instance.")
                     completion(nil)

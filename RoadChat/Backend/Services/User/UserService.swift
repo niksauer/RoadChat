@@ -11,18 +11,24 @@ import RoadChatKit
 
 struct UserService: JSendService {
     
-    typealias Resource = RoadChatKit.User.PublicUser
+    // MARK: - Public Properties
+    typealias PrimaryResource = RoadChatKit.User.PublicUser
+    let client: JSendAPIClient
     
-    private let client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/user", credentials: CredentialManager.shared)
+    // MARK: - Initialization
+    init(credentials: APICredentialStore) {
+        self.client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/user", credentials: credentials)
+    }
     
-    func create(_ user: RoadChatKit.RegisterRequest, completion: @escaping (Resource?, Error?) -> Void) throws {
+    // MARK: - Public Methods
+    func create(_ user: RoadChatKit.RegisterRequest, completion: @escaping (PrimaryResource?, Error?) -> Void) throws {
         try client.makePOSTRequest(body: user) { result in
             let result = self.decodeResource(from: result)
             completion(result.instance, result.error)
         }
     }
     
-    func get(userID: RoadChatKit.User.ID, completion: @escaping (Resource?, Error?) -> Void) {
+    func get(userID: RoadChatKit.User.ID, completion: @escaping (PrimaryResource?, Error?) -> Void) {
         client.makeGETRequest(to: "/\(userID)") { result in
             let result = self.decodeResource(from: result)
             completion(result.instance, result.error)
@@ -61,7 +67,7 @@ struct UserService: JSendService {
         }
     }
     
-    func updateProfile(userID: RoadChatKit.User.ID, to profile: RoadChatKit.ProfileRequest, completion: @escaping (Error?) -> Void) throws {
+    func createOrUpdateProfile(userID: RoadChatKit.User.ID, to profile: RoadChatKit.ProfileRequest, completion: @escaping (Error?) -> Void) throws {
         try client.makePUTRequest(to: "/\(userID)/profile", body: profile) { result in
             completion(self.getError(from: result))
         }
