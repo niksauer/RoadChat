@@ -7,17 +7,13 @@
 //
 
 import Foundation
+import CoreData
 import RoadChatKit
 
 struct UserManager {
     
     // MARK: - Public Properties
-    let userService: UserService
-    
-    // MARK: - Initialization
-    init(credentials: APICredentialStore) {
-        self.userService = UserService(credentials: credentials)
-    }
+    let userService = UserService(credentials: CredentialManager.shared)
     
     // MARK: - Public Methods
     func createUser(_ user: RegisterRequest, completion: @escaping (Error?) -> Void) {
@@ -46,6 +42,14 @@ struct UserManager {
             log.error("Failed to send 'RegisterRequest': \(error)")
             completion(error)
         }
+    }
+    
+    func findUserById(_ id: Int) -> User? {
+        let request: NSFetchRequest<User> = User.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %d", id)
+        
+        let matches = try? CoreDataStack.shared.viewContext.fetch(request)
+        return matches?.first
     }
     
     func getUserById(_ id: Int, completion: @escaping (User?, Error?) -> Void) {

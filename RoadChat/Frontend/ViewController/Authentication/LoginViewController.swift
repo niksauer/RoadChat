@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
     
     // MARK: - Public Properties
     let navigator = NavigationHelper()
-    let authenticationManager = AuthenticationManager(credentials: CredentialManager.shared)
+    let authenticationManager = AuthenticationManager()
     
     // MARK: - Outlets
     @IBOutlet weak var usernameTextField: UITextField!

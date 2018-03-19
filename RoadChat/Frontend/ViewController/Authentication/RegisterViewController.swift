@@ -13,9 +13,9 @@ import Locksmith
 class RegisterViewController: UIViewController {
 
     // MARK: - Public Properties
-    let authenticationManager = AuthenticationManager(credentials: CredentialManager.shared)
+    let authenticationManager = AuthenticationManager()
     let navigator = NavigationHelper()
-    let userManager = UserManager(credentials: CredentialManager.shared)
+    let userManager = UserManager()
     
     // MARK: - Outlets
     @IBOutlet weak var usernameTextField: UITextField!

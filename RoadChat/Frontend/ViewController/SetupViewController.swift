@@ -13,8 +13,7 @@ class SetupViewController: UIViewController {
     // MARK: - Public Properties
     let navigator = NavigationHelper()
     let credentials = CredentialManager.shared
-    let authenticationManager = AuthenticationManager(credentials: CredentialManager.shared)
-    let userManager = UserManager(credentials: CredentialManager.shared)
+    let userManager = UserManager()
     
     // MARK: - Initialization
     override func viewDidAppear(_ animated: Bool) {
@@ -35,17 +34,26 @@ class SetupViewController: UIViewController {
         if let token = token, let userID = userID {
             log.info("User '\(userID)' is already logged in: \(token)")
             
-            userManager.getUserById(userID) { user, error in
-                guard let user = user else {
-                    return
-                }
-                
+            if let user = userManager.findUserById(userID) {
                 // set active user
-                self.authenticationManager.activeUser = user
+                AuthenticationManager.activeUser = user
                 log.info("Set currently active user '\(user.id)'.")
                 
                 // show home screen
                 self.navigator.showHome()
+            } else {
+                userManager.getUserById(userID) { user, error in
+                    guard let user = user else {
+                        fatalError("Unable to retrieve currently active user: \(error!)")
+                    }
+                    
+                    // set active user
+                    AuthenticationManager.activeUser = user
+                    log.info("Set currently active user '\(user.id)'.")
+                    
+                    // show home screen
+                    self.navigator.showHome()
+                }
             }
         } else {
             if token != nil || userID != nil {

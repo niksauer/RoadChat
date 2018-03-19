@@ -11,19 +11,13 @@ import RoadChatKit
 
 class AuthenticationManager {
     
+    // MARK: - Public Static Properties
+    static var activeUser: User?
+    
     // MARK: - Public Properties
-    let credentials: APICredentialStore
-    let authenticationService: AuthenticationService
-    let userManager: UserManager
-    
-    var activeUser: User?
-    
-    // MARK: - Initialization
-    init(credentials: APICredentialStore) {
-        self.credentials = credentials
-        self.authenticationService = AuthenticationService(credentials: credentials)
-        self.userManager = UserManager(credentials: credentials)
-    }
+    let credentials = CredentialManager.shared
+    let authenticationService = AuthenticationService(credentials: CredentialManager.shared)
+    let userManager = UserManager()
     
     // MARK: - Public Methods
     func login(_ user: LoginRequest, completion: @escaping (User?, Error?) -> Void) {
@@ -50,7 +44,7 @@ class AuthenticationManager {
                         }
                         
                         // set active user
-                        self.activeUser = user
+                        AuthenticationManager.activeUser = user
                         log.debug("Set currently active user '\(user.id)'.")
                         completion(user, nil)
                     }
@@ -83,7 +77,7 @@ class AuthenticationManager {
                 log.info("Successfully logged out user.")
                 
                 // unset active user
-                self.activeUser = nil
+                AuthenticationManager.activeUser = nil
                 log.debug("Unset currently active user.")
                 completion(nil)
             } catch {

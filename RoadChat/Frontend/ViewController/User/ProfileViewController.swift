@@ -12,7 +12,7 @@ import RoadChatKit
 class ProfileViewController: UITableViewController {
 
     // MARK: - Public Properties
-    let authenticationManager = AuthenticationManager(credentials: CredentialManager.shared)
+    let authenticationManager = AuthenticationManager()
     let navigator = NavigationHelper()
     
     // MARK: - Initialization

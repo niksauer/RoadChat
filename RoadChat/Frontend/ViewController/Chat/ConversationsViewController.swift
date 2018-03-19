@@ -12,7 +12,7 @@ import CoreData
 class ConversationsViewController: FetchedResultsTableViewController {
     
     // MARK: - Public Properties
-    let user = AuthenticationManager(credentials: CredentialManager.shared).activeUser!
+    let user = AuthenticationManager.activeUser!
     
     // MARK: - Private Properties
     private var fetchedResultsController: NSFetchedResultsController<Conversation>?
@@ -20,27 +20,15 @@ class ConversationsViewController: FetchedResultsTableViewController {
     // MARK: - Initialization
     override func viewDidLoad() {
         updateUI()
-        
-        user.getConversations { error in
-            guard error == nil else {
-                // handle retrieval error
-                return
-            }
-        }
     }
     
     // MARK: - Private Methods
     private func updateUI() {
-        guard let userID = CredentialManager.shared.getUserID() else {
-            // handle missing userID error of logged in user
-            return
-        }
-        
         let context = CoreDataStack.shared.viewContext
         let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
 //        NSSortDescriptor(key: "", ascending: <#T##Bool#>)
         request.sortDescriptors = []
-        request.predicate = NSPredicate(format: "any participants.userID = %d", userID)
+        request.predicate = NSPredicate(format: "any participants.userID = %d", user.id)
         
         fetchedResultsController = NSFetchedResultsController<Conversation>(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: "Conversations")
         
