@@ -9,7 +9,7 @@
 import Foundation
 import RoadChatKit
 
-struct TrafficStore {
+struct TrafficBoardStore {
     
     private let trafficService = TrafficService()
     
@@ -40,5 +40,6 @@ struct TrafficStore {
             completion(error)
         }
     }
-    
+     
 }
+
