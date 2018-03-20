@@ -11,70 +11,38 @@ import UIKit
 class SetupViewController: UIViewController {
     
     // MARK: - Public Properties
-    let navigator = NavigationHelper()
-    let credentials = CredentialManager.shared
-    let userManager = UserManager()
+    typealias Factory = ViewControllerFactory & ViewNavigatorFactory & AuthenticationManagerFactory
+    
+    // MARK: - Private Properties
+    private var factory: Factory!
+    private lazy var navigator = factory.makeViewNavigator()
+    private lazy var authenticationManager = factory.makeAuthenticationManager()
     
     // MARK: - Initialization
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-//        do {
-//            try credentials.setToken(nil)
-//            try credentials.setUserID(nil)
-//            log.debug("Reset token & userID.")
-//        } catch {
-//            log.error("Failed to reset token & userID: \(error)")
-//        }
-        
-        // user is logged in if token exists and has userID associated
-        let token = credentials.getToken()
-        let userID = credentials.getUserID()
-        
-        if let token = token, let userID = userID {
-            log.info("User '\(userID)' is already logged in: \(token)")
-            
-            if let user = userManager.findUserById(userID) {
-                // set active user
-                AuthenticationManager.activeUser = user
-                log.info("Set currently active user '\(user.id)'.")
-                
-                // show home screen
-                self.navigator.showHome()
-            } else {
-                userManager.getUserById(userID) { user, error in
-                    guard let user = user else {
-                        fatalError("Unable to retrieve currently active user: \(error!)")
-                    }
-                    
-                    // set active user
-                    AuthenticationManager.activeUser = user
-                    log.info("Set currently active user '\(user.id)'.")
-                    
-                    // show home screen
-                    self.navigator.showHome()
-                }
-            }
-        } else {
-            if token != nil || userID != nil {
-                do {
-                    try credentials.setToken(nil)
-                    try credentials.setUserID(nil)
-                    log.debug("Reset token & userID.")
-                } catch {
-                    log.error("Failed to reset token and/or userID: \(error)")
-                }
-            }
-            
-            // show login view
-            navigator.showLogin()
-        }
+    class func instantiate(factory: Factory) -> SetupViewController {
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SetupViewController") as! SetupViewController
+        controller.factory = factory
+        return controller
     }
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+//        try? authenticationManager.resetCredentials()
+    
+        authenticationManager.getAuthenticatedUser { user in
+            guard let user = user else {
+                // show login view
+                let loginViewController = self.factory.makeLoginViewController()
+                let navigationController = UINavigationController(rootViewController: loginViewController)
+                self.navigator.show(navigationController)
+                return
+            }
+            
+            // show home screen
+            let homeTabBarController = self.factory.makeHomeTabBarController(for: user)
+            self.navigator.show(homeTabBarController)
+        }
     }
 
 }

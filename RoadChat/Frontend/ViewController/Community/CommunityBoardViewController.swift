@@ -10,7 +10,20 @@ import UIKit
 
 class CommunityBoardViewController: UITableViewController  {
     
+    // MARK: - Public Properties
+    typealias Factory = ViewControllerFactory & CommunityBoardFactory
+    
+    // MARK: - Private Properties
+    private var factory: Factory!
+    private lazy var communityBoard = factory.makeCommunityBoard()
+    
     // MARK: - Initialization
+    class func instantiate(factory: Factory) -> CommunityBoardViewController {
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CommunityBoardViewController") as! CommunityBoardViewController
+        controller.factory = factory
+        return controller
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,10 +34,11 @@ class CommunityBoardViewController: UITableViewController  {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - Public Methods
+    @IBAction func createMesageButtonPressed(_ sender: UIBarButtonItem) {
+        let createMessageViewController = factory.makeCreateCommunityMessageViewController()
+        let createMessageNavigationController = UINavigationController(rootViewController: createMessageViewController)
+        present(createMessageNavigationController, animated: true, completion: nil)
     }
     
     // MARK: - Table View Data Source

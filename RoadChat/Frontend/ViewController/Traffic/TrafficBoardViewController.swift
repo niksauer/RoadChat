@@ -11,7 +11,20 @@ import RoadChatKit
 
 class TrafficBoardViewController: UITableViewController {
     
+    // MARK: - Public Properties
+    typealias Factory = ViewControllerFactory & TrafficBoardFactory
+    
+    // MARK: - Private Properties
+    private var factory: Factory!
+    private lazy var trafficBoard = factory.makeTrafficBoard()
+    
     // MARK: - Initialization
+    class func instantiate(factory: Factory) -> TrafficBoardViewController {
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TrafficBoardViewController") as! TrafficBoardViewController
+        controller.factory = factory
+        return controller
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,10 +33,6 @@ class TrafficBoardViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
     }
     
     // MARK: - Navigation

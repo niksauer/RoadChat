@@ -12,12 +12,22 @@ import CoreData
 class ConversationsViewController: FetchedResultsTableViewController {
     
     // MARK: - Public Properties
-    let user = AuthenticationManager.activeUser!
+    typealias Factory = ViewControllerFactory & AuthenticationManagerFactory
     
     // MARK: - Private Properties
+    private var user: User!
+    private var factory: Factory!
+    
     private var fetchedResultsController: NSFetchedResultsController<Conversation>?
     
     // MARK: - Initialization
+    class func instantiate(factory: Factory, user: User) -> ConversationsViewController {
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConversationsViewController") as! ConversationsViewController
+        controller.factory = factory
+        controller.user = user
+        return controller
+    }
+
     override func viewDidLoad() {
         updateUI()
     }

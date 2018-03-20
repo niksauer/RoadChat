@@ -12,26 +12,26 @@ import Locksmith
 
 class RegisterViewController: UIViewController {
 
-    // MARK: - Public Properties
-    let authenticationManager = AuthenticationManager()
-    let navigator = NavigationHelper()
-    let userManager = UserManager()
-    
     // MARK: - Outlets
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordRepeatTextField: UITextField!
     
-    // MARK: - Initialization
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    // MARK: - Public Properties
+    typealias Factory = ViewControllerFactory & ViewNavigatorFactory & UserManagerFactory & AuthenticationManagerFactory
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - Private Properties
+    private var factory: Factory!
+    private lazy var authenticationManager = factory.makeAuthenticationManager()
+    private lazy var userManager = factory.makeUserManager()
+    private lazy var navigator = factory.makeViewNavigator()
+    
+    // MARK: - Initialization
+    class func instantiate(factory: Factory) -> RegisterViewController {
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+        controller.factory = factory
+        return controller
     }
     
     // MARK: - Public Methods
@@ -46,7 +46,7 @@ class RegisterViewController: UIViewController {
             log.warning("Invalid user input.")
             return
         }
-       
+    
         let registerRequest = RegisterRequest(email: email, username: username, password: password)
         
         userManager.createUser(registerRequest) { error in
@@ -59,14 +59,15 @@ class RegisterViewController: UIViewController {
             let loginRequest = LoginRequest(user: email, password: password)
             
             self.authenticationManager.login(loginRequest) { user, error in
-                guard let _ = user else {
+                guard let user = user else {
                     // handle login error
-                    self.performSegue(withIdentifier: "showLoginView", sender: self)
+                    self.navigationController?.popViewController(animated: true)
                     return
                 }
                 
                 // show home screen
-                self.navigator.showHome()
+                let homeTabBarController = self.factory.makeHomeTabBarController(for: user)
+                self.navigator.show(homeTabBarController)
             }
         }
     }

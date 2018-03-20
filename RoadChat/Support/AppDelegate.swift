@@ -21,6 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let console = ConsoleDestination()
         log.addDestination(console)
         
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let container = DependencyContainer()
+        let setupViewController = container.makeSetupViewController()
+        let navigator = container.makeViewNavigator()
+        navigator.show(setupViewController)
+        
         return true
     }
 

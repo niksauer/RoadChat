@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pxc-cW-p7w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
         <!--CommunityBoard-->
         <scene sceneID="HUR-NR-4f0">
             <objects>
-                <tableViewController id="Srb-Xj-dBj" customClass="CommunityBoardViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CommunityBoardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Srb-Xj-dBj" customClass="CommunityBoardViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cgv-hA-9Eg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,20 +36,20 @@
                     <navigationItem key="navigationItem" title="CommunityBoard" id="jW4-8V-SHU">
                         <barButtonItem key="rightBarButtonItem" image="create_new" id="1NX-Gm-UzF">
                             <connections>
-                                <action selector="createCommunityPost:" destination="Srb-Xj-dBj" id="gOV-Uf-eTm"/>
-                                <segue destination="y0P-aK-cec" kind="presentation" id="e6L-Vo-9mQ"/>
+                                <action selector="createMesageButtonPressed:" destination="Srb-Xj-dBj" id="UCS-G1-TAn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="259-c8-Ud8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-57" y="-380"/>
+            <point key="canvasLocation" x="-215" y="-382"/>
         </scene>
         <!--New Post-->
         <scene sceneID="mhZ-HK-Gdj">
             <objects>
-                <viewController storyboardIdentifier="CommunityPostForm" id="Raf-jx-6De" customClass="PopUpCommunityPostViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateCommunityMessageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Raf-jx-6De" customClass="CreateCommunityMessageViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dXP-LG-KLW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -58,7 +58,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gHM-1A-77Q">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -69,7 +69,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Abc-DL-jOM">
-                                        <rect key="frame" x="0.0" y="46" width="375" height="557"/>
+                                        <rect key="frame" x="0.0" y="83" width="375" height="520"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -89,27 +89,29 @@
                     <navigationItem key="navigationItem" title="New Post" id="ndD-7U-gJH">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="6qX-bE-3Lw">
                             <connections>
-                                <action selector="cancelButtonPressed:" destination="Raf-jx-6De" id="etm-GL-48Q"/>
+                                <action selector="cancelButtonPressed:" destination="Raf-jx-6De" id="m9Z-Dy-y81"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="jhS-3m-Ael">
                             <connections>
-                                <action selector="postButtonPressed:" destination="Raf-jx-6De" id="c5K-lQ-xVG"/>
+                                <action selector="saveButtonPressed:" destination="Raf-jx-6De" id="ikG-DJ-gjq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="communityMessageTextArea" destination="Abc-DL-jOM" id="liW-uB-rst"/>
+                        <outlet property="textField" destination="gHM-1A-77Q" id="Xhe-zG-fTd"/>
+                        <outlet property="textView" destination="Abc-DL-jOM" id="z1C-Ud-RrH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xiv-dk-ARx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1239" y="-382"/>
+            <point key="canvasLocation" x="598" y="-383"/>
         </scene>
         <!--TrafficBoard-->
         <scene sceneID="c1M-5r-TcP">
             <objects>
-                <tableViewController id="0JP-4x-fFS" customClass="TrafficBoardViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TrafficBoardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0JP-4x-fFS" customClass="TrafficBoardViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="T4S-sy-ede">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -132,15 +134,16 @@
                     <navigationItem key="navigationItem" title="TrafficBoard" id="D4k-ZP-rTF">
                         <barButtonItem key="rightBarButtonItem" image="create_new" id="2T2-FK-ezH"/>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zCz-aV-9m4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-57" y="375"/>
+            <point key="canvasLocation" x="-215" y="341"/>
         </scene>
         <!--Profile-->
         <scene sceneID="q0m-Ac-MWR">
             <objects>
-                <tableViewController id="50z-Ix-lWj" customClass="ProfileViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ProfileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="50z-Ix-lWj" customClass="ProfileViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="RbC-ax-Txt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -168,60 +171,22 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="settings" id="1ve-cJ-Twf"/>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KC6-Aa-uyb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-57" y="1930"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="yl2-sM-qoP">
-            <objects>
-                <tabBarController storyboardIdentifier="tabBarVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="49e-Tb-3d3" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
-                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="dlA-MH-V0U" kind="relationship" relationship="viewControllers" id="4Lr-vM-Lzn"/>
-                        <segue destination="eFg-cb-OGc" kind="relationship" relationship="viewControllers" id="JrU-kz-tBC"/>
-                        <segue destination="sIC-1n-hWA" kind="relationship" relationship="viewControllers" id="X6b-dL-4X8"/>
-                        <segue destination="Lnk-sS-Xte" kind="relationship" relationship="viewControllers" id="yrz-YS-cO2"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1188" y="1073"/>
-        </scene>
-        <!--Community-->
-        <scene sceneID="FTN-Ta-KTB">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dlA-MH-V0U" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Community" image="collaboration" id="qg9-EG-fb0"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i0c-pc-kWC">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Srb-Xj-dBj" kind="relationship" relationship="rootViewController" id="CKn-F4-M3Q"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xcb-E4-hXI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-695" y="-379"/>
+            <point key="canvasLocation" x="-215" y="1795"/>
         </scene>
         <!--Sign Up-->
         <scene sceneID="aEx-j5-cNH">
             <objects>
-                <viewController id="2dG-9l-aBT" customClass="RegisterViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2dG-9l-aBT" customClass="RegisterViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xnI-4i-R7f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="m9a-b3-hpz">
-                                <rect key="frame" x="16" y="226" width="343" height="214"/>
+                                <rect key="frame" x="16" y="226.5" width="343" height="214"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2hI-Nn-kgL">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
@@ -267,6 +232,7 @@
                         <viewLayoutGuide key="safeArea" id="CZv-wb-1Zp"/>
                     </view>
                     <navigationItem key="navigationItem" title="Sign Up" id="Pqw-iV-uqY"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="emailTextField" destination="ZdQ-xS-hZC" id="QVT-EQ-Ma3"/>
                         <outlet property="passwordRepeatTextField" destination="IhE-le-cG9" id="7gR-sf-Tos"/>
@@ -276,12 +242,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHD-se-V8T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-83" y="2760"/>
+            <point key="canvasLocation" x="-1258" y="1450"/>
         </scene>
         <!--RoadChat-->
         <scene sceneID="gDU-gc-hIG">
             <objects>
-                <viewController storyboardIdentifier="loginVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5iU-UL-VIl" customClass="LoginViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5iU-UL-VIl" customClass="LoginViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4nC-D2-hPe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -333,39 +299,20 @@
                         <viewLayoutGuide key="safeArea" id="qnn-DO-QkN"/>
                     </view>
                     <navigationItem key="navigationItem" title="RoadChat" id="KZI-j5-c8O"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="passwordTextField" destination="O1d-Rc-2EC" id="CQy-pA-gCl"/>
                         <outlet property="usernameTextField" destination="rVP-qL-VW8" id="Pvc-xi-i4s"/>
-                        <segue destination="2dG-9l-aBT" kind="show" identifier="showRegisterView" id="Syu-cH-y2m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="90J-2A-iHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-690" y="2760"/>
-        </scene>
-        <!--Traffic-->
-        <scene sceneID="1eq-Cx-T3Q">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eFg-cb-OGc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Traffic" image="car" id="v2z-QO-Rxn"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NXw-aw-k2o">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="0JP-4x-fFS" kind="relationship" relationship="rootViewController" id="0yb-hS-pFs"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VNH-52-zhi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-695" y="375"/>
+            <point key="canvasLocation" x="-2086" y="1450"/>
         </scene>
         <!--Chats-->
         <scene sceneID="3qJ-Dj-ub2">
             <objects>
-                <tableViewController id="TnE-G6-0gk" customClass="ConversationsViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ConversationsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TnE-G6-0gk" customClass="ConversationsViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="M2S-jR-3lh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -397,71 +344,16 @@
                     <navigationItem key="navigationItem" title="Chats" id="5rd-Ze-Rn9">
                         <barButtonItem key="rightBarButtonItem" image="create_new" id="aRv-KZ-xZ8"/>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xUT-IB-MWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-57" y="1073"/>
-        </scene>
-        <!--Profile-->
-        <scene sceneID="nNm-K8-m1X">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Lnk-sS-Xte" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="contact_card" id="gnJ-g8-qSk"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="q2D-Qa-5II">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="50z-Ix-lWj" kind="relationship" relationship="rootViewController" id="TEl-hw-lXC"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jqi-K7-8JM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-696" y="1931"/>
-        </scene>
-        <!--Chats-->
-        <scene sceneID="JVz-hG-ZEL">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sIC-1n-hWA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chats" image="sms" id="acF-o8-InK"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cQ7-Uk-XoU">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="TnE-G6-0gk" kind="relationship" relationship="rootViewController" id="cp4-Ua-egB"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eD3-iG-1eI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-695" y="1073"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="n4Z-en-8Ga">
-            <objects>
-                <navigationController storyboardIdentifier="loginNavigationVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="L5J-XY-K7J" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IXH-CU-SOv">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="5iU-UL-VIl" kind="relationship" relationship="rootViewController" id="Aei-e6-bWk"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kRf-Jc-g7i" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1189" y="2760"/>
+            <point key="canvasLocation" x="-215" y="1060"/>
         </scene>
         <!--Setup View Controller-->
         <scene sceneID="Xgp-Sq-Xqd">
             <objects>
-                <viewController id="pxc-cW-p7w" customClass="SetupViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SetupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pxc-cW-p7w" customClass="SetupViewController" customModule="RoadChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Foc-69-MwA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -471,33 +363,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mv6-mt-WVR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1768" y="1931"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="WLf-uF-UFA">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="y0P-aK-cec" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gjt-YZ-ZyU">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Raf-jx-6De" kind="relationship" relationship="rootViewController" id="5eb-jG-0zR"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0ZH-5v-JVd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="597" y="-381"/>
+            <point key="canvasLocation" x="-1670" y="689"/>
         </scene>
     </scenes>
     <resources>
-        <image name="car" width="30" height="30"/>
-        <image name="collaboration" width="30" height="30"/>
-        <image name="contact_card" width="30" height="30"/>
         <image name="create_new" width="30" height="30"/>
         <image name="settings" width="30" height="30"/>
-        <image name="sms" width="30" height="30"/>
     </resources>
 </document>

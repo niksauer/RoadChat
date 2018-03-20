@@ -12,28 +12,29 @@ import Locksmith
 
 class LoginViewController: UIViewController {
     
-    // MARK: - Public Properties
-    let navigator = NavigationHelper()
-    let authenticationManager = AuthenticationManager()
-    
     // MARK: - Outlets
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    // MARK: - Initialization
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    // MARK: - Public Properties
+    typealias Factory = ViewControllerFactory & ViewNavigatorFactory & AuthenticationManagerFactory
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - Private Properties
+    private var factory: Factory!
+    private lazy var authenticationManager = factory.makeAuthenticationManager()
+    private lazy var navigator = factory.makeViewNavigator()
+    
+    // MARK: - Initialization
+    class func instantiate(factory: Factory) -> LoginViewController {
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        controller.factory = factory
+        return controller
     }
     
     // MARK: - Public Methods
     @IBAction func registerButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "showRegisterView", sender: self)
+        let registerViewController = factory.makeRegisterViewController()
+        self.navigationController?.pushViewController(registerViewController, animated: true)
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
@@ -46,12 +47,14 @@ class LoginViewController: UIViewController {
         let loginRequest = LoginRequest(user: user, password: password)
         
         authenticationManager.login(loginRequest) { user, error in
-            guard let _ = user else {
+            guard let user = user else {
                 // handle login error
                 return
             }
             
-            self.navigator.showHome()
+            // show home screen
+            let homeTabBarController = self.factory.makeHomeTabBarController(for: user)
+            self.navigator.show(homeTabBarController)
         }
     }
     

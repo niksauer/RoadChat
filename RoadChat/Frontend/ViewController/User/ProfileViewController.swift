@@ -12,34 +12,27 @@ import RoadChatKit
 class ProfileViewController: UITableViewController {
 
     // MARK: - Public Properties
-    let authenticationManager = AuthenticationManager()
-    let navigator = NavigationHelper()
+    typealias Factory = ViewControllerFactory & ViewNavigatorFactory & AuthenticationManagerFactory
+    
+    // MARK: - Private Properties
+    private var user: User!
+    private var factory: Factory!
+    private lazy var authenticationManager = factory.makeAuthenticationManager()
+    private lazy var navigator = factory.makeViewNavigator()
     
     // MARK: - Initialization
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    class func instantiate(factory: Factory, user: User) -> ProfileViewController {
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        controller.factory = factory
+        controller.user = user
+        return controller
     }
     
     // MARK: - Public Methods
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
         authenticationManager.logout { error in
-            self.navigator.showLogin()
+            let loginViewController = self.factory.makeLoginViewController()
+            self.navigator.show(loginViewController)
         }
     }
     
