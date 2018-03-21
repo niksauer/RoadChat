@@ -6,7 +6,7 @@
 //  Copyright © 2018 Niklas Sauer. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import CoreData
 
 class CoreDataStack: NSObject {
