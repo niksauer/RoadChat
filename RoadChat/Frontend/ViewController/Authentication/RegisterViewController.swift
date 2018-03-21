@@ -19,13 +19,12 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var passwordRepeatTextField: UITextField!
     
     // MARK: - Public Properties
-    typealias Factory = ViewControllerFactory & ViewNavigatorFactory & UserManagerFactory & AuthenticationManagerFactory
+    typealias Factory = ViewControllerFactory & UserManagerFactory & AuthenticationManagerFactory
     
     // MARK: - Private Properties
     private var factory: Factory!
     private lazy var authenticationManager = factory.makeAuthenticationManager()
     private lazy var userManager = factory.makeUserManager()
-    private lazy var navigator = factory.makeViewNavigator()
     
     // MARK: - Initialization
     class func instantiate(factory: Factory) -> RegisterViewController {
@@ -67,7 +66,7 @@ class RegisterViewController: UIViewController {
                 
                 // show home screen
                 let homeTabBarController = self.factory.makeHomeTabBarController(for: user)
-                self.navigator.show(homeTabBarController)
+                (UIApplication.shared.delegate! as! AppDelegate).show(homeTabBarController)
             }
         }
     }

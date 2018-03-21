@@ -10,11 +10,12 @@ import Foundation
 
 protocol Service {
     associatedtype PrimaryResource: Decodable
+    associatedtype Client: APIClient
+    var client: Client { get }
+    init(credentials: APICredentialStore?)
 }
 
-protocol JSendService: Service {
-    var client: JSendAPIClient { get }
-}
+protocol JSendService: Service where Client == JSendAPIClient { }
 
 extension JSendService {
     func decode<T: Decodable>(_ type: T.Type, from data: Data) -> (instance: T?, error: Error?) {

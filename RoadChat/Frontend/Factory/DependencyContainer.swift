@@ -65,7 +65,7 @@ extension DependencyContainer: APICredentialStoreFactory {
 
 extension DependencyContainer: AuthenticationManagerFactory {
     func makeAuthenticationManager() -> AuthenticationManager {
-        return AuthenticationManager(credentials: makeAPICredentialStore())
+        return AuthenticationManager(credentials: makeAPICredentialStore(), authenticationService: AuthenticationService(credentials: makeAPICredentialStore()), userManager: makeUserManager())
     }
 }
 
@@ -78,27 +78,20 @@ extension DependencyContainer: LocationManagerFactory {
 // Community
 extension DependencyContainer: CommunityBoardFactory {
     func makeCommunityBoard() -> CommunityBoard {
-        return CommunityBoard(credentials: makeAPICredentialStore())
+        return CommunityBoard(communityService: CommunityService(credentials: makeAPICredentialStore()))
     }
 }
 
 // Traffic
 extension DependencyContainer: TrafficBoardFactory {
     func makeTrafficBoard() -> TrafficBoard {
-        return TrafficBoard(credentials: makeAPICredentialStore())
+        return TrafficBoard(trafficService: TrafficService(credentials: makeAPICredentialStore()))
     }
 }
 
 // User
 extension DependencyContainer: UserManagerFactory {
     func makeUserManager() -> UserManager {
-        return UserManager(credentials: makeAPICredentialStore())
-    }
-}
-
-// UIHelper
-extension DependencyContainer: ViewNavigatorFactory {
-    func makeViewNavigator() -> ViewNavigator {
-        return ViewNavigator()
+        return UserManager(userService: UserService(credentials: makeAPICredentialStore()))
     }
 }

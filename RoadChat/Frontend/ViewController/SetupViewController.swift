@@ -11,11 +11,10 @@ import UIKit
 class SetupViewController: UIViewController {
     
     // MARK: - Public Properties
-    typealias Factory = ViewControllerFactory & ViewNavigatorFactory & AuthenticationManagerFactory
+    typealias Factory = ViewControllerFactory & AuthenticationManagerFactory
     
     // MARK: - Private Properties
     private var factory: Factory!
-    private lazy var navigator = factory.makeViewNavigator()
     private lazy var authenticationManager = factory.makeAuthenticationManager()
     
     // MARK: - Initialization
@@ -34,14 +33,14 @@ class SetupViewController: UIViewController {
             guard let user = user else {
                 // show login view
                 let loginViewController = self.factory.makeLoginViewController()
-                let navigationController = UINavigationController(rootViewController: loginViewController)
-                self.navigator.show(navigationController)
+                let loginNavigationController = UINavigationController(rootViewController: loginViewController)
+                (UIApplication.shared.delegate! as! AppDelegate).show(loginNavigationController)
                 return
             }
             
             // show home screen
             let homeTabBarController = self.factory.makeHomeTabBarController(for: user)
-            self.navigator.show(homeTabBarController)
+            (UIApplication.shared.delegate! as! AppDelegate).show(homeTabBarController)
         }
     }
 

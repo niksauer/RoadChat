@@ -17,12 +17,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     // MARK: - Public Properties
-    typealias Factory = ViewControllerFactory & ViewNavigatorFactory & AuthenticationManagerFactory
+    typealias Factory = ViewControllerFactory & AuthenticationManagerFactory
     
     // MARK: - Private Properties
     private var factory: Factory!
     private lazy var authenticationManager = factory.makeAuthenticationManager()
-    private lazy var navigator = factory.makeViewNavigator()
     
     // MARK: - Initialization
     class func instantiate(factory: Factory) -> LoginViewController {
@@ -54,7 +53,7 @@ class LoginViewController: UIViewController {
             
             // show home screen
             let homeTabBarController = self.factory.makeHomeTabBarController(for: user)
-            self.navigator.show(homeTabBarController)
+            (UIApplication.shared.delegate! as! AppDelegate).show(homeTabBarController)
         }
     }
     

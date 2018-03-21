@@ -27,7 +27,6 @@
 		243F1EBD204842CF00B45955 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F1EBC204842CF00B45955 /* ProfileViewController.swift */; };
 		245EAE332051346600821B4B /* ConversationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245EAE322051346600821B4B /* ConversationService.swift */; };
 		24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24615DA420508E5400ED11A1 /* CredentialManager.swift */; };
-		247F6CF8205EBF940006FBC7 /* ViewNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6CF7205EBF940006FBC7 /* ViewNavigator.swift */; };
 		247F6D1D205F26AE0006FBC7 /* CommunityBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D1C205F26AE0006FBC7 /* CommunityBoard.swift */; };
 		247F6D21205F3C9C0006FBC7 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D20205F3C9C0006FBC7 /* UserManager.swift */; };
 		247F6D26206057950006FBC7 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D25206057950006FBC7 /* ViewControllerFactory.swift */; };
@@ -221,7 +220,6 @@
 		243F1EBC204842CF00B45955 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		245EAE322051346600821B4B /* ConversationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationService.swift; sourceTree = "<group>"; };
 		24615DA420508E5400ED11A1 /* CredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialManager.swift; sourceTree = "<group>"; };
-		247F6CF7205EBF940006FBC7 /* ViewNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewNavigator.swift; sourceTree = "<group>"; };
 		247F6D1C205F26AE0006FBC7 /* CommunityBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoard.swift; sourceTree = "<group>"; };
 		247F6D20205F3C9C0006FBC7 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		247F6D25206057950006FBC7 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
@@ -418,7 +416,6 @@
 			isa = PBXGroup;
 			children = (
 				240B9B8520534FAA00216E68 /* FetchedResultsTableViewController.swift */,
-				247F6CF7205EBF940006FBC7 /* ViewNavigator.swift */,
 			);
 			path = UIHelper;
 			sourceTree = "<group>";
@@ -785,7 +782,6 @@
 				24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */,
 				247F6D3920606C9F0006FBC7 /* ModelFactory.swift in Sources */,
 				2404A256204E92D2009AC7E1 /* UserService.swift in Sources */,
-				247F6CF8205EBF940006FBC7 /* ViewNavigator.swift in Sources */,
 				248D37B12049504B00B21C3D /* Car.swift in Sources */,
 				245EAE332051346600821B4B /* ConversationService.swift in Sources */,
 				248D37A020494EC000B21C3D /* Privacy.swift in Sources */,

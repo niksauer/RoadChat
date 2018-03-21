@@ -11,16 +11,16 @@ import RoadChatKit
 
 class AuthenticationManager {
     
-    // MARK: - Public Properties
-    let credentials: APICredentialStore
-    let authenticationService: AuthenticationService
-    let userManager: UserManager
+    // MARK: - Private Properties
+    private let credentials: APICredentialStore
+    private let authenticationService: AuthenticationService
+    private let userManager: UserManager
     
     // MARK: - Initialization
-    init(credentials: APICredentialStore) {
+    init(credentials: APICredentialStore, authenticationService: AuthenticationService, userManager: UserManager) {
         self.credentials = credentials
-        self.authenticationService = AuthenticationService(credentials: credentials)
-        self.userManager = UserManager(credentials: credentials)
+        self.authenticationService = authenticationService
+        self.userManager = userManager
     }
     
     // MARK: - Public Methods
@@ -73,7 +73,7 @@ class AuthenticationManager {
             
             do {
                 // remove credentials
-                try self.resetCredentials()
+                try self.credentials.reset()
                 log.info("Successfully logged out user.")
                 
                 completion(nil)
@@ -120,9 +120,4 @@ class AuthenticationManager {
         }
     }
  
-    func resetCredentials() throws {
-        try credentials.setToken(nil)
-        try credentials.setUserID(nil)
-        log.debug("Reset token & userID.")
-    }
 }

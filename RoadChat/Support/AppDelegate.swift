@@ -25,8 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let container = DependencyContainer()
         let setupViewController = container.makeSetupViewController()
-        let navigator = container.makeViewNavigator()
-        navigator.show(setupViewController)
+        show(setupViewController)
         
         return true
     }
@@ -53,6 +52,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         CoreDataStack.shared.saveViewContext()
     }
-    
 
+}
+
+extension AppDelegate {
+    func show(_ viewController: UIViewController) {
+        window?.rootViewController = viewController
+        window?.makeKeyAndVisible()
+    }
 }

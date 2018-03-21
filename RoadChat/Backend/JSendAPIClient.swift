@@ -16,6 +16,10 @@ enum JSendAPIError: Error {
 
 struct JSendAPIClient: APIClient {
     
+    // MARK: - Public Properties
+    let baseURL: String
+    let credentials: APICredentialStore?
+    
     // MARK: - Private Properties
     private let session = URLSession(configuration: .default)
     
@@ -24,10 +28,6 @@ struct JSendAPIClient: APIClient {
         case fail(String?)
         case error(String?)
     }
-    
-    // MARK: - Public Properties
-    let baseURL: String
-    let credentials: APICredentialStore
 
     // MARK: - Public Methods
     func makeGETRequest(to path: String? = nil, params: JSON? = nil, completion: @escaping (APIResult) -> Void) {
@@ -63,7 +63,7 @@ struct JSendAPIClient: APIClient {
         var request = request
         
         // set bearer authorization header
-        if let token = credentials.getToken() {
+        if let token = credentials?.getToken() {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
     

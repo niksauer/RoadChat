@@ -11,12 +11,12 @@ import RoadChatKit
 
 struct CommunityBoard {
     
-    // MARK: - Public Properties
-    let communityService: CommunityService
+    // MARK: - Private Properties
+    private let communityService: CommunityService
     
     // MARK: - Initialization
-    init(credentials: APICredentialStore) {
-        self.communityService = CommunityService(credentials: credentials)
+    init(communityService: CommunityService) {
+        self.communityService = communityService
     }
     
     // MARK: - Public Methods

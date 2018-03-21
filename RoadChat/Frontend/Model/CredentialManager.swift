@@ -9,22 +9,18 @@
 import Foundation
 import Locksmith
 
-enum CredentialError: Error {
-    case noUserIDSet
-}
-
 struct CredentialManager: APICredentialStore {
     
     // MARK: - Singleton
     static var shared = CredentialManager()
-    
+
     // MARK: - Private Properties
-    private enum keys: String {
-        case userID
-        case accessToken
-    }
+    private let userAccount = "CredentialManager"
     
-    private var userAccount = "RoadChatUser"
+    private enum Keys {
+        static let UserID = "userID"
+        static let AccessToken = "accessToken"
+    }
     
     // MARK: - Initialization
     private init() {}
@@ -43,21 +39,26 @@ struct CredentialManager: APICredentialStore {
         }
     }
     
-    // MARK: - Public Methods
+    // MARK: - APICredentialStore Protocol
     func getUserID() -> Int? {
-        return getValue(for: keys.userID.rawValue) as? Int
+        return getValue(for: Keys.UserID) as? Int
     }
     
     func setUserID(_ userID: Int?) throws {
-        try setValue(userID as Any, for: keys.userID.rawValue)
+        try setValue(userID as Any, for: Keys.UserID)
     }
     
     func getToken() -> String? {
-        return getValue(for: keys.accessToken.rawValue) as? String
+        return getValue(for: Keys.AccessToken) as? String
     }
     
     func setToken(_ token: String?) throws {
-        try setValue(token as Any, for: keys.accessToken.rawValue)
+        try setValue(token as Any, for: Keys.AccessToken)
     }
     
+    func reset() throws {
+        try setToken(nil)
+        try setUserID(nil)
+    }
+
 }

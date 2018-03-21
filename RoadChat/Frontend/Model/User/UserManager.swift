@@ -12,12 +12,12 @@ import RoadChatKit
 
 struct UserManager {
     
-    // MARK: - Public Properties
-    let userService: UserService
+    // MARK: - Private Properties
+    private let userService: UserService
     
     // MARK: - Initialization
-    init(credentials: APICredentialStore) {
-        self.userService = UserService(credentials: credentials)
+    init(userService: UserService) {
+        self.userService = userService
     }
     
     // MARK: - Public Methods

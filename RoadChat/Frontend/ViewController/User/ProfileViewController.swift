@@ -12,13 +12,12 @@ import RoadChatKit
 class ProfileViewController: UITableViewController {
 
     // MARK: - Public Properties
-    typealias Factory = ViewControllerFactory & ViewNavigatorFactory & AuthenticationManagerFactory
+    typealias Factory = ViewControllerFactory & AuthenticationManagerFactory
     
     // MARK: - Private Properties
     private var user: User!
     private var factory: Factory!
     private lazy var authenticationManager = factory.makeAuthenticationManager()
-    private lazy var navigator = factory.makeViewNavigator()
     
     // MARK: - Initialization
     class func instantiate(factory: Factory, user: User) -> ProfileViewController {
@@ -32,7 +31,7 @@ class ProfileViewController: UITableViewController {
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
         authenticationManager.logout { error in
             let loginViewController = self.factory.makeLoginViewController()
-            self.navigator.show(loginViewController)
+            (UIApplication.shared.delegate! as! AppDelegate).show(loginViewController)
         }
     }
     

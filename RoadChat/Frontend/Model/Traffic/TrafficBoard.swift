@@ -11,12 +11,12 @@ import RoadChatKit
 
 struct TrafficBoard {
     
-    // MARK: - Public Properties
-    let trafficService: TrafficService
+    // MARK: - Private Properties
+    private let trafficService: TrafficService
     
     // MARK: - Initialization
-    init(credentials: APICredentialStore) {
-        self.trafficService = TrafficService(credentials: credentials)
+    init(trafficService: TrafficService) {
+        self.trafficService = trafficService
     }
     
     // MARK: - Public Methods

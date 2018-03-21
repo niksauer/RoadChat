@@ -35,8 +35,3 @@ protocol TrafficBoardFactory {
 protocol UserManagerFactory {
     func makeUserManager() -> UserManager
 }
-
-// UIHelper
-protocol ViewNavigatorFactory {
-    func makeViewNavigator() -> ViewNavigator
-}
