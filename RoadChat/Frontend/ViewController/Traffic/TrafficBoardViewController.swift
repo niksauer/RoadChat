@@ -11,18 +11,23 @@ import RoadChatKit
 
 class TrafficBoardViewController: UITableViewController {
     
-    // MARK: - Public Properties
-    typealias Factory = ViewControllerFactory & TrafficBoardFactory
-    
     // MARK: - Private Properties
-    private var factory: Factory!
-    private lazy var trafficBoard = factory.makeTrafficBoard()
+    private let viewFactory: ViewControllerFactory
+    private let trafficBoard: TrafficBoard
     
     // MARK: - Initialization
-    class func instantiate(factory: Factory) -> TrafficBoardViewController {
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TrafficBoardViewController") as! TrafficBoardViewController
-        controller.factory = factory
-        return controller
+    init(viewFactory: ViewControllerFactory, trafficBoard: TrafficBoard) {
+        self.viewFactory = viewFactory
+        self.trafficBoard = trafficBoard
+        
+        super.init(nibName: nil, bundle: nil)
+        self.title = "TrafficBoard"
+        self.tabBarItem = UITabBarItem(title: "Traffic", image: #imageLiteral(resourceName: "car"), tag: 1)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new"), style: .plain, target: nil, action: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -98,3 +103,4 @@ class TrafficBoardViewController: UITableViewController {
      */
     
 }
+

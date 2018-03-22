@@ -10,36 +10,40 @@ import UIKit
 
 class SetupViewController: UIViewController {
     
-    // MARK: - Public Properties
-    typealias Factory = ViewControllerFactory & AuthenticationManagerFactory
-    
     // MARK: - Private Properties
-    private var factory: Factory!
-    private lazy var authenticationManager = factory.makeAuthenticationManager()
+    private let viewFactory: ViewControllerFactory
+    private let authenticationManager: AuthenticationManager
+    private let credentials: APICredentialStore
     
     // MARK: - Initialization
-    class func instantiate(factory: Factory) -> SetupViewController {
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SetupViewController") as! SetupViewController
-        controller.factory = factory
-        return controller
+    init(viewFactory: ViewControllerFactory, authenticationManager: AuthenticationManager, credentials: APICredentialStore) {
+        self.viewFactory = viewFactory
+        self.authenticationManager = authenticationManager
+        self.credentials = credentials
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-//        try? authenticationManager.resetCredentials()
+//        try? credentials.reset()
     
         authenticationManager.getAuthenticatedUser { user in
             guard let user = user else {
                 // show login view
-                let loginViewController = self.factory.makeLoginViewController()
+                let loginViewController = self.viewFactory.makeLoginViewController()
                 let loginNavigationController = UINavigationController(rootViewController: loginViewController)
                 (UIApplication.shared.delegate! as! AppDelegate).show(loginNavigationController)
                 return
             }
             
             // show home screen
-            let homeTabBarController = self.factory.makeHomeTabBarController(for: user)
+            let homeTabBarController = self.viewFactory.makeHomeTabBarController(for: user)
             (UIApplication.shared.delegate! as! AppDelegate).show(homeTabBarController)
         }
     }

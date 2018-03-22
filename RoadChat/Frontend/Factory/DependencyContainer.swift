@@ -8,90 +8,68 @@
 
 import Foundation
 
-struct DependencyContainer {}
+struct DependencyContainer {
+    private let credentials: APICredentialStore = CredentialManager.shared
+
+    private var userManager: UserManager {
+        return UserManager(userService: UserService(credentials: credentials))
+    }
+    
+    private var authenticationManager: AuthenticationManager {
+        return AuthenticationManager(credentials: credentials, authenticationService: AuthenticationService(credentials: credentials), userManager: userManager)
+    }
+    
+    private var communityBoard: CommunityBoard {
+        return CommunityBoard(communityService: CommunityService(credentials: credentials))
+    }
+    
+    private var trafficBoard: TrafficBoard {
+        return TrafficBoard(trafficService: TrafficService(credentials: credentials))
+    }
+}
 
 extension DependencyContainer: ViewControllerFactory {
     
     // General
     func makeSetupViewController() -> SetupViewController {
-        return SetupViewController.instantiate(factory: self)
+        return SetupViewController(viewFactory: self, authenticationManager: authenticationManager, credentials: credentials)
     }
     
     func makeHomeTabBarController(for user: User) -> HomeTabBarController {
-        return HomeTabBarController(factory: self, user: user)
+        return HomeTabBarController(viewFactory: self, user: user)
     }
 
     // Authentication
     func makeLoginViewController() -> LoginViewController {
-        return LoginViewController.instantiate(factory: self)
+        return LoginViewController(viewFactory: self, authenticationManager: authenticationManager)
     }
 
     func makeRegisterViewController() -> RegisterViewController {
-        return RegisterViewController.instantiate(factory: self)
+        return RegisterViewController(viewFactory: self, authenticationManager: authenticationManager, userManager: userManager)
     }
 
     // Community
     func makeCommunityBoardViewController() -> CommunityBoardViewController {
-        return CommunityBoardViewController.instantiate(factory: self)
+        return CommunityBoardViewController(viewFactory: self, communityBoard: communityBoard)
     }
 
     func makeCreateCommunityMessageViewController() -> CreateCommunityMessageViewController {
-        return CreateCommunityMessageViewController.instantiate(factory: self)
+        return CreateCommunityMessageViewController(communityBoard: communityBoard)
     }
 
     // Traffic
     func makeTrafficBoardViewController() -> TrafficBoardViewController {
-        return TrafficBoardViewController.instantiate(factory: self)
+        return TrafficBoardViewController(viewFactory: self, trafficBoard: trafficBoard)
     }
 
     // Chat
     func makeConversationsViewController(for user: User) -> ConversationsViewController {
-        return ConversationsViewController.instantiate(factory: self, user: user)
+        return ConversationsViewController(viewFactory: self, user: user)
     }
     
     // User
     func makeProfileViewController(for user: User) -> ProfileViewController {
-        return ProfileViewController.instantiate(factory: self, user: user)
+        return ProfileViewController(viewFactory: self, authenticationManager: authenticationManager, user: user)
     }
 
-}
-
-// General
-extension DependencyContainer: APICredentialStoreFactory {
-    func makeAPICredentialStore() -> APICredentialStore {
-        return CredentialManager.shared
-    }
-}
-
-extension DependencyContainer: AuthenticationManagerFactory {
-    func makeAuthenticationManager() -> AuthenticationManager {
-        return AuthenticationManager(credentials: makeAPICredentialStore(), authenticationService: AuthenticationService(credentials: makeAPICredentialStore()), userManager: makeUserManager())
-    }
-}
-
-extension DependencyContainer: LocationManagerFactory {
-    func makeLocationManager() -> LocationManager {
-        return LocationManager()
-    }
-}
-
-// Community
-extension DependencyContainer: CommunityBoardFactory {
-    func makeCommunityBoard() -> CommunityBoard {
-        return CommunityBoard(communityService: CommunityService(credentials: makeAPICredentialStore()))
-    }
-}
-
-// Traffic
-extension DependencyContainer: TrafficBoardFactory {
-    func makeTrafficBoard() -> TrafficBoard {
-        return TrafficBoard(trafficService: TrafficService(credentials: makeAPICredentialStore()))
-    }
-}
-
-// User
-extension DependencyContainer: UserManagerFactory {
-    func makeUserManager() -> UserManager {
-        return UserManager(userService: UserService(credentials: makeAPICredentialStore()))
-    }
 }

@@ -9,19 +9,24 @@
 import UIKit
 
 class CommunityBoardViewController: UITableViewController  {
-    
-    // MARK: - Public Properties
-    typealias Factory = ViewControllerFactory & CommunityBoardFactory
-    
+ 
     // MARK: - Private Properties
-    private var factory: Factory!
-    private lazy var communityBoard = factory.makeCommunityBoard()
+    private let viewFactory: ViewControllerFactory
+    private let communityBoard: CommunityBoard
     
     // MARK: - Initialization
-    class func instantiate(factory: Factory) -> CommunityBoardViewController {
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CommunityBoardViewController") as! CommunityBoardViewController
-        controller.factory = factory
-        return controller
+    init(viewFactory: ViewControllerFactory, communityBoard: CommunityBoard) {
+        self.viewFactory = viewFactory
+        self.communityBoard = communityBoard
+        
+        super.init(nibName: nil, bundle: nil)
+        self.title = "CommunityBoard"
+        self.tabBarItem = UITabBarItem(title: "Community", image: #imageLiteral(resourceName: "collaboration"), tag: 0)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new"), style: .plain, target: self, action: #selector(createMessageButtonPressed(_:)))
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -35,8 +40,8 @@ class CommunityBoardViewController: UITableViewController  {
     }
     
     // MARK: - Public Methods
-    @IBAction func createMesageButtonPressed(_ sender: UIBarButtonItem) {
-        let createMessageViewController = factory.makeCreateCommunityMessageViewController()
+    @IBAction func createMessageButtonPressed(_ sender: UIBarButtonItem) {
+        let createMessageViewController = viewFactory.makeCreateCommunityMessageViewController()
         let createMessageNavigationController = UINavigationController(rootViewController: createMessageViewController)
         present(createMessageNavigationController, animated: true, completion: nil)
     }
@@ -98,3 +103,4 @@ class CommunityBoardViewController: UITableViewController  {
      */
     
 }
+

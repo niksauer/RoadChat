@@ -15,18 +15,21 @@ class CreateCommunityMessageViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var textView: UITextView!
     
-    // MARK: - Public Properties
-    typealias Factory = ViewControllerFactory & CommunityBoardFactory
-    
     // MARK: - Private Properties
-    private var factory: Factory!
-    private lazy var communityBoard = factory.makeCommunityBoard()
+    private let communityBoard: CommunityBoard
     
     // MARK: - Initialization
-    class func instantiate(factory: Factory) -> CreateCommunityMessageViewController {
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateCommunityMessageViewController") as! CreateCommunityMessageViewController
-        controller.factory = factory
-        return controller
+    init(communityBoard: CommunityBoard) {
+        self.communityBoard = communityBoard
+        
+        super.init(nibName: nil, bundle: nil)
+        self.title = "New Post"
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed(_:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveButtonPressed(_:)))
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Public Methods
