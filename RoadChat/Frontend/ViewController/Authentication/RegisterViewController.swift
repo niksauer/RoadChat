@@ -20,12 +20,14 @@ class RegisterViewController: UIViewController {
     
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
+    private let appDelegate: AppDelegate
     private let authenticationManager: AuthenticationManager
     private let userManager: UserManager
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, authenticationManager: AuthenticationManager, userManager: UserManager) {
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, userManager: UserManager) {
         self.viewFactory = viewFactory
+        self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
         self.userManager = userManager
         
@@ -70,7 +72,7 @@ class RegisterViewController: UIViewController {
                 
                 // show home screen
                 let homeTabBarController = self.viewFactory.makeHomeTabBarController(for: user)
-                (UIApplication.shared.delegate! as! AppDelegate).show(homeTabBarController)
+                self.appDelegate.show(homeTabBarController)
             }
         }
     }

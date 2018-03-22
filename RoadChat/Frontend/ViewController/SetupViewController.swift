@@ -12,12 +12,14 @@ class SetupViewController: UIViewController {
     
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
+    private let appDelegate: AppDelegate
     private let authenticationManager: AuthenticationManager
     private let credentials: APICredentialStore
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, authenticationManager: AuthenticationManager, credentials: APICredentialStore) {
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, credentials: APICredentialStore) {
         self.viewFactory = viewFactory
+        self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
         self.credentials = credentials
         
@@ -38,13 +40,13 @@ class SetupViewController: UIViewController {
                 // show login view
                 let loginViewController = self.viewFactory.makeLoginViewController()
                 let loginNavigationController = UINavigationController(rootViewController: loginViewController)
-                (UIApplication.shared.delegate! as! AppDelegate).show(loginNavigationController)
+                self.appDelegate.show(loginNavigationController)
                 return
             }
             
             // show home screen
             let homeTabBarController = self.viewFactory.makeHomeTabBarController(for: user)
-            (UIApplication.shared.delegate! as! AppDelegate).show(homeTabBarController)
+            self.appDelegate.show(homeTabBarController)
         }
     }
 

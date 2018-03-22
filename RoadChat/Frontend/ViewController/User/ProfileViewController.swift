@@ -13,12 +13,14 @@ class ProfileViewController: UITableViewController {
     
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
+    private let appDelegate: AppDelegate
     private let authenticationManager: AuthenticationManager
     private let user: User
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, authenticationManager: AuthenticationManager, user: User) {
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, user: User) {
         self.viewFactory = viewFactory
+        self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
         self.user = user
         
@@ -37,7 +39,7 @@ class ProfileViewController: UITableViewController {
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
         authenticationManager.logout { error in
             let loginViewController = self.viewFactory.makeLoginViewController()
-            (UIApplication.shared.delegate! as! AppDelegate).show(loginViewController)
+            self.appDelegate.show(loginViewController)
         }
     }
     

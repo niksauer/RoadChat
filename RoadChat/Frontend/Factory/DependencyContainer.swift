@@ -6,11 +6,12 @@
 //  Copyright © 2018 Niklas Sauer. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct DependencyContainer {
     private let credentials: APICredentialStore = CredentialManager.shared
-
+    private let appDelegate: AppDelegate = UIApplication.shared.delegate! as! AppDelegate
+    
     private var userManager: UserManager {
         return UserManager(userService: UserService(credentials: credentials))
     }
@@ -32,7 +33,7 @@ extension DependencyContainer: ViewControllerFactory {
     
     // General
     func makeSetupViewController() -> SetupViewController {
-        return SetupViewController(viewFactory: self, authenticationManager: authenticationManager, credentials: credentials)
+        return SetupViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, credentials: credentials)
     }
     
     func makeHomeTabBarController(for user: User) -> HomeTabBarController {
@@ -41,11 +42,11 @@ extension DependencyContainer: ViewControllerFactory {
 
     // Authentication
     func makeLoginViewController() -> LoginViewController {
-        return LoginViewController(viewFactory: self, authenticationManager: authenticationManager)
+        return LoginViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager)
     }
 
     func makeRegisterViewController() -> RegisterViewController {
-        return RegisterViewController(viewFactory: self, authenticationManager: authenticationManager, userManager: userManager)
+        return RegisterViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, userManager: userManager)
     }
 
     // Community
@@ -69,7 +70,7 @@ extension DependencyContainer: ViewControllerFactory {
     
     // User
     func makeProfileViewController(for user: User) -> ProfileViewController {
-        return ProfileViewController(viewFactory: self, authenticationManager: authenticationManager, user: user)
+        return ProfileViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user)
     }
 
 }

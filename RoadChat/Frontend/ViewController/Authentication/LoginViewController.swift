@@ -17,11 +17,13 @@ class LoginViewController: UIViewController {
     
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
+    private let appDelegate: AppDelegate
     private let authenticationManager: AuthenticationManager
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, authenticationManager: AuthenticationManager) {
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager) {
         self.viewFactory = viewFactory
+        self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
     
         super.init(nibName: nil, bundle: nil)
@@ -50,13 +52,13 @@ class LoginViewController: UIViewController {
             
             // show home screen
             let homeTabBarController = self.viewFactory.makeHomeTabBarController(for: user)
-            (UIApplication.shared.delegate! as! AppDelegate).show(homeTabBarController)
+            self.appDelegate.show(homeTabBarController)
         }
     }
     
     @IBAction func registerButtonPressed(_ sender: UIButton) {
         let registerViewController = self.viewFactory.makeRegisterViewController()
-        self.navigationController?.pushViewController(registerViewController, animated: true)
+        navigationController?.pushViewController(registerViewController, animated: true)
     }
         
 }
