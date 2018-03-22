@@ -11,7 +11,25 @@ import RoadChatKit
 
 class TrafficBoardViewController: UITableViewController {
     
+    // MARK: - Private Properties
+    private let viewFactory: ViewControllerFactory
+    private let trafficBoard: TrafficBoard
+    
     // MARK: - Initialization
+    init(viewFactory: ViewControllerFactory, trafficBoard: TrafficBoard) {
+        self.viewFactory = viewFactory
+        self.trafficBoard = trafficBoard
+        
+        super.init(nibName: nil, bundle: nil)
+        self.title = "TrafficBoard"
+        self.tabBarItem = UITabBarItem(title: "Traffic", image: #imageLiteral(resourceName: "car"), tag: 1)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new"), style: .plain, target: nil, action: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,10 +38,6 @@ class TrafficBoardViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
     }
     
     // MARK: - Navigation
@@ -89,3 +103,4 @@ class TrafficBoardViewController: UITableViewController {
      */
     
 }
+

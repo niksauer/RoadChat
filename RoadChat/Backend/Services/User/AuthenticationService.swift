@@ -11,12 +11,11 @@ import RoadChatKit
 
 struct AuthenticationService: JSendService {
     
-    // MARK: - Public Properties
+    // MARK: - JSendService Protocol
     typealias PrimaryResource = RoadChatKit.BearerToken.PublicBearerToken
     let client: JSendAPIClient
     
-    // MARK: - Initialization
-    init(credentials: APICredentialStore) {
+    init(credentials: APICredentialStore?) {
         self.client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/user", credentials: credentials)
     }
     

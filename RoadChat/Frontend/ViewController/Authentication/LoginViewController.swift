@@ -2,43 +2,42 @@
 //  LoginViewController.swift
 //  RoadChat
 //
-//  Created by Malcolm Malam on 07.03.18.
+//  Created by Niklas Sauer on 22.03.18.
 //  Copyright © 2018 Niklas Sauer. All rights reserved.
 //
 
 import UIKit
 import RoadChatKit
-import Locksmith
 
 class LoginViewController: UIViewController {
-    
-    // MARK: - Public Properties
-    let navigator = NavigationHelper()
-    let authenticationManager = AuthenticationManager()
     
     // MARK: - Outlets
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    // MARK: - Private Properties
+    private let viewFactory: ViewControllerFactory
+    private let appDelegate: AppDelegate
+    private let authenticationManager: AuthenticationManager
+    
     // MARK: - Initialization
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager) {
+        self.viewFactory = viewFactory
+        self.appDelegate = appDelegate
+        self.authenticationManager = authenticationManager
+    
+        super.init(nibName: nil, bundle: nil)
+        self.title = "RoadChat"
     }
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Public Methods
-    @IBAction func registerButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "showRegisterView", sender: self)
-    }
-    
-    @IBAction func loginButtonPressed(_ sender: Any) {
-        guard let user = usernameTextField.text, let password = passwordTextField.text else {
-            // handle missing fields error
+    @IBAction func loginButtonPressed(_ sender: UIButton) {
+        guard let user = usernameTextField.text, !user.isEmpty, let password = passwordTextField.text, !password.isEmpty else {
+            // handle missing / empty fields error
             log.warning("Missing required fields for login.")
             return
         }
@@ -46,13 +45,21 @@ class LoginViewController: UIViewController {
         let loginRequest = LoginRequest(user: user, password: password)
         
         authenticationManager.login(loginRequest) { user, error in
-            guard let _ = user else {
+            guard let user = user else {
                 // handle login error
                 return
             }
             
-            self.navigator.showHome()
+            // show home screen
+            let homeTabBarController = self.viewFactory.makeHomeTabBarController(for: user)
+            self.appDelegate.show(homeTabBarController)
         }
     }
     
+    @IBAction func registerButtonPressed(_ sender: UIButton) {
+        let registerViewController = self.viewFactory.makeRegisterViewController()
+        navigationController?.pushViewController(registerViewController, animated: true)
+    }
+        
 }
+

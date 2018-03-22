@@ -12,8 +12,13 @@ import RoadChatKit
 
 struct UserManager {
     
-    // MARK: - Public Properties
-    let userService = UserService(credentials: CredentialManager.shared)
+    // MARK: - Private Properties
+    private let userService: UserService
+    
+    // MARK: - Initialization
+    init(userService: UserService) {
+        self.userService = userService
+    }
     
     // MARK: - Public Methods
     func createUser(_ user: RegisterRequest, completion: @escaping (Error?) -> Void) {

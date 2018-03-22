@@ -11,8 +11,13 @@ import RoadChatKit
 
 struct CommunityBoard {
     
-    // MARK: - Public Properties
-    let communityService = CommunityService(credentials: CredentialManager.shared)
+    // MARK: - Private Properties
+    private let communityService: CommunityService
+    
+    // MARK: - Initialization
+    init(communityService: CommunityService) {
+        self.communityService = communityService
+    }
     
     // MARK: - Public Methods
     func postMessage(_ message: CommunityMessageRequest, completion: @escaping (Error?) -> Void) {

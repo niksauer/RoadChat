@@ -11,13 +11,27 @@ import CoreData
 
 class ConversationsViewController: FetchedResultsTableViewController {
     
-    // MARK: - Public Properties
-    let user = AuthenticationManager.activeUser!
-    
     // MARK: - Private Properties
+    private let viewFactory: ViewControllerFactory
+    private let user: User
+
     private var fetchedResultsController: NSFetchedResultsController<Conversation>?
     
     // MARK: - Initialization
+    init(viewFactory: ViewControllerFactory, user: User) {
+        self.viewFactory = viewFactory
+        self.user = user
+        
+        super.init(nibName: nil, bundle: nil)
+        self.title = "Chats"
+        self.tabBarItem = UITabBarItem(title: "Chat", image: #imageLiteral(resourceName: "speech_buble"), tag: 2)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new"), style: .plain, target: nil, action: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         updateUI()
     }
@@ -26,7 +40,7 @@ class ConversationsViewController: FetchedResultsTableViewController {
     private func updateUI() {
         let context = CoreDataStack.shared.viewContext
         let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
-//        NSSortDescriptor(key: "", ascending: <#T##Bool#>)
+        //        NSSortDescriptor(key: "", ascending: <#T##Bool#>)
         request.sortDescriptors = []
         request.predicate = NSPredicate(format: "any participants.userID = %d", user.id)
         
@@ -46,7 +60,7 @@ class ConversationsViewController: FetchedResultsTableViewController {
         
         return cell
     }
-
+    
 }
 
 // MARK: - Table View Data Source
@@ -79,3 +93,4 @@ extension ConversationsViewController {
         return fetchedResultsController?.section(forSectionIndexTitle: title, at: index) ?? 0
     }
 }
+

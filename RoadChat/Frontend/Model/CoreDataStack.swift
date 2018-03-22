@@ -6,7 +6,7 @@
 //  Copyright © 2018 Niklas Sauer. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import CoreData
 
 class CoreDataStack: NSObject {
@@ -18,11 +18,6 @@ class CoreDataStack: NSObject {
     private override init() {}
     
     // MARK: - Public Properties
-    var viewContext: NSManagedObjectContext {
-        let viewContext = persistentContainer.viewContext
-        return viewContext
-    }
-        
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "RoadChat")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -43,6 +38,11 @@ class CoreDataStack: NSObject {
         })
         return container
     }()
+    
+    var viewContext: NSManagedObjectContext {
+        let viewContext = persistentContainer.viewContext
+        return viewContext
+    }
     
     // MARK: - Public Methods
     func saveViewContext () {

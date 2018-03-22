@@ -11,13 +11,17 @@ import RoadChatKit
 
 class AuthenticationManager {
     
-    // MARK: - Public Static Properties
-    static var activeUser: User?
+    // MARK: - Private Properties
+    private let credentials: APICredentialStore
+    private let authenticationService: AuthenticationService
+    private let userManager: UserManager
     
-    // MARK: - Public Properties
-    let credentials = CredentialManager.shared
-    let authenticationService = AuthenticationService(credentials: CredentialManager.shared)
-    let userManager = UserManager()
+    // MARK: - Initialization
+    init(credentials: APICredentialStore, authenticationService: AuthenticationService, userManager: UserManager) {
+        self.credentials = credentials
+        self.authenticationService = authenticationService
+        self.userManager = userManager
+    }
     
     // MARK: - Public Methods
     func login(_ user: LoginRequest, completion: @escaping (User?, Error?) -> Void) {
@@ -43,9 +47,6 @@ class AuthenticationManager {
                             return
                         }
                         
-                        // set active user
-                        AuthenticationManager.activeUser = user
-                        log.debug("Set currently active user '\(user.id)'.")
                         completion(user, nil)
                     }
                 } catch {
@@ -72,13 +73,9 @@ class AuthenticationManager {
             
             do {
                 // remove credentials
-                try self.credentials.setToken(nil)
-                try self.credentials.setUserID(nil)
+                try self.credentials.reset()
                 log.info("Successfully logged out user.")
                 
-                // unset active user
-                AuthenticationManager.activeUser = nil
-                log.debug("Unset currently active user.")
                 completion(nil)
             } catch {
                 // pass keychain error
@@ -88,4 +85,39 @@ class AuthenticationManager {
         }
     }
 
+    func getAuthenticatedUser(completion: @escaping (User?) -> Void) {
+        // user is logged in if token exists and has userID associated
+        let token = credentials.getToken()
+        let userID = credentials.getUserID()
+        
+        if let token = token, let userID = userID {
+            log.info("User '\(userID)' is already authenticated: \(token)")
+            
+            // get authenticated user
+            if let user = userManager.findUserById(userID) {
+                completion(user)
+            } else {
+                userManager.getUserById(userID) { user, error in
+                    guard let user = user else {
+                        fatalError("Unable to retrieve currently authenticated user: \(error!)")
+                    }
+        
+                    completion(user)
+                }
+            }
+        } else {
+            if token != nil || userID != nil {
+                do {
+                    try credentials.setToken(nil)
+                    try credentials.setUserID(nil)
+                    log.debug("Reset token or userID for partially authenticated user.")
+                } catch {
+                    log.error("Failed to reset token or userID for partially authenticated user: \(error)")
+                }
+            }
+            
+            completion(nil)
+        }
+    }
+ 
 }

@@ -9,8 +9,26 @@
 import UIKit
 
 class CommunityBoardViewController: UITableViewController  {
+ 
+    // MARK: - Private Properties
+    private let viewFactory: ViewControllerFactory
+    private let communityBoard: CommunityBoard
     
     // MARK: - Initialization
+    init(viewFactory: ViewControllerFactory, communityBoard: CommunityBoard) {
+        self.viewFactory = viewFactory
+        self.communityBoard = communityBoard
+        
+        super.init(nibName: nil, bundle: nil)
+        self.title = "CommunityBoard"
+        self.tabBarItem = UITabBarItem(title: "Community", image: #imageLiteral(resourceName: "collaboration"), tag: 0)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new"), style: .plain, target: self, action: #selector(createMessageButtonPressed(_:)))
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,10 +39,11 @@ class CommunityBoardViewController: UITableViewController  {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - Public Methods
+    @IBAction func createMessageButtonPressed(_ sender: UIBarButtonItem) {
+        let createMessageViewController = viewFactory.makeCreateCommunityMessageViewController()
+        let createMessageNavigationController = UINavigationController(rootViewController: createMessageViewController)
+        present(createMessageNavigationController, animated: true, completion: nil)
     }
     
     // MARK: - Table View Data Source
@@ -84,3 +103,4 @@ class CommunityBoardViewController: UITableViewController  {
      */
     
 }
+

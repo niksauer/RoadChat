@@ -10,71 +10,44 @@ import UIKit
 
 class SetupViewController: UIViewController {
     
-    // MARK: - Public Properties
-    let navigator = NavigationHelper()
-    let credentials = CredentialManager.shared
-    let userManager = UserManager()
+    // MARK: - Private Properties
+    private let viewFactory: ViewControllerFactory
+    private let appDelegate: AppDelegate
+    private let authenticationManager: AuthenticationManager
+    private let credentials: APICredentialStore
     
     // MARK: - Initialization
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, credentials: APICredentialStore) {
+        self.viewFactory = viewFactory
+        self.appDelegate = appDelegate
+        self.authenticationManager = authenticationManager
+        self.credentials = credentials
         
-//        do {
-//            try credentials.setToken(nil)
-//            try credentials.setUserID(nil)
-//            log.debug("Reset token & userID.")
-//        } catch {
-//            log.error("Failed to reset token & userID: \(error)")
-//        }
-        
-        // user is logged in if token exists and has userID associated
-        let token = credentials.getToken()
-        let userID = credentials.getUserID()
-        
-        if let token = token, let userID = userID {
-            log.info("User '\(userID)' is already logged in: \(token)")
-            
-            if let user = userManager.findUserById(userID) {
-                // set active user
-                AuthenticationManager.activeUser = user
-                log.info("Set currently active user '\(user.id)'.")
-                
-                // show home screen
-                self.navigator.showHome()
-            } else {
-                userManager.getUserById(userID) { user, error in
-                    guard let user = user else {
-                        fatalError("Unable to retrieve currently active user: \(error!)")
-                    }
-                    
-                    // set active user
-                    AuthenticationManager.activeUser = user
-                    log.info("Set currently active user '\(user.id)'.")
-                    
-                    // show home screen
-                    self.navigator.showHome()
-                }
-            }
-        } else {
-            if token != nil || userID != nil {
-                do {
-                    try credentials.setToken(nil)
-                    try credentials.setUserID(nil)
-                    log.debug("Reset token & userID.")
-                } catch {
-                    log.error("Failed to reset token and/or userID: \(error)")
-                }
-            }
-            
-            // show login view
-            navigator.showLogin()
-        }
+        super.init(nibName: nil, bundle: nil)
     }
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+//        try? credentials.reset()
+    
+        authenticationManager.getAuthenticatedUser { user in
+            guard let user = user else {
+                // show login view
+                let loginViewController = self.viewFactory.makeLoginViewController()
+                let loginNavigationController = UINavigationController(rootViewController: loginViewController)
+                self.appDelegate.show(loginNavigationController)
+                return
+            }
+            
+            // show home screen
+            let homeTabBarController = self.viewFactory.makeHomeTabBarController(for: user)
+            self.appDelegate.show(homeTabBarController)
+        }
     }
 
 }
