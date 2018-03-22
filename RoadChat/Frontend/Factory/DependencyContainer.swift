@@ -70,7 +70,11 @@ extension DependencyContainer: ViewControllerFactory {
     
     // User
     func makeProfileViewController(for user: User) -> ProfileViewController {
-        return ProfileViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user)
+        return ProfileViewController(viewFactory: self, user: user)
+    }
+    
+    func makeSettingsViewController(for user: User) -> SettingsViewController {
+        return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user)
     }
 
 }

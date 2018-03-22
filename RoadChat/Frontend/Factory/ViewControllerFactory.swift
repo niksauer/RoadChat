@@ -30,5 +30,6 @@ protocol ViewControllerFactory {
     
     // User
     func makeProfileViewController(for user: User) -> ProfileViewController
+    func makeSettingsViewController(for user: User) -> SettingsViewController
     
 }
