@@ -14,7 +14,7 @@ enum ConversationError: Error {
     case notParticipating
 }
 
-class Conversation: NSManagedObject {
+class Conversation: NSManagedObject, ReportOwner {
     
     // MARK: - Public Class Methods
     class func createOrUpdate(from response: RoadChatKit.Conversation.PublicConversation, in context: NSManagedObjectContext) throws -> Conversation {
@@ -62,16 +62,22 @@ class Conversation: NSManagedObject {
         return (Array(messages!) as! [DirectMessage]).sorted(by: { $0.time! > $1.time! }).first
     }
     
+    // MARK: - ReportOwner Protocol
+    var logDescription: String {
+        return "'Conversation' [id: '\(self.id)']"
+    }
+    
     // MARK: - Private Properties
     private let conversationService = ConversationService(credentials: CredentialManager.shared)
     private let context: NSManagedObjectContext = CoreDataStack.shared.viewContext
-    
+
     // MARK: - Public Methods
     func get(completion: ((Error?) -> Void)?) {
         conversationService.get(conversationID: Int(id)) { conversation, error in
             guard let conversation = conversation else {
                 // pass service error
-                log.error("Failed to update conversation '\(self.id)': \(error!)")
+                let report = Report(.failedServerOperation(.retrieve, resource: nil, isMultiple: false, error: error!), owner: self)
+                log.error(report)
                 completion?(error!)
                 return
             }
@@ -79,10 +85,12 @@ class Conversation: NSManagedObject {
             do {
                 _ = try Conversation.createOrUpdate(from: conversation, in: self.context)
                 try self.context.save()
-                log.info("Successfully saved updated Core Data 'Conversation' instance.")
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: nil, isMultiple: false), owner: self)
+                log.debug(report)
                 completion?(nil)
             } catch {
-                log.error("Failed to save updated Core Data 'Conversation' instance: \(error)")
+                let report = Report(.failedCoreDataOperation(.retrieve, resource: nil, isMultiple: false, error: error), owner: self)
+                log.error(report)
                 completion?(error)
             }
         }
@@ -92,7 +100,8 @@ class Conversation: NSManagedObject {
         conversationService.delete(conversationID: Int(id)) { error in
             guard error == nil else {
                 // pass service error
-                log.error("Failed to delete conversation '\(self.id)': \(error!)")
+                let report = Report(.failedServerOperation(.delete, resource: nil, isMultiple: false, error: error!), owner: self)
+                log.error(report)
                 completion(error!)
                 return
             }
@@ -100,10 +109,12 @@ class Conversation: NSManagedObject {
             do {
                 self.context.delete(self)
                 try self.context.save()
-                log.info("Successfully deleted Core Data 'Conversation' instance.")
+                let report = Report(.successfulCoreDataOperation(.delete, resource: nil, isMultiple: false), owner: self)
+                log.debug(report)
                 completion(nil)
             } catch {
-                log.error("Failed to delete Core Data 'Conversation' instance: \(error)")
+                let report = Report(.failedCoreDataOperation(.delete, resource: nil, isMultiple: false, error: error), owner: self)
+                log.error(report)
                 completion(error)
             }
         }
@@ -113,26 +124,32 @@ class Conversation: NSManagedObject {
         conversationService.getMessages(conversationID: Int(id)) { messages, error in
             guard let messages = messages else {
                 // pass service error
-                log.error("Failed to get messages for conversation '\(self.id)': \(error!)")
+                let report = Report(.failedServerOperation(.retrieve, resource: "DirectMessage", isMultiple: true, error: error!), owner: self)
+                log.error(report)
                 completion?(error!)
                 return
             }
             
-            _ = messages.map {
+            let coreMessages: [DirectMessage] = messages.flatMap {
                 do {
-                    let message = try DirectMessage.create(from: $0, conversationID: Int(self.id), in: self.context)
-                    self.addToMessages(message)
+                    return try DirectMessage.create(from: $0, conversationID: Int(self.id), in: self.context)
                 } catch {
-                    log.error("Failed to create Core Data 'DirectMessage' instance: \(error)")
+                    let report = Report(.failedCoreDataOperation(.create, resource: "DirectMessage", isMultiple: true, error: error), owner: self)
+                    log.error(report)
+                    return nil
                 }
             }
+            
+            self.addToMessages(NSSet(array: coreMessages))
 
             do {
                 try self.context.save()
-                log.info("Successfully saved created Core Data 'DirectMessage' instances.")
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: "DirectMessage", isMultiple: true), owner: self)
+                log.debug(report)
                 completion?(nil)
             } catch {
-                log.error("Failed to save Core Data 'DirectMessage' instances: \(error)")
+                let report = Report(.failedCoreDataOperation(.retrieve, resource: "DirectMessage", isMultiple: true, error: error), owner: self)
+                log.error(report)
                 completion?(error)
             }
         }
@@ -143,7 +160,8 @@ class Conversation: NSManagedObject {
             try conversationService.createMessage(message, conversationID: Int(id)) { message, error in
                 guard let message = message else {
                     // pass service error
-                    log.error("Failed to create message for conversation '\(self.id)': \(error!)")
+                    let report = Report(.failedServerOperation(.create, resource: "DirectMessage", isMultiple: false, error: error!), owner: self)
+                    log.error(report)
                     completion(error!)
                     return
                 }
@@ -151,17 +169,20 @@ class Conversation: NSManagedObject {
                 do {
                     _ = try DirectMessage.create(from: message, conversationID: Int(self.id), in: self.context)
                     try self.context.save()
-                    log.info("Successfully created Core Data 'DirectMessage' instance.")
+                    let report = Report(.successfulCoreDataOperation(.create, resource: "DirectMessage", isMultiple: false), owner: self)
+                    log.debug(report)
                     completion(nil)
                 } catch {
                     // pass core data error
-                    log.error("Failed to create Core Data 'DirectMessage' instance: \(error)")
+                    let report = Report(.failedCoreDataOperation(.create, resource: "DirectMessage", isMultiple: false, error: error), owner: self)
+                    log.error(report)
                     completion(error)
                 }
             }
         } catch {
             // pass body encoding error
-            log.error("Failed to send 'DirectMessageRequest': \(error)")
+            let report = Report(.failedServerRequest(requestType: "DirectMessageRequest", error: error), owner: self)
+            log.error(report)
             completion(error)
         }
     }
@@ -170,26 +191,32 @@ class Conversation: NSManagedObject {
         conversationService.getParticipants(conversationID: Int(id)) { participants, error in
             guard let participants = participants else {
                 // pass service error
-                log.error("Failed to get participants for conversation '\(self.id)': \(error!)")
+                let report = Report(.failedServerOperation(.retrieve, resource: "Participant", isMultiple: true, error: error!), owner: self)
+                log.error(report)
                 completion?(error!)
                 return
             }
             
-            _ = participants.map {
+            let coreParticipants: [Participant] = participants.flatMap {
                 do {
-                    let participant = try Participant.createOrUpdate(from: $0, conversationID: Int(self.id), in: self.context)
-                    self.addToParticipants(participant)
+                    return try Participant.createOrUpdate(from: $0, conversationID: Int(self.id), in: self.context)
                 } catch {
-                    log.error("Failed to create Core Data 'Participant' instance: \(error)")
+                    let report = Report(.failedCoreDataOperation(.create, resource: "Participant", isMultiple: false, error: error), owner: self)
+                    log.error(report)
+                    return nil
                 }
             }
             
+            self.addToParticipants(NSSet(array: coreParticipants))
+            
             do {
                 try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: "Participant", isMultiple: true), owner: self)
+                log.debug(report)
                 completion?(nil)
-                log.info("Successfully saved created Core Data 'Participant' instances.")
             } catch {
-                log.error("Failed to save Core Data 'Participant' instances: \(error)")
+                let report = Report(.failedCoreDataOperation(.retrieve, resource: "Participant", isMultiple: true, error: error), owner: self)
+                log.error(report)
                 completion?(error)
             }
         }
@@ -199,26 +226,13 @@ class Conversation: NSManagedObject {
         conversationService.accept(conversationID: Int(id)) { error in
             guard error == nil else {
                 // pass service error
-                log.error("Failed to accept conversation '\(self.id)': \(error!)")
+                let report = Report(.failedServerOperation(.update, resource: "ApprovalStatus", isMultiple: false, error: error!), owner: self)
+                log.error(report)
                 completion(error!)
                 return
             }
             
-            guard let participation = self.storedParticipants.first(where: { $0.userID == self.user?.id }) else {
-                // pass model validation error
-                completion(ConversationError.notParticipating)
-                return
-            }
-            
-            do {
-                participation.setApprovalStatus(.accepted)
-                try self.context.save()
-                log.info("Successfully updated approval status for Core Data 'Conversation' instance.")
-                completion(nil)
-            } catch {
-                log.error("Failed to update approval status for Core Data 'Conversaton' instance: \(error)")
-                completion(error)
-            }
+            self.setApprovalStatus(.denied, completion: completion)
         }
     }
     
@@ -226,27 +240,36 @@ class Conversation: NSManagedObject {
         conversationService.delete(conversationID: Int(id)) { error in
             guard error == nil else {
                 // pass service error
-                log.error("Failed to deny conversation '\(self.id)': \(error!)")
+                let report = Report(.failedServerOperation(.update, resource: "ApprovalStatus", isMultiple: false, error: error!), owner: self)
+                log.error(report)
                 completion(error!)
                 return
             }
             
-            guard let participation = self.storedParticipants.first(where: { $0.userID == self.user?.id }) else {
-                // pass model validation error
-                completion(ConversationError.notParticipating)
-                return
-            }
-            
-            do {
-                participation.setApprovalStatus(.denied)
-                try self.context.save()
-                log.info("Successfully updated approval status for Core Data 'Conversation' instance.")
-                completion(nil)
-            } catch {
-                log.error("Failed to update approval status for Core Data 'Conversaton' instance: \(error)")
-                completion(error)
-            }
+            self.setApprovalStatus(.denied, completion: completion)
         }
     }
     
+    // MARK: - Private Methods
+    private func setApprovalStatus(_ status: ApprovalStatus, completion: (Error?) -> Void) {
+        guard let participation = self.storedParticipants.first(where: { $0.userID == self.user?.id }) else {
+            // pass model validation error
+            log.error("\(self.user!.logDescription) is not participating in \(self.logDescription)")
+            completion(ConversationError.notParticipating)
+            return
+        }
+        
+        do {
+            participation.setApprovalStatus(status)
+            try self.context.save()
+            let report = Report(ReportType.successfulCoreDataOperation(.update, resource: "ApprovalStatus", isMultiple: false), owner: self)
+            log.debug(report)
+            completion(nil)
+        } catch {
+            let report = Report(ReportType.failedCoreDataOperation(.update, resource: "ApprovalStatus", isMultiple: false, error: error), owner: self)
+            log.error(report)
+            completion(error)
+        }
+    }
+
 }
