@@ -28,7 +28,8 @@ struct UserManager {
             try userService.create(user) { user, error in
                 guard let user = user else {
                     // pass service error
-                    log.error("Failed to register user: \(error!)")
+                    let report = Report(ReportType.failedServerOperation(.create, resource: "User", isMultiple: false, error: error!), owner: nil)
+                    log.error(report)
                     completion(error!)
                     return
                 }
@@ -37,17 +38,20 @@ struct UserManager {
                     _ = try User.createOrUpdate(from: user, in: self.context)
                     try self.context.save()
                     
-                    log.info("Successfully registered user.")
+                    let report = Report(ReportType.successfulCoreDataOperation(.create, resource: "User", isMultiple: false), owner: nil)
+                    log.debug(report)
                     completion(nil)
                 } catch {
                     // pass core data error
-                    log.error("Failed to create Core Data 'User' instance: \(error)")
+                    let report = Report(ReportType.failedCoreDataOperation(.create, resource: "User", isMultiple: false, error: error), owner: nil)
+                    log.error(report)
                     completion(error)
                 }
             }
         } catch {
             // pass body encoding error
-            log.error("Failed to send 'RegisterRequest': \(error)")
+            let report = Report(ReportType.failedServerRequest(requestType: "RegisterRequest", error: error), owner: nil)
+            log.error(report)
             completion(error)
         }
     }
@@ -56,14 +60,19 @@ struct UserManager {
         let request: NSFetchRequest<User> = User.fetchRequest()
         request.predicate = NSPredicate(format: "id = %d", id)
     
-        let matches = try? context.fetch(request)
-        
-        if let user = matches?.first {
+        do {
+            let user = try context.fetch(request).first
+            
             // user property must be accessed to trigger awakeFromFetch()
-            log.debug("Successfully fetched user '\(user.id)' from Core Data.")
+            _ = user?.id
+            
+            let report = Report(ReportType.successfulCoreDataOperation(.fetch, resource: "User", isMultiple: false), owner: nil)
+            log.debug(report)
+            
             return user
-        } else {
-            log.debug("Could not find user '\(id)' in Core Data.")
+        } catch {
+            let report = Report(ReportType.failedCoreDataOperation(.fetch, resource: "User", isMultiple: false, error: error), owner: nil)
+            log.error(report)
             return nil
         }
     }
@@ -72,7 +81,8 @@ struct UserManager {
         userService.get(userID: id) { user, error in
             guard let user = user else {
                 // pass service error
-                log.error("Failed to retrieve user: \(error!)")
+                let report = Report(ReportType.failedServerOperation(.retrieve, resource: "User", isMultiple: false, error: error!), owner: nil)
+                log.error(report)
                 completion(nil, error!)
                 return
             }
@@ -80,11 +90,13 @@ struct UserManager {
             do {
                 let user = try User.createOrUpdate(from: user, in: self.context)
                 try self.context.save()
-                log.debug("Successfully retrieved user '\(user.id)'.")
+                let report = Report(ReportType.successfulCoreDataOperation(.retrieve, resource: "User", isMultiple: false), owner: nil)
+                log.debug(report)
                 completion(user, nil)
             } catch {
                 // pass core data error
-                log.error("Failed to create Core Data 'User' instance: \(error)")
+                let report = Report(ReportType.failedCoreDataOperation(.retrieve, resource: "User", isMultiple: false, error: error), owner: nil)
+                log.error(report)
                 completion(nil, error)
             }
         }

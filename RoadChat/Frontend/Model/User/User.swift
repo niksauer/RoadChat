@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import RoadChatKit
 
-class User: NSManagedObject {
+class User: NSManagedObject, ReportOwner {
     
     // MARK: - Public Class Methods
     class func createOrUpdate(from response: RoadChatKit.User.PublicUser, in context: NSManagedObjectContext) throws -> User {
@@ -57,6 +57,11 @@ class User: NSManagedObject {
     private let conversationService = ConversationService(credentials: CredentialManager.shared)
     private let context = CoreDataStack.shared.viewContext
     
+    // MARK: - ReportOwner Protocol
+    var logDescription: String {
+        return "'User' [id: '\(self.id)']"
+    }
+    
     // MARK: - Initialization
     override func awakeFromFetch() {
         super.awakeFromFetch()
@@ -70,7 +75,8 @@ class User: NSManagedObject {
         userService.get(userID: Int(id)) { user, error in
             guard let user = user else {
                 // pass service error
-                log.error("Failed to update user '\(self.id)': \(error!)")
+                let report = Report(.failedServerOperation(.retrieve, resource: nil, isMultiple: false, error: error!), owner: self)
+                log.error(report)
                 completion?(error!)
                 return
             }
@@ -78,10 +84,12 @@ class User: NSManagedObject {
             do {
                 _ = try User.createOrUpdate(from: user, in: self.context)
                 try self.context.save()
-                log.debug("Successfully saved created or updated Core Data 'User' instance.")
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: nil, isMultiple: false), owner: self)
+                log.debug(report)
                 completion?(nil)
             } catch {
-                log.error("Failed to save updated Core Data 'User' instance: \(error)")
+                let report = Report(.failedCoreDataOperation(.create, resource: nil, isMultiple: false, error: error), owner: self)
+                log.error(report)
                 completion?(error)
             }
         }
@@ -92,7 +100,8 @@ class User: NSManagedObject {
             try userService.createOrUpdateProfile(userID: Int(id), to: profile) { error in
                 guard error == nil else {
                     // pass service error
-                    log.error("Failed to update profile for user '\(self.id)': \(error!)")
+                    let report = Report(.failedServerOperation(.update, resource: "Profile", isMultiple: false, error: error!), owner: self)
+                    log.error(report)
                     completion(error!)
                     return
                 }
@@ -103,17 +112,22 @@ class User: NSManagedObject {
                     let publicProfile = RoadChatKit.Profile.PublicProfile(profile: profile, privacy: privacy, isOwner: true)
                     let _ = try Profile.createOrUpdate(from: publicProfile, userID: Int(self.id), in: self.context)
                     try self.context.save()
-                    log.info("Successfully saved created or updated Core Data 'Profile' instance.")
+
+                    let report = Report(.successfulCoreDataOperation(.update, resource: "Profile", isMultiple: false), owner: self)
+                    log.debug(report)
+                    
                     completion(nil)
                 } catch {
                     // pass core data error
-                    log.error("Failed to create Core Data 'Profile' instance: \(error)")
+                    let report = Report(.failedCoreDataOperation(.update, resource: "Profile", isMultiple: false, error: error), owner: self)
+                    log.error(report)
                     completion(error)
                 }
             }
         } catch {
             // pass body encoding error
-            log.error("Failed to send 'ProfileRequest': \(error)")
+            let report = Report(.failedServerRequest(requestType: "ProfileRequest", error: error), owner: self)
+            log.error(report)
             completion(error)
         }
     }
@@ -122,7 +136,8 @@ class User: NSManagedObject {
         userService.getProfile(userID: Int(id)) { profile, error in
             guard let profile = profile else {
                 // pass service error
-                log.error("Failed to get profile for user '\(self.id)': \(error!)")
+                let report = Report(.failedServerOperation(.retrieve, resource: "Profile", isMultiple: false, error: error!), owner: self)
+                log.error(report)
                 completion?(error!)
                 return
             }
@@ -131,11 +146,13 @@ class User: NSManagedObject {
                 let profile = try Profile.createOrUpdate(from: profile, userID: Int(self.id), in: self.context)
                 self.profile = profile
                 try self.context.save()
-                log.info("Successfully saved created or updated Core Data 'Profile' instance.")
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: "Profile", isMultiple: false), owner: self)
+                log.debug(report)
                 completion?(nil)
             } catch {
                 // pass core data error
-                log.error("Failed to create Core Data 'Profile' instance: \(error)")
+                let report = Report(.failedCoreDataOperation(.retrieve, resource: "Profile", isMultiple: false, error: error), owner: self)
+                log.error(report)
                 completion?(error)
             }
         }
@@ -146,7 +163,8 @@ class User: NSManagedObject {
             try conversationService.create(conversation) { conversation, error in
                 guard let conversation = conversation else {
                     // pass service error
-                    log.error("Failed to create conversation: \(error!)")
+                    let report = Report(.failedServerOperation(.create, resource: "Conversation", isMultiple: false, error: error!), owner: self)
+                    log.error(report)
                     completion(error!)
                     return
                 }
@@ -155,17 +173,22 @@ class User: NSManagedObject {
                     let conversation = try Conversation.createOrUpdate(from: conversation, in: self.context)
                     self.addToConversations(conversation)
                     try self.context.save()
-                    log.info("Successfully created Core Data 'Conversation' instance.")
+                    
+                    let report = Report(.successfulCoreDataOperation(.create, resource: "Conversation", isMultiple: false), owner: self)
+                    log.debug(report)
+                    
                     completion(nil)
                 } catch {
                     // pass core data error
-                    log.error("Failed to create Core Data 'Conversation' instance: \(error)")
+                    let report = Report(.failedCoreDataOperation(.create, resource: "Conversation", isMultiple: false, error: error), owner: self)
+                    log.error(report)
                     completion(error)
                 }
             }
         } catch {
             // pass body encoding error
-            log.error("Failed to send 'ConversationRequest': \(error)")
+            let report = Report(.failedServerRequest(requestType: "ConversationRequest", error: error), owner: self)
+            log.error(report)
             completion(error)
         }
     }
@@ -174,26 +197,32 @@ class User: NSManagedObject {
         userService.getConversations(userID: Int(id)) { conversations, error in
             guard let conversations = conversations else {
                 // pass service error
-                log.error("Failed to get conversations for user '\(self.id)': \(error!)")
+                let report = Report(.failedServerOperation(.retrieve, resource: "Conversation", isMultiple: true, error: error!), owner: self)
+                log.error(report)
                 completion?(error!)
                 return
             }
             
-            _ = conversations.map {
+            let coreConversations: [Conversation] = conversations.flatMap {
                 do {
-                    let conversation = try Conversation.createOrUpdate(from: $0, in: self.context)
-                    self.addToConversations(conversation)
+                    return try Conversation.createOrUpdate(from: $0, in: self.context)
                 } catch {
-                    log.error("Failed to create Core Data 'Conversation' instance: \(error)")
+                    let report = Report(.failedCoreDataOperation(.create, resource: "Conversation", isMultiple: false, error: error), owner: self)
+                    log.error(report)
+                    return nil
                 }
             }
-
+        
+            self.addToConversations(NSSet(array: coreConversations))
+            
             do {
                 try self.context.save()
-                log.info("Successfully saved created Core Data 'Conversation' instances.")
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: "Conversation", isMultiple: true), owner: self)
+                log.debug(report)
                 completion?(nil)
             } catch {
-                log.error("Failed to save Core Data 'Conversation' instances: \(error)")
+                let report = Report(.failedCoreDataOperation(.retrieve, resource: "Conversation", isMultiple: true, error: error), owner: self)
+                log.error(report)
                 completion?(error)
             }
         }

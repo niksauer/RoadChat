@@ -60,7 +60,8 @@ class AuthenticationManager {
             }
         } catch {
             // pass body encoding error
-            log.error("Failed to send 'LoginRequest': \(error)")
+            let report = Report(ReportType.failedServerRequest(requestType: "LoginRequest", error: error), owner: nil)
+            log.error(report)
             completion(nil, error)
         }
     }
