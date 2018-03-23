@@ -19,6 +19,7 @@
 		240D10F920481843008C5E39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D10F820481843008C5E39 /* AppDelegate.swift */; };
 		240D110220481843008C5E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D110120481843008C5E39 /* Assets.xcassets */; };
 		240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D110320481843008C5E39 /* LaunchScreen.storyboard */; };
+		2412D6E020647B5D0066A51C /* SetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2412D6DF20647B5D0066A51C /* SetupViewController.xib */; };
 		242089BE205EB1C700FFEC90 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242089BD205EB1C700FFEC90 /* SetupViewController.swift */; };
 		242F8F2E204D6EA80052087B /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F8F2D204D6EA80052087B /* AuthenticationService.swift */; };
 		243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243357252049817A00CD5F87 /* JSendAPIClient.swift */; };
@@ -43,20 +44,20 @@
 		248D37AD20494FFB00B21C3D /* DirectMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37AC20494FFB00B21C3D /* DirectMessage.swift */; };
 		248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37AE2049501100B21C3D /* CommunityMessage.swift */; };
 		248D37B12049504B00B21C3D /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37B02049504B00B21C3D /* Car.swift */; };
+		249515CB2064483400E734E4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249515C92064483400E734E4 /* SettingsViewController.swift */; };
+		249515CE20644DB100E734E4 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249515CD20644DB100E734E4 /* ProfileViewController.xib */; };
+		249515D1206460F800E734E4 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249515CF206460F800E734E4 /* ConversationCell.swift */; };
+		249515D2206460F800E734E4 /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249515D0206460F800E734E4 /* ConversationCell.xib */; };
 		24A069B12051EFC8006F8401 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A069B02051EFC8006F8401 /* CoreDataStack.swift */; };
 		24A069BB20520367006F8401 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A069BA20520367006F8401 /* AuthenticationManager.swift */; };
 		24B134642063254F00B894BF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B134622063254F00B894BF /* LoginViewController.swift */; };
 		24B134652063254F00B894BF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B134632063254F00B894BF /* LoginViewController.xib */; };
 		24B134672063C10C00B894BF /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B134662063C10C00B894BF /* RegisterViewController.xib */; };
 		24B1346E20641A8C00B894BF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B1346C20641A8C00B894BF /* ProfileViewController.swift */; };
-		24B1346F20641A8C00B894BF /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B1346D20641A8C00B894BF /* ProfileViewController.xib */; };
 		24B1347420641EB800B894BF /* CommunityBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B1347220641EB800B894BF /* CommunityBoardViewController.swift */; };
-		24B1347520641EB800B894BF /* CommunityBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B1347320641EB800B894BF /* CommunityBoardViewController.xib */; };
 		24B134772064202800B894BF /* CreateCommunityMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B134762064202800B894BF /* CreateCommunityMessageViewController.xib */; };
 		24B1347A206421EE00B894BF /* TrafficBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B13478206421EE00B894BF /* TrafficBoardViewController.swift */; };
-		24B1347B206421EE00B894BF /* TrafficBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B13479206421EE00B894BF /* TrafficBoardViewController.xib */; };
 		24B1347E2064229100B894BF /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B1347C2064229100B894BF /* ConversationsViewController.swift */; };
-		24B1347F2064229100B894BF /* ConversationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B1347D2064229100B894BF /* ConversationsViewController.xib */; };
 		24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; };
 		24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C93155452051920C00F4C429 /* TrafficService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93155442051920C00F4C429 /* TrafficService.swift */; };
@@ -217,6 +218,7 @@
 		240D110120481843008C5E39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		240D110420481843008C5E39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		240D110620481844008C5E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2412D6DF20647B5D0066A51C /* SetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetupViewController.xib; sourceTree = "<group>"; };
 		242089BD205EB1C700FFEC90 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		242F8F2D204D6EA80052087B /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		243357252049817A00CD5F87 /* JSendAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JSendAPIClient.swift; path = RoadChat/Backend/JSendAPIClient.swift; sourceTree = SOURCE_ROOT; };
@@ -241,6 +243,10 @@
 		248D37AC20494FFB00B21C3D /* DirectMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessage.swift; sourceTree = "<group>"; };
 		248D37AE2049501100B21C3D /* CommunityMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessage.swift; sourceTree = "<group>"; };
 		248D37B02049504B00B21C3D /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		249515C92064483400E734E4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		249515CD20644DB100E734E4 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		249515CF206460F800E734E4 /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
+		249515D0206460F800E734E4 /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
 		24A069B02051EFC8006F8401 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		24A069BA20520367006F8401 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthenticationManager.swift; path = RoadChat/Frontend/Model/AuthenticationManager.swift; sourceTree = SOURCE_ROOT; };
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
@@ -248,14 +254,10 @@
 		24B134632063254F00B894BF /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		24B134662063C10C00B894BF /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		24B1346C20641A8C00B894BF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		24B1346D20641A8C00B894BF /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		24B1347220641EB800B894BF /* CommunityBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoardViewController.swift; sourceTree = "<group>"; };
-		24B1347320641EB800B894BF /* CommunityBoardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunityBoardViewController.xib; sourceTree = "<group>"; };
 		24B134762064202800B894BF /* CreateCommunityMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateCommunityMessageViewController.xib; sourceTree = "<group>"; };
 		24B13478206421EE00B894BF /* TrafficBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficBoardViewController.swift; sourceTree = "<group>"; };
-		24B13479206421EE00B894BF /* TrafficBoardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrafficBoardViewController.xib; sourceTree = "<group>"; };
 		24B1347C2064229100B894BF /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
-		24B1347D2064229100B894BF /* ConversationsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationsViewController.xib; sourceTree = "<group>"; };
 		24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyBeaver.xcodeproj; path = Frameworks/SwiftyBeaver/SwiftyBeaver.xcodeproj; sourceTree = "<group>"; };
 		C93155442051920C00F4C429 /* TrafficService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficService.swift; sourceTree = "<group>"; };
 		C988ACA42052BB3200EDCEAC /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -371,8 +373,10 @@
 		243F1EB320483BAD00B45955 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2412D6DF20647B5D0066A51C /* SetupViewController.xib */,
 				242089BD205EB1C700FFEC90 /* SetupViewController.swift */,
 				247F6D3A206081320006FBC7 /* HomeTabBarController.swift */,
+				247F6D06205F097D0006FBC7 /* Shared */,
 				2422D01B205155CF0081A552 /* Authentication */,
 				243F1EB420483BC100B45955 /* User */,
 				243F1EB620483BD100B45955 /* Community */,
@@ -386,7 +390,8 @@
 			isa = PBXGroup;
 			children = (
 				24B1346C20641A8C00B894BF /* ProfileViewController.swift */,
-				24B1346D20641A8C00B894BF /* ProfileViewController.xib */,
+				249515CD20644DB100E734E4 /* ProfileViewController.xib */,
+				249515C92064483400E734E4 /* SettingsViewController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -395,7 +400,6 @@
 			isa = PBXGroup;
 			children = (
 				24B13478206421EE00B894BF /* TrafficBoardViewController.swift */,
-				24B13479206421EE00B894BF /* TrafficBoardViewController.xib */,
 			);
 			path = Traffic;
 			sourceTree = "<group>";
@@ -404,7 +408,6 @@
 			isa = PBXGroup;
 			children = (
 				24B1347220641EB800B894BF /* CommunityBoardViewController.swift */,
-				24B1347320641EB800B894BF /* CommunityBoardViewController.xib */,
 				D44F4B87205297A7009A6239 /* CreateCommunityMessageViewController.swift */,
 				24B134762064202800B894BF /* CreateCommunityMessageViewController.xib */,
 			);
@@ -427,12 +430,12 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
-		247F6D06205F097D0006FBC7 /* UIHelper */ = {
+		247F6D06205F097D0006FBC7 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				240B9B8520534FAA00216E68 /* FetchedResultsTableViewController.swift */,
 			);
-			path = UIHelper;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		247F6D35206057DA0006FBC7 /* Factory */ = {
@@ -448,7 +451,6 @@
 			isa = PBXGroup;
 			children = (
 				24B1347C2064229100B894BF /* ConversationsViewController.swift */,
-				24B1347D2064229100B894BF /* ConversationsViewController.xib */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -515,7 +517,7 @@
 			children = (
 				247F6D35206057DA0006FBC7 /* Factory */,
 				243F1EB320483BAD00B45955 /* ViewController */,
-				247F6D06205F097D0006FBC7 /* UIHelper */,
+				249515D42064616300E734E4 /* Views */,
 				248D379920494D0F00B21C3D /* Model */,
 			);
 			path = Frontend;
@@ -530,6 +532,15 @@
 				2422D00120514FEA0081A552 /* Services */,
 			);
 			path = Backend;
+			sourceTree = "<group>";
+		};
+		249515D42064616300E734E4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				249515CF206460F800E734E4 /* ConversationCell.swift */,
+				249515D0206460F800E734E4 /* ConversationCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		24AED4AD204CC2EB002A1703 /* Products */ = {
@@ -752,13 +763,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24B1346F20641A8C00B894BF /* ProfileViewController.xib in Resources */,
+				2412D6E020647B5D0066A51C /* SetupViewController.xib in Resources */,
+				249515CE20644DB100E734E4 /* ProfileViewController.xib in Resources */,
 				24B134652063254F00B894BF /* LoginViewController.xib in Resources */,
 				24B134672063C10C00B894BF /* RegisterViewController.xib in Resources */,
-				24B1347F2064229100B894BF /* ConversationsViewController.xib in Resources */,
-				24B1347520641EB800B894BF /* CommunityBoardViewController.xib in Resources */,
 				240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */,
-				24B1347B206421EE00B894BF /* TrafficBoardViewController.xib in Resources */,
+				249515D2206460F800E734E4 /* ConversationCell.xib in Resources */,
 				24B134772064202800B894BF /* CreateCommunityMessageViewController.xib in Resources */,
 				240D110220481843008C5E39 /* Assets.xcassets in Resources */,
 			);
@@ -792,8 +802,10 @@
 				D44F4B7D20528076009A6239 /* CommunityService.swift in Sources */,
 				247F6D26206057950006FBC7 /* ViewControllerFactory.swift in Sources */,
 				24B1347E2064229100B894BF /* ConversationsViewController.swift in Sources */,
+				249515D1206460F800E734E4 /* ConversationCell.swift in Sources */,
 				247F6D1D205F26AE0006FBC7 /* CommunityBoard.swift in Sources */,
 				D44F4B88205297A7009A6239 /* CreateCommunityMessageViewController.swift in Sources */,
+				249515CB2064483400E734E4 /* SettingsViewController.swift in Sources */,
 				24B1347420641EB800B894BF /* CommunityBoardViewController.swift in Sources */,
 				C988ACA52052BB3200EDCEAC /* LocationManager.swift in Sources */,
 				248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */,

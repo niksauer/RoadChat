@@ -27,6 +27,7 @@ class CommunityMessage: NSManagedObject {
             if matches.count > 0 {
                 assert(matches.count >= 1, "CommunityMessage.create -- Database Inconsistency")
                 
+                // update existing message
                 let message = matches.first!
                 message.message = response.message
                 message.upvotes = Int16(response.upvotes)
@@ -37,6 +38,7 @@ class CommunityMessage: NSManagedObject {
             throw error
         }
         
+        // create new message
         let message = CommunityMessage(context: context)
         message.id = Int32(response.id)
         message.locationID = Int32(response.locationID)

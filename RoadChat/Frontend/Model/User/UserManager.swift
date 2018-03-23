@@ -14,10 +14,12 @@ struct UserManager {
     
     // MARK: - Private Properties
     private let userService: UserService
+    private let context: NSManagedObjectContext
     
     // MARK: - Initialization
-    init(userService: UserService) {
+    init(userService: UserService, context: NSManagedObjectContext) {
         self.userService = userService
+        self.context = context
     }
     
     // MARK: - Public Methods
@@ -32,8 +34,9 @@ struct UserManager {
                 }
                 
                 do {
-                    _ = try User.createOrUpdate(from: user, in: CoreDataStack.shared.viewContext)
-                    CoreDataStack.shared.saveViewContext()
+                    _ = try User.createOrUpdate(from: user, in: self.context)
+                    try self.context.save()
+                    
                     log.info("Successfully registered user.")
                     completion(nil)
                 } catch {
@@ -49,12 +52,20 @@ struct UserManager {
         }
     }
     
-    func findUserById(_ id: Int) -> User? {
+    func findUserById(_ id: Int, context: NSManagedObjectContext) -> User? {
         let request: NSFetchRequest<User> = User.fetchRequest()
         request.predicate = NSPredicate(format: "id = %d", id)
+    
+        let matches = try? context.fetch(request)
         
-        let matches = try? CoreDataStack.shared.viewContext.fetch(request)
-        return matches?.first
+        if let user = matches?.first {
+            // user property must be accessed to trigger awakeFromFetch()
+            log.debug("Successfully fetched user '\(user.id)' from Core Data.")
+            return user
+        } else {
+            log.debug("Could not find user '\(id)' in Core Data.")
+            return nil
+        }
     }
     
     func getUserById(_ id: Int, completion: @escaping (User?, Error?) -> Void) {
@@ -67,8 +78,8 @@ struct UserManager {
             }
             
             do {
-                let user = try User.createOrUpdate(from: user, in: CoreDataStack.shared.viewContext)
-                CoreDataStack.shared.saveViewContext()
+                let user = try User.createOrUpdate(from: user, in: self.context)
+                try self.context.save()
                 log.debug("Successfully retrieved user '\(user.id)'.")
                 completion(user, nil)
             } catch {

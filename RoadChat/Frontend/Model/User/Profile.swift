@@ -13,9 +13,9 @@ import RoadChatKit
 class Profile: NSManagedObject {
     
     // MARK: - Public Class Methods
-    class func createOrUpdate(from response: RoadChatKit.Profile.PublicProfile, user: User, in context: NSManagedObjectContext) throws -> Profile {
+    class func createOrUpdate(from response: RoadChatKit.Profile.PublicProfile, userID: Int, in context: NSManagedObjectContext) throws -> Profile {
         let request: NSFetchRequest<Profile> = Profile.fetchRequest()
-        request.predicate = NSPredicate(format: "user.id = %d", user.id)
+        request.predicate = NSPredicate(format: "user.id = %d", userID)
         
         do {
             let matches = try context.fetch(request)

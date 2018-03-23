@@ -8,6 +8,7 @@
 
 import Foundation
 import RoadChatKit
+import CoreData
 
 class AuthenticationManager {
     
@@ -15,12 +16,14 @@ class AuthenticationManager {
     private let credentials: APICredentialStore
     private let authenticationService: AuthenticationService
     private let userManager: UserManager
+    private let searchContext: NSManagedObjectContext
     
     // MARK: - Initialization
-    init(credentials: APICredentialStore, authenticationService: AuthenticationService, userManager: UserManager) {
+    init(credentials: APICredentialStore, authenticationService: AuthenticationService, userManager: UserManager, searchContext: NSManagedObjectContext) {
         self.credentials = credentials
         self.authenticationService = authenticationService
         self.userManager = userManager
+        self.searchContext = searchContext
     }
     
     // MARK: - Public Methods
@@ -46,7 +49,7 @@ class AuthenticationManager {
                             completion(nil, error!)
                             return
                         }
-                        
+                    
                         completion(user, nil)
                     }
                 } catch {
@@ -94,14 +97,14 @@ class AuthenticationManager {
             log.info("User '\(userID)' is already authenticated: \(token)")
             
             // get authenticated user
-            if let user = userManager.findUserById(userID) {
+            if let user = userManager.findUserById(userID, context: searchContext) {
                 completion(user)
             } else {
                 userManager.getUserById(userID) { user, error in
                     guard let user = user else {
                         fatalError("Unable to retrieve currently authenticated user: \(error!)")
                     }
-        
+                    
                     completion(user)
                 }
             }

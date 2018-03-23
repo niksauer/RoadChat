@@ -22,6 +22,7 @@ class User: NSManagedObject {
             if matches.count > 0 {
                 assert(matches.count >= 1, "User.create -- Database Inconsistency")
                 
+                // update existing user
                 let user = matches.first!
                 user.email = response.email
                 user.username = response.username
@@ -32,30 +33,40 @@ class User: NSManagedObject {
             throw error
         }
         
+        // create new user
         let user = User(context: context)
         user.id = Int32(response.id)
         user.email = response.email
         user.username = response.username
         user.registry = response.registry
         
+        // retrieve resources
+        user.getProfile(completion: nil)
+        user.getConversations(completion: nil)
+        
         return user
     }
     
     // MARK: - Public Properties
-    let userService = UserService(credentials: CredentialManager.shared)
-    let conversationService = ConversationService(credentials: CredentialManager.shared)
+    var storedConversations: [Conversation] {
+        return Array(conversations!) as! [Conversation]
+    }
+    
+    // MARK: - Private Properties
+    private let userService = UserService(credentials: CredentialManager.shared)
+    private let conversationService = ConversationService(credentials: CredentialManager.shared)
+    private let context = CoreDataStack.shared.viewContext
     
     // MARK: - Initialization
-    private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertInto: context)
-    
-        update(completion: nil)
+    override func awakeFromFetch() {
+        super.awakeFromFetch()
+        get(completion: nil)
         getProfile(completion: nil)
         getConversations(completion: nil)
     }
     
     // MARK: - Public Methods
-    func update(completion: ((Error?) -> Void)?) {
+    func get(completion: ((Error?) -> Void)?) {
         userService.get(userID: Int(id)) { user, error in
             guard let user = user else {
                 // pass service error
@@ -65,8 +76,8 @@ class User: NSManagedObject {
             }
             
             do {
-                _ = try User.createOrUpdate(from: user, in: CoreDataStack.shared.viewContext)
-                CoreDataStack.shared.saveViewContext()
+                _ = try User.createOrUpdate(from: user, in: self.context)
+                try self.context.save()
                 log.debug("Successfully saved created or updated Core Data 'User' instance.")
                 completion?(nil)
             } catch {
@@ -90,8 +101,8 @@ class User: NSManagedObject {
                     let privacy = RoadChatKit.Privacy(userID: Int(self.id))
                     let profile = RoadChatKit.Profile(userID: Int(self.id), profileRequest: profile)
                     let publicProfile = RoadChatKit.Profile.PublicProfile(profile: profile, privacy: privacy, isOwner: true)
-                    let _ = try Profile.createOrUpdate(from: publicProfile, user: self, in: CoreDataStack.shared.viewContext)
-                    CoreDataStack.shared.saveViewContext()
+                    let _ = try Profile.createOrUpdate(from: publicProfile, userID: Int(self.id), in: self.context)
+                    try self.context.save()
                     log.info("Successfully saved created or updated Core Data 'Profile' instance.")
                     completion(nil)
                 } catch {
@@ -117,9 +128,9 @@ class User: NSManagedObject {
             }
             
             do {
-                let profile = try Profile.createOrUpdate(from: profile, user: self, in: CoreDataStack.shared.viewContext)
+                let profile = try Profile.createOrUpdate(from: profile, userID: Int(self.id), in: self.context)
                 self.profile = profile
-                CoreDataStack.shared.saveViewContext()
+                try self.context.save()
                 log.info("Successfully saved created or updated Core Data 'Profile' instance.")
                 completion?(nil)
             } catch {
@@ -141,8 +152,9 @@ class User: NSManagedObject {
                 }
                 
                 do {
-                    _ = try Conversation.createOrUpdate(from: conversation, in: CoreDataStack.shared.viewContext)
-                    CoreDataStack.shared.saveViewContext()
+                    let conversation = try Conversation.createOrUpdate(from: conversation, in: self.context)
+                    self.addToConversations(conversation)
+                    try self.context.save()
                     log.info("Successfully created Core Data 'Conversation' instance.")
                     completion(nil)
                 } catch {
@@ -167,37 +179,22 @@ class User: NSManagedObject {
                 return
             }
             
-            CoreDataStack.shared.persistentContainer.performBackgroundTask {  context in
-                _ = conversations.map {
-                    do {
-                        _ = try Conversation.createOrUpdate(from: $0, in: context)
-                    } catch {
-                        log.error("Failed to create Core Data 'Conversation' instance: \(error)")
-                    }
+            _ = conversations.map {
+                do {
+                    let conversation = try Conversation.createOrUpdate(from: $0, in: self.context)
+                    self.addToConversations(conversation)
+                } catch {
+                    log.error("Failed to create Core Data 'Conversation' instance: \(error)")
                 }
-                
-//                _ = conversations.map { _ = try? Conversation.create(from: $0, in: context) }
-                
-                if context.hasChanges {
-                    do {
-                        try context.save()
-                        log.info("Successfully saved created Core Data 'Conversation' instances.")
-                        
-                        OperationQueue.main.addOperation {
-                            completion?(nil)
-                        }
-                    } catch {
-                        log.error("Failed to save Core Data 'Conversation' instances: \(error)")
-                        
-                        OperationQueue.main.addOperation {
-                            completion?(error)
-                        }
-                    }
-                } else {
-                    OperationQueue.main.addOperation {
-                        completion?(nil)
-                    }
-                }
+            }
+
+            do {
+                try self.context.save()
+                log.info("Successfully saved created Core Data 'Conversation' instances.")
+                completion?(nil)
+            } catch {
+                log.error("Failed to save Core Data 'Conversation' instances: \(error)")
+                completion?(error)
             }
         }
     }

@@ -27,8 +27,10 @@ class Conversation: NSManagedObject {
             if matches.count > 0 {
                 assert(matches.count >= 1, "Conversation.create -- Database Inconsistency")
                 
+                // update existing conversation
                 let conversation = matches.first!
                 conversation.title = response.title
+                conversation.lastChange = response.newestMessage?.time ?? response.creation
                 
                 return conversation
             }
@@ -36,33 +38,36 @@ class Conversation: NSManagedObject {
             throw error
         }
         
+        // create new conversation
         let conversation = Conversation(context: context)
         conversation.id = Int32(response.id)
         conversation.creatorID = Int32(response.creatorID)
         conversation.title = response.title
         conversation.creation = response.creation
+        conversation.lastChange = response.newestMessage?.time ?? response.creation
+        
+        // retrieve resources
+        conversation.getMessages(completion: nil)
+        conversation.getParticipants(completion: nil)
         
         return conversation
     }
     
     // MARK: - Public Properties
-    let conversationService = ConversationService(credentials: CredentialManager.shared)
-    
     var storedParticipants: [Participant] {
         return Array(participants!) as! [Participant]
     }
     
-    // MARK: - Initialization
-    private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertInto: context)
-        
-        update(completion: nil)
-        getMessages(completion: nil)
-        getParticipants(completion: nil)
+    var newestMessage: DirectMessage? {
+        return (Array(messages!) as! [DirectMessage]).sorted(by: { $0.time! > $1.time! }).first
     }
     
+    // MARK: - Private Properties
+    private let conversationService = ConversationService(credentials: CredentialManager.shared)
+    private let context: NSManagedObjectContext = CoreDataStack.shared.viewContext
+    
     // MARK: - Public Methods
-    func update(completion: ((Error?) -> Void)?) {
+    func get(completion: ((Error?) -> Void)?) {
         conversationService.get(conversationID: Int(id)) { conversation, error in
             guard let conversation = conversation else {
                 // pass service error
@@ -72,8 +77,8 @@ class Conversation: NSManagedObject {
             }
             
             do {
-                _ = try Conversation.createOrUpdate(from: conversation, in: CoreDataStack.shared.viewContext)
-                CoreDataStack.shared.saveViewContext()
+                _ = try Conversation.createOrUpdate(from: conversation, in: self.context)
+                try self.context.save()
                 log.info("Successfully saved updated Core Data 'Conversation' instance.")
                 completion?(nil)
             } catch {
@@ -92,10 +97,15 @@ class Conversation: NSManagedObject {
                 return
             }
 
-            CoreDataStack.shared.viewContext.delete(self)
-            CoreDataStack.shared.saveViewContext()
-            log.info("Successfully deleted Core Data 'Conversation' instance.")
-            completion(nil)
+            do {
+                self.context.delete(self)
+                try self.context.save()
+                log.info("Successfully deleted Core Data 'Conversation' instance.")
+                completion(nil)
+            } catch {
+                log.error("Failed to delete Core Data 'Conversation' instance: \(error)")
+                completion(error)
+            }
         }
     }
  
@@ -108,37 +118,22 @@ class Conversation: NSManagedObject {
                 return
             }
             
-            CoreDataStack.shared.persistentContainer.performBackgroundTask { context in
-                _ = messages.map {
-                    do {
-                        _ = try DirectMessage.create(from: $0, conversation: self, in: context)
-                    } catch {
-                        log.error("Failed to create Core Data 'DirectMessage' instance: \(error)")
-                    }
+            _ = messages.map {
+                do {
+                    let message = try DirectMessage.create(from: $0, conversationID: Int(self.id), in: self.context)
+                    self.addToMessages(message)
+                } catch {
+                    log.error("Failed to create Core Data 'DirectMessage' instance: \(error)")
                 }
-                
-//                _ = messages.map { try? DirectMessage.create(from: $0, conversation: self, in: context) }
-                
-                if context.hasChanges {
-                    do {
-                        try context.save()
-                        log.info("Successfully saved created Core Data 'DirectMessage' instances.")
-                        
-                        OperationQueue.main.addOperation {
-                            completion?(nil)
-                        }
-                    } catch {
-                        log.error("Failed to save Core Data 'DirectMessage' instances: \(error)")
-                        
-                        OperationQueue.main.addOperation {
-                            completion?(error)
-                        }
-                    }
-                } else {
-                    OperationQueue.main.addOperation {
-                        completion?(nil)
-                    }
-                }
+            }
+
+            do {
+                try self.context.save()
+                log.info("Successfully saved created Core Data 'DirectMessage' instances.")
+                completion?(nil)
+            } catch {
+                log.error("Failed to save Core Data 'DirectMessage' instances: \(error)")
+                completion?(error)
             }
         }
     }
@@ -154,8 +149,8 @@ class Conversation: NSManagedObject {
                 }
                 
                 do {
-                    _ = try DirectMessage.create(from: message, conversation: self, in: CoreDataStack.shared.viewContext)
-                    CoreDataStack.shared.saveViewContext()
+                    _ = try DirectMessage.create(from: message, conversationID: Int(self.id), in: self.context)
+                    try self.context.save()
                     log.info("Successfully created Core Data 'DirectMessage' instance.")
                     completion(nil)
                 } catch {
@@ -180,37 +175,22 @@ class Conversation: NSManagedObject {
                 return
             }
             
-            CoreDataStack.shared.persistentContainer.performBackgroundTask { context in
-                _ = participants.map {
-                    do {
-                        _ = try Participant.createOrUpdate(from: $0, conversation: self, in: context)
-                    } catch {
-                        log.error("Failed to create Core Data 'Participant' instance: \(error)")
-                    }
+            _ = participants.map {
+                do {
+                    let participant = try Participant.createOrUpdate(from: $0, conversationID: Int(self.id), in: self.context)
+                    self.addToParticipants(participant)
+                } catch {
+                    log.error("Failed to create Core Data 'Participant' instance: \(error)")
                 }
-                
-//                _ = participants.map { try? Participant.createOrUpdate(from: $0, conversation: self, in: context) }
-                
-                if context.hasChanges {
-                    do {
-                        try context.save()
-                        log.info("Successfully saved created Core Data 'Participant' instances.")
-                        
-                        OperationQueue.main.addOperation {
-                            completion?(nil)
-                        }
-                    } catch {
-                        log.error("Failed to save Core Data 'Participant' instances: \(error)")
-                        
-                        OperationQueue.main.addOperation {
-                            completion?(error)
-                        }
-                    }
-                } else {
-                    OperationQueue.main.addOperation {
-                        completion?(nil)
-                    }
-                }
+            }
+            
+            do {
+                try self.context.save()
+                completion?(nil)
+                log.info("Successfully saved created Core Data 'Participant' instances.")
+            } catch {
+                log.error("Failed to save Core Data 'Participant' instances: \(error)")
+                completion?(error)
             }
         }
     }
@@ -230,10 +210,15 @@ class Conversation: NSManagedObject {
                 return
             }
             
-            participation.setApprovalStatus(.accepted)
-            CoreDataStack.shared.saveViewContext()
-            
-            completion(nil)
+            do {
+                participation.setApprovalStatus(.accepted)
+                try self.context.save()
+                log.info("Successfully updated approval status for Core Data 'Conversation' instance.")
+                completion(nil)
+            } catch {
+                log.error("Failed to update approval status for Core Data 'Conversaton' instance: \(error)")
+                completion(error)
+            }
         }
     }
     
@@ -252,10 +237,15 @@ class Conversation: NSManagedObject {
                 return
             }
             
-            participation.setApprovalStatus(.denied)
-            CoreDataStack.shared.saveViewContext()
-            
-            completion(nil)
+            do {
+                participation.setApprovalStatus(.denied)
+                try self.context.save()
+                log.info("Successfully updated approval status for Core Data 'Conversation' instance.")
+                completion(nil)
+            } catch {
+                log.error("Failed to update approval status for Core Data 'Conversaton' instance: \(error)")
+                completion(error)
+            }
         }
     }
     
