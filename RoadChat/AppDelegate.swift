@@ -17,9 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // SwiftyBeaver configuration
         let console = ConsoleDestination()
         log.addDestination(console)
+        
+        // non-storyboard configuration
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        // dependency injection
+        let container = DependencyContainer()
+        let setupViewController = container.makeSetupViewController()
+        show(setupViewController)
         
         return true
     }
@@ -46,6 +54,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         CoreDataStack.shared.saveViewContext()
     }
-    
 
+}
+
+extension AppDelegate {
+    func show(_ viewController: UIViewController) {
+        window?.rootViewController = viewController
+        window?.makeKeyAndVisible()
+    }
 }

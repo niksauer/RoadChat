@@ -12,8 +12,10 @@ import CoreLocation
 class LocationManager: NSObject, CLLocationManagerDelegate {
     
     // MARK: - Public Properties
-    let locationManager = CLLocationManager()
     var lastLocation: CLLocation?
+    
+    // MARK: - Private Properties
+    private let locationManager = CLLocationManager()
     
     // MARK: - Initialization
     override init() {
@@ -31,7 +33,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
     
-    // MARK: - CLLocationManagerDelegate
+    // MARK: - CLLocationManagerDelegate Protocol
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         lastLocation = locations.last
     }

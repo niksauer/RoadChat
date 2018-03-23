@@ -20,11 +20,14 @@ protocol APICredentialStore {
     func setUserID(_ userID: Int?) throws
     func getToken() -> String?
     func setToken(_ token: String?) throws
+    func reset() throws
 }
 
 protocol APIClient {
     var baseURL: String { get }
-    var credentials: APICredentialStore { get }
+    var credentials: APICredentialStore? { get }
+    
+    init(baseURL: String, credentials: APICredentialStore?)
     
     func makeGETRequest(to path: String?, params: JSON?, completion: @escaping (APIResult) -> Void)
     func makePOSTRequest<T: Encodable>(to path: String?, params: JSON?, body: T, completion: @escaping (APIResult) -> Void) throws
