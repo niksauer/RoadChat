@@ -13,9 +13,9 @@ import RoadChatKit
 class Participant: NSManagedObject {
     
     // MARK: - Public Class Methods
-    class func createOrUpdate(from response: RoadChatKit.Participation.PublicParticipant, conversation: Conversation, in context: NSManagedObjectContext) throws -> Participant {
+    class func createOrUpdate(from response: RoadChatKit.Participation.PublicParticipant, conversationID: Int, in context: NSManagedObjectContext) throws -> Participant {
         let request: NSFetchRequest<Participant> = Participant.fetchRequest()
-        request.predicate = NSPredicate(format: "conversation.id = %d AND userID = %d", conversation.id, response.userID)
+        request.predicate = NSPredicate(format: "conversation.id = %d AND userID = %d", conversationID, response.userID)
         
         do {
             let matches = try context.fetch(request)
@@ -23,6 +23,7 @@ class Participant: NSManagedObject {
             if matches.count > 0 {
                 assert(matches.count >= 1, "Participant.createOrUpdate -- Database Inconsistency")
                 
+                // update existing participant
                 let participant = matches.first!
                 participant.approvalStatus = response.approvalStatus
                 participant.joining = response.joining
@@ -33,11 +34,11 @@ class Participant: NSManagedObject {
             throw error
         }
         
+        // create new participant
         let participant = Participant(context: context)
         participant.userID = Int32(response.userID)
         participant.approvalStatus = response.approvalStatus
         participant.joining = response.joining
-        participant.conversation = conversation
         
         return participant
     }

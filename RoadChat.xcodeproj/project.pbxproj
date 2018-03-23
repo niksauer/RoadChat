@@ -19,6 +19,7 @@
 		240D10F920481843008C5E39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D10F820481843008C5E39 /* AppDelegate.swift */; };
 		240D110220481843008C5E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D110120481843008C5E39 /* Assets.xcassets */; };
 		240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D110320481843008C5E39 /* LaunchScreen.storyboard */; };
+		2412D6E020647B5D0066A51C /* SetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2412D6DF20647B5D0066A51C /* SetupViewController.xib */; };
 		242089BE205EB1C700FFEC90 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242089BD205EB1C700FFEC90 /* SetupViewController.swift */; };
 		242F8F2E204D6EA80052087B /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F8F2D204D6EA80052087B /* AuthenticationService.swift */; };
 		243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243357252049817A00CD5F87 /* JSendAPIClient.swift */; };
@@ -45,6 +46,8 @@
 		248D37B12049504B00B21C3D /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D37B02049504B00B21C3D /* Car.swift */; };
 		249515CB2064483400E734E4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249515C92064483400E734E4 /* SettingsViewController.swift */; };
 		249515CE20644DB100E734E4 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249515CD20644DB100E734E4 /* ProfileViewController.xib */; };
+		249515D1206460F800E734E4 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249515CF206460F800E734E4 /* ConversationCell.swift */; };
+		249515D2206460F800E734E4 /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249515D0206460F800E734E4 /* ConversationCell.xib */; };
 		24A069B12051EFC8006F8401 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A069B02051EFC8006F8401 /* CoreDataStack.swift */; };
 		24A069BB20520367006F8401 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A069BA20520367006F8401 /* AuthenticationManager.swift */; };
 		24B134642063254F00B894BF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B134622063254F00B894BF /* LoginViewController.swift */; };
@@ -215,6 +218,7 @@
 		240D110120481843008C5E39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		240D110420481843008C5E39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		240D110620481844008C5E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2412D6DF20647B5D0066A51C /* SetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetupViewController.xib; sourceTree = "<group>"; };
 		242089BD205EB1C700FFEC90 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		242F8F2D204D6EA80052087B /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		243357252049817A00CD5F87 /* JSendAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JSendAPIClient.swift; path = RoadChat/Backend/JSendAPIClient.swift; sourceTree = SOURCE_ROOT; };
@@ -241,6 +245,8 @@
 		248D37B02049504B00B21C3D /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		249515C92064483400E734E4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		249515CD20644DB100E734E4 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		249515CF206460F800E734E4 /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
+		249515D0206460F800E734E4 /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
 		24A069B02051EFC8006F8401 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		24A069BA20520367006F8401 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthenticationManager.swift; path = RoadChat/Frontend/Model/AuthenticationManager.swift; sourceTree = SOURCE_ROOT; };
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
@@ -367,8 +373,10 @@
 		243F1EB320483BAD00B45955 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2412D6DF20647B5D0066A51C /* SetupViewController.xib */,
 				242089BD205EB1C700FFEC90 /* SetupViewController.swift */,
 				247F6D3A206081320006FBC7 /* HomeTabBarController.swift */,
+				247F6D06205F097D0006FBC7 /* Shared */,
 				2422D01B205155CF0081A552 /* Authentication */,
 				243F1EB420483BC100B45955 /* User */,
 				243F1EB620483BD100B45955 /* Community */,
@@ -422,12 +430,12 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
-		247F6D06205F097D0006FBC7 /* UIHelper */ = {
+		247F6D06205F097D0006FBC7 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				240B9B8520534FAA00216E68 /* FetchedResultsTableViewController.swift */,
 			);
-			path = UIHelper;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		247F6D35206057DA0006FBC7 /* Factory */ = {
@@ -509,7 +517,7 @@
 			children = (
 				247F6D35206057DA0006FBC7 /* Factory */,
 				243F1EB320483BAD00B45955 /* ViewController */,
-				247F6D06205F097D0006FBC7 /* UIHelper */,
+				249515D42064616300E734E4 /* Views */,
 				248D379920494D0F00B21C3D /* Model */,
 			);
 			path = Frontend;
@@ -524,6 +532,15 @@
 				2422D00120514FEA0081A552 /* Services */,
 			);
 			path = Backend;
+			sourceTree = "<group>";
+		};
+		249515D42064616300E734E4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				249515CF206460F800E734E4 /* ConversationCell.swift */,
+				249515D0206460F800E734E4 /* ConversationCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		24AED4AD204CC2EB002A1703 /* Products */ = {
@@ -746,10 +763,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2412D6E020647B5D0066A51C /* SetupViewController.xib in Resources */,
 				249515CE20644DB100E734E4 /* ProfileViewController.xib in Resources */,
 				24B134652063254F00B894BF /* LoginViewController.xib in Resources */,
 				24B134672063C10C00B894BF /* RegisterViewController.xib in Resources */,
 				240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */,
+				249515D2206460F800E734E4 /* ConversationCell.xib in Resources */,
 				24B134772064202800B894BF /* CreateCommunityMessageViewController.xib in Resources */,
 				240D110220481843008C5E39 /* Assets.xcassets in Resources */,
 			);
@@ -783,6 +802,7 @@
 				D44F4B7D20528076009A6239 /* CommunityService.swift in Sources */,
 				247F6D26206057950006FBC7 /* ViewControllerFactory.swift in Sources */,
 				24B1347E2064229100B894BF /* ConversationsViewController.swift in Sources */,
+				249515D1206460F800E734E4 /* ConversationCell.swift in Sources */,
 				247F6D1D205F26AE0006FBC7 /* CommunityBoard.swift in Sources */,
 				D44F4B88205297A7009A6239 /* CreateCommunityMessageViewController.swift in Sources */,
 				249515CB2064483400E734E4 /* SettingsViewController.swift in Sources */,

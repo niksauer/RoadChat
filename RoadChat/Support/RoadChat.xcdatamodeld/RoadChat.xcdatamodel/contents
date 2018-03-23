@@ -23,6 +23,7 @@
         <attribute name="creation" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="creatorID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastChange" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DirectMessage" inverseName="conversation" inverseEntity="DirectMessage" syncable="YES"/>
         <relationship name="participants" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Participant" inverseName="conversation" inverseEntity="Participant" syncable="YES"/>
@@ -107,7 +108,7 @@
     <elements>
         <element name="Car" positionX="-137" positionY="-72" width="128" height="165"/>
         <element name="CommunityMessage" positionX="-299" positionY="513" width="128" height="150"/>
-        <element name="Conversation" positionX="-414" positionY="-315" width="128" height="150"/>
+        <element name="Conversation" positionX="-414" positionY="-315" width="128" height="165"/>
         <element name="DirectMessage" positionX="-218" positionY="-378" width="128" height="105"/>
         <element name="Location" positionX="-722" positionY="-301" width="128" height="195"/>
         <element name="Participant" positionX="-218" positionY="-243" width="128" height="105"/>

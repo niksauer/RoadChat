@@ -8,15 +8,18 @@
 
 import Foundation
 import RoadChatKit
+import CoreData
 
 struct CommunityBoard {
     
     // MARK: - Private Properties
     private let communityService: CommunityService
+    private let context: NSManagedObjectContext
     
     // MARK: - Initialization
-    init(communityService: CommunityService) {
+    init(communityService: CommunityService, context: NSManagedObjectContext) {
         self.communityService = communityService
+        self.context = context
     }
     
     // MARK: - Public Methods
@@ -31,8 +34,8 @@ struct CommunityBoard {
                 }
                 
                 do {
-                    _ = try CommunityMessage.createOrUpdate(from: message, in: CoreDataStack.shared.viewContext)
-                    CoreDataStack.shared.saveViewContext()
+                    _ = try CommunityMessage.createOrUpdate(from: message, in: self.context)
+                    try self.context.save()
                     log.info("Successfully created Core Data 'CommunityMessage' instance.")
                     completion(nil)
                 } catch {
