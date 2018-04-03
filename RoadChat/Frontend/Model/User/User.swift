@@ -203,7 +203,7 @@ class User: NSManagedObject, ReportOwner {
                 return
             }
             
-            let coreConversations: [Conversation] = conversations.flatMap {
+            let coreConversations: [Conversation] = conversations.compactMap {
                 do {
                     return try Conversation.createOrUpdate(from: $0, in: self.context)
                 } catch {

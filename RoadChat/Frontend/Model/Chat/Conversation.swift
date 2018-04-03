@@ -130,7 +130,7 @@ class Conversation: NSManagedObject, ReportOwner {
                 return
             }
             
-            let coreMessages: [DirectMessage] = messages.flatMap {
+            let coreMessages: [DirectMessage] = messages.compactMap {
                 do {
                     return try DirectMessage.create(from: $0, conversationID: Int(self.id), in: self.context)
                 } catch {
@@ -197,7 +197,7 @@ class Conversation: NSManagedObject, ReportOwner {
                 return
             }
             
-            let coreParticipants: [Participant] = participants.flatMap {
+            let coreParticipants: [Participant] = participants.compactMap {
                 do {
                     return try Participant.createOrUpdate(from: $0, conversationID: Int(self.id), in: self.context)
                 } catch {
