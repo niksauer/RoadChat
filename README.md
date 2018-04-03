@@ -10,6 +10,9 @@
     <img src="http://img.shields.io/badge/swift-4.0-brightgreen.svg" alt="Swift 4.0">
 </a>
 
+### Preview
+<img src="https://github.com/niksauer/RoadChat/blob/beta/Docs/PreviewScreenshot.png" width="300">
+
 ### Setup 
 1. `git clone <url>`
 2. `git submodule update --init`
