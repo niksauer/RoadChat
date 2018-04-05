@@ -34,13 +34,13 @@ class CreateCommunityMessageViewController: UIViewController {
     
     // MARK: - Public Methods
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
-        guard let _ = textField.text, let message = textView.text else {
+        guard let title = textField.text, let message = textView.text else {
             // handle missing fields error
             log.warning("Empty message content.")
             return
         }
         
-        let communityMessageRequest = CommunityMessageRequest(time: Date(), message: message, latitude: 100, longitude: 100, altitude: 100, horizontalAccuracy: 10, verticalAccuracy: 10, course: 10, speed: 10)
+        let communityMessageRequest = CommunityMessageRequest(title: title, time: Date(), message: message, latitude: 100, longitude: 100, altitude: 100, horizontalAccuracy: 10, verticalAccuracy: 10, course: 10, speed: 10)
         
         communityBoard.postMessage(communityMessageRequest) { error in
             guard error == nil else {
