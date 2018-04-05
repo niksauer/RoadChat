@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="181" id="KGk-i7-Jjw" customClass="CommunityMessageCell" customModule="RoadChat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="322" height="181"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" customClass="CommunityMessageCell" customModule="RoadChat" customModuleProvider="target">
+                <rect key="frame" x="0.0" y="0.0" width="322" height="180.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Willkommen bei RoadChat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14y-nF-BOd">
+                        <rect key="frame" x="26" y="21" width="201" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xxPus$ySlayer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkG-Ts-LWu">
+                        <rect key="frame" x="26" y="52" width="83" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NtM-iX-Kv1">
+                        <rect key="frame" x="242" y="149.5" width="30" height="30"/>
+                        <state key="normal" title="14">
+                            <color key="titleColor" red="0.080656878199598409" green="0.52691871761658038" blue="0.046314072658902257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="upvoteButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="RMg-aQ-mKy"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NNv-gY-B6L">
+                        <rect key="frame" x="282" y="149.5" width="30" height="30"/>
+                        <state key="normal" title="2">
+                            <color key="titleColor" red="0.52691871761658038" green="0.017675149184588547" blue="0.024219053567161471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="downvoteButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="qs7-1k-QUj"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Today I lost my virginity on the highway A3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7O-Zo-fPr">
+                        <rect key="frame" x="16" y="86" width="302" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="16:33 - 05.04.2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dxw-AU-IKN">
+                        <rect key="frame" x="26" y="157" width="108.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="YkG-Ts-LWu" firstAttribute="top" secondItem="14y-nF-BOd" secondAttribute="bottom" constant="10" id="Dac-JK-04V"/>
+                    <constraint firstItem="YkG-Ts-LWu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="NGF-x8-ACB"/>
+                    <constraint firstItem="14y-nF-BOd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="Ohc-CN-vba"/>
+                    <constraint firstItem="NtM-iX-Kv1" firstAttribute="leading" secondItem="Dxw-AU-IKN" secondAttribute="trailing" constant="10" id="UMW-xF-5sW"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Dxw-AU-IKN" secondAttribute="bottom" constant="5" id="WtS-80-0I5"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="NtM-iX-Kv1" secondAttribute="bottom" constant="10" id="cMX-kM-JT1"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="NNv-gY-B6L" secondAttribute="trailing" constant="10" id="gNW-EZ-aZf"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Dxw-AU-IKN" secondAttribute="bottom" constant="10" id="jQr-d7-OzR"/>
+                    <constraint firstAttribute="trailing" secondItem="H7O-Zo-fPr" secondAttribute="trailing" constant="10" id="jxG-zI-wwJ"/>
+                    <constraint firstItem="NNv-gY-B6L" firstAttribute="leading" secondItem="NtM-iX-Kv1" secondAttribute="trailing" constant="10" id="o2T-sD-asF"/>
+                    <constraint firstItem="H7O-Zo-fPr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="uMl-JY-XXT"/>
+                    <constraint firstItem="14y-nF-BOd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="xhK-WJ-tJP"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="NNv-gY-B6L" secondAttribute="bottom" constant="10" id="xnI-zH-a6y"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="messageLabel" destination="H7O-Zo-fPr" id="zUi-uv-Lo0"/>
+                <outlet property="timeLabel" destination="Dxw-AU-IKN" id="2xH-zI-W8S"/>
+                <outlet property="titleLabel" destination="14y-nF-BOd" id="1tD-6h-lgl"/>
+                <outlet property="usernameLabel" destination="YkG-Ts-LWu" id="wUf-U3-Oiy"/>
+            </connections>
+            <point key="canvasLocation" x="78" y="7"/>
+        </tableViewCell>
+    </objects>
+</document>

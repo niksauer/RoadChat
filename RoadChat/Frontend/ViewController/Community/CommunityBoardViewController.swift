@@ -7,17 +7,22 @@
 //
 
 import UIKit
+import CoreData
 
-class CommunityBoardViewController: UITableViewController  {
+class CommunityBoardViewController: FetchedResultsTableViewController   {
  
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let communityBoard: CommunityBoard
+    private let searchContext: NSManagedObjectContext
+    
+    private var fetchedResultsController: NSFetchedResultsController<CommunityMessage>?
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, communityBoard: CommunityBoard) {
+    init(viewFactory: ViewControllerFactory, communityBoard: CommunityBoard, searchContext: NSManagedObjectContext) {
         self.viewFactory = viewFactory
         self.communityBoard = communityBoard
+        self.searchContext = searchContext
         
         super.init(nibName: nil, bundle: nil)
         self.title = "CommunityBoard"
@@ -32,6 +37,9 @@ class CommunityBoardViewController: UITableViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.register(UINib.init(nibName: "CommunityMessageCell", bundle: nil), forCellReuseIdentifier: "CommunityMessageCell")
+        updateUI()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -39,6 +47,18 @@ class CommunityBoardViewController: UITableViewController  {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    // MARK: - Private Methods
+    private func updateUI() {
+        let request: NSFetchRequest<CommunityMessage> = CommunityMessage.fetchRequest()
+       
+        request.sortDescriptors = [NSSortDescriptor(key: "time", ascending: true)]
+        
+        fetchedResultsController = NSFetchedResultsController<CommunityMessage>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: "CommunityMessages")
+        fetchedResultsController?.delegate = self
+        try? fetchedResultsController?.performFetch()
+        
+        tableView.reloadData()
+    }
     // MARK: - Public Methods
     @objc func createButtonPressed(_ sender: UIBarButtonItem) {
         let createMessageViewController = viewFactory.makeCreateCommunityMessageViewController()
@@ -47,14 +67,46 @@ class CommunityBoardViewController: UITableViewController  {
     }
     
     // MARK: - Table View Data Source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
+   
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let communityMessage = fetchedResultsController!.object(at: indexPath)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommunityMessageCell", for: indexPath) as! CommunityMessageCell
+        //cell.configure(communityMessage: communityMessage)
+        
+        return cell
+    }
+}
+    
+    extension CommunityBoardViewController {
+        override func numberOfSections(in tableView: UITableView) -> Int {
+            return fetchedResultsController?.sections?.count ?? 1
+        }
+        
+        override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            if let sections = fetchedResultsController?.sections, sections.count > 0 {
+                return sections[section].numberOfObjects
+            } else {
+                return 0
+            }
+        }
+        
+        override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+            if let sections = fetchedResultsController?.sections, sections.count > 0 {
+                return sections[section].name
+            } else {
+                return nil
+            }
+        }
+        
+        override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+            return fetchedResultsController?.sectionIndexTitles
+        }
+        
+        override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+            return fetchedResultsController?.section(forSectionIndexTitle: title, at: index) ?? 0
+        }
     }
     
     /*
@@ -103,4 +155,3 @@ class CommunityBoardViewController: UITableViewController  {
      */
     
 }
-
