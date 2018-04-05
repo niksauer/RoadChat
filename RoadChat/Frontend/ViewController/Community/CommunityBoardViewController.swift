@@ -22,7 +22,7 @@ class CommunityBoardViewController: UITableViewController  {
         super.init(nibName: nil, bundle: nil)
         self.title = "CommunityBoard"
         self.tabBarItem = UITabBarItem(title: "Community", image: #imageLiteral(resourceName: "collaboration"), tag: 0)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new"), style: .plain, target: self, action: #selector(createMessageButtonPressed(_:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new"), style: .plain, target: self, action: #selector(createButtonPressed(_:)))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,7 +40,7 @@ class CommunityBoardViewController: UITableViewController  {
     }
     
     // MARK: - Public Methods
-    @IBAction func createMessageButtonPressed(_ sender: UIBarButtonItem) {
+    @objc func createButtonPressed(_ sender: UIBarButtonItem) {
         let createMessageViewController = viewFactory.makeCreateCommunityMessageViewController()
         let createMessageNavigationController = UINavigationController(rootViewController: createMessageViewController)
         present(createMessageNavigationController, animated: true, completion: nil)

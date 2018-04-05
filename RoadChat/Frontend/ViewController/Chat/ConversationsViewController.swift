@@ -14,13 +14,15 @@ class ConversationsViewController: FetchedResultsTableViewController {
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let user: User
+    private let searchContext: NSManagedObjectContext
 
     private var fetchedResultsController: NSFetchedResultsController<Conversation>?
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, user: User) {
+    init(viewFactory: ViewControllerFactory, user: User, searchContext: NSManagedObjectContext) {
         self.viewFactory = viewFactory
         self.user = user
+        self.searchContext = searchContext
         
         super.init(nibName: nil, bundle: nil)
         self.title = "Chats"
@@ -33,30 +35,30 @@ class ConversationsViewController: FetchedResultsTableViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.register(UINib.init(nibName: "ConversationCell", bundle: nil), forCellReuseIdentifier: "ConversationCell")
         updateUI()
     }
     
     // MARK: - Private Methods
     private func updateUI() {
-        let context = CoreDataStack.shared.viewContext
         let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
-        //        NSSortDescriptor(key: "", ascending: <#T##Bool#>)
-        request.sortDescriptors = []
-        request.predicate = NSPredicate(format: "any participants.userID = %d", user.id)
+        request.predicate = NSPredicate(format: "user.id = %d", user.id)
+        request.sortDescriptors = [NSSortDescriptor(key: "lastChange", ascending: true)]
         
-        fetchedResultsController = NSFetchedResultsController<Conversation>(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: "Conversations")
-        
+        fetchedResultsController = NSFetchedResultsController<Conversation>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: "Conversations")
         fetchedResultsController?.delegate = self
         try? fetchedResultsController?.performFetch()
+        
         tableView.reloadData()
     }
     
     // MARK: - Table View Data Source
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "conversationCell", for: indexPath)
+        let conversation = fetchedResultsController!.object(at: indexPath)
         
-        let conversation = fetchedResultsController?.object(at: indexPath)
-        cell.textLabel?.text = conversation?.title
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationCell", for: indexPath) as! ConversationCell
+        cell.configure(conversation: conversation, newestMessage: conversation.newestMessage)
         
         return cell
     }

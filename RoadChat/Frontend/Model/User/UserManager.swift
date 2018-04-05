@@ -14,10 +14,12 @@ struct UserManager {
     
     // MARK: - Private Properties
     private let userService: UserService
+    private let context: NSManagedObjectContext
     
     // MARK: - Initialization
-    init(userService: UserService) {
+    init(userService: UserService, context: NSManagedObjectContext) {
         self.userService = userService
+        self.context = context
     }
     
     // MARK: - Public Methods
@@ -26,54 +28,75 @@ struct UserManager {
             try userService.create(user) { user, error in
                 guard let user = user else {
                     // pass service error
-                    log.error("Failed to register user: \(error!)")
+                    let report = Report(ReportType.failedServerOperation(.create, resource: "User", isMultiple: false, error: error!), owner: nil)
+                    log.error(report)
                     completion(error!)
                     return
                 }
                 
                 do {
-                    _ = try User.createOrUpdate(from: user, in: CoreDataStack.shared.viewContext)
-                    CoreDataStack.shared.saveViewContext()
-                    log.info("Successfully registered user.")
+                    _ = try User.createOrUpdate(from: user, in: self.context)
+                    try self.context.save()
+                    
+                    let report = Report(ReportType.successfulCoreDataOperation(.create, resource: "User", isMultiple: false), owner: nil)
+                    log.debug(report)
                     completion(nil)
                 } catch {
                     // pass core data error
-                    log.error("Failed to create Core Data 'User' instance: \(error)")
+                    let report = Report(ReportType.failedCoreDataOperation(.create, resource: "User", isMultiple: false, error: error), owner: nil)
+                    log.error(report)
                     completion(error)
                 }
             }
         } catch {
             // pass body encoding error
-            log.error("Failed to send 'RegisterRequest': \(error)")
+            let report = Report(ReportType.failedServerRequest(requestType: "RegisterRequest", error: error), owner: nil)
+            log.error(report)
             completion(error)
         }
     }
     
-    func findUserById(_ id: Int) -> User? {
+    func findUserById(_ id: Int, context: NSManagedObjectContext) -> User? {
         let request: NSFetchRequest<User> = User.fetchRequest()
         request.predicate = NSPredicate(format: "id = %d", id)
-        
-        let matches = try? CoreDataStack.shared.viewContext.fetch(request)
-        return matches?.first
+    
+        do {
+            let user = try context.fetch(request).first
+            
+            // user property must be accessed to trigger awakeFromFetch()
+            _ = user?.id
+            
+            let report = Report(ReportType.successfulCoreDataOperation(.fetch, resource: "User", isMultiple: false), owner: nil)
+            log.debug(report)
+            
+            return user
+        } catch {
+            let report = Report(ReportType.failedCoreDataOperation(.fetch, resource: "User", isMultiple: false, error: error), owner: nil)
+            log.error(report)
+            return nil
+        }
     }
     
     func getUserById(_ id: Int, completion: @escaping (User?, Error?) -> Void) {
         userService.get(userID: id) { user, error in
             guard let user = user else {
                 // pass service error
-                log.error("Failed to retrieve user: \(error!)")
+                let report = Report(ReportType.failedServerOperation(.retrieve, resource: "User", isMultiple: false, error: error!), owner: nil)
+                log.error(report)
                 completion(nil, error!)
                 return
             }
             
             do {
-                let user = try User.createOrUpdate(from: user, in: CoreDataStack.shared.viewContext)
-                CoreDataStack.shared.saveViewContext()
-                log.debug("Successfully retrieved user '\(user.id)'.")
+                let user = try User.createOrUpdate(from: user, in: self.context)
+                try self.context.save()
+                let report = Report(ReportType.successfulCoreDataOperation(.retrieve, resource: "User", isMultiple: false), owner: nil)
+                log.debug(report)
                 completion(user, nil)
             } catch {
                 // pass core data error
-                log.error("Failed to create Core Data 'User' instance: \(error)")
+                let report = Report(ReportType.failedCoreDataOperation(.retrieve, resource: "User", isMultiple: false, error: error), owner: nil)
+                log.error(report)
                 completion(nil, error)
             }
         }

@@ -35,47 +35,47 @@ struct ConversationService: JSendService {
     }
     
     func get(conversationID: RoadChatKit.Conversation.ID, completion: @escaping (PrimaryResource?, Error?) -> Void) {
-        client.makeGETRequest(to: "/chat/\(conversationID)") { result in
+        client.makeGETRequest(to: "/\(conversationID)") { result in
             let result = self.decodeResource(from: result)
             completion(result.instance, result.error)
         }
     }
     
     func delete(conversationID: RoadChatKit.Conversation.ID, completion: @escaping (Error?) -> Void) {
-        client.makeDELETERequest(to: "/chat/\(conversationID)") { result in
+        client.makeDELETERequest(to: "/\(conversationID)") { result in
             completion(self.getError(from: result))
         }
     }
     
     func getMessages(conversationID: RoadChatKit.Conversation.ID, completion: @escaping ([RoadChatKit.DirectMessage.PublicDirectMessage]?, Error?) -> Void) {
-        client.makeGETRequest(to: "/chat/\(conversationID)/messages") { result in
+        client.makeGETRequest(to: "/\(conversationID)/messages") { result in
             let result = self.decode([RoadChatKit.DirectMessage.PublicDirectMessage].self, from: result)
             completion(result.instance, result.error)
         }
     }
     
     func createMessage(_ message: RoadChatKit.DirectMessageRequest, conversationID: RoadChatKit.Conversation.ID, completion: @escaping (RoadChatKit.DirectMessage.PublicDirectMessage?, Error?) -> Void) throws {
-        try client.makePOSTRequest(to: "/chat/\(conversationID)/messages", body: message) { result in
+        try client.makePOSTRequest(to: "/\(conversationID)/messages", body: message) { result in
             let result = self.decode(RoadChatKit.DirectMessage.PublicDirectMessage.self, from: result)
             completion(result.instance, result.error)
         }
     }
     
     func getParticipants(conversationID: RoadChatKit.Conversation.ID, completion: @escaping ([RoadChatKit.Participation.PublicParticipant]?, Error?) -> Void) {
-        client.makeGETRequest(to: "/chat/\(conversationID)/participants") { result in
+        client.makeGETRequest(to: "/\(conversationID)/participants") { result in
             let result = self.decode([RoadChatKit.Participation.PublicParticipant].self, from: result)
             completion(result.instance, result.error)
         }
     }
     
     func accept(conversationID: RoadChatKit.Conversation.ID, completion: @escaping (Error?) -> Void) {
-        client.makeGETRequest(to: "/chat/\(conversationID)/accept") { result in
+        client.makeGETRequest(to: "/\(conversationID)/accept") { result in
             completion(self.getError(from: result))
         }
     }
     
     func deny(conversationID: RoadChatKit.Conversation.ID, completion: @escaping (Error?) -> Void) {
-        client.makeGETRequest(to: "/chat/\(conversationID)/deny") { result in
+        client.makeGETRequest(to: "/\(conversationID)/deny") { result in
             completion(self.getError(from: result))
         }
     }

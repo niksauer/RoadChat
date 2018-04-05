@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import RoadChatKit
 
-class User: NSManagedObject {
+class User: NSManagedObject, ReportOwner {
     
     // MARK: - Public Class Methods
     class func createOrUpdate(from response: RoadChatKit.User.PublicUser, in context: NSManagedObjectContext) throws -> User {
@@ -22,6 +22,7 @@ class User: NSManagedObject {
             if matches.count > 0 {
                 assert(matches.count >= 1, "User.create -- Database Inconsistency")
                 
+                // update existing user
                 let user = matches.first!
                 user.email = response.email
                 user.username = response.username
@@ -32,45 +33,63 @@ class User: NSManagedObject {
             throw error
         }
         
+        // create new user
         let user = User(context: context)
         user.id = Int32(response.id)
         user.email = response.email
         user.username = response.username
         user.registry = response.registry
         
+        // retrieve resources
+        user.getProfile(completion: nil)
+        user.getConversations(completion: nil)
+        
         return user
     }
     
     // MARK: - Public Properties
-    let userService = UserService(credentials: CredentialManager.shared)
-    let conversationService = ConversationService(credentials: CredentialManager.shared)
+    var storedConversations: [Conversation] {
+        return Array(conversations!) as! [Conversation]
+    }
+    
+    // MARK: - Private Properties
+    private let userService = UserService(credentials: CredentialManager.shared)
+    private let conversationService = ConversationService(credentials: CredentialManager.shared)
+    private let context = CoreDataStack.shared.viewContext
+    
+    // MARK: - ReportOwner Protocol
+    var logDescription: String {
+        return "'User' [id: '\(self.id)']"
+    }
     
     // MARK: - Initialization
-    private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertInto: context)
-    
-        update(completion: nil)
+    override func awakeFromFetch() {
+        super.awakeFromFetch()
+        get(completion: nil)
         getProfile(completion: nil)
         getConversations(completion: nil)
     }
     
     // MARK: - Public Methods
-    func update(completion: ((Error?) -> Void)?) {
+    func get(completion: ((Error?) -> Void)?) {
         userService.get(userID: Int(id)) { user, error in
             guard let user = user else {
                 // pass service error
-                log.error("Failed to update user '\(self.id)': \(error!)")
+                let report = Report(.failedServerOperation(.retrieve, resource: nil, isMultiple: false, error: error!), owner: self)
+                log.error(report)
                 completion?(error!)
                 return
             }
             
             do {
-                _ = try User.createOrUpdate(from: user, in: CoreDataStack.shared.viewContext)
-                CoreDataStack.shared.saveViewContext()
-                log.debug("Successfully saved created or updated Core Data 'User' instance.")
+                _ = try User.createOrUpdate(from: user, in: self.context)
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: nil, isMultiple: false), owner: self)
+                log.debug(report)
                 completion?(nil)
             } catch {
-                log.error("Failed to save updated Core Data 'User' instance: \(error)")
+                let report = Report(.failedCoreDataOperation(.create, resource: nil, isMultiple: false, error: error), owner: self)
+                log.error(report)
                 completion?(error)
             }
         }
@@ -81,7 +100,8 @@ class User: NSManagedObject {
             try userService.createOrUpdateProfile(userID: Int(id), to: profile) { error in
                 guard error == nil else {
                     // pass service error
-                    log.error("Failed to update profile for user '\(self.id)': \(error!)")
+                    let report = Report(.failedServerOperation(.update, resource: "Profile", isMultiple: false, error: error!), owner: self)
+                    log.error(report)
                     completion(error!)
                     return
                 }
@@ -90,19 +110,24 @@ class User: NSManagedObject {
                     let privacy = RoadChatKit.Privacy(userID: Int(self.id))
                     let profile = RoadChatKit.Profile(userID: Int(self.id), profileRequest: profile)
                     let publicProfile = RoadChatKit.Profile.PublicProfile(profile: profile, privacy: privacy, isOwner: true)
-                    let _ = try Profile.createOrUpdate(from: publicProfile, user: self, in: CoreDataStack.shared.viewContext)
-                    CoreDataStack.shared.saveViewContext()
-                    log.info("Successfully saved created or updated Core Data 'Profile' instance.")
+                    let _ = try Profile.createOrUpdate(from: publicProfile, userID: Int(self.id), in: self.context)
+                    try self.context.save()
+
+                    let report = Report(.successfulCoreDataOperation(.update, resource: "Profile", isMultiple: false), owner: self)
+                    log.debug(report)
+                    
                     completion(nil)
                 } catch {
                     // pass core data error
-                    log.error("Failed to create Core Data 'Profile' instance: \(error)")
+                    let report = Report(.failedCoreDataOperation(.update, resource: "Profile", isMultiple: false, error: error), owner: self)
+                    log.error(report)
                     completion(error)
                 }
             }
         } catch {
             // pass body encoding error
-            log.error("Failed to send 'ProfileRequest': \(error)")
+            let report = Report(.failedServerRequest(requestType: "ProfileRequest", error: error), owner: self)
+            log.error(report)
             completion(error)
         }
     }
@@ -111,20 +136,23 @@ class User: NSManagedObject {
         userService.getProfile(userID: Int(id)) { profile, error in
             guard let profile = profile else {
                 // pass service error
-                log.error("Failed to get profile for user '\(self.id)': \(error!)")
+                let report = Report(.failedServerOperation(.retrieve, resource: "Profile", isMultiple: false, error: error!), owner: self)
+                log.error(report)
                 completion?(error!)
                 return
             }
             
             do {
-                let profile = try Profile.createOrUpdate(from: profile, user: self, in: CoreDataStack.shared.viewContext)
+                let profile = try Profile.createOrUpdate(from: profile, userID: Int(self.id), in: self.context)
                 self.profile = profile
-                CoreDataStack.shared.saveViewContext()
-                log.info("Successfully saved created or updated Core Data 'Profile' instance.")
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: "Profile", isMultiple: false), owner: self)
+                log.debug(report)
                 completion?(nil)
             } catch {
                 // pass core data error
-                log.error("Failed to create Core Data 'Profile' instance: \(error)")
+                let report = Report(.failedCoreDataOperation(.retrieve, resource: "Profile", isMultiple: false, error: error), owner: self)
+                log.error(report)
                 completion?(error)
             }
         }
@@ -135,25 +163,32 @@ class User: NSManagedObject {
             try conversationService.create(conversation) { conversation, error in
                 guard let conversation = conversation else {
                     // pass service error
-                    log.error("Failed to create conversation: \(error!)")
+                    let report = Report(.failedServerOperation(.create, resource: "Conversation", isMultiple: false, error: error!), owner: self)
+                    log.error(report)
                     completion(error!)
                     return
                 }
                 
                 do {
-                    _ = try Conversation.createOrUpdate(from: conversation, in: CoreDataStack.shared.viewContext)
-                    CoreDataStack.shared.saveViewContext()
-                    log.info("Successfully created Core Data 'Conversation' instance.")
+                    let conversation = try Conversation.createOrUpdate(from: conversation, in: self.context)
+                    self.addToConversations(conversation)
+                    try self.context.save()
+                    
+                    let report = Report(.successfulCoreDataOperation(.create, resource: "Conversation", isMultiple: false), owner: self)
+                    log.debug(report)
+                    
                     completion(nil)
                 } catch {
                     // pass core data error
-                    log.error("Failed to create Core Data 'Conversation' instance: \(error)")
+                    let report = Report(.failedCoreDataOperation(.create, resource: "Conversation", isMultiple: false, error: error), owner: self)
+                    log.error(report)
                     completion(error)
                 }
             }
         } catch {
             // pass body encoding error
-            log.error("Failed to send 'ConversationRequest': \(error)")
+            let report = Report(.failedServerRequest(requestType: "ConversationRequest", error: error), owner: self)
+            log.error(report)
             completion(error)
         }
     }
@@ -162,42 +197,33 @@ class User: NSManagedObject {
         userService.getConversations(userID: Int(id)) { conversations, error in
             guard let conversations = conversations else {
                 // pass service error
-                log.error("Failed to get conversations for user '\(self.id)': \(error!)")
+                let report = Report(.failedServerOperation(.retrieve, resource: "Conversation", isMultiple: true, error: error!), owner: self)
+                log.error(report)
                 completion?(error!)
                 return
             }
             
-            CoreDataStack.shared.persistentContainer.performBackgroundTask {  context in
-                _ = conversations.map {
-                    do {
-                        _ = try Conversation.createOrUpdate(from: $0, in: context)
-                    } catch {
-                        log.error("Failed to create Core Data 'Conversation' instance: \(error)")
-                    }
+            let coreConversations: [Conversation] = conversations.compactMap {
+                do {
+                    return try Conversation.createOrUpdate(from: $0, in: self.context)
+                } catch {
+                    let report = Report(.failedCoreDataOperation(.create, resource: "Conversation", isMultiple: false, error: error), owner: self)
+                    log.error(report)
+                    return nil
                 }
-                
-//                _ = conversations.map { _ = try? Conversation.create(from: $0, in: context) }
-                
-                if context.hasChanges {
-                    do {
-                        try context.save()
-                        log.info("Successfully saved created Core Data 'Conversation' instances.")
-                        
-                        OperationQueue.main.addOperation {
-                            completion?(nil)
-                        }
-                    } catch {
-                        log.error("Failed to save Core Data 'Conversation' instances: \(error)")
-                        
-                        OperationQueue.main.addOperation {
-                            completion?(error)
-                        }
-                    }
-                } else {
-                    OperationQueue.main.addOperation {
-                        completion?(nil)
-                    }
-                }
+            }
+        
+            self.addToConversations(NSSet(array: coreConversations))
+            
+            do {
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: "Conversation", isMultiple: true), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                let report = Report(.failedCoreDataOperation(.retrieve, resource: "Conversation", isMultiple: true, error: error), owner: self)
+                log.error(report)
+                completion?(error)
             }
         }
     }

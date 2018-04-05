@@ -9,17 +9,18 @@
 import Foundation
 import CoreData
 
-class CoreDataStack: NSObject {
+final class CoreDataStack {
     
     // MARK: - Singleton
     static let shared = CoreDataStack()
     
     // MARK: - Initialization
-    private override init() {}
+    private init() {}
     
     // MARK: - Public Properties
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "RoadChat")
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let nsError = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -36,27 +37,27 @@ class CoreDataStack: NSObject {
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         })
+        
         return container
     }()
     
-    var viewContext: NSManagedObjectContext {
-        let viewContext = persistentContainer.viewContext
-        return viewContext
-    }
+    lazy var viewContext: NSManagedObjectContext = {
+        return persistentContainer.viewContext
+    }()
+    
+    lazy var backgroundContext: NSManagedObjectContext = {
+        return persistentContainer.newBackgroundContext()
+    }()
     
     // MARK: - Public Methods
-    func saveViewContext () {
-        let context = viewContext
-        
-        if context.hasChanges {
-            do {
-                try context.save()
-//                log.debug("Successfully saved changes to Core Data.")
-            } catch {
-                let nsError = error as NSError
-                log.error("Failed to save view context: \(nsError), \(nsError.userInfo)")
-            }
+    func performForegroundTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
+        self.viewContext.perform {
+            block(self.viewContext)
         }
+    }
+    
+    func performBackgroundTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
+        self.persistentContainer.performBackgroundTask(block)
     }
     
 }

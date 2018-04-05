@@ -4,11 +4,14 @@
     <img src="http://img.shields.io/badge/read_the-docs-92A8D1.svg" alt="Documentation">
 </a>
 <a href="license">
-    <img src="http://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT License">
+    <img src="http://img.shields.io/badge/license-AGPLv3-brightgreen.svg" alt="MIT License">
 </a>
 <a href="https://swift.org">
-    <img src="http://img.shields.io/badge/swift-4.0-brightgreen.svg" alt="Swift 4.0">
+    <img src="http://img.shields.io/badge/swift-4.1-brightgreen.svg" alt="Swift 4.0">
 </a>
+
+### Preview
+<img src="https://github.com/niksauer/RoadChat/blob/beta/Docs/PreviewScreenshot.png" width="300">
 
 ### Setup 
 1. `git clone <url>`
