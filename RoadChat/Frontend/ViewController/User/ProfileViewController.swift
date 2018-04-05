@@ -8,8 +8,12 @@
 
 import UIKit
 import RoadChatKit
+import Parchment
 
 class ProfileViewController: UIViewController {
+    
+    // MARK: - Outlets
+    @IBOutlet weak var pageViewContainer: UIView!
     
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
@@ -29,6 +33,14 @@ class ProfileViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Customization
+    override func viewDidLoad() {
+        let pageViewController = ProfilePageViewController(user: user)
+        addChildViewController(pageViewController)
+        pageViewContainer.addSubview(pageViewController.view)
+        pageViewController.didMove(toParentViewController: self)
     }
     
     // MARK: - Public Methods
