@@ -27,7 +27,7 @@ struct TrafficService: JSendService {
         }
     }
     
-    func index(completion: @escaping ([PrimaryResource]?, Error?) -> Void) throws {
+    func index(completion: @escaping ([PrimaryResource]?, Error?) -> Void) {
         client.makeGETRequest(to: "/board", params: nil) { result in
             let result = self.decode([PrimaryResource].self, from: result)
             completion(result.instance, result.error)
