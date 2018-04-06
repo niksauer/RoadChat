@@ -20,7 +20,7 @@ class HomeTabBarController: UITabBarController {
         let trafficBoardViewController = viewFactory.makeTrafficBoardViewController()
         let conversationsViewController = viewFactory.makeConversationsViewController(for: user)
         let profileViewController = viewFactory.makeProfileViewController(for: user)
-
+        
         viewControllers = [communityBoardViewController, trafficBoardViewController, conversationsViewController, profileViewController]
         
         self.viewControllers = viewControllers.map { UINavigationController(rootViewController: $0) }

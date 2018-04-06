@@ -20,6 +20,14 @@
 		240D110220481843008C5E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D110120481843008C5E39 /* Assets.xcassets */; };
 		240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D110320481843008C5E39 /* LaunchScreen.storyboard */; };
 		2412D6E020647B5D0066A51C /* SetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2412D6DF20647B5D0066A51C /* SetupViewController.xib */; };
+		24207DE4207686D200851A73 /* Parchment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24207DCE207686B100851A73 /* Parchment.framework */; };
+		24207DE5207686D200851A73 /* Parchment.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24207DCE207686B100851A73 /* Parchment.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		24207DED2076AB1800851A73 /* ProfilePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24207DEC2076AB1800851A73 /* ProfilePageViewController.swift */; };
+		24207DF22076BC8E00851A73 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24207DF02076BC8E00851A73 /* AboutViewController.swift */; };
+		24207DF32076BC8E00851A73 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24207DF12076BC8E00851A73 /* AboutViewController.xib */; };
+		24207DF62076C2D000851A73 /* CarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24207DF42076C2D000851A73 /* CarsViewController.swift */; };
+		24207DFA2076C37300851A73 /* TrafficMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24207DF82076C37300851A73 /* TrafficMessagesViewController.swift */; };
+		24207DFE2076C3D300851A73 /* CommunityMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24207DFC2076C3D300851A73 /* CommunityMessagesViewController.swift */; };
 		242089BE205EB1C700FFEC90 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242089BD205EB1C700FFEC90 /* SetupViewController.swift */; };
 		242F8F2E204D6EA80052087B /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F8F2D204D6EA80052087B /* AuthenticationService.swift */; };
 		243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243357252049817A00CD5F87 /* JSendAPIClient.swift */; };
@@ -61,6 +69,8 @@
 		24B1347E2064229100B894BF /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B1347C2064229100B894BF /* ConversationsViewController.swift */; };
 		24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; };
 		24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		24FBBC4C2077720B00B545D2 /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBBC4A2077720B00B545D2 /* CarCell.swift */; };
+		24FBBC4D2077720B00B545D2 /* CarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24FBBC4B2077720B00B545D2 /* CarCell.xib */; };
 		C927B7962076962400701881 /* TrafficMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C927B7942076962400701881 /* TrafficMessageCell.swift */; };
 		C927B7972076962400701881 /* TrafficMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C927B7952076962400701881 /* TrafficMessageCell.xib */; };
 		C93155452051920C00F4C429 /* TrafficService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93155442051920C00F4C429 /* TrafficService.swift */; };
@@ -134,6 +144,76 @@
 			remoteGlobalIDString = "RoadChatKit::RoadChatKit";
 			remoteInfo = RoadChatKit;
 		};
+		24207DCD207686B100851A73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24207DBB207686B100851A73 /* Parchment.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3EA04A4B1C53BFE40054E5E0;
+			remoteInfo = Parchment;
+		};
+		24207DCF207686B100851A73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24207DBB207686B100851A73 /* Parchment.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3E504EC41C7465B000AE1CE3;
+			remoteInfo = ParchmentTests;
+		};
+		24207DD1207686B100851A73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24207DBB207686B100851A73 /* Parchment.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3EA04A5A1C53BFF40054E5E0;
+			remoteInfo = Example;
+		};
+		24207DD3207686B100851A73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24207DBB207686B100851A73 /* Parchment.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3E2AAD051CA81D480044AAA5;
+			remoteInfo = CalendarExample;
+		};
+		24207DD5207686B100851A73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24207DBB207686B100851A73 /* Parchment.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3E2AAD331CA86C690044AAA5;
+			remoteInfo = DelegateExample;
+		};
+		24207DD7207686B100851A73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24207DBB207686B100851A73 /* Parchment.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3E5E93F01CE8BA1E000762A1;
+			remoteInfo = UnplashExample;
+		};
+		24207DD9207686B100851A73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24207DBB207686B100851A73 /* Parchment.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9597F29C1E394482003FD289;
+			remoteInfo = IconsExample;
+		};
+		24207DDB207686B100851A73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24207DBB207686B100851A73 /* Parchment.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 95B300FD1E59E43800B95D02;
+			remoteInfo = StoryboardExample;
+		};
+		24207DDD207686B100851A73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24207DBB207686B100851A73 /* Parchment.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9525C63A1FEE6DDC00A18EA0;
+			remoteInfo = NavigationBarExample;
+		};
+		24207DE6207686D200851A73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24207DBB207686B100851A73 /* Parchment.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3EA04A4A1C53BFE40054E5E0;
+			remoteInfo = Parchment;
+		};
 		24AED4B5204CC2EB002A1703 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
@@ -193,6 +273,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				240AB0142050870000324028 /* Locksmith.framework in Embed Frameworks */,
+				24207DE5207686D200851A73 /* Parchment.framework in Embed Frameworks */,
 				24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */,
 				240AB0192050877000324028 /* RoadChatKit.framework in Embed Frameworks */,
 			);
@@ -215,6 +296,13 @@
 		240D110420481843008C5E39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		240D110620481844008C5E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2412D6DF20647B5D0066A51C /* SetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetupViewController.xib; sourceTree = "<group>"; };
+		24207DBB207686B100851A73 /* Parchment.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parchment.xcodeproj; path = Frameworks/Parchment/Parchment.xcodeproj; sourceTree = "<group>"; };
+		24207DEC2076AB1800851A73 /* ProfilePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageViewController.swift; sourceTree = "<group>"; };
+		24207DF02076BC8E00851A73 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		24207DF12076BC8E00851A73 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		24207DF42076C2D000851A73 /* CarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsViewController.swift; sourceTree = "<group>"; };
+		24207DF82076C37300851A73 /* TrafficMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficMessagesViewController.swift; sourceTree = "<group>"; };
+		24207DFC2076C3D300851A73 /* CommunityMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessagesViewController.swift; sourceTree = "<group>"; };
 		242089BD205EB1C700FFEC90 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		242F8F2D204D6EA80052087B /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		243357252049817A00CD5F87 /* JSendAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JSendAPIClient.swift; path = RoadChat/Backend/JSendAPIClient.swift; sourceTree = SOURCE_ROOT; };
@@ -256,6 +344,8 @@
 		24B13478206421EE00B894BF /* TrafficBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficBoardViewController.swift; sourceTree = "<group>"; };
 		24B1347C2064229100B894BF /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
 		24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyBeaver.xcodeproj; path = Frameworks/SwiftyBeaver/SwiftyBeaver.xcodeproj; sourceTree = "<group>"; };
+		24FBBC4A2077720B00B545D2 /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
+		24FBBC4B2077720B00B545D2 /* CarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarCell.xib; sourceTree = "<group>"; };
 		C927B7942076962400701881 /* TrafficMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficMessageCell.swift; sourceTree = "<group>"; };
 		C927B7952076962400701881 /* TrafficMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrafficMessageCell.xib; sourceTree = "<group>"; };
 		C93155442051920C00F4C429 /* TrafficService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficService.swift; sourceTree = "<group>"; };
@@ -270,6 +360,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24207DE4207686D200851A73 /* Parchment.framework in Frameworks */,
 				240AB01D2050878100324028 /* Security.framework in Frameworks */,
 				24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */,
 				240AB0132050870000324028 /* Locksmith.framework in Frameworks */,
@@ -310,6 +401,7 @@
 				240AAFFB205086ED00324028 /* Locksmith.xcodeproj */,
 				24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */,
 				24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */,
+				24207DBB207686B100851A73 /* Parchment.xcodeproj */,
 				240D10F720481843008C5E39 /* RoadChat */,
 				240D10F620481843008C5E39 /* Products */,
 				244BFB7D2049A6EE00B2481D /* Frameworks */,
@@ -345,6 +437,34 @@
 				240D110320481843008C5E39 /* LaunchScreen.storyboard */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		24207DBC207686B100851A73 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				24207DCE207686B100851A73 /* Parchment.framework */,
+				24207DD0207686B100851A73 /* ParchmentTests.xctest */,
+				24207DD2207686B100851A73 /* Example.app */,
+				24207DD4207686B100851A73 /* CalendarExample.app */,
+				24207DD6207686B100851A73 /* DelegateExample.app */,
+				24207DD8207686B100851A73 /* UnplashExample.app */,
+				24207DDA207686B100851A73 /* IconsExample.app */,
+				24207DDC207686B100851A73 /* StoryboardExample.app */,
+				24207DDE207686B100851A73 /* NavigationBarExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		24207E002076C41300851A73 /* ProfilePages */ = {
+			isa = PBXGroup;
+			children = (
+				24207DFC2076C3D300851A73 /* CommunityMessagesViewController.swift */,
+				24207DF82076C37300851A73 /* TrafficMessagesViewController.swift */,
+				24207DF42076C2D000851A73 /* CarsViewController.swift */,
+				24207DF02076BC8E00851A73 /* AboutViewController.swift */,
+				24207DF12076BC8E00851A73 /* AboutViewController.xib */,
+			);
+			path = ProfilePages;
 			sourceTree = "<group>";
 		};
 		2422D00120514FEA0081A552 /* Services */ = {
@@ -388,9 +508,11 @@
 		243F1EB420483BC100B45955 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				249515C92064483400E734E4 /* SettingsViewController.swift */,
 				24B1346C20641A8C00B894BF /* ProfileViewController.swift */,
 				249515CD20644DB100E734E4 /* ProfileViewController.xib */,
-				249515C92064483400E734E4 /* SettingsViewController.swift */,
+				24207DEC2076AB1800851A73 /* ProfilePageViewController.swift */,
+				24207E002076C41300851A73 /* ProfilePages */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -529,8 +651,10 @@
 		249515D42064616300E734E4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				24FBBC7F20778A7E00B545D2 /* Community */,
+				24FBBC6A20778A5E00B545D2 /* User */,
+				24FBBC4F2077753000B545D2 /* Chat */,
 				C927B7A32076962B00701881 /* Traffic */,
-				24FBBC562077799A00B545D2 /* Chat */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -563,13 +687,37 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		24FBBC562077799A00B545D2 /* Chat */ = {
+		24FBBC4E2077722400B545D2 /* ProfilePages */ = {
+			isa = PBXGroup;
+			children = (
+				24FBBC4A2077720B00B545D2 /* CarCell.swift */,
+				24FBBC4B2077720B00B545D2 /* CarCell.xib */,
+			);
+			path = ProfilePages;
+			sourceTree = "<group>";
+		};
+		24FBBC4F2077753000B545D2 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
 				249515CF206460F800E734E4 /* ConversationCell.swift */,
 				249515D0206460F800E734E4 /* ConversationCell.xib */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		24FBBC6A20778A5E00B545D2 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				24FBBC4E2077722400B545D2 /* ProfilePages */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		24FBBC7F20778A7E00B545D2 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Community;
 			sourceTree = "<group>";
 		};
 		C927B7A32076962B00701881 /* Traffic */ = {
@@ -615,6 +763,7 @@
 				240AB0162050870000324028 /* PBXTargetDependency */,
 				240AB01B2050877000324028 /* PBXTargetDependency */,
 				24F1DD4320517B9D00A726AA /* PBXTargetDependency */,
+				24207DE7207686D200851A73 /* PBXTargetDependency */,
 			);
 			name = RoadChat;
 			productName = RoadChat;
@@ -657,6 +806,10 @@
 				{
 					ProductGroup = 240AAFFC205086ED00324028 /* Products */;
 					ProjectRef = 240AAFFB205086ED00324028 /* Locksmith.xcodeproj */;
+				},
+				{
+					ProductGroup = 24207DBC207686B100851A73 /* Products */;
+					ProjectRef = 24207DBB207686B100851A73 /* Parchment.xcodeproj */;
 				},
 				{
 					ProductGroup = 24AED4AD204CC2EB002A1703 /* Products */;
@@ -724,6 +877,69 @@
 			remoteRef = 240AB011205086ED00324028 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		24207DCE207686B100851A73 /* Parchment.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Parchment.framework;
+			remoteRef = 24207DCD207686B100851A73 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24207DD0207686B100851A73 /* ParchmentTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ParchmentTests.xctest;
+			remoteRef = 24207DCF207686B100851A73 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24207DD2207686B100851A73 /* Example.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Example.app;
+			remoteRef = 24207DD1207686B100851A73 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24207DD4207686B100851A73 /* CalendarExample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CalendarExample.app;
+			remoteRef = 24207DD3207686B100851A73 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24207DD6207686B100851A73 /* DelegateExample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = DelegateExample.app;
+			remoteRef = 24207DD5207686B100851A73 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24207DD8207686B100851A73 /* UnplashExample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = UnplashExample.app;
+			remoteRef = 24207DD7207686B100851A73 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24207DDA207686B100851A73 /* IconsExample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = IconsExample.app;
+			remoteRef = 24207DD9207686B100851A73 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24207DDC207686B100851A73 /* StoryboardExample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = StoryboardExample.app;
+			remoteRef = 24207DDB207686B100851A73 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24207DDE207686B100851A73 /* NavigationBarExample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = NavigationBarExample.app;
+			remoteRef = 24207DDD207686B100851A73 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -781,6 +997,8 @@
 				240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */,
 				249515D2206460F800E734E4 /* ConversationCell.xib in Resources */,
 				24B134772064202800B894BF /* CreateCommunityMessageViewController.xib in Resources */,
+				24207DF32076BC8E00851A73 /* AboutViewController.xib in Resources */,
+				24FBBC4D2077720B00B545D2 /* CarCell.xib in Resources */,
 				240D110220481843008C5E39 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -794,8 +1012,10 @@
 			files = (
 				248D37AD20494FFB00B21C3D /* DirectMessage.swift in Sources */,
 				248D37A720494F7E00B21C3D /* Conversation.swift in Sources */,
+				24207DFE2076C3D300851A73 /* CommunityMessagesViewController.swift in Sources */,
 				247F6D3B206081320006FBC7 /* HomeTabBarController.swift in Sources */,
 				247F6D21205F3C9C0006FBC7 /* UserManager.swift in Sources */,
+				24207DFA2076C37300851A73 /* TrafficMessagesViewController.swift in Sources */,
 				24A069BB20520367006F8401 /* AuthenticationManager.swift in Sources */,
 				247F6D3D20614E380006FBC7 /* TrafficBoard.swift in Sources */,
 				247F6D3720605E240006FBC7 /* DependencyContainer.swift in Sources */,
@@ -808,12 +1028,16 @@
 				24A069B12051EFC8006F8401 /* CoreDataStack.swift in Sources */,
 				2404A25E204ED162009AC7E1 /* CarService.swift in Sources */,
 				242F8F2E204D6EA80052087B /* AuthenticationService.swift in Sources */,
+				24FBBC4C2077720B00B545D2 /* CarCell.swift in Sources */,
 				248D37A220494F1600B21C3D /* TrafficMessage.swift in Sources */,
 				248D37AB20494FE200B21C3D /* Location.swift in Sources */,
 				240D10F920481843008C5E39 /* AppDelegate.swift in Sources */,
+				24207DF62076C2D000851A73 /* CarsViewController.swift in Sources */,
 				D44F4B7D20528076009A6239 /* CommunityService.swift in Sources */,
 				247F6D26206057950006FBC7 /* ViewControllerFactory.swift in Sources */,
 				24B1347E2064229100B894BF /* ConversationsViewController.swift in Sources */,
+				24207DF22076BC8E00851A73 /* AboutViewController.swift in Sources */,
+				24207DED2076AB1800851A73 /* ProfilePageViewController.swift in Sources */,
 				249515D1206460F800E734E4 /* ConversationCell.swift in Sources */,
 				247F6D1D205F26AE0006FBC7 /* CommunityBoard.swift in Sources */,
 				D44F4B88205297A7009A6239 /* CreateCommunityMessageViewController.swift in Sources */,
@@ -852,6 +1076,11 @@
 			isa = PBXTargetDependency;
 			name = RoadChatKit;
 			targetProxy = 240AB01A2050877000324028 /* PBXContainerItemProxy */;
+		};
+		24207DE7207686D200851A73 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Parchment;
+			targetProxy = 24207DE6207686D200851A73 /* PBXContainerItemProxy */;
 		};
 		24F1DD4320517B9D00A726AA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

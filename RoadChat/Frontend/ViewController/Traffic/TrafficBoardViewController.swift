@@ -35,20 +35,14 @@ class TrafficBoardViewController: FetchedResultsTableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Customization
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib.init(nibName: "TrafficMessageCell", bundle: nil), forCellReuseIdentifier: "TrafficMessageCell")
         trafficBoard.getMessages(completion: nil)
         updateUI()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-    
 
+    }
     
     // MARK: - Private Methods
     private func updateUI() {

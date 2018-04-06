@@ -10,10 +10,12 @@ import UIKit
 
 class ConversationCell: UITableViewCell {
 
+    // MARK: - Outlets
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var lastChangeLabel: UILabel!
     @IBOutlet weak var lastMessageLabel: UILabel!
     
+    // MARK: - Public Methods
     func configure(conversation: Conversation, newestMessage: DirectMessage?) {
         titleLabel.text = conversation.title
         

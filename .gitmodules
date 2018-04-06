@@ -12,3 +12,6 @@
 	path = Frameworks/SwiftyBeaver
 	url = https://github.com/SwiftyBeaver/SwiftyBeaver
 	ignore = dirty
+[submodule "Frameworks/Parchment"]
+	path = Frameworks/Parchment
+	url = git@github.com:rechsteiner/Parchment.git
