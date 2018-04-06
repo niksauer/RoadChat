@@ -26,11 +26,8 @@
 		24207DF22076BC8E00851A73 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24207DF02076BC8E00851A73 /* AboutViewController.swift */; };
 		24207DF32076BC8E00851A73 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24207DF12076BC8E00851A73 /* AboutViewController.xib */; };
 		24207DF62076C2D000851A73 /* CarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24207DF42076C2D000851A73 /* CarsViewController.swift */; };
-		24207DF72076C2D000851A73 /* CarsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24207DF52076C2D000851A73 /* CarsViewController.xib */; };
 		24207DFA2076C37300851A73 /* TrafficMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24207DF82076C37300851A73 /* TrafficMessagesViewController.swift */; };
-		24207DFB2076C37300851A73 /* TrafficMessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24207DF92076C37300851A73 /* TrafficMessagesViewController.xib */; };
 		24207DFE2076C3D300851A73 /* CommunityMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24207DFC2076C3D300851A73 /* CommunityMessagesViewController.swift */; };
-		24207DFF2076C3D300851A73 /* CommunityMessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24207DFD2076C3D300851A73 /* CommunityMessagesViewController.xib */; };
 		242089BE205EB1C700FFEC90 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242089BD205EB1C700FFEC90 /* SetupViewController.swift */; };
 		242F8F2E204D6EA80052087B /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F8F2D204D6EA80052087B /* AuthenticationService.swift */; };
 		243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243357252049817A00CD5F87 /* JSendAPIClient.swift */; };
@@ -72,6 +69,8 @@
 		24B1347E2064229100B894BF /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B1347C2064229100B894BF /* ConversationsViewController.swift */; };
 		24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; };
 		24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		24FBBC4C2077720B00B545D2 /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBBC4A2077720B00B545D2 /* CarCell.swift */; };
+		24FBBC4D2077720B00B545D2 /* CarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24FBBC4B2077720B00B545D2 /* CarCell.xib */; };
 		C93155452051920C00F4C429 /* TrafficService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93155442051920C00F4C429 /* TrafficService.swift */; };
 		C988ACA52052BB3200EDCEAC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988ACA42052BB3200EDCEAC /* LocationManager.swift */; };
 		D40B2059205145B1000823E4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B2058205145B1000823E4 /* RegisterViewController.swift */; };
@@ -300,11 +299,8 @@
 		24207DF02076BC8E00851A73 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		24207DF12076BC8E00851A73 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		24207DF42076C2D000851A73 /* CarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsViewController.swift; sourceTree = "<group>"; };
-		24207DF52076C2D000851A73 /* CarsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarsViewController.xib; sourceTree = "<group>"; };
 		24207DF82076C37300851A73 /* TrafficMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficMessagesViewController.swift; sourceTree = "<group>"; };
-		24207DF92076C37300851A73 /* TrafficMessagesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrafficMessagesViewController.xib; sourceTree = "<group>"; };
 		24207DFC2076C3D300851A73 /* CommunityMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessagesViewController.swift; sourceTree = "<group>"; };
-		24207DFD2076C3D300851A73 /* CommunityMessagesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunityMessagesViewController.xib; sourceTree = "<group>"; };
 		242089BD205EB1C700FFEC90 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		242F8F2D204D6EA80052087B /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		243357252049817A00CD5F87 /* JSendAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JSendAPIClient.swift; path = RoadChat/Backend/JSendAPIClient.swift; sourceTree = SOURCE_ROOT; };
@@ -346,6 +342,8 @@
 		24B13478206421EE00B894BF /* TrafficBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficBoardViewController.swift; sourceTree = "<group>"; };
 		24B1347C2064229100B894BF /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
 		24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyBeaver.xcodeproj; path = Frameworks/SwiftyBeaver/SwiftyBeaver.xcodeproj; sourceTree = "<group>"; };
+		24FBBC4A2077720B00B545D2 /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
+		24FBBC4B2077720B00B545D2 /* CarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarCell.xib; sourceTree = "<group>"; };
 		C93155442051920C00F4C429 /* TrafficService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficService.swift; sourceTree = "<group>"; };
 		C988ACA42052BB3200EDCEAC /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		D40B2058205145B1000823E4 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -457,11 +455,8 @@
 			isa = PBXGroup;
 			children = (
 				24207DFC2076C3D300851A73 /* CommunityMessagesViewController.swift */,
-				24207DFD2076C3D300851A73 /* CommunityMessagesViewController.xib */,
 				24207DF82076C37300851A73 /* TrafficMessagesViewController.swift */,
-				24207DF92076C37300851A73 /* TrafficMessagesViewController.xib */,
 				24207DF42076C2D000851A73 /* CarsViewController.swift */,
-				24207DF52076C2D000851A73 /* CarsViewController.xib */,
 				24207DF02076BC8E00851A73 /* AboutViewController.swift */,
 				24207DF12076BC8E00851A73 /* AboutViewController.xib */,
 			);
@@ -652,8 +647,8 @@
 		249515D42064616300E734E4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				249515CF206460F800E734E4 /* ConversationCell.swift */,
-				249515D0206460F800E734E4 /* ConversationCell.xib */,
+				24FBBC4E2077722400B545D2 /* ProfilePages */,
+				24FBBC4F2077753000B545D2 /* Chat */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -684,6 +679,24 @@
 				24F1DD3F20517B8E00A726AA /* SwiftyBeaver.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		24FBBC4E2077722400B545D2 /* ProfilePages */ = {
+			isa = PBXGroup;
+			children = (
+				24FBBC4A2077720B00B545D2 /* CarCell.swift */,
+				24FBBC4B2077720B00B545D2 /* CarCell.xib */,
+			);
+			path = ProfilePages;
+			sourceTree = "<group>";
+		};
+		24FBBC4F2077753000B545D2 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				249515CF206460F800E734E4 /* ConversationCell.swift */,
+				249515D0206460F800E734E4 /* ConversationCell.xib */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		C93155432051920C00F4C429 /* Traffic */ = {
@@ -951,12 +964,10 @@
 				24B134652063254F00B894BF /* LoginViewController.xib in Resources */,
 				24B134672063C10C00B894BF /* RegisterViewController.xib in Resources */,
 				240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */,
-				24207DF72076C2D000851A73 /* CarsViewController.xib in Resources */,
 				249515D2206460F800E734E4 /* ConversationCell.xib in Resources */,
 				24B134772064202800B894BF /* CreateCommunityMessageViewController.xib in Resources */,
-				24207DFF2076C3D300851A73 /* CommunityMessagesViewController.xib in Resources */,
-				24207DFB2076C37300851A73 /* TrafficMessagesViewController.xib in Resources */,
 				24207DF32076BC8E00851A73 /* AboutViewController.xib in Resources */,
+				24FBBC4D2077720B00B545D2 /* CarCell.xib in Resources */,
 				240D110220481843008C5E39 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -986,6 +997,7 @@
 				24A069B12051EFC8006F8401 /* CoreDataStack.swift in Sources */,
 				2404A25E204ED162009AC7E1 /* CarService.swift in Sources */,
 				242F8F2E204D6EA80052087B /* AuthenticationService.swift in Sources */,
+				24FBBC4C2077720B00B545D2 /* CarCell.swift in Sources */,
 				248D37A220494F1600B21C3D /* TrafficMessage.swift in Sources */,
 				248D37AB20494FE200B21C3D /* Location.swift in Sources */,
 				240D10F920481843008C5E39 /* AppDelegate.swift in Sources */,
