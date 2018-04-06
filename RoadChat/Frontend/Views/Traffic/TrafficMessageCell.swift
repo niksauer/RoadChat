@@ -26,6 +26,5 @@ class TrafficMessageCell: UITableViewCell {
         validationsLabel.text = String(trafficMessage.validations)
         
     }
-   
-    
+
 }

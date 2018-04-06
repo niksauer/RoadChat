@@ -529,9 +529,8 @@
 		249515D42064616300E734E4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				249515CF206460F800E734E4 /* ConversationCell.swift */,
 				C927B7A32076962B00701881 /* Traffic */,
-				249515D0206460F800E734E4 /* ConversationCell.xib */,
+				24FBBC562077799A00B545D2 /* Chat */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -562,6 +561,15 @@
 				24F1DD3F20517B8E00A726AA /* SwiftyBeaver.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		24FBBC562077799A00B545D2 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				249515CF206460F800E734E4 /* ConversationCell.swift */,
+				249515D0206460F800E734E4 /* ConversationCell.xib */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		C927B7A32076962B00701881 /* Traffic */ = {
