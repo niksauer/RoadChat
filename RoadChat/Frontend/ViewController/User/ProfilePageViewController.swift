@@ -13,11 +13,14 @@ import Parchment
 class ProfilePageViewController: UIViewController {
     
     // MARK: - Private Properties
+    private let viewFactory: ViewControllerFactory
     private let user: User
     
     // MARK: - Initialization
-    init(user: User) {
+    init(viewFactory: ViewControllerFactory, user: User) {
+        self.viewFactory = viewFactory
         self.user = user
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -27,10 +30,10 @@ class ProfilePageViewController: UIViewController {
     
     // MARK: - Customization
     override func viewDidLoad() {
-        let communityViewController = CommunityMessagesViewController(messages: nil)
-        let trafficViewController = TrafficMessagesViewController(messages: nil)
-        let carsViewController = CarsViewController(cars: nil)
-        let aboutViewController = AboutViewController(user: user)
+        let communityViewController = viewFactory.makeCommunityMessagesViewController(for: user)
+        let trafficViewController = viewFactory.makeTrafficMessagesViewController(for: user)
+        let carsViewController = viewFactory.makeCarsViewController(for: user)
+        let aboutViewController = viewFactory.makeAboutViewController(for: user)
         
         let pagingViewController = FixedPagingViewController(viewControllers: [communityViewController, trafficViewController, carsViewController, aboutViewController])
         pagingViewController.menuItemSize = .sizeToFit(minWidth: 90, height: 40)

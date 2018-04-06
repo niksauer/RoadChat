@@ -36,10 +36,21 @@ struct DependencyContainer {
     private var trafficBoard: TrafficBoard {
         return TrafficBoard(trafficService: TrafficService(credentials: credentials), context: viewContext)
     }
+    
+    private var shortDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        return dateFormatter
+    }()
+    
+//    private var timeSinceDateFormatter: DateFormatter = {
+//        let dateFormatter = DateFormatter()
+//        return dateFormatter
+//    }()
 }
 
 extension DependencyContainer: ViewControllerFactory {
-    
+   
     // General
     func makeSetupViewController() -> SetupViewController {
         return SetupViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, credentials: credentials)
@@ -60,7 +71,7 @@ extension DependencyContainer: ViewControllerFactory {
 
     // Community
     func makeCommunityBoardViewController() -> CommunityBoardViewController {
-        return CommunityBoardViewController(viewFactory: self, communityBoard: communityBoard)
+        return CommunityBoardViewController(viewFactory: self, communityBoard: communityBoard, searchContext: viewContext, cellDateFormatter: shortDateFormatter)
     }
 
     func makeCreateCommunityMessageViewController() -> CreateCommunityMessageViewController {
@@ -69,21 +80,42 @@ extension DependencyContainer: ViewControllerFactory {
 
     // Traffic
     func makeTrafficBoardViewController() -> TrafficBoardViewController {
-        return TrafficBoardViewController(viewFactory: self, trafficBoard: trafficBoard, searchContext: viewContext)
+        return TrafficBoardViewController(viewFactory: self, trafficBoard: trafficBoard, searchContext: viewContext, cellDateFormatter: shortDateFormatter)
     }
 
     // Chat
     func makeConversationsViewController(for user: User) -> ConversationsViewController {
-        return ConversationsViewController(viewFactory: self, user: user, searchContext: viewContext)
+        return ConversationsViewController(viewFactory: self, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter)
     }
     
     // User
+    func makeSettingsViewController(for user: User) -> SettingsViewController {
+        return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user)
+    }
+    
     func makeProfileViewController(for user: User) -> ProfileViewController {
         return ProfileViewController(viewFactory: self, user: user)
     }
     
-    func makeSettingsViewController(for user: User) -> SettingsViewController {
-        return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user)
+    func makeProfilePageViewController(for user: User) -> ProfilePageViewController {
+        return ProfilePageViewController(viewFactory: self, user: user)
+    }
+    
+    // Profile Pages
+    func makeCommunityMessagesViewController(for user: User) -> CommunityMessagesViewController {
+        return CommunityMessagesViewController(messages: user.storedCommunityMessages, cellDateFormatter: shortDateFormatter)
+    }
+    
+    func makeTrafficMessagesViewController(for user: User) -> TrafficMessagesViewController {
+        return TrafficMessagesViewController(messages: user.storedTrafficMessages, cellDateFormatter: shortDateFormatter)
+    }
+    
+    func makeCarsViewController(for user: User) -> CarsViewController {
+        return CarsViewController(cars: user.storedCars, dateFormatter: shortDateFormatter)
+    }
+    
+    func makeAboutViewController(for user: User) -> AboutViewController {
+        return AboutViewController(user: user)
     }
 
 }

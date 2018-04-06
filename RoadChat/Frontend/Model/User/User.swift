@@ -52,6 +52,18 @@ class User: NSManagedObject, ReportOwner {
         return Array(conversations!) as! [Conversation]
     }
     
+    var storedCommunityMessages: [CommunityMessage] {
+        return Array(communityMessages!) as! [CommunityMessage]
+    }
+    
+    var storedTrafficMessages: [TrafficMessage] {
+        return Array(trafficMessages!) as! [TrafficMessage]
+    }
+    
+    var storedCars: [Car] {
+        return Array(cars!) as! [Car]
+    }
+    
     // MARK: - Private Properties
     private let userService = UserService(credentials: CredentialManager.shared)
     private let conversationService = ConversationService(credentials: CredentialManager.shared)
@@ -68,6 +80,7 @@ class User: NSManagedObject, ReportOwner {
         get(completion: nil)
         getProfile(completion: nil)
         getConversations(completion: nil)
+        getCommunityMessages(completion: nil)
     }
     
     // MARK: - Public Methods
@@ -227,5 +240,39 @@ class User: NSManagedObject, ReportOwner {
             }
         }
     }
-    
+ 
+    func getCommunityMessages(completion: ((Error?) -> Void)?) {
+        userService.getCommunityMessages(userID: Int(id)) { messages, error in
+            guard let messages = messages else {
+                // pass service error
+                let report = Report(.failedServerOperation(.retrieve, resource: "CommunityMessage", isMultiple: true, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            let coreMessages: [CommunityMessage] = messages.compactMap {
+                do {
+                    return try CommunityMessage.createOrUpdate(from: $0, in: self.context)
+                } catch {
+                    let report = Report(.failedCoreDataOperation(.create, resource: "CommunityMessage", isMultiple: false, error: error), owner: self)
+                    log.error(report)
+                    return nil
+                }
+            }
+            
+            self.addToCommunityMessages(NSSet(array: coreMessages))
+            
+            do {
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: "CommunityMessage", isMultiple: true), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                let report = Report(.failedCoreDataOperation(.retrieve, resource: "CommunityMessage", isMultiple: true, error: error), owner: self)
+                log.error(report)
+                completion?(error)
+            }
+        }
+    }
 }

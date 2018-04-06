@@ -60,4 +60,36 @@ struct CommunityBoard: ReportOwner {
         }
     }
     
+    func getMessages(completion: ((Error?) -> Void)?) {
+        communityService.index { messages, error in
+            guard let messages = messages else {
+                // pass service error
+                let report = Report(.failedServerOperation(.retrieve, resource: "CommunityMessage", isMultiple: true, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            for message in messages {
+                do {
+                    _ = try CommunityMessage.createOrUpdate(from: message, in: self.context)
+                } catch {
+                    let report = Report(.failedCoreDataOperation(.create, resource: "CommunityMessage", isMultiple: true, error: error), owner: self)
+                    log.error(report)
+                }
+            }
+            
+            do {
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: "CommunityMessage", isMultiple: true), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                let report = Report(.failedCoreDataOperation(.retrieve, resource: "CommunityMessage", isMultiple: true, error: error), owner: self)
+                log.error(report)
+                completion?(error)
+            }
+        }
+    }
+    
 }

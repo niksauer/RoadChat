@@ -14,10 +14,12 @@ class CarsViewController: UITableViewController {
     
     // MARK: - Private Properties
     private let cars: [Car]?
+    private let dateFormatter: DateFormatter
     
     // MARK: - Initialization
-    init(cars: [Car]?) {
+    init(cars: [Car]?, dateFormatter: DateFormatter) {
         self.cars = cars
+        self.dateFormatter = dateFormatter
         
         super.init(nibName: nil, bundle: nil)
         self.title = "Cars"
@@ -41,7 +43,7 @@ class CarsViewController: UITableViewController {
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CarCell", for: indexPath) as! CarCell
-        cell.configure(car: car)
+        cell.configure(car: car, dateFormatter: dateFormatter)
         
         return cell
     }

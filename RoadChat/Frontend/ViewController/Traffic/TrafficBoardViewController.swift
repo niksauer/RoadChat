@@ -16,14 +16,16 @@ class TrafficBoardViewController: FetchedResultsTableViewController {
     private let viewFactory: ViewControllerFactory
     private let trafficBoard: TrafficBoard
     private let searchContext: NSManagedObjectContext
+    private let cellDateFormatter: DateFormatter
     
     private var fetchedResultsController: NSFetchedResultsController<TrafficMessage>?
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, trafficBoard: TrafficBoard, searchContext: NSManagedObjectContext) {
+    init(viewFactory: ViewControllerFactory, trafficBoard: TrafficBoard, searchContext: NSManagedObjectContext, cellDateFormatter: DateFormatter) {
         self.viewFactory = viewFactory
         self.trafficBoard = trafficBoard
         self.searchContext = searchContext
+        self.cellDateFormatter = cellDateFormatter
         
         super.init(nibName: nil, bundle: nil)
         self.title = "TrafficBoard"
@@ -41,7 +43,6 @@ class TrafficBoardViewController: FetchedResultsTableViewController {
         tableView.register(UINib.init(nibName: "TrafficMessageCell", bundle: nil), forCellReuseIdentifier: "TrafficMessageCell")
         trafficBoard.getMessages(completion: nil)
         updateUI()
-
     }
     
     // MARK: - Private Methods
@@ -58,10 +59,10 @@ class TrafficBoardViewController: FetchedResultsTableViewController {
     
     // MARK: - Table View Data Source
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let trafficMessage = fetchedResultsController!.object(at: indexPath)
+        let message = fetchedResultsController!.object(at: indexPath)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrafficMessageCell", for: indexPath) as! TrafficMessageCell
-        cell.configure(trafficMessage: trafficMessage)
+        cell.configure(message: message, dateFormatter: cellDateFormatter)
         
         return cell
     }

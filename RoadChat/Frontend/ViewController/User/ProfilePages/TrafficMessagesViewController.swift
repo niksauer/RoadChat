@@ -14,10 +14,12 @@ class TrafficMessagesViewController: UITableViewController {
     
     // MARK: - Private Properties
     let messages: [TrafficMessage]?
+    let cellDateFormatter: DateFormatter
     
     // MARK: - Initialization
-    init(messages: [TrafficMessage]?) {
+    init(messages: [TrafficMessage]?, cellDateFormatter: DateFormatter) {
         self.messages = messages
+        self.cellDateFormatter = cellDateFormatter
         
         super.init(nibName: nil, bundle: nil)
         self.title = "Traffic"
@@ -30,21 +32,19 @@ class TrafficMessagesViewController: UITableViewController {
     // MARK: - Customization
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     // MARK: - Table View Data Source
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let message = messages?[indexPath.row] else {
-//            fatalError()
-//        }
-//
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "TrafficMessageCell", for: indexPath) as! TrafficMessageCell
-//        cell.configure(message: message)
-//
-//        return cell
-//    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let message = messages?[indexPath.row] else {
+            fatalError()
+        }
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TrafficMessageCell", for: indexPath) as! TrafficMessageCell
+        cell.configure(message: message, dateFormatter: cellDateFormatter)
+
+        return cell
+    }
 
 }
 
