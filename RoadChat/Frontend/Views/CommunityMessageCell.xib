@@ -26,12 +26,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xxPus$ySlayer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkG-Ts-LWu">
-                        <rect key="frame" x="26" y="52" width="83" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NtM-iX-Kv1">
                         <rect key="frame" x="242" y="149.5" width="30" height="30"/>
                         <state key="normal" title="14">
@@ -56,22 +50,22 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="16:33 - 05.04.2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dxw-AU-IKN">
-                        <rect key="frame" x="26" y="157" width="108.5" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="7h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzl-ol-Q5N">
+                        <rect key="frame" x="47" y="154" width="26" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XC2-Nb-OKt">
+                        <rect key="frame" x="16" y="141" width="33" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="YkG-Ts-LWu" firstAttribute="top" secondItem="14y-nF-BOd" secondAttribute="bottom" constant="10" id="Dac-JK-04V"/>
-                    <constraint firstItem="YkG-Ts-LWu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="NGF-x8-ACB"/>
                     <constraint firstItem="14y-nF-BOd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="Ohc-CN-vba"/>
-                    <constraint firstItem="NtM-iX-Kv1" firstAttribute="leading" secondItem="Dxw-AU-IKN" secondAttribute="trailing" constant="10" id="UMW-xF-5sW"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Dxw-AU-IKN" secondAttribute="bottom" constant="5" id="WtS-80-0I5"/>
                     <constraint firstAttribute="bottomMargin" secondItem="NtM-iX-Kv1" secondAttribute="bottom" constant="10" id="cMX-kM-JT1"/>
                     <constraint firstAttribute="trailingMargin" secondItem="NNv-gY-B6L" secondAttribute="trailing" constant="10" id="gNW-EZ-aZf"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Dxw-AU-IKN" secondAttribute="bottom" constant="10" id="jQr-d7-OzR"/>
                     <constraint firstAttribute="trailing" secondItem="H7O-Zo-fPr" secondAttribute="trailing" constant="10" id="jxG-zI-wwJ"/>
                     <constraint firstItem="NNv-gY-B6L" firstAttribute="leading" secondItem="NtM-iX-Kv1" secondAttribute="trailing" constant="10" id="o2T-sD-asF"/>
                     <constraint firstItem="H7O-Zo-fPr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="uMl-JY-XXT"/>
@@ -82,11 +76,9 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="messageLabel" destination="H7O-Zo-fPr" id="zUi-uv-Lo0"/>
-                <outlet property="timeLabel" destination="Dxw-AU-IKN" id="2xH-zI-W8S"/>
                 <outlet property="titleLabel" destination="14y-nF-BOd" id="1tD-6h-lgl"/>
-                <outlet property="usernameLabel" destination="YkG-Ts-LWu" id="wUf-U3-Oiy"/>
             </connections>
-            <point key="canvasLocation" x="78" y="7"/>
+            <point key="canvasLocation" x="78" y="6.5"/>
         </tableViewCell>
     </objects>
 </document>

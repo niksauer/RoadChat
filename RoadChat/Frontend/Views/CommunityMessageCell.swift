@@ -16,7 +16,7 @@ class CommunityMessageCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     
     
-    func configure(communityMessage: CommunityMessage) {
+    func configure(communityMessage: CommunityMessage) { //<-- HERE
         titleLabel.text = communityMessage.title
         
         let dateFormatter = DateFormatter()
