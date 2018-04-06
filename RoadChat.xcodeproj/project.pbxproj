@@ -61,6 +61,8 @@
 		24B1347E2064229100B894BF /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B1347C2064229100B894BF /* ConversationsViewController.swift */; };
 		24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; };
 		24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C927B7962076962400701881 /* TrafficMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C927B7942076962400701881 /* TrafficMessageCell.swift */; };
+		C927B7972076962400701881 /* TrafficMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C927B7952076962400701881 /* TrafficMessageCell.xib */; };
 		C93155452051920C00F4C429 /* TrafficService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93155442051920C00F4C429 /* TrafficService.swift */; };
 		C988ACA52052BB3200EDCEAC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988ACA42052BB3200EDCEAC /* LocationManager.swift */; };
 		D40B2059205145B1000823E4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B2058205145B1000823E4 /* RegisterViewController.swift */; };
@@ -131,13 +133,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = "RoadChatKit::RoadChatKit";
 			remoteInfo = RoadChatKit;
-		};
-		24AED4B3204CC2EB002A1703 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "RoadChatKit::RoadChatKitTests::Product";
-			remoteInfo = RoadChatKitTests;
 		};
 		24AED4B5204CC2EB002A1703 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -261,6 +256,8 @@
 		24B13478206421EE00B894BF /* TrafficBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficBoardViewController.swift; sourceTree = "<group>"; };
 		24B1347C2064229100B894BF /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
 		24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyBeaver.xcodeproj; path = Frameworks/SwiftyBeaver/SwiftyBeaver.xcodeproj; sourceTree = "<group>"; };
+		C927B7942076962400701881 /* TrafficMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficMessageCell.swift; sourceTree = "<group>"; };
+		C927B7952076962400701881 /* TrafficMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrafficMessageCell.xib; sourceTree = "<group>"; };
 		C93155442051920C00F4C429 /* TrafficService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficService.swift; sourceTree = "<group>"; };
 		C988ACA42052BB3200EDCEAC /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		D40B2058205145B1000823E4 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -533,6 +530,7 @@
 			isa = PBXGroup;
 			children = (
 				249515CF206460F800E734E4 /* ConversationCell.swift */,
+				C927B7A32076962B00701881 /* Traffic */,
 				249515D0206460F800E734E4 /* ConversationCell.xib */,
 			);
 			path = Views;
@@ -541,7 +539,6 @@
 		24AED4AD204CC2EB002A1703 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				24AED4B4204CC2EB002A1703 /* RoadChatKitTests.xctest */,
 				24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */,
 			);
 			name = Products;
@@ -565,6 +562,15 @@
 				24F1DD3F20517B8E00A726AA /* SwiftyBeaver.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C927B7A32076962B00701881 /* Traffic */ = {
+			isa = PBXGroup;
+			children = (
+				C927B7942076962400701881 /* TrafficMessageCell.swift */,
+				C927B7952076962400701881 /* TrafficMessageCell.xib */,
+			);
+			path = Traffic;
 			sourceTree = "<group>";
 		};
 		C93155432051920C00F4C429 /* Traffic */ = {
@@ -710,13 +716,6 @@
 			remoteRef = 240AB011205086ED00324028 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		24AED4B4204CC2EB002A1703 /* RoadChatKitTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = RoadChatKitTests.xctest;
-			remoteRef = 24AED4B3204CC2EB002A1703 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -769,6 +768,7 @@
 				2412D6E020647B5D0066A51C /* SetupViewController.xib in Resources */,
 				249515CE20644DB100E734E4 /* ProfileViewController.xib in Resources */,
 				24B134652063254F00B894BF /* LoginViewController.xib in Resources */,
+				C927B7972076962400701881 /* TrafficMessageCell.xib in Resources */,
 				24B134672063C10C00B894BF /* RegisterViewController.xib in Resources */,
 				240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */,
 				249515D2206460F800E734E4 /* ConversationCell.xib in Resources */,
@@ -812,6 +812,7 @@
 				249515CB2064483400E734E4 /* SettingsViewController.swift in Sources */,
 				24B1347420641EB800B894BF /* CommunityBoardViewController.swift in Sources */,
 				C988ACA52052BB3200EDCEAC /* LocationManager.swift in Sources */,
+				C927B7962076962400701881 /* TrafficMessageCell.swift in Sources */,
 				248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */,
 				248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */,
 				24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */,
