@@ -34,7 +34,7 @@ struct DependencyContainer {
     }
     
     private var trafficBoard: TrafficBoard {
-        return TrafficBoard(trafficService: TrafficService(credentials: credentials))
+        return TrafficBoard(trafficService: TrafficService(credentials: credentials), context: viewContext)
     }
 }
 
@@ -69,7 +69,7 @@ extension DependencyContainer: ViewControllerFactory {
 
     // Traffic
     func makeTrafficBoardViewController() -> TrafficBoardViewController {
-        return TrafficBoardViewController(viewFactory: self, trafficBoard: trafficBoard)
+        return TrafficBoardViewController(viewFactory: self, trafficBoard: trafficBoard, searchContext: viewContext)
     }
 
     // Chat

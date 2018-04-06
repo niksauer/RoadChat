@@ -22,6 +22,7 @@ class TrafficMessage: NSManagedObject {
         
         do {
             let matches = try context.fetch(request)
+            
             if matches.count > 0 {
                 assert(matches.count >= 1, "Transaction.createTransaction -- Database Inconsistency")
                 throw TrafficError.duplicate
