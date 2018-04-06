@@ -50,7 +50,7 @@ struct DependencyContainer {
 }
 
 extension DependencyContainer: ViewControllerFactory {
-
+   
     // General
     func makeSetupViewController() -> SetupViewController {
         return SetupViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, credentials: credentials)
@@ -71,7 +71,7 @@ extension DependencyContainer: ViewControllerFactory {
 
     // Community
     func makeCommunityBoardViewController() -> CommunityBoardViewController {
-        return CommunityBoardViewController(viewFactory: self, communityBoard: communityBoard)
+        return CommunityBoardViewController(viewFactory: self, communityBoard: communityBoard, searchContext: viewContext, cellDateFormatter: shortDateFormatter)
     }
 
     func makeCreateCommunityMessageViewController() -> CreateCommunityMessageViewController {
@@ -89,16 +89,33 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     // User
+    func makeSettingsViewController(for user: User) -> SettingsViewController {
+        return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user)
+    }
+    
     func makeProfileViewController(for user: User) -> ProfileViewController {
         return ProfileViewController(viewFactory: self, user: user)
     }
     
     func makeProfilePageViewController(for user: User) -> ProfilePageViewController {
-        return ProfilePageViewController(user: user, dateFormatter: shortDateFormatter)
+        return ProfilePageViewController(viewFactory: self, user: user)
     }
     
-    func makeSettingsViewController(for user: User) -> SettingsViewController {
-        return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user)
+    // Profile Pages
+    func makeCommunityMessagesViewController(for user: User) -> CommunityMessagesViewController {
+        return CommunityMessagesViewController(messages: user.storedCommunityMessages, cellDateFormatter: shortDateFormatter)
+    }
+    
+    func makeTrafficMessagesViewController(for user: User) -> TrafficMessagesViewController {
+        return TrafficMessagesViewController(messages: user.storedTrafficMessages, cellDateFormatter: shortDateFormatter)
+    }
+    
+    func makeCarsViewController(for user: User) -> CarsViewController {
+        return CarsViewController(cars: user.storedCars, dateFormatter: shortDateFormatter)
+    }
+    
+    func makeAboutViewController(for user: User) -> AboutViewController {
+        return AboutViewController(user: user)
     }
 
 }

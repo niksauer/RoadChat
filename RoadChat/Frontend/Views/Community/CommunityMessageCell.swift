@@ -29,11 +29,12 @@ class CommunityMessageCell: UITableViewCell {
         upvotesLabel.text = String(message.upvotes)
     }
 
-    @IBAction func upvote(_ sender: UIButton) {
+    @IBAction func upvoteButtonPressed(_ sender: UIButton) {
 //        message.upvote()
     }
     
-    @IBAction func downvote(_ sender: UIButton) {
+    @IBAction func downvoteButtonPressed(_ sender: UIButton) {
 //        message.downvote()
     }
+    
 }

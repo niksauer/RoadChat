@@ -13,7 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrafficMessageCell" rowHeight="156" id="KGk-i7-Jjw" customClass="CommunityMessageCell" customModule="RoadChat" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommunityMessageCell" rowHeight="156" id="KGk-i7-Jjw" customClass="CommunityMessageCell" customModule="RoadChat" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="398" height="156"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -44,9 +44,9 @@
                             <constraint firstAttribute="width" constant="25" id="8wy-fG-Nuy"/>
                             <constraint firstAttribute="height" constant="25" id="XRF-Oe-qqY"/>
                         </constraints>
-                        <state key="normal" title="Button" image="icons8-down-arrow-100"/>
+                        <state key="normal" title="Button" image="down-arrow"/>
                         <connections>
-                            <action selector="downvote:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="zs0-VL-5pS"/>
+                            <action selector="downvoteButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lLE-Bc-7Ek"/>
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D0d-qC-4DP">
@@ -69,9 +69,9 @@
                             <constraint firstAttribute="height" constant="25" id="hvX-9M-5Ca"/>
                             <constraint firstAttribute="width" constant="25" id="swo-Su-tlw"/>
                         </constraints>
-                        <state key="normal" title="Button" image="icons8-up-100"/>
+                        <state key="normal" title="Button" image="up-arrow"/>
                         <connections>
-                            <action selector="upvote:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="IqK-qw-7vV"/>
+                            <action selector="upvoteButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="a5O-kN-qxb"/>
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jam on A7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8H7-Hv-kcq">
@@ -81,9 +81,11 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" red="0.84224556070000001" green="1" blue="0.96554347090000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="Mpw-Pd-if4" firstAttribute="leading" secondItem="D0d-qC-4DP" secondAttribute="trailing" constant="8" id="29g-Ix-Z1E"/>
                     <constraint firstItem="8H7-Hv-kcq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="4WN-Bo-99h"/>
+                    <constraint firstItem="78n-mL-40O" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="510-3v-JrM"/>
                     <constraint firstItem="D0d-qC-4DP" firstAttribute="centerY" secondItem="htX-46-J5R" secondAttribute="centerY" id="ENl-vN-FYe"/>
                     <constraint firstAttribute="trailingMargin" secondItem="SlE-pq-kdn" secondAttribute="trailing" id="N15-5O-OVb"/>
                     <constraint firstItem="D0d-qC-4DP" firstAttribute="leading" secondItem="htX-46-J5R" secondAttribute="trailing" constant="16" id="VDK-lE-4HA"/>
@@ -103,16 +105,16 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="messageLabel" destination="0P5-ff-uXE" id="2CO-LK-6tZ"/>
-                <outlet property="timeLabel" destination="Mpw-Pd-if4" id="5JD-k5-z6i"/>
-                <outlet property="titleLabel" destination="8H7-Hv-kcq" id="8Ic-Ez-oUp"/>
-                <outlet property="upvotesLabel" destination="htX-46-J5R" id="4pP-YF-E3s"/>
+                <outlet property="messageLabel" destination="0P5-ff-uXE" id="HcS-2Z-mnf"/>
+                <outlet property="timeLabel" destination="Mpw-Pd-if4" id="JHG-kp-oLy"/>
+                <outlet property="titleLabel" destination="8H7-Hv-kcq" id="XMf-zT-fHG"/>
+                <outlet property="upvotesLabel" destination="htX-46-J5R" id="Fm3-fX-19Z"/>
             </connections>
             <point key="canvasLocation" x="-57" y="-104"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icons8-down-arrow-100" width="100" height="100"/>
-        <image name="icons8-up-100" width="100" height="100"/>
+        <image name="down-arrow" width="100" height="100"/>
+        <image name="up-arrow" width="100" height="100"/>
     </resources>
 </document>

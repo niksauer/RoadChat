@@ -29,9 +29,14 @@ protocol ViewControllerFactory {
     func makeConversationsViewController(for user: User) -> ConversationsViewController
     
     // User
+    func makeSettingsViewController(for user: User) -> SettingsViewController
     func makeProfileViewController(for user: User) -> ProfileViewController
     func makeProfilePageViewController(for user: User) -> ProfilePageViewController
     
-    func makeSettingsViewController(for user: User) -> SettingsViewController
-    
+    // Profile Pages
+    func makeCommunityMessagesViewController(for user: User) -> CommunityMessagesViewController
+    func makeTrafficMessagesViewController(for user: User) -> TrafficMessagesViewController
+    func makeCarsViewController(for user: User) -> CarsViewController
+    func makeAboutViewController(for user: User) -> AboutViewController
+
 }

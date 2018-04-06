@@ -14,10 +14,12 @@ class CommunityMessagesViewController: UITableViewController {
     
     // MARK: - Private Properties
     let messages: [CommunityMessage]?
+    let cellDateFormatter: DateFormatter
     
     // MARK: - Initialization
-    init(messages: [CommunityMessage]?) {
+    init(messages: [CommunityMessage]?, cellDateFormatter: DateFormatter) {
         self.messages = messages
+        self.cellDateFormatter = cellDateFormatter
         
         super.init(nibName: nil, bundle: nil)
         self.title = "Community"
@@ -31,20 +33,20 @@ class CommunityMessagesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        tableView.register(UINib.init(nibName: "CommunityMessageCell", bundle: nil), forCellReuseIdentifier: "CommunityMessageCell")
     }
     
     // MARK: - Table View Data Source
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let message = messages?[indexPath.row] else {
-//            fatalError()
-//        }
-//        
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "CommunityMessageCell", for: indexPath) as! CommunityMessageCell
-//        cell.configure(message: message)
-//        
-//        return cell
-//    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let message = messages?[indexPath.row] else {
+            fatalError()
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommunityMessageCell", for: indexPath) as! CommunityMessageCell
+        cell.configure(message: message, dateFormatter: cellDateFormatter)
+        
+        return cell
+    }
 
 }
 

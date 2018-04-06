@@ -7,17 +7,24 @@
 //
 
 import UIKit
+import CoreData
 
-class CommunityBoardViewController: UITableViewController  {
+class CommunityBoardViewController: FetchedResultsTableViewController   {
  
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let communityBoard: CommunityBoard
+    private let searchContext: NSManagedObjectContext
+    private let cellDateFormatter: DateFormatter
+    
+    private var fetchedResultsController: NSFetchedResultsController<CommunityMessage>?
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, communityBoard: CommunityBoard) {
+    init(viewFactory: ViewControllerFactory, communityBoard: CommunityBoard, searchContext: NSManagedObjectContext, cellDateFormatter: DateFormatter) {
         self.viewFactory = viewFactory
         self.communityBoard = communityBoard
+        self.searchContext = searchContext
+        self.cellDateFormatter = cellDateFormatter
         
         super.init(nibName: nil, bundle: nil)
         self.title = "CommunityBoard"
@@ -32,14 +39,22 @@ class CommunityBoardViewController: UITableViewController  {
     // MARK: - Customization
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.register(UINib.init(nibName: "CommunityMessageCell", bundle: nil), forCellReuseIdentifier: "CommunityMessageCell")
+        communityBoard.getMessages(completion: nil)
+        updateUI()
     }
     
+    // MARK: - Private Methods
+    private func updateUI() {
+        let request: NSFetchRequest<CommunityMessage> = CommunityMessage.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "time", ascending: true)]
+        
+        fetchedResultsController = NSFetchedResultsController<CommunityMessage>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: "CommunityMessages")
+        fetchedResultsController?.delegate = self
+        try? fetchedResultsController?.performFetch()
+        
+        tableView.reloadData()
+    }
     // MARK: - Public Methods
     @objc func createButtonPressed(_ sender: UIBarButtonItem) {
         let createMessageViewController = viewFactory.makeCreateCommunityMessageViewController()
@@ -48,60 +63,42 @@ class CommunityBoardViewController: UITableViewController  {
     }
     
     // MARK: - Table View Data Source
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let message = fetchedResultsController!.object(at: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommunityMessageCell", for: indexPath) as! CommunityMessageCell
+        cell.configure(message: message, dateFormatter: cellDateFormatter)
+        
+        return cell
+    }
+}
+
+// MARK: - Table View Data Source
+extension CommunityBoardViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return fetchedResultsController?.sections?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        if let sections = fetchedResultsController?.sections, sections.count > 0 {
+            return sections[section].numberOfObjects
+        } else {
+            return 0
+        }
     }
     
-    /*
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-     
-     // Configure the cell...
-     
-     return cell
-     }
-     */
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let sections = fetchedResultsController?.sections, sections.count > 0 {
+            return sections[section].name
+        } else {
+            return nil
+        }
+    }
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return fetchedResultsController?.sectionIndexTitles
+    }
     
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
+    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        return fetchedResultsController?.section(forSectionIndexTitle: title, at: index) ?? 0
+    }
 }
-
