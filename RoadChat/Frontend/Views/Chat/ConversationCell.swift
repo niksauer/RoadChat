@@ -16,13 +16,10 @@ class ConversationCell: UITableViewCell {
     @IBOutlet weak var lastMessageLabel: UILabel!
     
     // MARK: - Public Methods
-    func configure(conversation: Conversation, newestMessage: DirectMessage?) {
+    func configure(conversation: Conversation, newestMessage: DirectMessage?, dateFormatter: DateFormatter) {
         titleLabel.text = conversation.title
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
+
         lastChangeLabel.text = dateFormatter.string(from: conversation.lastChange!)
-        
         lastMessageLabel.text = newestMessage?.message ?? "No messages..."
     }
 

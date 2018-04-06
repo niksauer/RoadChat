@@ -14,10 +14,13 @@ class ProfilePageViewController: UIViewController {
     
     // MARK: - Private Properties
     private let user: User
+    private let dateFormatter: DateFormatter
     
     // MARK: - Initialization
-    init(user: User) {
+    init(user: User, dateFormatter: DateFormatter) {
         self.user = user
+        self.dateFormatter = dateFormatter
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,7 +32,7 @@ class ProfilePageViewController: UIViewController {
     override func viewDidLoad() {
         let communityViewController = CommunityMessagesViewController(messages: nil)
         let trafficViewController = TrafficMessagesViewController(messages: nil)
-        let carsViewController = CarsViewController(cars: nil)
+        let carsViewController = CarsViewController(cars: nil, dateFormatter: dateFormatter)
         let aboutViewController = AboutViewController(user: user)
         
         let pagingViewController = FixedPagingViewController(viewControllers: [communityViewController, trafficViewController, carsViewController, aboutViewController])

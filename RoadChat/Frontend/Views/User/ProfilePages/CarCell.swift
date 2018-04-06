@@ -11,7 +11,6 @@ import UIKit
 class CarCell: UITableViewCell {
 
     // MARK: - Outlets
-    @IBOutlet weak var manufacturerLabel: UILabel!
     @IBOutlet weak var modelLabel: UILabel!
     
     @IBOutlet weak var performanceLabel: UILabel!
@@ -20,11 +19,10 @@ class CarCell: UITableViewCell {
     @IBOutlet weak var colorLabel: UILabel!
     
     // MARK: - Public Methods
-    func configure(car: Car) {
-        manufacturerLabel.text = car.manufacturer
-        modelLabel.text = car.model
+    func configure(car: Car, dateFormatter: DateFormatter) {
+        modelLabel.text = "\(car.manufacturer!) \(car.model!)"
         performanceLabel.text = String(car.performance)
-        productionLabel.text = DateFormatter().string(from: car.production!)
+        productionLabel.text = dateFormatter.string(from: car.production!)
         colorLabel.text = String(car.color)
     }
     

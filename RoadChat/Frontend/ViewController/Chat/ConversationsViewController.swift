@@ -15,14 +15,16 @@ class ConversationsViewController: FetchedResultsTableViewController {
     private let viewFactory: ViewControllerFactory
     private let user: User
     private let searchContext: NSManagedObjectContext
+    private let cellDateFormatter: DateFormatter
 
     private var fetchedResultsController: NSFetchedResultsController<Conversation>?
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, user: User, searchContext: NSManagedObjectContext) {
+    init(viewFactory: ViewControllerFactory, user: User, searchContext: NSManagedObjectContext, cellDateFormatter: DateFormatter) {
         self.viewFactory = viewFactory
         self.user = user
         self.searchContext = searchContext
+        self.cellDateFormatter = cellDateFormatter
         
         super.init(nibName: nil, bundle: nil)
         self.title = "Chats"
@@ -59,7 +61,7 @@ class ConversationsViewController: FetchedResultsTableViewController {
         let conversation = fetchedResultsController!.object(at: indexPath)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationCell", for: indexPath) as! ConversationCell
-        cell.configure(conversation: conversation, newestMessage: conversation.newestMessage)
+        cell.configure(conversation: conversation, newestMessage: conversation.newestMessage, dateFormatter: cellDateFormatter)
         
         return cell
     }

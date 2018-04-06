@@ -8,20 +8,22 @@
 
 import UIKit
 
-class TrafficMessageCell: UITableViewCell {
+class CommunityMessageCell: UITableViewCell {
 
     // MARK: - Outlets
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var upvotesLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
-    // MARK: - Private Properties
-    private var message: TrafficMessage!
+    // MARK: - Private Property
+    private var message: CommunityMessage!
     
     // MARK: - Public Methods
-    func configure(message: TrafficMessage, dateFormatter: DateFormatter) {
+    func configure(message: CommunityMessage, dateFormatter: DateFormatter) {
         self.message = message
-
+    
+        titleLabel.text = message.title
         timeLabel.text = dateFormatter.string(from: message.time!)
         messageLabel.text = message.message
         upvotesLabel.text = String(message.upvotes)
@@ -34,5 +36,4 @@ class TrafficMessageCell: UITableViewCell {
     @IBAction func downvote(_ sender: UIButton) {
 //        message.downvote()
     }
-    
 }

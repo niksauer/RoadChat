@@ -36,10 +36,21 @@ struct DependencyContainer {
     private var trafficBoard: TrafficBoard {
         return TrafficBoard(trafficService: TrafficService(credentials: credentials), context: viewContext)
     }
+    
+    private var shortDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        return dateFormatter
+    }()
+    
+//    private var timeSinceDateFormatter: DateFormatter = {
+//        let dateFormatter = DateFormatter()
+//        return dateFormatter
+//    }()
 }
 
 extension DependencyContainer: ViewControllerFactory {
-    
+
     // General
     func makeSetupViewController() -> SetupViewController {
         return SetupViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, credentials: credentials)
@@ -69,17 +80,21 @@ extension DependencyContainer: ViewControllerFactory {
 
     // Traffic
     func makeTrafficBoardViewController() -> TrafficBoardViewController {
-        return TrafficBoardViewController(viewFactory: self, trafficBoard: trafficBoard, searchContext: viewContext)
+        return TrafficBoardViewController(viewFactory: self, trafficBoard: trafficBoard, searchContext: viewContext, cellDateFormatter: shortDateFormatter)
     }
 
     // Chat
     func makeConversationsViewController(for user: User) -> ConversationsViewController {
-        return ConversationsViewController(viewFactory: self, user: user, searchContext: viewContext)
+        return ConversationsViewController(viewFactory: self, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter)
     }
     
     // User
     func makeProfileViewController(for user: User) -> ProfileViewController {
         return ProfileViewController(viewFactory: self, user: user)
+    }
+    
+    func makeProfilePageViewController(for user: User) -> ProfilePageViewController {
+        return ProfilePageViewController(user: user, dateFormatter: shortDateFormatter)
     }
     
     func makeSettingsViewController(for user: User) -> SettingsViewController {

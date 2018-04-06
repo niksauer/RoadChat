@@ -37,7 +37,7 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Customization
     override func viewDidLoad() {
-        let pageViewController = ProfilePageViewController(user: user)
+        let pageViewController = viewFactory.makeProfilePageViewController(for: user)
         addChildViewController(pageViewController)
         pageViewContainer.addSubview(pageViewController.view)
         pageViewController.didMove(toParentViewController: self)

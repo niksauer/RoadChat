@@ -71,6 +71,8 @@
 		24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		24FBBC4C2077720B00B545D2 /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBBC4A2077720B00B545D2 /* CarCell.swift */; };
 		24FBBC4D2077720B00B545D2 /* CarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24FBBC4B2077720B00B545D2 /* CarCell.xib */; };
+		24FBBC882077914E00B545D2 /* CommunityMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24FBBC872077914E00B545D2 /* CommunityMessageCell.xib */; };
+		24FBBC9D2077917800B545D2 /* CommunityMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBBC9C2077917800B545D2 /* CommunityMessageCell.swift */; };
 		C927B7962076962400701881 /* TrafficMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C927B7942076962400701881 /* TrafficMessageCell.swift */; };
 		C927B7972076962400701881 /* TrafficMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C927B7952076962400701881 /* TrafficMessageCell.xib */; };
 		C93155452051920C00F4C429 /* TrafficService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93155442051920C00F4C429 /* TrafficService.swift */; };
@@ -346,6 +348,8 @@
 		24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyBeaver.xcodeproj; path = Frameworks/SwiftyBeaver/SwiftyBeaver.xcodeproj; sourceTree = "<group>"; };
 		24FBBC4A2077720B00B545D2 /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
 		24FBBC4B2077720B00B545D2 /* CarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarCell.xib; sourceTree = "<group>"; };
+		24FBBC872077914E00B545D2 /* CommunityMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommunityMessageCell.xib; sourceTree = "<group>"; };
+		24FBBC9C2077917800B545D2 /* CommunityMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityMessageCell.swift; sourceTree = "<group>"; };
 		C927B7942076962400701881 /* TrafficMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficMessageCell.swift; sourceTree = "<group>"; };
 		C927B7952076962400701881 /* TrafficMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrafficMessageCell.xib; sourceTree = "<group>"; };
 		C93155442051920C00F4C429 /* TrafficService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficService.swift; sourceTree = "<group>"; };
@@ -716,6 +720,8 @@
 		24FBBC7F20778A7E00B545D2 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				24FBBC9C2077917800B545D2 /* CommunityMessageCell.swift */,
+				24FBBC872077914E00B545D2 /* CommunityMessageCell.xib */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -992,6 +998,7 @@
 				2412D6E020647B5D0066A51C /* SetupViewController.xib in Resources */,
 				249515CE20644DB100E734E4 /* ProfileViewController.xib in Resources */,
 				24B134652063254F00B894BF /* LoginViewController.xib in Resources */,
+				24FBBC882077914E00B545D2 /* CommunityMessageCell.xib in Resources */,
 				C927B7972076962400701881 /* TrafficMessageCell.xib in Resources */,
 				24B134672063C10C00B894BF /* RegisterViewController.xib in Resources */,
 				240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */,
@@ -1045,6 +1052,7 @@
 				24B1347420641EB800B894BF /* CommunityBoardViewController.swift in Sources */,
 				C988ACA52052BB3200EDCEAC /* LocationManager.swift in Sources */,
 				C927B7962076962400701881 /* TrafficMessageCell.swift in Sources */,
+				24FBBC9D2077917800B545D2 /* CommunityMessageCell.swift in Sources */,
 				248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */,
 				248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */,
 				24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */,
