@@ -37,8 +37,8 @@ class AboutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        accountAgeLabel.text = DateFormatter().string(from: user.registry!)
-        emailLabel.text = user.email
+//        accountAgeLabel.text = DateFormatter().string(from: user.registry!)
+//        emailLabel.text = user.email
     }
 
 }

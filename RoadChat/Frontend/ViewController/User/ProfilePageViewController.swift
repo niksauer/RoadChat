@@ -31,8 +31,9 @@ class ProfilePageViewController: UIViewController {
         let trafficViewController = TrafficMessagesViewController(messages: nil)
         let carsViewController = CarsViewController(cars: nil)
         let aboutViewController = AboutViewController(user: user)
+        
         let pagingViewController = FixedPagingViewController(viewControllers: [communityViewController, trafficViewController, carsViewController, aboutViewController])
-        pagingViewController.menuItemSize = .sizeToFit(minWidth: 10, height: 40)
+        pagingViewController.menuItemSize = .sizeToFit(minWidth: 90, height: 40)
         
         addChildViewController(pagingViewController)
         view.addSubview(pagingViewController.view)
@@ -40,10 +41,10 @@ class ProfilePageViewController: UIViewController {
         pagingViewController.view.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            pagingViewController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            pagingViewController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            pagingViewController.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            pagingViewController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+            pagingViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            pagingViewController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            pagingViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            pagingViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
 }
