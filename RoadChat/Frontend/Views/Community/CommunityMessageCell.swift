@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol CommunityMessageCellDelegate: class {
+    func communityMessageCellDidPressUpvote(_ sender: CommunityMessageCell)
+    func communityMessageCellDidPressDownvote(_ sender: CommunityMessageCell)
+}
+
 class CommunityMessageCell: UITableViewCell {
 
     // MARK: - Outlets
@@ -16,7 +21,13 @@ class CommunityMessageCell: UITableViewCell {
     @IBOutlet weak var upvotesLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
-    // MARK: - Private Property
+    @IBOutlet weak var upvoteButton: UIButton!
+    @IBOutlet weak var downvoteButton: UIButton!
+
+    // MARK: - Public Properties
+    weak var delegate: CommunityMessageCellDelegate?
+    
+    // MARK: - Private Propertues
     private var message: CommunityMessage!
     
     // MARK: - Public Methods
@@ -30,11 +41,11 @@ class CommunityMessageCell: UITableViewCell {
     }
 
     @IBAction func upvoteButtonPressed(_ sender: UIButton) {
-//        message.upvote()
+        delegate?.communityMessageCellDidPressUpvote(self)
     }
     
     @IBAction func downvoteButtonPressed(_ sender: UIButton) {
-//        message.downvote()
+        delegate?.communityMessageCellDidPressDownvote(self)
     }
     
 }
