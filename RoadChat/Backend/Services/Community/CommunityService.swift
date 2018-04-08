@@ -34,26 +34,26 @@ struct CommunityService: JSendService {
         }
     }
     
-    func get(messageID: Int, completion: @escaping (PrimaryResource?, Error?) -> Void) throws {
+    func get(messageID: Int, completion: @escaping (PrimaryResource?, Error?) -> Void) {
         client.makeGETRequest(to: "/message/\(messageID)", params: nil) { result in
             let result = self.decodeResource(from: result)
             completion(result.instance, result.error)
         }
     }
     
-    func delete(messageID: Int, completion: @escaping (Error?) -> Void) throws {
+    func delete(messageID: Int, completion: @escaping (Error?) -> Void) {
         client.makeDELETERequest(to: "/message/\(messageID)", params: nil) { result in
             completion(self.getError(from: result))
         }
     }
     
-    func upvote(messageID: Int, completion: @escaping (Error?) -> Void) throws {
+    func upvote(messageID: Int, completion: @escaping (Error?) -> Void) {
         client.makeGETRequest(to: "/message/\(messageID)/upvote", params: nil) { result in
             completion(self.getError(from: result))
         }
     }
     
-    func downvote(messageID: Int, completion: @escaping (Error?) -> Void) throws {
+    func downvote(messageID: Int, completion: @escaping (Error?) -> Void) {
         client.makeGETRequest(to: "/message/\(messageID)/downvote", params: nil) { result in
             completion(self.getError(from: result))
         }

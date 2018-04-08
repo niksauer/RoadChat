@@ -40,7 +40,7 @@ struct TrafficBoard: ReportOwner {
                 }
                 
                 do {
-                    _ = try TrafficMessage.create(from: message, in: self.context)
+                    _ = try TrafficMessage.createOrUpdate(from: message, in: self.context)
                     try self.context.save()
                     let report  = Report(.successfulCoreDataOperation(.create, resource: "TrafficMessage", isMultiple: false), owner: self)
                     log.debug(report)
@@ -72,7 +72,7 @@ struct TrafficBoard: ReportOwner {
             
             for message in messages {
                 do {
-                    _ = try TrafficMessage.create(from: message, in: self.context)
+                    _ = try TrafficMessage.createOrUpdate(from: message, in: self.context)
                 } catch {
                     let report = Report(.failedCoreDataOperation(.create, resource: "TrafficMessage", isMultiple: true, error: error), owner: self)
                     log.error(report)

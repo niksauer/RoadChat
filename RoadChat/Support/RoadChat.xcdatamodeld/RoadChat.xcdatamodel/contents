@@ -12,6 +12,7 @@
     </entity>
     <entity name="CommunityMessage" representedClassName=".CommunityMessage" syncable="YES" codeGenerationType="category">
         <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="karma" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="locationID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="message" attributeType="String" syncable="YES"/>
         <attribute name="senderID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
@@ -85,6 +86,7 @@
     </entity>
     <entity name="TrafficMessage" representedClassName=".TrafficMessage" syncable="YES" codeGenerationType="category">
         <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="karma" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="locationID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="senderID" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
@@ -110,7 +112,7 @@
     </entity>
     <elements>
         <element name="Car" positionX="-137" positionY="-72" width="128" height="165"/>
-        <element name="CommunityMessage" positionX="-299" positionY="513" width="128" height="165"/>
+        <element name="CommunityMessage" positionX="-299" positionY="513" width="128" height="180"/>
         <element name="Conversation" positionX="-414" positionY="-315" width="128" height="165"/>
         <element name="DirectMessage" positionX="-218" positionY="-378" width="128" height="120"/>
         <element name="Location" positionX="-722" positionY="-301" width="128" height="195"/>
@@ -118,7 +120,7 @@
         <element name="Privacy" positionX="-749" positionY="-91" width="128" height="165"/>
         <element name="Profile" positionX="-747" positionY="86" width="128" height="210"/>
         <element name="Settings" positionX="-137" positionY="117" width="128" height="90"/>
-        <element name="TrafficMessage" positionX="-479" positionY="515" width="128" height="180"/>
+        <element name="TrafficMessage" positionX="-479" positionY="515" width="128" height="195"/>
         <element name="User" positionX="-396" positionY="9" width="128" height="225"/>
     </elements>
 </model>
