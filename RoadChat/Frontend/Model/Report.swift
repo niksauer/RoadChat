@@ -26,6 +26,7 @@ enum ReportType {
         case fetch
         case upvote
         case downvote
+        case neutralize
         
         var presentTense: String {
             switch self {
@@ -43,6 +44,8 @@ enum ReportType {
                 return "update"
             case .downvote:
                 return "downvote"
+            case .neutralize:
+                return "neutralize"
             }
         }
         
@@ -60,6 +63,8 @@ enum ReportType {
                 return "upvoted"
             case .downvote:
                 return "downvoted"
+            case .neutralize:
+                return "neutralized"
             }
         }
         

@@ -151,10 +151,10 @@ class CommunityMessage: NSManagedObject, ReportOwner {
             switch karma {
             case .upvote:
                 report = Report(.successfulCoreDataOperation(.upvote, resource: nil, isMultiple: false), owner: self)
+            case .neutral:
+                report = Report(.successfulCoreDataOperation(.neutralize, resource: nil, isMultiple: false), owner: self)
             case .downvote:
                 report = Report(.successfulCoreDataOperation(.downvote, resource: nil, isMultiple: false), owner: self)
-            default:
-                report = Report(.successfulCoreDataOperation(.update, resource: nil, isMultiple: false), owner: self)
             }
             
             log.debug(report)
