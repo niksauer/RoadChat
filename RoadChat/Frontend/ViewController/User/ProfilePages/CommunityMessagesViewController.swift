@@ -8,9 +8,7 @@
 
 import UIKit
 
-class CommunityMessagesViewController: UITableViewController {
-
-    // MARK: - Outlets
+class CommunityMessagesViewController: UITableViewController, CommunityMessageCellDelegate {
     
     // MARK: - Private Properties
     let messages: [CommunityMessage]?
@@ -38,7 +36,7 @@ class CommunityMessagesViewController: UITableViewController {
     
     // MARK: - Table View Data Source
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let message = messages?[indexPath.row] else {
+        guard let message = messages?[indexPath.section] else {
             fatalError()
         }
         
@@ -47,16 +45,39 @@ class CommunityMessagesViewController: UITableViewController {
         
         return cell
     }
+    
+    // MARK: - CommunityMessageCellDelegate Protocol
+    func communityMessageCellDidPressUpvote(_ sender: CommunityMessageCell) {
+        guard let indexPath = tableView.indexPath(for: sender), let _ = messages?[indexPath.section] else {
+            return
+        }
+    }
+    
+    func communityMessageCellDidPressDownvote(_ sender: CommunityMessageCell) {
+        guard let indexPath = tableView.indexPath(for: sender), let _ = messages?[indexPath.section] else {
+            return
+        }
+    }
 
 }
 
 // MARK: - Table View Data Source
 extension CommunityMessagesViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return messages?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages?.count ?? 0
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 8
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor(red: 243/255, green: 242/255, blue: 247/255, alpha: 1)
+        return headerView
     }
 }

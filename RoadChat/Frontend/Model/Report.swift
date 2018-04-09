@@ -24,6 +24,9 @@ enum ReportType {
         case update
         case delete
         case fetch
+        case upvote
+        case downvote
+        case neutralize
         
         var presentTense: String {
             switch self {
@@ -37,6 +40,12 @@ enum ReportType {
                 return "delete"
             case .fetch:
                 return "fetch"
+            case .upvote:
+                return "update"
+            case .downvote:
+                return "downvote"
+            case .neutralize:
+                return "neutralize"
             }
         }
         
@@ -50,19 +59,21 @@ enum ReportType {
                 return "deleted"
             case .fetch:
                 return "fetched"
+            case .upvote:
+                return "upvoted"
+            case .downvote:
+                return "downvoted"
+            case .neutralize:
+                return "neutralized"
             }
         }
         
         var coreData: String {
             switch self {
             case .retrieve, .update:
-                return "save/updated"
-            case .create:
-                return "create"
-            case .delete:
-                return "delete"
-            case .fetch:
-                return "fetch"
+                return "save/update"
+            default:
+                return presentTense
             }
         }
     }
