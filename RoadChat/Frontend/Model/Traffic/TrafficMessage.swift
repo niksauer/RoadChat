@@ -16,7 +16,7 @@ enum TrafficError: Error {
 
 class TrafficMessage: NSManagedObject {
     
-    class func create(from prototype: RoadChatKit.TrafficMessage.PublicTrafficMessage, in context: NSManagedObjectContext) throws -> TrafficMessage {
+    class func createOrUpdate(from prototype: RoadChatKit.TrafficMessage.PublicTrafficMessage, in context: NSManagedObjectContext) throws -> TrafficMessage {
         let request: NSFetchRequest<TrafficMessage> = TrafficMessage.fetchRequest()
         request.predicate = NSPredicate(format: "id = %d", prototype.id)
         
@@ -25,23 +25,34 @@ class TrafficMessage: NSManagedObject {
             
             if matches.count > 0 {
                 assert(matches.count >= 1, "Transaction.createTransaction -- Database Inconsistency")
-                throw TrafficError.duplicate
+                
+                // update existing message
+                let message = matches.first!
+                message.type = prototype.type
+                message.message = prototype.message
+                message.validations = Int16(prototype.validations)
+                message.upvotes = Int16(prototype.upvotes)
+                message.karma = Int16(prototype.karma.rawValue)
+                
+                return message
             }
         } catch {
             throw error
         }
         
-        let post = TrafficMessage(context: context)
-        post.id = Int32(prototype.id)
-        post.senderID = Int32(prototype.senderID)
-        post.locationID = Int32(prototype.locationID)
-        post.type = prototype.type
-        post.time = prototype.time
-        post.message = prototype.message
-        post.validations = Int16(prototype.validations)
-        post.upvotes = Int16(prototype.upvotes)
+        // create new message
+        let message = TrafficMessage(context: context)
+        message.id = Int32(prototype.id)
+        message.senderID = Int32(prototype.senderID)
+        message.locationID = Int32(prototype.locationID)
+        message.time = prototype.time
+        message.type = prototype.type
+        message.message = prototype.message
+        message.validations = Int16(prototype.validations)
+        message.upvotes = Int16(prototype.upvotes)
+        message.karma = Int16(prototype.karma.rawValue)
         
-        return post
+        return message
     }
     
 }
