@@ -12,8 +12,9 @@ import RoadChatKit
 class CreateCommunityMessageViewController: UIViewController {
     
     // MARK: - Outlets
-    @IBOutlet weak var textField: UITextField!
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var messageTextView: UITextView!
+    
     
     // MARK: - Private Properties
     private let communityBoard: CommunityBoard
@@ -25,7 +26,7 @@ class CreateCommunityMessageViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.title = "New Post"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed(_:)))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveButtonPressed(_:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(postButtonPressed(_:)))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,8 +34,8 @@ class CreateCommunityMessageViewController: UIViewController {
     }
     
     // MARK: - Public Methods
-    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
-        guard let title = textField.text, let message = textView.text else {
+    @IBAction func postButtonPressed(_ sender: UIButton) {
+        guard let title = titleTextField.text, let message = messageTextView.text else {
             // handle missing fields error
             log.warning("Empty message content.")
             return
@@ -50,7 +51,7 @@ class CreateCommunityMessageViewController: UIViewController {
         }
     }
     
-    @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func cancelButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
 
