@@ -9,8 +9,8 @@
 import UIKit
 import CoreData
 
-class CommunityBoardViewController: FetchedResultsTableViewController   {
- 
+class CommunityBoardViewController: FetchedResultsTableViewController, CommunityMessageCellDelegate {
+    
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let communityBoard: CommunityBoard
@@ -66,10 +66,49 @@ class CommunityBoardViewController: FetchedResultsTableViewController   {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = fetchedResultsController!.object(at: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommunityMessageCell", for: indexPath) as! CommunityMessageCell
+        cell.delegate = self
         cell.configure(message: message, dateFormatter: cellDateFormatter)
         
         return cell
     }
+    
+    // MARK: - CommunityMessageCellDelegate Protocol
+    func communityMessageCellDidPressUpvote(_ sender: CommunityMessageCell) {
+        guard let indexPath = tableView.indexPath(for: sender) else {
+            return
+        }
+        
+        let message = fetchedResultsController!.object(at: indexPath)
+        
+        message.upvote { error in
+            guard error == nil else {
+                // handle error
+                return
+            }
+            
+            let cell = self.tableView.cellForRow(at: indexPath) as! CommunityMessageCell
+            cell.karma = message.storedKarma
+        }
+    }
+
+    func communityMessageCellDidPressDownvote(_ sender: CommunityMessageCell) {
+        guard let indexPath = tableView.indexPath(for: sender) else {
+            return
+        }
+        
+        let message = fetchedResultsController!.object(at: indexPath)
+        
+        message.downvote { error in
+            guard error == nil else {
+                // handle error
+                return
+            }
+            
+            let cell = self.tableView.cellForRow(at: indexPath) as! CommunityMessageCell
+            cell.karma = message.storedKarma
+        }
+    }
+    
 }
 
 // MARK: - Table View Data Source

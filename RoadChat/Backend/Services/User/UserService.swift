@@ -40,7 +40,7 @@ struct UserService: JSendService {
         }
     }
     
-    func delete(userID: RoadChatKit.User.ID, completion: @escaping (Error?) -> Void) throws {
+    func delete(userID: RoadChatKit.User.ID, completion: @escaping (Error?) -> Void) {
         client.makeDELETERequest(to: "/\(userID)") { result in
             completion(self.getError(from: result))
         }
