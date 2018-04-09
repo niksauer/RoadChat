@@ -60,6 +60,8 @@
 		24AF5096207B693500477DC0 /* CommunityMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */; };
 		24AF50AC207B6C1200477DC0 /* CommunityMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF50AA207B6C1200477DC0 /* CommunityMessageCell.swift */; };
 		24AF50AD207B6C1200477DC0 /* CommunityMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24AF50AB207B6C1200477DC0 /* CommunityMessageCell.xib */; };
+		24AF50AF207B943500477DC0 /* KarmaColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF50AE207B943500477DC0 /* KarmaColorPalette.swift */; };
+		24AF50B1207B945B00477DC0 /* ColorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF50B0207B945B00477DC0 /* ColorContainer.swift */; };
 		24AFEE9E206566B30097810E /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AFEE9D206566B30097810E /* Report.swift */; };
 		24B134642063254F00B894BF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B134622063254F00B894BF /* LoginViewController.swift */; };
 		24B134652063254F00B894BF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B134632063254F00B894BF /* LoginViewController.xib */; };
@@ -337,6 +339,8 @@
 		24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessagesViewController.swift; sourceTree = "<group>"; };
 		24AF50AA207B6C1200477DC0 /* CommunityMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessageCell.swift; sourceTree = "<group>"; };
 		24AF50AB207B6C1200477DC0 /* CommunityMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunityMessageCell.xib; sourceTree = "<group>"; };
+		24AF50AE207B943500477DC0 /* KarmaColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarmaColorPalette.swift; sourceTree = "<group>"; };
+		24AF50B0207B945B00477DC0 /* ColorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorContainer.swift; sourceTree = "<group>"; };
 		24AFEE9D206566B30097810E /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		24B134622063254F00B894BF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		24B134632063254F00B894BF /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -571,6 +575,7 @@
 		248D379920494D0F00B21C3D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				24AF50B0207B945B00477DC0 /* ColorContainer.swift */,
 				24AFEE9D206566B30097810E /* Report.swift */,
 				247F6D3620605E240006FBC7 /* DependencyContainer.swift */,
 				24615DA420508E5400ED11A1 /* CredentialManager.swift */,
@@ -671,6 +676,7 @@
 		24AFEE8F206566A30097810E /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				24AF50AE207B943500477DC0 /* KarmaColorPalette.swift */,
 				247F6D25206057950006FBC7 /* ViewControllerFactory.swift */,
 			);
 			path = Protocols;
@@ -1049,6 +1055,7 @@
 				C988ACA52052BB3200EDCEAC /* LocationManager.swift in Sources */,
 				24AF5096207B693500477DC0 /* CommunityMessagesViewController.swift in Sources */,
 				C927B7962076962400701881 /* TrafficMessageCell.swift in Sources */,
+				24AF50B1207B945B00477DC0 /* ColorContainer.swift in Sources */,
 				248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */,
 				248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */,
 				24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */,
@@ -1056,6 +1063,7 @@
 				248D37B12049504B00B21C3D /* Car.swift in Sources */,
 				245EAE332051346600821B4B /* ConversationService.swift in Sources */,
 				24B1347A206421EE00B894BF /* TrafficBoardViewController.swift in Sources */,
+				24AF50AF207B943500477DC0 /* KarmaColorPalette.swift in Sources */,
 				24B134642063254F00B894BF /* LoginViewController.swift in Sources */,
 				248D37A020494EC000B21C3D /* Privacy.swift in Sources */,
 				2404A25B204EAFAC009AC7E1 /* JSendService.swift in Sources */,

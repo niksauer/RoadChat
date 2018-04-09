@@ -37,6 +37,10 @@ struct DependencyContainer {
         return TrafficBoard(trafficService: TrafficService(credentials: credentials), context: viewContext)
     }
     
+    private var karmaColorPalette: KarmaColorPalette {
+        return ColorContainer()
+    }
+    
     private var shortDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
@@ -71,7 +75,7 @@ extension DependencyContainer: ViewControllerFactory {
 
     // Community
     func makeCommunityMessagesViewController(for user: User?) -> CommunityMessagesViewController {
-        return CommunityMessagesViewController(viewFactory: self, communityBoard: communityBoard, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter)
+        return CommunityMessagesViewController(viewFactory: self, communityBoard: communityBoard, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter, karmaColorPalette: karmaColorPalette)
     }
 
     func makeCreateCommunityMessageViewController() -> CreateCommunityMessageViewController {

@@ -29,50 +29,42 @@ class CommunityMessageCell: UICollectionViewCell {
     @IBOutlet weak var downvoteButton: UIButton!
     
     // MARK: - Private Properties
-    private let upvoteBgColor = UIColor(displayP3Red: 236/255, green: 104/255, blue: 44/255, alpha: 1)
-    private let upvoteTextColor = UIColor.white
-    
-    private let neutralBgColor = UIColor.clear
-    private let neutralTextColor = UIColor.black
-    
-    private let downvoteBgColor = UIColor(displayP3Red: 86/255, green: 94/255, blue: 227/255, alpha: 1)
-    private let downvoteTextColor = UIColor.white
-    
     private var widthConstraint: NSLayoutConstraint?
     
     // MARK: - Public Properties
     weak var delegate: CommunityMessageCellDelegate?
+    var colorPalette: KarmaColorPalette!
     
     var karma: KarmaType! {
         didSet {
             switch karma {
             case .upvote:
-                upvoteButton.backgroundColor = upvoteBgColor
-                upvoteButton.tintColor = upvoteTextColor
+                upvoteButton.backgroundColor = colorPalette.upvoteBgColor
+                upvoteButton.tintColor = colorPalette.upvoteTextColor
                 
-                downvoteButton.backgroundColor = neutralBgColor
-                downvoteButton.tintColor = neutralTextColor
+                downvoteButton.backgroundColor = colorPalette.neutralBgColor
+                downvoteButton.tintColor = colorPalette.neutralTextColor
                 
                 upvotesImage.image = UIImage(named: "up-arrow")
-                upvotesImage.tintColor = upvoteBgColor
+                upvotesImage.tintColor = colorPalette.upvoteBgColor
             case .neutral:
-                upvoteButton.backgroundColor = neutralBgColor
-                upvoteButton.tintColor = neutralTextColor
+                upvoteButton.backgroundColor = colorPalette.neutralBgColor
+                upvoteButton.tintColor = colorPalette.neutralTextColor
                 
-                downvoteButton.backgroundColor = neutralBgColor
-                downvoteButton.tintColor = neutralTextColor
+                downvoteButton.backgroundColor = colorPalette.neutralBgColor
+                downvoteButton.tintColor = colorPalette.neutralTextColor
                 
                 upvotesImage.image = UIImage(named: "up-arrow")
-                upvotesImage.tintColor = neutralTextColor
+                upvotesImage.tintColor = colorPalette.neutralTextColor
             case .downvote:
-                upvoteButton.backgroundColor = neutralBgColor
-                upvoteButton.tintColor = neutralTextColor
+                upvoteButton.backgroundColor = colorPalette.neutralBgColor
+                upvoteButton.tintColor = colorPalette.neutralTextColor
                 
-                downvoteButton.backgroundColor = downvoteBgColor
-                downvoteButton.tintColor = downvoteTextColor
+                downvoteButton.backgroundColor = colorPalette.downvoteBgColor
+                downvoteButton.tintColor = colorPalette.downvoteTextColor
                 
                 upvotesImage.image = UIImage(named: "down-arrow")
-                upvotesImage.tintColor = downvoteBgColor
+                upvotesImage.tintColor = colorPalette.downvoteBgColor
             default:
                 break
             }

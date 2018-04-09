@@ -17,6 +17,7 @@ class CommunityMessagesViewController: UICollectionViewController {
     private let user: User?
     private let searchContext: NSManagedObjectContext
     private let cellDateFormatter: DateFormatter
+    private let karmaColorPalette: KarmaColorPalette
     
     private let reuseIdentifier = "CommunityMessageCell"
     private let backgroundColor = UIColor(red: 243/255, green: 242/255, blue: 247/255, alpha: 1)
@@ -25,12 +26,13 @@ class CommunityMessagesViewController: UICollectionViewController {
     private var blockOperations = [BlockOperation]()
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, communityBoard: CommunityBoard, user: User?, searchContext: NSManagedObjectContext, cellDateFormatter: DateFormatter) {
+    init(viewFactory: ViewControllerFactory, communityBoard: CommunityBoard, user: User?, searchContext: NSManagedObjectContext, cellDateFormatter: DateFormatter, karmaColorPalette: KarmaColorPalette) {
         self.viewFactory = viewFactory
         self.communityBoard = communityBoard
         self.user = user
         self.searchContext = searchContext
         self.cellDateFormatter = cellDateFormatter
+        self.karmaColorPalette = karmaColorPalette
         
         let layout = UICollectionViewFlowLayout()
 //        layout.estimatedItemSize = CGSize(width: 1, height: 1)
@@ -85,6 +87,7 @@ class CommunityMessagesViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CommunityMessageCell
         
         cell.delegate = self
+        cell.colorPalette = karmaColorPalette
 //        cell.setWidth(view.frame.width)
         cell.configure(message: message, dateFormatter: cellDateFormatter)
 
