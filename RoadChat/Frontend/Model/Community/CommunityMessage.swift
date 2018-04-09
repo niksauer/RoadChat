@@ -32,7 +32,7 @@ class CommunityMessage: NSManagedObject, ReportOwner {
                 message.title = response.title
                 message.message = response.message
                 message.upvotes = Int16(response.upvotes)
-                message.karma = Int16(response.karma?.rawValue ?? 0)
+                message.karma = Int16(response.karma.rawValue)
                 
                 return message
             }
@@ -49,7 +49,7 @@ class CommunityMessage: NSManagedObject, ReportOwner {
         message.title = response.title
         message.message = response.message
         message.upvotes = Int16(response.upvotes)
-        message.karma = Int16(response.karma?.rawValue ?? 0)
+        message.karma = Int16(response.karma.rawValue)
         
         return message
     }

@@ -32,7 +32,7 @@ class TrafficMessage: NSManagedObject {
                 message.message = prototype.message
                 message.validations = Int16(prototype.validations)
                 message.upvotes = Int16(prototype.upvotes)
-                message.karma = Int16(prototype.karma?.rawValue ?? 0)
+                message.karma = Int16(prototype.karma.rawValue)
                 
                 return message
             }
@@ -50,7 +50,7 @@ class TrafficMessage: NSManagedObject {
         message.message = prototype.message
         message.validations = Int16(prototype.validations)
         message.upvotes = Int16(prototype.upvotes)
-        message.karma = Int16(prototype.karma?.rawValue ?? 0)
+        message.karma = Int16(prototype.karma.rawValue)
         
         return message
     }
