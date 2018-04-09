@@ -29,8 +29,14 @@ class CommunityMessageCell: UITableViewCell {
     @IBOutlet weak var downvoteButton: UIButton!
 
     // MARK: - Private Properties
-    private let upvoteColor = UIColor(displayP3Red: 236/255, green: 104/255, blue: 44/255, alpha: 1)
-    private let downvoteColor = UIColor(displayP3Red: 86/255, green: 94/255, blue: 227/255, alpha: 1)
+    private let upvoteBgColor = UIColor(displayP3Red: 236/255, green: 104/255, blue: 44/255, alpha: 1)
+    private let upvoteTextColor = UIColor.white
+    
+    private let neutralBgColor = UIColor.clear
+    private let neutralTextColor = UIColor.black
+    
+    private let downvoteBgColor = UIColor(displayP3Red: 86/255, green: 94/255, blue: 227/255, alpha: 1)
+    private let downvoteTextColor = UIColor.white
     
     // MARK: - Public Properties
     weak var delegate: CommunityMessageCellDelegate?
@@ -39,32 +45,32 @@ class CommunityMessageCell: UITableViewCell {
         didSet {
             switch karma {
             case .upvote:
-                upvoteButton.backgroundColor = upvoteColor
-                upvoteButton.imageView?.tintColor = UIColor.white
-                
-                downvoteButton.backgroundColor = UIColor.clear
-                downvoteButton.imageView?.tintColor = UIColor.black
+                upvoteButton.backgroundColor = upvoteBgColor
+                upvoteButton.tintColor = upvoteTextColor
+
+                downvoteButton.backgroundColor = neutralBgColor
+                downvoteButton.tintColor = neutralTextColor
             
-                upvotesImage.image = #imageLiteral(resourceName: "up-arrow")
-                upvotesImage.tintColor = upvoteColor
+                upvotesImage.image = UIImage(named: "up-arrow")
+                upvotesImage.tintColor = upvoteBgColor
             case .neutral:
-                upvoteButton.backgroundColor = UIColor.clear
-                downvoteButton.imageView?.tintColor = UIColor.black
-                
-                downvoteButton.backgroundColor = UIColor.clear
-                downvoteButton.imageView?.tintColor = UIColor.black
-            
-                upvotesImage.image = #imageLiteral(resourceName: "up-arrow")
-                upvotesImage.tintColor = UIColor.black
+                upvoteButton.backgroundColor = neutralBgColor
+                upvoteButton.tintColor = neutralTextColor
+
+                downvoteButton.backgroundColor = neutralBgColor
+                downvoteButton.tintColor = neutralTextColor
+
+                upvotesImage.image = UIImage(named: "up-arrow")
+                upvotesImage.tintColor = neutralTextColor
             case .downvote:
-                upvoteButton.backgroundColor = UIColor.clear
-                upvoteButton.imageView?.tintColor = UIColor.black
-                
-                downvoteButton.backgroundColor = downvoteColor
-                downvoteButton.imageView?.tintColor = UIColor.white
-            
-                upvotesImage.image = #imageLiteral(resourceName: "down-arrow")
-                upvotesImage.tintColor = downvoteColor
+                upvoteButton.backgroundColor = neutralBgColor
+                upvoteButton.tintColor = neutralTextColor
+
+                downvoteButton.backgroundColor = downvoteBgColor
+                downvoteButton.tintColor = downvoteTextColor
+
+                upvotesImage.image = UIImage(named: "down-arrow")
+                upvotesImage.tintColor = downvoteBgColor
             default:
                 break
             }
