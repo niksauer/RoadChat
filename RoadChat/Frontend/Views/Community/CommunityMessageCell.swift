@@ -1,8 +1,8 @@
 //
-//  TrafficMessageCell.swift
+//  CommunityMessageCell.swift
 //  RoadChat
 //
-//  Created by Phillip Rust on 05.04.18.
+//  Created by Niklas Sauer on 09.04.18.
 //  Copyright © 2018 Niklas Sauer. All rights reserved.
 //
 
@@ -14,8 +14,8 @@ protocol CommunityMessageCellDelegate: class {
     func communityMessageCellDidPressDownvote(_ sender: CommunityMessageCell)
 }
 
-class CommunityMessageCell: UITableViewCell {
-
+class CommunityMessageCell: UICollectionViewCell {
+    
     // MARK: - Outlets
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
@@ -24,10 +24,10 @@ class CommunityMessageCell: UITableViewCell {
     @IBOutlet weak var upvotesLabel: UILabel!
     
     @IBOutlet weak var timeLabel: UILabel!
-
+    
     @IBOutlet weak var upvoteButton: UIButton!
     @IBOutlet weak var downvoteButton: UIButton!
-
+    
     // MARK: - Private Properties
     private let upvoteBgColor = UIColor(displayP3Red: 236/255, green: 104/255, blue: 44/255, alpha: 1)
     private let upvoteTextColor = UIColor.white
@@ -38,6 +38,8 @@ class CommunityMessageCell: UITableViewCell {
     private let downvoteBgColor = UIColor(displayP3Red: 86/255, green: 94/255, blue: 227/255, alpha: 1)
     private let downvoteTextColor = UIColor.white
     
+    private var widthConstraint: NSLayoutConstraint?
+    
     // MARK: - Public Properties
     weak var delegate: CommunityMessageCellDelegate?
     
@@ -47,28 +49,28 @@ class CommunityMessageCell: UITableViewCell {
             case .upvote:
                 upvoteButton.backgroundColor = upvoteBgColor
                 upvoteButton.tintColor = upvoteTextColor
-
+                
                 downvoteButton.backgroundColor = neutralBgColor
                 downvoteButton.tintColor = neutralTextColor
-            
+                
                 upvotesImage.image = UIImage(named: "up-arrow")
                 upvotesImage.tintColor = upvoteBgColor
             case .neutral:
                 upvoteButton.backgroundColor = neutralBgColor
                 upvoteButton.tintColor = neutralTextColor
-
+                
                 downvoteButton.backgroundColor = neutralBgColor
                 downvoteButton.tintColor = neutralTextColor
-
+                
                 upvotesImage.image = UIImage(named: "up-arrow")
                 upvotesImage.tintColor = neutralTextColor
             case .downvote:
                 upvoteButton.backgroundColor = neutralBgColor
                 upvoteButton.tintColor = neutralTextColor
-
+                
                 downvoteButton.backgroundColor = downvoteBgColor
                 downvoteButton.tintColor = downvoteTextColor
-
+                
                 upvotesImage.image = UIImage(named: "down-arrow")
                 upvotesImage.tintColor = downvoteBgColor
             default:
@@ -76,7 +78,15 @@ class CommunityMessageCell: UITableViewCell {
             }
         }
     }
-
+    
+    // MARK: - Initialization
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//    
+//        self.contentView.translatesAutoresizingMaskIntoConstraints = false
+//        widthConstraint = contentView.widthAnchor.constraint(equalToConstant: 0)
+//    }
+    
     // MARK: - Public Methods
     func configure(message: CommunityMessage, dateFormatter: DateFormatter) {
         titleLabel.text = message.title
@@ -88,6 +98,11 @@ class CommunityMessageCell: UITableViewCell {
         karma = message.storedKarma
     }
 
+//    func setWidth(_ width: CGFloat) {
+//        widthConstraint?.constant = width
+//        widthConstraint?.isActive = true
+//    }
+    
     @IBAction func upvoteButtonPressed(_ sender: UIButton) {
         delegate?.communityMessageCellDidPressUpvote(self)
     }
@@ -95,5 +110,5 @@ class CommunityMessageCell: UITableViewCell {
     @IBAction func downvoteButtonPressed(_ sender: UIButton) {
         delegate?.communityMessageCellDidPressDownvote(self)
     }
-    
+
 }
