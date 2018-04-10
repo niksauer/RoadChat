@@ -12,7 +12,7 @@ import RoadChatKit
 class CreateCommunityMessageViewController: UIViewController {
     
     // MARK: - Outlets
-    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var messageTextView: UITextView!
 
     // MARK: - Private Properties
@@ -52,23 +52,42 @@ class CreateCommunityMessageViewController: UIViewController {
             return
         }
         
-        guard let title = titleTextField.text, let message = messageTextView.text else {
-            // handle missing fields error
-            log.warning("Empty message content.")
-            return
-        }
+        let title = checkTextConstraints(sender: "title", text: titleTextView.text)
+        let message = checkTextConstraints(sender: "Message", text: messageTextView.text)
         
         let communityMessageRequest = CommunityMessageRequest(title: title, time: Date(), message: message, location: location)
         
         communityBoard.postMessage(communityMessageRequest) { error in
             guard error == nil else {
-                // handle post error
+                displayAlarm(message: "Message could not be postet")
                 return
             }
             
             self.locationManager.stopPolling()
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    private func checkTextConstraints(sender: String, text: String) -> String{
+        if (text.count < 1){
+            displayAlarm(message: sender + " is empty")
+            log.warning("Empty message content.")
+            return
+        } else if(text.count < 300) {
+            return text
+        } else {
+            displayAlarm(message: sender + " contains too many characters")
+            log.warning("Message is too long.")
+            return
+        }
+        
+    }
+    
+    private func displayAlarm(message: String) {
+    let alertController = UIAlertController(title: "Error", message:
+    message, preferredStyle: UIAlertControllerStyle.alert)
+    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+    self.present(alertController, animated: true, completion: nil)
     }
     
 }
