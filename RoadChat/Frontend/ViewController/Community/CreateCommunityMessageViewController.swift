@@ -53,8 +53,25 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
     }
     
     // MARK: - Public Methods
-    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textView.text = ""
+        textView.textColor = UIColor.black
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if (textView == messageTextView && textView.text.count == 0) {
+            textView.textColor = UIColor.lightGray
+            textView.text = "(Optional)"
+        }
+        
+    }
     func textViewDidChange(_ textView: UITextView) {
+        
+        let fixedWidth = textView.frame.size.width
+        textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        var newFrame = textView.frame
+        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        textView.frame = newFrame
         
         if (textView == titleTextView) {
             titleWordCount = textView.text.count
@@ -74,11 +91,7 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
             messageWordCount = textView.text.count
             messageWordCountLabel.text = "\(messageWordCount)/280"
             
-            if (textView.text.count > 1){
-                rightBarButtonItem.isEnabled = true
-            }
-            
-            if (textView.text.count < 280){
+            if (textView.text.count > 280){
                 rightBarButtonItem.isEnabled = false
             }
             
