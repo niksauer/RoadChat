@@ -27,7 +27,7 @@ class Profile: NSManagedObject {
                 profile.firstName = response.firstName
                 profile.lastName = response.lastName
                 profile.birth = response.birth
-                profile.sex = response.sex
+                profile.sex = response.sex?.rawValue
                 profile.streetName = response.streetName
                 profile.postalCode = Int16(response.postalCode ?? 0)
                 profile.country = response.country
@@ -43,7 +43,7 @@ class Profile: NSManagedObject {
         profile.firstName = response.firstName
         profile.lastName = response.lastName
         profile.birth = response.birth
-        profile.sex = response.sex
+        profile.sex = response.sex?.rawValue
         profile.streetName = response.streetName
         profile.postalCode = Int16(response.postalCode ?? 0)
         profile.country = response.country
