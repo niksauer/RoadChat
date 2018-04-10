@@ -28,7 +28,7 @@ class TrafficMessage: NSManagedObject {
                 
                 // update existing message
                 let message = matches.first!
-                message.type = prototype.type
+                message.type = prototype.type.rawValue
                 message.message = prototype.message
                 message.validations = Int16(prototype.validations)
                 message.upvotes = Int16(prototype.upvotes)
@@ -46,7 +46,7 @@ class TrafficMessage: NSManagedObject {
         message.senderID = Int32(prototype.senderID)
         message.locationID = Int32(prototype.locationID)
         message.time = prototype.time
-        message.type = prototype.type
+        message.type = prototype.type.rawValue
         message.message = prototype.message
         message.validations = Int16(prototype.validations)
         message.upvotes = Int16(prototype.upvotes)

@@ -72,7 +72,7 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
         }
         if (textView == messageTextView) {
             messageWordCount = textView.text.count
-            messageWordCountLabel.text = "\(messageWordCount)/140"
+            messageWordCountLabel.text = "\(messageWordCount)/280"
             
             if (textView.text.count > 1){
                 rightBarButtonItem.isEnabled = true
@@ -86,6 +86,14 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
        
     }
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let char = text.cString(using: String.Encoding.utf8)!
+        let isBackSpace = strcmp(char, "\\b")
+        
+        if (isBackSpace == -92) {
+            // backspace pressed
+            return true
+        }
+        
         if (textView == messageTextView) {
             if (textView.text.count < 280){
                 return true
@@ -93,6 +101,7 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
                 return false
             }
         }
+        
         if (textView == titleTextView) {
             if (textView.text.count < 140){
                 return true
@@ -100,6 +109,7 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
                 return false
             }
         }
+        
         return true
     }
     
