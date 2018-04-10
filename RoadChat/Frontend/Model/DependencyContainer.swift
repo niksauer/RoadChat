@@ -38,7 +38,7 @@ struct DependencyContainer {
         return TrafficBoard(trafficService: TrafficService(credentials: credentials), context: viewContext)
     }
     
-    private var karmaColorPalette: KarmaColorPalette {
+    private var colorPalette: ColorContainer {
         return ColorContainer()
     }
     
@@ -77,11 +77,11 @@ extension DependencyContainer: ViewControllerFactory {
 
     // Community
     func makeCommunityBoardViewController() -> CommunityBoardViewController {
-        return CommunityBoardViewController(viewFactory: self, karmaColorPalette: karmaColorPalette)
+        return CommunityBoardViewController(viewFactory: self, karmaColorPalette: colorPalette)
     }
     
     func makeCommunityMessagesViewController(for user: User?) -> CommunityMessagesViewController {
-        return CommunityMessagesViewController(viewFactory: self, communityBoard: communityBoard, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter, karmaColorPalette: karmaColorPalette)
+        return CommunityMessagesViewController(viewFactory: self, communityBoard: communityBoard, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter, karmaColorPalette: colorPalette)
     }
 
     func makeCreateCommunityMessageViewController() -> CreateCommunityMessageViewController {
@@ -90,8 +90,17 @@ extension DependencyContainer: ViewControllerFactory {
     
     // Traffic
     func makeTrafficBoardViewController() -> TrafficBoardViewController {
-        return TrafficBoardViewController(viewFactory: self, trafficBoard: trafficBoard, searchContext: viewContext, cellDateFormatter: shortDateFormatter)
+        return TrafficBoardViewController(viewFactory: self, karmaColorPalette: colorPalette)
     }
+    
+    func makeTrafficMessagesViewController(for user: User?) -> TrafficMessagesViewController {
+        return TrafficMessagesViewController(viewFactory: self, trafficBoard: trafficBoard, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter, colorPalette: colorPalette)
+    }
+    
+    func makeCreateTrafficMessageViewController() -> CreateTrafficMessageViewController {
+        return CreateTrafficMessageViewController(trafficBoard: trafficBoard, locationManager: locationManager)
+    }
+    
 
     // Chat
     func makeConversationsViewController(for user: User) -> ConversationsViewController {
@@ -111,10 +120,7 @@ extension DependencyContainer: ViewControllerFactory {
         return ProfilePageViewController(viewFactory: self, user: user)
     }
     
-    // Profile Pages    
-    func makeTrafficMessagesViewController(for user: User) -> TrafficMessagesViewController {
-        return TrafficMessagesViewController(messages: user.storedTrafficMessages, cellDateFormatter: shortDateFormatter)
-    }
+    // Profile Pages
     
     func makeCarsViewController(for user: User) -> CarsViewController {
         return CarsViewController(cars: user.storedCars, dateFormatter: shortDateFormatter)

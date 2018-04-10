@@ -34,6 +34,8 @@ class ProfilePageViewController: UIViewController {
         communityViewController.title = "Community"
         
         let trafficViewController = viewFactory.makeTrafficMessagesViewController(for: user)
+        trafficViewController.title = "Traffic"
+        
         let carsViewController = viewFactory.makeCarsViewController(for: user)
         let aboutViewController = viewFactory.makeAboutViewController(for: user)
         
