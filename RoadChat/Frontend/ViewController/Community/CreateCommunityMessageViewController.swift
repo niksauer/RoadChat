@@ -14,16 +14,30 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
     // MARK: - Outlets
     @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var messageTextView: UITextView!
-    @IBOutlet weak var titleWordCountLabel: UILabel!
-    @IBOutlet weak var messageWordCountLabel: UILabel!
-    var rightBarButtonItem: UIBarButtonItem!
     
+    @IBOutlet weak var titleCharacterCountLabel: UILabel!
+    @IBOutlet weak var messageCharacterCountLabel: UILabel!
+
     // MARK: - Private Properties
     private let communityBoard: CommunityBoard
     private let locationManager: LocationManager
-    private var titleWordCount: Int = 0
-    private var messageWordCount: Int = 0 
     
+    private var sendBarButtonItem: UIBarButtonItem!
+    
+    private let maxTitleCharacters = 140
+    private let maxMessageCharacters = 280
+    
+    private var titleCharacterCount: Int = 0 {
+        didSet {
+            titleCharacterCountLabel.text = "\(titleCharacterCount)/\(maxTitleCharacters)"
+        }
+    }
+    
+    private var messageCharacterCount: Int = 0 {
+        didSet {
+            messageCharacterCountLabel.text = "\(messageCharacterCount)/\(maxMessageCharacters)"
+        }
+    }
     
     // MARK: - Initialization
     init(communityBoard: CommunityBoard, locationManager: LocationManager) {
@@ -34,9 +48,9 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
         
         self.title = "New Post"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed(_:)))
-        self.rightBarButtonItem = UIBarButtonItem(title: "Send", style: .done, target: self, action: #selector(sendButtonPressed(_:)))
-        self.rightBarButtonItem.isEnabled = false
-        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        self.sendBarButtonItem = UIBarButtonItem(title: "Send", style: .done, target: self, action: #selector(sendButtonPressed(_:)))
+        self.sendBarButtonItem.isEnabled = false
+        self.navigationItem.rightBarButtonItem = sendBarButtonItem
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -47,8 +61,10 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
     override func viewDidLoad() {
         messageTextView.delegate = self
         titleTextView.delegate = self
-        messageWordCountLabel.text = "\(messageWordCount)/280"
-        titleWordCountLabel.text = "\(titleWordCount)/140"
+        
+        titleCharacterCount = 0
+        messageCharacterCount = 0
+
         locationManager.startPolling()
     }
     
@@ -57,48 +73,34 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
         textView.text = ""
         textView.textColor = UIColor.black
     }
+    
     func textViewDidEndEditing(_ textView: UITextView) {
-        if (textView == messageTextView && textView.text.count == 0) {
+        if textView == messageTextView, textView.text.count == 0 {
             textView.textColor = UIColor.lightGray
             textView.text = "(Optional)"
         }
-        
     }
+    
     func textViewDidChange(_ textView: UITextView) {
-        
-        let fixedWidth = textView.frame.size.width
-        textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        var newFrame = textView.frame
-        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
-        textView.frame = newFrame
-        
         if (textView == titleTextView) {
-            titleWordCount = textView.text.count
-            titleWordCountLabel.text = "\(titleWordCount)/140"
+            titleCharacterCount = textView.text.count
             
-            if (textView.text.count > 1){
-                rightBarButtonItem.isEnabled = true
+            if (titleCharacterCount >= 1) {
+                sendBarButtonItem.isEnabled = true
+            } else if (titleCharacterCount >= 140) {
+                sendBarButtonItem.isEnabled = false
+            } else {
+                sendBarButtonItem.isEnabled = false
             }
-            
-            if (textView.text.count > 140){
-                rightBarButtonItem.isEnabled = false
-            }
-            
-            
         }
+        
         if (textView == messageTextView) {
-            messageWordCount = textView.text.count
-            messageWordCountLabel.text = "\(messageWordCount)/280"
-            
-            if (textView.text.count > 280){
-                rightBarButtonItem.isEnabled = false
-            }
-            
+            messageCharacterCount = textView.text.count
         }
-       
     }
+    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        // always allow backspace
         let char = text.cString(using: String.Encoding.utf8)!
         let isBackSpace = strcmp(char, "\\b")
         
@@ -116,7 +118,7 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
         }
         
         if (textView == titleTextView) {
-            if (textView.text.count < 140){
+            if (textView.text.count < 140) {
                 return true
             } else {
                 return false
@@ -136,8 +138,9 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
             log.warning("Failed to retrieve current user location.")
             return
         }
+        
         guard let title = titleTextView.text, let message = messageTextView.text else {
-            displayAlarm(message: "Please Enter Text")
+            // assert user interaction by text view delegate methods
             return
         }
         
@@ -145,7 +148,7 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
         
         communityBoard.postMessage(communityMessageRequest) { error in
             guard error == nil else {
-                self.displayAlarm(message: "Message could not be postet")
+                self.displayAlert(title: "Error", message: "Failed to post message: \(error!)")
                 return
             }
             
@@ -154,16 +157,12 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
         }
     }
     
-   
-    
-    private func displayAlarm(message: String) {
-    let alertController = UIAlertController(title: "Error", message:
-    message, preferredStyle: UIAlertControllerStyle.alert)
-    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
-    self.present(alertController, animated: true, completion: nil)
+}
+
+extension UIViewController {
+    func displayAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
-    
-    
-    
-    
 }
