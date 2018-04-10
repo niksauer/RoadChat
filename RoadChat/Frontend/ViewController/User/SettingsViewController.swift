@@ -47,8 +47,8 @@ class SettingsViewController: UITableViewController {
     // MARK: - Public Methods
     @objc func logoutButtonPressed(_ sender: UIBarButtonItem) {
         authenticationManager.logout { error in
-            let loginViewController = self.viewFactory.makeLoginViewController()
-            self.appDelegate.show(loginViewController)
+            let authenticationViewController = self.viewFactory.makeAuthenticationViewController()
+            self.appDelegate.show(authenticationViewController)
         }
     }
 

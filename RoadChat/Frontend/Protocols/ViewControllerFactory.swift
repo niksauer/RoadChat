@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ViewControllerFactory {
     
@@ -15,6 +16,7 @@ protocol ViewControllerFactory {
     func makeHomeTabBarController(for user: User) -> HomeTabBarController
     
     // Authentication
+    func makeAuthenticationViewController() -> UINavigationController
     func makeLoginViewController() -> LoginViewController
     func makeRegisterViewController() -> RegisterViewController
     

@@ -38,10 +38,9 @@ class SetupViewController: UIViewController {
     
         authenticationManager.getAuthenticatedUser { user in
             guard let user = user else {
-                // show login view
-                let loginViewController = self.viewFactory.makeLoginViewController()
-                let loginNavigationController = UINavigationController(rootViewController: loginViewController)
-                self.appDelegate.show(loginNavigationController)
+                // show authenticationViewController
+                let authenticationViewController = self.viewFactory.makeAuthenticationViewController()
+                self.appDelegate.show(authenticationViewController)
                 return
             }
             

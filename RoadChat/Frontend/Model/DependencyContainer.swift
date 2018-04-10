@@ -67,6 +67,10 @@ extension DependencyContainer: ViewControllerFactory {
     }
 
     // Authentication
+    func makeAuthenticationViewController() -> UINavigationController {
+        return UINavigationController(rootViewController: makeLoginViewController())
+    }
+    
     func makeLoginViewController() -> LoginViewController {
         return LoginViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager)
     }
