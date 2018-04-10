@@ -54,7 +54,7 @@ struct DependencyContainer {
 }
 
 extension DependencyContainer: ViewControllerFactory {
-  
+
     // General
     func makeSetupViewController() -> SetupViewController {
         return SetupViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, credentials: credentials)
@@ -74,6 +74,10 @@ extension DependencyContainer: ViewControllerFactory {
     }
 
     // Community
+    func makeCommunityBoardViewController() -> CommunityBoardViewController {
+        return CommunityBoardViewController(viewFactory: self, karmaColorPalette: karmaColorPalette)
+    }
+    
     func makeCommunityMessagesViewController(for user: User?) -> CommunityMessagesViewController {
         return CommunityMessagesViewController(viewFactory: self, communityBoard: communityBoard, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter, karmaColorPalette: karmaColorPalette)
     }

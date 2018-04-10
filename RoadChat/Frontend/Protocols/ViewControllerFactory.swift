@@ -19,6 +19,7 @@ protocol ViewControllerFactory {
     func makeRegisterViewController() -> RegisterViewController
     
     // Community
+    func makeCommunityBoardViewController() -> CommunityBoardViewController
     func makeCommunityMessagesViewController(for user: User?) -> CommunityMessagesViewController
     func makeCreateCommunityMessageViewController() -> CreateCommunityMessageViewController
     

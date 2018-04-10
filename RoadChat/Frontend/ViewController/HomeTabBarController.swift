@@ -15,15 +15,13 @@ class HomeTabBarController: UITabBarController {
         self.init(nibName: nil, bundle: nil)
         
         let viewControllers: [UIViewController]
-    
-        let communityMessagesViewController = viewFactory.makeCommunityMessagesViewController(for: nil)
-        communityMessagesViewController.title = "CommunityBoard"
         
+        let communityBoardViewController = viewFactory.makeCommunityBoardViewController()
         let trafficBoardViewController = viewFactory.makeTrafficBoardViewController()
         let conversationsViewController = viewFactory.makeConversationsViewController(for: user)
         let profileViewController = viewFactory.makeProfileViewController(for: user)
         
-        viewControllers = [communityMessagesViewController, trafficBoardViewController, conversationsViewController, profileViewController]
+        viewControllers = [communityBoardViewController, trafficBoardViewController, conversationsViewController, profileViewController]
         
         self.viewControllers = viewControllers.map { UINavigationController(rootViewController: $0) }
         self.selectedIndex = 0
