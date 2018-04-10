@@ -170,4 +170,5 @@ class TrafficMessage: NSManagedObject, ReportOwner {
             completion?(error)
         }
     }
+
 }

@@ -16,6 +16,9 @@ protocol CommunityMessageCellDelegate: class {
 
 class CommunityMessageCell: UICollectionViewCell {
     
+    // MARK: - Typealiases
+    typealias ColorPalette = KarmaColorPalette
+    
     // MARK: - Outlets
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
@@ -30,7 +33,7 @@ class CommunityMessageCell: UICollectionViewCell {
     
     // MARK: - Public Properties
     weak var delegate: CommunityMessageCellDelegate?
-    var colorPalette: KarmaColorPalette!
+    var colorPalette: ColorPalette!
     
     var karma: KarmaType! {
         didSet {
@@ -69,7 +72,9 @@ class CommunityMessageCell: UICollectionViewCell {
     }
     
     // MARK: - Public Methods
-    func configure(message: CommunityMessage, dateFormatter: DateFormatter) {
+    func configure(message: CommunityMessage, dateFormatter: DateFormatter, colorPalette: ColorPalette) {
+        self.colorPalette = colorPalette
+        
         titleLabel.text = message.title
         messageLabel.text = message.message
         

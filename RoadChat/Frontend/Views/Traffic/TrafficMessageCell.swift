@@ -16,6 +16,9 @@ protocol TrafficMessageCellDelegate: class {
 
 class TrafficMessageCell: UICollectionViewCell {
     
+    // MARK: - Typealiases
+    typealias ColorPalette = KarmaColorPalette & TrafficColorPalette
+    
     // MARK: - Outlets
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
@@ -32,9 +35,7 @@ class TrafficMessageCell: UICollectionViewCell {
     
     // MARK: - Public Properties
     weak var delegate: TrafficMessageCellDelegate?
-    
-    typealias ColorStore = KarmaColorPalette & TrafficColorPalette
-    var colorPalette: ColorStore!
+    var colorPalette: ColorPalette!
     
     var karma: KarmaType! {
         didSet {
@@ -90,7 +91,7 @@ class TrafficMessageCell: UICollectionViewCell {
     }
     
     // MARK: - Public Methods
-    func configure(message: TrafficMessage, dateFormatter: DateFormatter, colorPalette: ColorStore) {
+    func configure(message: TrafficMessage, dateFormatter: DateFormatter, colorPalette: ColorPalette) {
         self.colorPalette = colorPalette
         
         typeLabel.text = message.type

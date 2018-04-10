@@ -11,37 +11,40 @@ import CoreData
 
 class CommunityMessagesViewController: FetchedResultsCollectionViewController<CommunityMessage>, UICollectionViewDelegateFlowLayout {
 
+    // MARK: - Typealiases
+    typealias ColorPalette = BasicColorPalette & TrafficMessageCell.ColorPalette
+    
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let communityBoard: CommunityBoard
     private let user: User?
     private let searchContext: NSManagedObjectContext
     private let cellDateFormatter: DateFormatter
-    private let karmaColorPalette: KarmaColorPalette
+    private let colorPalette: ColorPalette
     
     private let reuseIdentifier = "CommunityMessageCell"
-    private let backgroundColor = UIColor(red: 243/255, green: 242/255, blue: 247/255, alpha: 1)
-    
     private var sizingCell: CommunityMessageCell!
     
+    private var refreshControl: UIRefreshControl?
+    
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, communityBoard: CommunityBoard, user: User?, searchContext: NSManagedObjectContext, cellDateFormatter: DateFormatter, karmaColorPalette: KarmaColorPalette) {
+    init(viewFactory: ViewControllerFactory, communityBoard: CommunityBoard, user: User?, searchContext: NSManagedObjectContext, cellDateFormatter: DateFormatter, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
         self.communityBoard = communityBoard
         self.user = user
         self.searchContext = searchContext
         self.cellDateFormatter = cellDateFormatter
-        self.karmaColorPalette = karmaColorPalette
+        self.colorPalette = colorPalette
     
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
         
-        collectionView?.backgroundColor = backgroundColor
+        collectionView?.backgroundColor = colorPalette.backgroundColor
         collectionView?.alwaysBounceVertical = true
         
         sizingCell = {
             let nib = Bundle.main.loadNibNamed(reuseIdentifier, owner: self, options: nil)
             let sizingCell = nib?.first as! CommunityMessageCell
-            sizingCell.colorPalette = karmaColorPalette
+            sizingCell.colorPalette = colorPalette
             return sizingCell
         }()
     }
@@ -57,12 +60,24 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
         // register cell classes
         collectionView?.register(UINib.init(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         
+        // pull to refresh
+        refreshControl = UIRefreshControl()
+        refreshControl?.layer.zPosition = -1
+        refreshControl?.addTarget(self, action: #selector(updateData), for: .valueChanged)
+        self.collectionView?.addSubview(refreshControl!)
+        
         // aditional view setup
         communityBoard.getMessages(completion: nil)
         updateUI()
     }
     
     // MARK: - Private Methods
+    @objc private func updateData() {
+        communityBoard.getMessages { _ in
+            self.refreshControl?.endRefreshing()
+        }
+    }
+    
     private func updateUI() {
         let request: NSFetchRequest<CommunityMessage> = CommunityMessage.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "time", ascending: true)]
@@ -84,8 +99,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CommunityMessageCell
         cell.delegate = self
-        cell.colorPalette = karmaColorPalette
-        cell.configure(message: message, dateFormatter: cellDateFormatter)
+        cell.configure(message: message, dateFormatter: cellDateFormatter, colorPalette: colorPalette)
         
         return cell
     }
@@ -99,7 +113,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
         let width = collectionView.frame.width
     
         // configure sizing cell
-        sizingCell.configure(message: message, dateFormatter: cellDateFormatter)
+        sizingCell.configure(message: message, dateFormatter: cellDateFormatter, colorPalette: colorPalette)
         
         // calculate size based on sizing cell
         return sizingCell.preferredLayoutSizeFittingWidth(width)

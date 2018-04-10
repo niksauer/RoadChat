@@ -75,6 +75,7 @@
 		24FBBC4C2077720B00B545D2 /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBBC4A2077720B00B545D2 /* CarCell.swift */; };
 		24FBBC4D2077720B00B545D2 /* CarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24FBBC4B2077720B00B545D2 /* CarCell.xib */; };
 		24FE0002207CDDC300F0D657 /* CommunityBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */; };
+		24FE0059207D51D200F0D657 /* BasicColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE0058207D51D200F0D657 /* BasicColorPalette.swift */; };
 		24FEFFEC207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FEFFEB207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift */; };
 		C9150A28207CFE0D00A69078 /* TrafficMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9150A27207CFE0D00A69078 /* TrafficMessageCell.xib */; };
 		C9150A2A207D0C1F00A69078 /* TrafficColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9150A29207D0C1F00A69078 /* TrafficColorPalette.swift */; };
@@ -358,6 +359,7 @@
 		24FBBC4A2077720B00B545D2 /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
 		24FBBC4B2077720B00B545D2 /* CarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarCell.xib; sourceTree = "<group>"; };
 		24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoardViewController.swift; sourceTree = "<group>"; };
+		24FE0058207D51D200F0D657 /* BasicColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicColorPalette.swift; sourceTree = "<group>"; };
 		24FEFFEB207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsCollectionViewController.swift; sourceTree = "<group>"; };
 		C9150A27207CFE0D00A69078 /* TrafficMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrafficMessageCell.xib; sourceTree = "<group>"; };
 		C9150A29207D0C1F00A69078 /* TrafficColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficColorPalette.swift; sourceTree = "<group>"; };
@@ -534,8 +536,8 @@
 		243F1EB520483BC500B45955 /* Traffic */ = {
 			isa = PBXGroup;
 			children = (
-				24207DF82076C37300851A73 /* TrafficMessagesViewController.swift */,
 				24B13478206421EE00B894BF /* TrafficBoardViewController.swift */,
+				24207DF82076C37300851A73 /* TrafficMessagesViewController.swift */,
 				C966B6FC207949590007CA4F /* CreateTrafficMessageViewController.swift */,
 				C966B6FD207949590007CA4F /* CreateTrafficMessageController.xib */,
 			);
@@ -690,9 +692,10 @@
 		24AFEE8F206566A30097810E /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				24AF50AE207B943500477DC0 /* KarmaColorPalette.swift */,
 				247F6D25206057950006FBC7 /* ViewControllerFactory.swift */,
+				24AF50AE207B943500477DC0 /* KarmaColorPalette.swift */,
 				C9150A29207D0C1F00A69078 /* TrafficColorPalette.swift */,
+				24FE0058207D51D200F0D657 /* BasicColorPalette.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1070,6 +1073,7 @@
 				24AF50AC207B6C1200477DC0 /* CommunityMessageCell.swift in Sources */,
 				247F6D1D205F26AE0006FBC7 /* CommunityBoard.swift in Sources */,
 				D44F4B88205297A7009A6239 /* CreateCommunityMessageViewController.swift in Sources */,
+				24FE0059207D51D200F0D657 /* BasicColorPalette.swift in Sources */,
 				249515CB2064483400E734E4 /* SettingsViewController.swift in Sources */,
 				C988ACA52052BB3200EDCEAC /* LocationManager.swift in Sources */,
 				24AF5096207B693500477DC0 /* CommunityMessagesViewController.swift in Sources */,

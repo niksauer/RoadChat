@@ -10,12 +10,10 @@ import Foundation
 import UIKit
 
 protocol TrafficColorPalette {
-    
-    // Background Colors
+    // background colors
     var jamBgColor: UIColor { get}
     var accidentBgColor: UIColor { get }
     var dangerBgColor: UIColor { get }
     var detourBgColor: UIColor { get }
-    
 }
 

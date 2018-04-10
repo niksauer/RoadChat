@@ -12,7 +12,7 @@ import CoreData
 class TrafficMessagesViewController: FetchedResultsCollectionViewController<TrafficMessage>, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Typealiases
-    typealias ColorPalette = TrafficMessageCell.ColorStore
+    typealias ColorPalette = BasicColorPalette & TrafficMessageCell.ColorPalette
     
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
@@ -23,9 +23,9 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
     private let colorPalette: ColorPalette
     
     private let reuseIdentifier = "TrafficMessageCell"
-    private let backgroundColor = UIColor(red: 243/255, green: 242/255, blue: 247/255, alpha: 1)
-    
     private var sizingCell: TrafficMessageCell!
+    
+    private var refreshControl: UIRefreshControl?
     
     // MARK: - Initialization
     init(viewFactory: ViewControllerFactory, trafficBoard: TrafficBoard, user: User?, searchContext: NSManagedObjectContext, cellDateFormatter: DateFormatter, colorPalette: ColorPalette) {
@@ -38,7 +38,7 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
         
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
         
-        collectionView?.backgroundColor = backgroundColor
+        collectionView?.backgroundColor = colorPalette.backgroundColor
         collectionView?.alwaysBounceVertical = true
         
         sizingCell = {
@@ -60,12 +60,24 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
         // register cell classes
         collectionView?.register(UINib.init(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         
+        // pull to refresh
+        refreshControl = UIRefreshControl()
+        refreshControl?.layer.zPosition = -1
+        refreshControl?.addTarget(self, action: #selector(updateData), for: .valueChanged)
+        self.collectionView?.addSubview(refreshControl!)
+        
         // aditional view setup
         trafficBoard.getMessages(completion: nil)
         updateUI()
     }
     
     // MARK: - Private Methods
+    @objc private func updateData() {
+        trafficBoard.getMessages { _ in
+            self.refreshControl?.endRefreshing()
+        }
+    }
+    
     private func updateUI() {
         let request: NSFetchRequest<TrafficMessage> = TrafficMessage.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "time", ascending: true)]

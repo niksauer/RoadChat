@@ -10,14 +10,17 @@ import UIKit
 
 class CommunityBoardViewController: UIViewController {
 
+    // MARK: - Typealiases
+    typealias ColorPalette = KarmaColorPalette
+    
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
-    private let karmaColorPalette: KarmaColorPalette
+    private let colorPalette: ColorPalette
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, karmaColorPalette: KarmaColorPalette) {
+    init(viewFactory: ViewControllerFactory, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
-        self.karmaColorPalette = karmaColorPalette
+        self.colorPalette = colorPalette
         
         super.init(nibName: nil, bundle: nil)
         self.title = "Community Board"

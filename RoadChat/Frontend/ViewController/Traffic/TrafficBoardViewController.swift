@@ -10,19 +10,22 @@ import UIKit
 
 class TrafficBoardViewController: UIViewController {
     
+    // MARK: - Typealiases
+    typealias ColorPalette = KarmaColorPalette
+    
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
-    private let karmaColorPalette: KarmaColorPalette
+    private let colorPalette: ColorPalette
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, karmaColorPalette: KarmaColorPalette) {
+    init(viewFactory: ViewControllerFactory, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
-        self.karmaColorPalette = karmaColorPalette
+        self.colorPalette = colorPalette
         
         super.init(nibName: nil, bundle: nil)
         self.title = "Traffic Board"
         
-        tabBarItem = UITabBarItem(title: "Traffic", image: #imageLiteral(resourceName: "collaboration"), tag: 0)
+        tabBarItem = UITabBarItem(title: "Traffic", image: #imageLiteral(resourceName: "car"), tag: 0)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new"), style: .plain, target: self, action: #selector(createButtonPressed(_:)))
     }
     
@@ -45,7 +48,7 @@ class TrafficBoardViewController: UIViewController {
             trafficMessagesViewController.view.topAnchor.constraint(equalTo: view.topAnchor),
             trafficMessagesViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             trafficMessagesViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            ])
+        ])
     }
     
     // MARK: - Public Methods

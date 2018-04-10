@@ -12,19 +12,25 @@ import Parchment
 
 class ProfileViewController: UIViewController {
     
+    // MARK: - Typealiases
+    typealias ColorPalette = BasicColorPalette
+    
     // MARK: - Outlets
     @IBOutlet weak var pageViewContainer: UIView!
     
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let user: User
+    private let colorPalette: ColorPalette
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, user: User) {
+    init(viewFactory: ViewControllerFactory, user: User, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
         self.user = user
+        self.colorPalette = colorPalette
         
         super.init(nibName: nil, bundle: nil)
+        
         self.title = "Profile"
         self.tabBarItem = UITabBarItem(title: "Profile", image: #imageLiteral(resourceName: "contact_card"), tag: 3)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"), style: .done, target: self, action: #selector(settingsButtonPressed(_:)))

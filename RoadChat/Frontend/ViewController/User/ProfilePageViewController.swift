@@ -13,15 +13,21 @@ import Parchment
 class ProfilePageViewController: UIViewController {
     
     // MARK: - Private Properties
+    typealias ColorPalette = BasicColorPalette
+    
+    // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let user: User
+    private let colorPalette: ColorPalette
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, user: User) {
+    init(viewFactory: ViewControllerFactory, user: User, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
         self.user = user
+        self.colorPalette = colorPalette
         
         super.init(nibName: nil, bundle: nil)
+        self.view.backgroundColor = colorPalette.backgroundColor
     }
     
     required init?(coder aDecoder: NSCoder) {

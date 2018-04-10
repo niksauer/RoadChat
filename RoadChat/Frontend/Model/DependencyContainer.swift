@@ -81,11 +81,11 @@ extension DependencyContainer: ViewControllerFactory {
 
     // Community
     func makeCommunityBoardViewController() -> CommunityBoardViewController {
-        return CommunityBoardViewController(viewFactory: self, karmaColorPalette: colorPalette)
+        return CommunityBoardViewController(viewFactory: self, colorPalette: colorPalette)
     }
     
     func makeCommunityMessagesViewController(for user: User?) -> CommunityMessagesViewController {
-        return CommunityMessagesViewController(viewFactory: self, communityBoard: communityBoard, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter, karmaColorPalette: colorPalette)
+        return CommunityMessagesViewController(viewFactory: self, communityBoard: communityBoard, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter, colorPalette: colorPalette)
     }
 
     func makeCreateCommunityMessageViewController() -> CreateCommunityMessageViewController {
@@ -94,7 +94,7 @@ extension DependencyContainer: ViewControllerFactory {
     
     // Traffic
     func makeTrafficBoardViewController() -> TrafficBoardViewController {
-        return TrafficBoardViewController(viewFactory: self, karmaColorPalette: colorPalette)
+        return TrafficBoardViewController(viewFactory: self, colorPalette: colorPalette)
     }
     
     func makeTrafficMessagesViewController(for user: User?) -> TrafficMessagesViewController {
@@ -117,11 +117,11 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeProfileViewController(for user: User) -> ProfileViewController {
-        return ProfileViewController(viewFactory: self, user: user)
+        return ProfileViewController(viewFactory: self, user: user, colorPalette: colorPalette)
     }
     
     func makeProfilePageViewController(for user: User) -> ProfilePageViewController {
-        return ProfilePageViewController(viewFactory: self, user: user)
+        return ProfilePageViewController(viewFactory: self, user: user, colorPalette: colorPalette)
     }
     
     // Profile Pages
