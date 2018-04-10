@@ -20,6 +20,7 @@ protocol ViewControllerFactory {
     
     // Community
     func makeCommunityBoardViewController() -> CommunityBoardViewController
+    func makeCommunityMessagesViewController(for user: User?) -> CommunityMessagesViewController
     func makeCreateCommunityMessageViewController() -> CreateCommunityMessageViewController
     
     // Traffic
@@ -34,7 +35,6 @@ protocol ViewControllerFactory {
     func makeProfilePageViewController(for user: User) -> ProfilePageViewController
     
     // Profile Pages
-    func makeCommunityMessagesViewController(for user: User) -> CommunityMessagesViewController
     func makeTrafficMessagesViewController(for user: User) -> TrafficMessagesViewController
     func makeCarsViewController(for user: User) -> CarsViewController
     func makeAboutViewController(for user: User) -> AboutViewController

@@ -37,6 +37,10 @@ struct DependencyContainer {
         return TrafficBoard(trafficService: TrafficService(credentials: credentials), context: viewContext)
     }
     
+    private var karmaColorPalette: KarmaColorPalette {
+        return ColorContainer()
+    }
+    
     private var shortDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
@@ -50,7 +54,7 @@ struct DependencyContainer {
 }
 
 extension DependencyContainer: ViewControllerFactory {
-   
+
     // General
     func makeSetupViewController() -> SetupViewController {
         return SetupViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, credentials: credentials)
@@ -71,13 +75,17 @@ extension DependencyContainer: ViewControllerFactory {
 
     // Community
     func makeCommunityBoardViewController() -> CommunityBoardViewController {
-        return CommunityBoardViewController(viewFactory: self, communityBoard: communityBoard, searchContext: viewContext, cellDateFormatter: shortDateFormatter)
+        return CommunityBoardViewController(viewFactory: self, karmaColorPalette: karmaColorPalette)
+    }
+    
+    func makeCommunityMessagesViewController(for user: User?) -> CommunityMessagesViewController {
+        return CommunityMessagesViewController(viewFactory: self, communityBoard: communityBoard, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter, karmaColorPalette: karmaColorPalette)
     }
 
     func makeCreateCommunityMessageViewController() -> CreateCommunityMessageViewController {
         return CreateCommunityMessageViewController(communityBoard: communityBoard)
     }
-
+    
     // Traffic
     func makeTrafficBoardViewController() -> TrafficBoardViewController {
         return TrafficBoardViewController(viewFactory: self, trafficBoard: trafficBoard, searchContext: viewContext, cellDateFormatter: shortDateFormatter)
@@ -101,11 +109,7 @@ extension DependencyContainer: ViewControllerFactory {
         return ProfilePageViewController(viewFactory: self, user: user)
     }
     
-    // Profile Pages
-    func makeCommunityMessagesViewController(for user: User) -> CommunityMessagesViewController {
-        return CommunityMessagesViewController(messages: user.storedCommunityMessages, cellDateFormatter: shortDateFormatter)
-    }
-    
+    // Profile Pages    
     func makeTrafficMessagesViewController(for user: User) -> TrafficMessagesViewController {
         return TrafficMessagesViewController(messages: user.storedTrafficMessages, cellDateFormatter: shortDateFormatter)
     }
