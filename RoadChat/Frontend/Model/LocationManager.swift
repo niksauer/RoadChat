@@ -11,6 +11,9 @@ import CoreLocation
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
     
+    // MARK: - Singleton
+    static let shared = LocationManager()
+    
     // MARK: - Public Properties
     var lastLocation: CLLocation?
     
@@ -18,11 +21,11 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     
     // MARK: - Initialization
-    override init() {
+    private override init() {
         super.init()
         locationManager.delegate = self
     }
-    
+
     // MARK: - Public Methods
     func startPolling() {
         locationManager.requestWhenInUseAuthorization()
