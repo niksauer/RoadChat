@@ -76,6 +76,7 @@
 		24FBBC4D2077720B00B545D2 /* CarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24FBBC4B2077720B00B545D2 /* CarCell.xib */; };
 		24FE0002207CDDC300F0D657 /* CommunityBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */; };
 		24FE0059207D51D200F0D657 /* BasicColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE0058207D51D200F0D657 /* BasicColorPalette.swift */; };
+		24FE005C207D564500F0D657 /* EdgeInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE005B207D564500F0D657 /* EdgeInsetLabel.swift */; };
 		24FEFFEC207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FEFFEB207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift */; };
 		C9150A28207CFE0D00A69078 /* TrafficMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9150A27207CFE0D00A69078 /* TrafficMessageCell.xib */; };
 		C9150A2A207D0C1F00A69078 /* TrafficColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9150A29207D0C1F00A69078 /* TrafficColorPalette.swift */; };
@@ -360,6 +361,7 @@
 		24FBBC4B2077720B00B545D2 /* CarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarCell.xib; sourceTree = "<group>"; };
 		24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoardViewController.swift; sourceTree = "<group>"; };
 		24FE0058207D51D200F0D657 /* BasicColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicColorPalette.swift; sourceTree = "<group>"; };
+		24FE005B207D564500F0D657 /* EdgeInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetLabel.swift; sourceTree = "<group>"; };
 		24FEFFEB207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsCollectionViewController.swift; sourceTree = "<group>"; };
 		C9150A27207CFE0D00A69078 /* TrafficMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrafficMessageCell.xib; sourceTree = "<group>"; };
 		C9150A29207D0C1F00A69078 /* TrafficColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficColorPalette.swift; sourceTree = "<group>"; };
@@ -673,6 +675,7 @@
 		249515D42064616300E734E4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				24FE005A207D563000F0D657 /* Shared */,
 				24FBBC7F20778A7E00B545D2 /* Community */,
 				24FBBC6A20778A5E00B545D2 /* User */,
 				24FBBC4F2077753000B545D2 /* Chat */,
@@ -745,6 +748,14 @@
 				24AF50AB207B6C1200477DC0 /* CommunityMessageCell.xib */,
 			);
 			path = Community;
+			sourceTree = "<group>";
+		};
+		24FE005A207D563000F0D657 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				24FE005B207D564500F0D657 /* EdgeInsetLabel.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		C927B7A32076962B00701881 /* Traffic */ = {
@@ -1064,6 +1075,7 @@
 				240D10F920481843008C5E39 /* AppDelegate.swift in Sources */,
 				24207DF62076C2D000851A73 /* CarsViewController.swift in Sources */,
 				D44F4B7D20528076009A6239 /* CommunityService.swift in Sources */,
+				24FE005C207D564500F0D657 /* EdgeInsetLabel.swift in Sources */,
 				247F6D26206057950006FBC7 /* ViewControllerFactory.swift in Sources */,
 				24B1347E2064229100B894BF /* ConversationsViewController.swift in Sources */,
 				C966B6FE207949590007CA4F /* CreateTrafficMessageViewController.swift in Sources */,
