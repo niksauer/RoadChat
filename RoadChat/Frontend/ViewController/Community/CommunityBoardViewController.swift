@@ -20,7 +20,7 @@ class CommunityBoardViewController: UIViewController {
         self.karmaColorPalette = karmaColorPalette
         
         super.init(nibName: nil, bundle: nil)
-        self.title = "CommunityBoard"
+        self.title = "Community Board"
         
         tabBarItem = UITabBarItem(title: "Community", image: #imageLiteral(resourceName: "collaboration"), tag: 0)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new"), style: .plain, target: self, action: #selector(createButtonPressed(_:)))

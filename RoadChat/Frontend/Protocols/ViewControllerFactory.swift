@@ -27,6 +27,8 @@ protocol ViewControllerFactory {
     
     // Traffic
     func makeTrafficBoardViewController() -> TrafficBoardViewController
+    func makeTrafficMessagesViewController(for user: User?) -> TrafficMessagesViewController
+    func makeCreateTrafficMessageViewController() -> CreateTrafficMessageViewController
     
     // Chat
     func makeConversationsViewController(for user: User) -> ConversationsViewController
@@ -37,7 +39,6 @@ protocol ViewControllerFactory {
     func makeProfilePageViewController(for user: User) -> ProfilePageViewController
     
     // Profile Pages
-    func makeTrafficMessagesViewController(for user: User) -> TrafficMessagesViewController
     func makeCarsViewController(for user: User) -> CarsViewController
     func makeAboutViewController(for user: User) -> AboutViewController
 
