@@ -16,6 +16,13 @@ class ProfileViewController: UIViewController {
     typealias ColorPalette = BasicColorPalette
     
     // MARK: - Outlets
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var sexImageView: UIImageView!
+    @IBOutlet weak var biographyLabel: UILabel!
+    
     @IBOutlet weak var pageViewContainer: UIView!
     
     // MARK: - Private Properties
@@ -43,6 +50,27 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Customization
     override func viewDidLoad() {
+        usernameLabel.text = user.username
+        
+        if let profile = user.profile {
+//            ageLabel.text = String(date: profile.birth!)
+            nameLabel.text = "\(profile.firstName!) \(profile.lastName!)"
+            
+            if let sex = profile.storedSex {
+                switch sex {
+                case .male:
+                    sexImageView.image = #imageLiteral(resourceName: "male")
+                case .female:
+                    sexImageView.image = #imageLiteral(resourceName: "female")
+                case .other:
+                    sexImageView.image = #imageLiteral(resourceName: "genderqueer")
+                }
+            }
+            
+            biographyLabel.text = profile.biography
+        }
+        
+        // setup profile page view controller
         let pageViewController = viewFactory.makeProfilePageViewController(for: user)
         addChildViewController(pageViewController)
         pageViewContainer.addSubview(pageViewController.view)

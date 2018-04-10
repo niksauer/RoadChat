@@ -25,7 +25,7 @@ class Participant: NSManagedObject {
                 
                 // update existing participant
                 let participant = matches.first!
-                participant.approvalStatus = response.approvalStatus
+                participant.approvalStatus = response.approval.rawValue
                 participant.joining = response.joining
                 
                 return participant
@@ -37,14 +37,14 @@ class Participant: NSManagedObject {
         // create new participant
         let participant = Participant(context: context)
         participant.userID = Int32(response.userID)
-        participant.approvalStatus = response.approvalStatus
+        participant.approvalStatus = response.approval.rawValue
         participant.joining = response.joining
         
         return participant
     }
 
     // MARK: - Public Methods
-    func setApprovalStatus(_ status: ApprovalStatus) {
+    func setApprovalStatus(_ status: ApprovalType) {
         approvalStatus = status.rawValue
     }
     

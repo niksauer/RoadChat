@@ -12,7 +12,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="RoadChat" customModuleProvider="target">
             <connections>
+                <outlet property="ageLabel" destination="vBH-4d-78F" id="Xy8-P9-nEV"/>
+                <outlet property="biographyLabel" destination="PM4-jw-TWQ" id="auj-sc-BGQ"/>
+                <outlet property="nameLabel" destination="eju-JQ-g9w" id="Kjz-qe-LrT"/>
                 <outlet property="pageViewContainer" destination="y3O-XY-4fB" id="3rh-oy-7Wc"/>
+                <outlet property="profileImageView" destination="mVK-0e-Kvm" id="838-4U-FX4"/>
+                <outlet property="sexImageView" destination="eoO-j8-W1k" id="BF9-Y6-x9Y"/>
+                <outlet property="usernameLabel" destination="cRI-tt-pTA" id="njK-7W-Iuf"/>
                 <outlet property="view" destination="iN0-l3-epB" id="HDq-Zf-p7e"/>
             </connections>
         </placeholder>

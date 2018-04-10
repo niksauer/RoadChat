@@ -121,7 +121,7 @@ class User: NSManagedObject, ReportOwner {
                 
                 do {
                     let privacy = RoadChatKit.Privacy(userID: Int(self.id))
-                    let profile = RoadChatKit.Profile(userID: Int(self.id), profileRequest: profile)
+                    let profile = try RoadChatKit.Profile(userID: Int(self.id), profileRequest: profile)
                     let publicProfile = RoadChatKit.Profile.PublicProfile(profile: profile, privacy: privacy, isOwner: true)
                     let _ = try Profile.createOrUpdate(from: publicProfile, userID: Int(self.id), in: self.context)
                     try self.context.save()
