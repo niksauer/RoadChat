@@ -9,15 +9,21 @@
 import UIKit
 import RoadChatKit
 
-class CreateCommunityMessageViewController: UIViewController {
+class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate {
     
     // MARK: - Outlets
     @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var messageTextView: UITextView!
-
+    @IBOutlet weak var titleWordCountLabel: UILabel!
+    @IBOutlet weak var messageWordCountLabel: UILabel!
+    var rightBarButtonItem: UIBarButtonItem!
+    
     // MARK: - Private Properties
     private let communityBoard: CommunityBoard
     private let locationManager: LocationManager
+    private var titleWordCount: Int = 0
+    private var messageWordCount: Int = 0 
+    
     
     // MARK: - Initialization
     init(communityBoard: CommunityBoard, locationManager: LocationManager) {
@@ -28,7 +34,9 @@ class CreateCommunityMessageViewController: UIViewController {
         
         self.title = "New Post"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed(_:)))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send", style: .done, target: self, action: #selector(sendButtonPressed(_:)))
+        self.rightBarButtonItem = UIBarButtonItem(title: "Send", style: .done, target: self, action: #selector(sendButtonPressed(_:)))
+        self.rightBarButtonItem.isEnabled = false
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,10 +45,64 @@ class CreateCommunityMessageViewController: UIViewController {
     
     // MARK: - Customization
     override func viewDidLoad() {
+        messageTextView.delegate = self
+        titleTextView.delegate = self
+        messageWordCountLabel.text = "\(messageWordCount)/280"
+        titleWordCountLabel.text = "\(titleWordCount)/140"
         locationManager.startPolling()
     }
     
     // MARK: - Public Methods
+    
+    func textViewDidChange(_ textView: UITextView) {
+        
+        if (textView == titleTextView) {
+            titleWordCount = textView.text.count
+            titleWordCountLabel.text = "\(titleWordCount)/140"
+            
+            if (textView.text.count > 1){
+                rightBarButtonItem.isEnabled = true
+            }
+            
+            if (textView.text.count > 140){
+                rightBarButtonItem.isEnabled = false
+            }
+            
+            
+        }
+        if (textView == messageTextView) {
+            messageWordCount = textView.text.count
+            messageWordCountLabel.text = "\(messageWordCount)/140"
+            
+            if (textView.text.count > 1){
+                rightBarButtonItem.isEnabled = true
+            }
+            
+            if (textView.text.count < 280){
+                rightBarButtonItem.isEnabled = false
+            }
+            
+        }
+       
+    }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (textView == messageTextView) {
+            if (textView.text.count < 280){
+                return true
+            } else {
+                return false
+            }
+        }
+        if (textView == titleTextView) {
+            if (textView.text.count < 140){
+                return true
+            } else {
+                return false
+            }
+        }
+        return true
+    }
+    
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
         locationManager.stopPolling()
         self.dismiss(animated: true, completion: nil)
@@ -51,15 +113,16 @@ class CreateCommunityMessageViewController: UIViewController {
             log.warning("Failed to retrieve current user location.")
             return
         }
-        
-        let title = checkTextConstraints(sender: "title", text: titleTextView.text)
-        let message = checkTextConstraints(sender: "Message", text: messageTextView.text)
+        guard let title = titleTextView.text, let message = messageTextView.text else {
+            displayAlarm(message: "Please Enter Text")
+            return
+        }
         
         let communityMessageRequest = CommunityMessageRequest(title: title, time: Date(), message: message, location: location)
         
         communityBoard.postMessage(communityMessageRequest) { error in
             guard error == nil else {
-                displayAlarm(message: "Message could not be postet")
+                self.displayAlarm(message: "Message could not be postet")
                 return
             }
             
@@ -68,20 +131,7 @@ class CreateCommunityMessageViewController: UIViewController {
         }
     }
     
-    private func checkTextConstraints(sender: String, text: String) -> String{
-        if (text.count < 1){
-            displayAlarm(message: sender + " is empty")
-            log.warning("Empty message content.")
-            return
-        } else if(text.count < 300) {
-            return text
-        } else {
-            displayAlarm(message: sender + " contains too many characters")
-            log.warning("Message is too long.")
-            return
-        }
-        
-    }
+   
     
     private func displayAlarm(message: String) {
     let alertController = UIAlertController(title: "Error", message:
@@ -89,5 +139,8 @@ class CreateCommunityMessageViewController: UIViewController {
     alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
     self.present(alertController, animated: true, completion: nil)
     }
+    
+    
+    
     
 }
