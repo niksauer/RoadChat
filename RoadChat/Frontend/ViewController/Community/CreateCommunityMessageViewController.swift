@@ -28,7 +28,7 @@ class CreateCommunityMessageViewController: UIViewController {
         
         self.title = "New Post"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed(_:)))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(postButtonPressed(_:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send", style: .done, target: self, action: #selector(sendButtonPressed(_:)))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,7 +41,12 @@ class CreateCommunityMessageViewController: UIViewController {
     }
     
     // MARK: - Public Methods
-    @IBAction func postButtonPressed(_ sender: UIButton) {
+    @IBAction func cancelButtonPressed(_ sender: UIButton) {
+        locationManager.stopPolling()
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction func sendButtonPressed(_ sender: UIButton) {
         guard let location = locationManager.lastLocation else {
             log.warning("Failed to retrieve current user location.")
             return
@@ -66,9 +71,4 @@ class CreateCommunityMessageViewController: UIViewController {
         }
     }
     
-    @IBAction func cancelButtonPressed(_ sender: UIButton) {
-        locationManager.stopPolling()
-        self.dismiss(animated: true, completion: nil)
-    }
-
 }

@@ -46,7 +46,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Frequent location updates are required to track nearby users and traffic events</string>
+	<string>Frequent location updates are required to retrieve nearby users, show relevant traffic events and post messages.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
