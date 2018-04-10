@@ -12,6 +12,7 @@ import CoreData
 struct DependencyContainer {
     private let credentials: APICredentialStore = CredentialManager.shared
     private let appDelegate: AppDelegate = UIApplication.shared.delegate! as! AppDelegate
+    private let locationManager: LocationManager = LocationManager.shared
     
     private var viewContext: NSManagedObjectContext {
         return CoreDataStack.shared.viewContext
@@ -46,6 +47,7 @@ struct DependencyContainer {
         dateFormatter.dateStyle = .short
         return dateFormatter
     }()
+    
     
 //    private var timeSinceDateFormatter: DateFormatter = {
 //        let dateFormatter = DateFormatter()
@@ -83,7 +85,7 @@ extension DependencyContainer: ViewControllerFactory {
     }
 
     func makeCreateCommunityMessageViewController() -> CreateCommunityMessageViewController {
-        return CreateCommunityMessageViewController(communityBoard: communityBoard)
+        return CreateCommunityMessageViewController(communityBoard: communityBoard, locationManager: locationManager)
     }
     
     // Traffic
