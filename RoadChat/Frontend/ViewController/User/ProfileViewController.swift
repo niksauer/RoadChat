@@ -53,7 +53,14 @@ class ProfileViewController: UIViewController {
         usernameLabel.text = user.username
         
         if let profile = user.profile {
-//            ageLabel.text = String(date: profile.birth!)
+            let now = Date()
+            let birthday: Date = profile.birth!
+            let calendar = Calendar.current
+            
+            let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
+            let age = ageComponents.year!
+            
+            ageLabel.text = "(\(age)y)"
             nameLabel.text = "\(profile.firstName!) \(profile.lastName!)"
             
             if let sex = profile.storedSex {
@@ -65,9 +72,16 @@ class ProfileViewController: UIViewController {
                 case .other:
                     sexImageView.image = #imageLiteral(resourceName: "genderqueer")
                 }
+            } else {
+                sexImageView.image = nil
             }
             
             biographyLabel.text = profile.biography
+        } else {
+            ageLabel.text = nil
+            nameLabel.text = nil
+            sexImageView.image = nil
+            biographyLabel.text = nil
         }
         
         // setup profile page view controller

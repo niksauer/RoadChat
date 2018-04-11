@@ -71,7 +71,6 @@
                                 </stackView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eoO-j8-W1k">
                                     <rect key="frame" x="342" y="37.5" width="25" height="25"/>
-                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="25" id="Eel-ue-ch1"/>
                                         <constraint firstAttribute="height" constant="25" id="U7c-bB-4Ug"/>
