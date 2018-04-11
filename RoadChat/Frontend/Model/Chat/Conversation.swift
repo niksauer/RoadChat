@@ -68,7 +68,7 @@ class Conversation: NSManagedObject, ReportOwner {
     }
     
     // MARK: - Private Properties
-    private let conversationService = ConversationService(credentials: CredentialManager.shared)
+    private let conversationService = ConversationService(config: DependencyContainer().config)
     private let context: NSManagedObjectContext = CoreDataStack.shared.viewContext
 
     // MARK: - Public Methods
@@ -251,7 +251,7 @@ class Conversation: NSManagedObject, ReportOwner {
     }
     
     // MARK: - Private Methods
-    private func setApprovalStatus(_ status: ApprovalStatus, completion: (Error?) -> Void) {
+    private func setApprovalStatus(_ status: ApprovalType, completion: (Error?) -> Void) {
         guard let participation = self.storedParticipants.first(where: { $0.userID == self.user?.id }) else {
             // pass model validation error
             log.error("\(self.user!.logDescription) is not participating in \(self.logDescription)")

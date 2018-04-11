@@ -9,13 +9,13 @@
 import Foundation
 import Locksmith
 
-struct CredentialManager: APICredentialStore {
+struct KeychainManager: APICredentialStore {
     
     // MARK: - Singleton
-    static var shared = CredentialManager()
+    static var shared = KeychainManager()
 
     // MARK: - Private Properties
-    private let userAccount = "CredentialManager"
+    private let userAccount = "RoadChat"
     
     private enum Keys {
         static let UserID = "userID"

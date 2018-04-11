@@ -15,8 +15,8 @@ struct CommunityService: JSendService {
     typealias PrimaryResource = RoadChatKit.CommunityMessage.PublicCommunityMessage
     let client: JSendAPIClient
     
-    init(credentials: APICredentialStore?) {
-        self.client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/community", credentials: credentials)
+    init(hostname: String, port: Int, credentials: APICredentialStore?) {
+        self.client = JSendAPIClient(baseURL: "http://\(hostname):\(port)/community", credentials: credentials)
     }
     
     // MARK: - Public Methods

@@ -34,7 +34,20 @@ class LoginViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Customization
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        tapGestureRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
     // MARK: - Public Methods
+    @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         guard let user = usernameTextField.text, !user.isEmpty, let password = passwordTextField.text, !password.isEmpty else {
             // handle missing / empty fields error

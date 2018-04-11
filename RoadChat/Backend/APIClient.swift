@@ -15,6 +15,12 @@ enum APIResult {
     case failure(Error)
 }
 
+protocol APIConfiguration {
+    var hostname: String { get }
+    var port: Int? { get }
+    var credentials: APICredentialStore? { get }
+}
+
 protocol APICredentialStore {
     func getUserID() -> Int?
     func setUserID(_ userID: Int?) throws

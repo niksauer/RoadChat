@@ -12,7 +12,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="RoadChat" customModuleProvider="target">
             <connections>
+                <outlet property="ageLabel" destination="vBH-4d-78F" id="Xy8-P9-nEV"/>
+                <outlet property="biographyLabel" destination="PM4-jw-TWQ" id="auj-sc-BGQ"/>
+                <outlet property="nameLabel" destination="eju-JQ-g9w" id="Kjz-qe-LrT"/>
                 <outlet property="pageViewContainer" destination="y3O-XY-4fB" id="3rh-oy-7Wc"/>
+                <outlet property="profileImageView" destination="mVK-0e-Kvm" id="838-4U-FX4"/>
+                <outlet property="sexImageView" destination="eoO-j8-W1k" id="BF9-Y6-x9Y"/>
+                <outlet property="usernameLabel" destination="cRI-tt-pTA" id="njK-7W-Iuf"/>
                 <outlet property="view" destination="iN0-l3-epB" id="HDq-Zf-p7e"/>
             </connections>
         </placeholder>
@@ -65,7 +71,6 @@
                                 </stackView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eoO-j8-W1k">
                                     <rect key="frame" x="342" y="37.5" width="25" height="25"/>
-                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="25" id="Eel-ue-ch1"/>
                                         <constraint firstAttribute="height" constant="25" id="U7c-bB-4Ug"/>

@@ -10,13 +10,13 @@ import Foundation
 import RoadChatKit
 
 struct UserService: JSendService {
-    
+
     // MARK: - JSendService Protocol
     typealias PrimaryResource = RoadChatKit.User.PublicUser
     let client: JSendAPIClient
-
-    init(credentials: APICredentialStore?) {
-        self.client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/user", credentials: credentials)
+    
+    init(hostname: String, port: Int, credentials: APICredentialStore?) {
+        self.client = JSendAPIClient(baseURL: "http://\(hostname):\(port)/user", credentials: credentials)
     }
     
     // MARK: - Public Methods

@@ -56,7 +56,7 @@ class TrafficMessage: NSManagedObject, ReportOwner {
     }
     
     // MARK: - Private Properties
-    private let trafficService = TrafficService(credentials: CredentialManager.shared)
+    private let trafficService = TrafficService(config: DependencyContainer().config)
     private let context = CoreDataStack.shared.viewContext
     
     // MARK: - Private Properties

@@ -12,7 +12,14 @@ protocol Service {
     associatedtype PrimaryResource: Decodable
     associatedtype Client: APIClient
     var client: Client { get }
-    init(credentials: APICredentialStore?)
+    init(hostname: String, port: Int, credentials: APICredentialStore?)
+    init(config: APIConfiguration)
+}
+
+extension Service {
+    init(config: APIConfiguration) {
+        self.init(hostname: config.hostname, port: config.port ?? 80, credentials: config.credentials)
+    }
 }
 
 protocol JSendService: Service where Client == JSendAPIClient { }

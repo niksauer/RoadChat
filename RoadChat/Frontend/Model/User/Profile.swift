@@ -52,4 +52,13 @@ class Profile: NSManagedObject {
         return profile
     }
     
+    // MARK: - Public Properties
+    var storedSex: SexType? {
+        guard let sex = sex else {
+            return nil
+        }
+        
+        return SexType(rawValue: sex)!
+    }
+    
 }
