@@ -21,6 +21,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
     private let searchContext: NSManagedObjectContext
     private let cellDateFormatter: DateFormatter
     private let colorPalette: ColorPalette
+    private let userManager: UserManager
     
     private let reuseIdentifier = "CommunityMessageCell"
     private var sizingCell: CommunityMessageCell!
@@ -119,13 +120,33 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
         return sizingCell.preferredLayoutSizeFittingWidth(width)
     }
     
-    // MARK: UICollectionViewDelegate
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
+    //MARK: - UICollectionViewDelegate
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let message = fetchedResultsController!.object(at: indexPath)
+        
+        if let user = userManager.findUserById(Int(message.senderID), context: searchContext) {
+            message.user = user
+            let detailMessageViewController = viewFactory.makeCommunityMessageDetailViewController(for: message)
+            let detailMessageNavigationController = UINavigationController(rootViewController: detailMessageViewController)
+            present(detailMessageNavigationController, animated: true, completion: nil)
+            
+        } else {
+            userManager.getUserById(Int(message.senderID)) { user, error in
+                guard let user = user else {
+                    //handle failed user request error
+                    self.displayAlert(title: "Error", message: "Failed to retrieve sender: \(error!)")
+                    return
+                }
+                message.user = user
+                let detailMessageViewController = self.viewFactory.makeCommunityMessageDetailViewController(for: message)
+                let detailMessageNavigationController = UINavigationController(rootViewController: detailMessageViewController)
+                self.present(detailMessageNavigationController, animated: true, completion: nil)
+            }
+        }
+        
+        
+        
     }
-    */
 
 }
 
@@ -166,4 +187,6 @@ extension CommunityMessagesViewController: CommunityMessageCellDelegate {
             cell.karma = message.storedKarma
         }
     }
+    
+   
 }
