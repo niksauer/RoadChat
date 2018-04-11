@@ -139,9 +139,13 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
             return
         }
         
-        guard let title = titleTextView.text, let message = messageTextView.text else {
+        guard let title = titleTextView.text, var message = messageTextView.text else {
             // assert user interaction by text view delegate methods
             return
+        }
+        
+        if messageCharacterCount == 0 {
+            message = ""
         }
         
         let communityMessageRequest = CommunityMessageRequest(title: title, time: Date(), message: message, location: location)
