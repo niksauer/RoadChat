@@ -17,7 +17,8 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let communityBoard: CommunityBoard
-    private let user: User?
+    private let sender: User?
+    private let activeUser: User
     private let searchContext: NSManagedObjectContext
     private let cellDateFormatter: DateFormatter
     private let colorPalette: ColorPalette
@@ -29,10 +30,11 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
     private var refreshControl: UIRefreshControl?
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, communityBoard: CommunityBoard, user: User?, searchContext: NSManagedObjectContext, cellDateFormatter: DateFormatter, colorPalette: ColorPalette, userManager: UserManager) {
+    init(viewFactory: ViewControllerFactory, communityBoard: CommunityBoard, sender: User?, activeUser: User, searchContext: NSManagedObjectContext, cellDateFormatter: DateFormatter, colorPalette: ColorPalette, userManager: UserManager) {
         self.viewFactory = viewFactory
         self.communityBoard = communityBoard
-        self.user = user
+        self.sender = sender
+        self.activeUser = activeUser
         self.searchContext = searchContext
         self.cellDateFormatter = cellDateFormatter
         self.colorPalette = colorPalette
@@ -84,7 +86,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
         let request: NSFetchRequest<CommunityMessage> = CommunityMessage.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "time", ascending: true)]
         
-        if let user = user {
+        if let user = sender {
             request.predicate = NSPredicate(format: "senderID = %d", user.id)
         }
         
@@ -127,7 +129,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
         
         if let sender = userManager.findUserById(Int(message.senderID), context: searchContext) {
             message.user = sender
-            let detailMessageViewController = self.viewFactory.makeCommunityMessageDetailViewController(for: message, sender: sender)
+            let detailMessageViewController = self.viewFactory.makeCommunityMessageDetailViewController(for: message, sender: sender, activeUser: user)
             self.navigationController?.pushViewController(detailMessageViewController, animated: true)
         } else {
             userManager.getUserById(Int(message.senderID)) { user, error in
@@ -137,7 +139,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
                     return
                 }
                 message.user = sender
-                let detailMessageViewController = self.viewFactory.makeCommunityMessageDetailViewController(for: message, sender: sender)
+                let detailMessageViewController = self.viewFactory.makeCommunityMessageDetailViewController(for: message, sender: sender, activeUser: user)
                 self.navigationController?.pushViewController(detailMessageViewController, animated: true)
             }
         }

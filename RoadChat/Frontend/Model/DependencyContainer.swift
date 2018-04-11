@@ -103,8 +103,8 @@ extension DependencyContainer: ViewControllerFactory {
         return CreateCommunityMessageViewController(communityBoard: communityBoard, locationManager: locationManager, colorPalette: colorPalette)
     }
     
-    func makeCommunityMessageDetailViewController(for message: CommunityMessage, sender: User) -> CommunityMessageDetailViewController {
-        return CommunityMessageDetailViewController(viewFactory: self, message: message, sender: sender, dateFormatter: shortDateFormatter, colorPalette: colorPalette)
+    func makeCommunityMessageDetailViewController(for message: CommunityMessage, sender: User, activeUser: User) -> CommunityMessageDetailViewController {
+        return CommunityMessageDetailViewController(viewFactory: self, message: message, sender: sender, activeUser: activeUser, dateFormatter: shortDateFormatter, colorPalette: colorPalette)
     }
     
     // Traffic

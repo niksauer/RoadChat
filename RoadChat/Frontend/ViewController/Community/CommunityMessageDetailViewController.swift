@@ -31,6 +31,7 @@ class CommunityMessageDetailViewController: UIViewController {
     private let viewFactory: ViewControllerFactory
     private let message: CommunityMessage
     private let sender: User
+    private let activeUser: User
     private let dateFormatter: DateFormatter
     private let colorPalette: ColorPalette
     
@@ -71,10 +72,11 @@ class CommunityMessageDetailViewController: UIViewController {
     }
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, message: CommunityMessage, sender: User, dateFormatter: DateFormatter, colorPalette: ColorPalette) {
+    init(viewFactory: ViewControllerFactory, message: CommunityMessage, sender: User, activeUser: User, dateFormatter: DateFormatter, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
         self.message = message
         self.sender = sender
+        self.activeUser = activeUser
         self.dateFormatter = dateFormatter
         self.colorPalette = colorPalette
         
@@ -153,7 +155,19 @@ class CommunityMessageDetailViewController: UIViewController {
             (alert: UIAlertAction!) -> Void in
             self.dismiss(animated: true, completion: nil)
         })
+        
+        optionsActionSheet.addAction(cancelAction)
+        optionsActionSheet.addAction(flagAction)
+        
+        if message.senderID == activeUser.id {
+            optionsActionSheet.addAction(deleteAction)
+        }
+        
+        self.navigationController!.presentViewController(optionsActionSheet, animated: true, completion: nil)
+        
     }
+    
+    
     
 
     
