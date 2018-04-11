@@ -13,7 +13,7 @@ protocol ViewControllerFactory {
     
     // General
     func makeSetupViewController() -> SetupViewController
-    func makeHomeTabBarController(for user: User) -> HomeTabBarController
+    func makeHomeTabBarController(activeUser: User) -> HomeTabBarController
     
     // Authentication
     func makeAuthenticationViewController() -> UINavigationController
@@ -21,14 +21,14 @@ protocol ViewControllerFactory {
     func makeRegisterViewController() -> RegisterViewController
     
     // Community
-    func makeCommunityBoardViewController() -> CommunityBoardViewController
-    func makeCommunityMessagesViewController(for user: User?) -> CommunityMessagesViewController
+    func makeCommunityBoardViewController(activeUser: User) -> CommunityBoardViewController
+    func makeCommunityMessagesViewController(for sender: User?, activeUser: User) -> CommunityMessagesViewController
     func makeCreateCommunityMessageViewController() -> CreateCommunityMessageViewController
     func makeCommunityMessageDetailViewController(for message: CommunityMessage, sender: User, activeUser: User) -> CommunityMessageDetailViewController
     
     // Traffic
-    func makeTrafficBoardViewController() -> TrafficBoardViewController
-    func makeTrafficMessagesViewController(for user: User?) -> TrafficMessagesViewController
+    func makeTrafficBoardViewController(activeUser: User) -> TrafficBoardViewController
+    func makeTrafficMessagesViewController(for sender: User?, activeUser: User) -> TrafficMessagesViewController
     func makeCreateTrafficMessageViewController() -> CreateTrafficMessageViewController
     
     // Chat

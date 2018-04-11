@@ -66,15 +66,14 @@ struct DependencyContainer {
 }
 
 extension DependencyContainer: ViewControllerFactory {
-    
 
     // General
     func makeSetupViewController() -> SetupViewController {
         return SetupViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, credentials: credentials)
     }
     
-    func makeHomeTabBarController(for user: User) -> HomeTabBarController {
-        return HomeTabBarController(viewFactory: self, user: user)
+    func makeHomeTabBarController(activeUser user: User) -> HomeTabBarController {
+        return HomeTabBarController(viewFactory: self, activeUser: user)
     }
 
     // Authentication
@@ -91,12 +90,12 @@ extension DependencyContainer: ViewControllerFactory {
     }
 
     // Community
-    func makeCommunityBoardViewController() -> CommunityBoardViewController {
-        return CommunityBoardViewController(viewFactory: self, colorPalette: colorPalette)
+    func makeCommunityBoardViewController(activeUser: User) -> CommunityBoardViewController {
+        return CommunityBoardViewController(viewFactory: self, activeUser: activeUser, colorPalette: colorPalette)
     }
     
-    func makeCommunityMessagesViewController(for user: User?) -> CommunityMessagesViewController {
-        return CommunityMessagesViewController(viewFactory: self, communityBoard: communityBoard, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter, colorPalette: colorPalette, userManager: userManager)
+    func makeCommunityMessagesViewController(for sender: User?, activeUser: User) -> CommunityMessagesViewController {
+        return CommunityMessagesViewController(viewFactory: self, communityBoard: communityBoard, sender: sender, activeUser: activeUser, searchContext: viewContext, cellDateFormatter: shortDateFormatter, colorPalette: colorPalette, userManager: userManager)
     }
 
     func makeCreateCommunityMessageViewController() -> CreateCommunityMessageViewController {
@@ -108,12 +107,12 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     // Traffic
-    func makeTrafficBoardViewController() -> TrafficBoardViewController {
-        return TrafficBoardViewController(viewFactory: self, colorPalette: colorPalette)
+    func makeTrafficBoardViewController(activeUser: User) -> TrafficBoardViewController {
+        return TrafficBoardViewController(viewFactory: self, activeUser: activeUser, colorPalette: colorPalette)
     }
     
-    func makeTrafficMessagesViewController(for user: User?) -> TrafficMessagesViewController {
-        return TrafficMessagesViewController(viewFactory: self, trafficBoard: trafficBoard, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter, colorPalette: colorPalette)
+    func makeTrafficMessagesViewController(for sender: User?, activeUser: User) -> TrafficMessagesViewController {
+        return TrafficMessagesViewController(viewFactory: self, trafficBoard: trafficBoard, sender: sender, activeUser: activeUser, searchContext: viewContext, cellDateFormatter: shortDateFormatter, colorPalette: colorPalette)
     }
     
     func makeCreateTrafficMessageViewController() -> CreateTrafficMessageViewController {

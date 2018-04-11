@@ -123,52 +123,46 @@ class CommunityMessageDetailViewController: UIViewController {
     }
     
     @IBAction func didPressLocationButton(_ sender: UIButton) {
-        //TODO: Location
+    
     }
+    
     @IBAction func didPressProfileButton(_ sender: UIButton) {
-        let proifleViewController = self.viewFactory.makeProfileViewController(for: sender)
+        let profileViewController = viewFactory.makeProfileViewController(for: self.sender)
+        profileViewController.showsSenderProfile = true
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
     
     @IBAction func didPressSettingsButton(_ sender: UIButton) {
-        let optionsActionSheet = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .ActionSheet)
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
-            (alert: UIAlertAction!) -> Void in
-            
-            message.delete { error in
-                guard error == nil else {
-                    //handle delete error
-                    return
-                }
-            }
-         
-            self.dismiss(animated: true, completion: nil)
-            
-        })
-        let flagAction = UIAlertAction(title: "Flag", style: .Default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            println("Post Flagged")
-             self.dismiss(animated: true, completion: nil)
-        })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let flagAction = UIAlertAction(title: "Flag", style: .default, handler: { _ in
+            log.debug("post flagged")
             self.dismiss(animated: true, completion: nil)
         })
         
-        optionsActionSheet.addAction(cancelAction)
-        optionsActionSheet.addAction(flagAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        })
+        
+        actionSheet.addAction(cancelAction)
+        actionSheet.addAction(flagAction)
         
         if message.senderID == activeUser.id {
-            optionsActionSheet.addAction(deleteAction)
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+                self.message.delete { error in
+                    guard error == nil else {
+                        //handle delete error
+                        return
+                    }
+                }
+                
+                self.navigationController?.popViewController(animated: true)
+            })
+            
+            actionSheet.addAction(deleteAction)
         }
         
-        self.navigationController!.presentViewController(optionsActionSheet, animated: true, completion: nil)
-        
+        self.navigationController?.present(actionSheet, animated: true, completion: nil)
     }
-    
-    
-    
-
     
 }

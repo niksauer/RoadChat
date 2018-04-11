@@ -15,15 +15,17 @@ class TrafficBoardViewController: UIViewController {
     
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
+    private let user: User
     private let colorPalette: ColorPalette
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, colorPalette: ColorPalette) {
+    init(viewFactory: ViewControllerFactory, activeUser: User, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
+        self.user = activeUser
         self.colorPalette = colorPalette
         
         super.init(nibName: nil, bundle: nil)
-        self.title = "Traffic Board"
+        self.title = "Traffic"
         
         tabBarItem = UITabBarItem(title: "Traffic", image: #imageLiteral(resourceName: "car"), tag: 0)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new"), style: .plain, target: self, action: #selector(createButtonPressed(_:)))
@@ -37,7 +39,7 @@ class TrafficBoardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let trafficMessagesViewController = viewFactory.makeTrafficMessagesViewController(for: nil)
+        let trafficMessagesViewController = viewFactory.makeTrafficMessagesViewController(for: nil, activeUser: user)
         addChildViewController(trafficMessagesViewController)
         view.addSubview(trafficMessagesViewController.view)
         trafficMessagesViewController.didMove(toParentViewController: self)

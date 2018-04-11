@@ -129,7 +129,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
         
         if let sender = userManager.findUserById(Int(message.senderID), context: searchContext) {
             message.user = sender
-            let detailMessageViewController = self.viewFactory.makeCommunityMessageDetailViewController(for: message, sender: sender, activeUser: user)
+            let detailMessageViewController = self.viewFactory.makeCommunityMessageDetailViewController(for: message, sender: sender, activeUser: activeUser)
             self.navigationController?.pushViewController(detailMessageViewController, animated: true)
         } else {
             userManager.getUserById(Int(message.senderID)) { user, error in
@@ -139,7 +139,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
                     return
                 }
                 message.user = sender
-                let detailMessageViewController = self.viewFactory.makeCommunityMessageDetailViewController(for: message, sender: sender, activeUser: user)
+                let detailMessageViewController = self.viewFactory.makeCommunityMessageDetailViewController(for: message, sender: sender, activeUser: self.activeUser)
                 self.navigationController?.pushViewController(detailMessageViewController, animated: true)
             }
         }

@@ -64,7 +64,7 @@ class LoginViewController: UIViewController {
             }
             
             // show home screen
-            let homeTabBarController = self.viewFactory.makeHomeTabBarController(for: user)
+            let homeTabBarController = self.viewFactory.makeHomeTabBarController(activeUser: user)
             self.appDelegate.show(homeTabBarController)
         }
     }
