@@ -68,7 +68,39 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
         locationManager.startPolling()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        locationManager.stopPolling()
+    }
+    
     // MARK: - Public Methods
+    @IBAction func cancelButtonPressed(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction func sendButtonPressed(_ sender: UIButton) {
+        guard let location = locationManager.lastLocation else {
+            log.warning("Failed to retrieve current user location.")
+            return
+        }
+        
+        guard let title = titleTextView.text, let message = messageTextView.text else {
+            // assert user interaction by text view delegate methods
+            return
+        }
+        
+        let communityMessageRequest = CommunityMessageRequest(title: title, time: Date(), message: messageCharacterCount > 0 ? message : "", location: location)
+        
+        communityBoard.postMessage(communityMessageRequest) { error in
+            guard error == nil else {
+                self.displayAlert(title: "Error", message: "Failed to post message: \(error!)")
+                return
+            }
+            
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: - UITextViewDelegate
     func textViewDidBeginEditing(_ textView: UITextView) {
         textView.text = ""
         textView.textColor = UIColor.black
@@ -128,45 +160,4 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
         return true
     }
     
-    @IBAction func cancelButtonPressed(_ sender: UIButton) {
-        locationManager.stopPolling()
-        self.dismiss(animated: true, completion: nil)
-    }
-
-    @IBAction func sendButtonPressed(_ sender: UIButton) {
-        guard let location = locationManager.lastLocation else {
-            log.warning("Failed to retrieve current user location.")
-            return
-        }
-        
-        guard let title = titleTextView.text, var message = messageTextView.text else {
-            // assert user interaction by text view delegate methods
-            return
-        }
-        
-        if messageCharacterCount == 0 {
-            message = ""
-        }
-        
-        let communityMessageRequest = CommunityMessageRequest(title: title, time: Date(), message: message, location: location)
-        
-        communityBoard.postMessage(communityMessageRequest) { error in
-            guard error == nil else {
-                self.displayAlert(title: "Error", message: "Failed to post message: \(error!)")
-                return
-            }
-            
-            self.locationManager.stopPolling()
-            self.dismiss(animated: true, completion: nil)
-        }
-    }
-    
-}
-
-extension UIViewController {
-    func displayAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-    }
 }

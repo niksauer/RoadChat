@@ -20,6 +20,7 @@
 		240D110220481843008C5E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D110120481843008C5E39 /* Assets.xcassets */; };
 		240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D110320481843008C5E39 /* LaunchScreen.storyboard */; };
 		2412D6E020647B5D0066A51C /* SetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2412D6DF20647B5D0066A51C /* SetupViewController.xib */; };
+		2418C117207E36A4004D1632 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2418C116207E36A4004D1632 /* UIViewController.swift */; };
 		24207DE4207686D200851A73 /* Parchment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24207DCE207686B100851A73 /* Parchment.framework */; };
 		24207DE5207686D200851A73 /* Parchment.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24207DCE207686B100851A73 /* Parchment.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		24207DED2076AB1800851A73 /* ProfilePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24207DEC2076AB1800851A73 /* ProfilePageViewController.swift */; };
@@ -307,6 +308,7 @@
 		240D110420481843008C5E39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		240D110620481844008C5E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2412D6DF20647B5D0066A51C /* SetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetupViewController.xib; sourceTree = "<group>"; };
+		2418C116207E36A4004D1632 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		24207DBB207686B100851A73 /* Parchment.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parchment.xcodeproj; path = Frameworks/Parchment/Parchment.xcodeproj; sourceTree = "<group>"; };
 		24207DEC2076AB1800851A73 /* ProfilePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageViewController.swift; sourceTree = "<group>"; };
 		24207DF02076BC8E00851A73 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -459,6 +461,14 @@
 				240D110320481843008C5E39 /* LaunchScreen.storyboard */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		2418C102207E3691004D1632 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2418C116207E36A4004D1632 /* UIViewController.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		24207DBC207686B100851A73 /* Products */ = {
@@ -656,6 +666,7 @@
 		248D37B42049528A00B21C3D /* Frontend */ = {
 			isa = PBXGroup;
 			children = (
+				2418C102207E3691004D1632 /* Extensions */,
 				24AFEE8F206566A30097810E /* Protocols */,
 				243F1EB320483BAD00B45955 /* ViewController */,
 				249515D42064616300E734E4 /* Views */,
@@ -1086,6 +1097,7 @@
 				24207DED2076AB1800851A73 /* ProfilePageViewController.swift in Sources */,
 				249515D1206460F800E734E4 /* ConversationCell.swift in Sources */,
 				24AF50AC207B6C1200477DC0 /* CommunityMessageCell.swift in Sources */,
+				2418C117207E36A4004D1632 /* UIViewController.swift in Sources */,
 				247F6D1D205F26AE0006FBC7 /* CommunityBoard.swift in Sources */,
 				D44F4B88205297A7009A6239 /* CreateCommunityMessageViewController.swift in Sources */,
 				24FE0059207D51D200F0D657 /* BasicColorPalette.swift in Sources */,
