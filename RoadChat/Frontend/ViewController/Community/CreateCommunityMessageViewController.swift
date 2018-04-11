@@ -102,7 +102,9 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
     
     // MARK: - UITextViewDelegate
     func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.text = ""
+        if (textView.text == "(Optional)") {
+            textView.text = ""
+        }
         textView.textColor = UIColor.black
     }
     
