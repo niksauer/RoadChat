@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CommunityBoardViewController: UIViewController {
+class CommunityBoardViewController: UIViewController{
 
     // MARK: - Typealiases
     typealias ColorPalette = KarmaColorPalette
@@ -57,5 +57,8 @@ class CommunityBoardViewController: UIViewController {
         let createMessageNavigationController = UINavigationController(rootViewController: createMessageViewController)
         present(createMessageNavigationController, animated: true, completion: nil)
     }
+    
+    
+   
 
 }

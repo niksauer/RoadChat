@@ -66,6 +66,7 @@ struct DependencyContainer {
 }
 
 extension DependencyContainer: ViewControllerFactory {
+    
 
     // General
     func makeSetupViewController() -> SetupViewController {
@@ -100,6 +101,10 @@ extension DependencyContainer: ViewControllerFactory {
 
     func makeCreateCommunityMessageViewController() -> CreateCommunityMessageViewController {
         return CreateCommunityMessageViewController(communityBoard: communityBoard, locationManager: locationManager)
+    }
+    
+    func makeCommunityMessageDetailViewController(for message: CommunityMessage) -> CommunityMessageDetailViewController {
+        return CommunityMessageDetailViewController(viewFactory: ViewControllerFactory, message: CommunityMessage, user: User, dateFormatter: DateFormatter)
     }
     
     // Traffic

@@ -13,11 +13,16 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommunityMessageViewController" customModule="RoadChat" customModuleProvider="target">
             <connections>
+                <outlet property="messageLabel" destination="FxA-ee-qgb" id="hEW-4k-197"/>
+                <outlet property="timeLabel" destination="WRs-GJ-eNp" id="5of-Z8-qWF"/>
+                <outlet property="titleLabel" destination="IX8-t6-xyj" id="7Cl-VH-2aW"/>
+                <outlet property="upvotesLabel" destination="9mQ-G6-1Af" id="DC6-g8-dcY"/>
+                <outlet property="usernameLabel" destination="z6o-2T-3lD" id="Err-pB-xv5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="CommunityMessageDetailView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
