@@ -25,7 +25,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="CommunityMessageDetailView">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -83,6 +83,9 @@
                                 <constraint firstAttribute="width" constant="30" id="LJ8-El-P8H"/>
                             </constraints>
                             <state key="normal" title="Button" image="location"/>
+                            <connections>
+                                <action selector="didPressLocationButton:" destination="-1" eventType="touchUpInside" id="aOm-qE-RyO"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="waR-gS-yyO">
                             <rect key="frame" x="235" y="0.0" width="30" height="30"/>
@@ -91,6 +94,9 @@
                                 <constraint firstAttribute="width" constant="30" id="qcr-gK-vUH"/>
                             </constraints>
                             <state key="normal" title="Button" image="profile"/>
+                            <connections>
+                                <action selector="didPressProfileButton:" destination="-1" eventType="touchUpInside" id="e4A-ad-zfw"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rug-ag-OFN">
                             <rect key="frame" x="313" y="0.0" width="30" height="30"/>
@@ -99,6 +105,9 @@
                                 <constraint firstAttribute="height" constant="30" id="iy9-ue-Ouz"/>
                             </constraints>
                             <state key="normal" title="Button" image="more"/>
+                            <connections>
+                                <action selector="didPressSettingsButton:" destination="-1" eventType="touchUpInside" id="bWX-Zd-ByA"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>

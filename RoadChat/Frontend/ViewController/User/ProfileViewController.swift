@@ -30,6 +30,16 @@ class ProfileViewController: UIViewController {
     private let user: User
     private let colorPalette: ColorPalette
     
+    // MARK: - Public Properties
+    var showsSenderProfile: Bool = false {
+        didSet {
+            if showsSenderProfile {
+                self.navigationItem.leftBarButtonItem = nil
+                self.navigationItem.rightBarButtonItem = nil
+            }
+        }
+    }
+    
     // MARK: - Initialization
     init(viewFactory: ViewControllerFactory, user: User, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory

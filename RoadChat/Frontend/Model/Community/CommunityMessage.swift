@@ -111,6 +111,30 @@ class CommunityMessage: NSManagedObject, ReportOwner {
         }
     }
     
+    func delete(completion: ((Error?) -> Void)?) {
+        communityService.delete(messageID: Int(id)) { error in
+            guard error == nil else {
+                // pass service error
+                let report = Report(.failedServerOperation(.delete, resource: nil, isMultiple: false, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            do {
+                self.context.delete(self)
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.delete, resource: nil, isMultiple: false), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                let report = Report(.failedCoreDataOperation(.delete, resource: nil, isMultiple: false, error: error), owner: self)
+                log.debug(report)
+                completion?(nil)
+            }
+        }
+    }
+    
     // MARK: - Private Methods
     private func setKarma(_ karma: KarmaType, completion: ((Error?) -> Void)?) {
         do {

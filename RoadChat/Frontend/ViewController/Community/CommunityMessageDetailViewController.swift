@@ -31,6 +31,7 @@ class CommunityMessageDetailViewController: UIViewController {
     private let viewFactory: ViewControllerFactory
     private let message: CommunityMessage
     private let sender: User
+    private let activeUser: User
     private let dateFormatter: DateFormatter
     private let colorPalette: ColorPalette
     
@@ -71,10 +72,11 @@ class CommunityMessageDetailViewController: UIViewController {
     }
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, message: CommunityMessage, sender: User, dateFormatter: DateFormatter, colorPalette: ColorPalette) {
+    init(viewFactory: ViewControllerFactory, message: CommunityMessage, sender: User, activeUser: User, dateFormatter: DateFormatter, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
         self.message = message
         self.sender = sender
+        self.activeUser = activeUser
         self.dateFormatter = dateFormatter
         self.colorPalette = colorPalette
         
@@ -118,6 +120,49 @@ class CommunityMessageDetailViewController: UIViewController {
             self.karma = self.message.storedKarma
             self.upvotesLabel.text = String(self.message.upvotes)
         }
+    }
+    
+    @IBAction func didPressLocationButton(_ sender: UIButton) {
+    
+    }
+    
+    @IBAction func didPressProfileButton(_ sender: UIButton) {
+        let profileViewController = viewFactory.makeProfileViewController(for: self.sender)
+        profileViewController.showsSenderProfile = true
+        self.navigationController?.pushViewController(profileViewController, animated: true)
+    }
+    
+    @IBAction func didPressSettingsButton(_ sender: UIButton) {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let flagAction = UIAlertAction(title: "Flag", style: .default, handler: { _ in
+            log.debug("post flagged")
+            self.dismiss(animated: true, completion: nil)
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        })
+        
+        actionSheet.addAction(cancelAction)
+        actionSheet.addAction(flagAction)
+        
+        if message.senderID == activeUser.id {
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+                self.message.delete { error in
+                    guard error == nil else {
+                        //handle delete error
+                        return
+                    }
+                }
+                
+                self.navigationController?.popViewController(animated: true)
+            })
+            
+            actionSheet.addAction(deleteAction)
+        }
+        
+        self.navigationController?.present(actionSheet, animated: true, completion: nil)
     }
     
 }
