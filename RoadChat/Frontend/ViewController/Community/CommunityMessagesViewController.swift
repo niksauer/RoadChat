@@ -29,14 +29,15 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
     private var refreshControl: UIRefreshControl?
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, communityBoard: CommunityBoard, user: User?, searchContext: NSManagedObjectContext, cellDateFormatter: DateFormatter, colorPalette: ColorPalette) {
+    init(viewFactory: ViewControllerFactory, communityBoard: CommunityBoard, user: User?, searchContext: NSManagedObjectContext, cellDateFormatter: DateFormatter, colorPalette: ColorPalette, userManager: UserManager) {
         self.viewFactory = viewFactory
         self.communityBoard = communityBoard
         self.user = user
         self.searchContext = searchContext
         self.cellDateFormatter = cellDateFormatter
         self.colorPalette = colorPalette
-    
+        self.userManager = userManager
+        
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
         
         collectionView?.backgroundColor = colorPalette.backgroundColor
@@ -124,28 +125,22 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let message = fetchedResultsController!.object(at: indexPath)
         
-        if let user = userManager.findUserById(Int(message.senderID), context: searchContext) {
-            message.user = user
-            let detailMessageViewController = viewFactory.makeCommunityMessageDetailViewController(for: message)
-            let detailMessageNavigationController = UINavigationController(rootViewController: detailMessageViewController)
-            present(detailMessageNavigationController, animated: true, completion: nil)
-            
+        if let sender = userManager.findUserById(Int(message.senderID), context: searchContext) {
+            message.user = sender
+            let detailMessageViewController = self.viewFactory.makeCommunityMessageDetailViewController(for: message, sender: sender)
+            self.navigationController?.pushViewController(detailMessageViewController, animated: true)
         } else {
             userManager.getUserById(Int(message.senderID)) { user, error in
-                guard let user = user else {
+                guard let sender = user else {
                     //handle failed user request error
                     self.displayAlert(title: "Error", message: "Failed to retrieve sender: \(error!)")
                     return
                 }
-                message.user = user
-                let detailMessageViewController = self.viewFactory.makeCommunityMessageDetailViewController(for: message)
-                let detailMessageNavigationController = UINavigationController(rootViewController: detailMessageViewController)
-                self.present(detailMessageNavigationController, animated: true, completion: nil)
+                message.user = sender
+                let detailMessageViewController = self.viewFactory.makeCommunityMessageDetailViewController(for: message, sender: sender)
+                self.navigationController?.pushViewController(detailMessageViewController, animated: true)
             }
         }
-        
-        
-        
     }
 
 }

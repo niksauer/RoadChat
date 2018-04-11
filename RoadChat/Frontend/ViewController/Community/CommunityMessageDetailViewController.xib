@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommunityMessageViewController" customModule="RoadChat" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommunityMessageDetailViewController" customModule="RoadChat" customModuleProvider="target">
             <connections>
+                <outlet property="downvoteButton" destination="YPK-1U-upV" id="ge4-on-aC2"/>
                 <outlet property="messageLabel" destination="FxA-ee-qgb" id="hEW-4k-197"/>
                 <outlet property="timeLabel" destination="WRs-GJ-eNp" id="5of-Z8-qWF"/>
                 <outlet property="titleLabel" destination="IX8-t6-xyj" id="7Cl-VH-2aW"/>
+                <outlet property="upvoteButton" destination="Mnz-Bg-X4c" id="yd2-jp-Ttf"/>
+                <outlet property="upvotesImage" destination="ime-Dr-oUV" id="86V-fc-IKH"/>
                 <outlet property="upvotesLabel" destination="9mQ-G6-1Af" id="DC6-g8-dcY"/>
-                <outlet property="usernameLabel" destination="z6o-2T-3lD" id="Err-pB-xv5"/>
+                <outlet property="usernameLabel" destination="Z09-Rf-Dt6" id="dJX-01-jB1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,20 +29,20 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IX8-t6-xyj">
-                    <rect key="frame" x="16" y="80" width="35.5" height="20.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IX8-t6-xyj">
+                    <rect key="frame" x="16" y="80" width="351" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum Doloris blabla latein suc my dick hfjdjhjds halo ibims eine smuse katze und ich mag smusies" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FxA-ee-qgb">
-                    <rect key="frame" x="16" y="116.5" width="343" height="61"/>
+                    <rect key="frame" x="16" y="108.5" width="343" height="61"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="YbB-av-Q5a">
-                    <rect key="frame" x="16" y="246.5" width="343" height="30"/>
+                    <rect key="frame" x="16" y="238.5" width="343" height="30"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mnz-Bg-X4c">
                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -48,6 +51,14 @@
                                 <constraint firstAttribute="height" constant="30" id="dpb-aH-Hmd"/>
                             </constraints>
                             <state key="normal" title="Button" image="up-arrow"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="didPressUpvoteButton:" destination="-1" eventType="touchUpInside" id="aEW-5P-7dd"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YPK-1U-upV">
                             <rect key="frame" x="78.5" y="0.0" width="30" height="30"/>
@@ -56,6 +67,14 @@
                                 <constraint firstAttribute="width" constant="30" id="LLX-LT-1Ym"/>
                             </constraints>
                             <state key="normal" title="Button" image="down-arrow"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="didPressDownvoteButton:" destination="-1" eventType="touchUpInside" id="1xK-60-O2F"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fh8-Kx-yFm">
                             <rect key="frame" x="156.5" y="0.0" width="30" height="30"/>
@@ -79,75 +98,85 @@
                                 <constraint firstAttribute="width" constant="30" id="DV9-WC-shT"/>
                                 <constraint firstAttribute="height" constant="30" id="iy9-ue-Ouz"/>
                             </constraints>
-                            <state key="normal" title="Button" image="threeDots"/>
+                            <state key="normal" title="Button" image="more"/>
                         </button>
                     </subviews>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udb-v4-VOZ">
-                    <rect key="frame" x="8" y="284.5" width="359" height="1"/>
+                    <rect key="frame" x="8" y="276.5" width="359" height="1"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="Pzt-Gt-zIn"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r8e-M0-224">
-                    <rect key="frame" x="8" y="237.5" width="359" height="1"/>
+                    <rect key="frame" x="8" y="229.5" width="359" height="1"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="fcp-u1-Vxq"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upvotes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mQ-G6-1Af">
-                    <rect key="frame" x="33" y="217.5" width="40" height="12"/>
+                    <rect key="frame" x="33" y="209.5" width="40" height="12"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRs-GJ-eNp">
-                    <rect key="frame" x="106" y="217.5" width="24" height="12"/>
+                    <rect key="frame" x="108" y="209.5" width="24" height="12"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6o-2T-3lD">
-                    <rect key="frame" x="16" y="185.5" width="80.5" height="16"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6o-2T-3lD">
+                    <rect key="frame" x="16" y="177.5" width="15" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="up-arrow" translatesAutoresizingMaskIntoConstraints="NO" id="ime-Dr-oUV">
-                    <rect key="frame" x="16" y="216" width="15" height="15"/>
+                    <rect key="frame" x="16" y="208" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="15" id="YIz-r0-vQU"/>
                         <constraint firstAttribute="height" constant="15" id="n50-8Z-cgy"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="uZh-DV-2Cv">
-                    <rect key="frame" x="89" y="216" width="15" height="15"/>
+                    <rect key="frame" x="89" y="208" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="15" id="hol-ci-iHx"/>
                         <constraint firstAttribute="height" constant="15" id="qlT-sS-EO4"/>
                     </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z09-Rf-Dt6">
+                    <rect key="frame" x="33" y="177.5" width="64.5" height="16"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="r8e-M0-224" secondAttribute="trailing" constant="8" id="4hB-Qg-vm4"/>
+                <constraint firstItem="Z09-Rf-Dt6" firstAttribute="baseline" secondItem="z6o-2T-3lD" secondAttribute="baseline" id="A28-sN-Zok"/>
                 <constraint firstItem="z6o-2T-3lD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="APu-WL-mXh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IX8-t6-xyj" secondAttribute="trailing" constant="8" id="ATY-Vd-nHa"/>
                 <constraint firstItem="IX8-t6-xyj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="B47-DU-ubc"/>
                 <constraint firstItem="r8e-M0-224" firstAttribute="top" secondItem="9mQ-G6-1Af" secondAttribute="bottom" constant="8" id="DO7-0q-0ed"/>
                 <constraint firstItem="udb-v4-VOZ" firstAttribute="top" secondItem="YbB-av-Q5a" secondAttribute="bottom" constant="8" id="EWm-ro-N0S"/>
                 <constraint firstItem="9mQ-G6-1Af" firstAttribute="centerY" secondItem="ime-Dr-oUV" secondAttribute="centerY" id="Gmc-Wr-8EG"/>
                 <constraint firstItem="uZh-DV-2Cv" firstAttribute="leading" secondItem="9mQ-G6-1Af" secondAttribute="trailing" constant="16" id="HeE-1Y-jYq"/>
-                <constraint firstItem="FxA-ee-qgb" firstAttribute="top" secondItem="IX8-t6-xyj" secondAttribute="bottom" constant="16" id="Jl1-Ue-g43"/>
+                <constraint firstItem="FxA-ee-qgb" firstAttribute="top" secondItem="IX8-t6-xyj" secondAttribute="bottom" constant="8" id="Jl1-Ue-g43"/>
                 <constraint firstItem="WRs-GJ-eNp" firstAttribute="centerY" secondItem="uZh-DV-2Cv" secondAttribute="centerY" id="KWK-CZ-r7B"/>
+                <constraint firstItem="Z09-Rf-Dt6" firstAttribute="leading" secondItem="z6o-2T-3lD" secondAttribute="trailing" constant="2" id="Q9W-Qy-gBZ"/>
                 <constraint firstItem="r8e-M0-224" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="S3f-cn-Oh8"/>
                 <constraint firstItem="z6o-2T-3lD" firstAttribute="top" secondItem="FxA-ee-qgb" secondAttribute="bottom" constant="8" id="TUO-uP-kul"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FxA-ee-qgb" secondAttribute="trailing" constant="16" id="X6w-8h-CtU"/>
                 <constraint firstItem="9mQ-G6-1Af" firstAttribute="top" secondItem="z6o-2T-3lD" secondAttribute="bottom" constant="16" id="Xkw-N1-QSl"/>
-                <constraint firstItem="WRs-GJ-eNp" firstAttribute="leading" secondItem="uZh-DV-2Cv" secondAttribute="trailing" constant="2" id="ZOX-Pt-aBj"/>
+                <constraint firstItem="WRs-GJ-eNp" firstAttribute="leading" secondItem="uZh-DV-2Cv" secondAttribute="trailing" constant="4" id="ZOX-Pt-aBj"/>
                 <constraint firstItem="YbB-av-Q5a" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="ZS2-Cw-WXF"/>
                 <constraint firstItem="IX8-t6-xyj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="cJF-KN-9QV"/>
+                <constraint firstItem="Z09-Rf-Dt6" firstAttribute="baseline" secondItem="z6o-2T-3lD" secondAttribute="baseline" id="kyz-UG-WnB"/>
                 <constraint firstAttribute="trailing" secondItem="udb-v4-VOZ" secondAttribute="trailing" constant="8" id="m3e-E4-uvH"/>
                 <constraint firstItem="uZh-DV-2Cv" firstAttribute="centerY" secondItem="9mQ-G6-1Af" secondAttribute="centerY" id="oAe-y2-13A"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YbB-av-Q5a" secondAttribute="trailing" constant="16" id="rFW-Im-N86"/>
@@ -165,9 +194,9 @@
     <resources>
         <image name="clock" width="100" height="100"/>
         <image name="down-arrow" width="100" height="100"/>
-        <image name="location" width="100" height="100"/>
-        <image name="profile" width="50" height="50"/>
-        <image name="threeDots" width="100" height="100"/>
+        <image name="location" width="50" height="50"/>
+        <image name="more" width="100" height="100"/>
+        <image name="profile" width="100" height="100"/>
         <image name="up-arrow" width="100" height="100"/>
     </resources>
 </document>

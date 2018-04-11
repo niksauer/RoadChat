@@ -565,10 +565,10 @@
 		243F1EB620483BD100B45955 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */,
+				24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */,
 				D45FD694207E4EB900C35949 /* CommunityMessageDetailViewController.swift */,
 				D45FD695207E4EB900C35949 /* CommunityMessageDetailViewController.xib */,
-				24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */,
-				24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */,
 				D44F4B87205297A7009A6239 /* CreateCommunityMessageViewController.swift */,
 				24B134762064202800B894BF /* CreateCommunityMessageViewController.xib */,
 			);

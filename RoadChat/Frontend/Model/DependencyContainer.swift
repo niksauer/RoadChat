@@ -96,15 +96,15 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeCommunityMessagesViewController(for user: User?) -> CommunityMessagesViewController {
-        return CommunityMessagesViewController(viewFactory: self, communityBoard: communityBoard, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter, colorPalette: colorPalette)
+        return CommunityMessagesViewController(viewFactory: self, communityBoard: communityBoard, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter, colorPalette: colorPalette, userManager: userManager)
     }
 
     func makeCreateCommunityMessageViewController() -> CreateCommunityMessageViewController {
         return CreateCommunityMessageViewController(communityBoard: communityBoard, locationManager: locationManager, colorPalette: colorPalette)
     }
     
-    func makeCommunityMessageDetailViewController(for message: CommunityMessage) -> CommunityMessageDetailViewController {
-        return CommunityMessageDetailViewController(viewFactory: ViewControllerFactory, message: CommunityMessage, user: User, dateFormatter: DateFormatter)
+    func makeCommunityMessageDetailViewController(for message: CommunityMessage, sender: User) -> CommunityMessageDetailViewController {
+        return CommunityMessageDetailViewController(viewFactory: self, message: message, sender: sender, dateFormatter: shortDateFormatter, colorPalette: colorPalette)
     }
     
     // Traffic
