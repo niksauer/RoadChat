@@ -47,6 +47,7 @@ struct CommunityService: JSendService {
         }
     }
     
+    
     func upvote(messageID: Int, completion: @escaping (Error?) -> Void) {
         client.makeGETRequest(to: "/message/\(messageID)/upvote", params: nil) { result in
             completion(self.getError(from: result))

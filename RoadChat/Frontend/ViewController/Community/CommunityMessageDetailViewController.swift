@@ -123,7 +123,10 @@ class CommunityMessageDetailViewController: UIViewController {
     }
     
     @IBAction func didPressLocationButton(_ sender: UIButton) {
-        //TODO: Location
+        //retrive location with locationid from server
+        //let location =
+        let mapViewController = self.viewFactory.makecommunityMessageLocationViewController(for: location)
+        self.navigationController?.pushViewController(mapViewController, animated: true)
     }
     @IBAction func didPressProfileButton(_ sender: UIButton) {
         let proifleViewController = self.viewFactory.makeProfileViewController(for: sender)

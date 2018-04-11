@@ -92,6 +92,7 @@
 		D44F4B88205297A7009A6239 /* CreateCommunityMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F4B87205297A7009A6239 /* CreateCommunityMessageViewController.swift */; };
 		D45FD696207E4EB900C35949 /* CommunityMessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FD694207E4EB900C35949 /* CommunityMessageDetailViewController.swift */; };
 		D45FD697207E4EB900C35949 /* CommunityMessageDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FD695207E4EB900C35949 /* CommunityMessageDetailViewController.xib */; };
+		D45FD6B0207EBC4600C35949 /* CommunityMessageLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FD6AF207EBC4400C35949 /* CommunityMessageLocationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -381,6 +382,7 @@
 		D44F4B87205297A7009A6239 /* CreateCommunityMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommunityMessageViewController.swift; sourceTree = "<group>"; };
 		D45FD694207E4EB900C35949 /* CommunityMessageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessageDetailViewController.swift; sourceTree = "<group>"; };
 		D45FD695207E4EB900C35949 /* CommunityMessageDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunityMessageDetailViewController.xib; sourceTree = "<group>"; };
+		D45FD6AF207EBC4400C35949 /* CommunityMessageLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessageLocationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -571,6 +573,7 @@
 				D45FD695207E4EB900C35949 /* CommunityMessageDetailViewController.xib */,
 				D44F4B87205297A7009A6239 /* CreateCommunityMessageViewController.swift */,
 				24B134762064202800B894BF /* CreateCommunityMessageViewController.xib */,
+				D45FD6AF207EBC4400C35949 /* CommunityMessageLocationViewController.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -1081,6 +1084,7 @@
 				24FEFFEC207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift in Sources */,
 				247F6D3720605E240006FBC7 /* DependencyContainer.swift in Sources */,
 				C9150A2A207D0C1F00A69078 /* TrafficColorPalette.swift in Sources */,
+				D45FD6B0207EBC4600C35949 /* CommunityMessageLocationViewController.swift in Sources */,
 				243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */,
 				248D379C20494E1F00B21C3D /* Settings.swift in Sources */,
 				2489C4B72055E01E005C937E /* APIClient.swift in Sources */,

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 protocol ViewControllerFactory {
     
@@ -25,6 +26,7 @@ protocol ViewControllerFactory {
     func makeCommunityMessagesViewController(for user: User?) -> CommunityMessagesViewController
     func makeCreateCommunityMessageViewController() -> CreateCommunityMessageViewController
     func makeCommunityMessageDetailViewController(for message: CommunityMessage, sender: User, activeUser: User) -> CommunityMessageDetailViewController
+    func makecommunityMessageLocationViewController(for location: CLLocation) -> CommunityMessageLocationViewController
     
     // Traffic
     func makeTrafficBoardViewController() -> TrafficBoardViewController

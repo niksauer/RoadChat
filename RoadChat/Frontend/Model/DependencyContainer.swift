@@ -107,6 +107,10 @@ extension DependencyContainer: ViewControllerFactory {
         return CommunityMessageDetailViewController(viewFactory: self, message: message, sender: sender, activeUser: activeUser, dateFormatter: shortDateFormatter, colorPalette: colorPalette)
     }
     
+    func makeCommunityMessageLocationViewController(for location: CLLocation) -> CommunityMessageLocationViewController{
+        return CommunityMessageLocationViewController(viewFactory: self, location: location )
+    }
+    
     // Traffic
     func makeTrafficBoardViewController() -> TrafficBoardViewController {
         return TrafficBoardViewController(viewFactory: self, colorPalette: colorPalette)
