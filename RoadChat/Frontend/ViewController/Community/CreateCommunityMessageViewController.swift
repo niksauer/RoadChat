@@ -77,12 +77,10 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
         titleCharacterCount = 0
         messageCharacterCount = 0
 
-        locationManager.startPolling()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
-        locationManager.stopPolling()
     }
     
     // MARK: - Public Methods
