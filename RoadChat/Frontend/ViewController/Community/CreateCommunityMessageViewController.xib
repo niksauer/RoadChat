@@ -13,7 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateCommunityMessageViewController" customModule="RoadChat" customModuleProvider="target">
             <connections>
                 <outlet property="messageCharacterCountLabel" destination="wpq-pO-gu2" id="IdS-Ag-hJO"/>
-                <outlet property="messageCharacterCountLabelBottomConstraint" destination="urV-14-ALd" id="OXg-D7-Fsb"/>
+                <outlet property="messageCharacterCountLabelBottomConstraint" destination="hlY-Am-dcm" id="nRN-Bm-xg3"/>
                 <outlet property="messageTextView" destination="1t4-1i-Qyg" id="Byh-dU-fKV"/>
                 <outlet property="titleCharacterCountLabel" destination="5dX-Bb-a8Z" id="ZFe-Pi-cpQ"/>
                 <outlet property="titleTextView" destination="CcZ-y3-d3Y" id="BxT-SI-6KY"/>
@@ -46,15 +46,15 @@
                     </constraints>
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="titleTV" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CcZ-y3-d3Y">
-                    <rect key="frame" x="58" y="30" width="268.5" height="34"/>
+                    <rect key="frame" x="58" y="30" width="255.5" height="34"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="760" text="0/140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dX-Bb-a8Z" customClass="EdgeInsetLabel" customModule="RoadChat" customModuleProvider="target">
-                    <rect key="frame" x="334.5" y="40.5" width="32.5" height="14.5"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="261" verticalHuggingPriority="251" text="0/280" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpq-pO-gu2" customClass="EdgeInsetLabel" customModule="RoadChat" customModuleProvider="target">
+                    <rect key="frame" x="320" y="638" width="47" height="21"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
@@ -70,12 +70,15 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="bottomTextInset">
                             <real key="value" value="2"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="261" verticalHuggingPriority="251" text="0/280" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpq-pO-gu2" customClass="EdgeInsetLabel" customModule="RoadChat" customModuleProvider="target">
-                    <rect key="frame" x="332" y="644.5" width="34.5" height="14.5"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="760" text="0/140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dX-Bb-a8Z" customClass="EdgeInsetLabel" customModule="RoadChat" customModuleProvider="target">
+                    <rect key="frame" x="321.5" y="36.5" width="45.5" height="21"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
@@ -84,6 +87,9 @@
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="rightTextInset">
                             <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="topTextInset">
                             <real key="value" value="2"/>
@@ -111,9 +117,9 @@
                 <constraint firstItem="1t4-1i-Qyg" firstAttribute="top" secondItem="gXY-GK-FjS" secondAttribute="bottom" constant="8" id="WyM-ts-83m"/>
                 <constraint firstItem="CcZ-y3-d3Y" firstAttribute="centerY" secondItem="m9u-Nq-oPd" secondAttribute="centerY" id="YnW-Qi-wMI"/>
                 <constraint firstItem="5dX-Bb-a8Z" firstAttribute="centerY" secondItem="CcZ-y3-d3Y" secondAttribute="centerY" id="dYH-9W-Iza"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="wpq-pO-gu2" secondAttribute="bottom" constant="8" id="hlY-Am-dcm"/>
                 <constraint firstAttribute="trailing" secondItem="gXY-GK-FjS" secondAttribute="trailing" constant="16" id="kcO-vH-8nr"/>
                 <constraint firstItem="CcZ-y3-d3Y" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="qdR-jp-7Jc"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="wpq-pO-gu2" secondAttribute="bottom" constant="8" id="urV-14-ALd"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
