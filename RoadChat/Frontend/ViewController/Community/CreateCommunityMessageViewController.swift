@@ -71,20 +71,17 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
         messageTextView.delegate = self
         titleTextView.delegate = self
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         titleCharacterCount = 0
         messageCharacterCount = 0
 
         locationManager.startPolling()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)),
-                                               name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)),
-                                               name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
     override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
         locationManager.stopPolling()
     }
     
@@ -115,18 +112,18 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
             self.dismiss(animated: true, completion: nil)
         }
     }
-    //MARK: -Keyboard
+    //MARK: Keyboard Notifications
     @objc func keyboardWillShow(notification: Notification) {
-        let userInfo:NSDictionary = notification.userInfo! as NSDictionary
-        let keyboardFrame:NSValue = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let userInfo = notification.userInfo! as NSDictionary
+        let keyboardFrame = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
         
-        messageCharacterCountLabelBottomConstraint.constant = keyboardHeight + 8
+        messageCharacterCountLabelBottomConstraint.constant = keyboardHeight - 16
     }
     
     @objc func keyboardWillHide(notification: Notification) {
-       messageCharacterCountLabelBottomConstraint.constant = 8
+        messageCharacterCountLabelBottomConstraint.constant = 8
     }
     
     // MARK: - Private Methods
