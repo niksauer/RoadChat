@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,6 +13,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommunityMessageDetailViewController" customModule="RoadChat" customModuleProvider="target">
             <connections>
+                <outlet property="didPressLocationButton" destination="fh8-Kx-yFm" id="Wrs-ie-f7g"/>
+                <outlet property="didPressSettingsButton" destination="Rug-ag-OFN" id="cVX-Dr-U8d"/>
                 <outlet property="downvoteButton" destination="YPK-1U-upV" id="ge4-on-aC2"/>
                 <outlet property="messageLabel" destination="FxA-ee-qgb" id="hEW-4k-197"/>
                 <outlet property="timeLabel" destination="WRs-GJ-eNp" id="5of-Z8-qWF"/>
@@ -83,6 +85,9 @@
                                 <constraint firstAttribute="width" constant="30" id="LJ8-El-P8H"/>
                             </constraints>
                             <state key="normal" title="Button" image="location"/>
+                            <connections>
+                                <action selector="didPressLocationButton:" destination="-1" eventType="touchUpInside" id="qg9-On-pfG"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="waR-gS-yyO">
                             <rect key="frame" x="235" y="0.0" width="30" height="30"/>
@@ -91,6 +96,9 @@
                                 <constraint firstAttribute="width" constant="30" id="qcr-gK-vUH"/>
                             </constraints>
                             <state key="normal" title="Button" image="profile"/>
+                            <connections>
+                                <action selector="didPressProfileButton:" destination="-1" eventType="touchUpInside" id="GHF-KT-zgS"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rug-ag-OFN">
                             <rect key="frame" x="313" y="0.0" width="30" height="30"/>
@@ -99,6 +107,9 @@
                                 <constraint firstAttribute="height" constant="30" id="iy9-ue-Ouz"/>
                             </constraints>
                             <state key="normal" title="Button" image="more"/>
+                            <connections>
+                                <action selector="didPressSettingsButton:" destination="-1" eventType="touchUpInside" id="bcR-SL-E4K"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>

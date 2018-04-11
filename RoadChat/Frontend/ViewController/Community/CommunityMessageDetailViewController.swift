@@ -120,4 +120,41 @@ class CommunityMessageDetailViewController: UIViewController {
         }
     }
     
+    @IBAction func didPressLocationButton(_ sender: UIButton) {
+        //TODO: Location
+    }
+    @IBAction func didPressProfileButton(_ sender: UIButton) {
+        let proifleViewController = self.viewFactory.makeProfileViewController(for: sender)
+        self.navigationController?.pushViewController(profileViewController, animated: true)
+    }
+    
+    @IBAction func didPressSettingsButton(_ sender: UIButton) {
+        let optionsActionSheet = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .ActionSheet)
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
+            (alert: UIAlertAction!) -> Void in
+            
+            message.delete { error in
+                guard error == nil else {
+                    //handle delete error
+                    return
+                }
+            }
+         
+            self.dismiss(animated: true, completion: nil)
+            
+        })
+        let flagAction = UIAlertAction(title: "Flag", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            println("Post Flagged")
+             self.dismiss(animated: true, completion: nil)
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.dismiss(animated: true, completion: nil)
+        })
+    }
+    
+
+    
 }
