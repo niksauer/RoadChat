@@ -55,7 +55,7 @@ class CommunityMessage: NSManagedObject, ReportOwner {
     }
 
     // MARK: - Private Properties
-    private let communityService = CommunityService(credentials: CredentialManager.shared)
+    private let communityService = CommunityService(config: DependencyContainer().config)
     private let context = CoreDataStack.shared.viewContext
     
     // MARK: - Private Properties

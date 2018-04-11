@@ -15,8 +15,8 @@ struct AuthenticationService: JSendService {
     typealias PrimaryResource = RoadChatKit.BearerToken.PublicBearerToken
     let client: JSendAPIClient
     
-    init(credentials: APICredentialStore?) {
-        self.client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/user", credentials: credentials)
+    init(hostname: String, port: Int, credentials: APICredentialStore?) {
+        self.client = JSendAPIClient(baseURL: "http://\(hostname):\(port)/user", credentials: credentials)
     }
     
     // MARK: - Public Methods

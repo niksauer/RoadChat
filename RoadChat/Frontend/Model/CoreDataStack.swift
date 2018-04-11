@@ -60,4 +60,23 @@ final class CoreDataStack {
         self.persistentContainer.performBackgroundTask(block)
     }
     
+    func reset() {
+        deleteAllRecords(for: "User")
+        deleteAllRecords(for: "Conversation")
+        deleteAllRecords(for: "CommunityMessage")
+        deleteAllRecords(for: "TrafficMessage")
+    }
+    
+    func deleteAllRecords(for entity: String) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        // perform the delete
+        do {
+            try persistentContainer.viewContext.execute(deleteRequest)
+        } catch {
+            log.error("Failed to delete Core Data entity '\(entity)': \(error)")
+        }
+    }
+
 }

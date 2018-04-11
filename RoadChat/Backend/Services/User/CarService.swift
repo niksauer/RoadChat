@@ -15,8 +15,8 @@ struct CarService: JSendService {
     typealias PrimaryResource = RoadChatKit.Car.PublicCar
     let client: JSendAPIClient
 
-    init(credentials: APICredentialStore?) {
-        self.client = JSendAPIClient(baseURL: "http://141.52.39.100:8080/car", credentials: credentials)
+    init(hostname: String, port: Int, credentials: APICredentialStore?) {
+        self.client = JSendAPIClient(baseURL: "http://\(hostname):\(port)/car", credentials: credentials)
     }
     
     // MARK: - Public Methods

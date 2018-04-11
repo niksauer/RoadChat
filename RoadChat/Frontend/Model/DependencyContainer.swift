@@ -10,7 +10,8 @@ import UIKit
 import CoreData
 
 struct DependencyContainer {
-    private let credentials: APICredentialStore = CredentialManager.shared
+    
+    // Private Properties
     private let appDelegate: AppDelegate = UIApplication.shared.delegate! as! AppDelegate
     private let locationManager: LocationManager = LocationManager.shared
     
@@ -23,19 +24,19 @@ struct DependencyContainer {
 //    }
     
     private var userManager: UserManager {
-        return UserManager(userService: UserService(credentials: credentials), context: viewContext)
+        return UserManager(userService: UserService(config: config), context: viewContext)
     }
     
     private var authenticationManager: AuthenticationManager {
-        return AuthenticationManager(credentials: credentials, authenticationService: AuthenticationService(credentials: credentials), userManager: userManager, searchContext: viewContext)
+        return AuthenticationManager(credentials: credentials, authenticationService: AuthenticationService(config: config), userManager: userManager, searchContext: viewContext)
     }
     
     private var communityBoard: CommunityBoard {
-        return CommunityBoard(communityService: CommunityService(credentials: credentials), context: viewContext)
+        return CommunityBoard(communityService: CommunityService(config: config), context: viewContext)
     }
     
     private var trafficBoard: TrafficBoard {
-        return TrafficBoard(trafficService: TrafficService(credentials: credentials), context: viewContext)
+        return TrafficBoard(trafficService: TrafficService(config: config), context: viewContext)
     }
     
     private var colorPalette: ColorContainer {
@@ -48,11 +49,20 @@ struct DependencyContainer {
         return dateFormatter
     }()
     
-    
 //    private var timeSinceDateFormatter: DateFormatter = {
 //        let dateFormatter = DateFormatter()
 //        return dateFormatter
 //    }()
+    
+    // Public Properties
+    let credentials: APICredentialStore = KeychainManager.shared
+    let userDefaults: UserDefaults = UserDefaults.standard
+    let coreData: CoreDataStack = CoreDataStack.shared
+    
+    var config: APIConfiguration {
+        return RoadChatAPI(credentials: credentials)
+    }
+    
 }
 
 extension DependencyContainer: ViewControllerFactory {

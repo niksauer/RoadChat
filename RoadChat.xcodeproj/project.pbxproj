@@ -31,13 +31,14 @@
 		242F8F2E204D6EA80052087B /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F8F2D204D6EA80052087B /* AuthenticationService.swift */; };
 		243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243357252049817A00CD5F87 /* JSendAPIClient.swift */; };
 		245EAE332051346600821B4B /* ConversationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245EAE322051346600821B4B /* ConversationService.swift */; };
-		24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24615DA420508E5400ED11A1 /* CredentialManager.swift */; };
+		24615DA520508E5400ED11A1 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24615DA420508E5400ED11A1 /* KeychainManager.swift */; };
 		247F6D1D205F26AE0006FBC7 /* CommunityBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D1C205F26AE0006FBC7 /* CommunityBoard.swift */; };
 		247F6D21205F3C9C0006FBC7 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D20205F3C9C0006FBC7 /* UserManager.swift */; };
 		247F6D26206057950006FBC7 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D25206057950006FBC7 /* ViewControllerFactory.swift */; };
 		247F6D3720605E240006FBC7 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D3620605E240006FBC7 /* DependencyContainer.swift */; };
 		247F6D3B206081320006FBC7 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D3A206081320006FBC7 /* HomeTabBarController.swift */; };
 		247F6D3D20614E380006FBC7 /* TrafficBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D3C20614E380006FBC7 /* TrafficBoard.swift */; };
+		2483A72B207E0ED7008568E2 /* RoadChatAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2483A72A207E0ED7008568E2 /* RoadChatAPI.swift */; };
 		2489C4B72055E01E005C937E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489C4B62055E01E005C937E /* APIClient.swift */; };
 		248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 248D378D20485DC100B21C3D /* RoadChat.xcdatamodeld */; };
 		248D379820494D0900B21C3D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D379720494D0800B21C3D /* User.swift */; };
@@ -316,13 +317,14 @@
 		242F8F2D204D6EA80052087B /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		243357252049817A00CD5F87 /* JSendAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JSendAPIClient.swift; path = RoadChat/Backend/JSendAPIClient.swift; sourceTree = SOURCE_ROOT; };
 		245EAE322051346600821B4B /* ConversationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationService.swift; sourceTree = "<group>"; };
-		24615DA420508E5400ED11A1 /* CredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialManager.swift; sourceTree = "<group>"; };
+		24615DA420508E5400ED11A1 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		247F6D1C205F26AE0006FBC7 /* CommunityBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoard.swift; sourceTree = "<group>"; };
 		247F6D20205F3C9C0006FBC7 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		247F6D25206057950006FBC7 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		247F6D3620605E240006FBC7 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		247F6D3A206081320006FBC7 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		247F6D3C20614E380006FBC7 /* TrafficBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficBoard.swift; sourceTree = "<group>"; };
+		2483A72A207E0ED7008568E2 /* RoadChatAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoadChatAPI.swift; path = RoadChat/Frontend/Model/RoadChatAPI.swift; sourceTree = SOURCE_ROOT; };
 		2489C4B62055E01E005C937E /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		248D378E20485DC100B21C3D /* RoadChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RoadChat.xcdatamodel; sourceTree = "<group>"; };
 		248D379720494D0800B21C3D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -596,10 +598,11 @@
 				24AF50B0207B945B00477DC0 /* ColorContainer.swift */,
 				24AFEE9D206566B30097810E /* Report.swift */,
 				247F6D3620605E240006FBC7 /* DependencyContainer.swift */,
-				24615DA420508E5400ED11A1 /* CredentialManager.swift */,
+				24615DA420508E5400ED11A1 /* KeychainManager.swift */,
 				24A069B02051EFC8006F8401 /* CoreDataStack.swift */,
 				24A069BA20520367006F8401 /* AuthenticationManager.swift */,
 				C988ACA42052BB3200EDCEAC /* LocationManager.swift */,
+				2483A72A207E0ED7008568E2 /* RoadChatAPI.swift */,
 				248D379A20494D1800B21C3D /* User */,
 				248D37B32049506D00B21C3D /* Community */,
 				248D37A320494F1C00B21C3D /* Traffic */,
@@ -1090,11 +1093,12 @@
 				C988ACA52052BB3200EDCEAC /* LocationManager.swift in Sources */,
 				24AF5096207B693500477DC0 /* CommunityMessagesViewController.swift in Sources */,
 				C927B7962076962400701881 /* TrafficMessageCell.swift in Sources */,
+				2483A72B207E0ED7008568E2 /* RoadChatAPI.swift in Sources */,
 				24AF50B1207B945B00477DC0 /* ColorContainer.swift in Sources */,
 				24FE0002207CDDC300F0D657 /* CommunityBoardViewController.swift in Sources */,
 				248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */,
 				248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */,
-				24615DA520508E5400ED11A1 /* CredentialManager.swift in Sources */,
+				24615DA520508E5400ED11A1 /* KeychainManager.swift in Sources */,
 				2404A256204E92D2009AC7E1 /* UserService.swift in Sources */,
 				248D37B12049504B00B21C3D /* Car.swift in Sources */,
 				245EAE332051346600821B4B /* ConversationService.swift in Sources */,

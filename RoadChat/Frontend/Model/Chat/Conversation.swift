@@ -68,7 +68,7 @@ class Conversation: NSManagedObject, ReportOwner {
     }
     
     // MARK: - Private Properties
-    private let conversationService = ConversationService(credentials: CredentialManager.shared)
+    private let conversationService = ConversationService(config: DependencyContainer().config)
     private let context: NSManagedObjectContext = CoreDataStack.shared.viewContext
 
     // MARK: - Public Methods

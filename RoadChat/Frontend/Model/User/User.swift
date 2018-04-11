@@ -65,8 +65,8 @@ class User: NSManagedObject, ReportOwner {
     }
     
     // MARK: - Private Properties
-    private let userService = UserService(credentials: CredentialManager.shared)
-    private let conversationService = ConversationService(credentials: CredentialManager.shared)
+    private let userService = UserService(config: DependencyContainer().config)
+    private let conversationService = ConversationService(config: DependencyContainer().config)
     private let context = CoreDataStack.shared.viewContext
     
     // MARK: - ReportOwner Protocol

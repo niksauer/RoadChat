@@ -21,11 +21,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let console = ConsoleDestination()
         log.addDestination(console)
         
-        // non-storyboard configuration
-        window = UIWindow(frame: UIScreen.main.bounds)
-        
         // dependency injection
         let container = DependencyContainer()
+        
+        // delete keychain upon first app install
+        let userDefaults = container.userDefaults
+        let coreData = container.coreData
+        
+        if userDefaults.bool(forKey: "hasLaunched") == false {
+            // remove keychain items
+            let credentials = container.credentials
+            
+            do {
+                try credentials.reset()
+                log.debug("Cleared keychain upon first app launch.")
+                
+                // delete all stored data
+                coreData.reset()
+                
+                // update the flag
+                userDefaults.set(true, forKey: "hasLaunched")
+                userDefaults.synchronize()
+            } catch {
+                log.error("Failed to clear keychain upon first app launch.")
+            }
+        }
+        
+        // non-storyboard UI configuration
+        window = UIWindow(frame: UIScreen.main.bounds)
         let setupViewController = container.makeSetupViewController()
         show(setupViewController)
         
