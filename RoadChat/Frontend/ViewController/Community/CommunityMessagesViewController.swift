@@ -21,6 +21,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
     private let searchContext: NSManagedObjectContext
     private let cellDateFormatter: DateFormatter
     private let colorPalette: ColorPalette
+    private let userManager: UserManager
     
     private let reuseIdentifier = "CommunityMessageCell"
     private var sizingCell: CommunityMessageCell!
@@ -28,14 +29,15 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
     private var refreshControl: UIRefreshControl?
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, communityBoard: CommunityBoard, user: User?, searchContext: NSManagedObjectContext, cellDateFormatter: DateFormatter, colorPalette: ColorPalette) {
+    init(viewFactory: ViewControllerFactory, communityBoard: CommunityBoard, user: User?, searchContext: NSManagedObjectContext, cellDateFormatter: DateFormatter, colorPalette: ColorPalette, userManager: UserManager) {
         self.viewFactory = viewFactory
         self.communityBoard = communityBoard
         self.user = user
         self.searchContext = searchContext
         self.cellDateFormatter = cellDateFormatter
         self.colorPalette = colorPalette
-    
+        self.userManager = userManager
+        
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
         
         collectionView?.backgroundColor = colorPalette.backgroundColor
@@ -119,13 +121,27 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
         return sizingCell.preferredLayoutSizeFittingWidth(width)
     }
     
-    // MARK: UICollectionViewDelegate
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
+    //MARK: - UICollectionViewDelegate
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let message = fetchedResultsController!.object(at: indexPath)
+        
+        if let sender = userManager.findUserById(Int(message.senderID), context: searchContext) {
+            message.user = sender
+            let detailMessageViewController = self.viewFactory.makeCommunityMessageDetailViewController(for: message, sender: sender)
+            self.navigationController?.pushViewController(detailMessageViewController, animated: true)
+        } else {
+            userManager.getUserById(Int(message.senderID)) { user, error in
+                guard let sender = user else {
+                    //handle failed user request error
+                    self.displayAlert(title: "Error", message: "Failed to retrieve sender: \(error!)")
+                    return
+                }
+                message.user = sender
+                let detailMessageViewController = self.viewFactory.makeCommunityMessageDetailViewController(for: message, sender: sender)
+                self.navigationController?.pushViewController(detailMessageViewController, animated: true)
+            }
+        }
     }
-    */
 
 }
 
@@ -166,4 +182,6 @@ extension CommunityMessagesViewController: CommunityMessageCellDelegate {
             cell.karma = message.storedKarma
         }
     }
+    
+   
 }
