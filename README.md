@@ -11,7 +11,7 @@
 </a>
 
 ### Preview
-<img src="https://github.com/niksauer/RoadChat/blob/beta/Docs/PreviewScreenshot.png" width="300">
+<img src="https://github.com/niksauer/RoadChat/blob/beta/Docs/PreviewScreenshot.png">
 
 ### Setup 
 1. `git clone <url>`
