@@ -11,6 +11,9 @@ import RoadChatKit
 
 class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate {
     
+    // MARK: - Typealiases
+    typealias ColorPalette = BasicColorPalette
+    
     // MARK: - Outlets
     @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var messageTextView: UITextView!
@@ -21,28 +24,33 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
     // MARK: - Private Properties
     private let communityBoard: CommunityBoard
     private let locationManager: LocationManager
+    private let colorPalette: ColorPalette
     
     private var sendBarButtonItem: UIBarButtonItem!
     
     private let maxTitleCharacters = 140
     private let maxMessageCharacters = 280
+    private let messageTextViewPlaceholder = "(Optional)"
     
     private var titleCharacterCount: Int = 0 {
         didSet {
+            validateSendButton()
             titleCharacterCountLabel.text = "\(titleCharacterCount)/\(maxTitleCharacters)"
         }
     }
     
     private var messageCharacterCount: Int = 0 {
         didSet {
+            validateSendButton()
             messageCharacterCountLabel.text = "\(messageCharacterCount)/\(maxMessageCharacters)"
         }
     }
     
     // MARK: - Initialization
-    init(communityBoard: CommunityBoard, locationManager: LocationManager) {
+    init(communityBoard: CommunityBoard, locationManager: LocationManager, colorPalette: ColorPalette) {
         self.communityBoard = communityBoard
         self.locationManager = locationManager
+        self.colorPalette = colorPalette
         
         super.init(nibName: nil, bundle: nil)
         
@@ -100,62 +108,82 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
         }
     }
     
-    // MARK: - UITextViewDelegate
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if (textView.text == "(Optional)") {
-            textView.text = ""
-        }
-        textView.textColor = UIColor.black
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView == messageTextView, textView.text.count == 0 {
-            textView.textColor = UIColor.lightGray
-            textView.text = "(Optional)"
-        }
-    }
-    
-    func textViewDidChange(_ textView: UITextView) {
-        if (textView == titleTextView) {
-            titleCharacterCount = textView.text.count
-            
-            if (titleCharacterCount >= 1) {
-                sendBarButtonItem.isEnabled = true
-            } else if (titleCharacterCount >= 140) {
+    // MARK: - Private Methods
+    private func validateSendButton() {
+        if messageCharacterCount > maxMessageCharacters {
+            sendBarButtonItem.isEnabled = false
+        } else {
+            if titleCharacterCount < 1 {
                 sendBarButtonItem.isEnabled = false
+            } else if titleCharacterCount <= maxTitleCharacters {
+                sendBarButtonItem.isEnabled = true
             } else {
                 sendBarButtonItem.isEnabled = false
             }
         }
+    }
+    
+    // MARK: - UITextViewDelegate
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView == messageTextView, textView.text == messageTextViewPlaceholder {
+            textView.text = ""
+            textView.textColor = colorPalette.textColor
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView == messageTextView, textView.text.count == 0 {
+            textView.textColor = colorPalette.lightTextColor
+            textView.text = messageTextViewPlaceholder
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if textView == titleTextView {
+            titleCharacterCount = textView.text.count
+        }
         
-        if (textView == messageTextView) {
+        if textView == messageTextView {
             messageCharacterCount = textView.text.count
         }
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        // always allow backspace
-        let char = text.cString(using: String.Encoding.utf8)!
-        let isBackSpace = strcmp(char, "\\b")
-        
-        if (isBackSpace == -92) {
-            // backspace pressed
-            return true
-        }
-        
-        if (textView == messageTextView) {
-            if (textView.text.count < 280){
-                return true
-            } else {
-                return false
+        if text.count == 1 {
+            if textView == titleTextView {
+                if textView.text.count < maxTitleCharacters {
+                    return true
+                } else {
+                    return false
+                }
             }
-        }
-        
-        if (textView == titleTextView) {
-            if (textView.text.count < 140) {
+            
+            if textView == messageTextView {
+                if textView.text.count < maxMessageCharacters {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        } else {
+            // always allow backspace
+            let char = text.cString(using: String.Encoding.utf8)!
+            let isBackSpace = strcmp(char, "\\b")
+            
+            if isBackSpace == -92 {
+                // backspace pressed
                 return true
             } else {
-                return false
+                // pasted text
+                if textView == titleTextView {
+                    titleCharacterCount = textView.text.count
+                }
+                
+                if textView == messageTextView {
+                    messageCharacterCount = textView.text.count
+                }
+                
+                return true
             }
         }
         

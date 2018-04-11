@@ -21,6 +21,9 @@ struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette
     
     // BasicColorPalette
     var backgroundColor: UIColor { return lightGray }
+    var textColor: UIColor { return UIColor.black }
+    var lightTextColor: UIColor { return UIColor.lightGray }
+    
     
     // KarmaColorPalette
     var upvoteBgColor: UIColor { return darkOrange }
