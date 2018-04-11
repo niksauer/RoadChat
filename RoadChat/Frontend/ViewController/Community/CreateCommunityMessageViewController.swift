@@ -20,7 +20,8 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
     
     @IBOutlet weak var titleCharacterCountLabel: UILabel!
     @IBOutlet weak var messageCharacterCountLabel: UILabel!
-
+    @IBOutlet weak var messageCharacterCountLabelBottomConstraint: NSLayoutConstraint!
+    
     // MARK: - Private Properties
     private let communityBoard: CommunityBoard
     private let locationManager: LocationManager
@@ -76,6 +77,13 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
         locationManager.startPolling()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)),
+                                               name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)),
+                                               name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         locationManager.stopPolling()
     }
@@ -106,6 +114,19 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
             
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    //MARK: -Keyboard
+    @objc func keyboardWillShow(notification: Notification) {
+        let userInfo:NSDictionary = notification.userInfo! as NSDictionary
+        let keyboardFrame:NSValue = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.cgRectValue
+        let keyboardHeight = keyboardRectangle.height
+        
+        messageCharacterCountLabelBottomConstraint.constant = keyboardHeight + 8
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+       messageCharacterCountLabelBottomConstraint.constant = 8
     }
     
     // MARK: - Private Methods

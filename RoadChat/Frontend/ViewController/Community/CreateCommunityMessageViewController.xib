@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateCommunityMessageViewController" customModule="RoadChat" customModuleProvider="target">
             <connections>
                 <outlet property="messageCharacterCountLabel" destination="wpq-pO-gu2" id="IdS-Ag-hJO"/>
+                <outlet property="messageCharacterCountLabelBottomConstraint" destination="hlY-Am-dcm" id="nRN-Bm-xg3"/>
                 <outlet property="messageTextView" destination="1t4-1i-Qyg" id="Byh-dU-fKV"/>
                 <outlet property="titleCharacterCountLabel" destination="5dX-Bb-a8Z" id="ZFe-Pi-cpQ"/>
                 <outlet property="titleTextView" destination="CcZ-y3-d3Y" id="BxT-SI-6KY"/>
@@ -51,7 +52,7 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="261" verticalHuggingPriority="251" text="0/280" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpq-pO-gu2" customClass="EdgeInsetLabel" customModule="RoadChat" customModuleProvider="target">
-                    <rect key="frame" x="320" y="89" width="47" height="21"/>
+                    <rect key="frame" x="320" y="638" width="47" height="21"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -113,10 +114,10 @@
                 <constraint firstItem="5dX-Bb-a8Z" firstAttribute="centerY" secondItem="CcZ-y3-d3Y" secondAttribute="centerY" id="Q3l-O7-sYb"/>
                 <constraint firstItem="gXY-GK-FjS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="RN3-Wr-FEE"/>
                 <constraint firstItem="CcZ-y3-d3Y" firstAttribute="leading" secondItem="m9u-Nq-oPd" secondAttribute="trailing" constant="8" id="Rdr-Be-wg7"/>
-                <constraint firstItem="wpq-pO-gu2" firstAttribute="top" secondItem="gXY-GK-FjS" secondAttribute="bottom" constant="16" id="Vhb-zS-66V"/>
                 <constraint firstItem="1t4-1i-Qyg" firstAttribute="top" secondItem="gXY-GK-FjS" secondAttribute="bottom" constant="8" id="WyM-ts-83m"/>
                 <constraint firstItem="CcZ-y3-d3Y" firstAttribute="centerY" secondItem="m9u-Nq-oPd" secondAttribute="centerY" id="YnW-Qi-wMI"/>
                 <constraint firstItem="5dX-Bb-a8Z" firstAttribute="centerY" secondItem="CcZ-y3-d3Y" secondAttribute="centerY" id="dYH-9W-Iza"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="wpq-pO-gu2" secondAttribute="bottom" constant="8" id="hlY-Am-dcm"/>
                 <constraint firstAttribute="trailing" secondItem="gXY-GK-FjS" secondAttribute="trailing" constant="16" id="kcO-vH-8nr"/>
                 <constraint firstItem="CcZ-y3-d3Y" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="qdR-jp-7Jc"/>
             </constraints>
