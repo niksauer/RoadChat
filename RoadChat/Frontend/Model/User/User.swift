@@ -13,9 +13,9 @@ import RoadChatKit
 class User: NSManagedObject, ReportOwner {
     
     // MARK: - Public Class Methods
-    class func createOrUpdate(from response: RoadChatKit.User.PublicUser, in context: NSManagedObjectContext) throws -> User {
+    class func createOrUpdate(from prototype: RoadChatKit.User.PublicUser, in context: NSManagedObjectContext) throws -> User {
         let request: NSFetchRequest<User> = User.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %d", response.id)
+        request.predicate = NSPredicate(format: "id = %d", prototype.id)
         
         do {
             let matches = try context.fetch(request)
@@ -24,8 +24,8 @@ class User: NSManagedObject, ReportOwner {
                 
                 // update existing user
                 let user = matches.first!
-                user.email = response.email
-                user.username = response.username
+                user.email = prototype.email
+                user.username = prototype.username
                 
                 return user
             }
@@ -35,15 +35,21 @@ class User: NSManagedObject, ReportOwner {
         
         // create new user
         let user = User(context: context)
-        user.id = Int32(response.id)
-        user.email = response.email
-        user.username = response.username
-        user.registry = response.registry
+        user.id = Int32(prototype.id)
+        user.email = prototype.email
+        user.username = prototype.username
+        user.registry = prototype.registry
         
         // retrieve resources
         user.getProfile(completion: nil)
         user.getConversations(completion: nil)
-        
+    
+        // set location
+        if let location = prototype.location {
+            let location = try Location.create(from: location, in: context)
+            user.location = location
+        }
+    
         return user
     }
     

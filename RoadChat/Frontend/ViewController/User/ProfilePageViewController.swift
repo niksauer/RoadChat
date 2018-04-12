@@ -36,10 +36,10 @@ class ProfilePageViewController: UIViewController {
     
     // MARK: - Customization
     override func viewDidLoad() {
-        let communityViewController = viewFactory.makeCommunityMessagesViewController(for: user)
+        let communityViewController = viewFactory.makeCommunityMessagesViewController(for: user, activeUser: user)
         communityViewController.title = "Community"
         
-        let trafficViewController = viewFactory.makeTrafficMessagesViewController(for: user)
+        let trafficViewController = viewFactory.makeTrafficMessagesViewController(for: user, activeUser: user)
         trafficViewController.title = "Traffic"
         
         let carsViewController = viewFactory.makeCarsViewController(for: user)

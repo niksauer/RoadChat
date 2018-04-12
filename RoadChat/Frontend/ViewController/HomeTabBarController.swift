@@ -11,15 +11,15 @@ import UIKit
 class HomeTabBarController: UITabBarController {
     
     // MARK: - Initialization
-    convenience init(viewFactory: ViewControllerFactory, user: User) {
+    convenience init(viewFactory: ViewControllerFactory, activeUser: User) {
         self.init(nibName: nil, bundle: nil)
         
         let viewControllers: [UIViewController]
         
-        let communityBoardViewController = viewFactory.makeCommunityBoardViewController()
-        let trafficBoardViewController = viewFactory.makeTrafficBoardViewController()
-        let conversationsViewController = viewFactory.makeConversationsViewController(for: user)
-        let profileViewController = viewFactory.makeProfileViewController(for: user)
+        let communityBoardViewController = viewFactory.makeCommunityBoardViewController(activeUser: activeUser)
+        let trafficBoardViewController = viewFactory.makeTrafficBoardViewController(activeUser: activeUser)
+        let conversationsViewController = viewFactory.makeConversationsViewController(for: activeUser)
+        let profileViewController = viewFactory.makeProfileViewController(for: activeUser)
         
         viewControllers = [communityBoardViewController, trafficBoardViewController, conversationsViewController, profileViewController]
         

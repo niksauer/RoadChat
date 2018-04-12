@@ -44,13 +44,16 @@ class TrafficMessage: NSManagedObject, ReportOwner {
         let message = TrafficMessage(context: context)
         message.id = Int32(prototype.id)
         message.senderID = Int32(prototype.senderID)
-        message.locationID = Int32(prototype.locationID)
         message.time = prototype.time
         message.type = prototype.type.rawValue
         message.message = prototype.message
         message.validations = Int16(prototype.validations)
         message.upvotes = Int16(prototype.upvotes)
         message.karma = Int16(prototype.karma.rawValue)
+        
+        // set location
+        let location = try Location.create(from: prototype.location, in: context)
+        message.location = location
         
         return message
     }
@@ -74,6 +77,30 @@ class TrafficMessage: NSManagedObject, ReportOwner {
     }
     
     // MARK: - Public Methods
+    func delete(completion: ((Error?) -> Void)?) {
+        trafficService.delete(messageID: Int(id)) { error in
+            guard error == nil else {
+                // pass service error
+                let report = Report(.failedServerOperation(.delete, resource: nil, isMultiple: false, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            do {
+                self.context.delete(self)
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.delete, resource: nil, isMultiple: false), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                let report = Report(.failedCoreDataOperation(.delete, resource: nil, isMultiple: false, error: error), owner: self)
+                log.debug(report)
+                completion?(nil)
+            }
+        }
+    }
+    
     func upvote(completion: ((Error?) -> Void)?) {
         trafficService.upvote(messageID: Int(id)) { error in
             guard error == nil else {

@@ -8,22 +8,24 @@
 
 import UIKit
 
-class CommunityBoardViewController: UIViewController {
+class CommunityBoardViewController: UIViewController{
 
     // MARK: - Typealiases
     typealias ColorPalette = KarmaColorPalette
     
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
+    private let activeUser: User
     private let colorPalette: ColorPalette
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, colorPalette: ColorPalette) {
+    init(viewFactory: ViewControllerFactory, activeUser: User, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
+        self.activeUser = activeUser
         self.colorPalette = colorPalette
         
         super.init(nibName: nil, bundle: nil)
-        self.title = "Community Board"
+        self.title = "Community"
         
         tabBarItem = UITabBarItem(title: "Community", image: #imageLiteral(resourceName: "collaboration"), tag: 0)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new"), style: .plain, target: self, action: #selector(createButtonPressed(_:)))
@@ -37,7 +39,7 @@ class CommunityBoardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let communityMessagesViewController = viewFactory.makeCommunityMessagesViewController(for: nil)
+        let communityMessagesViewController = viewFactory.makeCommunityMessagesViewController(for: nil, activeUser: activeUser)
         addChildViewController(communityMessagesViewController)
         view.addSubview(communityMessagesViewController.view)
         communityMessagesViewController.didMove(toParentViewController: self)
@@ -57,5 +59,8 @@ class CommunityBoardViewController: UIViewController {
         let createMessageNavigationController = UINavigationController(rootViewController: createMessageViewController)
         present(createMessageNavigationController, animated: true, completion: nil)
     }
+    
+    
+   
 
 }

@@ -17,7 +17,8 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let trafficBoard: TrafficBoard
-    private let user: User?
+    private let sender: User?
+    private let activeUser: User
     private let searchContext: NSManagedObjectContext
     private let cellDateFormatter: DateFormatter
     private let colorPalette: ColorPalette
@@ -28,10 +29,11 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
     private var refreshControl: UIRefreshControl?
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, trafficBoard: TrafficBoard, user: User?, searchContext: NSManagedObjectContext, cellDateFormatter: DateFormatter, colorPalette: ColorPalette) {
+    init(viewFactory: ViewControllerFactory, trafficBoard: TrafficBoard, sender: User?, activeUser: User, searchContext: NSManagedObjectContext, cellDateFormatter: DateFormatter, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
         self.trafficBoard = trafficBoard
-        self.user = user
+        self.sender = sender
+        self.activeUser = activeUser
         self.searchContext = searchContext
         self.cellDateFormatter = cellDateFormatter
         self.colorPalette = colorPalette
@@ -82,7 +84,7 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
         let request: NSFetchRequest<TrafficMessage> = TrafficMessage.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "time", ascending: true)]
         
-        if let user = user {
+        if let user = sender {
             request.predicate = NSPredicate(format: "senderID = %d", user.id)
         }
         
