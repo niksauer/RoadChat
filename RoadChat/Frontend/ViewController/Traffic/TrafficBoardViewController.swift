@@ -27,8 +27,8 @@ class TrafficBoardViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.title = "Traffic"
         
-        tabBarItem = UITabBarItem(title: "Traffic", image: #imageLiteral(resourceName: "car"), tag: 0)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new"), style: .plain, target: self, action: #selector(createButtonPressed(_:)))
+        tabBarItem = UITabBarItem(title: "Traffic", image: #imageLiteral(resourceName: "car_glyph"), tag: 0)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new_glyph"), style: .plain, target: self, action: #selector(createButtonPressed(_:)))
     }
     
     required init?(coder aDecoder: NSCoder) {

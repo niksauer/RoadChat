@@ -89,7 +89,7 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
     }
 
     @IBAction func sendButtonPressed(_ sender: UIButton) {
-        guard let location = locationManager.lastLocation else {
+        guard let coreLocation = locationManager.lastLocation else {
             log.warning("Failed to retrieve current user location.")
             return
         }
@@ -99,6 +99,7 @@ class CreateCommunityMessageViewController: UIViewController, UITextViewDelegate
             return
         }
         
+        let location = RoadChatKit.Location(coreLocation: coreLocation)
         let communityMessageRequest = CommunityMessageRequest(title: title, time: Date(), message: messageCharacterCount > 0 ? message : "", location: location)
         
         communityBoard.postMessage(communityMessageRequest) { error in

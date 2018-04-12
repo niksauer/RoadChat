@@ -49,8 +49,8 @@ class ProfileViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.title = "Profile"
-        self.tabBarItem = UITabBarItem(title: "Profile", image: #imageLiteral(resourceName: "contact_card"), tag: 3)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"), style: .done, target: self, action: #selector(settingsButtonPressed(_:)))
+        self.tabBarItem = UITabBarItem(title: "Profile", image: #imageLiteral(resourceName: "profile_glyph"), tag: 3)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settings_glyph"), style: .done, target: self, action: #selector(settingsButtonPressed(_:)))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonPressed(_:)))
     }
     

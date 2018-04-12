@@ -27,8 +27,8 @@ class CommunityBoardViewController: UIViewController{
         super.init(nibName: nil, bundle: nil)
         self.title = "Community"
         
-        tabBarItem = UITabBarItem(title: "Community", image: #imageLiteral(resourceName: "collaboration"), tag: 0)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new"), style: .plain, target: self, action: #selector(createButtonPressed(_:)))
+        tabBarItem = UITabBarItem(title: "Community", image: #imageLiteral(resourceName: "collaboration_glyph"), tag: 0)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new_glyph"), style: .plain, target: self, action: #selector(createButtonPressed(_:)))
     }
     
     required init?(coder aDecoder: NSCoder) {

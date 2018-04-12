@@ -94,9 +94,3 @@ struct TrafficBoard: ReportOwner {
     }
     
 }
-
-extension TrafficMessageRequest {
-    init(type: TrafficType, time: Date, message: String?, location: CLLocation) {
-        self.init(type: type, time: time, message: message, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, altitude: location.altitude, horizontalAccuracy: location.horizontalAccuracy, verticalAccuracy: location.verticalAccuracy, course: location.course, speed: location.speed)
-    }
-}

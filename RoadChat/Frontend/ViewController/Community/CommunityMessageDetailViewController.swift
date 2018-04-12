@@ -9,6 +9,7 @@
 import UIKit
 import RoadChatKit
 import CoreLocation
+import MapKit
 
 class CommunityMessageDetailViewController: UIViewController {
 
@@ -27,6 +28,8 @@ class CommunityMessageDetailViewController: UIViewController {
 
     @IBOutlet weak var upvoteButton: UIButton!
     @IBOutlet weak var downvoteButton: UIButton!
+    
+    @IBOutlet weak var mapView: MKMapView!
     
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
@@ -97,6 +100,27 @@ class CommunityMessageDetailViewController: UIViewController {
         timeLabel.text = dateFormatter.string(from: message.time!)
         
         karma = message.storedKarma
+
+        let location = message.storedLocation
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location.coordinate
+        mapView.setCenter(location.coordinate, animated: true)
+        mapView.addAnnotation(annotation)
+        
+        let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+        mapView.setRegion(region, animated: true)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.expandMap (_:)))
+        tapGestureRecognizer.cancelsTouchesInView = false
+        mapView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    // MARK: - Public Methods
+    @objc func expandMap(_ sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            let locationViewContoller = viewFactory.makeLocationViewController(for: message.storedLocation)
+            self.navigationController?.pushViewController(locationViewContoller, animated: true)
+        }
     }
     
     @IBAction func didPressUpvoteButton(_ sender: UIButton) {
@@ -124,8 +148,7 @@ class CommunityMessageDetailViewController: UIViewController {
     }
     
     @IBAction func didPressLocationButton(_ sender: UIButton) {
-        let location = CLLocation(location: message.location!)
-        let locationViewContoller = viewFactory.makeLocationViewController(for: location)
+        let locationViewContoller = viewFactory.makeLocationViewController(for: message.storedLocation)
         self.navigationController?.pushViewController(locationViewContoller, animated: true)
     }
     
@@ -138,17 +161,11 @@ class CommunityMessageDetailViewController: UIViewController {
     @IBAction func didPressSettingsButton(_ sender: UIButton) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let flagAction = UIAlertAction(title: "Flag", style: .default, handler: { _ in
-            log.debug("post flagged")
-            self.dismiss(animated: true, completion: nil)
-        })
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
             self.dismiss(animated: true, completion: nil)
         })
         
         actionSheet.addAction(cancelAction)
-        actionSheet.addAction(flagAction)
         
         if message.senderID == activeUser.id {
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
