@@ -94,9 +94,3 @@ struct CommunityBoard: ReportOwner {
     }
     
 }
-
-extension CommunityMessageRequest {
-    init(title: String, time: Date, message: String?, location: CLLocation) {
-        self.init(title: title, time: time, message: message, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, altitude: location.altitude, horizontalAccuracy: location.horizontalAccuracy, verticalAccuracy: location.verticalAccuracy, course: location.course, speed: location.speed)
-    }
-}

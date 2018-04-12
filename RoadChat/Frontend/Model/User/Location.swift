@@ -34,3 +34,9 @@ extension CLLocation {
         self.init(coordinate: coordinate, altitude: location.altitude, horizontalAccuracy: location.horizontalAccuracy, verticalAccuracy: location.verticalAccuracy, course: location.course, speed: location.speed, timestamp: location.timestamp!)
     }
 }
+
+extension RoadChatKit.Location {
+    convenience init(coreLocation: CLLocation) {
+        self.init(timestamp: coreLocation.timestamp, latitude: coreLocation.coordinate.latitude, longitude: coreLocation.coordinate.longitude, altitude: coreLocation.altitude, horizontalAccuracy: coreLocation.horizontalAccuracy, verticalAccuracy: coreLocation.verticalAccuracy, course: coreLocation.course, speed: coreLocation.speed)
+    }
+}

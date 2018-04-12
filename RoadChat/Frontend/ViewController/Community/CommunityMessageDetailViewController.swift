@@ -38,8 +38,7 @@ class CommunityMessageDetailViewController: UIViewController {
     private let activeUser: User
     private let dateFormatter: DateFormatter
     private let colorPalette: ColorPalette
-  
-    
+
     private var karma: KarmaType! {
         didSet {
             switch karma {
