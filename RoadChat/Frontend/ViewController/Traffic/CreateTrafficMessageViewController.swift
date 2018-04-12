@@ -87,7 +87,7 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
     }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
-        guard let location = locationManager.lastLocation else {
+        guard let coreLocation = locationManager.lastLocation else {
             log.warning("Failed to retrieve current user location.")
             return
         }
@@ -97,6 +97,7 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
             return
         }
         
+        let location = RoadChatKit.Location(coreLocation: coreLocation)
         let trafficMessageRequest = TrafficMessageRequest(type: TrafficType(rawValue: type.lowercased())!, time: Date(), message: messageCharacterCount > 0 ? message : "", location: location)
         
         trafficBoard.postMessage(trafficMessageRequest) { error in
