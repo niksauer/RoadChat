@@ -44,13 +44,16 @@ class TrafficMessage: NSManagedObject, ReportOwner {
         let message = TrafficMessage(context: context)
         message.id = Int32(prototype.id)
         message.senderID = Int32(prototype.senderID)
-        message.locationID = Int32(prototype.locationID)
         message.time = prototype.time
         message.type = prototype.type.rawValue
         message.message = prototype.message
         message.validations = Int16(prototype.validations)
         message.upvotes = Int16(prototype.upvotes)
         message.karma = Int16(prototype.karma.rawValue)
+        
+        // set location
+        let location = try Location.create(from: prototype.location, in: context)
+        message.location = location
         
         return message
     }

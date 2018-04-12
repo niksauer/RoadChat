@@ -8,6 +8,7 @@
 
 import UIKit
 import RoadChatKit
+import CoreLocation
 
 class CommunityMessageDetailViewController: UIViewController {
 
@@ -123,7 +124,9 @@ class CommunityMessageDetailViewController: UIViewController {
     }
     
     @IBAction func didPressLocationButton(_ sender: UIButton) {
-    
+        let location = CLLocation(location: message.location!)
+        let locationViewContoller = viewFactory.makeLocationViewController(for: location)
+        self.navigationController?.pushViewController(locationViewContoller, animated: true)
     }
     
     @IBAction func didPressProfileButton(_ sender: UIButton) {

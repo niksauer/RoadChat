@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 struct DependencyContainer {
     
@@ -76,6 +77,11 @@ extension DependencyContainer: ViewControllerFactory {
         return HomeTabBarController(viewFactory: self, activeUser: user)
     }
 
+    // Shared
+    func makeLocationViewController(for location: CLLocation) -> LocationViewController {
+        return LocationViewController(viewFactory: self, location: location)
+    }
+    
     // Authentication
     func makeAuthenticationViewController() -> UINavigationController {
         return UINavigationController(rootViewController: makeLoginViewController())

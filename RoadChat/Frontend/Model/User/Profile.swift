@@ -13,7 +13,7 @@ import RoadChatKit
 class Profile: NSManagedObject {
     
     // MARK: - Public Class Methods
-    class func createOrUpdate(from response: RoadChatKit.Profile.PublicProfile, userID: Int, in context: NSManagedObjectContext) throws -> Profile {
+    class func createOrUpdate(from prototype: RoadChatKit.Profile.PublicProfile, userID: Int, in context: NSManagedObjectContext) throws -> Profile {
         let request: NSFetchRequest<Profile> = Profile.fetchRequest()
         request.predicate = NSPredicate(format: "user.id = %d", userID)
         
@@ -24,14 +24,14 @@ class Profile: NSManagedObject {
                 assert(matches.count >= 1, "Profile.createOrUpdate -- Database Inconsistency")
                 
                 let profile = matches.first!
-                profile.firstName = response.firstName
-                profile.lastName = response.lastName
-                profile.birth = response.birth
-                profile.sex = response.sex?.rawValue
-                profile.streetName = response.streetName
-                profile.postalCode = Int16(response.postalCode ?? 0)
-                profile.country = response.country
-                profile.biography = response.biography
+                profile.firstName = prototype.firstName
+                profile.lastName = prototype.lastName
+                profile.birth = prototype.birth
+                profile.sex = prototype.sex?.rawValue
+                profile.streetName = prototype.streetName
+                profile.postalCode = Int16(prototype.postalCode ?? 0)
+                profile.country = prototype.country
+                profile.biography = prototype.biography
                 
                 return profile
             }
@@ -40,14 +40,14 @@ class Profile: NSManagedObject {
         }
         
         let profile = Profile(context: context)
-        profile.firstName = response.firstName
-        profile.lastName = response.lastName
-        profile.birth = response.birth
-        profile.sex = response.sex?.rawValue
-        profile.streetName = response.streetName
-        profile.postalCode = Int16(response.postalCode ?? 0)
-        profile.country = response.country
-        profile.biography = response.biography
+        profile.firstName = prototype.firstName
+        profile.lastName = prototype.lastName
+        profile.birth = prototype.birth
+        profile.sex = prototype.sex?.rawValue
+        profile.streetName = prototype.streetName
+        profile.postalCode = Int16(prototype.postalCode ?? 0)
+        profile.country = prototype.country
+        profile.biography = prototype.biography
     
         return profile
     }

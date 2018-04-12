@@ -17,9 +17,9 @@ enum DirectMessageError: Error {
 class DirectMessage: NSManagedObject {
     
     // MARK: - Public Class Methods
-    class func create(from response: RoadChatKit.DirectMessage.PublicDirectMessage, conversationID: Int, in context: NSManagedObjectContext) throws -> DirectMessage {
+    class func create(from prototype: RoadChatKit.DirectMessage.PublicDirectMessage, conversationID: Int, in context: NSManagedObjectContext) throws -> DirectMessage {
         let request: NSFetchRequest<DirectMessage> = DirectMessage.fetchRequest()
-        request.predicate = NSPredicate(format: "conversation.id = %d AND id = %d", conversationID, response.id)
+        request.predicate = NSPredicate(format: "conversation.id = %d AND id = %d", conversationID, prototype.id)
         
         do {
             let matches = try context.fetch(request)
@@ -34,9 +34,9 @@ class DirectMessage: NSManagedObject {
         
         // create new message
         let message = DirectMessage(context: context)
-        message.senderID = Int32(response.senderID)
-        message.time = response.time
-        message.message = response.message
+        message.senderID = Int32(prototype.senderID)
+        message.time = prototype.time
+        message.message = prototype.message
         
         return message
     }

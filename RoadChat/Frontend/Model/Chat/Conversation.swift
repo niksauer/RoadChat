@@ -17,9 +17,9 @@ enum ConversationError: Error {
 class Conversation: NSManagedObject, ReportOwner {
     
     // MARK: - Public Class Methods
-    class func createOrUpdate(from response: RoadChatKit.Conversation.PublicConversation, in context: NSManagedObjectContext) throws -> Conversation {
+    class func createOrUpdate(from prototype: RoadChatKit.Conversation.PublicConversation, in context: NSManagedObjectContext) throws -> Conversation {
         let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %d", response.id)
+        request.predicate = NSPredicate(format: "id = %d", prototype.id)
         
         do {
             let matches = try context.fetch(request)
@@ -29,8 +29,8 @@ class Conversation: NSManagedObject, ReportOwner {
                 
                 // update existing conversation
                 let conversation = matches.first!
-                conversation.title = response.title
-                conversation.lastChange = response.newestMessage?.time ?? response.creation
+                conversation.title = prototype.title
+                conversation.lastChange = prototype.newestMessage?.time ?? prototype.creation
                 
                 return conversation
             }
@@ -40,11 +40,11 @@ class Conversation: NSManagedObject, ReportOwner {
         
         // create new conversation
         let conversation = Conversation(context: context)
-        conversation.id = Int32(response.id)
-        conversation.creatorID = Int32(response.creatorID)
-        conversation.title = response.title
-        conversation.creation = response.creation
-        conversation.lastChange = response.newestMessage?.time ?? response.creation
+        conversation.id = Int32(prototype.id)
+        conversation.creatorID = Int32(prototype.creatorID)
+        conversation.title = prototype.title
+        conversation.creation = prototype.creation
+        conversation.lastChange = prototype.newestMessage?.time ?? prototype.creation
         
         // retrieve resources
         conversation.getMessages(completion: nil)
