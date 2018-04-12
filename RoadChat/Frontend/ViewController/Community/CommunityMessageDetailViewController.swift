@@ -115,6 +115,10 @@ class CommunityMessageDetailViewController: UIViewController {
         mapView.addGestureRecognizer(tapGestureRecognizer)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        mapView.setCenter(message.storedLocation.coordinate, animated: true)
+    }
+    
     // MARK: - Public Methods
     @objc func expandMap(_ sender: UITapGestureRecognizer) {
         if sender.state == .ended {
