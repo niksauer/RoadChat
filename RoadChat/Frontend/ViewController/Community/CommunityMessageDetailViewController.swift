@@ -9,6 +9,7 @@
 import UIKit
 import RoadChatKit
 import CoreLocation
+import MapKit
 
 class CommunityMessageDetailViewController: UIViewController {
 
@@ -29,7 +30,6 @@ class CommunityMessageDetailViewController: UIViewController {
     @IBOutlet weak var downvoteButton: UIButton!
     
     @IBOutlet weak var mapView: MKMapView!
-
     
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
@@ -102,29 +102,26 @@ class CommunityMessageDetailViewController: UIViewController {
         
         karma = message.storedKarma
 
+        let location = message.storedLocation
         let annotation = MKPointAnnotation()
         annotation.coordinate = location.coordinate
         mapView.setCenter(location.coordinate, animated: true)
         mapView.addAnnotation(annotation)
         
-        let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+        let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
         mapView.setRegion(region, animated: true)
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.expandMap (_:)))
         tapGestureRecognizer.cancelsTouchesInView = false
         mapView.addGestureRecognizer(tapGestureRecognizer)
-        
     }
     
     // MARK: - Public Methods
     @objc func expandMap(_ sender: UITapGestureRecognizer) {
-       
         if sender.state == .ended {
-            let location = CLLocation(location: message.location!)
-            let locationViewContoller = viewFactory.makeLocationViewController(for: location)
+            let locationViewContoller = viewFactory.makeLocationViewController(for: message.storedLocation)
             self.navigationController?.pushViewController(locationViewContoller, animated: true)
         }
-        
     }
     
     @IBAction func didPressUpvoteButton(_ sender: UIButton) {
@@ -152,8 +149,7 @@ class CommunityMessageDetailViewController: UIViewController {
     }
     
     @IBAction func didPressLocationButton(_ sender: UIButton) {
-        let location = CLLocation(location: message.location!)
-        let locationViewContoller = viewFactory.makeLocationViewController(for: location)
+        let locationViewContoller = viewFactory.makeLocationViewController(for: message.storedLocation)
         self.navigationController?.pushViewController(locationViewContoller, animated: true)
     }
     
