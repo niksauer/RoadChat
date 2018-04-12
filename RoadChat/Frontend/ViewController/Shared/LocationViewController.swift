@@ -18,6 +18,8 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     private var mapView: MKMapView!
     private var tapped: Bool = false
     
+    private var locateUserButton: UIButton!
+    
     // MARK: - Initialization
     init(viewFactory: ViewControllerFactory, location: CLLocation){
         self.location = location
@@ -50,6 +52,37 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
         mapView.addAnnotation(annotation)
     
         let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+        mapView.setRegion(region, animated: true)
+        
+        // locate user button
+        locateUserButton = UIButton(type: UIButtonType.custom)
+        locateUserButton.addTarget(self, action: #selector(self.didPressLocateUserButton (_:)), for: UIControlEvents.touchUpOutside)
+        locateUserButton.setImage(#imageLiteral(resourceName: "locate"), for: .normal)
+        locateUserButton.backgroundColor = UIColor.white
+        locateUserButton.backgroundColor?.withAlphaComponent(0.5)
+        
+//        var buttonFrame = locateUserButton.frame;
+//        buttonFrame.size = CGSize(width: 20, height: 20);
+//        locateUserButton.frame = buttonFrame
+        
+        
+        
+        view.addSubview(locateUserButton)
+        locateUserButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            locateUserButton.heightAnchor.constraint(equalToConstant: 30),
+            locateUserButton.widthAnchor.constraint(equalToConstant: 30),
+            locateUserButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            locateUserButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
+        ])
+    }
+    
+    // MARK: - Private Methods
+    @objc func didPressLocateUserButton(_ sender: Any) {
+        mapView.showsUserLocation = true
+        mapView.setCenter(mapView.userLocation.coordinate, animated: true)
+        let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03))
         mapView.setRegion(region, animated: true)
     }
 

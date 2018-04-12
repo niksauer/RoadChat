@@ -38,7 +38,7 @@ class CommunityMessageDetailViewController: UIViewController {
     private let activeUser: User
     private let dateFormatter: DateFormatter
     private let colorPalette: ColorPalette
-
+    
     private var karma: KarmaType! {
         didSet {
             switch karma {
@@ -161,17 +161,11 @@ class CommunityMessageDetailViewController: UIViewController {
     @IBAction func didPressSettingsButton(_ sender: UIButton) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let flagAction = UIAlertAction(title: "Flag", style: .default, handler: { _ in
-            log.debug("post flagged")
-            self.dismiss(animated: true, completion: nil)
-        })
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
             self.dismiss(animated: true, completion: nil)
         })
         
         actionSheet.addAction(cancelAction)
-        actionSheet.addAction(flagAction)
         
         if message.senderID == activeUser.id {
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
