@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import RoadChatKit
+import CoreLocation
 
 enum CommunityMessageError: Error {
     case duplicate
@@ -64,6 +65,10 @@ class CommunityMessage: NSManagedObject, ReportOwner {
     // MARK: - Private Properties
     var storedKarma: KarmaType {
         return KarmaType(rawValue: Int(karma))!
+    }
+    
+    var storedLocation: CLLocation {
+        return CLLocation(location: location!)
     }
     
     // MARK: - ReportOwner Protocol

@@ -28,8 +28,8 @@ class ConversationsViewController: FetchedResultsTableViewController {
         
         super.init(nibName: nil, bundle: nil)
         self.title = "Chats"
-        self.tabBarItem = UITabBarItem(title: "Chat", image: #imageLiteral(resourceName: "speech_buble"), tag: 2)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new"), style: .plain, target: nil, action: nil)
+        self.tabBarItem = UITabBarItem(title: "Chat", image: #imageLiteral(resourceName: "speech_buble_glyph"), tag: 2)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new_glyph"), style: .plain, target: nil, action: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
