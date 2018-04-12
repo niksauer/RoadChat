@@ -92,6 +92,7 @@
 		D44F4B88205297A7009A6239 /* CreateCommunityMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F4B87205297A7009A6239 /* CreateCommunityMessageViewController.swift */; };
 		D45FD696207E4EB900C35949 /* CommunityMessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FD694207E4EB900C35949 /* CommunityMessageDetailViewController.swift */; };
 		D45FD697207E4EB900C35949 /* CommunityMessageDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FD695207E4EB900C35949 /* CommunityMessageDetailViewController.xib */; };
+		D45FD6B0207EBC4600C35949 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FD6AF207EBC4400C35949 /* LocationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -381,6 +382,7 @@
 		D44F4B87205297A7009A6239 /* CreateCommunityMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommunityMessageViewController.swift; sourceTree = "<group>"; };
 		D45FD694207E4EB900C35949 /* CommunityMessageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessageDetailViewController.swift; sourceTree = "<group>"; };
 		D45FD695207E4EB900C35949 /* CommunityMessageDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunityMessageDetailViewController.xib; sourceTree = "<group>"; };
+		D45FD6AF207EBC4400C35949 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -523,13 +525,22 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
+		243A479D207EDCC5002F3BF4 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D45FD6AF207EBC4400C35949 /* LocationViewController.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		243F1EB320483BAD00B45955 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				2412D6DF20647B5D0066A51C /* SetupViewController.xib */,
 				242089BD205EB1C700FFEC90 /* SetupViewController.swift */,
 				247F6D3A206081320006FBC7 /* HomeTabBarController.swift */,
-				247F6D06205F097D0006FBC7 /* Shared */,
+				247F6D06205F097D0006FBC7 /* Tools */,
+				243A479D207EDCC5002F3BF4 /* Shared */,
 				2422D01B205155CF0081A552 /* Authentication */,
 				243F1EB420483BC100B45955 /* User */,
 				243F1EB620483BD100B45955 /* Community */,
@@ -591,13 +602,13 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
-		247F6D06205F097D0006FBC7 /* Shared */ = {
+		247F6D06205F097D0006FBC7 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
 				240B9B8520534FAA00216E68 /* FetchedResultsTableViewController.swift */,
 				24FEFFEB207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift */,
 			);
-			path = Shared;
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		248D379220493ED000B21C3D /* Chat */ = {
@@ -1081,6 +1092,7 @@
 				24FEFFEC207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift in Sources */,
 				247F6D3720605E240006FBC7 /* DependencyContainer.swift in Sources */,
 				C9150A2A207D0C1F00A69078 /* TrafficColorPalette.swift in Sources */,
+				D45FD6B0207EBC4600C35949 /* LocationViewController.swift in Sources */,
 				243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */,
 				248D379C20494E1F00B21C3D /* Settings.swift in Sources */,
 				2489C4B72055E01E005C937E /* APIClient.swift in Sources */,

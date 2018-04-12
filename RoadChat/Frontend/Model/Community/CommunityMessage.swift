@@ -17,9 +17,9 @@ enum CommunityMessageError: Error {
 class CommunityMessage: NSManagedObject, ReportOwner {
 
     // MARK: - Public Class Methods
-    class func createOrUpdate(from response: RoadChatKit.CommunityMessage.PublicCommunityMessage, in context: NSManagedObjectContext) throws -> CommunityMessage {
+    class func createOrUpdate(from prototype: RoadChatKit.CommunityMessage.PublicCommunityMessage, in context: NSManagedObjectContext) throws -> CommunityMessage {
         let request: NSFetchRequest<CommunityMessage> = CommunityMessage.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %d", response.id)
+        request.predicate = NSPredicate(format: "id = %d", prototype.id)
         
         do {
             let matches = try context.fetch(request)
@@ -29,10 +29,10 @@ class CommunityMessage: NSManagedObject, ReportOwner {
                 
                 // update existing message
                 let message = matches.first!
-                message.title = response.title
-                message.message = response.message
-                message.upvotes = Int16(response.upvotes)
-                message.karma = Int16(response.karma.rawValue)
+                message.title = prototype.title
+                message.message = prototype.message
+                message.upvotes = Int16(prototype.upvotes)
+                message.karma = Int16(prototype.karma.rawValue)
                 
                 return message
             }
@@ -42,14 +42,17 @@ class CommunityMessage: NSManagedObject, ReportOwner {
         
         // create new message
         let message = CommunityMessage(context: context)
-        message.id = Int32(response.id)
-        message.locationID = Int32(response.locationID)
-        message.senderID = Int32(response.senderID)
-        message.time = response.time
-        message.title = response.title
-        message.message = response.message
-        message.upvotes = Int16(response.upvotes)
-        message.karma = Int16(response.karma.rawValue)
+        message.id = Int32(prototype.id)
+        message.senderID = Int32(prototype.senderID)
+        message.time = prototype.time
+        message.title = prototype.title
+        message.message = prototype.message
+        message.upvotes = Int16(prototype.upvotes)
+        message.karma = Int16(prototype.karma.rawValue)
+        
+        // set location
+        let location = try Location.create(from: prototype.location, in: context)
+        message.location = location
         
         return message
     }

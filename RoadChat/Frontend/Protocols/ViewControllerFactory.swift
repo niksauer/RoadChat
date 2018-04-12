@@ -8,12 +8,16 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 protocol ViewControllerFactory {
     
     // General
     func makeSetupViewController() -> SetupViewController
     func makeHomeTabBarController(activeUser: User) -> HomeTabBarController
+    
+    // Shared
+    func makeLocationViewController(for location: CLLocation) -> LocationViewController
     
     // Authentication
     func makeAuthenticationViewController() -> UINavigationController
