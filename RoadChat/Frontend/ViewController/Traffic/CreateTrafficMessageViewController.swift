@@ -16,9 +16,9 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
     
     // MARK: - Outlets
     
-    @IBOutlet weak var typePickerView: UIPickerView!
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var typeTextField: UITextField!
+    let typePickerView = UIPickerView()
     
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var messageCharacterCountLabel: UILabel!
@@ -30,7 +30,6 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
     private let colorPalette: ColorPalette
     
     private let types = ["Jam", "Detour", "Accident", "Danger"]
-
     
     private var sendBarButtonItem: UIBarButtonItem!
     
@@ -68,10 +67,7 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
     override func viewDidLoad() {
         messageTextView.delegate = self
         typePickerView.delegate = self
-        typePickerView.dataSource = self
-        //typeTextField.delegate = self
         
-        typePickerView.removeFromSuperview()
         typeTextField.inputView = typePickerView
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -130,10 +126,10 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
     private func validateSendButton() {
         if messageCharacterCount > maxMessageCharacters {
             sendBarButtonItem.isEnabled = false
-        } else if !types.contains(typeTextField.text!){
-            sendBarButtonItem.isEnabled = false
-        } else {
+        } else if types.contains(typeTextField.text!){
             sendBarButtonItem.isEnabled = true
+        } else {
+            sendBarButtonItem.isEnabled = false
         }
     }
     
@@ -203,15 +199,10 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         typeTextField.text = types[row]
-        //typePickerView.isHidden = true
+        validateSendButton()
         self.view.endEditing(true)
 
     }
-    
-//    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-//        typePickerView.isHidden = false
-//        return false
-//    }
 }
 
 
