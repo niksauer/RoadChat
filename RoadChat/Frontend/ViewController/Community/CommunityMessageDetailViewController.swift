@@ -28,6 +28,9 @@ class CommunityMessageDetailViewController: UIViewController {
     @IBOutlet weak var upvoteButton: UIButton!
     @IBOutlet weak var downvoteButton: UIButton!
     
+    @IBOutlet weak var mapView: MKMapView!
+
+    
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let message: CommunityMessage
@@ -35,6 +38,7 @@ class CommunityMessageDetailViewController: UIViewController {
     private let activeUser: User
     private let dateFormatter: DateFormatter
     private let colorPalette: ColorPalette
+  
     
     private var karma: KarmaType! {
         didSet {
@@ -97,6 +101,30 @@ class CommunityMessageDetailViewController: UIViewController {
         timeLabel.text = dateFormatter.string(from: message.time!)
         
         karma = message.storedKarma
+
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location.coordinate
+        mapView.setCenter(location.coordinate, animated: true)
+        mapView.addAnnotation(annotation)
+        
+        let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+        mapView.setRegion(region, animated: true)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.expandMap (_:)))
+        tapGestureRecognizer.cancelsTouchesInView = false
+        mapView.addGestureRecognizer(tapGestureRecognizer)
+        
+    }
+    
+    // MARK: - Public Methods
+    @objc func expandMap(_ sender: UITapGestureRecognizer) {
+       
+        if sender.state == .ended {
+            let location = CLLocation(location: message.location!)
+            let locationViewContoller = viewFactory.makeLocationViewController(for: location)
+            self.navigationController?.pushViewController(locationViewContoller, animated: true)
+        }
+        
     }
     
     @IBAction func didPressUpvoteButton(_ sender: UIButton) {
