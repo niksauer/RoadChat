@@ -82,7 +82,7 @@
 		24FEFFEC207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FEFFEB207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift */; };
 		C9150A28207CFE0D00A69078 /* TrafficMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9150A27207CFE0D00A69078 /* TrafficMessageCell.xib */; };
 		C9150A2A207D0C1F00A69078 /* TrafficColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9150A29207D0C1F00A69078 /* TrafficColorPalette.swift */; };
-		C9150A43207E740F00A69078 /* CreateTrafficMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9150A42207E740F00A69078 /* CreateTrafficMessageViewController.xib */; };
+		C9150A45207F4EAD00A69078 /* CreateTrafficMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9150A44207F4EAD00A69078 /* CreateTrafficMessageViewController.xib */; };
 		C927B7962076962400701881 /* TrafficMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C927B7942076962400701881 /* TrafficMessageCell.swift */; };
 		C93155452051920C00F4C429 /* TrafficService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93155442051920C00F4C429 /* TrafficService.swift */; };
 		C966B6FE207949590007CA4F /* CreateTrafficMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C966B6FC207949590007CA4F /* CreateTrafficMessageViewController.swift */; };
@@ -372,7 +372,7 @@
 		24FEFFEB207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsCollectionViewController.swift; sourceTree = "<group>"; };
 		C9150A27207CFE0D00A69078 /* TrafficMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrafficMessageCell.xib; sourceTree = "<group>"; };
 		C9150A29207D0C1F00A69078 /* TrafficColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficColorPalette.swift; sourceTree = "<group>"; };
-		C9150A42207E740F00A69078 /* CreateTrafficMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTrafficMessageViewController.xib; sourceTree = "<group>"; };
+		C9150A44207F4EAD00A69078 /* CreateTrafficMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTrafficMessageViewController.xib; sourceTree = "<group>"; };
 		C927B7942076962400701881 /* TrafficMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficMessageCell.swift; sourceTree = "<group>"; };
 		C93155442051920C00F4C429 /* TrafficService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficService.swift; sourceTree = "<group>"; };
 		C966B6FC207949590007CA4F /* CreateTrafficMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTrafficMessageViewController.swift; sourceTree = "<group>"; };
@@ -565,7 +565,7 @@
 		243F1EB520483BC500B45955 /* Traffic */ = {
 			isa = PBXGroup;
 			children = (
-				C9150A42207E740F00A69078 /* CreateTrafficMessageViewController.xib */,
+				C9150A44207F4EAD00A69078 /* CreateTrafficMessageViewController.xib */,
 				24B13478206421EE00B894BF /* TrafficBoardViewController.swift */,
 				24207DF82076C37300851A73 /* TrafficMessagesViewController.swift */,
 				C966B6FC207949590007CA4F /* CreateTrafficMessageViewController.swift */,
@@ -1070,7 +1070,7 @@
 				24B134772064202800B894BF /* CreateCommunityMessageViewController.xib in Resources */,
 				24207DF32076BC8E00851A73 /* AboutViewController.xib in Resources */,
 				24FBBC4D2077720B00B545D2 /* CarCell.xib in Resources */,
-				C9150A43207E740F00A69078 /* CreateTrafficMessageViewController.xib in Resources */,
+				C9150A45207F4EAD00A69078 /* CreateTrafficMessageViewController.xib in Resources */,
 				240D110220481843008C5E39 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,16 +9,18 @@
 import UIKit
 import RoadChatKit
 
-class CreateTrafficMessageViewController: UIViewController, UITextViewDelegate {
+class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: - Typealiases
     typealias ColorPalette = BasicColorPalette
     
     // MARK: - Outlets
-    @IBOutlet weak var titleTextView: UITextView!
-    @IBOutlet weak var messageTextView: UITextView!
     
-    @IBOutlet weak var titleCharacterCountLabel: UILabel!
+    @IBOutlet weak var typePickerView: UIPickerView!
+    @IBOutlet weak var messageTextView: UITextView!
+    @IBOutlet weak var typeTextField: UITextField!
+    
+    @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var messageCharacterCountLabel: UILabel!
     @IBOutlet weak var messageCharacterCountLabelBottomConstraint: NSLayoutConstraint!
     
@@ -27,18 +29,14 @@ class CreateTrafficMessageViewController: UIViewController, UITextViewDelegate {
     private let locationManager: LocationManager
     private let colorPalette: ColorPalette
     
+    private let types = ["Jam", "Detour", "Accident", "Danger"]
+
+    
     private var sendBarButtonItem: UIBarButtonItem!
     
     private let maxTitleCharacters = 140
     private let maxMessageCharacters = 280
     private let messageTextViewPlaceholder = "(Optional)"
-    
-    private var titleCharacterCount: Int = 0 {
-        didSet {
-            validateSendButton()
-            titleCharacterCountLabel.text = "\(titleCharacterCount)/\(maxTitleCharacters)"
-        }
-    }
     
     private var messageCharacterCount: Int = 0 {
         didSet {
@@ -69,12 +67,16 @@ class CreateTrafficMessageViewController: UIViewController, UITextViewDelegate {
     // MARK: - Customization
     override func viewDidLoad() {
         messageTextView.delegate = self
-        titleTextView.delegate = self
+        typePickerView.delegate = self
+        typePickerView.dataSource = self
+        //typeTextField.delegate = self
+        
+        typePickerView.removeFromSuperview()
+        typeTextField.inputView = typePickerView
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        titleCharacterCount = 0
         messageCharacterCount = 0
         
     }
@@ -94,11 +96,11 @@ class CreateTrafficMessageViewController: UIViewController, UITextViewDelegate {
             return
         }
         
-        guard let type = titleTextView.text, let message = messageTextView.text else {
+        guard let type = typeTextField.text, let message = messageTextView.text else {
             // assert user interaction by text view delegate methods
             return
         }
-        print(type)
+        
         let trafficMessageRequest = TrafficMessageRequest(type: TrafficType(rawValue: type.lowercased())!, time: Date(), message: messageCharacterCount > 0 ? message : "", location: location)
         
         trafficBoard.postMessage(trafficMessageRequest) { error in
@@ -128,14 +130,10 @@ class CreateTrafficMessageViewController: UIViewController, UITextViewDelegate {
     private func validateSendButton() {
         if messageCharacterCount > maxMessageCharacters {
             sendBarButtonItem.isEnabled = false
+        } else if !types.contains(typeTextField.text!){
+            sendBarButtonItem.isEnabled = false
         } else {
-            if titleCharacterCount < 1 {
-                sendBarButtonItem.isEnabled = false
-            } else if titleCharacterCount <= maxTitleCharacters {
-                sendBarButtonItem.isEnabled = true
-            } else {
-                sendBarButtonItem.isEnabled = false
-            }
+            sendBarButtonItem.isEnabled = true
         }
     }
     
@@ -155,10 +153,6 @@ class CreateTrafficMessageViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        if textView == titleTextView {
-            titleCharacterCount = textView.text.count
-        }
-        
         if textView == messageTextView {
             messageCharacterCount = textView.text.count
         }
@@ -166,14 +160,6 @@ class CreateTrafficMessageViewController: UIViewController, UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text.count == 1 {
-            if textView == titleTextView {
-                if textView.text.count < maxTitleCharacters {
-                    return true
-                } else {
-                    return false
-                }
-            }
-            
             if textView == messageTextView {
                 if textView.text.count < maxMessageCharacters {
                     return true
@@ -191,9 +177,6 @@ class CreateTrafficMessageViewController: UIViewController, UITextViewDelegate {
                 return true
             } else {
                 // pasted text
-                if textView == titleTextView {
-                    titleCharacterCount = textView.text.count
-                }
                 
                 if textView == messageTextView {
                     messageCharacterCount = textView.text.count
@@ -206,6 +189,29 @@ class CreateTrafficMessageViewController: UIViewController, UITextViewDelegate {
         return true
     }
     
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return types.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return types[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        typeTextField.text = types[row]
+        //typePickerView.isHidden = true
+        self.view.endEditing(true)
+
+    }
+    
+//    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+//        typePickerView.isHidden = false
+//        return false
+//    }
 }
 
 
