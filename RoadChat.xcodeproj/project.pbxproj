@@ -93,6 +93,7 @@
 		D45FD696207E4EB900C35949 /* CommunityMessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FD694207E4EB900C35949 /* CommunityMessageDetailViewController.swift */; };
 		D45FD697207E4EB900C35949 /* CommunityMessageDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FD695207E4EB900C35949 /* CommunityMessageDetailViewController.xib */; };
 		D45FD6B0207EBC4600C35949 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FD6AF207EBC4400C35949 /* LocationViewController.swift */; };
+		D45FD6C9207FEB7E00C35949 /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FD6C8207FEB7E00C35949 /* LocationViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -383,6 +384,7 @@
 		D45FD694207E4EB900C35949 /* CommunityMessageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessageDetailViewController.swift; sourceTree = "<group>"; };
 		D45FD695207E4EB900C35949 /* CommunityMessageDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunityMessageDetailViewController.xib; sourceTree = "<group>"; };
 		D45FD6AF207EBC4400C35949 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		D45FD6C8207FEB7E00C35949 /* LocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -529,6 +531,7 @@
 			isa = PBXGroup;
 			children = (
 				D45FD6AF207EBC4400C35949 /* LocationViewController.swift */,
+				D45FD6C8207FEB7E00C35949 /* LocationViewController.xib */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -1071,6 +1074,7 @@
 				24B134772064202800B894BF /* CreateCommunityMessageViewController.xib in Resources */,
 				24207DF32076BC8E00851A73 /* AboutViewController.xib in Resources */,
 				24FBBC4D2077720B00B545D2 /* CarCell.xib in Resources */,
+				D45FD6C9207FEB7E00C35949 /* LocationViewController.xib in Resources */,
 				240D110220481843008C5E39 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

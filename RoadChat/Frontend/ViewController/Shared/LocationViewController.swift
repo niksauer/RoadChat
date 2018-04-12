@@ -11,14 +11,16 @@ import MapKit
 import CoreLocation
 
 class LocationViewController: UIViewController, MKMapViewDelegate {
-
-    // MARK: - Private Properties
-    private let location: CLLocation
-    private let viewFactory: ViewControllerFactory
-    private var mapView: MKMapView!
-    private var tapped: Bool = false
     
+    // MARK: - Outlets
+    @IBOutlet weak var mapView: MKMapView!
+   
+    // MARK: - Views
     private var locateUserButton: UIButton!
+    
+    // MARK: - Private Properties
+    private let viewFactory: ViewControllerFactory
+    private let location: CLLocation
     
     // MARK: - Initialization
     init(viewFactory: ViewControllerFactory, location: CLLocation){
@@ -34,17 +36,6 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: - Customization
     override func viewDidLoad() {
-        self.mapView = MKMapView(frame: view.frame)
-        view.addSubview(mapView)
-        mapView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mapView.topAnchor.constraint(equalTo: view.topAnchor),
-            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
-        
         let annotation = MKPointAnnotation()
         annotation.coordinate = location.coordinate
     
@@ -53,37 +44,14 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     
         let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
         mapView.setRegion(region, animated: true)
-        
-        // locate user button
-        locateUserButton = UIButton(type: UIButtonType.custom)
-        locateUserButton.addTarget(self, action: #selector(self.didPressLocateUserButton (_:)), for: UIControlEvents.touchUpOutside)
-        locateUserButton.setImage(#imageLiteral(resourceName: "locate"), for: .normal)
-        locateUserButton.backgroundColor = UIColor.white
-        locateUserButton.backgroundColor?.withAlphaComponent(0.5)
-        
-//        var buttonFrame = locateUserButton.frame;
-//        buttonFrame.size = CGSize(width: 20, height: 20);
-//        locateUserButton.frame = buttonFrame
-        
-        
-        
-        view.addSubview(locateUserButton)
-        locateUserButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            locateUserButton.heightAnchor.constraint(equalToConstant: 30),
-            locateUserButton.widthAnchor.constraint(equalToConstant: 30),
-            locateUserButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            locateUserButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
-        ])
     }
     
     // MARK: - Private Methods
-    @objc func didPressLocateUserButton(_ sender: Any) {
+    @IBAction func didPressLocateButton(_ sender: UIButton) {
         mapView.showsUserLocation = true
-        mapView.setCenter(mapView.userLocation.coordinate, animated: true)
         let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03))
         mapView.setRegion(region, animated: true)
+        mapView.setCenter(mapView.userLocation.coordinate, animated: true)
     }
-
+    
 }
