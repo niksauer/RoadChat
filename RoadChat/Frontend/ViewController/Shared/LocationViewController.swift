@@ -46,12 +46,32 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
         mapView.setRegion(region, animated: true)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        mapView.setCenter(location.coordinate, animated: true)
+        mapView.showsUserLocation = true
+    }
+    
     // MARK: - Private Methods
     @IBAction func didPressLocateButton(_ sender: UIButton) {
+        if mapView.userLocation.isAccessibilityElement == true {
         mapView.showsUserLocation = true
-        let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03))
+            
+            let zoomRect: MKMapRect = MKMapRectNull
+            let userLocationAnnotation = MKMapPointForCoordinate(mapView.userLocation.coordinate)
+            let senderLocationAnnotation = MKMapPointForCoordinate(location.coordinate)
+            let userLocationPoint: MKMapRect = MKMapRectMake(userLocationAnnotation.x, userLocationAnnotation.y, 0, 0)
+            let senderLocationPoint: MKMapRect = MKMapRectMake(senderLocationAnnotationt.x, senderLocationAnnotation.y, 0, 0)
+            
+            zoomRect = MKMapRectUnion(userLocationPoint, senderLocationPoint)
+            mapView.setVisibleMapRect(zoomRect, animated: true)
+        
+            /*let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03))
         mapView.setRegion(region, animated: true)
-        mapView.setCenter(mapView.userLocation.coordinate, animated: true)
+        mapView.setCenter(mapView.userLocation.coordinate, animated: true)*/
+        } else {
+            displayAlert(title: "Error", message: "Could not retrieve user location")
+        }
+        
     }
     
 }
