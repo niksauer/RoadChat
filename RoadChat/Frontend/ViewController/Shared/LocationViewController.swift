@@ -32,10 +32,6 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: - Customization
     override func viewDidLoad() {
-        let tap = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
-        tap.delegate = self
-        myView.addGestureRecognizer(tap)
-        
         self.mapView = MKMapView(frame: view.frame)
         view.addSubview(mapView)
         mapView.translatesAutoresizingMaskIntoConstraints = false
@@ -52,21 +48,9 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     
         mapView.setCenter(location.coordinate, animated: true)
         mapView.addAnnotation(annotation)
-        
-        let mapRegion: MKCoordinateRegion
-        mapRegion.center = mapView.center
-        mapRegion.span.latitudeDelta = 0.2
-        mapRegion.span.longitudeDelta = 0.2
-        
-        mapView.setRegion(mapRegion, animated: true)
-    }
     
-   /* func handleTap(sender: UITapGestureRecognizer? = nil) {
-        if (!tapped) {
-        self.mapView.frame = self.view.bounds
-        } else {
-            
-        }
-    } */
+        let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+        mapView.setRegion(region, animated: true)
+    }
 
 }
