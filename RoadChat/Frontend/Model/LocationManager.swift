@@ -16,6 +16,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     // MARK: - Public Properties
     var lastLocation: CLLocation?
+    var distanceFilter: CLLocationDistance = 200
     
     // MARK: - Private Properties
     private let locationManager = CLLocationManager()
@@ -24,6 +25,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     private override init() {
         super.init()
         locationManager.delegate = self
+        locationManager.distanceFilter = distanceFilter
     }
 
     // MARK: - Public Methods
@@ -40,5 +42,5 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         lastLocation = locations.last
     }
-
+    
 }

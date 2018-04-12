@@ -13,9 +13,6 @@ import CoreLocation
 struct DependencyContainer {
     
     // Private Properties
-    private let appDelegate: AppDelegate = UIApplication.shared.delegate! as! AppDelegate
-    private let locationManager: LocationManager = LocationManager.shared
-    
     private var viewContext: NSManagedObjectContext {
         return CoreDataStack.shared.viewContext
     }
@@ -56,14 +53,16 @@ struct DependencyContainer {
 //    }()
     
     // Public Properties
+    var appDelegate: AppDelegate!
     let credentials: APICredentialStore = KeychainManager.shared
     let userDefaults: UserDefaults = UserDefaults.standard
     let coreData: CoreDataStack = CoreDataStack.shared
+    let locationManager: LocationManager = LocationManager.shared
+
     
     var config: APIConfiguration {
         return RoadChatAPI(credentials: credentials)
     }
-    
 }
 
 extension DependencyContainer: ViewControllerFactory {
@@ -122,7 +121,7 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeCreateTrafficMessageViewController() -> CreateTrafficMessageViewController {
-        return CreateTrafficMessageViewController(trafficBoard: trafficBoard, locationManager: locationManager)
+        return CreateTrafficMessageViewController(trafficBoard: trafficBoard, locationManager: locationManager, colorPalette: colorPalette)
     }
     
 
