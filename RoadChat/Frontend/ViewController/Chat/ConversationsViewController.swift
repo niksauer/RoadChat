@@ -27,7 +27,8 @@ class ConversationsViewController: FetchedResultsTableViewController {
         self.cellDateFormatter = cellDateFormatter
         
         super.init(nibName: nil, bundle: nil)
-        self.title = "Chats"
+        
+        self.title = "Chat"
         self.tabBarItem = UITabBarItem(title: "Chat", image: #imageLiteral(resourceName: "speech_buble_glyph"), tag: 2)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new_glyph"), style: .plain, target: nil, action: nil)
     }

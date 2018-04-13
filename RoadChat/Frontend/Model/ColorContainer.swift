@@ -22,6 +22,7 @@ struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette
     
     // BasicColorPalette
     var backgroundColor: UIColor { return lightGray }
+    var contentBackgroundClor: UIColor { return UIColor.white }
     var textColor: UIColor { return UIColor.black }
     var lightTextColor: UIColor { return UIColor.lightGray }
     var tintColor: UIColor { return lightBlue }
@@ -41,4 +42,5 @@ struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette
     var accidentBgColor: UIColor { return orange }
     var dangerBgColor: UIColor { return red }
     var detourBgColor: UIColor { return yellow }
+    
 }

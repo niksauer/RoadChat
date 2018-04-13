@@ -60,6 +60,7 @@
 		249515D2206460F800E734E4 /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249515D0206460F800E734E4 /* ConversationCell.xib */; };
 		24A069B12051EFC8006F8401 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A069B02051EFC8006F8401 /* CoreDataStack.swift */; };
 		24A069BB20520367006F8401 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A069BA20520367006F8401 /* AuthenticationManager.swift */; };
+		24A49592208119390076E472 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A49591208119390076E472 /* UIView.swift */; };
 		24AF5096207B693500477DC0 /* CommunityMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */; };
 		24AF50AC207B6C1200477DC0 /* CommunityMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF50AA207B6C1200477DC0 /* CommunityMessageCell.swift */; };
 		24AF50AD207B6C1200477DC0 /* CommunityMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24AF50AB207B6C1200477DC0 /* CommunityMessageCell.xib */; };
@@ -357,6 +358,7 @@
 		249515D0206460F800E734E4 /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
 		24A069B02051EFC8006F8401 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		24A069BA20520367006F8401 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthenticationManager.swift; path = RoadChat/Frontend/Model/AuthenticationManager.swift; sourceTree = SOURCE_ROOT; };
+		24A49591208119390076E472 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
 		24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessagesViewController.swift; sourceTree = "<group>"; };
 		24AF50AA207B6C1200477DC0 /* CommunityMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessageCell.swift; sourceTree = "<group>"; };
@@ -487,6 +489,7 @@
 			isa = PBXGroup;
 			children = (
 				2418C116207E36A4004D1632 /* UIViewController.swift */,
+				24A49591208119390076E472 /* UIView.swift */,
 				24D68B862080C535002B6D6C /* UIColor.swift */,
 			);
 			path = Extensions;
@@ -1162,6 +1165,7 @@
 				C93155452051920C00F4C429 /* TrafficService.swift in Sources */,
 				D40B2059205145B1000823E4 /* RegisterViewController.swift in Sources */,
 				248D379E20494EA400B21C3D /* Profile.swift in Sources */,
+				24A49592208119390076E472 /* UIView.swift in Sources */,
 				24B1346E20641A8C00B894BF /* ProfileViewController.swift in Sources */,
 				248D379820494D0900B21C3D /* User.swift in Sources */,
 				242089BE205EB1C700FFEC90 /* SetupViewController.swift in Sources */,

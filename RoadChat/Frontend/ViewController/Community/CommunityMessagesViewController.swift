@@ -42,6 +42,8 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
         
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
         
+        self.title = "Community"
+        
         collectionView?.backgroundColor = colorPalette.backgroundColor
         collectionView?.alwaysBounceVertical = true
         
@@ -127,21 +129,16 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let message = fetchedResultsController!.object(at: indexPath)
         
-        if let sender = userManager.findUserById(Int(message.senderID), context: searchContext) {
-            message.user = sender
-            let detailMessageViewController = self.viewFactory.makeCommunityMessageDetailViewController(for: message, sender: sender, activeUser: activeUser)
-            self.navigationController?.pushViewController(detailMessageViewController, animated: true)
-        } else {
-            userManager.getUserById(Int(message.senderID)) { user, error in
-                guard let sender = user else {
-                    //handle failed user request error
-                    self.displayAlert(title: "Error", message: "Failed to retrieve sender: \(error!)")
-                    return
-                }
-                message.user = sender
-                let detailMessageViewController = self.viewFactory.makeCommunityMessageDetailViewController(for: message, sender: sender, activeUser: self.activeUser)
-                self.navigationController?.pushViewController(detailMessageViewController, animated: true)
+        userManager.findUserById(Int(message.senderID), context: searchContext) { user, error in
+            guard let user = user else {
+                // handle failed user lookup
+                self.displayAlert(title: "Error", message: "Failed to retrieve sender: \(error != nil ? error!.localizedDescription : "unknown error")")
+                return
             }
+            
+            message.user = user
+            let detailMessageViewController = self.viewFactory.makeCommunityMessageDetailViewController(for: message, sender: user, activeUser: self.activeUser)
+            self.navigationController?.pushViewController(detailMessageViewController, animated: true)
         }
     }
 

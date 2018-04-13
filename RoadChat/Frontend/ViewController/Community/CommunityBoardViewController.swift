@@ -44,13 +44,7 @@ class CommunityBoardViewController: UIViewController{
         view.addSubview(communityMessagesViewController.view)
         communityMessagesViewController.didMove(toParentViewController: self)
         communityMessagesViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            communityMessagesViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            communityMessagesViewController.view.topAnchor.constraint(equalTo: view.topAnchor),
-            communityMessagesViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            communityMessagesViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
+        communityMessagesViewController.view.pin(to: view)
     }
 
     // MARK: - Public Methods
