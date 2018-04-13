@@ -34,7 +34,6 @@
 		24615DA520508E5400ED11A1 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24615DA420508E5400ED11A1 /* KeychainManager.swift */; };
 		2461F2ED2080A75800053A4B /* CarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2461F2EC2080A75800053A4B /* CarsViewController.swift */; };
 		2461F3052080AEA400053A4B /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2461F3032080AEA400053A4B /* CarCell.swift */; };
-		2461F3062080AEA400053A4B /* CarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2461F3042080AEA400053A4B /* CarCell.xib */; };
 		247F6D1D205F26AE0006FBC7 /* CommunityBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D1C205F26AE0006FBC7 /* CommunityBoard.swift */; };
 		247F6D21205F3C9C0006FBC7 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D20205F3C9C0006FBC7 /* UserManager.swift */; };
 		247F6D26206057950006FBC7 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D25206057950006FBC7 /* ViewControllerFactory.swift */; };
@@ -77,6 +76,8 @@
 		24D68B872080C535002B6D6C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68B862080C535002B6D6C /* UIColor.swift */; };
 		24D68B8A2080CCB5002B6D6C /* CarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */; };
 		24D68B8B2080CCB5002B6D6C /* CarDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */; };
+		24D68BB02080D908002B6D6C /* CarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D68BAF2080D908002B6D6C /* CarCell.xib */; };
+		24D68BB22080E72E002B6D6C /* TimeSinceDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68BB12080E72E002B6D6C /* TimeSinceDateFormatter.swift */; };
 		24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; };
 		24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		24FE0002207CDDC300F0D657 /* CommunityBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */; };
@@ -330,7 +331,6 @@
 		24615DA420508E5400ED11A1 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		2461F2EC2080A75800053A4B /* CarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsViewController.swift; sourceTree = "<group>"; };
 		2461F3032080AEA400053A4B /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
-		2461F3042080AEA400053A4B /* CarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarCell.xib; sourceTree = "<group>"; };
 		247F6D1C205F26AE0006FBC7 /* CommunityBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoard.swift; sourceTree = "<group>"; };
 		247F6D20205F3C9C0006FBC7 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		247F6D25206057950006FBC7 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
@@ -374,6 +374,8 @@
 		24D68B862080C535002B6D6C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = RoadChat/Frontend/Extensions/UIColor.swift; sourceTree = SOURCE_ROOT; };
 		24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailViewController.swift; sourceTree = "<group>"; };
 		24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarDetailViewController.xib; sourceTree = "<group>"; };
+		24D68BAF2080D908002B6D6C /* CarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarCell.xib; sourceTree = "<group>"; };
+		24D68BB12080E72E002B6D6C /* TimeSinceDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSinceDateFormatter.swift; sourceTree = "<group>"; };
 		24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyBeaver.xcodeproj; path = Frameworks/SwiftyBeaver/SwiftyBeaver.xcodeproj; sourceTree = "<group>"; };
 		24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoardViewController.swift; sourceTree = "<group>"; };
 		24FE0058207D51D200F0D657 /* BasicColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicColorPalette.swift; sourceTree = "<group>"; };
@@ -640,6 +642,7 @@
 		248D379920494D0F00B21C3D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				24D68BB12080E72E002B6D6C /* TimeSinceDateFormatter.swift */,
 				24AF50B0207B945B00477DC0 /* ColorContainer.swift */,
 				24AFEE9D206566B30097810E /* Report.swift */,
 				247F6D3620605E240006FBC7 /* DependencyContainer.swift */,
@@ -777,7 +780,7 @@
 			isa = PBXGroup;
 			children = (
 				2461F3032080AEA400053A4B /* CarCell.swift */,
-				2461F3042080AEA400053A4B /* CarCell.xib */,
+				24D68BAF2080D908002B6D6C /* CarCell.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1072,6 +1075,7 @@
 				2412D6E020647B5D0066A51C /* SetupViewController.xib in Resources */,
 				249515CE20644DB100E734E4 /* ProfileViewController.xib in Resources */,
 				24B134652063254F00B894BF /* LoginViewController.xib in Resources */,
+				24D68BB02080D908002B6D6C /* CarCell.xib in Resources */,
 				24D68B8B2080CCB5002B6D6C /* CarDetailViewController.xib in Resources */,
 				C9150A28207CFE0D00A69078 /* TrafficMessageCell.xib in Resources */,
 				24AF50AD207B6C1200477DC0 /* CommunityMessageCell.xib in Resources */,
@@ -1081,7 +1085,6 @@
 				249515D2206460F800E734E4 /* ConversationCell.xib in Resources */,
 				24B134772064202800B894BF /* CreateCommunityMessageViewController.xib in Resources */,
 				24207DF32076BC8E00851A73 /* AboutViewController.xib in Resources */,
-				24FBBC4D2077720B00B545D2 /* CarCell.xib in Resources */,
 				C9150A9520809A1900A69078 /* TrafficMessageDetailViewController.xib in Resources */,
 				D45FD6C9207FEB7E00C35949 /* LocationViewController.xib in Resources */,
 				240D110220481843008C5E39 /* Assets.xcassets in Resources */,
@@ -1110,6 +1113,7 @@
 				243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */,
 				248D379C20494E1F00B21C3D /* Settings.swift in Sources */,
 				24D68B8A2080CCB5002B6D6C /* CarDetailViewController.swift in Sources */,
+				24D68BB22080E72E002B6D6C /* TimeSinceDateFormatter.swift in Sources */,
 				2489C4B72055E01E005C937E /* APIClient.swift in Sources */,
 				248D37A920494F9900B21C3D /* Participant.swift in Sources */,
 				24AFEE9E206566B30097810E /* Report.swift in Sources */,
@@ -1123,7 +1127,6 @@
 				248D37AB20494FE200B21C3D /* Location.swift in Sources */,
 				240D10F920481843008C5E39 /* AppDelegate.swift in Sources */,
 				C9150A7F208099C100A69078 /* TrafficMessageDetailViewController.swift in Sources */,
-				24207DF62076C2D000851A73 /* CarsViewController.swift in Sources */,
 				D44F4B7D20528076009A6239 /* CommunityService.swift in Sources */,
 				24FE005C207D564500F0D657 /* EdgeInsetLabel.swift in Sources */,
 				247F6D26206057950006FBC7 /* ViewControllerFactory.swift in Sources */,

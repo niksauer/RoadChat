@@ -47,10 +47,15 @@ struct DependencyContainer {
         return dateFormatter
     }()
     
-//    private var timeSinceDateFormatter: DateFormatter = {
-//        let dateFormatter = DateFormatter()
-//        return dateFormatter
-//    }()
+    private var timeSinceDateFormatter: DateFormatter {
+        return TimeSinceDateFormatter()
+    }
+    
+    private var monthYearDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/yyyy"
+        return dateFormatter
+    }()
     
     // Public Properties
     var appDelegate: AppDelegate!
@@ -100,7 +105,7 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeCommunityMessagesViewController(for sender: User?, activeUser: User) -> CommunityMessagesViewController {
-        return CommunityMessagesViewController(viewFactory: self, communityBoard: communityBoard, sender: sender, activeUser: activeUser, searchContext: viewContext, cellDateFormatter: shortDateFormatter, colorPalette: colorPalette, userManager: userManager)
+        return CommunityMessagesViewController(viewFactory: self, communityBoard: communityBoard, sender: sender, activeUser: activeUser, searchContext: viewContext, cellDateFormatter: timeSinceDateFormatter, colorPalette: colorPalette, userManager: userManager)
     }
 
     func makeCreateCommunityMessageViewController() -> CreateCommunityMessageViewController {
@@ -108,7 +113,7 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeCommunityMessageDetailViewController(for message: CommunityMessage, sender: User, activeUser: User) -> CommunityMessageDetailViewController {
-        return CommunityMessageDetailViewController(viewFactory: self, message: message, sender: sender, activeUser: activeUser, dateFormatter: shortDateFormatter, colorPalette: colorPalette)
+        return CommunityMessageDetailViewController(viewFactory: self, message: message, sender: sender, activeUser: activeUser, dateFormatter: timeSinceDateFormatter, colorPalette: colorPalette)
     }
     
     // Traffic
@@ -117,7 +122,7 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeTrafficMessagesViewController(for sender: User?, activeUser: User) -> TrafficMessagesViewController {
-        return TrafficMessagesViewController(viewFactory: self, trafficBoard: trafficBoard, sender: sender, activeUser: activeUser, searchContext: viewContext, cellDateFormatter: shortDateFormatter, colorPalette: colorPalette, userManager: userManager)
+        return TrafficMessagesViewController(viewFactory: self, trafficBoard: trafficBoard, sender: sender, activeUser: activeUser, searchContext: viewContext, cellDateFormatter: timeSinceDateFormatter, colorPalette: colorPalette, userManager: userManager)
     }
     
     func makeCreateTrafficMessageViewController() -> CreateTrafficMessageViewController {
@@ -125,7 +130,7 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeTrafficMessageDetailViewController(for message: TrafficMessage, sender: User, activeUser: User) -> TrafficMessageDetailViewController {
-        return TrafficMessageDetailViewController(viewFactory: self, message: message, sender: sender, activeUser: activeUser, dateFormatter: shortDateFormatter, colorPalette: colorPalette)
+        return TrafficMessageDetailViewController(viewFactory: self, message: message, sender: sender, activeUser: activeUser, dateFormatter: timeSinceDateFormatter, colorPalette: colorPalette)
     }
     
 
@@ -149,16 +154,16 @@ extension DependencyContainer: ViewControllerFactory {
     
     // Car
     func makeCarsViewController(for user: User) -> CarsViewController {
-        return CarsViewController(viewFactory: self, owner: user, searchContext: viewContext, colorPalette: colorPalette, cellDateFormatter: shortDateFormatter)
+        return CarsViewController(viewFactory: self, owner: user, searchContext: viewContext, colorPalette: colorPalette, cellDateFormatter: monthYearDateFormatter)
     }
     
     func makeCarDetailViewController(for car: Car) -> CarDetailViewController {
-        return CarDetailViewController(car: car, dateFormatter: shortDateFormatter)
+        return CarDetailViewController(car: car, dateFormatter: monthYearDateFormatter)
     }
     
     // Profile Pages
     func makeAboutViewController(for user: User) -> AboutViewController {
-        return AboutViewController(user: user)
+        return AboutViewController(user: user, dateFormatter: timeSinceDateFormatter)
     }
 
 }
