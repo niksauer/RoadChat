@@ -130,7 +130,7 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
         userManager.findUserById(Int(message.senderID), context: searchContext) { user, error in
             guard let user = user else {
                 // handle failed user lookup error
-                self.displayAlert(title: "Error", message: "Failed to retrieve sender: \(error != nil ? error!.localizedDescription : "")")
+                self.displayAlert(title: "Error", message: "Failed to retrieve sender: \(error != nil ? error!.localizedDescription : "unknown error")")
                 return
             }
             
