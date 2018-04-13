@@ -75,6 +75,8 @@
 		24B1347A206421EE00B894BF /* TrafficBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B13478206421EE00B894BF /* TrafficBoardViewController.swift */; };
 		24B1347E2064229100B894BF /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B1347C2064229100B894BF /* ConversationsViewController.swift */; };
 		24D68B872080C535002B6D6C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68B862080C535002B6D6C /* UIColor.swift */; };
+		24D68B8A2080CCB5002B6D6C /* CarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */; };
+		24D68B8B2080CCB5002B6D6C /* CarDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */; };
 		24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; };
 		24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		24FE0002207CDDC300F0D657 /* CommunityBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */; };
@@ -368,6 +370,8 @@
 		24B13478206421EE00B894BF /* TrafficBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficBoardViewController.swift; sourceTree = "<group>"; };
 		24B1347C2064229100B894BF /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
 		24D68B862080C535002B6D6C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = RoadChat/Frontend/Extensions/UIColor.swift; sourceTree = SOURCE_ROOT; };
+		24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailViewController.swift; sourceTree = "<group>"; };
+		24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarDetailViewController.xib; sourceTree = "<group>"; };
 		24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyBeaver.xcodeproj; path = Frameworks/SwiftyBeaver/SwiftyBeaver.xcodeproj; sourceTree = "<group>"; };
 		24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoardViewController.swift; sourceTree = "<group>"; };
 		24FE0058207D51D200F0D657 /* BasicColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicColorPalette.swift; sourceTree = "<group>"; };
@@ -502,6 +506,8 @@
 			isa = PBXGroup;
 			children = (
 				2461F2EC2080A75800053A4B /* CarsViewController.swift */,
+				24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */,
+				24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */,
 				24207DF02076BC8E00851A73 /* AboutViewController.swift */,
 				24207DF12076BC8E00851A73 /* AboutViewController.xib */,
 			);
@@ -1060,6 +1066,7 @@
 				2412D6E020647B5D0066A51C /* SetupViewController.xib in Resources */,
 				249515CE20644DB100E734E4 /* ProfileViewController.xib in Resources */,
 				24B134652063254F00B894BF /* LoginViewController.xib in Resources */,
+				24D68B8B2080CCB5002B6D6C /* CarDetailViewController.xib in Resources */,
 				C9150A28207CFE0D00A69078 /* TrafficMessageCell.xib in Resources */,
 				24AF50AD207B6C1200477DC0 /* CommunityMessageCell.xib in Resources */,
 				24B134672063C10C00B894BF /* RegisterViewController.xib in Resources */,
@@ -1095,6 +1102,7 @@
 				D45FD6B0207EBC4600C35949 /* LocationViewController.swift in Sources */,
 				243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */,
 				248D379C20494E1F00B21C3D /* Settings.swift in Sources */,
+				24D68B8A2080CCB5002B6D6C /* CarDetailViewController.swift in Sources */,
 				2489C4B72055E01E005C937E /* APIClient.swift in Sources */,
 				248D37A920494F9900B21C3D /* Participant.swift in Sources */,
 				24AFEE9E206566B30097810E /* Report.swift in Sources */,

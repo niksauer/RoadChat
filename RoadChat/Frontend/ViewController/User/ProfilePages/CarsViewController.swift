@@ -112,4 +112,12 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
         return sizingCell.preferredLayoutSizeFittingWidth(width)
     }
     
+    // MARK: - UICollectionViewDelegate
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let car = fetchedResultsController!.object(at: indexPath)
+        let carDetailViewController = viewFactory.makeCarDetailViewController(for: car)
+        let carDetailNavigationController = UINavigationController(rootViewController: carDetailViewController)
+        self.navigationController?.present(carDetailNavigationController, animated: true, completion: nil)
+    }
+    
 }

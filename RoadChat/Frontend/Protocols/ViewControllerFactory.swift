@@ -43,8 +43,11 @@ protocol ViewControllerFactory {
     func makeProfileViewController(for user: User) -> ProfileViewController
     func makeProfilePageViewController(for user: User) -> ProfilePageViewController
     
-    // Profile Pages
+    // Car
     func makeCarsViewController(for user: User) -> CarsViewController
+    func makeCarDetailViewController(for car: Car) -> CarDetailViewController
+    
+    // Profile Pages
     func makeAboutViewController(for user: User) -> AboutViewController
 
 }

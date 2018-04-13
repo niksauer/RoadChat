@@ -19,8 +19,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="394" height="88"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BMW 118d" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZbR-g1-GZw">
-                        <rect key="frame" x="8" y="8" width="84.5" height="33"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BMW" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZbR-g1-GZw">
+                        <rect key="frame" x="8" y="8" width="43" height="33"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -32,21 +32,21 @@
                             <constraint firstAttribute="width" constant="15" id="PqS-dh-4MS"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="143 PS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dj3-Rt-6RO">
-                        <rect key="frame" x="25" y="56.5" width="45.5" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="143 HP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dj3-Rt-6RO">
+                        <rect key="frame" x="25" y="56.5" width="47" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="E4q-86-fEF">
-                        <rect key="frame" x="86.5" y="57" width="15" height="15"/>
+                        <rect key="frame" x="88" y="57" width="15" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="IJW-0p-eof"/>
                             <constraint firstAttribute="width" constant="15" id="Usl-xy-wh8"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="07/2007" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RoV-e1-hQr">
-                        <rect key="frame" x="105.5" y="56.5" width="54" height="17"/>
+                        <rect key="frame" x="107" y="56.5" width="54" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -59,6 +59,12 @@
                             <constraint firstAttribute="width" constant="25" id="fs0-dk-ijc"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="118d" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vc-k3-21d">
+                        <rect key="frame" x="55" y="14" width="36" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -69,7 +75,9 @@
                 <constraint firstItem="Dj3-Rt-6RO" firstAttribute="centerY" secondItem="1PV-kN-vbN" secondAttribute="centerY" id="UCn-jp-j6Y"/>
                 <constraint firstItem="RoV-e1-hQr" firstAttribute="centerY" secondItem="E4q-86-fEF" secondAttribute="centerY" id="UNN-Wc-7hn"/>
                 <constraint firstAttribute="trailing" secondItem="sa5-pJ-Gh8" secondAttribute="trailing" constant="16" id="VWA-f7-U8z"/>
+                <constraint firstItem="7vc-k3-21d" firstAttribute="leading" secondItem="ZbR-g1-GZw" secondAttribute="trailing" constant="4" id="XK2-Nh-aFG"/>
                 <constraint firstItem="E4q-86-fEF" firstAttribute="leading" secondItem="Dj3-Rt-6RO" secondAttribute="trailing" constant="16" id="Zyo-TF-GEY"/>
+                <constraint firstItem="7vc-k3-21d" firstAttribute="centerY" secondItem="ZbR-g1-GZw" secondAttribute="centerY" id="fvL-re-sbl"/>
                 <constraint firstItem="ZbR-g1-GZw" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="gkp-VX-hmN"/>
                 <constraint firstAttribute="bottom" secondItem="1PV-kN-vbN" secondAttribute="bottom" constant="16" id="ih5-LS-XUF"/>
                 <constraint firstItem="E4q-86-fEF" firstAttribute="centerY" secondItem="Dj3-Rt-6RO" secondAttribute="centerY" id="jog-3x-pgc"/>
