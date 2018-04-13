@@ -42,6 +42,8 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
         
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
         
+        self.title = "Community"
+        
         collectionView?.backgroundColor = colorPalette.backgroundColor
         collectionView?.alwaysBounceVertical = true
         

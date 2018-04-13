@@ -10,24 +10,29 @@ import UIKit
 
 class AboutViewController: UIViewController {
 
+    // MARK: - Typealiases
+    typealias ColorPalette = BasicColorPalette
+    
     // MARK: - Outlets
+    @IBOutlet weak var aboutStackView: UIStackView!
+    
     @IBOutlet weak var communityKarmaLevelLabel: UILabel!
     @IBOutlet weak var trafficKarmaLevelLabel: UILabel!
     @IBOutlet weak var accountAgeLabel: UILabel!
     @IBOutlet weak var birthLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var streetLabel: UILabel!
-    @IBOutlet weak var postalCodeLabel: UILabel!
-    @IBOutlet weak var countryLabel: UILabel!
     
     // MARK: - Private Properties
     private let user: User
     private let dateFormatter: DateFormatter
+    private let colorPalette: ColorPalette
     
     // MARK: - Initialization
-    init(user: User, dateFormatter: DateFormatter) {
+    init(user: User, dateFormatter: DateFormatter, colorPalette: ColorPalette) {
         self.user = user
         self.dateFormatter = dateFormatter
+        self.colorPalette = colorPalette
         
         super.init(nibName: nil, bundle: nil)
         
@@ -43,6 +48,13 @@ class AboutViewController: UIViewController {
         super.viewDidLoad()
         
         // setup view
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = colorPalette.contentBackgroundClor
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        aboutStackView.insertSubview(backgroundView, at: 0)
+        backgroundView.pin(to: aboutStackView)
+        
+        // set content
         communityKarmaLevelLabel.text = "\(user.communityKarma)"
         trafficKarmaLevelLabel.text = "\(user.trafficKarma)"
         accountAgeLabel.text = dateFormatter.string(from: user.registry!)
@@ -57,10 +69,6 @@ class AboutViewController: UIViewController {
             if let streetName = profile.streetName {
                 streetLabel.text = "\(streetName) \(profile.streetNumber)"
             }
-            
-            postalCodeLabel.text = String(profile.postalCode)
-            countryLabel.text = profile.country
-        
         }
     }
     

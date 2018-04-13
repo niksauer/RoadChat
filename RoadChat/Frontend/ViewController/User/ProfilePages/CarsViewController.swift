@@ -36,6 +36,8 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
         
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
         
+        self.title = "Car"
+        
         collectionView?.backgroundColor = colorPalette.backgroundColor
         collectionView?.alwaysBounceVertical = true
         

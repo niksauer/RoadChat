@@ -37,14 +37,8 @@ class ProfilePageViewController: UIViewController {
     // MARK: - Customization
     override func viewDidLoad() {
         let communityViewController = viewFactory.makeCommunityMessagesViewController(for: user, activeUser: user)
-        communityViewController.title = "Community"
-        
         let trafficViewController = viewFactory.makeTrafficMessagesViewController(for: user, activeUser: user)
-        trafficViewController.title = "Traffic"
-        
         let carsViewController = viewFactory.makeCarsViewController(for: user)
-        carsViewController.title = "Cars"
-        
         let aboutViewController = viewFactory.makeAboutViewController(for: user)
         
         let pagingViewController = FixedPagingViewController(viewControllers: [communityViewController, trafficViewController, carsViewController, aboutViewController])
@@ -54,12 +48,6 @@ class ProfilePageViewController: UIViewController {
         view.addSubview(pagingViewController.view)
         pagingViewController.didMove(toParentViewController: self)
         pagingViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            pagingViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            pagingViewController.view.topAnchor.constraint(equalTo: view.topAnchor),
-            pagingViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            pagingViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
+        pagingViewController.view.pin(to: view)
     }
 }

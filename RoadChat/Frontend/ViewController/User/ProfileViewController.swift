@@ -103,13 +103,7 @@ class ProfileViewController: UIViewController {
         pageViewContainer.addSubview(pageViewController.view)
         pageViewController.didMove(toParentViewController: self)
         pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            pageViewController.view.leadingAnchor.constraint(equalTo: pageViewContainer.leadingAnchor),
-            pageViewController.view.topAnchor.constraint(equalTo: pageViewContainer.topAnchor),
-            pageViewController.view.trailingAnchor.constraint(equalTo: pageViewContainer.trailingAnchor),
-            pageViewController.view.bottomAnchor.constraint(equalTo: pageViewContainer.bottomAnchor),
-        ])
+        pageViewController.view.pin(to: pageViewContainer)
     }
     
     // MARK: - Public Methods

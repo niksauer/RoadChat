@@ -44,13 +44,7 @@ class TrafficBoardViewController: UIViewController {
         view.addSubview(trafficMessagesViewController.view)
         trafficMessagesViewController.didMove(toParentViewController: self)
         trafficMessagesViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            trafficMessagesViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            trafficMessagesViewController.view.topAnchor.constraint(equalTo: view.topAnchor),
-            trafficMessagesViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            trafficMessagesViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
+        trafficMessagesViewController.view.pin(to: view)
     }
     
     // MARK: - Public Methods

@@ -163,7 +163,7 @@ extension DependencyContainer: ViewControllerFactory {
     
     // Profile Pages
     func makeAboutViewController(for user: User) -> AboutViewController {
-        return AboutViewController(user: user, dateFormatter: timeSinceDateFormatter)
+        return AboutViewController(user: user, dateFormatter: timeSinceDateFormatter, colorPalette: colorPalette)
     }
 
 }

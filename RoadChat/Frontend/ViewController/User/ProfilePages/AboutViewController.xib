@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutViewController" customModule="RoadChat" customModuleProvider="target">
             <connections>
+                <outlet property="aboutStackView" destination="PFn-QB-e7K" id="SEY-fi-9Nv"/>
                 <outlet property="accountAgeLabel" destination="JYP-Lt-Qhw" id="dpn-MV-Akn"/>
                 <outlet property="birthLabel" destination="LbI-HF-dZi" id="Nxd-YS-hch"/>
                 <outlet property="communityKarmaLevelLabel" destination="vWt-YI-v8e" id="yTe-4c-p9l"/>
@@ -195,7 +196,6 @@ Africa</string>
                     </constraints>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="sAc-Hh-JC5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="6wI-ea-7XE"/>
                 <constraint firstItem="sAc-Hh-JC5" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="9xM-zD-WPS"/>

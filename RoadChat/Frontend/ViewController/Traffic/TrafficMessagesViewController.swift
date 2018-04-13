@@ -42,6 +42,8 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
         
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
         
+        self.title = "Traffic"
+        
         collectionView?.backgroundColor = colorPalette.backgroundColor
         collectionView?.alwaysBounceVertical = true
         
