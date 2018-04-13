@@ -70,6 +70,14 @@ class User: NSManagedObject, ReportOwner {
         return Array(cars!) as! [Car]
     }
     
+    var communityKarma: Int {
+        return Int(storedCommunityMessages.reduce(0, { $0 + $1.upvotes }))
+    }
+    
+    var trafficKarma: Int {
+        return Int(storedTrafficMessages.reduce(0, { $0 + $1.upvotes }))
+    }
+    
     // MARK: - Private Properties
     private let userService = UserService(config: DependencyContainer().config)
     private let conversationService = ConversationService(config: DependencyContainer().config)
