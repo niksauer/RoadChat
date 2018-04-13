@@ -60,7 +60,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
             let userLocationAnnotation = MKMapPointForCoordinate(mapView.userLocation.coordinate)
             let senderLocationAnnotation = MKMapPointForCoordinate(location.coordinate)
             let userLocationPoint: MKMapRect = MKMapRectMake(userLocationAnnotation.x, userLocationAnnotation.y, 0, 0)
-            let senderLocationPoint: MKMapRect = MKMapRectMake(senderLocationAnnotationt.x, senderLocationAnnotation.y, 0, 0)
+            let senderLocationPoint: MKMapRect = MKMapRectMake(senderLocationAnnotation.x, senderLocationAnnotation.y, 0, 0)
             
             zoomRect = MKMapRectUnion(userLocationPoint, senderLocationPoint)
             mapView.setVisibleMapRect(zoomRect, animated: true)
