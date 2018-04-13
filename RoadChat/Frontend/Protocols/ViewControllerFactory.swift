@@ -34,6 +34,7 @@ protocol ViewControllerFactory {
     func makeTrafficBoardViewController(activeUser: User) -> TrafficBoardViewController
     func makeTrafficMessagesViewController(for sender: User?, activeUser: User) -> TrafficMessagesViewController
     func makeCreateTrafficMessageViewController() -> CreateTrafficMessageViewController
+    func makeTrafficMessageDetailViewController(for message: TrafficMessage, sender: User, activeUser: User) -> TrafficMessageDetailViewController
     
     // Chat
     func makeConversationsViewController(for user: User) -> ConversationsViewController

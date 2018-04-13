@@ -13,8 +13,7 @@ let log = SwiftyBeaver.self
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
+     var window: UIWindow?
     
     // dependency injection
     var container = DependencyContainer()

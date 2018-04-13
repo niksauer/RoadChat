@@ -117,11 +117,15 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeTrafficMessagesViewController(for sender: User?, activeUser: User) -> TrafficMessagesViewController {
-        return TrafficMessagesViewController(viewFactory: self, trafficBoard: trafficBoard, sender: sender, activeUser: activeUser, searchContext: viewContext, cellDateFormatter: shortDateFormatter, colorPalette: colorPalette)
+        return TrafficMessagesViewController(viewFactory: self, trafficBoard: trafficBoard, sender: sender, activeUser: activeUser, searchContext: viewContext, cellDateFormatter: shortDateFormatter, colorPalette: colorPalette, userManager: userManager)
     }
     
     func makeCreateTrafficMessageViewController() -> CreateTrafficMessageViewController {
         return CreateTrafficMessageViewController(trafficBoard: trafficBoard, locationManager: locationManager, colorPalette: colorPalette)
+    }
+    
+    func makeTrafficMessageDetailViewController(for message: TrafficMessage, sender: User, activeUser: User) -> TrafficMessageDetailViewController {
+        return TrafficMessageDetailViewController(viewFactory: self, message: message, sender: sender, activeUser: activeUser, dateFormatter: shortDateFormatter, colorPalette: colorPalette)
     }
     
 

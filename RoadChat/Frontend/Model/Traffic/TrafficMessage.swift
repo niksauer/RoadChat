@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import RoadChatKit
+import CoreLocation
 
 enum TrafficError: Error {
     case duplicate
@@ -69,6 +70,10 @@ class TrafficMessage: NSManagedObject, ReportOwner {
     
     var storedType: TrafficType {
         return TrafficType(rawValue: String(type!))!
+    }
+    
+    var storedLocation: CLLocation {
+        return CLLocation(location: location!)
     }
     
     // MARK: - ReportOwner Protocol

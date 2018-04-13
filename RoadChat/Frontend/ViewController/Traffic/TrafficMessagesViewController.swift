@@ -22,6 +22,7 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
     private let searchContext: NSManagedObjectContext
     private let cellDateFormatter: DateFormatter
     private let colorPalette: ColorPalette
+    private let userManager: UserManager
     
     private let reuseIdentifier = "TrafficMessageCell"
     private var sizingCell: TrafficMessageCell!
@@ -29,7 +30,7 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
     private var refreshControl: UIRefreshControl?
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, trafficBoard: TrafficBoard, sender: User?, activeUser: User, searchContext: NSManagedObjectContext, cellDateFormatter: DateFormatter, colorPalette: ColorPalette) {
+    init(viewFactory: ViewControllerFactory, trafficBoard: TrafficBoard, sender: User?, activeUser: User, searchContext: NSManagedObjectContext, cellDateFormatter: DateFormatter, colorPalette: ColorPalette, userManager: UserManager) {
         self.viewFactory = viewFactory
         self.trafficBoard = trafficBoard
         self.sender = sender
@@ -37,6 +38,7 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
         self.searchContext = searchContext
         self.cellDateFormatter = cellDateFormatter
         self.colorPalette = colorPalette
+        self.userManager = userManager
         
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
         
@@ -121,13 +123,27 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
         return sizingCell.preferredLayoutSizeFittingWidth(width)
     }
     
-    // MARK: UICollectionViewDelegate
-    /*
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
+    //MARK: - UICollectionViewDelegate
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let message = fetchedResultsController!.object(at: indexPath)
+        
+        if let sender = userManager.findUserById(Int(message.senderID), context: searchContext) {
+            message.user = sender
+            let detailMessageViewController = self.viewFactory.makeTrafficMessageDetailViewController(for: message, sender: sender, activeUser: activeUser)
+            self.navigationController?.pushViewController(detailMessageViewController, animated: true)
+        } else {
+            userManager.getUserById(Int(message.senderID)) { user, error in
+                guard let sender = user else {
+                    //handle failed user request error
+                    self.displayAlert(title: "Error", message: "Failed to retrieve sender: \(error!)")
+                    return
+                }
+                message.user = sender
+                let detailMessageViewController = self.viewFactory.makeTrafficMessageDetailViewController(for: message, sender: sender, activeUser: self.activeUser)
+                self.navigationController?.pushViewController(detailMessageViewController, animated: true)
+            }
+        }
+    }
     
 }
 
