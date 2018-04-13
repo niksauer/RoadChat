@@ -43,13 +43,13 @@ class AuthenticationManager {
                     try self.credentials.setUserID(token.userID)
                     log.info("Successfully logged in user.")
                     
-                    self.userManager.getUserById(token.userID) { user, error in
+                    self.userManager.findUserById(token.userID, context: self.searchContext) { user, error in
                         guard let user = user else {
                             // pass service / core data error
                             completion(nil, error!)
                             return
                         }
-                    
+                        
                         completion(user, nil)
                     }
                 } catch {
@@ -98,16 +98,12 @@ class AuthenticationManager {
             log.info("User '\(userID)' is already authenticated: \(token)")
             
             // get authenticated user
-            if let user = userManager.findUserById(userID, context: searchContext) {
-                completion(user)
-            } else {
-                userManager.getUserById(userID) { user, error in
-                    guard let user = user else {
-                        fatalError("Unable to retrieve currently authenticated user: \(error!)")
-                    }
-                    
-                    completion(user)
+            userManager.findUserById(userID, context: searchContext) { user, error in
+                guard let user = user else {
+                    fatalError("Unable to retrieve currently authenticated user: \(error != nil ? error!.localizedDescription : "")")
                 }
+                
+                completion(user)
             }
         } else {
             if token != nil || userID != nil {

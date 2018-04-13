@@ -56,10 +56,10 @@ struct UserManager {
         }
     }
     
-    func findUserById(_ id: Int, context: NSManagedObjectContext) -> User? {
+    func findUserById(_ id: Int, context: NSManagedObjectContext, completion: @escaping (User?, Error?) -> Void) {
         let request: NSFetchRequest<User> = User.fetchRequest()
         request.predicate = NSPredicate(format: "id = %d", id)
-    
+        
         do {
             let user = try context.fetch(request).first
             
@@ -69,35 +69,32 @@ struct UserManager {
             let report = Report(ReportType.successfulCoreDataOperation(.fetch, resource: "User", isMultiple: false), owner: nil)
             log.debug(report)
             
-            return user
+            completion(user, nil)
         } catch {
             let report = Report(ReportType.failedCoreDataOperation(.fetch, resource: "User", isMultiple: false, error: error), owner: nil)
             log.error(report)
-            return nil
-        }
-    }
-    
-    func getUserById(_ id: Int, completion: @escaping (User?, Error?) -> Void) {
-        userService.get(userID: id) { user, error in
-            guard let user = user else {
-                // pass service error
-                let report = Report(ReportType.failedServerOperation(.retrieve, resource: "User", isMultiple: false, error: error!), owner: nil)
-                log.error(report)
-                completion(nil, error!)
-                return
-            }
             
-            do {
-                let user = try User.createOrUpdate(from: user, in: self.context)
-                try self.context.save()
-                let report = Report(ReportType.successfulCoreDataOperation(.retrieve, resource: "User", isMultiple: false), owner: nil)
-                log.debug(report)
-                completion(user, nil)
-            } catch {
-                // pass core data error
-                let report = Report(ReportType.failedCoreDataOperation(.retrieve, resource: "User", isMultiple: false, error: error), owner: nil)
-                log.error(report)
-                completion(nil, error)
+            userService.get(userID: id) { user, error in
+                guard let user = user else {
+                    // pass service error
+                    let report = Report(ReportType.failedServerOperation(.retrieve, resource: "User", isMultiple: false, error: error!), owner: nil)
+                    log.error(report)
+                    completion(nil, error!)
+                    return
+                }
+                
+                do {
+                    let user = try User.createOrUpdate(from: user, in: self.context)
+                    try self.context.save()
+                    let report = Report(ReportType.successfulCoreDataOperation(.retrieve, resource: "User", isMultiple: false), owner: nil)
+                    log.debug(report)
+                    completion(user, nil)
+                } catch {
+                    // pass core data error
+                    let report = Report(ReportType.failedCoreDataOperation(.retrieve, resource: "User", isMultiple: false, error: error), owner: nil)
+                    log.error(report)
+                    completion(nil, error)
+                }
             }
         }
     }
