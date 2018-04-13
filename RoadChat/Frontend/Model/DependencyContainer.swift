@@ -144,9 +144,8 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     // Profile Pages
-    
     func makeCarsViewController(for user: User) -> CarsViewController {
-        return CarsViewController(cars: user.storedCars, dateFormatter: shortDateFormatter)
+        return CarsViewController(viewFactory: self, owner: user, searchContext: viewContext, colorPalette: colorPalette, cellDateFormatter: shortDateFormatter)
     }
     
     func makeAboutViewController(for user: User) -> AboutViewController {

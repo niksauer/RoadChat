@@ -60,6 +60,9 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Customization
     override func viewDidLoad() {
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+        profileImageView.clipsToBounds = true
+        
         usernameLabel.text = user.username
         
         if let profile = user.profile {
