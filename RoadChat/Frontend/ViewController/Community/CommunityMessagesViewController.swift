@@ -123,7 +123,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
         return sizingCell.preferredLayoutSizeFittingWidth(width)
     }
     
-    //MARK: - UICollectionViewDelegate
+    // MARK: - UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let message = fetchedResultsController!.object(at: indexPath)
         

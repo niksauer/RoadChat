@@ -43,6 +43,8 @@ class ProfilePageViewController: UIViewController {
         trafficViewController.title = "Traffic"
         
         let carsViewController = viewFactory.makeCarsViewController(for: user)
+        carsViewController.title = "Cars"
+        
         let aboutViewController = viewFactory.makeAboutViewController(for: user)
         
         let pagingViewController = FixedPagingViewController(viewControllers: [communityViewController, trafficViewController, carsViewController, aboutViewController])

@@ -177,6 +177,41 @@ class User: NSManagedObject, ReportOwner {
         }
     }
     
+    func getCars(completion: ((Error?) -> Void)?) {
+        userService.getCars(userID: Int(id)) { cars, error in
+            guard let cars = cars else {
+                // pass service error
+                let report = Report(.failedServerOperation(.retrieve, resource: "Car", isMultiple: true, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            let coreCars: [Car] = cars.compactMap {
+                do {
+                    return try Car.createOrUpdate(from: $0, in: self.context)
+                } catch {
+                    let report = Report(.failedCoreDataOperation(.create, resource: "Car", isMultiple: false, error: error), owner: self)
+                    log.error(report)
+                    return nil
+                }
+            }
+            
+            self.addToCars(NSSet(array: coreCars))
+            
+            do {
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: "Car", isMultiple: true), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                let report = Report(.failedCoreDataOperation(.retrieve, resource: "Car", isMultiple: true, error: error), owner: self)
+                log.error(report)
+                completion?(error)
+            }
+        }
+    }
+    
     func createConversation(_ conversation: ConversationRequest, completion: @escaping (Error?) -> Void) {
         do {
             try conversationService.create(conversation) { conversation, error in
