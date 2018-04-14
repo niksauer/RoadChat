@@ -46,10 +46,10 @@ class AuthenticationManager {
                     self.userManager.findUserById(token.userID, context: self.searchContext) { user, error in
                         guard let user = user else {
                             // pass service / core data error
-                            completion(nil, error!)
+                            completion(nil, error)
                             return
                         }
-                        
+                    
                         completion(user, nil)
                     }
                 } catch {

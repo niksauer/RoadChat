@@ -60,20 +60,7 @@ struct UserManager {
         let request: NSFetchRequest<User> = User.fetchRequest()
         request.predicate = NSPredicate(format: "id = %d", id)
         
-        do {
-            let user = try context.fetch(request).first
-            
-            // user property must be accessed to trigger awakeFromFetch()
-            _ = user?.id
-            
-            let report = Report(ReportType.successfulCoreDataOperation(.fetch, resource: "User", isMultiple: false), owner: nil)
-            log.debug(report)
-            
-            completion(user, nil)
-        } catch {
-            let report = Report(ReportType.failedCoreDataOperation(.fetch, resource: "User", isMultiple: false, error: error), owner: nil)
-            log.error(report)
-            
+        func fetchUserById(_ id: Int, completion: @escaping (User?, Error?) -> Void) {
             userService.get(userID: id) { user, error in
                 guard let user = user else {
                     // pass service error
@@ -96,6 +83,26 @@ struct UserManager {
                     completion(nil, error)
                 }
             }
+        }
+        
+        do {
+            guard let user = try context.fetch(request).first else {
+                fetchUserById(id, completion: completion)
+                return
+            }
+            
+            // user property must be accessed to trigger awakeFromFetch()
+            _ = user.id
+            
+            let report = Report(ReportType.successfulCoreDataOperation(.fetch, resource: "User", isMultiple: false), owner: nil)
+            log.debug(report)
+            
+            completion(user, nil)
+        } catch {
+            let report = Report(ReportType.failedCoreDataOperation(.fetch, resource: "User", isMultiple: false, error: error), owner: nil)
+            log.error(report)
+            
+            fetchUserById(id, completion: completion)
         }
     }
     
