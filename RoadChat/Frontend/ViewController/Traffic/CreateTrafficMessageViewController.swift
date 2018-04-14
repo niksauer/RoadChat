@@ -14,13 +14,14 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
     // MARK: - Typealiases
     typealias ColorPalette = BasicColorPalette
     
-    // MARK: - Outlets
+    // MARK: - Views
+    private let typePickerView = UIPickerView()
+    private var sendBarButtonItem: UIBarButtonItem!
     
+    // MARK: - Outlets
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var typeTextField: UITextField!
-    let typePickerView = UIPickerView()
     
-    @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var messageCharacterCountLabel: UILabel!
     @IBOutlet weak var messageCharacterCountLabelBottomConstraint: NSLayoutConstraint!
     
@@ -28,11 +29,7 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
     private let trafficBoard: TrafficBoard
     private let locationManager: LocationManager
     private let colorPalette: ColorPalette
-    
-    private let types = ["Jam", "Detour", "Accident", "Danger"]
-    
-    private var sendBarButtonItem: UIBarButtonItem!
-    
+
     private let maxTitleCharacters = 140
     private let maxMessageCharacters = 280
     private let messageTextViewPlaceholder = "(Optional)"
@@ -74,7 +71,6 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         messageCharacterCount = 0
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -109,7 +105,19 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
             self.dismiss(animated: true, completion: nil)
         }
     }
-    //MARK: Keyboard Notifications
+    
+    // MARK: - Private Methods
+    private func validateSendButton() {
+        if messageCharacterCount > maxMessageCharacters {
+            sendBarButtonItem.isEnabled = false
+        } else if let _ = TrafficType(rawValue: typeTextField.text!) {
+            sendBarButtonItem.isEnabled = true
+        } else {
+            sendBarButtonItem.isEnabled = false
+        }
+    }
+    
+    // MARK: - Keyboard Notifications
     @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo! as NSDictionary
         let keyboardFrame = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
@@ -121,17 +129,6 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
     
     @objc func keyboardWillHide(notification: Notification) {
         messageCharacterCountLabelBottomConstraint.constant = 8
-    }
-    
-    // MARK: - Private Methods
-    private func validateSendButton() {
-        if messageCharacterCount > maxMessageCharacters {
-            sendBarButtonItem.isEnabled = false
-        } else if types.contains(typeTextField.text!){
-            sendBarButtonItem.isEnabled = true
-        } else {
-            sendBarButtonItem.isEnabled = false
-        }
     }
     
     // MARK: - UITextViewDelegate
@@ -186,24 +183,26 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
         return true
     }
     
+    // MARK: - UIPickerViewDataSource
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return types.count
+        return TrafficType.allCases.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return types[row]
+        return TrafficType.allCases[row].rawValue.capitalized
     }
     
+    // MARK: - UIPickerViewDelegate
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        typeTextField.text = types[row]
+        typeTextField.text = TrafficType.allCases[row].rawValue.capitalized
         validateSendButton()
         self.view.endEditing(true)
-
     }
+
 }
 
 
