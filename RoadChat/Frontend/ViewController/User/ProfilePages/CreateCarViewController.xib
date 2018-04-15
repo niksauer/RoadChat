@@ -140,7 +140,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHt-B9-ztc">
                             <rect key="frame" x="300.5" y="8" width="59.5" height="14.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" red="0.19687922799868507" green="0.35646661506259147" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -188,7 +188,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJQ-7h-A1h">
-                    <rect key="frame" x="265" y="134" width="45" height="45"/>
+                    <rect key="frame" x="265" y="148" width="45" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="Ah6-Ec-R2L"/>
                         <constraint firstAttribute="width" constant="45" id="GBg-Yx-W0F"/>
@@ -200,7 +200,7 @@
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="sMx-Pl-eso" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="0Rp-Fl-okX"/>
-                <constraint firstItem="BJQ-7h-A1h" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="114" id="6XK-s2-WXg"/>
+                <constraint firstItem="BJQ-7h-A1h" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="128" id="6XK-s2-WXg"/>
                 <constraint firstAttribute="trailing" secondItem="BJQ-7h-A1h" secondAttribute="trailing" constant="65" id="Amm-DJ-5Ui"/>
                 <constraint firstItem="QNx-qb-Kkl" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="HVo-Th-RnQ"/>
                 <constraint firstItem="QNx-qb-Kkl" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="IgO-Ly-WY5"/>
