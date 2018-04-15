@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RoadChatKit
 
 class AboutViewController: UIViewController {
 
@@ -15,23 +16,28 @@ class AboutViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var aboutStackView: UIStackView!
+    @IBOutlet weak var emailStackView: UIStackView!
+    @IBOutlet weak var birthStackView: UIStackView!
+    @IBOutlet weak var addressStackView: UIStackView!
     
     @IBOutlet weak var communityKarmaLevelLabel: UILabel!
     @IBOutlet weak var trafficKarmaLevelLabel: UILabel!
     @IBOutlet weak var accountAgeLabel: UILabel!
     @IBOutlet weak var birthLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var streetLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
     
     // MARK: - Private Properties
     private let user: User
     private let dateFormatter: DateFormatter
+    private let registryDateFormatter: DateFormatter
     private let colorPalette: ColorPalette
     
     // MARK: - Initialization
-    init(user: User, dateFormatter: DateFormatter, colorPalette: ColorPalette) {
+    init(user: User, dateFormatter: DateFormatter, registryDateFormatter: DateFormatter, colorPalette: ColorPalette) {
         self.user = user
         self.dateFormatter = dateFormatter
+        self.registryDateFormatter = registryDateFormatter
         self.colorPalette = colorPalette
         
         super.init(nibName: nil, bundle: nil)
@@ -54,21 +60,47 @@ class AboutViewController: UIViewController {
         aboutStackView.insertSubview(backgroundView, at: 0)
         backgroundView.pin(to: aboutStackView)
         
-        // set content
+        // user statistics
         communityKarmaLevelLabel.text = "\(user.communityKarma)"
         trafficKarmaLevelLabel.text = "\(user.trafficKarma)"
-        accountAgeLabel.text = dateFormatter.string(from: user.registry!)
+        accountAgeLabel.text = registryDateFormatter.string(from: user.registry!)
         
-        emailLabel.text = user.email
+        // email
+        emailLabel.text = user.email!
         
         if let profile = user.profile {
+            // birth
             if let birth = profile.birth {
                 birthLabel.text = dateFormatter.string(from: birth)
+            } else {
+                birthStackView.removeFromSuperview()
             }
             
+            // address
+            var address = ""
+            
             if let streetName = profile.streetName {
-                streetLabel.text = "\(streetName) \(profile.streetNumber)"
+                address.append("\(streetName) \(profile.streetNumber)\n")
             }
+            
+            address.append("\(profile.postalCode)\n")
+            
+            if let country = profile.country {
+                address.append(country)
+            }
+            
+            if address.count >= 1 {
+                if profile.country == nil, let lastReturnIndex = address.range(of: "\n", options: .backwards)?.lowerBound {
+                    address.remove(at: lastReturnIndex)
+                }
+                
+                addressLabel.text = address
+            } else {
+                addressStackView.removeFromSuperview()
+            }
+        } else {
+            birthStackView.removeFromSuperview()
+            addressStackView.removeFromSuperview()
         }
     }
     

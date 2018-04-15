@@ -34,7 +34,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="92"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mVK-0e-Kvm">
-                                    <rect key="frame" x="8" y="12.5" width="75" height="75"/>
+                                    <rect key="frame" x="16" y="16.5" width="75" height="75"/>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="75" id="2sY-Nd-o4O"/>
@@ -42,7 +42,7 @@
                                     </constraints>
                                 </imageView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="gVs-d6-CxK">
-                                    <rect key="frame" x="99" y="22" width="227" height="56"/>
+                                    <rect key="frame" x="107" y="26" width="211" height="56"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="zYP-7O-RFr">
                                             <rect key="frame" x="0.0" y="0.0" width="77.5" height="31.5"/>
@@ -70,14 +70,14 @@
                                     </subviews>
                                 </stackView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eoO-j8-W1k">
-                                    <rect key="frame" x="342" y="37.5" width="25" height="25"/>
+                                    <rect key="frame" x="334" y="41.5" width="25" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="25" id="Eel-ue-ch1"/>
                                         <constraint firstAttribute="height" constant="25" id="U7c-bB-4Ug"/>
                                     </constraints>
                                 </imageView>
                             </subviews>
-                            <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="0.0" trailing="8"/>
+                            <directionalEdgeInsets key="directionalLayoutMargins" top="16" leading="16" bottom="0.0" trailing="16"/>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PM4-jw-TWQ">
                             <rect key="frame" x="0.0" y="108" width="375" height="72"/>

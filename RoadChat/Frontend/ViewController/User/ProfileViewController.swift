@@ -66,30 +66,40 @@ class ProfileViewController: UIViewController {
         usernameLabel.text = user.username
         
         if let profile = user.profile {
-            let now = Date()
-            let birthday: Date = profile.birth!
+            // age
             let calendar = Calendar.current
-            
-            let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
+            let ageComponents = calendar.dateComponents([.year], from: profile.birth!, to: Date())
             let age = ageComponents.year!
             
             ageLabel.text = "(\(age)y)"
+            
+            // full name
             nameLabel.text = "\(profile.firstName!) \(profile.lastName!)"
             
-            if let sex = profile.storedSex {
-                switch sex {
-                case .male:
-                    sexImageView.image = #imageLiteral(resourceName: "male")
-                case .female:
-                    sexImageView.image = #imageLiteral(resourceName: "female")
-                case .other:
-                    sexImageView.image = #imageLiteral(resourceName: "genderqueer")
-                }
-            } else {
+            // sex
+            switch profile.storedSex {
+            case .male?:
+                sexImageView.image = #imageLiteral(resourceName: "male")
+            case .female?:
+                sexImageView.image = #imageLiteral(resourceName: "female")
+            case .other?:
+                sexImageView.image = #imageLiteral(resourceName: "genderqueer")
+            default:
                 sexImageView.image = nil
             }
             
-            biographyLabel.text = profile.biography
+            // biography
+            if let biography = profile.biography {
+                // localized quotation marks
+                let locale = Locale.current
+                
+                let quoteBegin = locale.quotationBeginDelimiter ?? "\""
+                let quoteEnd = locale.quotationEndDelimiter ?? "\""
+                
+                biographyLabel.text = "\(quoteBegin)\(biography)\(quoteEnd)"
+            } else {
+                biographyLabel.text = nil
+            }
         } else {
             ageLabel.text = nil
             nameLabel.text = nil

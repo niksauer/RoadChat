@@ -14,10 +14,13 @@
             <connections>
                 <outlet property="aboutStackView" destination="PFn-QB-e7K" id="SEY-fi-9Nv"/>
                 <outlet property="accountAgeLabel" destination="JYP-Lt-Qhw" id="dpn-MV-Akn"/>
+                <outlet property="addressLabel" destination="nzs-Aq-awl" id="Ygw-P0-ZEA"/>
+                <outlet property="addressStackView" destination="YV4-Oa-OGO" id="QTy-lM-GQs"/>
                 <outlet property="birthLabel" destination="LbI-HF-dZi" id="Nxd-YS-hch"/>
+                <outlet property="birthStackView" destination="8iQ-hx-Jfx" id="ZGh-x9-6v8"/>
                 <outlet property="communityKarmaLevelLabel" destination="vWt-YI-v8e" id="yTe-4c-p9l"/>
                 <outlet property="emailLabel" destination="gip-Fn-7RC" id="eGA-ys-g8s"/>
-                <outlet property="streetLabel" destination="nzs-Aq-awl" id="Ygw-P0-ZEA"/>
+                <outlet property="emailStackView" destination="pBN-ht-UI9" id="Dop-7F-k5K"/>
                 <outlet property="trafficKarmaLevelLabel" destination="k5F-jL-0wp" id="V2Y-hu-jpd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -160,7 +163,7 @@ Age</string>
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="YV4-Oa-OGO" userLabel="Street Stack View">
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="YV4-Oa-OGO" userLabel="Address Stack View">
                                             <rect key="frame" x="16" y="105" width="322" height="61"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KfN-zN-MHd">
