@@ -43,13 +43,13 @@ class User: NSManagedObject, ReportOwner {
         // retrieve resources
         user.getProfile(completion: nil)
         user.getConversations(completion: nil)
-    
+        
         // set location
         if let location = prototype.location {
             let location = try Location.create(from: location, in: context)
             user.location = location
         }
-    
+        
         return user
     }
     
@@ -122,6 +122,39 @@ class User: NSManagedObject, ReportOwner {
         }
     }
     
+    func createCar(_ car: CarRequest, completion: @escaping ((Error?) -> Void)?) {
+        do {
+            try userService.createCar(car, userID: Int(id) { car, error in
+                guard let car = car else {
+                    let report = Report(.failedServerOperation(.create, resource: "Car", isMultiple: false, error: error!), owner: self)
+                    log.error(report)
+                    completion(error!)
+                    return
+                }
+    
+                do {
+                    let _ = try Car.createOrUpdate(from: car, userID: Int(self.id), in: self.context)
+                    try self.context.save()
+    
+                    let report = Report(.successfulCoreDataOperation(.create, resource: "Car", isMultiple: false), owner: self)
+                    log.debug(report)
+    
+                    completion(nil)
+                } catch {
+                    // pass core data error
+                    let report = Report(.failedCoreDataOperation(.create, resource: "Car", isMultiple: false, error: error), owner: self)
+                    log.error(report)
+                    completion(error)
+                }
+            }
+        } catch {
+            // pass body encoding error
+            let report = Report(.failedServerRequest(requestType: "ProfileRequest", error: error), owner: self)
+            log.error(report)
+            completion(error)
+        }
+    }
+    
     func createOrUpdateProfile(_ profile: ProfileRequest, completion: @escaping (Error?) -> Void) {
         do {
             try userService.createOrUpdateProfile(userID: Int(id), to: profile) { error in
@@ -132,17 +165,17 @@ class User: NSManagedObject, ReportOwner {
                     completion(error!)
                     return
                 }
-                
+    
                 do {
                     let privacy = RoadChatKit.Privacy(userID: Int(self.id))
                     let profile = try RoadChatKit.Profile(userID: Int(self.id), profileRequest: profile)
                     let publicProfile = RoadChatKit.Profile.PublicProfile(profile: profile, privacy: privacy, isOwner: true)
                     let _ = try Profile.createOrUpdate(from: publicProfile, userID: Int(self.id), in: self.context)
                     try self.context.save()
-
+    
                     let report = Report(.successfulCoreDataOperation(.update, resource: "Profile", isMultiple: false), owner: self)
                     log.debug(report)
-                    
+    
                     completion(nil)
                 } catch {
                     // pass core data error
@@ -168,7 +201,7 @@ class User: NSManagedObject, ReportOwner {
                 completion?(error!)
                 return
             }
-            
+    
             do {
                 let profile = try Profile.createOrUpdate(from: profile, userID: Int(self.id), in: self.context)
                 self.profile = profile
@@ -194,7 +227,7 @@ class User: NSManagedObject, ReportOwner {
                 completion?(error!)
                 return
             }
-            
+    
             let coreCars: [Car] = cars.compactMap {
                 do {
                     return try Car.createOrUpdate(from: $0, in: self.context)
@@ -204,9 +237,9 @@ class User: NSManagedObject, ReportOwner {
                     return nil
                 }
             }
-            
+    
             self.addToCars(NSSet(array: coreCars))
-            
+    
             do {
                 try self.context.save()
                 let report = Report(.successfulCoreDataOperation(.retrieve, resource: "Car", isMultiple: true), owner: self)
@@ -230,15 +263,15 @@ class User: NSManagedObject, ReportOwner {
                     completion(error!)
                     return
                 }
-                
+    
                 do {
                     let conversation = try Conversation.createOrUpdate(from: conversation, in: self.context)
                     self.addToConversations(conversation)
                     try self.context.save()
-                    
+    
                     let report = Report(.successfulCoreDataOperation(.create, resource: "Conversation", isMultiple: false), owner: self)
                     log.debug(report)
-                    
+    
                     completion(nil)
                 } catch {
                     // pass core data error
@@ -264,7 +297,7 @@ class User: NSManagedObject, ReportOwner {
                 completion?(error!)
                 return
             }
-            
+    
             let coreConversations: [Conversation] = conversations.compactMap {
                 do {
                     return try Conversation.createOrUpdate(from: $0, in: self.context)
@@ -274,9 +307,9 @@ class User: NSManagedObject, ReportOwner {
                     return nil
                 }
             }
-        
+    
             self.addToConversations(NSSet(array: coreConversations))
-            
+    
             do {
                 try self.context.save()
                 let report = Report(.successfulCoreDataOperation(.retrieve, resource: "Conversation", isMultiple: true), owner: self)
@@ -289,7 +322,7 @@ class User: NSManagedObject, ReportOwner {
             }
         }
     }
- 
+    
     func getCommunityMessages(completion: ((Error?) -> Void)?) {
         userService.getCommunityMessages(userID: Int(id)) { messages, error in
             guard let messages = messages else {
@@ -299,7 +332,7 @@ class User: NSManagedObject, ReportOwner {
                 completion?(error!)
                 return
             }
-            
+    
             let coreMessages: [CommunityMessage] = messages.compactMap {
                 do {
                     return try CommunityMessage.createOrUpdate(from: $0, in: self.context)
@@ -309,9 +342,9 @@ class User: NSManagedObject, ReportOwner {
                     return nil
                 }
             }
-            
+    
             self.addToCommunityMessages(NSSet(array: coreMessages))
-            
+    
             do {
                 try self.context.save()
                 let report = Report(.successfulCoreDataOperation(.retrieve, resource: "CommunityMessage", isMultiple: true), owner: self)

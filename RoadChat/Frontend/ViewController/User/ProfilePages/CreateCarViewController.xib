@@ -13,6 +13,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateCarViewController" customModule="RoadChat" customModuleProvider="target">
             <connections>
+                <outlet property="carImageView" destination="QNx-qb-Kkl" id="NIO-6G-seJ"/>
+                <outlet property="dateTextView" destination="eMU-hD-SoV" id="udR-Ue-xwa"/>
+                <outlet property="manufacturerLabel" destination="l4G-4d-yT8" id="zC8-TB-7xC"/>
+                <outlet property="manufacturerTextField" destination="l4G-4d-yT8" id="eTB-S9-OEo"/>
+                <outlet property="modelLabel" destination="R0j-qz-b8l" id="Mkj-sq-J1R"/>
+                <outlet property="performanceTextField" destination="wX2-WZ-uN9" id="iGI-kl-gXC"/>
+                <outlet property="productionTextView" destination="eMU-hD-SoV" id="SFh-gw-WlA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -195,6 +202,9 @@
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="m2k-rv-ylE"/>
                     </constraints>
                     <state key="normal" image="add"/>
+                    <connections>
+                        <action selector="didPressAddButton:" destination="-1" eventType="touchUpInside" id="UVN-KO-gtI"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
