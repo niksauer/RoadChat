@@ -19,15 +19,17 @@ class SettingsViewController: UITableViewController {
     private let authenticationManager: AuthenticationManager
     private let user: User
     private let settings: Settings
+    private let privacy: Privacy
     private let colorPalette: ColorPalette
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, user: User, settings: Settings, colorPalette: ColorPalette) {
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, user: User, settings: Settings, privacy: Privacy, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
         self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
         self.user = user
         self.settings = settings
+        self.privacy = privacy
         self.colorPalette = colorPalette
         
         super.init(style: .grouped)
@@ -146,10 +148,17 @@ class SettingsViewController: UITableViewController {
             switch row {
             case 0:
                 // privacy
-                break
+                let privacyViewController = viewFactory.makePrivacyViewController(with: privacy)
+                self.navigationController?.pushViewController(privacyViewController, animated: true)
             case 1:
                 // logout
                 authenticationManager.logout { error in
+                    guard error == nil else {
+                        // handle logout error
+                        self.displayAlert(title: "Error", message: "Failed to logout: \(error!)")
+                        return
+                    }
+                    
                     let authenticationViewController = self.viewFactory.makeAuthenticationViewController()
                     self.appDelegate.show(authenticationViewController)
                 }
@@ -160,7 +169,16 @@ class SettingsViewController: UITableViewController {
             switch row {
             case 0:
                 // delete account
-                break
+                authenticationManager.deleteAuthenticatedUser { error in
+                    guard error == nil else {
+                        // handle delete user account error
+                        self.displayAlert(title: "Error", message: "Failed to delete account: \(error!)")
+                        return
+                    }
+                    
+                    let authenticationViewController = self.viewFactory.makeAuthenticationViewController()
+                    self.appDelegate.show(authenticationViewController)
+                }
             default:
                 fatalError()
             }

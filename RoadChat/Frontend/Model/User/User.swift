@@ -167,6 +167,30 @@ class User: NSManagedObject, ReportOwner {
         }
     }
     
+    func delete(completion: ((Error?) -> Void)?) {
+        userService.delete(userID: Int(id)) { error in
+            guard error == nil else {
+                // pass service error
+                let report = Report(.failedServerOperation(.delete, resource: nil, isMultiple: false, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            do {
+                self.context.delete(self)
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.delete, resource: nil, isMultiple: false), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                let report = Report(.failedCoreDataOperation(.delete, resource: nil, isMultiple: false, error: error), owner: self)
+                log.error(report)
+                completion?(error)
+            }
+        }
+    }
+    
     func getProfile(completion: ((Error?) -> Void)?) {
         userService.getProfile(userID: Int(id)) { profile, error in
             guard let profile = profile else {
@@ -213,6 +237,32 @@ class User: NSManagedObject, ReportOwner {
             } catch {
                 // pass core data error
                 let report = Report(.failedCoreDataOperation(.retrieve, resource: "Settings", isMultiple: false, error: error), owner: self)
+                log.error(report)
+                completion?(error)
+            }
+        }
+    }
+    
+    func getPrivacy(completion: ((Error?) -> Void)?) {
+        userService.getPrivacy(userID: Int(id)) { privacy, error in
+            guard let privacy = privacy else {
+                // pass service error
+                let report = Report(.failedServerOperation(.retrieve, resource: "Privacy", isMultiple: false, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            do {
+                let privacy = try Privacy.createOrUpdate(from: privacy, userID: Int(self.id), in: self.context)
+                self.privacy = privacy
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: "Privacy", isMultiple: false), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                // pass core data error
+                let report = Report(.failedCoreDataOperation(.retrieve, resource: "Privacy", isMultiple: false, error: error), owner: self)
                 log.error(report)
                 completion?(error)
             }

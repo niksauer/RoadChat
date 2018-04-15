@@ -23,7 +23,7 @@ class Profile: NSManagedObject {
             if matches.count > 0 {
                 assert(matches.count >= 1, "Profile.createOrUpdate -- Database Inconsistency")
                 
-                // update existing settings
+                // update existing profile
                 let profile = matches.first!
                 profile.firstName = prototype.firstName
                 profile.lastName = prototype.lastName

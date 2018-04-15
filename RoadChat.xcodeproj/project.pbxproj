@@ -63,6 +63,10 @@
 		24A3512520836D73001FC1C4 /* SexColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A3512420836D73001FC1C4 /* SexColorPalette.swift */; };
 		24A46AF82083D35E00F775C7 /* CenterLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A46AF62083D35E00F775C7 /* CenterLabelCell.swift */; };
 		24A46AF92083D35E00F775C7 /* CenterLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A46AF72083D35E00F775C7 /* CenterLabelCell.xib */; };
+		24A46B0E2083DC4600F775C7 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A46B0D2083DC4600F775C7 /* PrivacyViewController.swift */; };
+		24A46B132083DE9B00F775C7 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A46B112083DE9B00F775C7 /* SwitchCell.swift */; };
+		24A46B142083DE9B00F775C7 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A46B122083DE9B00F775C7 /* SwitchCell.xib */; };
+		24A46B1620840DF400F775C7 /* GroupedOptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A46B1520840DF400F775C7 /* GroupedOptionTableViewController.swift */; };
 		24A49592208119390076E472 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A49591208119390076E472 /* UIView.swift */; };
 		24AF5096207B693500477DC0 /* CommunityMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */; };
 		24AF50AC207B6C1200477DC0 /* CommunityMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF50AA207B6C1200477DC0 /* CommunityMessageCell.swift */; };
@@ -364,6 +368,10 @@
 		24A3512420836D73001FC1C4 /* SexColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SexColorPalette.swift; sourceTree = "<group>"; };
 		24A46AF62083D35E00F775C7 /* CenterLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterLabelCell.swift; sourceTree = "<group>"; };
 		24A46AF72083D35E00F775C7 /* CenterLabelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CenterLabelCell.xib; sourceTree = "<group>"; };
+		24A46B0D2083DC4600F775C7 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
+		24A46B112083DE9B00F775C7 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		24A46B122083DE9B00F775C7 /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
+		24A46B1520840DF400F775C7 /* GroupedOptionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedOptionTableViewController.swift; sourceTree = "<group>"; };
 		24A49591208119390076E472 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
 		24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessagesViewController.swift; sourceTree = "<group>"; };
@@ -581,6 +589,7 @@
 			isa = PBXGroup;
 			children = (
 				249515C92064483400E734E4 /* SettingsViewController.swift */,
+				24A46B0D2083DC4600F775C7 /* PrivacyViewController.swift */,
 				24B1346C20641A8C00B894BF /* ProfileViewController.swift */,
 				249515CD20644DB100E734E4 /* ProfileViewController.xib */,
 				24207DEC2076AB1800851A73 /* ProfilePageViewController.swift */,
@@ -634,6 +643,7 @@
 		247F6D06205F097D0006FBC7 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				24A46B1520840DF400F775C7 /* GroupedOptionTableViewController.swift */,
 				240B9B8520534FAA00216E68 /* FetchedResultsTableViewController.swift */,
 				24FEFFEB207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift */,
 			);
@@ -789,6 +799,8 @@
 		24FBBC6A20778A5E00B545D2 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				24A46B112083DE9B00F775C7 /* SwitchCell.swift */,
+				24A46B122083DE9B00F775C7 /* SwitchCell.xib */,
 				24A46AF62083D35E00F775C7 /* CenterLabelCell.swift */,
 				24A46AF72083D35E00F775C7 /* CenterLabelCell.xib */,
 				2461F3032080AEA400053A4B /* CarCell.swift */,
@@ -1094,6 +1106,7 @@
 				24AF50AD207B6C1200477DC0 /* CommunityMessageCell.xib in Resources */,
 				24B134672063C10C00B894BF /* RegisterViewController.xib in Resources */,
 				240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */,
+				24A46B142083DE9B00F775C7 /* SwitchCell.xib in Resources */,
 				C966B6FF207949590007CA4F /* CreateTrafficMessageViewController.xib in Resources */,
 				249515D2206460F800E734E4 /* ConversationCell.xib in Resources */,
 				24B134772064202800B894BF /* CreateCommunityMessageViewController.xib in Resources */,
@@ -1164,6 +1177,7 @@
 				248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */,
 				248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */,
 				24615DA520508E5400ED11A1 /* KeychainManager.swift in Sources */,
+				24A46B132083DE9B00F775C7 /* SwitchCell.swift in Sources */,
 				2404A256204E92D2009AC7E1 /* UserService.swift in Sources */,
 				248D37B12049504B00B21C3D /* Car.swift in Sources */,
 				245EAE332051346600821B4B /* ConversationService.swift in Sources */,
@@ -1177,6 +1191,8 @@
 				D40B2059205145B1000823E4 /* RegisterViewController.swift in Sources */,
 				248D379E20494EA400B21C3D /* Profile.swift in Sources */,
 				24A3512520836D73001FC1C4 /* SexColorPalette.swift in Sources */,
+				24A46B0E2083DC4600F775C7 /* PrivacyViewController.swift in Sources */,
+				24A46B1620840DF400F775C7 /* GroupedOptionTableViewController.swift in Sources */,
 				24A49592208119390076E472 /* UIView.swift in Sources */,
 				24B1346E20641A8C00B894BF /* ProfileViewController.swift in Sources */,
 				248D379820494D0900B21C3D /* User.swift in Sources */,

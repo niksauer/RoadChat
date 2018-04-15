@@ -59,6 +59,19 @@ struct UserService: JSendService {
         }
     }
     
+    func getPrivacy(userID: RoadChatKit.User.ID, completion: @escaping (RoadChatKit.Privacy.PublicPrivacy?, Error?) -> Void) {
+        client.makeGETRequest(to: "/\(userID)/settings/privacy") { result in
+            let result = self.decode(RoadChatKit.Privacy.PublicPrivacy.self, from: result)
+            completion(result.instance, result.error)
+        }
+    }
+    
+    func updatePrivacy(userID: RoadChatKit.User.ID, to privacy: RoadChatKit.PrivacyRequest, completion: @escaping (Error?) -> Void) throws {
+        try client.makePUTRequest(to: "/\(userID)/settings/privacy", body: privacy) { result in
+            completion(self.getError(from: result))
+        }
+    }
+    
     func getProfile(userID: RoadChatKit.User.ID, completion: @escaping (RoadChatKit.Profile.PublicProfile?, Error?) -> Void) {
         client.makeGETRequest(to: "/\(userID)/profile") { result in
             let result = self.decode(RoadChatKit.Profile.PublicProfile.self, from: result)
