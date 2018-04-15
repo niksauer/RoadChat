@@ -30,6 +30,8 @@ class ProfileViewController: UIViewController {
     private let user: User
     private let colorPalette: ColorPalette
     
+    private var refreshControl: UIRefreshControl?
+    
     // MARK: - Public Properties
     var showsSenderProfile: Bool = false {
         didSet {
@@ -60,9 +62,37 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Customization
     override func viewDidLoad() {
+        // pull to refresh
+//        refreshControl = UIRefreshControl()
+//        refreshControl?.layer.zPosition = -1
+//        refreshControl?.addTarget(self, action: #selector(updateData), for: .valueChanged)
+//        view.addSubview(refreshControl!)
+        
+        // profile image appearance
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
         profileImageView.clipsToBounds = true
         
+        // setup UI
+        updateUI()
+        
+        // setup profile page view controller
+        let pageViewController = viewFactory.makeProfilePageViewController(for: user)
+        addChildViewController(pageViewController)
+        pageViewContainer.addSubview(pageViewController.view)
+        pageViewController.didMove(toParentViewController: self)
+        pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        pageViewController.view.pin(to: pageViewContainer)
+    }
+    
+    // MARK: - Public Methods
+    @objc func updateData() {
+        user.getProfile { user in
+            self.updateUI()
+        }
+    }
+    
+    func updateUI() {
+        // username
         usernameLabel.text = user.username
         
         if let profile = user.profile {
@@ -92,7 +122,6 @@ class ProfileViewController: UIViewController {
             if let biography = profile.biography {
                 // localized quotation marks
                 let locale = Locale.current
-                
                 let quoteBegin = locale.quotationBeginDelimiter ?? "\""
                 let quoteEnd = locale.quotationEndDelimiter ?? "\""
                 
@@ -106,17 +135,8 @@ class ProfileViewController: UIViewController {
             sexImageView.image = nil
             biographyLabel.text = nil
         }
-        
-        // setup profile page view controller
-        let pageViewController = viewFactory.makeProfilePageViewController(for: user)
-        addChildViewController(pageViewController)
-        pageViewContainer.addSubview(pageViewController.view)
-        pageViewController.didMove(toParentViewController: self)
-        pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        pageViewController.view.pin(to: pageViewContainer)
     }
     
-    // MARK: - Public Methods
     @objc func settingsButtonPressed(_ sender: UIBarButtonItem) {
         let settingsViewController = viewFactory.makeSettingsViewController(for: user)
         let settingsNavigationViewController = UINavigationController(rootViewController: settingsViewController)
