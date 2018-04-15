@@ -61,6 +61,8 @@
 		24A069B12051EFC8006F8401 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A069B02051EFC8006F8401 /* CoreDataStack.swift */; };
 		24A069BB20520367006F8401 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A069BA20520367006F8401 /* AuthenticationManager.swift */; };
 		24A3512520836D73001FC1C4 /* SexColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A3512420836D73001FC1C4 /* SexColorPalette.swift */; };
+		24A46AF82083D35E00F775C7 /* CenterLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A46AF62083D35E00F775C7 /* CenterLabelCell.swift */; };
+		24A46AF92083D35E00F775C7 /* CenterLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A46AF72083D35E00F775C7 /* CenterLabelCell.xib */; };
 		24A49592208119390076E472 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A49591208119390076E472 /* UIView.swift */; };
 		24AF5096207B693500477DC0 /* CommunityMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */; };
 		24AF50AC207B6C1200477DC0 /* CommunityMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF50AA207B6C1200477DC0 /* CommunityMessageCell.swift */; };
@@ -360,6 +362,8 @@
 		24A069B02051EFC8006F8401 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		24A069BA20520367006F8401 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthenticationManager.swift; path = RoadChat/Frontend/Model/AuthenticationManager.swift; sourceTree = SOURCE_ROOT; };
 		24A3512420836D73001FC1C4 /* SexColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SexColorPalette.swift; sourceTree = "<group>"; };
+		24A46AF62083D35E00F775C7 /* CenterLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterLabelCell.swift; sourceTree = "<group>"; };
+		24A46AF72083D35E00F775C7 /* CenterLabelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CenterLabelCell.xib; sourceTree = "<group>"; };
 		24A49591208119390076E472 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
 		24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessagesViewController.swift; sourceTree = "<group>"; };
@@ -785,6 +789,8 @@
 		24FBBC6A20778A5E00B545D2 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				24A46AF62083D35E00F775C7 /* CenterLabelCell.swift */,
+				24A46AF72083D35E00F775C7 /* CenterLabelCell.xib */,
 				2461F3032080AEA400053A4B /* CarCell.swift */,
 				24D68BAF2080D908002B6D6C /* CarCell.xib */,
 			);
@@ -1078,6 +1084,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D45FD697207E4EB900C35949 /* CommunityMessageDetailViewController.xib in Resources */,
+				24A46AF92083D35E00F775C7 /* CenterLabelCell.xib in Resources */,
 				2412D6E020647B5D0066A51C /* SetupViewController.xib in Resources */,
 				249515CE20644DB100E734E4 /* ProfileViewController.xib in Resources */,
 				24B134652063254F00B894BF /* LoginViewController.xib in Resources */,
@@ -1161,6 +1168,7 @@
 				248D37B12049504B00B21C3D /* Car.swift in Sources */,
 				245EAE332051346600821B4B /* ConversationService.swift in Sources */,
 				24B1347A206421EE00B894BF /* TrafficBoardViewController.swift in Sources */,
+				24A46AF82083D35E00F775C7 /* CenterLabelCell.swift in Sources */,
 				24AF50AF207B943500477DC0 /* KarmaColorPalette.swift in Sources */,
 				24B134642063254F00B894BF /* LoginViewController.swift in Sources */,
 				248D37A020494EC000B21C3D /* Privacy.swift in Sources */,

@@ -10,25 +10,29 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
     
+    // MARK: - Typealiases
+    typealias ColorPalette = BasicColorPalette
+    
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let appDelegate: AppDelegate
     private let authenticationManager: AuthenticationManager
     private let user: User
     private let settings: Settings
+    private let colorPalette: ColorPalette
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, user: User, settings: Settings) {
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, user: User, settings: Settings, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
         self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
         self.user = user
         self.settings = settings
+        self.colorPalette = colorPalette
         
         super.init(style: .grouped)
         
         self.title = "Settings"
-        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed(_:)))
     }
     
@@ -39,6 +43,8 @@ class SettingsViewController: UITableViewController {
     // MARK: - Customization
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.register(UINib(nibName: "CenterLabelCell", bundle: nil), forCellReuseIdentifier: "CenterLabelCell")
     }
 
     // MARK: - Public Methods
@@ -56,9 +62,9 @@ class SettingsViewController: UITableViewController {
         case 0:
             return 2
         case 1:
-            return 1
-        case 2:
             return 2
+        case 2:
+            return 1
         default:
             fatalError()
         }
@@ -87,21 +93,27 @@ class SettingsViewController: UITableViewController {
                 fatalError()
             }
         case 1:
-            let cell = UITableViewCell(style: .default, reuseIdentifier: "privacyCell")
-            cell.textLabel?.text = "Privacy"
-            cell.accessoryType = .disclosureIndicator
-            return cell
+            switch row {
+            case 0:
+                let cell = UITableViewCell(style: .default, reuseIdentifier: "privacyCell")
+                cell.textLabel?.text = "Privacy"
+                cell.accessoryType = .disclosureIndicator
+                return cell
+            case 1:
+                // logout
+                let cell = UITableViewCell(style: .default, reuseIdentifier: "logoutCell")
+                cell.textLabel?.text = "Logout"
+                return cell
+            default:
+                fatalError()
+            }
         case 2:
             switch row {
             case 0:
-                // logout
-                let cell = UITableViewCell(style: .default, reuseIdentifier: "logoutUserCell")
-                cell.textLabel?.text = "Logout"
-                return cell
-            case 1:
                 // delete account
-                let cell = UITableViewCell(style: .default, reuseIdentifier: "deleteUserCell")
-                cell.textLabel?.text = "Delete Account"
+                let cell = tableView.dequeueReusableCell(withIdentifier: "CenterLabelCell", for: indexPath) as! CenterLabelCell
+                cell.centerTextLabel.text = "Delete Account"
+                cell.centerTextLabel.textColor = colorPalette.destructiveColor
                 return cell
             default:
                 fatalError()
@@ -115,6 +127,8 @@ class SettingsViewController: UITableViewController {
         switch section {
         case 0:
             return "Radius"
+        case 1:
+            return "Account"
         default:
             return nil
         }
@@ -129,22 +143,27 @@ class SettingsViewController: UITableViewController {
         case 0:
             break
         case 1:
-            break
-        case 2:
             switch row {
             case 0:
+                // privacy
+                break
+            case 1:
                 // logout
                 authenticationManager.logout { error in
                     let authenticationViewController = self.viewFactory.makeAuthenticationViewController()
                     self.appDelegate.show(authenticationViewController)
                 }
-            case 1:
+            default:
+                fatalError()
+            }
+        case 2:
+            switch row {
+            case 0:
                 // delete account
                 break
             default:
                 fatalError()
             }
-            
         default:
             fatalError()
         }
