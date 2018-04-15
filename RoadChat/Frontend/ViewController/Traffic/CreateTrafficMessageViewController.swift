@@ -94,7 +94,12 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
         }
         
         let location = RoadChatKit.Location(coreLocation: coreLocation)
-        let trafficMessageRequest = TrafficMessageRequest(type: TrafficType(rawValue: type.lowercased())!, time: Date(), message: messageCharacterCount > 0 ? message : "", location: location)
+        
+        guard let trafficType = TrafficType(rawValue: type.lowercased()) else {
+            return
+        }
+        
+        let trafficMessageRequest = TrafficMessageRequest(type: trafficType, time: Date(), message: messageCharacterCount > 0 ? message : "", location: location)
         
         trafficBoard.postMessage(trafficMessageRequest) { error in
             guard error == nil else {
@@ -110,7 +115,7 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
     private func validateSendButton() {
         if messageCharacterCount > maxMessageCharacters {
             sendBarButtonItem.isEnabled = false
-        } else if let _ = TrafficType(rawValue: typeTextField.text!) {
+        } else if let _ = TrafficType(rawValue: typeTextField.text!.lowercased()) {
             sendBarButtonItem.isEnabled = true
         } else {
             sendBarButtonItem.isEnabled = false

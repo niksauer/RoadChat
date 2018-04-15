@@ -13,7 +13,7 @@ import Parchment
 class ProfileViewController: UIViewController {
     
     // MARK: - Typealiases
-    typealias ColorPalette = BasicColorPalette
+    typealias ColorPalette = BasicColorPalette & SexColorPalette
     
     // MARK: - Outlets
     @IBOutlet weak var profileImageView: UIImageView!
@@ -62,6 +62,7 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Customization
     override func viewDidLoad() {
+        super.viewDidLoad()
         // pull to refresh
 //        refreshControl = UIRefreshControl()
 //        refreshControl?.layer.zPosition = -1
@@ -82,6 +83,10 @@ class ProfileViewController: UIViewController {
         pageViewController.didMove(toParentViewController: self)
         pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
         pageViewController.view.pin(to: pageViewContainer)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     // MARK: - Public Methods
@@ -110,12 +115,17 @@ class ProfileViewController: UIViewController {
             switch profile.storedSex {
             case .male?:
                 sexImageView.image = #imageLiteral(resourceName: "male")
+                sexImageView.tintColor = colorPalette.maleColor
+                print(colorPalette.maleColor)
             case .female?:
                 sexImageView.image = #imageLiteral(resourceName: "female")
+                sexImageView.tintColor = colorPalette.femaleColor
             case .other?:
                 sexImageView.image = #imageLiteral(resourceName: "genderqueer")
+                sexImageView.tintColor = colorPalette.otherColor
             default:
                 sexImageView.image = nil
+                sexImageView.tintColor = nil
             }
             
             // biography

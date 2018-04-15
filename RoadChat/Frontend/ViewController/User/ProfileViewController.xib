@@ -30,7 +30,7 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="IXZ-YR-7Eq">
                     <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="OC6-l1-nQc">
+                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OC6-l1-nQc">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="92"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mVK-0e-Kvm">
@@ -42,7 +42,7 @@
                                     </constraints>
                                 </imageView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="gVs-d6-CxK">
-                                    <rect key="frame" x="107" y="26" width="211" height="56"/>
+                                    <rect key="frame" x="99" y="26" width="227" height="56"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="zYP-7O-RFr">
                                             <rect key="frame" x="0.0" y="0.0" width="77.5" height="31.5"/>
