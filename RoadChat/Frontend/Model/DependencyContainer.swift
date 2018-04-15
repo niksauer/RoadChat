@@ -140,8 +140,8 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     // User
-    func makeSettingsViewController(for user: User) -> SettingsViewController {
-        return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user)
+    func makeSettingsViewController(for user: User, settings: Settings) -> SettingsViewController {
+        return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user, settings: settings)
     }
     
     func makeProfileViewController(for user: User) -> ProfileViewController {

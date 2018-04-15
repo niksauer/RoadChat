@@ -40,7 +40,7 @@ protocol ViewControllerFactory {
     func makeConversationsViewController(for user: User) -> ConversationsViewController
     
     // User
-    func makeSettingsViewController(for user: User) -> SettingsViewController
+    func makeSettingsViewController(for user: User, settings: Settings) -> SettingsViewController
     func makeProfileViewController(for user: User) -> ProfileViewController
     func makeProfilePageViewController(for user: User) -> ProfilePageViewController
     
