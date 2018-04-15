@@ -83,7 +83,7 @@ class AboutViewController: UIViewController {
                 address.append("\(streetName) \(profile.streetNumber)\n")
             }
             
-            address.append("\(profile.postalCode)\n")
+            address.append("\(profile.postalCode) \(profile.city ?? "")\n")
             
             if let country = profile.country {
                 address.append(country)

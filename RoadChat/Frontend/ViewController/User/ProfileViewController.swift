@@ -116,7 +116,6 @@ class ProfileViewController: UIViewController {
             case .male?:
                 sexImageView.image = #imageLiteral(resourceName: "male")
                 sexImageView.tintColor = colorPalette.maleColor
-                print(colorPalette.maleColor)
             case .female?:
                 sexImageView.image = #imageLiteral(resourceName: "female")
                 sexImageView.tintColor = colorPalette.femaleColor
