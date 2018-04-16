@@ -25,6 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let console = ConsoleDestination()
         log.addDestination(console)
         
+        let file = FileDestination()
+        let _ = file.deleteLogFile()
+        file.format = "$DHH:mm:ss$d $L:\n$M\n"
+        log.addDestination(file)
+        
         // delete keychain upon first app install
         let userDefaults = container.userDefaults
         let coreData = container.coreData
