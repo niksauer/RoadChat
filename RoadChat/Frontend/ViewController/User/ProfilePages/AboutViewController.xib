@@ -190,8 +190,8 @@ Africa</string>
                             <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
                         </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZ2-o5-JRH">
-                            <rect key="frame" x="30" y="218" width="69" height="30"/>
-                            <state key="normal" title="create car"/>
+                            <rect key="frame" x="30" y="218" width="91" height="30"/>
+                            <state key="normal" title="create profile"/>
                             <connections>
                                 <action selector="didPressCreateCarButton:" destination="-1" eventType="touchUpInside" id="Ipv-rs-1g7"/>
                             </connections>

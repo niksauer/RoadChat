@@ -107,8 +107,8 @@ class AboutViewController: UIViewController {
     }
     
     @IBAction func didPressCreateCarButton(_ sender: UIButton) {
-        let createCarViewController = viewFactory.makeCreateCarViewController(for: user)
-        let createCarNavigationController = UINavigationController(rootViewController: createCarViewController)
-        present(createCarNavigationController, animated: true, completion: nil)
+        let createProfileViewController = viewFactory.makeCreateProfileViewController(for: user)
+        let createCarNavigationController = UINavigationController(rootViewController: createProfileViewController)
+        present(createProfileNavigationController, animated: true, completion: nil)
     }
 }
