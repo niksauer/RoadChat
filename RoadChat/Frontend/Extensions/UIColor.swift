@@ -9,17 +9,30 @@
 import Foundation
 import UIKit
 
-/// https://www.ralfebert.de/ios-examples/uikit/uicolor-rgb/
+ /// https://gist.github.com/yannickl/16f0ed38f0698d9a8ae7
 extension UIColor {
-    convenience init(rgbHex: Int, alpha: CGFloat = 1.0) {
-        let r = CGFloat((rgbHex & 0xff0000) >> 16) / 255
-        let g = CGFloat((rgbHex & 0x00ff00) >>  8) / 255
-        let b = CGFloat((rgbHex & 0x0000ff)      ) / 255
+    convenience init(hexString:String) {
+        let scanner  = Scanner(string: hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))
         
-        self.init(red: r, green: g, blue: b, alpha: alpha)
+        if (hexString.hasPrefix("#")) {
+            scanner.scanLocation = 1
+        }
+        
+        var color:UInt32 = 0
+        scanner.scanHexInt32(&color)
+        
+        let mask = 0x000000FF
+        let r = Int(color >> 16) & mask
+        let g = Int(color >> 8) & mask
+        let b = Int(color) & mask
+        
+        let red   = CGFloat(r) / 255.0
+        let green = CGFloat(g) / 255.0
+        let blue  = CGFloat(b) / 255.0
+        
+        self.init(red:red, green:green, blue:blue, alpha:1)
     }
-    
-    /// https://gist.github.com/yannickl/16f0ed38f0698d9a8ae7
+
     func toHexString() -> String {
         var r:CGFloat = 0
         var g:CGFloat = 0

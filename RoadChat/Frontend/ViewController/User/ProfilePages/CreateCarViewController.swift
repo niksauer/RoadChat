@@ -23,7 +23,7 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     @IBOutlet weak var modelTextField: UITextField!
     
     @IBOutlet weak var performanceTextField: UITextField!
-    @IBOutlet weak var productionTextView: UITextView!
+    @IBOutlet weak var productionTextField: UITextField!
     
     @IBOutlet weak var colorPickerContainer: UIView!
     @IBOutlet weak var colorPickerField: UIView!
@@ -37,8 +37,6 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     private let user: User
     private let dateFormatter: DateFormatter
     private let colorPalette: ColorPalette
-    
-    private let messageTextViewPlaceholder = "07/2008"
     
     // MARK: - Initialization
     init(user: User, dateFormatter: DateFormatter, colorPalette: ColorPalette) {
@@ -61,17 +59,23 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     
     // MARK: - Customization
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        tapGestureRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGestureRecognizer)
+        
         // production date
         datePickerView.timeZone = TimeZone.current
         datePickerView.datePickerMode = UIDatePickerMode.date
         datePickerView.addTarget(self, action: #selector(didChangeProductionDate(sender:)), for: .valueChanged)
     
-        productionTextView.inputView = datePickerView
-        productionTextView.text = messageTextViewPlaceholder
+        productionTextField.inputView = datePickerView
         
         // add photo
         addImageButton.layer.cornerRadius = addImageButton.frame.size.width / 2
         addImageButton.clipsToBounds = true
+        addImageButton.tintColor = colorPalette.createColor
         addImageButton.backgroundColor = colorPalette.contentBackgroundColor
         
 //        addImageButton.backgroundColor?.withAlphaComponent(0.5)
@@ -105,14 +109,13 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        guard let manufacturer = manufacturerTextField.text, let model = modelTextField.text, let performanceString = performanceTextField.text, let performance = Int(performanceString), let productionString = productionTextView.text, let production = dateFormatter.date(from: productionString) else {
-            
-            // handle missingfields error
+        guard let manufacturer = manufacturerTextField.text, let model = modelTextField.text, let performanceString = performanceTextField.text, let performance = Int(performanceString), let productionString = productionTextField.text, let production = dateFormatter.date(from: productionString) else {
+            // handle missing fields error
             return
         }
     
         let hexColorString = colorPickerField.backgroundColor!.toHexString()
-        let createCarRequest = CarRequest(manufacturer: manufacturer, model: model, production: production, performance: performance, color: 0)
+        let createCarRequest = CarRequest(manufacturer: manufacturer, model: model, production: production, performance: performance, color: hexColorString)
     
         user.createCar(createCarRequest) { error in
             guard error == nil else {
@@ -125,11 +128,11 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     }
 
     @objc func didChangeProductionDate(sender: UIDatePicker) {
-        productionTextView.textColor = colorPalette.textColor
+        productionTextField.textColor = colorPalette.textColor
         
         // get the date string applied date format
         let selectedDate = dateFormatter.string(from: sender.date)
-        productionTextView.text = selectedDate
+        productionTextField.text = selectedDate
         
         if manufacturerTextField.text != "", modelTextField.text != "", performanceTextField.text != "" {
             saveBarButtonItem.isEnabled = true
@@ -139,29 +142,14 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     @IBAction func didPressAddImageButton(_ sender: UIButton) {
         // TODO
     }
-    
-    // MARK: - UITextViewDelegate
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView == productionTextView, textView.text == messageTextViewPlaceholder {
-            textView.text = ""
-            textView.textColor = .black
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView == productionTextView, textView.text.count == 0 {
-            textView.textColor = .lightGray
-            textView.text = messageTextViewPlaceholder
-        }
-    }
-    
-    // Mark: - Gesture Actions
-    @IBAction func didPressView(_ sender: UITapGestureRecognizer) {
-        productionTextView.resignFirstResponder()
+
+    // Mark: - Tap Gesture Recognizer
+    @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
     
     @IBAction func didPressColorField(_ sender: UITapGestureRecognizer) {
-        productionTextView.resignFirstResponder()
+        view.endEditing(true)
         colorPickerContainer.isHidden = false
     }
     
