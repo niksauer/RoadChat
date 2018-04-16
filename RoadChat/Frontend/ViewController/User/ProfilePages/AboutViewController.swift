@@ -8,6 +8,7 @@
 
 import UIKit
 import RoadChatKit
+import Contacts
 
 class AboutViewController: UIViewController {
 
@@ -79,24 +80,16 @@ class AboutViewController: UIViewController {
             }
             
             // address
-            var address = ""
+            let cnAddress = CNMutablePostalAddress()
+            cnAddress.street = "\(profile.streetNumber) \(profile.streetName ?? "")"
+            cnAddress.postalCode = "\(profile.postalCode)"
+            cnAddress.city = "\(profile.city ?? "")"
+            cnAddress.country = "\(profile.country ?? "")"
             
-            if let streetName = profile.streetName {
-                address.append("\(streetName) \(profile.streetNumber)\n")
-            }
+            let localizedAddress = CNPostalAddressFormatter.string(from: cnAddress, style: .mailingAddress)
             
-            address.append("\(profile.postalCode) \(profile.city ?? "")\n")
-            
-            if let country = profile.country {
-                address.append(country)
-            }
-            
-            if address.count >= 1 {
-                if profile.country == nil, let lastReturnIndex = address.range(of: "\n", options: .backwards)?.lowerBound {
-                    address.remove(at: lastReturnIndex)
-                }
-                
-                addressLabel.text = address
+            if localizedAddress.count >= 1 {
+                addressLabel.text = localizedAddress
             } else {
                 addressStackView.removeFromSuperview()
             }
@@ -106,9 +99,4 @@ class AboutViewController: UIViewController {
         }
     }
     
-    @IBAction func didPressCreateCarButton(_ sender: UIButton) {
-        let createProfileViewController = viewFactory.makeCreateProfileViewController(for: user)
-        let createCarNavigationController = UINavigationController(rootViewController: createProfileViewController)
-        present(createProfileNavigationController, animated: true, completion: nil)
-    }
 }

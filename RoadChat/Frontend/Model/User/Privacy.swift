@@ -10,12 +10,7 @@ import Foundation
 import CoreData
 import RoadChatKit
 
-struct Option {
-    let name: String
-    var isEnabled: Bool
-}
-
-class Privacy: NSManagedObject, ReportOwner {
+class Privacy: NSManagedObject {
     
     // MARK: - Public Class Methods
     class func createOrUpdate(from prototype: RoadChatKit.Privacy.PublicPrivacy, userID: Int, in context: NSManagedObjectContext) throws -> Privacy {
@@ -118,11 +113,6 @@ class Privacy: NSManagedObject, ReportOwner {
         }
     }
     
-    // MARK: - ReportOwner Protocol
-    var logDescription: String {
-        return "'Privacy' [userId: '\(self.user!.id)']"
-    }
-    
     // MARK: - Public Methods
     func save(completion: @escaping (Error?) -> Void) {
         do {
@@ -131,7 +121,7 @@ class Privacy: NSManagedObject, ReportOwner {
             try userService.updatePrivacy(userID: Int(self.user!.id), to: request) { error in
                 guard error == nil else {
                     // pass service error
-                    let report = Report(.failedServerOperation(.update, resource: "Privacy", isMultiple: false, error: error!), owner: self)
+                    let report = Report(.failedServerOperation(.update, resource: "Privacy", isMultiple: false, error: error!), owner: self.user!)
                     log.error(report)
                     completion(error!)
                     return
@@ -139,19 +129,19 @@ class Privacy: NSManagedObject, ReportOwner {
                 
                 do {
                     try self.context.save()
-                    let report = Report(.successfulCoreDataOperation(.update, resource: "Privacy", isMultiple: false), owner: self)
+                    let report = Report(.successfulCoreDataOperation(.update, resource: "Privacy", isMultiple: false), owner: self.user!)
                     log.debug(report)
                     completion(nil)
                 } catch {
                     // pass core data error
-                    let report = Report(.failedCoreDataOperation(.update, resource: "Profile", isMultiple: false, error: error), owner: self)
+                    let report = Report(.failedCoreDataOperation(.update, resource: "Privacy", isMultiple: false, error: error), owner: self.user!)
                     log.error(report)
                     completion(error)
                 }
             }
         } catch {
             // pass body encoding error
-            let report = Report(.failedServerRequest(requestType: "PrivacyRequest", error: error), owner: self)
+            let report = Report(.failedServerRequest(requestType: "PrivacyRequest", error: error), owner: user!)
             log.error(report)
             completion(error)
         }

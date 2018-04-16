@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette, SexColorPalette, CarColorPalette {
+struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette, SexColorPalette, CarColorPalette, GeofenceColorPalette {
     
     // General
     private let yellow = UIColor(displayP3Red: 243/255, green: 211/255, blue: 93/255, alpha: 1)
@@ -18,18 +18,22 @@ struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette
     private let darkOrange = UIColor(displayP3Red: 236/255, green: 104/255, blue: 44/255, alpha: 1)
     private let darkPurple = UIColor(displayP3Red: 86/255, green: 94/255, blue: 227/255, alpha: 1)
     private let lightGray = UIColor(displayP3Red: 243/255, green: 242/255, blue: 247/255, alpha: 1)
+    private let darkGrey = UIColor.darkGray
     private let lightBlue = UIColor(displayP3Red: 0, green: 122/255, blue: 1, alpha: 1)
     private let black = UIColor.black
     private let white = UIColor.white
     private let clear = UIColor.clear
+    private let green = UIColor(displayP3Red: 118/255, green: 216/255, blue: 115/255, alpha: 1)
     
     // BasicColorPalette
     var backgroundColor: UIColor { return lightGray }
+    var controlBackgroundColor: UIColor { return darkGrey.withAlphaComponent(0.6) }
     var contentBackgroundColor: UIColor { return white }
     var textColor: UIColor { return black }
     var lightTextColor: UIColor { return lightGray }
     var tintColor: UIColor { return lightBlue }
     var destructiveColor: UIColor { return red }
+    var createColor: UIColor { return green }
     
     // KarmaColorPalette
     var upvoteBgColor: UIColor { return darkOrange }
@@ -54,5 +58,8 @@ struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette
     
     // CarColorPalette
     var defaultCarColor: UIColor { return yellow }
+    
+    // CarColorPalette
+    var geofenceBackgroundColor: UIColor { return red.withAlphaComponent(0.1) }
     
 }

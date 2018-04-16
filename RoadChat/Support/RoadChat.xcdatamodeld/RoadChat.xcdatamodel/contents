@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Car" representedClassName=".Car" syncable="YES" codeGenerationType="category">
-        <attribute name="color" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="manufacturer" attributeType="String" syncable="YES"/>
         <attribute name="model" attributeType="String" syncable="YES"/>

@@ -8,8 +8,8 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController {
-    
+class SettingsViewController: UITableViewController, GeofenceViewControllerDelegate {
+
     // MARK: - Typealiases
     typealias ColorPalette = BasicColorPalette
     
@@ -53,12 +53,30 @@ class SettingsViewController: UITableViewController {
 
     // MARK: - Public Methods
     @objc func doneButtonPressed(_ sender: UIBarButtonItem) {
+        settings.save { error in
+            guard error == nil else {
+                // handle error
+                return
+            }
+        }
+        
         dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - GeofenceViewControllerDelegate
+    func didUpdateRadius(_ sender: GeofenceViewController) {
+        if sender.identifier == "Community" {
+            settings.communityRadius = Int16(sender.radius/1000)
+        } else {
+            settings.trafficRadius = Int16(sender.radius/1000)
+        }
+        
+        tableView.reloadSections(IndexSet([0]), with: .automatic)
     }
     
     // MARK: - Table View Data Source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,6 +86,8 @@ class SettingsViewController: UITableViewController {
         case 1:
             return 2
         case 2:
+            return 1
+        case 3:
             return 1
         default:
             fatalError()
@@ -84,13 +104,13 @@ class SettingsViewController: UITableViewController {
             case 0:
                 let cell = UITableViewCell(style: .value1, reuseIdentifier: "communityRadiusCell")
                 cell.textLabel?.text = "Community"
-                cell.detailTextLabel?.text = lengthFormatter.string(fromMeters: Double(settings.communityRadius*1000))
+                cell.detailTextLabel?.text = lengthFormatter.string(fromMeters: Double(Int(settings.communityRadius)*1000))
                 cell.accessoryType = .disclosureIndicator
                 return cell
             case 1:
                 let cell = UITableViewCell(style: .value1, reuseIdentifier: "trafficRadiusCell")
                 cell.textLabel?.text = "Traffic"
-                cell.detailTextLabel?.text = lengthFormatter.string(fromMeters: Double(settings.trafficRadius*1000))
+                cell.detailTextLabel?.text = lengthFormatter.string(fromMeters: Double(Int(settings.trafficRadius)*1000))
                 cell.accessoryType = .disclosureIndicator
                 return cell
             default:
@@ -122,6 +142,16 @@ class SettingsViewController: UITableViewController {
             default:
                 fatalError()
             }
+        case 3:
+            switch row {
+            case 0:
+                let cell = UITableViewCell(style: .default, reuseIdentifier: "logDataCell")
+                cell.textLabel?.text = "Log Data"
+                cell.accessoryType = .disclosureIndicator
+                return cell
+            default:
+                fatalError()
+            }
         default:
             fatalError()
         }
@@ -133,6 +163,8 @@ class SettingsViewController: UITableViewController {
             return "Radius"
         case 1:
             return "Account"
+        case 3:
+            return "Developer"
         default:
             return nil
         }
@@ -156,11 +188,15 @@ class SettingsViewController: UITableViewController {
         case 0:
             switch row {
             case 0:
-                let geofenceViewController = viewFactory.makeGeofenceViewController(radius: settings.communityRadius)
-                navigationController?.pushViewController(geofenceViewController, animated: true)
+                let geofenceViewController = viewFactory.makeGeofenceViewController(radius: Double(Int(settings.communityRadius)*1000), min: 0, max: 500*1000, identifier: "Community")
+                geofenceViewController.delegate = self
+                let geofenceNavigationController = UINavigationController(rootViewController: geofenceViewController)
+                navigationController?.present(geofenceNavigationController, animated: true, completion: nil)
             case 1:
-                let geofenceViewController = viewFactory.makeGeofenceViewController(radius: settings.trafficTradius)
-                navigationController?.pushViewController(geofenceViewController, animated: true)
+                let geofenceViewController = viewFactory.makeGeofenceViewController(radius: Double(Int(settings.trafficRadius)*1000), min: 0, max: 500*1000, identifier: "Traffic")
+                geofenceViewController.delegate = self
+                let geofenceNavigationController = UINavigationController(rootViewController: geofenceViewController)
+                navigationController?.present(geofenceNavigationController, animated: true, completion: nil)
             default:
                 fatalError()
             }
@@ -202,7 +238,15 @@ class SettingsViewController: UITableViewController {
                     }
                 }
                 
-                tableView.deselectRow(at: indexPath, animated: true)
+                tableView.deselectRow(at: indexPath, animated: false)
+            default:
+                fatalError()
+            }
+        case 3:
+            switch row {
+            case 0:
+                let logDataViewController = viewFactory.makeLogDataViewController()
+                navigationController?.pushViewController(logDataViewController, animated: true)
             default:
                 fatalError()
             }

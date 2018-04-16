@@ -26,7 +26,7 @@ class CarCell: UICollectionViewCell {
         
         colorIndicator.layer.cornerRadius = colorIndicator.frame.size.width / 2
         colorIndicator.clipsToBounds = true
-        colorIndicator.backgroundColor = UIColor(rgbHex: Int(car.color))
+        colorIndicator.backgroundColor = car.storedColor
     }
     
     func reset() {

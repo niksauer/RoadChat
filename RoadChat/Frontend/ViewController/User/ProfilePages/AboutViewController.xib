@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -40,16 +40,16 @@
                                     <rect key="frame" x="0.0" y="8" width="354" height="73"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HPT-AJ-qqi" userLabel="Community Stack View">
-                                            <rect key="frame" x="16" y="0.0" width="118" height="65"/>
+                                            <rect key="frame" x="16" y="0.0" width="88" height="65"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="760" text="420" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vWt-YI-v8e">
-                                                    <rect key="frame" x="0.0" y="0.0" width="118" height="24"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="88" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="760" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrz-AO-9Ef">
-                                                    <rect key="frame" x="0.0" y="24" width="118" height="41"/>
+                                                    <rect key="frame" x="0.0" y="24" width="88" height="41"/>
                                                     <string key="text">Community
 Karma</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -59,23 +59,23 @@ Karma</string>
                                             </subviews>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g7L-tE-zih" userLabel="Seperator">
-                                            <rect key="frame" x="118" y="0.0" width="1" height="65"/>
+                                            <rect key="frame" x="120.5" y="0.0" width="1" height="65"/>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="1" id="1Qh-gn-FHi"/>
                                             </constraints>
                                         </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="w8W-01-u9h" userLabel="Traffic Stack View">
-                                            <rect key="frame" x="118" y="0.0" width="118" height="65"/>
+                                            <rect key="frame" x="155.5" y="0.0" width="53.5" height="65"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="760" text="69" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5F-jL-0wp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="118" height="24"/>
+                                                    <rect key="frame" x="0.5" y="0.0" width="53.5" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="760" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIU-ze-KY2">
-                                                    <rect key="frame" x="0.0" y="24" width="118" height="41"/>
+                                                    <rect key="frame" x="0.5" y="24" width="53.5" height="41"/>
                                                     <string key="text">Traffic 
 Karma</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -85,23 +85,23 @@ Karma</string>
                                             </subviews>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3iA-zY-53H" userLabel="Seperator">
-                                            <rect key="frame" x="236" y="0.0" width="1" height="65"/>
+                                            <rect key="frame" x="242.5" y="0.0" width="1" height="65"/>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="1" id="xqx-mi-HDy"/>
                                             </constraints>
                                         </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ith-gM-LWY" userLabel="Age Stack View">
-                                            <rect key="frame" x="236" y="0.0" width="118" height="65"/>
+                                            <rect key="frame" x="270" y="0.0" width="68" height="65"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="3y." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYP-Lt-Qhw">
-                                                    <rect key="frame" x="0.0" y="0.0" width="118" height="24"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="68" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="760" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUA-f3-sAv">
-                                                    <rect key="frame" x="0.0" y="24" width="118" height="41"/>
+                                                    <rect key="frame" x="0.0" y="24" width="68" height="41"/>
                                                     <string key="text">Account 
 Age</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -117,7 +117,7 @@ Age</string>
                                     <rect key="frame" x="0.0" y="81" width="354" height="1"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vgs-aI-9aG" userLabel="Seperator">
-                                            <rect key="frame" x="8" y="0.0" width="354" height="1"/>
+                                            <rect key="frame" x="8" y="0.0" width="338" height="1"/>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="Psk-Bn-LT3"/>
@@ -130,16 +130,16 @@ Age</string>
                                     <rect key="frame" x="0.0" y="82" width="354" height="174"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pBN-ht-UI9" userLabel="Email Stack View">
-                                            <rect key="frame" x="16" y="16" width="354" height="20.5"/>
+                                            <rect key="frame" x="16" y="16" width="322" height="20.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-Mail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECK-mb-IsU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="177" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="161" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mik@mitch.de" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gip-Fn-7RC">
-                                                    <rect key="frame" x="161" y="0.0" width="177" height="20.5"/>
+                                                    <rect key="frame" x="161" y="0.0" width="161" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -147,16 +147,16 @@ Age</string>
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8iQ-hx-Jfx" userLabel="Birth Stack View">
-                                            <rect key="frame" x="16" y="60.5" width="354" height="20.5"/>
+                                            <rect key="frame" x="16" y="60.5" width="322" height="20.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0K-O9-cBp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="177" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="161" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01.11.1969" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LbI-HF-dZi">
-                                                    <rect key="frame" x="161" y="0.0" width="177" height="20.5"/>
+                                                    <rect key="frame" x="161" y="0.0" width="161" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -164,16 +164,16 @@ Age</string>
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="YV4-Oa-OGO" userLabel="Address Stack View">
-                                            <rect key="frame" x="16" y="105" width="354" height="61"/>
+                                            <rect key="frame" x="16" y="105" width="322" height="61"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KfN-zN-MHd">
-                                                    <rect key="frame" x="0.0" y="0.0" width="177" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="161" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzs-Aq-awl">
-                                                    <rect key="frame" x="161" y="0.0" width="177" height="61"/>
+                                                    <rect key="frame" x="161" y="0.0" width="161" height="61"/>
                                                     <string key="text">Straße 12
 60389
 Africa</string>
@@ -189,22 +189,13 @@ Africa</string>
                             </subviews>
                             <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZ2-o5-JRH">
-                            <rect key="frame" x="30" y="218" width="91" height="30"/>
-                            <state key="normal" title="create profile"/>
-                            <connections>
-                                <action selector="didPressCreateCarButton:" destination="-1" eventType="touchUpInside" id="Ipv-rs-1g7"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="PFn-QB-e7K" firstAttribute="leading" secondItem="sAc-Hh-JC5" secondAttribute="leading" id="71Q-Lm-NhO"/>
                         <constraint firstItem="PFn-QB-e7K" firstAttribute="width" secondItem="sAc-Hh-JC5" secondAttribute="width" id="94N-JR-PU8"/>
                         <constraint firstItem="PFn-QB-e7K" firstAttribute="top" secondItem="sAc-Hh-JC5" secondAttribute="top" id="9Ln-yF-dnv"/>
-                        <constraint firstItem="bZ2-o5-JRH" firstAttribute="leading" secondItem="sAc-Hh-JC5" secondAttribute="leading" constant="30" id="Htj-v8-xSP"/>
                         <constraint firstAttribute="bottom" secondItem="PFn-QB-e7K" secondAttribute="bottom" id="TZJ-ZW-tvx"/>
                         <constraint firstAttribute="trailing" secondItem="PFn-QB-e7K" secondAttribute="trailing" id="YCj-PS-Avt"/>
-                        <constraint firstAttribute="bottom" secondItem="bZ2-o5-JRH" secondAttribute="bottom" constant="16" id="en4-ez-2wu"/>
                     </constraints>
                 </scrollView>
             </subviews>

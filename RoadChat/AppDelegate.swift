@@ -25,6 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let console = ConsoleDestination()
         log.addDestination(console)
         
+        let file = FileDestination()
+        let _ = file.deleteLogFile()
+        file.format = "$DHH:mm:ss$d $L:\n$M\n"
+        log.addDestination(file)
+        
         // delete keychain upon first app install
         let userDefaults = container.userDefaults
         let coreData = container.coreData
@@ -88,7 +93,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        
         
         // stop polling for location updates
         container.locationManager.stopPolling()

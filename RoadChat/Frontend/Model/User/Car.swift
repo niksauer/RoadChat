@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import RoadChatKit
+import UIKit
 
 class Car: NSManagedObject {
     
@@ -30,7 +31,7 @@ class Car: NSManagedObject {
                 
                 // TODO: remove defaults for optionals
                 car.performance = Int16(prototype.performance ?? 0)
-                car.color = Int16(prototype.color ?? 0)
+                car.color = prototype.color
                 
                 return car
             }
@@ -48,9 +49,18 @@ class Car: NSManagedObject {
         
         // TODO: remove defaults for optionals
         car.performance = Int16(prototype.performance ?? 0)
-        car.color = Int16(prototype.color ?? 0)
+        car.color = prototype.color
         
         return car
+    }
+    
+    // MARK: - Public Properties
+    var storedColor: UIColor? {
+        guard let color = color else {
+            return nil
+        }
+        
+        return UIColor(hexString: color)
     }
     
 }

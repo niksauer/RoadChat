@@ -18,7 +18,7 @@ protocol ViewControllerFactory {
     
     // Shared
     func makeLocationViewController(for location: CLLocation) -> LocationViewController
-    func makeGeofenceViewController(radius: Double?) -> filteredLocationController
+    func makeGeofenceViewController(radius: Double?, min: Double, max: Double, identifier: String) -> GeofenceViewController
     
     // Authentication
     func makeAuthenticationViewController() -> UINavigationController
@@ -46,7 +46,8 @@ protocol ViewControllerFactory {
     func makeProfileViewController(for user: User) -> ProfileViewController
     func makeProfilePageViewController(for user: User) -> ProfilePageViewController
     func makeCreateCarViewController(for user: User) -> CreateCarViewController
-    func makeCreateProfileViewController(for user: User) -> EditProfileViewController
+    func makeCreateProfileViewController(for user: User) -> CreateOrEditProfileViewController
+    func makeLogDataViewController() -> LogDataViewController
     
     // Car
     func makeCarsViewController(for user: User) -> CarsViewController

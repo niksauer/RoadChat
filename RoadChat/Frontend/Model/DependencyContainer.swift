@@ -67,7 +67,7 @@ struct DependencyContainer {
     let userDefaults: UserDefaults = UserDefaults.standard
     let coreData: CoreDataStack = CoreDataStack.shared
     let locationManager: LocationManager = LocationManager.shared
-
+    let logDataPath: URL = FileManager().urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("swiftybeaver.log")
     
     var config: APIConfiguration {
         return RoadChatAPI(credentials: credentials)
@@ -89,8 +89,8 @@ extension DependencyContainer: ViewControllerFactory {
     func makeLocationViewController(for location: CLLocation) -> LocationViewController {
         return LocationViewController(viewFactory: self, location: location)
     }
-    func makeGeofenceViewController(radius: Double?) -> filteredLocationController {
-        return filteredLocationController(radius: radius)
+    func makeGeofenceViewController(radius: Double?, min: Double, max: Double, identifier: String) -> GeofenceViewController {
+        return GeofenceViewController(radius: radius, min: min, max: max, identifier: identifier, colorPalette: colorPalette)
     }
     
     // Authentication
@@ -166,9 +166,13 @@ extension DependencyContainer: ViewControllerFactory {
     func makeCreateCarViewController(for user: User) -> CreateCarViewController {
         return CreateCarViewController(user: user, dateFormatter: shortDateFormatter, colorPalette: colorPalette)
     }
+
+    func makeCreateProfileViewController(for user: User) -> CreateOrEditProfileViewController {
+        return CreateOrEditProfileViewController(user: user, dateFormatter: shortDateFormatter, colorPalette: colorPalette)
+    }
     
-    func makeCreateProfileViewController(for user: User) -> EditProfileViewController {
-        return EditProfileViewController(user: user, dateFormatter: shortDateFormatter, colorPalette: colorPalette)
+    func makeLogDataViewController() -> LogDataViewController {
+        return LogDataViewController(path: logDataPath)
     }
     
     // Car
