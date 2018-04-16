@@ -57,7 +57,7 @@ class AboutViewController: UIViewController {
         
         // setup view
         let backgroundView = UIView()
-        backgroundView.backgroundColor = colorPalette.contentBackgroundClor
+        backgroundView.backgroundColor = colorPalette.contentBackgroundColor
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         aboutStackView.insertSubview(backgroundView, at: 0)
         backgroundView.pin(to: aboutStackView)
