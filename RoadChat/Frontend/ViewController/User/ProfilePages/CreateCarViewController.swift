@@ -28,6 +28,9 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     @IBOutlet weak var colorPickerContainer: UIView!
     @IBOutlet weak var colorPickerField: UIView!
     
+    @IBOutlet weak var displayColorView: UIView!
+  
+    
     // MARK: - Private Properties
     private let datePickerView = UIDatePicker()
     private var createBarButtonItem: UIBarButtonItem!
@@ -75,17 +78,23 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
         addImageButton.backgroundColor = colorPalette.contentBackgroundClor
         
         colorPickerField.layer.cornerRadius = 10
+        displayColorView.layer.cornerRadius = 25
         
         colorCircle.frame = CGRect(x: view.frame.width / 2, y: view.frame.height / 2, width: 200, height: 200)
         colorCircle.addTarget(self, action: #selector(didChangeColor), for: .valueChanged)
         
+        
         colorPickerContainer.backgroundColor = UIColor.darkGray.withAlphaComponent(0.6)
         colorPickerContainer.addSubview(colorCircle)
         colorCircle.translatesAutoresizingMaskIntoConstraints = false
+        colorPickerContainer.addSubview(displayColorView)
+        displayColorView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             colorCircle.centerYAnchor.constraint(equalTo: colorPickerContainer.centerYAnchor),
-            colorCircle.centerXAnchor.constraint(equalTo: colorPickerContainer.centerXAnchor)
+            colorCircle.centerXAnchor.constraint(equalTo: colorPickerContainer.centerXAnchor),
+            displayColorView.centerXAnchor.constraint(equalTo: colorPickerContainer.centerXAnchor),
+            displayColorView.bottomAnchor.constraint(equalTo: <#T##NSLayoutAnchor<NSLayoutYAxisAnchor>#>, constant: 20)
         ])
         
 //        addImageButton.backgroundColor?.withAlphaComponent(0.5)
@@ -147,6 +156,7 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     
     // MARK: - UITextViewDelegate
     func textViewDidBeginEditing(_ textView: UITextView) {
+        view.addSubview(datePickerView)
         if textView == productionTextView, textView.text == messageTextViewPlaceholder {
             textView.text = ""
             textView.textColor = .black
@@ -162,12 +172,14 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     
     // Mark: - Gesture Actions
     @IBAction func didPressView(_ sender: UITapGestureRecognizer) {
-        datePickerView.isHidden = true
+        datePickerView.removeFromSuperview()
     }
     
     @IBAction func didPressColorField(_ sender: UITapGestureRecognizer) {
         activeColorCircle = true
         colorPickerContainer.isHidden = false
+        datePickerView.removeFromSuperview()
+        displayColorView.backgroundColor = colorCircle.color
     }
     
     @IBAction func didPressOutsideColorPicker(_ sender: UITapGestureRecognizer) {
@@ -179,6 +191,7 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     
     // Mark: - Private Methods
     @objc private func didChangeColor(){
+        displayColorView.backgroundColor = colorCircle.color
         colorPickerField.backgroundColor = colorCircle.color
     }
     

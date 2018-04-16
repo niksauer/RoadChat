@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,6 +17,7 @@
                 <outlet property="carImageView" destination="QNx-qb-Kkl" id="NIO-6G-seJ"/>
                 <outlet property="colorPickerContainer" destination="KDC-jC-MYs" id="zLG-7I-a1Y"/>
                 <outlet property="colorPickerField" destination="fkw-ff-1OP" id="Jyc-3L-C0r"/>
+                <outlet property="displayColorView" destination="Nq8-67-peK" id="CrL-m0-ZfF"/>
                 <outlet property="manufacturerTextField" destination="l4G-4d-yT8" id="eTB-S9-OEo"/>
                 <outlet property="modelTextField" destination="R0j-qz-b8l" id="r4s-U4-ckp"/>
                 <outlet property="performanceTextField" destination="wX2-WZ-uN9" id="iGI-kl-gXC"/>
@@ -248,8 +249,21 @@
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDC-jC-MYs">
                     <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nq8-67-peK">
+                            <rect key="frame" x="162" y="111" width="50" height="50"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="4FV-R1-5SX"/>
+                                <constraint firstAttribute="width" constant="50" id="5lI-Sd-eZI"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstItem="Nq8-67-peK" firstAttribute="centerX" secondItem="KDC-jC-MYs" secondAttribute="centerX" id="81v-8J-OF3"/>
+                    </constraints>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="fhT-FY-KH4" appends="YES" id="oTM-oJ-RAK"/>
                     </connections>
