@@ -15,3 +15,6 @@
 [submodule "Frameworks/Parchment"]
 	path = Frameworks/Parchment
 	url = git@github.com:rechsteiner/Parchment.git
+[submodule "ColorCircle"]
+	path = Frameworks/ColorCircle
+	url = https://github.com/niksauer/ColorCircle
