@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette, SexColorPalette {
+struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette, SexColorPalette, CarColorPalette {
     
     // General
     private let yellow = UIColor(displayP3Red: 243/255, green: 211/255, blue: 93/255, alpha: 1)
@@ -25,7 +25,7 @@ struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette
     
     // BasicColorPalette
     var backgroundColor: UIColor { return lightGray }
-    var contentBackgroundClor: UIColor { return white }
+    var contentBackgroundColor: UIColor { return white }
     var textColor: UIColor { return black }
     var lightTextColor: UIColor { return lightGray }
     var tintColor: UIColor { return lightBlue }
@@ -51,5 +51,8 @@ struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette
     var maleColor: UIColor { return lightBlue }
     var femaleColor: UIColor { return white }
     var otherColor: UIColor { return black }
+    
+    // CarColorPalette
+    var defaultCarColor: UIColor { return yellow }
     
 }
