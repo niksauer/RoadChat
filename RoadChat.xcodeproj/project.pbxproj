@@ -12,6 +12,8 @@
 		24045D372084CC8600E7CF19 /* ColorCircle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24045D352084CC7A00E7CF19 /* ColorCircle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		24045D5E2084D27100E7CF19 /* ColorModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24045D5C2084D23900E7CF19 /* ColorModel.framework */; };
 		24045D5F2084D27100E7CF19 /* ColorModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24045D5C2084D23900E7CF19 /* ColorModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		24045D7B2084E28100E7CF19 /* GeofenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24045D792084E27900E7CF19 /* GeofenceViewController.swift */; };
+		24045D7C2084E28100E7CF19 /* GeofenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24045D7A2084E28100E7CF19 /* GeofenceViewController.xib */; };
 		2404A256204E92D2009AC7E1 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404A255204E92D2009AC7E1 /* UserService.swift */; };
 		2404A25B204EAFAC009AC7E1 /* JSendService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404A25A204EAFAC009AC7E1 /* JSendService.swift */; };
 		2404A25E204ED162009AC7E1 /* CarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404A25D204ED162009AC7E1 /* CarService.swift */; };
@@ -86,6 +88,7 @@
 		24B134772064202800B894BF /* CreateCommunityMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B134762064202800B894BF /* CreateCommunityMessageViewController.xib */; };
 		24B1347A206421EE00B894BF /* TrafficBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B13478206421EE00B894BF /* TrafficBoardViewController.swift */; };
 		24B1347E2064229100B894BF /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B1347C2064229100B894BF /* ConversationsViewController.swift */; };
+		24D34A1D2084FBDE00D3390F /* GeofenceColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D34A1C2084FBDE00D3390F /* GeofenceColorPalette.swift */; };
 		24D68B872080C535002B6D6C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68B862080C535002B6D6C /* UIColor.swift */; };
 		24D68B8A2080CCB5002B6D6C /* CarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */; };
 		24D68B8B2080CCB5002B6D6C /* CarDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */; };
@@ -339,6 +342,8 @@
 		24045CF22084C6D500E7CF19 /* CarColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarColorPalette.swift; sourceTree = "<group>"; };
 		24045D2F2084CC7A00E7CF19 /* ColorCircle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ColorCircle.xcodeproj; path = Frameworks/ColorCircle/ColorCircle.xcodeproj; sourceTree = "<group>"; };
 		24045D5C2084D23900E7CF19 /* ColorModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ColorModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		24045D792084E27900E7CF19 /* GeofenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeofenceViewController.swift; sourceTree = "<group>"; };
+		24045D7A2084E28100E7CF19 /* GeofenceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeofenceViewController.xib; sourceTree = "<group>"; };
 		2404A255204E92D2009AC7E1 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		2404A25A204EAFAC009AC7E1 /* JSendService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSendService.swift; sourceTree = "<group>"; };
 		2404A25D204ED162009AC7E1 /* CarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarService.swift; sourceTree = "<group>"; };
@@ -413,6 +418,7 @@
 		24B134762064202800B894BF /* CreateCommunityMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateCommunityMessageViewController.xib; sourceTree = "<group>"; };
 		24B13478206421EE00B894BF /* TrafficBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficBoardViewController.swift; sourceTree = "<group>"; };
 		24B1347C2064229100B894BF /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
+		24D34A1C2084FBDE00D3390F /* GeofenceColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceColorPalette.swift; sourceTree = "<group>"; };
 		24D68B862080C535002B6D6C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = RoadChat/Frontend/Extensions/UIColor.swift; sourceTree = SOURCE_ROOT; };
 		24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailViewController.swift; sourceTree = "<group>"; };
 		24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarDetailViewController.xib; sourceTree = "<group>"; };
@@ -605,6 +611,8 @@
 			children = (
 				D45FD6AF207EBC4400C35949 /* LocationViewController.swift */,
 				D45FD6C8207FEB7E00C35949 /* LocationViewController.xib */,
+				24045D792084E27900E7CF19 /* GeofenceViewController.swift */,
+				24045D7A2084E28100E7CF19 /* GeofenceViewController.xib */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -808,6 +816,7 @@
 		24AFEE8F206566A30097810E /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				24D34A1C2084FBDE00D3390F /* GeofenceColorPalette.swift */,
 				24A3512420836D73001FC1C4 /* SexColorPalette.swift */,
 				247F6D25206057950006FBC7 /* ViewControllerFactory.swift */,
 				24AF50AE207B943500477DC0 /* KarmaColorPalette.swift */,
@@ -1151,6 +1160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D45FD697207E4EB900C35949 /* CommunityMessageDetailViewController.xib in Resources */,
+				24045D7C2084E28100E7CF19 /* GeofenceViewController.xib in Resources */,
 				24A46AF92083D35E00F775C7 /* CenterLabelCell.xib in Resources */,
 				2412D6E020647B5D0066A51C /* SetupViewController.xib in Resources */,
 				249515CE20644DB100E734E4 /* ProfileViewController.xib in Resources */,
@@ -1198,6 +1208,7 @@
 				24D68B8A2080CCB5002B6D6C /* CarDetailViewController.swift in Sources */,
 				24D68BB22080E72E002B6D6C /* TimeSinceDateFormatter.swift in Sources */,
 				2489C4B72055E01E005C937E /* APIClient.swift in Sources */,
+				24045D7B2084E28100E7CF19 /* GeofenceViewController.swift in Sources */,
 				248D37A920494F9900B21C3D /* Participant.swift in Sources */,
 				24AFEE9E206566B30097810E /* Report.swift in Sources */,
 				240B9B8620534FAA00216E68 /* FetchedResultsTableViewController.swift in Sources */,
@@ -1255,6 +1266,7 @@
 				24B1346E20641A8C00B894BF /* ProfileViewController.swift in Sources */,
 				248D379820494D0900B21C3D /* User.swift in Sources */,
 				242089BE205EB1C700FFEC90 /* SetupViewController.swift in Sources */,
+				24D34A1D2084FBDE00D3390F /* GeofenceColorPalette.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1422,6 +1434,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = RoadChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hpe.dhbw.RoadChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -1441,6 +1454,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = RoadChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hpe.dhbw.RoadChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";

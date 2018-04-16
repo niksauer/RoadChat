@@ -85,11 +85,12 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
         colorPickerField.backgroundColor = colorPalette.defaultCarColor
         colorPickerField.layer.cornerRadius = 10
         
+        colorPickerView.setColor(colorPalette.defaultCarColor, animated: false, sendEvent: false)
         colorPickerView.frame = CGRect(x: view.frame.width / 2, y: view.frame.height / 2, width: 200, height: 200)
         colorPickerView.addTarget(self, action: #selector(didChangeColor), for: .valueChanged)
         colorPickerView.translatesAutoresizingMaskIntoConstraints = false
         
-        colorPickerContainer.backgroundColor = UIColor.darkGray.withAlphaComponent(0.6)
+        colorPickerContainer.backgroundColor = colorPalette.controlBackgroundColor
         colorPickerContainer.addSubview(colorPickerView)
     
         NSLayoutConstraint.activate([
