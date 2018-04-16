@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		24045CF32084C6D500E7CF19 /* CarColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24045CF22084C6D500E7CF19 /* CarColorPalette.swift */; };
+		24045D362084CC8600E7CF19 /* ColorCircle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24045D352084CC7A00E7CF19 /* ColorCircle.framework */; };
+		24045D372084CC8600E7CF19 /* ColorCircle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24045D352084CC7A00E7CF19 /* ColorCircle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2404A256204E92D2009AC7E1 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404A255204E92D2009AC7E1 /* UserService.swift */; };
 		2404A25B204EAFAC009AC7E1 /* JSendService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404A25A204EAFAC009AC7E1 /* JSendService.swift */; };
 		2404A25E204ED162009AC7E1 /* CarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404A25D204ED162009AC7E1 /* CarService.swift */; };
@@ -87,8 +89,6 @@
 		24D68B8B2080CCB5002B6D6C /* CarDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */; };
 		24D68BB02080D908002B6D6C /* CarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D68BAF2080D908002B6D6C /* CarCell.xib */; };
 		24D68BB22080E72E002B6D6C /* TimeSinceDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68BB12080E72E002B6D6C /* TimeSinceDateFormatter.swift */; };
-		24E8ADED2084AF3600365F84 /* ColorCircle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E8ADD92084AF3100365F84 /* ColorCircle.framework */; };
-		24E8ADEE2084AF3600365F84 /* ColorCircle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24E8ADD92084AF3100365F84 /* ColorCircle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; };
 		24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		24FE0002207CDDC300F0D657 /* CommunityBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */; };
@@ -116,6 +116,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		24045D342084CC7A00E7CF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24045D2F2084CC7A00E7CF19 /* ColorCircle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 83EBC7C31D4FDE9000F38B8F;
+			remoteInfo = ColorCircle;
+		};
+		24045D382084CC8600E7CF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24045D2F2084CC7A00E7CF19 /* ColorCircle.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 83EBC7C21D4FDE9000F38B8F;
+			remoteInfo = ColorCircle;
+		};
 		240AB005205086ED00324028 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 240AAFFB205086ED00324028 /* Locksmith.xcodeproj */;
@@ -256,20 +270,6 @@
 			remoteGlobalIDString = "RoadChatKit::RoadChatKit::Product";
 			remoteInfo = RoadChatKit;
 		};
-		24E8ADD82084AF3100365F84 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 24E8ADD42084AF3100365F84 /* ColorCircle.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 83EBC7C31D4FDE9000F38B8F;
-			remoteInfo = ColorCircle;
-		};
-		24E8ADEF2084AF3600365F84 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 24E8ADD42084AF3100365F84 /* ColorCircle.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 83EBC7C21D4FDE9000F38B8F;
-			remoteInfo = ColorCircle;
-		};
 		24F1DD3620517B8E00A726AA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */;
@@ -321,7 +321,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				24E8ADEE2084AF3600365F84 /* ColorCircle.framework in Embed Frameworks */,
+				24045D372084CC8600E7CF19 /* ColorCircle.framework in Embed Frameworks */,
 				240AB0142050870000324028 /* Locksmith.framework in Embed Frameworks */,
 				24207DE5207686D200851A73 /* Parchment.framework in Embed Frameworks */,
 				24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */,
@@ -334,6 +334,7 @@
 
 /* Begin PBXFileReference section */
 		24045CF22084C6D500E7CF19 /* CarColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarColorPalette.swift; sourceTree = "<group>"; };
+		24045D2F2084CC7A00E7CF19 /* ColorCircle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ColorCircle.xcodeproj; path = Frameworks/ColorCircle/ColorCircle.xcodeproj; sourceTree = "<group>"; };
 		2404A255204E92D2009AC7E1 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		2404A25A204EAFAC009AC7E1 /* JSendService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSendService.swift; sourceTree = "<group>"; };
 		2404A25D204ED162009AC7E1 /* CarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarService.swift; sourceTree = "<group>"; };
@@ -413,7 +414,6 @@
 		24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarDetailViewController.xib; sourceTree = "<group>"; };
 		24D68BAF2080D908002B6D6C /* CarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarCell.xib; sourceTree = "<group>"; };
 		24D68BB12080E72E002B6D6C /* TimeSinceDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSinceDateFormatter.swift; sourceTree = "<group>"; };
-		24E8ADD42084AF3100365F84 /* ColorCircle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ColorCircle.xcodeproj; path = Frameworks/ColorCircle/ColorCircle.xcodeproj; sourceTree = "<group>"; };
 		24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyBeaver.xcodeproj; path = Frameworks/SwiftyBeaver/SwiftyBeaver.xcodeproj; sourceTree = "<group>"; };
 		24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoardViewController.swift; sourceTree = "<group>"; };
 		24FE0058207D51D200F0D657 /* BasicColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicColorPalette.swift; sourceTree = "<group>"; };
@@ -444,7 +444,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24E8ADED2084AF3600365F84 /* ColorCircle.framework in Frameworks */,
+				24045D362084CC8600E7CF19 /* ColorCircle.framework in Frameworks */,
 				24207DE4207686D200851A73 /* Parchment.framework in Frameworks */,
 				240AB01D2050878100324028 /* Security.framework in Frameworks */,
 				24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */,
@@ -456,6 +456,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24045D302084CC7A00E7CF19 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				24045D352084CC7A00E7CF19 /* ColorCircle.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		2404A25C204ED13A009AC7E1 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -483,7 +491,7 @@
 		240D10EC20481843008C5E39 = {
 			isa = PBXGroup;
 			children = (
-				24E8ADD42084AF3100365F84 /* ColorCircle.xcodeproj */,
+				24045D2F2084CC7A00E7CF19 /* ColorCircle.xcodeproj */,
 				240AAFFB205086ED00324028 /* Locksmith.xcodeproj */,
 				24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */,
 				24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */,
@@ -804,14 +812,6 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		24E8ADD52084AF3100365F84 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				24E8ADD92084AF3100365F84 /* ColorCircle.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		24F1DD2620517B8E00A726AA /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -907,7 +907,7 @@
 				240AB01B2050877000324028 /* PBXTargetDependency */,
 				24F1DD4320517B9D00A726AA /* PBXTargetDependency */,
 				24207DE7207686D200851A73 /* PBXTargetDependency */,
-				24E8ADF02084AF3600365F84 /* PBXTargetDependency */,
+				24045D392084CC8600E7CF19 /* PBXTargetDependency */,
 			);
 			name = RoadChat;
 			productName = RoadChat;
@@ -948,8 +948,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 24E8ADD52084AF3100365F84 /* Products */;
-					ProjectRef = 24E8ADD42084AF3100365F84 /* ColorCircle.xcodeproj */;
+					ProductGroup = 24045D302084CC7A00E7CF19 /* Products */;
+					ProjectRef = 24045D2F2084CC7A00E7CF19 /* ColorCircle.xcodeproj */;
 				},
 				{
 					ProductGroup = 240AAFFC205086ED00324028 /* Products */;
@@ -976,6 +976,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		24045D352084CC7A00E7CF19 /* ColorCircle.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ColorCircle.framework;
+			remoteRef = 24045D342084CC7A00E7CF19 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		240AB006205086ED00324028 /* Locksmith.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1093,13 +1100,6 @@
 			fileType = wrapper.framework;
 			path = RoadChatKit.framework;
 			remoteRef = 24AED4B5204CC2EB002A1703 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		24E8ADD92084AF3100365F84 /* ColorCircle.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ColorCircle.framework;
-			remoteRef = 24E8ADD82084AF3100365F84 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */ = {
@@ -1255,6 +1255,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		24045D392084CC8600E7CF19 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ColorCircle;
+			targetProxy = 24045D382084CC8600E7CF19 /* PBXContainerItemProxy */;
+		};
 		240AB0162050870000324028 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Locksmith iOS";
@@ -1269,11 +1274,6 @@
 			isa = PBXTargetDependency;
 			name = Parchment;
 			targetProxy = 24207DE6207686D200851A73 /* PBXContainerItemProxy */;
-		};
-		24E8ADF02084AF3600365F84 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ColorCircle;
-			targetProxy = 24E8ADEF2084AF3600365F84 /* PBXContainerItemProxy */;
 		};
 		24F1DD4320517B9D00A726AA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
