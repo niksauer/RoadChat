@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		24045CE52084B01400E7CF19 /* ColorModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24045CCF2084B00E00E7CF19 /* ColorModel.framework */; };
-		24045CE62084B01400E7CF19 /* ColorModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24045CCF2084B00E00E7CF19 /* ColorModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2404A256204E92D2009AC7E1 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404A255204E92D2009AC7E1 /* UserService.swift */; };
 		2404A25B204EAFAC009AC7E1 /* JSendService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404A25A204EAFAC009AC7E1 /* JSendService.swift */; };
 		2404A25E204ED162009AC7E1 /* CarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404A25D204ED162009AC7E1 /* CarService.swift */; };
@@ -117,27 +115,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		24045CCE2084B00E00E7CF19 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 24045CC92084B00D00E7CF19 /* ColorModel.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 833DC5A11D565F5E00ED9C75;
-			remoteInfo = ColorModel;
-		};
-		24045CD02084B00E00E7CF19 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 24045CC92084B00D00E7CF19 /* ColorModel.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 833DC5AB1D565F5E00ED9C75;
-			remoteInfo = ColorModelTests;
-		};
-		24045CE72084B01400E7CF19 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 24045CC92084B00D00E7CF19 /* ColorModel.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 833DC5A01D565F5E00ED9C75;
-			remoteInfo = ColorModel;
-		};
 		240AB005205086ED00324028 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 240AAFFB205086ED00324028 /* Locksmith.xcodeproj */;
@@ -347,7 +324,6 @@
 				240AB0142050870000324028 /* Locksmith.framework in Embed Frameworks */,
 				24207DE5207686D200851A73 /* Parchment.framework in Embed Frameworks */,
 				24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */,
-				24045CE62084B01400E7CF19 /* ColorModel.framework in Embed Frameworks */,
 				240AB0192050877000324028 /* RoadChatKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -356,7 +332,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		24045CC92084B00D00E7CF19 /* ColorModel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ColorModel.xcodeproj; path = Frameworks/ColorModel/ColorModel.xcodeproj; sourceTree = "<group>"; };
 		2404A255204E92D2009AC7E1 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		2404A25A204EAFAC009AC7E1 /* JSendService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSendService.swift; sourceTree = "<group>"; };
 		2404A25D204ED162009AC7E1 /* CarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarService.swift; sourceTree = "<group>"; };
@@ -473,22 +448,12 @@
 				24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */,
 				240AB0132050870000324028 /* Locksmith.framework in Frameworks */,
 				240AB0182050877000324028 /* RoadChatKit.framework in Frameworks */,
-				24045CE52084B01400E7CF19 /* ColorModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		24045CCA2084B00D00E7CF19 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				24045CCF2084B00E00E7CF19 /* ColorModel.framework */,
-				24045CD12084B00E00E7CF19 /* ColorModelTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		2404A25C204ED13A009AC7E1 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -516,7 +481,6 @@
 		240D10EC20481843008C5E39 = {
 			isa = PBXGroup;
 			children = (
-				24045CC92084B00D00E7CF19 /* ColorModel.xcodeproj */,
 				24E8ADD42084AF3100365F84 /* ColorCircle.xcodeproj */,
 				240AAFFB205086ED00324028 /* Locksmith.xcodeproj */,
 				24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */,
@@ -941,7 +905,6 @@
 				24F1DD4320517B9D00A726AA /* PBXTargetDependency */,
 				24207DE7207686D200851A73 /* PBXTargetDependency */,
 				24E8ADF02084AF3600365F84 /* PBXTargetDependency */,
-				24045CE82084B01400E7CF19 /* PBXTargetDependency */,
 			);
 			name = RoadChat;
 			productName = RoadChat;
@@ -986,10 +949,6 @@
 					ProjectRef = 24E8ADD42084AF3100365F84 /* ColorCircle.xcodeproj */;
 				},
 				{
-					ProductGroup = 24045CCA2084B00D00E7CF19 /* Products */;
-					ProjectRef = 24045CC92084B00D00E7CF19 /* ColorModel.xcodeproj */;
-				},
-				{
 					ProductGroup = 240AAFFC205086ED00324028 /* Products */;
 					ProjectRef = 240AAFFB205086ED00324028 /* Locksmith.xcodeproj */;
 				},
@@ -1014,20 +973,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		24045CCF2084B00E00E7CF19 /* ColorModel.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ColorModel.framework;
-			remoteRef = 24045CCE2084B00E00E7CF19 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		24045CD12084B00E00E7CF19 /* ColorModelTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ColorModelTests.xctest;
-			remoteRef = 24045CD02084B00E00E7CF19 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		240AB006205086ED00324028 /* Locksmith.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1306,11 +1251,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		24045CE82084B01400E7CF19 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ColorModel;
-			targetProxy = 24045CE72084B01400E7CF19 /* PBXContainerItemProxy */;
-		};
 		240AB0162050870000324028 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Locksmith iOS";
