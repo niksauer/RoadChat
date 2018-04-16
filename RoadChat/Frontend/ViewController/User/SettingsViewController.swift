@@ -21,9 +21,10 @@ class SettingsViewController: UITableViewController {
     private let settings: Settings
     private let privacy: Privacy
     private let colorPalette: ColorPalette
+    private let lengthFormatter: LengthFormatter
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, user: User, settings: Settings, privacy: Privacy, colorPalette: ColorPalette) {
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, user: User, settings: Settings, privacy: Privacy, colorPalette: ColorPalette, lengthFormatter: LengthFormatter) {
         self.viewFactory = viewFactory
         self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
@@ -31,6 +32,7 @@ class SettingsViewController: UITableViewController {
         self.settings = settings
         self.privacy = privacy
         self.colorPalette = colorPalette
+        self.lengthFormatter = lengthFormatter
         
         super.init(style: .grouped)
         
@@ -82,13 +84,13 @@ class SettingsViewController: UITableViewController {
             case 0:
                 let cell = UITableViewCell(style: .value1, reuseIdentifier: "communityRadiusCell")
                 cell.textLabel?.text = "Community"
-                cell.detailTextLabel?.text = String(settings.communityRadius)
+                cell.detailTextLabel?.text = lengthFormatter.string(fromMeters: Double(settings.communityRadius*1000))
                 cell.accessoryType = .disclosureIndicator
                 return cell
             case 1:
                 let cell = UITableViewCell(style: .value1, reuseIdentifier: "trafficRadiusCell")
                 cell.textLabel?.text = "Traffic"
-                cell.detailTextLabel?.text = String(settings.trafficRadius)
+                cell.detailTextLabel?.text = lengthFormatter.string(fromMeters: Double(settings.trafficRadius*1000))
                 cell.accessoryType = .disclosureIndicator
                 return cell
             default:
@@ -136,6 +138,15 @@ class SettingsViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Defines the radius around your current location in which a message must have been posted in order to be displayed."
+        default:
+            return nil
+        }
+    }
+    
     // MARK: - Table View Delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = indexPath.section
@@ -169,16 +180,20 @@ class SettingsViewController: UITableViewController {
             switch row {
             case 0:
                 // delete account
-                authenticationManager.deleteAuthenticatedUser { error in
-                    guard error == nil else {
-                        // handle delete user account error
-                        self.displayAlert(title: "Error", message: "Failed to delete account: \(error!)")
-                        return
+                displayConfirmationDialog(title: "Delete Account", message: "Do you really want to delete your account? This includes all data and messages received.", type: .destructive, onCancel: nil) { _ in
+                    self.authenticationManager.deleteAuthenticatedUser { error in
+                        guard error == nil else {
+                            // handle delete user account error
+                            self.displayAlert(title: "Error", message: "Failed to delete account: \(error!)")
+                            return
+                        }
+                        
+                        let authenticationViewController = self.viewFactory.makeAuthenticationViewController()
+                        self.appDelegate.show(authenticationViewController)
                     }
-                    
-                    let authenticationViewController = self.viewFactory.makeAuthenticationViewController()
-                    self.appDelegate.show(authenticationViewController)
                 }
+                
+                tableView.deselectRow(at: indexPath, animated: true)
             default:
                 fatalError()
             }

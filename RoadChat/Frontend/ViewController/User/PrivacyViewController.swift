@@ -19,22 +19,28 @@ class PrivacyViewController: GroupedOptionTableViewController {
         
         let sectionForOptionName = [
             "Location":     0,
+            "Email":        1,
             "First Name":   1,
             "Last Name":    1,
             "Birth":        1,
             "Sex":          1,
             "Biography":    1,
-            "Address":      1,
+            "Street":       1,
+            "City":         1,
+            "Country":      1
         ]
         
         let rowForOptionName = [
             "Location":     0,
-            "First Name":   0,
-            "Last Name":    1,
-            "Birth":        2,
-            "Sex":          3,
-            "Biography":    4,
-            "Address":      5,
+            "Email":        0,
+            "First Name":   1,
+            "Last Name":    2,
+            "Birth":        3,
+            "Sex":          4,
+            "Biography":    5,
+            "Street":       6,
+            "City":         7,
+            "Country":      8
         ]
         
         let options = privacy.options.map {
@@ -52,6 +58,12 @@ class PrivacyViewController: GroupedOptionTableViewController {
     
     // MARK: - Customization
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        guard hasChangedOption else {
+            return
+        }
+        
         privacy.options = options.map { $0.option }
         
         privacy.save { error in

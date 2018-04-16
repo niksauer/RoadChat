@@ -25,12 +25,15 @@ class GroupedOptionTableViewController: UITableViewController, SwitchCellDelegat
     
     // MARK: - Public Properties
     var options: [GroupedOption]
+    var hasChangedOption = false
     
     // MARK: - Initialization
     init(options: [GroupedOption]) {
         self.options = options
         
         super.init(style: .grouped)
+        
+        tableView.allowsSelection = false
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -79,6 +82,7 @@ class GroupedOptionTableViewController: UITableViewController, SwitchCellDelegat
         }
         
         groupedOption.option.isEnabled = sender.stateSwitch.isOn
+        hasChangedOption = true
     }
     
 

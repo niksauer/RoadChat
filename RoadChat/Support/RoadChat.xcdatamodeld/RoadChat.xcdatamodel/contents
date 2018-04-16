@@ -56,12 +56,15 @@
     </entity>
     <entity name="Privacy" representedClassName=".Privacy" syncable="YES" codeGenerationType="category">
         <attribute name="shareLocation" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="showAddress" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="showBiography" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="showBirth" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="showCity" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="showCountry" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="showEmail" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="showFirstName" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="showLastName" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="showSex" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="showStreet" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="user" maxCount="1" deletionRule="Deny" destinationEntity="User" inverseName="privacy" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Profile" representedClassName=".Profile" syncable="YES" codeGenerationType="category">
@@ -116,7 +119,7 @@
         <element name="DirectMessage" positionX="-218" positionY="-378" width="128" height="120"/>
         <element name="Location" positionX="-722" positionY="-301" width="128" height="165"/>
         <element name="Participant" positionX="-218" positionY="-243" width="128" height="105"/>
-        <element name="Privacy" positionX="-749" positionY="-91" width="128" height="165"/>
+        <element name="Privacy" positionX="-749" positionY="-91" width="128" height="210"/>
         <element name="Profile" positionX="-747" positionY="86" width="128" height="225"/>
         <element name="Settings" positionX="-137" positionY="117" width="128" height="90"/>
         <element name="TrafficMessage" positionX="-479" positionY="515" width="128" height="195"/>

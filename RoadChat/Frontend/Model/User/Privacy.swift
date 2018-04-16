@@ -31,12 +31,15 @@ class Privacy: NSManagedObject, ReportOwner {
                 // update existing privacy
                 let privacy = matches.first!
                 privacy.shareLocation = prototype.shareLocation
-                privacy.showAddress = prototype.showAddress
-                privacy.showBiography = prototype.showBiography
-                privacy.showBirth = prototype.showBirth
+                privacy.showEmail = prototype.showEmail
                 privacy.showFirstName = prototype.showFirstName
                 privacy.showLastName = prototype.showLastName
+                privacy.showBirth = prototype.showBirth
                 privacy.showSex = prototype.showSex
+                privacy.showBiography = prototype.showBiography
+                privacy.showStreet = prototype.showStreet
+                privacy.showCity = prototype.showCity
+                privacy.showCountry = prototype.showCountry
                 
                 return privacy
             }
@@ -47,12 +50,15 @@ class Privacy: NSManagedObject, ReportOwner {
         // create new privacy
         let privacy = Privacy(context: context)
         privacy.shareLocation = prototype.shareLocation
-        privacy.showAddress = prototype.showAddress
-        privacy.showBiography = prototype.showBiography
-        privacy.showBirth = prototype.showBirth
+        privacy.showEmail = prototype.showEmail
         privacy.showFirstName = prototype.showFirstName
         privacy.showLastName = prototype.showLastName
+        privacy.showBirth = prototype.showBirth
         privacy.showSex = prototype.showSex
+        privacy.showBiography = prototype.showBiography
+        privacy.showStreet = prototype.showStreet
+        privacy.showCity = prototype.showCity
+        privacy.showCountry = prototype.showCountry
         
         return privacy
     }
@@ -64,12 +70,15 @@ class Privacy: NSManagedObject, ReportOwner {
     private var stateForOption: [String: Bool] {
         return [
             "Location":     shareLocation,
+            "Email":        showEmail,
             "First Name":   showFirstName,
             "Last Name":    showLastName,
             "Birth":        showBirth,
             "Sex":          showSex,
             "Biography":    showBiography,
-            "Address":      showAddress,
+            "Street":       showStreet,
+            "City":         showCity,
+            "Country":      showCountry
         ]
     }
     
@@ -84,6 +93,8 @@ class Privacy: NSManagedObject, ReportOwner {
                 switch option.name {
                 case "Location":
                     shareLocation = option.isEnabled
+                case "Email":
+                    showEmail = option.isEnabled
                 case "First Name":
                     showFirstName = option.isEnabled
                 case "Last Name":
@@ -94,8 +105,12 @@ class Privacy: NSManagedObject, ReportOwner {
                     showSex = option.isEnabled
                 case "Biography":
                     showBiography = option.isEnabled
-                case "Address":
-                    showAddress = option.isEnabled
+                case "Street":
+                    showStreet = option.isEnabled
+                case "City":
+                    showCity = option.isEnabled
+                case "Country":
+                    showCountry = option.isEnabled
                 default:
                     break
                 }
@@ -111,7 +126,7 @@ class Privacy: NSManagedObject, ReportOwner {
     // MARK: - Public Methods
     func save(completion: @escaping (Error?) -> Void) {
         do {
-            let request = PrivacyRequest(shareLocation: shareLocation, showFirstName: showFirstName, showLastName: showLastName, showBirth: showBirth, showSex: showSex, showAddress: showAddress, showBiography: showBiography)
+            let request = PrivacyRequest(shareLocation: shareLocation, showEmail: showEmail, showFirstName: showFirstName, showLastName: showLastName, showBirth: showBirth, showSex: showSex, showBiography: showBiography, showStreet: showStreet, showCity: showCity, showCountry: showCountry)
             
             try userService.updatePrivacy(userID: Int(self.user!.id), to: request) { error in
                 guard error == nil else {
