@@ -82,7 +82,16 @@ class SettingsViewController: UITableViewController {
             case 0:
                 let cell = UITableViewCell(style: .value1, reuseIdentifier: "communityRadiusCell")
                 cell.textLabel?.text = "Community"
-                cell.detailTextLabel?.text = String(settings.communityRadius)
+                
+                let lengthFormatter = LengthFormatter()
+                print(lengthFormatter.string(fromValue: Double(settings.communityRadius), unit: .kilometer))
+                print(lengthFormatter.string(fromMeters: Double(settings.communityRadius/1000)))
+                
+                print(lengthFormatter.unitString(fromValue: Double(settings.communityRadius), unit: .kilometer))
+                let formattedLength = lengthFormatter.unitString(fromValue: Double(settings.communityRadius), unit: .kilometer)
+                
+                
+                cell.detailTextLabel?.text = formattedLength
                 cell.accessoryType = .disclosureIndicator
                 return cell
             case 1:
@@ -131,6 +140,15 @@ class SettingsViewController: UITableViewController {
             return "Radius"
         case 1:
             return "Account"
+        default:
+            return nil
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Defines the radius around your current location in which a message must have been posted in order to be displayed."
         default:
             return nil
         }

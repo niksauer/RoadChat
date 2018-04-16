@@ -25,6 +25,7 @@ class GroupedOptionTableViewController: UITableViewController, SwitchCellDelegat
     
     // MARK: - Public Properties
     var options: [GroupedOption]
+    var hasChangedOption = false
     
     // MARK: - Initialization
     init(options: [GroupedOption]) {
@@ -79,6 +80,7 @@ class GroupedOptionTableViewController: UITableViewController, SwitchCellDelegat
         }
         
         groupedOption.option.isEnabled = sender.stateSwitch.isOn
+        hasChangedOption = true
     }
     
 
