@@ -154,7 +154,16 @@ class SettingsViewController: UITableViewController {
         
         switch section {
         case 0:
-            break
+            switch row {
+            case 0:
+                let geofenceViewController = viewFactory.makeGeofenceViewController(radius: settings.communityRadius)
+                navigationController?.pushViewController(geofenceViewController, animated: true)
+            case 1:
+                let geofenceViewController = viewFactory.makeGeofenceViewController(radius: settings.trafficTradius)
+                navigationController?.pushViewController(geofenceViewController, animated: true)
+            default:
+                fatalError()
+            }
         case 1:
             switch row {
             case 0:

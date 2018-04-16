@@ -89,6 +89,9 @@ extension DependencyContainer: ViewControllerFactory {
     func makeLocationViewController(for location: CLLocation) -> LocationViewController {
         return LocationViewController(viewFactory: self, location: location)
     }
+    func makeGeofenceViewController(radius: Double?) -> filteredLocationController {
+        return filteredLocationController(radius: radius)
+    }
     
     // Authentication
     func makeAuthenticationViewController() -> UINavigationController {

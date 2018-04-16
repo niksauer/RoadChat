@@ -113,6 +113,8 @@
 		D45FD6C9207FEB7E00C35949 /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FD6C8207FEB7E00C35949 /* LocationViewController.xib */; };
 		D45FD7002083D79300C35949 /* CreateCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FD6FE2083D79300C35949 /* CreateCarViewController.swift */; };
 		D45FD7012083D79300C35949 /* CreateCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FD6FF2083D79300C35949 /* CreateCarViewController.xib */; };
+		D45FD7182084D0DA00C35949 /* filteredLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FD7162084D0DA00C35949 /* filteredLocationController.swift */; };
+		D45FD7192084D0DA00C35949 /* filteredLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FD7172084D0DA00C35949 /* filteredLocationController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -437,6 +439,8 @@
 		D45FD6C8207FEB7E00C35949 /* LocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationViewController.xib; sourceTree = "<group>"; };
 		D45FD6FE2083D79300C35949 /* CreateCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCarViewController.swift; sourceTree = "<group>"; };
 		D45FD6FF2083D79300C35949 /* CreateCarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateCarViewController.xib; sourceTree = "<group>"; };
+		D45FD7162084D0DA00C35949 /* filteredLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filteredLocationController.swift; sourceTree = "<group>"; };
+		D45FD7172084D0DA00C35949 /* filteredLocationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = filteredLocationController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -630,6 +634,8 @@
 				249515CD20644DB100E734E4 /* ProfileViewController.xib */,
 				24207DEC2076AB1800851A73 /* ProfilePageViewController.swift */,
 				24207E002076C41300851A73 /* ProfilePages */,
+				D45FD7162084D0DA00C35949 /* filteredLocationController.swift */,
+				D45FD7172084D0DA00C35949 /* filteredLocationController.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1147,6 +1153,7 @@
 				D45FD697207E4EB900C35949 /* CommunityMessageDetailViewController.xib in Resources */,
 				24A46AF92083D35E00F775C7 /* CenterLabelCell.xib in Resources */,
 				2412D6E020647B5D0066A51C /* SetupViewController.xib in Resources */,
+				D45FD7192084D0DA00C35949 /* filteredLocationController.xib in Resources */,
 				249515CE20644DB100E734E4 /* ProfileViewController.xib in Resources */,
 				24B134652063254F00B894BF /* LoginViewController.xib in Resources */,
 				24D68BB02080D908002B6D6C /* CarCell.xib in Resources */,
@@ -1216,6 +1223,7 @@
 				249515D1206460F800E734E4 /* ConversationCell.swift in Sources */,
 				24AF50AC207B6C1200477DC0 /* CommunityMessageCell.swift in Sources */,
 				2418C117207E36A4004D1632 /* UIViewController.swift in Sources */,
+				D45FD7182084D0DA00C35949 /* filteredLocationController.swift in Sources */,
 				247F6D1D205F26AE0006FBC7 /* CommunityBoard.swift in Sources */,
 				D44F4B88205297A7009A6239 /* CreateCommunityMessageViewController.swift in Sources */,
 				24FE0059207D51D200F0D657 /* BasicColorPalette.swift in Sources */,
