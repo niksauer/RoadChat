@@ -28,13 +28,15 @@ class AboutViewController: UIViewController {
     @IBOutlet weak var addressLabel: UILabel!
     
     // MARK: - Private Properties
+    private let viewFactory: ViewControllerFactory
     private let user: User
     private let dateFormatter: DateFormatter
     private let registryDateFormatter: DateFormatter
     private let colorPalette: ColorPalette
     
     // MARK: - Initialization
-    init(user: User, dateFormatter: DateFormatter, registryDateFormatter: DateFormatter, colorPalette: ColorPalette) {
+    init(viewFactory: ViewControllerFactory, user: User, dateFormatter: DateFormatter, registryDateFormatter: DateFormatter, colorPalette: ColorPalette) {
+        self.viewFactory = viewFactory
         self.user = user
         self.dateFormatter = dateFormatter
         self.registryDateFormatter = registryDateFormatter
@@ -105,7 +107,7 @@ class AboutViewController: UIViewController {
     }
     
     @IBAction func didPressCreateCarButton(_ sender: UIButton) {
-        let createCarViewController = viewFactory.makeCreateCarViewController(user)
+        let createCarViewController = viewFactory.makeCreateCarViewController(for: user)
         let createCarNavigationController = UINavigationController(rootViewController: createCarViewController)
         present(createCarNavigationController, animated: true, completion: nil)
     }

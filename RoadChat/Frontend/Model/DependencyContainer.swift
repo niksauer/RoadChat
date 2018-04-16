@@ -157,7 +157,7 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeCreateCarViewController(for user: User) -> CreateCarViewController {
-        return CreateCarViewController(user: user, dateformatter: shortDateFormatter)
+        return CreateCarViewController(user: user, dateFormatter: shortDateFormatter, colorPalette: colorPalette)
     }
     
     // Car
@@ -171,7 +171,7 @@ extension DependencyContainer: ViewControllerFactory {
     
     // Profile Pages
     func makeAboutViewController(for user: User) -> AboutViewController {
-        return AboutViewController(user: user, dateFormatter: shortDateFormatter, registryDateFormatter: timeSinceDateFormatter, colorPalette: colorPalette)
+        return AboutViewController(viewFactory: self, user: user, dateFormatter: shortDateFormatter, registryDateFormatter: timeSinceDateFormatter, colorPalette: colorPalette)
     }
 
 }

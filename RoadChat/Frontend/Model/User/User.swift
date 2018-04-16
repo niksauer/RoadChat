@@ -51,7 +51,7 @@ class User: NSManagedObject, ReportOwner {
         user.getProfile(completion: nil)
         user.getSettings(completion: nil)
         user.getConversations(completion: nil)
-    
+
         // set current location if given
         if let location = prototype.location {
             let location = try Location.create(from: location, in: context)
@@ -130,36 +130,37 @@ class User: NSManagedObject, ReportOwner {
         }
     }
     
-    func createCar(_ car: CarRequest, completion: @escaping ((Error?) -> Void)?) {
+    func createCar(_ car: CarRequest, completion: ((Error?) -> Void)?) {
         do {
-            try userService.createCar(car, userID: Int(id) { car, error in
+            try userService.createCar(car, userID: Int(id)) { car, error in
                 guard let car = car else {
                     let report = Report(.failedServerOperation(.create, resource: "Car", isMultiple: false, error: error!), owner: self)
                     log.error(report)
-                    completion(error!)
+                    completion?(error!)
                     return
                 }
     
                 do {
-                    let _ = try Car.createOrUpdate(from: car, userID: Int(self.id), in: self.context)
+                    let car = try Car.createOrUpdate(from: car, in: self.context)
+                    self.addToCars(car)
                     try self.context.save()
     
                     let report = Report(.successfulCoreDataOperation(.create, resource: "Car", isMultiple: false), owner: self)
                     log.debug(report)
     
-                    completion(nil)
+                    completion?(nil)
                 } catch {
                     // pass core data error
                     let report = Report(.failedCoreDataOperation(.create, resource: "Car", isMultiple: false, error: error), owner: self)
                     log.error(report)
-                    completion(error)
+                    completion?(error)
                 }
             }
         } catch {
             // pass body encoding error
             let report = Report(.failedServerRequest(requestType: "ProfileRequest", error: error), owner: self)
             log.error(report)
-            completion(error)
+            completion?(error)
         }
     }
     
