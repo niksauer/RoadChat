@@ -19,6 +19,7 @@ class User: NSManagedObject, ReportOwner {
         
         do {
             let matches = try context.fetch(request)
+            
             if matches.count > 0 {
                 assert(matches.count >= 1, "User.create -- Database Inconsistency")
                 
@@ -26,6 +27,12 @@ class User: NSManagedObject, ReportOwner {
                 let user = matches.first!
                 user.email = prototype.email
                 user.username = prototype.username
+                
+                // update current location if given
+                if let location = prototype.location {
+                    let location = try Location.create(from: location, in: context)
+                    user.location = location
+                }
                 
                 return user
             }
@@ -42,9 +49,10 @@ class User: NSManagedObject, ReportOwner {
         
         // retrieve resources
         user.getProfile(completion: nil)
+        user.getSettings(completion: nil)
         user.getConversations(completion: nil)
-        
-        // set location
+    
+        // set current location if given
         if let location = prototype.location {
             let location = try Location.create(from: location, in: context)
             user.location = location
@@ -192,6 +200,30 @@ class User: NSManagedObject, ReportOwner {
         }
     }
     
+    func delete(completion: ((Error?) -> Void)?) {
+        userService.delete(userID: Int(id)) { error in
+            guard error == nil else {
+                // pass service error
+                let report = Report(.failedServerOperation(.delete, resource: nil, isMultiple: false, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            do {
+                self.context.delete(self)
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.delete, resource: nil, isMultiple: false), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                let report = Report(.failedCoreDataOperation(.delete, resource: nil, isMultiple: false, error: error), owner: self)
+                log.error(report)
+                completion?(error)
+            }
+        }
+    }
+    
     func getProfile(completion: ((Error?) -> Void)?) {
         userService.getProfile(userID: Int(id)) { profile, error in
             guard let profile = profile else {
@@ -212,6 +244,58 @@ class User: NSManagedObject, ReportOwner {
             } catch {
                 // pass core data error
                 let report = Report(.failedCoreDataOperation(.retrieve, resource: "Profile", isMultiple: false, error: error), owner: self)
+                log.error(report)
+                completion?(error)
+            }
+        }
+    }
+    
+    func getSettings(completion: ((Error?) -> Void)?) {
+        userService.getSettings(userID: Int(id)) { settings, error in
+            guard let settings = settings else {
+                // pass service error
+                let report = Report(.failedServerOperation(.retrieve, resource: "Settings", isMultiple: false, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            do {
+                let settings = try Settings.createOrUpdate(from: settings, userID: Int(self.id), in: self.context)
+                self.settings = settings
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: "Settings", isMultiple: false), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                // pass core data error
+                let report = Report(.failedCoreDataOperation(.retrieve, resource: "Settings", isMultiple: false, error: error), owner: self)
+                log.error(report)
+                completion?(error)
+            }
+        }
+    }
+    
+    func getPrivacy(completion: ((Error?) -> Void)?) {
+        userService.getPrivacy(userID: Int(id)) { privacy, error in
+            guard let privacy = privacy else {
+                // pass service error
+                let report = Report(.failedServerOperation(.retrieve, resource: "Privacy", isMultiple: false, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            do {
+                let privacy = try Privacy.createOrUpdate(from: privacy, userID: Int(self.id), in: self.context)
+                self.privacy = privacy
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: "Privacy", isMultiple: false), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                // pass core data error
+                let report = Report(.failedCoreDataOperation(.retrieve, resource: "Privacy", isMultiple: false, error: error), owner: self)
                 log.error(report)
                 completion?(error)
             }
@@ -357,4 +441,5 @@ class User: NSManagedObject, ReportOwner {
             }
         }
     }
+
 }

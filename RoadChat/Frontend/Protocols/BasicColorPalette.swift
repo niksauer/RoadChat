@@ -15,4 +15,5 @@ protocol BasicColorPalette {
     var textColor: UIColor { get }
     var lightTextColor: UIColor { get }
     var tintColor: UIColor { get }
+    var destructiveColor: UIColor { get }
 }

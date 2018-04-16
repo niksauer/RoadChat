@@ -108,8 +108,7 @@ class AuthenticationManager {
         } else {
             if token != nil || userID != nil {
                 do {
-                    try credentials.setToken(nil)
-                    try credentials.setUserID(nil)
+                    try self.credentials.reset()
                     log.debug("Reset token or userID for partially authenticated user.")
                 } catch {
                     log.error("Failed to reset token or userID for partially authenticated user: \(error)")
@@ -117,6 +116,29 @@ class AuthenticationManager {
             }
             
             completion(nil)
+        }
+    }
+    
+    func deleteAuthenticatedUser(completion: @escaping (Error?) -> Void) {
+        getAuthenticatedUser { user in
+            guard let user = user else {
+                // handle user request error
+                return
+            }
+            
+            user.delete { error in
+                guard error == nil else {
+                    // handle user delete error
+                    return
+                }
+                
+                do {
+                    try self.credentials.reset()
+                    completion(nil)
+                } catch {
+                    completion(error)
+                }
+            }
         }
     }
  

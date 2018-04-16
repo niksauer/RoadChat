@@ -147,7 +147,35 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func settingsButtonPressed(_ sender: UIBarButtonItem) {
-        let settingsViewController = viewFactory.makeSettingsViewController(for: user)
+        guard let settings = user.settings else {
+            user.getSettings { error in
+                guard error == nil else {
+                    // handle failed settings request error
+                    return
+                }
+                
+                self.settingsButtonPressed(sender)
+            }
+            
+            // handle no settings error
+            return
+        }
+        
+        guard let privacy = user.privacy else {
+            user.getPrivacy { error in
+                guard error == nil else {
+                    // handle failed privacy request error
+                    return
+                }
+                
+                self.settingsButtonPressed(sender)
+            }
+            
+            // handle no privacy error
+            return
+        }
+        
+        let settingsViewController = viewFactory.makeSettingsViewController(for: user, settings: settings, privacy: privacy)
         let settingsNavigationViewController = UINavigationController(rootViewController: settingsViewController)
         navigationController?.present(settingsNavigationViewController, animated: true, completion: nil)
     }

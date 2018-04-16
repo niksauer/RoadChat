@@ -79,8 +79,8 @@
         <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="profile" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Settings" representedClassName=".Settings" syncable="YES" codeGenerationType="category">
-        <attribute name="communityRadius" attributeType="Integer 16" defaultValueString="10" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="trafficTradius" attributeType="Integer 16" defaultValueString="5" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="communityRadius" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="trafficRadius" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="user" maxCount="1" deletionRule="Deny" destinationEntity="User" inverseName="settings" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="TrafficMessage" representedClassName=".TrafficMessage" syncable="YES" codeGenerationType="category">
