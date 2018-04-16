@@ -14,7 +14,6 @@ struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette
     // General
     private let yellow = UIColor(displayP3Red: 243/255, green: 211/255, blue: 93/255, alpha: 1)
     private let red = UIColor(displayP3Red: 223/255, green: 82/255, blue: 65/255, alpha: 1)
-    private let alphaRed = UIColor(red: 255, green: 0, blue: 0, alpha: 0.1)
     private let orange = UIColor(displayP3Red: 240/255, green: 151/255, blue: 71/255, alpha: 1)
     private let darkOrange = UIColor(displayP3Red: 236/255, green: 104/255, blue: 44/255, alpha: 1)
     private let darkPurple = UIColor(displayP3Red: 86/255, green: 94/255, blue: 227/255, alpha: 1)

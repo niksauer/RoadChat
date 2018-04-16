@@ -89,6 +89,8 @@
 		24B1347A206421EE00B894BF /* TrafficBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B13478206421EE00B894BF /* TrafficBoardViewController.swift */; };
 		24B1347E2064229100B894BF /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B1347C2064229100B894BF /* ConversationsViewController.swift */; };
 		24D34A1D2084FBDE00D3390F /* GeofenceColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D34A1C2084FBDE00D3390F /* GeofenceColorPalette.swift */; };
+		24D34A3F20850F4300D3390F /* LogDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D34A3D20850F4300D3390F /* LogDataViewController.swift */; };
+		24D34A4020850F4300D3390F /* LogDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D34A3E20850F4300D3390F /* LogDataViewController.xib */; };
 		24D68B872080C535002B6D6C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68B862080C535002B6D6C /* UIColor.swift */; };
 		24D68B8A2080CCB5002B6D6C /* CarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */; };
 		24D68B8B2080CCB5002B6D6C /* CarDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */; };
@@ -419,6 +421,8 @@
 		24B13478206421EE00B894BF /* TrafficBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficBoardViewController.swift; sourceTree = "<group>"; };
 		24B1347C2064229100B894BF /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
 		24D34A1C2084FBDE00D3390F /* GeofenceColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceColorPalette.swift; sourceTree = "<group>"; };
+		24D34A3D20850F4300D3390F /* LogDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDataViewController.swift; sourceTree = "<group>"; };
+		24D34A3E20850F4300D3390F /* LogDataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogDataViewController.xib; sourceTree = "<group>"; };
 		24D68B862080C535002B6D6C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = RoadChat/Frontend/Extensions/UIColor.swift; sourceTree = SOURCE_ROOT; };
 		24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailViewController.swift; sourceTree = "<group>"; };
 		24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarDetailViewController.xib; sourceTree = "<group>"; };
@@ -639,6 +643,8 @@
 			children = (
 				249515C92064483400E734E4 /* SettingsViewController.swift */,
 				24A46B0D2083DC4600F775C7 /* PrivacyViewController.swift */,
+				24D34A3D20850F4300D3390F /* LogDataViewController.swift */,
+				24D34A3E20850F4300D3390F /* LogDataViewController.xib */,
 				24B1346C20641A8C00B894BF /* ProfileViewController.swift */,
 				249515CD20644DB100E734E4 /* ProfileViewController.xib */,
 				24207DEC2076AB1800851A73 /* ProfilePageViewController.swift */,
@@ -1180,6 +1186,7 @@
 				C9150A9520809A1900A69078 /* TrafficMessageDetailViewController.xib in Resources */,
 				D45FD6C9207FEB7E00C35949 /* LocationViewController.xib in Resources */,
 				240D110220481843008C5E39 /* Assets.xcassets in Resources */,
+				24D34A4020850F4300D3390F /* LogDataViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1249,6 +1256,7 @@
 				24A46B132083DE9B00F775C7 /* SwitchCell.swift in Sources */,
 				2404A256204E92D2009AC7E1 /* UserService.swift in Sources */,
 				248D37B12049504B00B21C3D /* Car.swift in Sources */,
+				24D34A3F20850F4300D3390F /* LogDataViewController.swift in Sources */,
 				245EAE332051346600821B4B /* ConversationService.swift in Sources */,
 				24B1347A206421EE00B894BF /* TrafficBoardViewController.swift in Sources */,
 				24A46AF82083D35E00F775C7 /* CenterLabelCell.swift in Sources */,

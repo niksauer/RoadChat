@@ -76,7 +76,7 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
     
     // MARK: - Table View Data Source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,6 +86,8 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
         case 1:
             return 2
         case 2:
+            return 1
+        case 3:
             return 1
         default:
             fatalError()
@@ -140,6 +142,16 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
             default:
                 fatalError()
             }
+        case 3:
+            switch row {
+            case 0:
+                let cell = UITableViewCell(style: .default, reuseIdentifier: "logDataCell")
+                cell.textLabel?.text = "Log Data"
+                cell.accessoryType = .disclosureIndicator
+                return cell
+            default:
+                fatalError()
+            }
         default:
             fatalError()
         }
@@ -151,6 +163,8 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
             return "Radius"
         case 1:
             return "Account"
+        case 3:
+            return "Developer"
         default:
             return nil
         }
@@ -225,6 +239,14 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
                 }
                 
                 tableView.deselectRow(at: indexPath, animated: false)
+            default:
+                fatalError()
+            }
+        case 3:
+            switch row {
+            case 0:
+                let logDataViewController = viewFactory.makeLogDataViewController()
+                navigationController?.pushViewController(logDataViewController, animated: true)
             default:
                 fatalError()
             }

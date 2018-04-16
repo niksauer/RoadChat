@@ -67,7 +67,7 @@ struct DependencyContainer {
     let userDefaults: UserDefaults = UserDefaults.standard
     let coreData: CoreDataStack = CoreDataStack.shared
     let locationManager: LocationManager = LocationManager.shared
-
+    let logDataPath: URL = FileManager().urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("swiftybeaver.log")
     
     var config: APIConfiguration {
         return RoadChatAPI(credentials: credentials)
@@ -165,6 +165,10 @@ extension DependencyContainer: ViewControllerFactory {
     
     func makeCreateCarViewController(for user: User) -> CreateCarViewController {
         return CreateCarViewController(user: user, dateFormatter: shortDateFormatter, colorPalette: colorPalette)
+    }
+    
+    func makeLogDataViewController() -> LogDataViewController {
+        return LogDataViewController(path: logDataPath)
     }
     
     // Car
