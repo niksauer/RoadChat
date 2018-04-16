@@ -32,6 +32,8 @@ class GroupedOptionTableViewController: UITableViewController, SwitchCellDelegat
         self.options = options
         
         super.init(style: .grouped)
+        
+        tableView.allowsSelection = false
     }
     
     required init?(coder aDecoder: NSCoder) {
