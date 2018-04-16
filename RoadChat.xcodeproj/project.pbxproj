@@ -91,6 +91,8 @@
 		24D34A1D2084FBDE00D3390F /* GeofenceColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D34A1C2084FBDE00D3390F /* GeofenceColorPalette.swift */; };
 		24D34A3F20850F4300D3390F /* LogDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D34A3D20850F4300D3390F /* LogDataViewController.swift */; };
 		24D34A4020850F4300D3390F /* LogDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D34A3E20850F4300D3390F /* LogDataViewController.xib */; };
+		24D34A6F208523D700D3390F /* CreateNewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D34A6D208523D700D3390F /* CreateNewCellView.swift */; };
+		24D34A70208523D700D3390F /* CreateNewCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D34A6E208523D700D3390F /* CreateNewCellView.xib */; };
 		24D68B872080C535002B6D6C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68B862080C535002B6D6C /* UIColor.swift */; };
 		24D68B8A2080CCB5002B6D6C /* CarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */; };
 		24D68B8B2080CCB5002B6D6C /* CarDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */; };
@@ -423,6 +425,8 @@
 		24D34A1C2084FBDE00D3390F /* GeofenceColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceColorPalette.swift; sourceTree = "<group>"; };
 		24D34A3D20850F4300D3390F /* LogDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDataViewController.swift; sourceTree = "<group>"; };
 		24D34A3E20850F4300D3390F /* LogDataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogDataViewController.xib; sourceTree = "<group>"; };
+		24D34A6D208523D700D3390F /* CreateNewCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewCellView.swift; sourceTree = "<group>"; };
+		24D34A6E208523D700D3390F /* CreateNewCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateNewCellView.xib; sourceTree = "<group>"; };
 		24D68B862080C535002B6D6C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = RoadChat/Frontend/Extensions/UIColor.swift; sourceTree = SOURCE_ROOT; };
 		24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailViewController.swift; sourceTree = "<group>"; };
 		24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarDetailViewController.xib; sourceTree = "<group>"; };
@@ -857,6 +861,8 @@
 		24FBBC6A20778A5E00B545D2 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				24D34A6D208523D700D3390F /* CreateNewCellView.swift */,
+				24D34A6E208523D700D3390F /* CreateNewCellView.xib */,
 				24A46B112083DE9B00F775C7 /* SwitchCell.swift */,
 				24A46B122083DE9B00F775C7 /* SwitchCell.xib */,
 				24A46AF62083D35E00F775C7 /* CenterLabelCell.swift */,
@@ -1174,6 +1180,7 @@
 				24D68BB02080D908002B6D6C /* CarCell.xib in Resources */,
 				24D68B8B2080CCB5002B6D6C /* CarDetailViewController.xib in Resources */,
 				C9150A28207CFE0D00A69078 /* TrafficMessageCell.xib in Resources */,
+				24D34A70208523D700D3390F /* CreateNewCellView.xib in Resources */,
 				24AF50AD207B6C1200477DC0 /* CommunityMessageCell.xib in Resources */,
 				24B134672063C10C00B894BF /* RegisterViewController.xib in Resources */,
 				240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */,
@@ -1268,6 +1275,7 @@
 				D40B2059205145B1000823E4 /* RegisterViewController.swift in Sources */,
 				248D379E20494EA400B21C3D /* Profile.swift in Sources */,
 				24A3512520836D73001FC1C4 /* SexColorPalette.swift in Sources */,
+				24D34A6F208523D700D3390F /* CreateNewCellView.swift in Sources */,
 				24A46B0E2083DC4600F775C7 /* PrivacyViewController.swift in Sources */,
 				24A46B1620840DF400F775C7 /* GroupedOptionTableViewController.swift in Sources */,
 				24A49592208119390076E472 /* UIView.swift in Sources */,

@@ -23,6 +23,7 @@ struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette
     private let black = UIColor.black
     private let white = UIColor.white
     private let clear = UIColor.clear
+    private let green = UIColor(displayP3Red: 118/255, green: 216/255, blue: 115/255, alpha: 1)
     
     // BasicColorPalette
     var backgroundColor: UIColor { return lightGray }
@@ -32,6 +33,7 @@ struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette
     var lightTextColor: UIColor { return lightGray }
     var tintColor: UIColor { return lightBlue }
     var destructiveColor: UIColor { return red }
+    var createColor: UIColor { return green }
     
     // KarmaColorPalette
     var upvoteBgColor: UIColor { return darkOrange }

@@ -9,8 +9,8 @@
 import UIKit
 import CoreData
 
-class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollectionViewDelegateFlowLayout {
-
+class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollectionViewDelegateFlowLayout, CreateNewCellDelegate {
+   
     // MARK: - Typealiases
     typealias ColorPalette = BasicColorPalette
     
@@ -34,9 +34,14 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
         self.colorPalette = colorPalette
         self.cellDateFormatter = cellDateFormatter
         
-        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+        
+        let layout = UICollectionViewFlowLayout()
+        super.init(collectionViewLayout: layout)
         
         self.title = "Car"
+        
+        layout.headerReferenceSize = CGSize.zero
+        layout.footerReferenceSize = CGSize(width: collectionView!.frame.width, height: 50)
         
         collectionView?.backgroundColor = colorPalette.backgroundColor
         collectionView?.alwaysBounceVertical = true
@@ -57,7 +62,8 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
         super.viewDidLoad()
 
         // register cell classes
-        self.collectionView!.register(UINib.init(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(UINib(nibName: "CreateNewCellView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "CreateNewCellView")
 
         // pull to refresh
         refreshControl = UIRefreshControl()
@@ -89,6 +95,13 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
         collectionView?.reloadData()
     }
     
+    // MARK: - Private Methods
+    func didPressAddButton(_ sender: CreateNewCellView) {
+        let createCarViewController = viewFactory.makeCreateCarViewController(for: owner)
+        let createCarNavigationController = UINavigationController(rootViewController: createCarViewController)
+        present(createCarNavigationController, animated: true, completion: nil)
+    }
+    
     // MARK: UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let car = fetchedResultsController!.object(at: indexPath)
@@ -114,6 +127,19 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
         return sizingCell.preferredLayoutSizeFittingWidth(width)
     }
     
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionElementKindSectionFooter:
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CreateNewCellView", for: indexPath) as! CreateNewCellView
+            footer.configure(text: "Car", colorPalette: colorPalette)
+            footer.delegate = self
+            return footer
+        default:
+            // unintentionally registered
+            fatalError()
+        }
+    }
+
     // MARK: - UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let car = fetchedResultsController!.object(at: indexPath)

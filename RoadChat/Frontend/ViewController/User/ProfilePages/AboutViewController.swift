@@ -98,10 +98,5 @@ class AboutViewController: UIViewController {
             addressStackView.removeFromSuperview()
         }
     }
-    
-    @IBAction func didPressCreateCarButton(_ sender: UIButton) {
-        let createCarViewController = viewFactory.makeCreateCarViewController(for: user)
-        let createCarNavigationController = UINavigationController(rootViewController: createCarViewController)
-        present(createCarNavigationController, animated: true, completion: nil)
-    }
+
 }
