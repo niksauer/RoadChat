@@ -220,7 +220,7 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
                     }
                 }
                 
-                tableView.deselectRow(at: indexPath, animated: true)
+                tableView.deselectRow(at: indexPath, animated: false)
             default:
                 fatalError()
             }

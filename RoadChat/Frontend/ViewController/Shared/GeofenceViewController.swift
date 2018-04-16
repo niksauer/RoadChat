@@ -15,6 +15,9 @@ protocol GeofenceViewControllerDelegate {
 
 class GeofenceViewController: UIViewController, MKMapViewDelegate {
 
+    // MARK: - Typealiases
+    typealias ColorPalette = GeofenceColorPalette
+    
     // MARK: - Outlets
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var radiusSlider: UISlider!
@@ -24,10 +27,12 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: - Private Properties
     private var geofence: MKCircle?
-    private let initualRadius: Double
+    private let colorPalette: ColorPalette
     
-    private let stepSize: Float = 5
+    private let initualRadius: Double
     private var setInitialGeofence = false
+    private let stepSize: Float = 5
+    
     
     // MARK: - Public Properties
     var radius: Double
@@ -40,11 +45,12 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
     private var saveBarButtonItem: UIBarButtonItem!
     
     // MARK: - Initialization
-    init(radius: Double?, min: Double, max: Double) {
+    init(radius: Double?, min: Double, max: Double, colorPalette: ColorPalette) {
         self.initualRadius = radius ?? 5000
         self.radius = self.initualRadius
         self.min = min
         self.max = max
+        self.colorPalette = colorPalette
         
         super.init(nibName: nil, bundle: nil)
         
@@ -110,7 +116,7 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let circle = overlay as? MKCircle {
             let circleRenderer = MKCircleRenderer(circle: circle)
-            circleRenderer.fillColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.1)
+            circleRenderer.fillColor = colorPalette.geofenceBackgroundColor
             circleRenderer.lineWidth = 0.3
             return circleRenderer
         } else {

@@ -88,6 +88,7 @@
 		24B134772064202800B894BF /* CreateCommunityMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B134762064202800B894BF /* CreateCommunityMessageViewController.xib */; };
 		24B1347A206421EE00B894BF /* TrafficBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B13478206421EE00B894BF /* TrafficBoardViewController.swift */; };
 		24B1347E2064229100B894BF /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B1347C2064229100B894BF /* ConversationsViewController.swift */; };
+		24D34A1D2084FBDE00D3390F /* GeofenceColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D34A1C2084FBDE00D3390F /* GeofenceColorPalette.swift */; };
 		24D68B872080C535002B6D6C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68B862080C535002B6D6C /* UIColor.swift */; };
 		24D68B8A2080CCB5002B6D6C /* CarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */; };
 		24D68B8B2080CCB5002B6D6C /* CarDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */; };
@@ -417,6 +418,7 @@
 		24B134762064202800B894BF /* CreateCommunityMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateCommunityMessageViewController.xib; sourceTree = "<group>"; };
 		24B13478206421EE00B894BF /* TrafficBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficBoardViewController.swift; sourceTree = "<group>"; };
 		24B1347C2064229100B894BF /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
+		24D34A1C2084FBDE00D3390F /* GeofenceColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceColorPalette.swift; sourceTree = "<group>"; };
 		24D68B862080C535002B6D6C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = RoadChat/Frontend/Extensions/UIColor.swift; sourceTree = SOURCE_ROOT; };
 		24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailViewController.swift; sourceTree = "<group>"; };
 		24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarDetailViewController.xib; sourceTree = "<group>"; };
@@ -814,6 +816,7 @@
 		24AFEE8F206566A30097810E /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				24D34A1C2084FBDE00D3390F /* GeofenceColorPalette.swift */,
 				24A3512420836D73001FC1C4 /* SexColorPalette.swift */,
 				247F6D25206057950006FBC7 /* ViewControllerFactory.swift */,
 				24AF50AE207B943500477DC0 /* KarmaColorPalette.swift */,
@@ -1263,6 +1266,7 @@
 				24B1346E20641A8C00B894BF /* ProfileViewController.swift in Sources */,
 				248D379820494D0900B21C3D /* User.swift in Sources */,
 				242089BE205EB1C700FFEC90 /* SetupViewController.swift in Sources */,
+				24D34A1D2084FBDE00D3390F /* GeofenceColorPalette.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

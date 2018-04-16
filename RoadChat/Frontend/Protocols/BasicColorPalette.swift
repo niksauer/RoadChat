@@ -12,6 +12,7 @@ import UIKit
 protocol BasicColorPalette {
     var backgroundColor: UIColor { get }
     var contentBackgroundColor: UIColor { get }
+    var controlBackgroundColor: UIColor { get }
     var textColor: UIColor { get }
     var lightTextColor: UIColor { get }
     var tintColor: UIColor { get }
