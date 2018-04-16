@@ -40,7 +40,8 @@ protocol ViewControllerFactory {
     func makeConversationsViewController(for user: User) -> ConversationsViewController
     
     // User
-    func makeSettingsViewController(for user: User) -> SettingsViewController
+    func makeSettingsViewController(for user: User, settings: Settings, privacy: Privacy) -> SettingsViewController
+    func makePrivacyViewController(with privacy: Privacy) -> PrivacyViewController
     func makeProfileViewController(for user: User) -> ProfileViewController
     func makeProfilePageViewController(for user: User) -> ProfilePageViewController
     func makeCreateCarViewController(for user: User) -> CreateCarViewController
