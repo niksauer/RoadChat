@@ -8,8 +8,8 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController {
-    
+class SettingsViewController: UITableViewController, GeofenceViewControllerDelegate {
+
     // MARK: - Typealiases
     typealias ColorPalette = BasicColorPalette
     
@@ -54,6 +54,20 @@ class SettingsViewController: UITableViewController {
     // MARK: - Public Methods
     @objc func doneButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - GeofenceViewControllerDelegate
+    func didUpdateRadius(_ sender: GeofenceViewController) {
+        switch sender.max {
+        case 50*1000:
+            print("community")
+            settings.communityRadius = Int16(sender.radius)
+        case 500*1000:
+            print("traffic")
+            settings.trafficRadius = Int16(sender.radius)
+        default:
+            break
+        }
     }
     
     // MARK: - Table View Data Source
@@ -156,11 +170,15 @@ class SettingsViewController: UITableViewController {
         case 0:
             switch row {
             case 0:
-                let geofenceViewController = viewFactory.makeGeofenceViewController(radius: settings.communityRadius)
-                navigationController?.pushViewController(geofenceViewController, animated: true)
+                let geofenceViewController = viewFactory.makeGeofenceViewController(radius: Double(settings.communityRadius*1000), min: 1*1000, max: 50*1000)
+                geofenceViewController.delegate = self
+                let geofenceNavigationController = UINavigationController(rootViewController: geofenceViewController)
+                navigationController?.present(geofenceNavigationController, animated: true, completion: nil)
             case 1:
-                let geofenceViewController = viewFactory.makeGeofenceViewController(radius: settings.trafficTradius)
-                navigationController?.pushViewController(geofenceViewController, animated: true)
+                let geofenceViewController = viewFactory.makeGeofenceViewController(radius: Double(settings.trafficRadius*1000), min: 1*1000, max: 500*1000)
+                geofenceViewController.delegate = self
+                let geofenceNavigationController = UINavigationController(rootViewController: geofenceViewController)
+                navigationController?.present(geofenceNavigationController, animated: true, completion: nil)
             default:
                 fatalError()
             }

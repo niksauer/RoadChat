@@ -10,6 +10,10 @@
 		24045CF32084C6D500E7CF19 /* CarColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24045CF22084C6D500E7CF19 /* CarColorPalette.swift */; };
 		24045D362084CC8600E7CF19 /* ColorCircle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24045D352084CC7A00E7CF19 /* ColorCircle.framework */; };
 		24045D372084CC8600E7CF19 /* ColorCircle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24045D352084CC7A00E7CF19 /* ColorCircle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		24045D5E2084D27100E7CF19 /* ColorModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24045D5C2084D23900E7CF19 /* ColorModel.framework */; };
+		24045D5F2084D27100E7CF19 /* ColorModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24045D5C2084D23900E7CF19 /* ColorModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		24045D7B2084E28100E7CF19 /* GeofenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24045D792084E27900E7CF19 /* GeofenceViewController.swift */; };
+		24045D7C2084E28100E7CF19 /* GeofenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24045D7A2084E28100E7CF19 /* GeofenceViewController.xib */; };
 		2404A256204E92D2009AC7E1 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404A255204E92D2009AC7E1 /* UserService.swift */; };
 		2404A25B204EAFAC009AC7E1 /* JSendService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404A25A204EAFAC009AC7E1 /* JSendService.swift */; };
 		2404A25E204ED162009AC7E1 /* CarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404A25D204ED162009AC7E1 /* CarService.swift */; };
@@ -113,8 +117,6 @@
 		D45FD6C9207FEB7E00C35949 /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FD6C8207FEB7E00C35949 /* LocationViewController.xib */; };
 		D45FD7002083D79300C35949 /* CreateCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FD6FE2083D79300C35949 /* CreateCarViewController.swift */; };
 		D45FD7012083D79300C35949 /* CreateCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FD6FF2083D79300C35949 /* CreateCarViewController.xib */; };
-		D45FD7182084D0DA00C35949 /* filteredLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FD7162084D0DA00C35949 /* filteredLocationController.swift */; };
-		D45FD7192084D0DA00C35949 /* filteredLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FD7172084D0DA00C35949 /* filteredLocationController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -327,6 +329,7 @@
 				240AB0142050870000324028 /* Locksmith.framework in Embed Frameworks */,
 				24207DE5207686D200851A73 /* Parchment.framework in Embed Frameworks */,
 				24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */,
+				24045D5F2084D27100E7CF19 /* ColorModel.framework in Embed Frameworks */,
 				240AB0192050877000324028 /* RoadChatKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -337,6 +340,9 @@
 /* Begin PBXFileReference section */
 		24045CF22084C6D500E7CF19 /* CarColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarColorPalette.swift; sourceTree = "<group>"; };
 		24045D2F2084CC7A00E7CF19 /* ColorCircle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ColorCircle.xcodeproj; path = Frameworks/ColorCircle/ColorCircle.xcodeproj; sourceTree = "<group>"; };
+		24045D5C2084D23900E7CF19 /* ColorModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ColorModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		24045D792084E27900E7CF19 /* GeofenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeofenceViewController.swift; sourceTree = "<group>"; };
+		24045D7A2084E28100E7CF19 /* GeofenceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeofenceViewController.xib; sourceTree = "<group>"; };
 		2404A255204E92D2009AC7E1 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		2404A25A204EAFAC009AC7E1 /* JSendService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSendService.swift; sourceTree = "<group>"; };
 		2404A25D204ED162009AC7E1 /* CarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarService.swift; sourceTree = "<group>"; };
@@ -439,8 +445,6 @@
 		D45FD6C8207FEB7E00C35949 /* LocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationViewController.xib; sourceTree = "<group>"; };
 		D45FD6FE2083D79300C35949 /* CreateCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCarViewController.swift; sourceTree = "<group>"; };
 		D45FD6FF2083D79300C35949 /* CreateCarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateCarViewController.xib; sourceTree = "<group>"; };
-		D45FD7162084D0DA00C35949 /* filteredLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filteredLocationController.swift; sourceTree = "<group>"; };
-		D45FD7172084D0DA00C35949 /* filteredLocationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = filteredLocationController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,6 +458,7 @@
 				24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */,
 				240AB0132050870000324028 /* Locksmith.framework in Frameworks */,
 				240AB0182050877000324028 /* RoadChatKit.framework in Frameworks */,
+				24045D5E2084D27100E7CF19 /* ColorModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,6 +609,8 @@
 			children = (
 				D45FD6AF207EBC4400C35949 /* LocationViewController.swift */,
 				D45FD6C8207FEB7E00C35949 /* LocationViewController.xib */,
+				24045D792084E27900E7CF19 /* GeofenceViewController.swift */,
+				24045D7A2084E28100E7CF19 /* GeofenceViewController.xib */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -634,8 +641,6 @@
 				249515CD20644DB100E734E4 /* ProfileViewController.xib */,
 				24207DEC2076AB1800851A73 /* ProfilePageViewController.swift */,
 				24207E002076C41300851A73 /* ProfilePages */,
-				D45FD7162084D0DA00C35949 /* filteredLocationController.swift */,
-				D45FD7172084D0DA00C35949 /* filteredLocationController.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -669,6 +674,7 @@
 		244BFB7D2049A6EE00B2481D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24045D5C2084D23900E7CF19 /* ColorModel.framework */,
 				240AB01C2050878100324028 /* Security.framework */,
 			);
 			name = Frameworks;
@@ -1151,9 +1157,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D45FD697207E4EB900C35949 /* CommunityMessageDetailViewController.xib in Resources */,
+				24045D7C2084E28100E7CF19 /* GeofenceViewController.xib in Resources */,
 				24A46AF92083D35E00F775C7 /* CenterLabelCell.xib in Resources */,
 				2412D6E020647B5D0066A51C /* SetupViewController.xib in Resources */,
-				D45FD7192084D0DA00C35949 /* filteredLocationController.xib in Resources */,
 				249515CE20644DB100E734E4 /* ProfileViewController.xib in Resources */,
 				24B134652063254F00B894BF /* LoginViewController.xib in Resources */,
 				24D68BB02080D908002B6D6C /* CarCell.xib in Resources */,
@@ -1199,6 +1205,7 @@
 				24D68B8A2080CCB5002B6D6C /* CarDetailViewController.swift in Sources */,
 				24D68BB22080E72E002B6D6C /* TimeSinceDateFormatter.swift in Sources */,
 				2489C4B72055E01E005C937E /* APIClient.swift in Sources */,
+				24045D7B2084E28100E7CF19 /* GeofenceViewController.swift in Sources */,
 				248D37A920494F9900B21C3D /* Participant.swift in Sources */,
 				24AFEE9E206566B30097810E /* Report.swift in Sources */,
 				240B9B8620534FAA00216E68 /* FetchedResultsTableViewController.swift in Sources */,
@@ -1223,7 +1230,6 @@
 				249515D1206460F800E734E4 /* ConversationCell.swift in Sources */,
 				24AF50AC207B6C1200477DC0 /* CommunityMessageCell.swift in Sources */,
 				2418C117207E36A4004D1632 /* UIViewController.swift in Sources */,
-				D45FD7182084D0DA00C35949 /* filteredLocationController.swift in Sources */,
 				247F6D1D205F26AE0006FBC7 /* CommunityBoard.swift in Sources */,
 				D44F4B88205297A7009A6239 /* CreateCommunityMessageViewController.swift in Sources */,
 				24FE0059207D51D200F0D657 /* BasicColorPalette.swift in Sources */,
@@ -1424,6 +1430,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = RoadChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hpe.dhbw.RoadChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -1443,6 +1450,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = RoadChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hpe.dhbw.RoadChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
