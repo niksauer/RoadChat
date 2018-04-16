@@ -89,8 +89,8 @@ extension DependencyContainer: ViewControllerFactory {
     func makeLocationViewController(for location: CLLocation) -> LocationViewController {
         return LocationViewController(viewFactory: self, location: location)
     }
-    func makeGeofenceViewController(radius: Double?, min: Double, max: Double) -> GeofenceViewController {
-        return GeofenceViewController(radius: radius, min: min, max: max, colorPalette: colorPalette)
+    func makeGeofenceViewController(radius: Double?, min: Double, max: Double, identifier: String) -> GeofenceViewController {
+        return GeofenceViewController(radius: radius, min: min, max: max, identifier: identifier, colorPalette: colorPalette)
     }
     
     // Authentication

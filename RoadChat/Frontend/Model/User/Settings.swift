@@ -42,4 +42,42 @@ class Settings: NSManagedObject {
         return settings
     }
     
+    // MARK: - Private Properties
+    private let userService = UserService(config: DependencyContainer().config)
+    private let context = CoreDataStack.shared.viewContext
+    
+    // MARK: - Public Methods
+    func save(completion: @escaping (Error?) -> Void) {
+        do {
+            let request = SettingsRequest(communityRadius: Int(communityRadius), trafficRadius: Int(trafficRadius))
+            
+            try userService.updateSettings(userID: Int(self.user!.id), to: request) { error in
+                guard error == nil else {
+                    // pass service error
+                    let report = Report(.failedServerOperation(.update, resource: "Settings", isMultiple: false, error: error!), owner: self.user!)
+                    log.error(report)
+                    completion(error!)
+                    return
+                }
+                
+                do {
+                    try self.context.save()
+                    let report = Report(.successfulCoreDataOperation(.update, resource: "Settings", isMultiple: false), owner: self.user!)
+                    log.debug(report)
+                    completion(nil)
+                } catch {
+                    // pass core data error
+                    let report = Report(.failedCoreDataOperation(.update, resource: "Settings", isMultiple: false, error: error), owner: self.user!)
+                    log.error(report)
+                    completion(error)
+                }
+            }
+        } catch {
+            // pass body encoding error
+            let report = Report(.failedServerRequest(requestType: "SettingsRequest", error: error), owner: user!)
+            log.error(report)
+            completion(error)
+        }
+    }
+    
 }

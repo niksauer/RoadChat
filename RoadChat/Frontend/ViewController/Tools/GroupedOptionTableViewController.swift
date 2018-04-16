@@ -8,6 +8,11 @@
 
 import UIKit
 
+struct Option {
+    let name: String
+    var isEnabled: Bool
+}
+
 class GroupedOptionTableViewController: UITableViewController, SwitchCellDelegate {
 
     // MARK: - Public Types

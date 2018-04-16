@@ -18,7 +18,7 @@ protocol ViewControllerFactory {
     
     // Shared
     func makeLocationViewController(for location: CLLocation) -> LocationViewController
-    func makeGeofenceViewController(radius: Double?, min: Double, max: Double) -> GeofenceViewController
+    func makeGeofenceViewController(radius: Double?, min: Double, max: Double, identifier: String) -> GeofenceViewController
     
     // Authentication
     func makeAuthenticationViewController() -> UINavigationController

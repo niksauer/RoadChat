@@ -33,7 +33,7 @@ enum ReportType {
             case .retrieve:
                 return "retrieve"
             case .update:
-                return "updated"
+                return "update"
             case .create:
                 return "create"
             case .delete:

@@ -38,6 +38,7 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
     var radius: Double
     let min: Double
     let max: Double
+    let identifier: String
     
     var delegate: GeofenceViewControllerDelegate?
     
@@ -45,11 +46,12 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
     private var saveBarButtonItem: UIBarButtonItem!
     
     // MARK: - Initialization
-    init(radius: Double?, min: Double, max: Double, colorPalette: ColorPalette) {
+    init(radius: Double?, min: Double, max: Double, identifier: String, colorPalette: ColorPalette) {
         self.initualRadius = radius ?? 5000
         self.radius = self.initualRadius
         self.min = min
         self.max = max
+        self.identifier = identifier
         self.colorPalette = colorPalette
         
         super.init(nibName: nil, bundle: nil)
@@ -86,6 +88,7 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         delegate?.didUpdateRadius(self)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func didChangeRadius(_ sender: UISlider) {

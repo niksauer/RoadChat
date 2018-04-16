@@ -22,8 +22,6 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     private let viewFactory: ViewControllerFactory
     private let location: CLLocation
     
-    
-    
     // MARK: - Initialization
     init(viewFactory: ViewControllerFactory, location: CLLocation) {
         self.location = location
