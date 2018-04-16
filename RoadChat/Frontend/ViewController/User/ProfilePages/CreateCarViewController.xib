@@ -29,14 +29,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDC-jC-MYs">
-                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <gestureRecognizers/>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="fhT-FY-KH4" appends="YES" id="oTM-oJ-RAK"/>
-                    </connections>
-                </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="QNx-qb-Kkl">
                     <rect key="frame" x="0.0" y="64" width="375" height="170"/>
                     <gestureRecognizers/>
@@ -254,6 +246,14 @@
                         <constraint firstItem="x4t-Cc-Cep" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" constant="16" id="xgl-hF-fP2"/>
                         <constraint firstItem="qnx-5z-aIu" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" id="yPY-VB-L0z"/>
                     </constraints>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDC-jC-MYs">
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="fhT-FY-KH4" appends="YES" id="oTM-oJ-RAK"/>
+                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
