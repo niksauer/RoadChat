@@ -11,6 +11,7 @@ import UIKit
 class CarCell: UICollectionViewCell {
 
     // MARK: - Outlets
+    @IBOutlet weak var manufacturerLabel: UILabel!
     @IBOutlet weak var modelLabel: UILabel!
     @IBOutlet weak var performanceLabel: UILabel!
     @IBOutlet weak var productionLabel: UILabel!
@@ -18,15 +19,14 @@ class CarCell: UICollectionViewCell {
     
     // MARK: - Public Methods
     func configure(car: Car, dateFormatter: DateFormatter) {
-        modelLabel.text = "\(car.manufacturer!) \(car.model!)"
+        manufacturerLabel.text = car.manufacturer!
+        modelLabel.text = car.model
         performanceLabel.text = "\(car.performance) HP"
         productionLabel.text = dateFormatter.string(from: car.production!)
         
         colorIndicator.layer.cornerRadius = colorIndicator.frame.size.width / 2
         colorIndicator.clipsToBounds = true
         colorIndicator.backgroundColor = UIColor(rgbHex: Int(car.color))
-//        colorView.backgroundColor = UIColor(
-        
     }
     
     func reset() {

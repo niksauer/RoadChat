@@ -89,7 +89,8 @@
             <size key="customSize" width="394" height="88"/>
             <connections>
                 <outlet property="colorIndicator" destination="sa5-pJ-Gh8" id="9Ms-7D-VRf"/>
-                <outlet property="modelLabel" destination="ZbR-g1-GZw" id="dky-4p-m2X"/>
+                <outlet property="manufacturerLabel" destination="ZbR-g1-GZw" id="1Ut-HA-gbX"/>
+                <outlet property="modelLabel" destination="7vc-k3-21d" id="abx-vs-VeV"/>
                 <outlet property="performanceLabel" destination="Dj3-Rt-6RO" id="y4x-kI-THF"/>
                 <outlet property="productionLabel" destination="RoV-e1-hQr" id="YQQ-Jc-Tp7"/>
             </connections>
