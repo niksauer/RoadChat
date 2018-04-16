@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,7 +15,8 @@
             <connections>
                 <outlet property="addImageButton" destination="BJQ-7h-A1h" id="AIU-gw-DeK"/>
                 <outlet property="carImageView" destination="QNx-qb-Kkl" id="NIO-6G-seJ"/>
-                <outlet property="colorPickerView" destination="fkw-ff-1OP" id="Jyc-3L-C0r"/>
+                <outlet property="colorPickerContainer" destination="KDC-jC-MYs" id="zLG-7I-a1Y"/>
+                <outlet property="colorPickerField" destination="fkw-ff-1OP" id="Jyc-3L-C0r"/>
                 <outlet property="manufacturerTextField" destination="l4G-4d-yT8" id="eTB-S9-OEo"/>
                 <outlet property="modelTextField" destination="R0j-qz-b8l" id="r4s-U4-ckp"/>
                 <outlet property="performanceTextField" destination="wX2-WZ-uN9" id="iGI-kl-gXC"/>
@@ -36,7 +37,7 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sMx-Pl-eso">
-                    <rect key="frame" x="0.0" y="235" width="375" height="330.5"/>
+                    <rect key="frame" x="0.0" y="235" width="375" height="326.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Production" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cx-GA-bIB">
                             <rect key="frame" x="16" y="169" width="88" height="21"/>
@@ -176,11 +177,11 @@
                             </constraints>
                         </imageView>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fkw-ff-1OP" userLabel="colorPickerView">
-                            <rect key="frame" x="41" y="281.5" width="240" height="33"/>
+                            <rect key="frame" x="44" y="285.5" width="240" height="25"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <gestureRecognizers/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="33" id="GvT-Xk-K4x"/>
+                                <constraint firstAttribute="height" constant="25" id="GvT-Xk-K4x"/>
                                 <constraint firstAttribute="width" constant="240" id="TDy-AV-fl8"/>
                             </constraints>
                             <connections>
@@ -214,7 +215,7 @@
                         <constraint firstAttribute="trailing" secondItem="R0j-qz-b8l" secondAttribute="trailing" constant="16" id="RFc-fC-Llk"/>
                         <constraint firstAttribute="trailing" secondItem="Kyn-ye-S2t" secondAttribute="trailing" id="SVq-bY-ZSN"/>
                         <constraint firstItem="Kyn-ye-S2t" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" id="U9v-PK-kK1"/>
-                        <constraint firstItem="fkw-ff-1OP" firstAttribute="leading" secondItem="Crf-Fs-L9x" secondAttribute="trailing" constant="5" id="US4-Cw-zvt"/>
+                        <constraint firstItem="fkw-ff-1OP" firstAttribute="leading" secondItem="Crf-Fs-L9x" secondAttribute="trailing" constant="8" id="US4-Cw-zvt"/>
                         <constraint firstItem="EyX-k5-270" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" constant="16" id="VKU-cv-kpe"/>
                         <constraint firstItem="7cx-GA-bIB" firstAttribute="top" secondItem="aKP-ME-MOI" secondAttribute="bottom" constant="8" id="WaC-EJ-lBs"/>
                         <constraint firstItem="l4G-4d-yT8" firstAttribute="centerY" secondItem="3NI-9n-bTP" secondAttribute="centerY" id="ZQ3-wm-nWP"/>
@@ -245,14 +246,26 @@
                         <outletCollection property="gestureRecognizers" destination="DR4-cm-ZXX" appends="YES" id="mwP-hY-o1j"/>
                     </connections>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDC-jC-MYs">
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="fhT-FY-KH4" appends="YES" id="oTM-oJ-RAK"/>
+                    </connections>
+                </view>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="sMx-Pl-eso" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="0Rp-Fl-okX"/>
                 <constraint firstItem="QNx-qb-Kkl" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="HVo-Th-RnQ"/>
+                <constraint firstItem="KDC-jC-MYs" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="HlN-dV-CQZ"/>
                 <constraint firstItem="QNx-qb-Kkl" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="IgO-Ly-WY5"/>
+                <constraint firstItem="KDC-jC-MYs" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="LzM-9N-Znf"/>
                 <constraint firstItem="sMx-Pl-eso" firstAttribute="top" secondItem="QNx-qb-Kkl" secondAttribute="bottom" constant="1" id="aZI-6w-uRA"/>
                 <constraint firstItem="sMx-Pl-eso" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bdY-o0-Rhf"/>
+                <constraint firstItem="KDC-jC-MYs" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="gpb-tV-ZRo"/>
+                <constraint firstItem="KDC-jC-MYs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jRX-Yr-vWi"/>
                 <constraint firstItem="BJQ-7h-A1h" firstAttribute="centerY" secondItem="QNx-qb-Kkl" secondAttribute="bottom" id="x5A-MY-IpS"/>
                 <constraint firstItem="QNx-qb-Kkl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="x5c-tS-Gwq"/>
             </constraints>
@@ -262,12 +275,17 @@
         </view>
         <tapGestureRecognizer id="DR4-cm-ZXX">
             <connections>
-                <action selector="didPressUIView:" destination="-1" id="xAG-mc-4pj"/>
+                <action selector="didPressView:" destination="-1" id="xAG-mc-4pj"/>
             </connections>
         </tapGestureRecognizer>
         <tapGestureRecognizer id="Q9U-ev-TYF">
             <connections>
-                <action selector="didPressColorView:" destination="-1" id="kww-QJ-oY0"/>
+                <action selector="didPressColorField:" destination="-1" id="kww-QJ-oY0"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="fhT-FY-KH4">
+            <connections>
+                <action selector="didPressOutsideColorPicker:" destination="-1" id="4dh-5v-fKV"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

@@ -18,3 +18,6 @@
 [submodule "Frameworks/ColorCircle"]
 	path = Frameworks/ColorCircle
 	url = https://github.com/valery-bashkatov/ColorCircle
+[submodule "Frameworks/ColorModel"]
+	path = Frameworks/ColorModel
+	url = https://github.com/valery-bashkatov/ColorModel

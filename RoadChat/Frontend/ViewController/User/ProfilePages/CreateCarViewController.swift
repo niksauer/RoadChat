@@ -23,9 +23,10 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     @IBOutlet weak var modelTextField: UITextField!
     
     @IBOutlet weak var performanceTextField: UITextField!
-    
     @IBOutlet weak var productionTextView: UITextView!
-    @IBOutlet weak var colorPickerView: UIView!
+    
+    @IBOutlet weak var colorPickerContainer: UIView!
+    @IBOutlet weak var colorPickerField: UIView!
     
     // MARK: - Private Properties
     private let datePickerView = UIDatePicker()
@@ -35,7 +36,7 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     private let user: User
     private let dateFormatter: DateFormatter
     private let colorPalette: ColorPalette
-    private let colorCircle: ColorCircle
+    private var colorCircle = ColorCircle()
     private var activeColorCircle: Bool = false
     private let defaultColor: UIColor = .groupTableViewBackground
     
@@ -73,10 +74,20 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
         addImageButton.clipsToBounds = true
         addImageButton.backgroundColor = colorPalette.contentBackgroundClor
         
-        colorCircle = ColorCircle()
+        colorPickerField.layer.cornerRadius = 10
+        
         colorCircle.frame = CGRect(x: view.frame.width / 2, y: view.frame.height / 2, width: 200, height: 200)
-        colorCircle.addTarget(self, action: #selector(changeColor), for: .valueChanged)
-        colorPickerView.layer.cornerRadius = 10
+        colorCircle.addTarget(self, action: #selector(didChangeColor), for: .valueChanged)
+        
+        colorPickerContainer.backgroundColor = UIColor.darkGray.withAlphaComponent(0.6)
+        colorPickerContainer.addSubview(colorCircle)
+        colorCircle.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            colorCircle.centerYAnchor.constraint(equalTo: colorPickerContainer.centerYAnchor),
+            colorCircle.centerXAnchor.constraint(equalTo: colorPickerContainer.centerXAnchor)
+        ])
+        
 //        addImageButton.backgroundColor?.withAlphaComponent(0.5)
         
 //        addImageButton.layer.shadowColor = UIColor.black.cgColor
@@ -92,12 +103,12 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        let color
+        let color: UIColor?
         
-        if colorPickerView.backgroundColor = defaultColor {
+        if colorPickerField.backgroundColor == defaultColor {
             color = nil
         } else {
-            color = colorPickerView.backgroundColor
+            color = colorPickerField.backgroundColor
         }
         
         guard let manufacturer = manufacturerTextField.text, let model = modelTextField.text, let performanceString = performanceTextField.text, let performance = Int(performanceString), let productionString = productionTextView.text, let production = dateFormatter.date(from: productionString) else {
@@ -106,7 +117,8 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
             return
         }
     
-        let createCarRequest = CarRequest(manufacturer: manufacturer, model: model, production: production, performance: performance, color: color)
+        let hexColor = color?.toHexString() ?? nil
+        let createCarRequest = CarRequest(manufacturer: manufacturer, model: model, production: production, performance: performance, color: 0)
     
         user.createCar(createCarRequest) { error in
             guard error == nil else {
@@ -149,21 +161,25 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     }
     
     // Mark: - Gesture Actions
-    @IBAction func didPressUIView(_ sender: UITapGestureRecognizer) {
+    @IBAction func didPressView(_ sender: UITapGestureRecognizer) {
         datePickerView.isHidden = true
-        if activeColorCircle {
-        colorCircle.removeFromSuperview()
-        activeColorCircle = false
-        }
     }
-    @IBAction func didPressColorView(_ sender: UITapGestureRecognizer) {
+    
+    @IBAction func didPressColorField(_ sender: UITapGestureRecognizer) {
         activeColorCircle = true
-        view.addSubview(colorCircle)
+        colorPickerContainer.isHidden = false
+    }
+    
+    @IBAction func didPressOutsideColorPicker(_ sender: UITapGestureRecognizer) {
+        if !colorPickerContainer.isHidden {
+            colorPickerContainer.isHidden = true
+            activeColorCircle = false
+        }
     }
     
     // Mark: - Private Methods
-    private func changeColor(){
-        colorPickerView.backgroundColor = colorCircle.color
+    @objc private func didChangeColor(){
+        colorPickerField.backgroundColor = colorCircle.color
     }
     
 }
