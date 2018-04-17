@@ -9,7 +9,7 @@
 import UIKit
 import RoadChatKit
 
-class CreateOrEditProfileViewController: UIViewController {
+class CreateOrEditProfileViewController: UIViewController, UITextViewDelegate {
 
     // MARK: - Typealiases
     typealias ColorPalette = BasicColorPalette & SexColorPalette
@@ -73,6 +73,7 @@ class CreateOrEditProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        messageTextView.delegate = self
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         
         tapGestureRecognizer.cancelsTouchesInView = false
@@ -191,6 +192,21 @@ class CreateOrEditProfileViewController: UIViewController {
         maleView.backgroundColor = UIColor.white
         femaleView.backgroundColor = UIColor.lightGray
         genderQueerView.backgroundColor = UIColor.white
+    }
+    
+    // MARK: - UITextViewDelegate
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView == bioTextView, textView.text == bioTextViewPlaceholder {
+            textView.text = ""
+            textView.textColor = colorPalette.textColor
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView == messageTextView, textView.text.count == 0 {
+            textView.textColor = colorPalette.lightTextColor
+            textView.text = bioTextViewPlaceholder
+        }
     }
 
 }
