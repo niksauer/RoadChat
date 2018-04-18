@@ -40,23 +40,25 @@ protocol ViewControllerFactory {
     // Chat
     func makeConversationsViewController(for user: User) -> ConversationsViewController
     
-    // User
+    // Settings
     func makeSettingsViewController(for user: User, settings: Settings, privacy: Privacy) -> SettingsViewController
     func makePrivacyViewController(with privacy: Privacy) -> PrivacyViewController
     func makeSecurityViewController(for user: User) -> SecurityViewController
     func makeChangePasswordViewController(for user: User) -> ChangePasswordViewController
     func makeChangeEmailViewController(for user: User) -> ChangeEmailViewController
-    func makeProfileViewController(for user: User) -> ProfileViewController
-    func makeProfilePageViewController(for user: User) -> ProfilePageViewController
+    
+    // User
+    func makeProfileViewController(for user: User, activeUser: User) -> ProfileViewController
+    func makeProfilePageViewController(for user: User, activeUser: User) -> ProfilePageViewController
     func makeCreateCarViewController(for user: User) -> CreateCarViewController
     func makeCreateProfileViewController(for user: User) -> CreateOrEditProfileViewController
     func makeLogDataViewController() -> LogDataViewController
     
     // Car
-    func makeCarsViewController(for user: User) -> CarsViewController
-    func makeCarDetailViewController(for car: Car) -> CarDetailViewController
+    func makeCarsViewController(for user: User, activeUser: User) -> CarsViewController
+    func makeCarDetailViewController(for car: Car, activeUser: User) -> CarDetailViewController
     
     // Profile Pages
-    func makeAboutViewController(for user: User) -> AboutViewController
+    func makeAboutViewController(for user: User, activeUser: User) -> AboutViewController
 
 }

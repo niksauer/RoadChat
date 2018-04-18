@@ -118,6 +118,7 @@ class RegisterViewController: UIViewController {
         return isValid
     }
     
+    /// http://brainwashinc.com/2017/08/18/ios-swift-3-validate-email-password-format/
     private func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)

@@ -29,8 +29,9 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="QNx-qb-Kkl">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QNx-qb-Kkl">
                     <rect key="frame" x="0.0" y="64" width="375" height="170"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="height" constant="170" id="eIj-3X-Pot"/>
@@ -156,7 +157,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJQ-7h-A1h" userLabel="Add Photo Button">
-                            <rect key="frame" x="307" y="-23" width="45" height="45"/>
+                            <rect key="frame" x="306" y="-23" width="45" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="Ah6-Ec-R2L"/>
                                 <constraint firstAttribute="width" constant="45" id="GBg-Yx-W0F"/>
@@ -240,7 +241,7 @@
                         <constraint firstAttribute="trailing" secondItem="Kyn-ye-S2t" secondAttribute="trailing" id="scH-Qd-LzU"/>
                         <constraint firstItem="ifg-7u-hgM" firstAttribute="centerY" secondItem="lCh-EA-AAv" secondAttribute="centerY" id="tdO-cO-s8d"/>
                         <constraint firstItem="Yoo-gZ-yqp" firstAttribute="centerY" secondItem="wX2-WZ-uN9" secondAttribute="centerY" id="v9c-xd-mLm"/>
-                        <constraint firstAttribute="trailing" secondItem="BJQ-7h-A1h" secondAttribute="trailing" constant="23" id="vTx-gp-swB"/>
+                        <constraint firstAttribute="trailing" secondItem="BJQ-7h-A1h" secondAttribute="trailing" constant="24" id="vTx-gp-swB"/>
                         <constraint firstItem="aKP-ME-MOI" firstAttribute="top" secondItem="wX2-WZ-uN9" secondAttribute="bottom" constant="16" id="vXc-kC-6ec"/>
                         <constraint firstItem="aKP-ME-MOI" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" id="wI3-de-ST1"/>
                         <constraint firstItem="x4t-Cc-Cep" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" constant="16" id="xgl-hF-fP2"/>
@@ -291,7 +292,6 @@
     <resources>
         <image name="add-filled" width="100" height="100"/>
         <image name="car" width="100" height="100"/>
-        <image name="car-placeholder" width="350" height="205"/>
         <image name="clock" width="100" height="100"/>
         <image name="color" width="100" height="100"/>
         <image name="lightning-bolt" width="100" height="100"/>

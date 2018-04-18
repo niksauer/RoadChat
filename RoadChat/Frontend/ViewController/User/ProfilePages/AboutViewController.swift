@@ -31,14 +31,16 @@ class AboutViewController: UIViewController {
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let user: User
+    private let activeUser: User
     private let dateFormatter: DateFormatter
     private let registryDateFormatter: DateFormatter
     private let colorPalette: ColorPalette
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, user: User, dateFormatter: DateFormatter, registryDateFormatter: DateFormatter, colorPalette: ColorPalette) {
+    init(viewFactory: ViewControllerFactory, user: User, activeUser: User, dateFormatter: DateFormatter, registryDateFormatter: DateFormatter, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
         self.user = user
+        self.activeUser = activeUser
         self.dateFormatter = dateFormatter
         self.registryDateFormatter = registryDateFormatter
         self.colorPalette = colorPalette
@@ -63,6 +65,15 @@ class AboutViewController: UIViewController {
         aboutStackView.insertSubview(backgroundView, at: 0)
         backgroundView.pin(to: aboutStackView)
         
+        updateUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        updateUI()
+    }
+    
+    // MARK: - Customization
+    func updateUI() {
         // user statistics
         communityKarmaLevelLabel.text = "\(user.communityKarma)"
         trafficKarmaLevelLabel.text = "\(user.trafficKarma)"
@@ -94,8 +105,8 @@ class AboutViewController: UIViewController {
                 addressStackView.removeFromSuperview()
             }
         } else {
-            birthStackView.removeFromSuperview()
-            addressStackView.removeFromSuperview()
+//            birthStackView.removeFromSuperview()
+//            addressStackView.removeFromSuperview()
         }
     }
     

@@ -17,6 +17,7 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let owner: User
+    private let activeUser: User
     private let searchContext: NSManagedObjectContext
     private let colorPalette: ColorPalette
     private let cellDateFormatter: DateFormatter
@@ -27,13 +28,13 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
     private var refreshControl: UIRefreshControl?
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, owner: User, searchContext: NSManagedObjectContext, colorPalette: ColorPalette, cellDateFormatter: DateFormatter) {
+    init(viewFactory: ViewControllerFactory, owner: User, activeUser: User, searchContext: NSManagedObjectContext, colorPalette: ColorPalette, cellDateFormatter: DateFormatter) {
         self.viewFactory = viewFactory
         self.owner = owner
+        self.activeUser = activeUser
         self.searchContext = searchContext
         self.colorPalette = colorPalette
         self.cellDateFormatter = cellDateFormatter
-        
         
         let layout = UICollectionViewFlowLayout()
         super.init(collectionViewLayout: layout)
@@ -41,7 +42,10 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
         self.title = "Car"
         
         layout.headerReferenceSize = CGSize.zero
-        layout.footerReferenceSize = CGSize(width: collectionView!.frame.width, height: 50)
+        
+        if activeUser.username == owner.username {
+            layout.footerReferenceSize = CGSize(width: collectionView!.frame.width, height: 50)
+        }
         
         collectionView?.backgroundColor = colorPalette.backgroundColor
         collectionView?.alwaysBounceVertical = true
@@ -63,8 +67,11 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
 
         // register cell classes
         self.collectionView!.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
-        self.collectionView!.register(UINib(nibName: "CreateNewCellView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "CreateNewCellView")
-
+        
+        if activeUser.username == owner.username {
+            self.collectionView!.register(UINib(nibName: "CreateNewCellView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "CreateNewCellView")
+        }
+    
         // pull to refresh
         refreshControl = UIRefreshControl()
         refreshControl?.layer.zPosition = -1
@@ -143,7 +150,7 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
     // MARK: - UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let car = fetchedResultsController!.object(at: indexPath)
-        let carDetailViewController = viewFactory.makeCarDetailViewController(for: car)
+        let carDetailViewController = viewFactory.makeCarDetailViewController(for: car, activeUser: activeUser)
         let carDetailNavigationController = UINavigationController(rootViewController: carDetailViewController)
         self.navigationController?.present(carDetailNavigationController, animated: true, completion: nil)
     }
