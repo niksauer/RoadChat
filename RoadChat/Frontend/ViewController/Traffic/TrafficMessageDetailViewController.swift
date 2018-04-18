@@ -153,7 +153,7 @@ class TrafficMessageDetailViewController: UIViewController {
     }
     
     @IBAction func didPressProfileButton(_ sender: UIButton) {
-        let profileViewController = viewFactory.makeProfileViewController(for: self.sender)
+        let profileViewController = viewFactory.makeProfileViewController(for: self.sender, activeUser: activeUser)
         profileViewController.showsSenderProfile = true
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }

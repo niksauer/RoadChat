@@ -23,17 +23,22 @@ class CarDetailViewController: UIViewController {
     
     // MARK: - Private Properties
     let car: Car
+    let activeUser: User
     let dateFormatter: DateFormatter
     
     // MARK: - Initialization
-    init(car: Car, dateFormatter: DateFormatter) {
+    init(car: Car, activeUser: User, dateFormatter: DateFormatter) {
         self.car = car
+        self.activeUser = activeUser
         self.dateFormatter = dateFormatter
         
         super.init(nibName: nil, bundle: nil)
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didPressEditButton(_:)))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didPressDoneButton(_:)))
+        
+        if activeUser.username == car.user?.username {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didPressEditButton(_:)))
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

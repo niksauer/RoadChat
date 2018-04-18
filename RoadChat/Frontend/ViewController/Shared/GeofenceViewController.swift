@@ -28,6 +28,7 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
     // MARK: - Private Properties
     private var geofence: MKCircle?
     private let colorPalette: ColorPalette
+    private let lengthFormatter: LengthFormatter
     
     private let initualRadius: Double
     private var setInitialGeofence = false
@@ -46,13 +47,14 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
     private var saveBarButtonItem: UIBarButtonItem!
     
     // MARK: - Initialization
-    init(radius: Double?, min: Double, max: Double, identifier: String, colorPalette: ColorPalette) {
+    init(radius: Double?, min: Double, max: Double, identifier: String, colorPalette: ColorPalette, lengthFormatter: LengthFormatter) {
         self.initualRadius = radius ?? 5000
         self.radius = self.initualRadius
         self.min = min
         self.max = max
         self.identifier = identifier
         self.colorPalette = colorPalette
+        self.lengthFormatter = lengthFormatter
         
         super.init(nibName: nil, bundle: nil)
         
@@ -74,8 +76,8 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
         radiusSlider.maximumValue = Float(max)
         radiusSlider.isContinuous = true
         
-        minLabel.text = String(min)
-        maxLabel.text = String(max)
+        minLabel.text = lengthFormatter.string(fromMeters: min)
+        maxLabel.text = lengthFormatter.string(fromMeters: max)
         
         mapView.delegate = self
         mapView.showsUserLocation = true

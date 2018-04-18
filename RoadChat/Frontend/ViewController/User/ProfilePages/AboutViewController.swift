@@ -31,14 +31,16 @@ class AboutViewController: UIViewController {
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let user: User
+    private let activeUser: User
     private let dateFormatter: DateFormatter
     private let registryDateFormatter: DateFormatter
     private let colorPalette: ColorPalette
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, user: User, dateFormatter: DateFormatter, registryDateFormatter: DateFormatter, colorPalette: ColorPalette) {
+    init(viewFactory: ViewControllerFactory, user: User, activeUser: User, dateFormatter: DateFormatter, registryDateFormatter: DateFormatter, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
         self.user = user
+        self.activeUser = activeUser
         self.dateFormatter = dateFormatter
         self.registryDateFormatter = registryDateFormatter
         self.colorPalette = colorPalette

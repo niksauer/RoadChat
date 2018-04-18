@@ -91,7 +91,7 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeGeofenceViewController(radius: Double?, min: Double, max: Double, identifier: String) -> GeofenceViewController {
-        return GeofenceViewController(radius: radius, min: min, max: max, identifier: identifier, colorPalette: colorPalette)
+        return GeofenceViewController(radius: radius, min: min, max: max, identifier: identifier, colorPalette: colorPalette, lengthFormatter: lengthFormatter)
     }
     
     // Authentication
@@ -168,12 +168,13 @@ extension DependencyContainer: ViewControllerFactory {
         return ChangeEmailViewController(user: user)
     }
     
-    func makeProfileViewController(for user: User) -> ProfileViewController {
-        return ProfileViewController(viewFactory: self, user: user, colorPalette: colorPalette)
+    // User
+    func makeProfileViewController(for user: User, activeUser: User) -> ProfileViewController {
+        return ProfileViewController(viewFactory: self, user: user, activeUser: activeUser, colorPalette: colorPalette)
     }
     
-    func makeProfilePageViewController(for user: User) -> ProfilePageViewController {
-        return ProfilePageViewController(viewFactory: self, user: user, colorPalette: colorPalette)
+    func makeProfilePageViewController(for user: User, activeUser: User) -> ProfilePageViewController {
+        return ProfilePageViewController(viewFactory: self, user: user, activeUser: activeUser, colorPalette: colorPalette)
     }
     
     func makeCreateCarViewController(for user: User) -> CreateCarViewController {
@@ -189,17 +190,17 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     // Car
-    func makeCarsViewController(for user: User) -> CarsViewController {
-        return CarsViewController(viewFactory: self, owner: user, searchContext: viewContext, colorPalette: colorPalette, cellDateFormatter: monthYearDateFormatter)
+    func makeCarsViewController(for user: User, activeUser: User) -> CarsViewController {
+        return CarsViewController(viewFactory: self, owner: user, activeUser: activeUser, searchContext: viewContext, colorPalette: colorPalette, cellDateFormatter: monthYearDateFormatter)
     }
     
-    func makeCarDetailViewController(for car: Car) -> CarDetailViewController {
-        return CarDetailViewController(car: car, dateFormatter: monthYearDateFormatter)
+    func makeCarDetailViewController(for car: Car, activeUser: User) -> CarDetailViewController {
+        return CarDetailViewController(car: car, activeUser: activeUser, dateFormatter: monthYearDateFormatter)
     }
     
     // Profile Pages
-    func makeAboutViewController(for user: User) -> AboutViewController {
-        return AboutViewController(viewFactory: self, user: user, dateFormatter: shortDateFormatter, registryDateFormatter: timeSinceDateFormatter, colorPalette: colorPalette)
+    func makeAboutViewController(for user: User, activeUser: User) -> AboutViewController {
+        return AboutViewController(viewFactory: self, user: user, activeUser: activeUser, dateFormatter: shortDateFormatter, registryDateFormatter: timeSinceDateFormatter, colorPalette: colorPalette)
     }
 
 }

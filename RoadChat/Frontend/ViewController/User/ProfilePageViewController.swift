@@ -18,12 +18,14 @@ class ProfilePageViewController: UIViewController {
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let user: User
+    private let activeUser: User
     private let colorPalette: ColorPalette
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, user: User, colorPalette: ColorPalette) {
+    init(viewFactory: ViewControllerFactory, user: User, activeUser: User, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
         self.user = user
+        self.activeUser = activeUser
         self.colorPalette = colorPalette
         
         super.init(nibName: nil, bundle: nil)
@@ -36,10 +38,10 @@ class ProfilePageViewController: UIViewController {
     
     // MARK: - Customization
     override func viewDidLoad() {
-        let communityViewController = viewFactory.makeCommunityMessagesViewController(for: user, activeUser: user)
-        let trafficViewController = viewFactory.makeTrafficMessagesViewController(for: user, activeUser: user)
-        let carsViewController = viewFactory.makeCarsViewController(for: user)
-        let aboutViewController = viewFactory.makeAboutViewController(for: user)
+        let communityViewController = viewFactory.makeCommunityMessagesViewController(for: user, activeUser: activeUser)
+        let trafficViewController = viewFactory.makeTrafficMessagesViewController(for: user, activeUser: activeUser)
+        let carsViewController = viewFactory.makeCarsViewController(for: user, activeUser:  activeUser)
+        let aboutViewController = viewFactory.makeAboutViewController(for: user, activeUser: user)
         
         let pagingViewController = FixedPagingViewController(viewControllers: [communityViewController, trafficViewController, carsViewController, aboutViewController])
         pagingViewController.menuItemSize = .sizeToFit(minWidth: 90, height: 40)
