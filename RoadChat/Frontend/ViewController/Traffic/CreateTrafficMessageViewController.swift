@@ -30,6 +30,7 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
     private let locationManager: LocationManager
     private let colorPalette: ColorPalette
 
+    private let defaultTrafficType = TrafficType.jam
     private let maxTitleCharacters = 140
     private let maxMessageCharacters = 280
     private let messageTextViewPlaceholder = "(Optional)"
@@ -66,6 +67,7 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
         typePickerView.delegate = self
         
         typeTextField.inputView = typePickerView
+        typeTextField.text = defaultTrafficType.rawValue.capitalized
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)

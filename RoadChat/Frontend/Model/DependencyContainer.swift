@@ -89,6 +89,7 @@ extension DependencyContainer: ViewControllerFactory {
     func makeLocationViewController(for location: CLLocation) -> LocationViewController {
         return LocationViewController(viewFactory: self, location: location)
     }
+    
     func makeGeofenceViewController(radius: Double?, min: Double, max: Double, identifier: String) -> GeofenceViewController {
         return GeofenceViewController(radius: radius, min: min, max: max, identifier: identifier, colorPalette: colorPalette)
     }
@@ -153,6 +154,18 @@ extension DependencyContainer: ViewControllerFactory {
     
     func makePrivacyViewController(with privacy: Privacy) -> PrivacyViewController {
         return PrivacyViewController(privacy: privacy)
+    }
+    
+    func makeSecurityViewController(for user: User) -> SecurityViewController {
+        return SecurityViewController(viewFactory: self, colorPalette: colorPalette, user: user)
+    }
+    
+    func makeChangePasswordViewController(for user: User) -> ChangePasswordViewController {
+        return ChangePasswordViewController(user: user)
+    }
+    
+    func makeChangeEmailViewController(for user: User) -> ChangeEmailViewController {
+        return ChangeEmailViewController(user: user)
     }
     
     func makeProfileViewController(for user: User) -> ProfileViewController {
