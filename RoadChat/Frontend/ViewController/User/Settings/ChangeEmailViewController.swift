@@ -59,13 +59,13 @@ class ChangeEmailViewController: UITableViewController {
             guard error == nil else {
                 // handle error
                 self.displayAlert(title: "Error", message: "Failed to update email: \(error!)") {
-                    self.dismiss(animated: true, completion: nil)
+                    self.navigationController?.popViewController(animated: true)
                 }
                 
                 return
             }
             
-            self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
         }
     }
 

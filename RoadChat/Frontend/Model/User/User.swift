@@ -141,8 +141,8 @@ class User: NSManagedObject, ReportOwner {
                 }
                 
                 do {
-                    self.email = user.email
-                    self.username = user.username
+                    self.email = user.email ?? self.email
+                    self.username = user.username ?? self.username
                     try self.context.save()
                     
                     let report = Report(.successfulCoreDataOperation(.update, resource: nil, isMultiple: false), owner: self)
