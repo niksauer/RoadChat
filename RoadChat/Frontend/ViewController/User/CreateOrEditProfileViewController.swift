@@ -15,29 +15,25 @@ class CreateOrEditProfileViewController: UIViewController {
     typealias ColorPalette = BasicColorPalette & SexColorPalette
     
     // MARK: - Outlets
-    
-    @IBOutlet weak var profileView: UIView!
-    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var addImageButton: UIButton!
     
     @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var bioTextView: UITextView!
+    @IBOutlet weak var biographyTextView: UITextView!
     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     
     @IBOutlet weak var birthTextField: UITextField!
+    @IBOutlet weak var sexTypeSegmentedControl: UISegmentedControl!
     
-    @IBOutlet weak var maleView: UIView!
-    @IBOutlet weak var femaleView: UIView!
-    @IBOutlet weak var genderQueerView: UIView!
-   
     @IBOutlet weak var streetNameTextField: UITextField!
     @IBOutlet weak var streetNumberTextField: UITextField!
     @IBOutlet weak var postalCodeTextField: UITextField!
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var countryTextField: UITextField!
+    
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     //MARK: - Views
     private let datePickerView = UIDatePicker()
@@ -49,7 +45,20 @@ class CreateOrEditProfileViewController: UIViewController {
     private let colorPalette: ColorPalette
     private let bioTextViewPlaceholder = "RoadChats #1 Fan"
 
-    private var sex: SexType?
+    private var sex: SexType? {
+        didSet {
+            switch sex {
+            case .male?:
+                sexTypeSegmentedControl.selectedSegmentIndex = 0
+            case .female?:
+                sexTypeSegmentedControl.selectedSegmentIndex = 1
+            case .other?:
+                sexTypeSegmentedControl.selectedSegmentIndex = 2
+            default:
+                return
+            }
+        }
+    }
     
     // MARK: - Initialization
     init(user: User, dateFormatter: DateFormatter, colorPalette: ColorPalette) {
@@ -63,7 +72,6 @@ class CreateOrEditProfileViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed(_:)))
         self.saveBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonPressed(_:)))
         self.navigationItem.rightBarButtonItem = saveBarButtonItem
-    
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -73,17 +81,20 @@ class CreateOrEditProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        // keyboard notification
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
+        // dismiss keyboard
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         tapGestureRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGestureRecognizer)
-        profileView.addGestureRecognizer(tapGestureRecognizer)
         
         // profile image appearance
-        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
-        profileImageView.clipsToBounds = true
+//        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+//        profileImageView.clipsToBounds = true
         
-        // birth date
+        // birth date picker
         datePickerView.timeZone = TimeZone.current
         datePickerView.datePickerMode = UIDatePickerMode.date
         datePickerView.addTarget(self, action: #selector(didChangeBirthDate(sender:)), for: .valueChanged)
@@ -92,46 +103,34 @@ class CreateOrEditProfileViewController: UIViewController {
         addImageButton.layer.cornerRadius = addImageButton.frame.size.width / 2
         addImageButton.clipsToBounds = true
         addImageButton.backgroundColor = colorPalette.contentBackgroundColor
+        addImageButton.tintColor = colorPalette.createColor
         
-        //Loading userdata in Textfields
+        // loading existing user data
+        usernameTextField.text = user.username
+        biographyTextView.text = user.profile?.biography
+        
+        firstNameTextField.text = user.profile?.firstName
+        lastNameTextField.text = user.profile?.lastName
         birthTextField.inputView = datePickerView
         
         if let birth = user.profile?.birth {
             birthTextField.text = dateFormatter.string(from: birth)
         }
         
-        usernameTextField.text = user.username
-        
-        if let biography = user.profile?.biography {
-            bioTextView.text = biography
-        } else {
-            bioTextView.text = bioTextViewPlaceholder
-        }
-        
-        if let firstName = user.profile?.firstName, let lastName = user.profile?.lastName {
-            firstNameTextField.text = firstName
-            lastNameTextField.text = lastName
-        }
-    
         sex = user.profile?.storedSex
         
-        switch sex {
-        case .male?:
-            maleView.backgroundColor = colorPalette.maleColor
-        case .female?:
-            femaleView.backgroundColor = colorPalette.femaleColor
-        case .other?:
-            genderQueerView.backgroundColor = colorPalette.otherColor
-        default:
-            return
+        streetNameTextField.text = user.profile?.streetName
+        
+        if let streetNumber = user.profile?.streetNumber {
+            streetNumberTextField.text = String(streetNumber)
         }
         
-        if let streetName = user.profile?.streetName, let streetNumber = user.profile?.streetNumber, let postalCode = user.profile?.postalCode, let country = user.profile?.country {
-            streetNameTextField.text = streetName
-            streetNumberTextField.text = String(streetNumber)
+        if let postalCode = user.profile?.postalCode {
             postalCodeTextField.text = String(postalCode)
-            countryTextField.text = country
         }
+        
+        cityTextField.text = user.profile?.city
+        countryTextField.text = user.profile?.country
     }
     
     // MARK: - Public Methods
@@ -139,25 +138,40 @@ class CreateOrEditProfileViewController: UIViewController {
         view.endEditing(true)
     }
     
-    @IBAction func cancelButtonPressed(_ sender: UIButton) {
+    @objc func cancelButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func saveButtonPressed(_ sender: UIButton) {
-        guard let birthString = birthTextField.text, let birth = dateFormatter.date(from: birthString), let _ = usernameTextField.text, let biography = bioTextView.text, let firstName = firstNameTextField.text, let lastName = lastNameTextField.text, let streetName = streetNameTextField.text, let streetNumberString = streetNumberTextField.text, let streetNumber = Int(streetNumberString), let postalCodeString = postalCodeTextField.text, let postalCode = Int(postalCodeString), let city = cityTextField.text, let country = countryTextField.text else {
+    @objc func saveButtonPressed(_ sender: UIButton) {
+        guard let firstName = firstNameTextField.text, let lastName = lastNameTextField.text, let birthString = birthTextField.text, let birth = dateFormatter.date(from: birthString) else {
             return
         }
         
-        let profileRequest = ProfileRequest(firstName: firstName, lastName: lastName, birth: birth, sex: sex, biography: biography, streetName: streetName, streetNumber: streetNumber, postalCode: postalCode, city: city, country: country)
+        var streetNumber: Int?
+        
+        if let streetNumberString = streetNumberTextField.text {
+            streetNumber = Int(streetNumberString)
+        }
+        
+        var postalCode: Int?
+        
+        if let postalCodeString = postalCodeTextField.text {
+            postalCode = Int(postalCodeString)
+        }
+        
+        let profileRequest = ProfileRequest(firstName: firstName, lastName: lastName, birth: birth, sex: sex, biography: biographyTextView.text, streetName: streetNameTextField.text, streetNumber: streetNumber, postalCode: postalCode, city: cityTextField.text, country: countryTextField.text)
         
         user.createOrUpdateProfile(profileRequest) { error in
             guard error == nil else {
-                self.displayAlert(title: "Error", message: "Failed to create profile: \(error!)")
+                self.displayAlert(title: "Error", message: "Failed to create/update profile: \(error!)") {
+                    self.dismiss(animated: true, completion: nil)
+                }
+                
                 return
             }
+            
+            self.dismiss(animated: true, completion: nil)
         }
-        
-        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func didChangeBirthDate(sender: UIDatePicker) {
@@ -168,29 +182,35 @@ class CreateOrEditProfileViewController: UIViewController {
         birthTextField.text = selectedDate
     }
     
+    @IBAction func didChangeSexType(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            sex = .male
+        case 1:
+            sex = .female
+        case 2:
+            sex = .other
+        default:
+            break
+        }
+    }
+    
     @IBAction func didPressAddImageButton(_ sender: UIButton) {
         // TODO
     }
-    
-    @IBAction func didPressMaleButton(_ sender: UIButton) {
-        sex = .male
-        maleView.backgroundColor = UIColor.lightGray
-        femaleView.backgroundColor = UIColor.white
-        genderQueerView.backgroundColor = UIColor.white
-    }
-    
-    @IBAction func didPressGenderQueerButton(_ sender: UIButton) {
-        sex = .other
-        maleView.backgroundColor = UIColor.white
-        femaleView.backgroundColor = UIColor.white
-        genderQueerView.backgroundColor = UIColor.lightGray
-    }
-    
-    @IBAction func didPressFemaleButton(_ sender: UIButton) {
-        sex = .female
-        maleView.backgroundColor = UIColor.white
-        femaleView.backgroundColor = UIColor.lightGray
-        genderQueerView.backgroundColor = UIColor.white
-    }
 
+    //MARK: Keyboard Notifications
+    @objc func keyboardWillShow(_ notification: Notification) {
+        let userInfo = notification.userInfo! as NSDictionary
+        let keyboardFrame = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.cgRectValue
+        let keyboardHeight = keyboardRectangle.height
+        
+        bottomConstraint.constant = keyboardHeight
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        bottomConstraint.constant = 0
+    }
+        
 }

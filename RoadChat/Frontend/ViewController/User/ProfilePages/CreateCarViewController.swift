@@ -119,7 +119,10 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     
         user.createCar(createCarRequest) { error in
             guard error == nil else {
-                self.displayAlert(title: "Error", message: "Failed to create Car: \(error!)")
+                self.displayAlert(title: "Error", message: "Failed to create Car: \(error!)") {
+                    self.dismiss(animated: true, completion: nil)
+                }
+                
                 return
             }
         

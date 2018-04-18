@@ -103,7 +103,7 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
         
         trafficBoard.postMessage(trafficMessageRequest) { error in
             guard error == nil else {
-                self.displayAlert(title: "Error", message: "Failed to post message: \(error!)")
+                self.displayAlert(title: "Error", message: "Failed to post message: \(error!)", completion: nil)
                 return
             }
             
