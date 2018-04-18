@@ -29,19 +29,17 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     @IBOutlet weak var colorPickerField: UIView!
 
     // MARK: - Views
-    private let datePickerView = UIDatePicker()
+    private let monthYearDatePickerView = MonthYearPickerView()
     private var saveBarButtonItem: UIBarButtonItem!
     private let colorPickerView = ColorCircle()
 
     // MARK: - Private Properties
     private let user: User
-    private let dateFormatter: DateFormatter
     private let colorPalette: ColorPalette
     
     // MARK: - Initialization
-    init(user: User, dateFormatter: DateFormatter, colorPalette: ColorPalette) {
+    init(user: User, colorPalette: ColorPalette) {
         self.user = user
-        self.dateFormatter = dateFormatter
         self.colorPalette = colorPalette
         
         super.init(nibName: nil, bundle: nil)
@@ -66,11 +64,26 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
         view.addGestureRecognizer(tapGestureRecognizer)
         
         // production date
-        datePickerView.timeZone = TimeZone.current
-        datePickerView.datePickerMode = UIDatePickerMode.date
-        datePickerView.addTarget(self, action: #selector(didChangeProductionDate(sender:)), for: .valueChanged)
+        monthYearDatePickerView.years = {
+            let maxYearsAgo = 70
+            let currentYear = Calendar(identifier: Calendar.Identifier.gregorian).component(.year, from: Date())
+            
+            var years = [Int]()
+            var year = currentYear
+            
+            for _ in 1...maxYearsAgo {
+                years.append(year)
+                year -= 1
+            }
+            
+            return years.reversed()
+        }()
     
-        productionTextField.inputView = datePickerView
+//        let currentYear = Calendar(identifier: Calendar.Identifier.gregorian).component(.year, from: Date())
+//        monthYearDatePickerView.selectRow(monthYearDatePickerView.years.index(of: currentYear)!, inComponent: 1, animated: true)
+        
+        monthYearDatePickerView.onDateSelected = didChangeProductionDate(month:year:)
+        productionTextField.inputView = monthYearDatePickerView
         
         // add photo
         addImageButton.layer.cornerRadius = addImageButton.frame.size.width / 2
@@ -109,6 +122,9 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/yyyy"
+        
         guard let manufacturer = manufacturerTextField.text, let model = modelTextField.text, let performanceString = performanceTextField.text, let performance = Int(performanceString), let productionString = productionTextField.text, let production = dateFormatter.date(from: productionString) else {
             // handle missing fields error
             return
@@ -130,15 +146,12 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
         }
     }
 
-    @objc func didChangeProductionDate(sender: UIDatePicker) {
-        productionTextField.textColor = colorPalette.textColor
+    func didChangeProductionDate(month: Int, year: Int) {
+        self.productionTextField.textColor = self.colorPalette.textColor
+        self.productionTextField.text = String(format: "%02d/%d", month, year)
         
-        // get the date string applied date format
-        let selectedDate = dateFormatter.string(from: sender.date)
-        productionTextField.text = selectedDate
-        
-        if manufacturerTextField.text != "", modelTextField.text != "", performanceTextField.text != "" {
-            saveBarButtonItem.isEnabled = true
+        if self.manufacturerTextField.text != "", self.modelTextField.text != "", self.performanceTextField.text != "" {
+            self.saveBarButtonItem.isEnabled = true
         }
     }
     

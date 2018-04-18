@@ -199,7 +199,7 @@ class CreateOrEditProfileViewController: UIViewController {
         // TODO
     }
 
-    //MARK: Keyboard Notifications
+    // MARK: - Keyboard Notifications
     @objc func keyboardWillShow(_ notification: Notification) {
         let userInfo = notification.userInfo! as NSDictionary
         let keyboardFrame = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
