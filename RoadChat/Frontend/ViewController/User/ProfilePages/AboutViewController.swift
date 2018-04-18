@@ -98,5 +98,5 @@ class AboutViewController: UIViewController {
             addressStackView.removeFromSuperview()
         }
     }
-
+    
 }
