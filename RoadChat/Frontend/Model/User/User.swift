@@ -130,6 +130,40 @@ class User: NSManagedObject, ReportOwner {
         }
     }
     
+    func update(to user: UserRequest, completion: ((Error?) -> Void)?) {
+        do {
+            try userService.update(userID: Int(id), to: user) { error in
+                guard error == nil else {
+                    let report = Report(.failedServerOperation(.update, resource: nil, isMultiple: false, error: error!), owner: self)
+                    log.error(report)
+                    completion?(error!)
+                    return
+                }
+                
+                do {
+                    self.email = user.email
+                    self.username = user.username
+                    try self.context.save()
+                    
+                    let report = Report(.successfulCoreDataOperation(.update, resource: nil, isMultiple: false), owner: self)
+                    log.debug(report)
+                    
+                    completion?(nil)
+                } catch {
+                    // pass core data error
+                    let report = Report(.failedCoreDataOperation(.update, resource: nil, isMultiple: false, error: error), owner: self)
+                    log.error(report)
+                    completion?(error)
+                }
+            }
+        } catch {
+            // pass body encoding error
+            let report = Report(.failedServerRequest(requestType: "UserRequest", error: error), owner: self)
+            log.error(report)
+            completion?(error)
+        }
+    }
+    
     func createCar(_ car: CarRequest, completion: ((Error?) -> Void)?) {
         do {
             try userService.createCar(car, userID: Int(id)) { car, error in
@@ -158,7 +192,7 @@ class User: NSManagedObject, ReportOwner {
             }
         } catch {
             // pass body encoding error
-            let report = Report(.failedServerRequest(requestType: "ProfileRequest", error: error), owner: self)
+            let report = Report(.failedServerRequest(requestType: "CarRequest", error: error), owner: self)
             log.error(report)
             completion?(error)
         }

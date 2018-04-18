@@ -43,6 +43,9 @@ protocol ViewControllerFactory {
     // User
     func makeSettingsViewController(for user: User, settings: Settings, privacy: Privacy) -> SettingsViewController
     func makePrivacyViewController(with privacy: Privacy) -> PrivacyViewController
+    func makeSecurityViewController(for user: User) -> SecurityViewController
+    func makeChangePasswordViewController(for user: User) -> ChangePasswordViewController
+    func makeChangeEmailViewController(for user: User) -> ChangeEmailViewController
     func makeProfileViewController(for user: User) -> ProfileViewController
     func makeProfilePageViewController(for user: User) -> ProfilePageViewController
     func makeCreateCarViewController(for user: User) -> CreateCarViewController
