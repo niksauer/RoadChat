@@ -80,7 +80,7 @@ class CreateOrEditProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // keyboard notification
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -107,6 +107,10 @@ class CreateOrEditProfileViewController: UIViewController {
         
         // loading existing user data
         usernameTextField.text = user.username
+        
+        biographyTextView.layer.borderWidth = 1
+        biographyTextView.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+        biographyTextView.layer.cornerRadius = 5
         biographyTextView.text = user.profile?.biography
         
         firstNameTextField.text = user.profile?.firstName

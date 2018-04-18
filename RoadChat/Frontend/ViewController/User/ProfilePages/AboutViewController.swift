@@ -65,6 +65,15 @@ class AboutViewController: UIViewController {
         aboutStackView.insertSubview(backgroundView, at: 0)
         backgroundView.pin(to: aboutStackView)
         
+        updateUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        updateUI()
+    }
+    
+    // MARK: - Customization
+    func updateUI() {
         // user statistics
         communityKarmaLevelLabel.text = "\(user.communityKarma)"
         trafficKarmaLevelLabel.text = "\(user.trafficKarma)"
@@ -96,8 +105,8 @@ class AboutViewController: UIViewController {
                 addressStackView.removeFromSuperview()
             }
         } else {
-            birthStackView.removeFromSuperview()
-            addressStackView.removeFromSuperview()
+//            birthStackView.removeFromSuperview()
+//            addressStackView.removeFromSuperview()
         }
     }
     
