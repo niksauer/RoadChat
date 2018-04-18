@@ -211,7 +211,7 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
                 authenticationManager.logout { error in
                     guard error == nil else {
                         // handle logout error
-                        self.displayAlert(title: "Error", message: "Failed to logout: \(error!)")
+                        self.displayAlert(title: "Error", message: "Failed to logout: \(error!)", completion: nil)
                         return
                     }
                     
@@ -229,7 +229,7 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
                     self.authenticationManager.deleteAuthenticatedUser { error in
                         guard error == nil else {
                             // handle delete user account error
-                            self.displayAlert(title: "Error", message: "Failed to delete account: \(error!)")
+                            self.displayAlert(title: "Error", message: "Failed to delete account: \(error!)", completion: nil)
                             return
                         }
                         

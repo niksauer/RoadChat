@@ -132,7 +132,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
         userManager.findUserById(Int(message.senderID), context: searchContext) { user, error in
             guard let user = user else {
                 // handle failed user lookup
-                self.displayAlert(title: "Error", message: "Failed to retrieve sender: \(error != nil ? error!.localizedDescription : "unknown error")")
+                self.displayAlert(title: "Error", message: "Failed to retrieve sender: \(error != nil ? error!.localizedDescription : "unknown error")", completion: nil)
                 return
             }
             
