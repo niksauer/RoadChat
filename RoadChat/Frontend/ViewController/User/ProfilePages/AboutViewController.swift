@@ -86,8 +86,9 @@ class AboutViewController: UIViewController {
             // birth
             if let birth = profile.birth {
                 birthLabel.text = dateFormatter.string(from: birth)
+                birthStackView.isHidden = false
             } else {
-                birthStackView.removeFromSuperview()
+                birthStackView.isHidden = true
             }
             
             // address
@@ -101,12 +102,13 @@ class AboutViewController: UIViewController {
             
             if localizedAddress.count >= 1 {
                 addressLabel.text = localizedAddress
+                addressStackView.isHidden = false
             } else {
-                addressStackView.removeFromSuperview()
+                addressStackView.isHidden = true
             }
         } else {
-//            birthStackView.removeFromSuperview()
-//            addressStackView.removeFromSuperview()
+            birthStackView.isHidden = true
+            addressStackView.isHidden = true
         }
     }
     

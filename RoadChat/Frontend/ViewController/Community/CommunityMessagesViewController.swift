@@ -92,7 +92,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
             request.predicate = NSPredicate(format: "senderID = %d", user.id)
         }
         
-        fetchedResultsController = NSFetchedResultsController<CommunityMessage>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: "CommunityMessages")
+        fetchedResultsController = NSFetchedResultsController<CommunityMessage>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController?.delegate = self
         
         try? fetchedResultsController?.performFetch()

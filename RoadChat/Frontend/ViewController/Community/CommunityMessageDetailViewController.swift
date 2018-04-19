@@ -17,19 +17,19 @@ class CommunityMessageDetailViewController: UIViewController {
     typealias ColorPalette = KarmaColorPalette & BasicColorPalette
     
     // MARK: - Outlets
+    @IBOutlet weak var mapView: MKMapView!
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var usernameLabel: UILabel!
     
+    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var upvotesImage: UIImageView!
     @IBOutlet weak var upvotesLabel: UILabel!
-    
     @IBOutlet weak var timeLabel: UILabel!
 
     @IBOutlet weak var upvoteButton: UIButton!
     @IBOutlet weak var downvoteButton: UIButton!
-    
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var moreButton: UIButton!
     
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
@@ -93,6 +93,10 @@ class CommunityMessageDetailViewController: UIViewController {
     
     // MARK: - Customization
     override func viewDidLoad() {
+        if activeUser.id != sender.id {
+            moreButton.isHidden = true
+        }
+        
         titleLabel.text = message.title
         messageLabel.text = message.message
         usernameLabel.text = String(sender.username!)

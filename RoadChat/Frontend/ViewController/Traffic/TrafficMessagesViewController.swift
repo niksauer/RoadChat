@@ -92,7 +92,7 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
             request.predicate = NSPredicate(format: "senderID = %d", user.id)
         }
         
-        fetchedResultsController = NSFetchedResultsController<TrafficMessage>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: "TrafficMessages")
+        fetchedResultsController = NSFetchedResultsController<TrafficMessage>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController?.delegate = self
         
         try? fetchedResultsController?.performFetch()

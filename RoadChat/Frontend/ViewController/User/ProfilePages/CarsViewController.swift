@@ -95,7 +95,7 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
         request.sortDescriptors = []
         request.predicate = NSPredicate(format: "userID = %d", owner.id)
         
-        fetchedResultsController = NSFetchedResultsController<Car>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: "Cars")
+        fetchedResultsController = NSFetchedResultsController<Car>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController?.delegate = self
         
         try? fetchedResultsController?.performFetch()

@@ -17,6 +17,7 @@
                 <outlet property="downvoteButton" destination="YPK-1U-upV" id="ge4-on-aC2"/>
                 <outlet property="mapView" destination="51g-K1-GKM" id="wGQ-OE-YCE"/>
                 <outlet property="messageLabel" destination="FxA-ee-qgb" id="hEW-4k-197"/>
+                <outlet property="moreButton" destination="Rug-ag-OFN" id="P6b-Up-4c9"/>
                 <outlet property="timeLabel" destination="WRs-GJ-eNp" id="5of-Z8-qWF"/>
                 <outlet property="titleLabel" destination="IX8-t6-xyj" id="7Cl-VH-2aW"/>
                 <outlet property="upvoteButton" destination="Mnz-Bg-X4c" id="yd2-jp-Ttf"/>
