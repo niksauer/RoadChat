@@ -43,7 +43,7 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
         
         layout.headerReferenceSize = CGSize.zero
         
-        if activeUser.username == owner.username {
+        if activeUser.id == owner.id {
             layout.footerReferenceSize = CGSize(width: collectionView!.frame.width, height: 50)
         }
         
@@ -68,7 +68,7 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
         // register cell classes
         self.collectionView!.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         
-        if activeUser.username == owner.username {
+        if activeUser.id == owner.id {
             self.collectionView!.register(UINib(nibName: "CreateNewCellView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "CreateNewCellView")
         }
     

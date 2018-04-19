@@ -55,7 +55,7 @@ class ProfileViewController: UIViewController {
         self.title = "Profile"
         self.tabBarItem = UITabBarItem(title: "Profile", image: #imageLiteral(resourceName: "profile_glyph"), tag: 3)
         
-        if activeUser.username == user.username {
+        if activeUser.id == user.id {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settings_glyph"), style: .done, target: self, action: #selector(settingsButtonPressed(_:)))
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonPressed(_:)))
         }

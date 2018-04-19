@@ -36,7 +36,7 @@ class CarDetailViewController: UIViewController {
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didPressDoneButton(_:)))
         
-        if activeUser.username == car.user?.username {
+        if activeUser.id == car.user?.id {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didPressEditButton(_:)))
         }
     }
