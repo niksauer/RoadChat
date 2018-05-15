@@ -104,7 +104,7 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
     
     // MARK: - Private Methods
     func didPressAddButton(_ sender: CreateNewCellView) {
-        let createCarViewController = viewFactory.makeCreateCarViewController(for: owner)
+        let createCarViewController = viewFactory.makeCreateOrEditCarViewController(for: owner, car: nil)
         let createCarNavigationController = UINavigationController(rootViewController: createCarViewController)
         present(createCarNavigationController, animated: true, completion: nil)
     }
@@ -149,10 +149,14 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
 
     // MARK: - UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard activeUser.id == owner.id else {
+            return
+        }
+        
         let car = fetchedResultsController!.object(at: indexPath)
-        let carDetailViewController = viewFactory.makeCarDetailViewController(for: car, activeUser: activeUser)
-        let carDetailNavigationController = UINavigationController(rootViewController: carDetailViewController)
-        self.navigationController?.present(carDetailNavigationController, animated: true, completion: nil)
+        let editCarViewController = viewFactory.makeCreateOrEditCarViewController(for: activeUser, car: car)
+        let editCarNavigationController = UINavigationController(rootViewController: editCarViewController)
+        self.navigationController?.present(editCarNavigationController, animated: true, completion: nil)
     }
     
 }

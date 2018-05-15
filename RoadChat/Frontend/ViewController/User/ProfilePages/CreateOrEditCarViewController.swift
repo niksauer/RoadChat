@@ -10,7 +10,7 @@ import UIKit
 import RoadChatKit
 import ColorCircle
 
-class CreateCarViewController: UIViewController, UIPickerViewDelegate {
+class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate {
 
     // MARK: - Typealiases
     typealias ColorPalette = BasicColorPalette & CarColorPalette
@@ -35,11 +35,15 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
 
     // MARK: - Private Properties
     private let user: User
+    private let car: Car?
+    private let productionDateFormatter: DateFormatter
     private let colorPalette: ColorPalette
     
     // MARK: - Initialization
-    init(user: User, colorPalette: ColorPalette) {
+    init(user: User, car: Car?, productionDateFormatter: DateFormatter, colorPalette: ColorPalette) {
         self.user = user
+        self.car = car
+        self.productionDateFormatter = productionDateFormatter
         self.colorPalette = colorPalette
         
         super.init(nibName: nil, bundle: nil)
@@ -114,6 +118,27 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
             colorPickerView.centerYAnchor.constraint(equalTo: colorPickerContainer.centerYAnchor),
             colorPickerView.centerXAnchor.constraint(equalTo: colorPickerContainer.centerXAnchor),
         ])
+        
+        // textfield delegate
+        manufacturerTextField.delegate = self
+        modelTextField.delegate = self
+        performanceTextField.delegate = self
+        
+        
+        // populate with existing information
+        guard let car = car else {
+            return
+        }
+        
+        manufacturerTextField.text = car.manufacturer
+        modelTextField.text = car.model
+        performanceTextField.text = String(car.performance)
+        
+        if let production = car.production {
+            productionTextField.text = productionDateFormatter.string(from: production)
+        }
+        
+        colorPickerField.backgroundColor = car.storedColor
     }
     
     // MARK: - Public Methods
@@ -122,10 +147,7 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/yyyy"
-        
-        guard let manufacturer = manufacturerTextField.text, let model = modelTextField.text, let performanceString = performanceTextField.text, let performance = Int(performanceString), let productionString = productionTextField.text, let production = dateFormatter.date(from: productionString) else {
+        guard let manufacturer = manufacturerTextField.text, let model = modelTextField.text, let performanceString = performanceTextField.text, let performance = Int(performanceString), let productionString = productionTextField.text, let production = productionDateFormatter.date(from: productionString) else {
             // handle missing fields error
             return
         }
@@ -149,16 +171,28 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     func didChangeProductionDate(month: Int, year: Int) {
         self.productionTextField.textColor = self.colorPalette.textColor
         self.productionTextField.text = String(format: "%02d/%d", month, year)
-        
-        if self.manufacturerTextField.text != "", self.modelTextField.text != "", self.performanceTextField.text != "" {
-            self.saveBarButtonItem.isEnabled = true
-        }
+        validateSaveButton()
     }
     
     @IBAction func didPressAddImageButton(_ sender: UIButton) {
         // TODO
     }
+    
+    func validateSaveButton() {
+        guard let manufacturer = manufacturerTextField.text, !manufacturer.isEmpty, let model = modelTextField.text, !model.isEmpty, let performanceString = performanceTextField.text, let _ = Int(performanceString) else {
+            saveBarButtonItem.isEnabled = false
+            return
+        }
+        
+        saveBarButtonItem.isEnabled = true
+    }
 
+    // Mark: - TextField Delegate
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        validateSaveButton()
+        return true
+    }
+    
     // Mark: - Tap Gesture Recognizer
     @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
@@ -176,6 +210,7 @@ class CreateCarViewController: UIViewController, UIPickerViewDelegate {
     // Mark: - Private Methods
     @objc private func didChangeColor() {
         colorPickerField.backgroundColor = colorPickerView.color
+        validateSaveButton()
     }
     
 }
