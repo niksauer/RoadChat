@@ -9,8 +9,8 @@
 import UIKit
 import RoadChatKit
 
-class CreateOrEditProfileViewController: UIViewController, UITextViewDelegate {
-
+class CreateOrEditProfileViewController: UIViewController {
+    
     // MARK: - Typealiases
     typealias ColorPalette = BasicColorPalette & SexColorPalette
     
@@ -44,7 +44,7 @@ class CreateOrEditProfileViewController: UIViewController, UITextViewDelegate {
     private let dateFormatter: DateFormatter
     private let colorPalette: ColorPalette
     private let bioTextViewPlaceholder = "RoadChats #1 Fan"
-
+    
     private var sex: SexType? {
         didSet {
             switch sex {
@@ -80,23 +80,19 @@ class CreateOrEditProfileViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // keyboard notification
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-<<<<<<< HEAD
-        messageTextView.delegate = self
-=======
         // dismiss keyboard
->>>>>>> 77bcb8fea8279223bb8873bbf687a3da6e23eb5c
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         tapGestureRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGestureRecognizer)
         
         // profile image appearance
-//        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
-//        profileImageView.clipsToBounds = true
+        //        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+        //        profileImageView.clipsToBounds = true
         
         // birth date picker
         datePickerView.timeZone = TimeZone.current
@@ -206,7 +202,7 @@ class CreateOrEditProfileViewController: UIViewController, UITextViewDelegate {
     @IBAction func didPressAddImageButton(_ sender: UIButton) {
         // TODO
     }
-
+    
     // MARK: - Keyboard Notifications
     @objc func keyboardWillShow(_ notification: Notification) {
         let userInfo = notification.userInfo! as NSDictionary
@@ -220,24 +216,5 @@ class CreateOrEditProfileViewController: UIViewController, UITextViewDelegate {
     @objc func keyboardWillHide(_ notification: Notification) {
         bottomConstraint.constant = 0
     }
-<<<<<<< HEAD
     
-    // MARK: - UITextViewDelegate
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView == bioTextView, textView.text == bioTextViewPlaceholder {
-            textView.text = ""
-            textView.textColor = colorPalette.textColor
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView == messageTextView, textView.text.count == 0 {
-            textView.textColor = colorPalette.lightTextColor
-            textView.text = bioTextViewPlaceholder
-        }
-    }
-
-=======
-        
->>>>>>> 77bcb8fea8279223bb8873bbf687a3da6e23eb5c
 }

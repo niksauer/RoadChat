@@ -21,16 +21,15 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
     // MARK: - Outlets
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var radiusSlider: UISlider!
-    
-    //@IBOutlet weak var minLabel: EdgeInsetLabel!
-    @IBOutlet weak var valLabel: EdgeInsetLabel!
+
+    @IBOutlet weak var currentRadiusLabel: EdgeInsetLabel!
     
     // MARK: - Private Properties
     private var geofence: MKCircle?
     private let colorPalette: ColorPalette
     private let lengthFormatter: LengthFormatter
     
-    private let initualRadius: Double
+    private let initialRadius: Double
     private var setInitialGeofence = false
     private let stepSize: Float = 5
     
@@ -48,8 +47,8 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: - Initialization
     init(radius: Double?, min: Double, max: Double, identifier: String, colorPalette: ColorPalette, lengthFormatter: LengthFormatter) {
-        self.initualRadius = radius ?? 5000
-        self.radius = self.initualRadius
+        self.initialRadius = radius ?? 5000
+        self.radius = self.initialRadius
         self.min = min
         self.max = max
         self.identifier = identifier
@@ -76,9 +75,7 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
         radiusSlider.maximumValue = Float(max)
         radiusSlider.isContinuous = true
         
-        valLabel.text = "\(radiusSlider.value)"
-        //minLabel.text = lengthFormatter.string(fromMeters: min)
-        //maxLabel.text = lengthFormatter.string(fromMeters: max)
+        currentRadiusLabel.text = lengthFormatter.string(fromMeters: Double(radiusSlider.value))
         
         mapView.delegate = self
         mapView.showsUserLocation = true
@@ -97,10 +94,10 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
     @IBAction func didChangeRadius(_ sender: UISlider) {
         let roundedValue = round(sender.value / stepSize) * stepSize
         sender.value = roundedValue
-        valLabel.text = "\(roundedValue)"
+        currentRadiusLabel.text = lengthFormatter.string(fromMeters: Double(roundedValue))
         radius = Double(roundedValue)
         
-        if radius != initualRadius {
+        if radius != initialRadius {
             saveBarButtonItem.isEnabled = true
         }
         
