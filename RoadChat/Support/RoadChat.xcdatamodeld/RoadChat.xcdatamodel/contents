@@ -107,7 +107,7 @@
         <relationship name="communityMessages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CommunityMessage" inverseName="user" inverseEntity="CommunityMessage" syncable="YES"/>
         <relationship name="conversations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversation" inverseName="user" inverseEntity="Conversation" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" syncable="YES"/>
-        <relationship name="privacy" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Privacy" inverseName="user" inverseEntity="Privacy" syncable="YES"/>
+        <relationship name="privacy" maxCount="1" deletionRule="Cascade" destinationEntity="Privacy" inverseName="user" inverseEntity="Privacy" syncable="YES"/>
         <relationship name="profile" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Profile" inverseName="user" inverseEntity="Profile" syncable="YES"/>
         <relationship name="settings" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Settings" inverseName="user" inverseEntity="Settings" syncable="YES"/>
         <relationship name="trafficMessages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TrafficMessage" inverseName="user" inverseEntity="TrafficMessage" syncable="YES"/>
