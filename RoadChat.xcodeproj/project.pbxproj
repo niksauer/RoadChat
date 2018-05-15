@@ -126,8 +126,8 @@
 		D45FD697207E4EB900C35949 /* CommunityMessageDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FD695207E4EB900C35949 /* CommunityMessageDetailViewController.xib */; };
 		D45FD6B0207EBC4600C35949 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FD6AF207EBC4400C35949 /* LocationViewController.swift */; };
 		D45FD6C9207FEB7E00C35949 /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FD6C8207FEB7E00C35949 /* LocationViewController.xib */; };
-		D45FD7002083D79300C35949 /* CreateCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FD6FE2083D79300C35949 /* CreateCarViewController.swift */; };
-		D45FD7012083D79300C35949 /* CreateCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FD6FF2083D79300C35949 /* CreateCarViewController.xib */; };
+		D45FD7002083D79300C35949 /* CreateOrEditCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FD6FE2083D79300C35949 /* CreateOrEditCarViewController.swift */; };
+		D45FD7012083D79300C35949 /* CreateOrEditCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FD6FF2083D79300C35949 /* CreateOrEditCarViewController.xib */; };
 		D45FD72F2084FB5500C35949 /* CreateOrEditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FD72D2084FB5500C35949 /* CreateOrEditProfileViewController.swift */; };
 		D45FD7302084FB5500C35949 /* CreateOrEditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FD72E2084FB5500C35949 /* CreateOrEditProfileViewController.xib */; };
 /* End PBXBuildFile section */
@@ -477,8 +477,8 @@
 		D45FD695207E4EB900C35949 /* CommunityMessageDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunityMessageDetailViewController.xib; sourceTree = "<group>"; };
 		D45FD6AF207EBC4400C35949 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		D45FD6C8207FEB7E00C35949 /* LocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationViewController.xib; sourceTree = "<group>"; };
-		D45FD6FE2083D79300C35949 /* CreateCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCarViewController.swift; sourceTree = "<group>"; };
-		D45FD6FF2083D79300C35949 /* CreateCarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateCarViewController.xib; sourceTree = "<group>"; };
+		D45FD6FE2083D79300C35949 /* CreateOrEditCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditCarViewController.swift; sourceTree = "<group>"; };
+		D45FD6FF2083D79300C35949 /* CreateOrEditCarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateOrEditCarViewController.xib; sourceTree = "<group>"; };
 		D45FD72D2084FB5500C35949 /* CreateOrEditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditProfileViewController.swift; sourceTree = "<group>"; };
 		D45FD72E2084FB5500C35949 /* CreateOrEditProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateOrEditProfileViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -612,8 +612,8 @@
 				24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */,
 				24207DF02076BC8E00851A73 /* AboutViewController.swift */,
 				24207DF12076BC8E00851A73 /* AboutViewController.xib */,
-				D45FD6FE2083D79300C35949 /* CreateCarViewController.swift */,
-				D45FD6FF2083D79300C35949 /* CreateCarViewController.xib */,
+				D45FD6FE2083D79300C35949 /* CreateOrEditCarViewController.swift */,
+				D45FD6FF2083D79300C35949 /* CreateOrEditCarViewController.xib */,
 			);
 			path = ProfilePages;
 			sourceTree = "<group>";
@@ -1230,7 +1230,7 @@
 				240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */,
 				24A46B142083DE9B00F775C7 /* SwitchCell.xib in Resources */,
 				C966B6FF207949590007CA4F /* CreateTrafficMessageViewController.xib in Resources */,
-				D45FD7012083D79300C35949 /* CreateCarViewController.xib in Resources */,
+				D45FD7012083D79300C35949 /* CreateOrEditCarViewController.xib in Resources */,
 				249515D2206460F800E734E4 /* ConversationCell.xib in Resources */,
 				D45FD7302084FB5500C35949 /* CreateOrEditProfileViewController.xib in Resources */,
 				24B134772064202800B894BF /* CreateCommunityMessageViewController.xib in Resources */,
@@ -1286,7 +1286,7 @@
 				24B1347E2064229100B894BF /* ConversationsViewController.swift in Sources */,
 				C966B6FE207949590007CA4F /* CreateTrafficMessageViewController.swift in Sources */,
 				24207DF22076BC8E00851A73 /* AboutViewController.swift in Sources */,
-				D45FD7002083D79300C35949 /* CreateCarViewController.swift in Sources */,
+				D45FD7002083D79300C35949 /* CreateOrEditCarViewController.swift in Sources */,
 				24207DED2076AB1800851A73 /* ProfilePageViewController.swift in Sources */,
 				2461F3052080AEA400053A4B /* CarCell.swift in Sources */,
 				24EB8893208798FD00B7A285 /* ChangeEmailViewController.swift in Sources */,
