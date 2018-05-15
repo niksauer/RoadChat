@@ -63,8 +63,13 @@ class LoginViewController: UIViewController {
                 return
             }
             
+            guard let privacy = user.privacy else {
+                // display unknown privacy error
+                return
+            }
+            
             // show home screen
-            let homeTabBarController = self.viewFactory.makeHomeTabBarController(activeUser: user)
+            let homeTabBarController = self.viewFactory.makeHomeTabBarController(activeUser: user, privacy: privacy)
             self.appDelegate.show(homeTabBarController)
         }
     }

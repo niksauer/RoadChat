@@ -14,7 +14,7 @@ protocol ViewControllerFactory {
     
     // General
     func makeSetupViewController() -> SetupViewController
-    func makeHomeTabBarController(activeUser: User) -> HomeTabBarController
+    func makeHomeTabBarController(activeUser: User, privacy: Privacy) -> HomeTabBarController
     
     // Shared
     func makeLocationViewController(for location: CLLocation) -> LocationViewController
@@ -49,8 +49,8 @@ protocol ViewControllerFactory {
     func makeLogDataViewController() -> LogDataViewController
     
     // User
-    func makeProfileViewController(for user: User, activeUser: User) -> ProfileViewController
-    func makeProfilePageViewController(for user: User, activeUser: User) -> ProfilePageViewController
+    func makeProfileViewController(for user: User, privacy: Privacy, activeUser: User) -> ProfileViewController
+    func makeProfilePageViewController(for user: User, privacy: Privacy, activeUser: User) -> ProfilePageViewController
     func makeCreateOrEditCarViewController(for user: User, car: Car?) -> CreateOrEditCarViewController
     func makeCreateOrEditProfileViewController(for user: User) -> CreateOrEditProfileViewController
     
@@ -59,6 +59,6 @@ protocol ViewControllerFactory {
     func makeCarDetailViewController(for car: Car, activeUser: User) -> CarDetailViewController
     
     // Profile Pages
-    func makeAboutViewController(for user: User, activeUser: User) -> AboutViewController
+    func makeAboutViewController(for user: User, privacy: Privacy, activeUser: User) -> AboutViewController
 
 }

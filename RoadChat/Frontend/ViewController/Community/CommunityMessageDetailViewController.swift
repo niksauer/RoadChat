@@ -161,8 +161,12 @@ class CommunityMessageDetailViewController: UIViewController {
     }
     
     @IBAction func didPressProfileButton(_ sender: UIButton) {
-        let profileViewController = viewFactory.makeProfileViewController(for: self.sender, activeUser: activeUser)
-        profileViewController.showsSenderProfile = true
+        guard let privacy = self.sender.privacy else {
+            return
+        }
+        
+        let profileViewController = viewFactory.makeProfileViewController(for: self.sender, privacy: privacy, activeUser: activeUser)
+        profileViewController.showsPublicProfile = true
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
     
