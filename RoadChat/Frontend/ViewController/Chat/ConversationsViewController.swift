@@ -50,7 +50,7 @@ class ConversationsViewController: FetchedResultsTableViewController {
         request.predicate = NSPredicate(format: "user.id = %d", user.id)
         request.sortDescriptors = [NSSortDescriptor(key: "lastChange", ascending: true)]
         
-        fetchedResultsController = NSFetchedResultsController<Conversation>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: "Conversations")
+        fetchedResultsController = NSFetchedResultsController<Conversation>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController?.delegate = self
         try? fetchedResultsController?.performFetch()
         

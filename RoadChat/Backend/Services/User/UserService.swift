@@ -34,7 +34,7 @@ struct UserService: JSendService {
         }
     }
     
-    func update(userID: RoadChatKit.User.ID, to user: RoadChatKit.RegisterRequest, completion: @escaping (Error?) -> Void) throws {
+    func update(userID: RoadChatKit.User.ID, to user: RoadChatKit.UserRequest, completion: @escaping (Error?) -> Void) throws {
         try client.makePUTRequest(to: "/\(userID)", body: user) { result in
             completion(self.getError(from: result))
         }

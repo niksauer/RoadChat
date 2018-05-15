@@ -82,12 +82,16 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
+            // radius
             return 2
         case 1:
-            return 2
+            // account
+            return 3
         case 2:
+            // delete account
             return 1
         case 3:
+            // developer
             return 1
         default:
             fatalError()
@@ -100,14 +104,17 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
         
         switch section {
         case 0:
+            // radius
             switch row {
             case 0:
+                // community radius
                 let cell = UITableViewCell(style: .value1, reuseIdentifier: "communityRadiusCell")
                 cell.textLabel?.text = "Community"
                 cell.detailTextLabel?.text = lengthFormatter.string(fromMeters: Double(Int(settings.communityRadius)*1000))
                 cell.accessoryType = .disclosureIndicator
                 return cell
             case 1:
+                // traffic radius
                 let cell = UITableViewCell(style: .value1, reuseIdentifier: "trafficRadiusCell")
                 cell.textLabel?.text = "Traffic"
                 cell.detailTextLabel?.text = lengthFormatter.string(fromMeters: Double(Int(settings.trafficRadius)*1000))
@@ -117,13 +124,21 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
                 fatalError()
             }
         case 1:
+            // account
             switch row {
             case 0:
+                // privacy
                 let cell = UITableViewCell(style: .default, reuseIdentifier: "privacyCell")
                 cell.textLabel?.text = "Privacy"
                 cell.accessoryType = .disclosureIndicator
                 return cell
             case 1:
+                // security
+                let cell = UITableViewCell(style: .default, reuseIdentifier: "securityCell")
+                cell.textLabel?.text = "Security"
+                cell.accessoryType = .disclosureIndicator
+                return cell
+            case 2:
                 // logout
                 let cell = UITableViewCell(style: .default, reuseIdentifier: "logoutCell")
                 cell.textLabel?.text = "Logout"
@@ -132,9 +147,9 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
                 fatalError()
             }
         case 2:
+            // delete account
             switch row {
             case 0:
-                // delete account
                 let cell = tableView.dequeueReusableCell(withIdentifier: "CenterLabelCell", for: indexPath) as! CenterLabelCell
                 cell.centerTextLabel.text = "Delete Account"
                 cell.centerTextLabel.textColor = colorPalette.destructiveColor
@@ -143,8 +158,10 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
                 fatalError()
             }
         case 3:
+            // developer
             switch row {
             case 0:
+                // log data
                 let cell = UITableViewCell(style: .default, reuseIdentifier: "logDataCell")
                 cell.textLabel?.text = "Log Data"
                 cell.accessoryType = .disclosureIndicator
@@ -207,11 +224,15 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
                 let privacyViewController = viewFactory.makePrivacyViewController(with: privacy)
                 self.navigationController?.pushViewController(privacyViewController, animated: true)
             case 1:
+                // security
+                let securityViewController = viewFactory.makeSecurityViewController(for: user)
+                self.navigationController?.pushViewController(securityViewController, animated: true)
+            case 2:
                 // logout
                 authenticationManager.logout { error in
                     guard error == nil else {
                         // handle logout error
-                        self.displayAlert(title: "Error", message: "Failed to logout: \(error!)")
+                        self.displayAlert(title: "Error", message: "Failed to logout: \(error!)", completion: nil)
                         return
                     }
                     
@@ -229,7 +250,7 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
                     self.authenticationManager.deleteAuthenticatedUser { error in
                         guard error == nil else {
                             // handle delete user account error
-                            self.displayAlert(title: "Error", message: "Failed to delete account: \(error!)")
+                            self.displayAlert(title: "Error", message: "Failed to delete account: \(error!)", completion: nil)
                             return
                         }
                         

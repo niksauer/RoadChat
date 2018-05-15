@@ -92,7 +92,7 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
             request.predicate = NSPredicate(format: "senderID = %d", user.id)
         }
         
-        fetchedResultsController = NSFetchedResultsController<TrafficMessage>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: "TrafficMessages")
+        fetchedResultsController = NSFetchedResultsController<TrafficMessage>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController?.delegate = self
         
         try? fetchedResultsController?.performFetch()
@@ -132,7 +132,7 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
         userManager.findUserById(Int(message.senderID), context: searchContext) { user, error in
             guard let user = user else {
                 // handle failed user lookup error
-                self.displayAlert(title: "Error", message: "Failed to retrieve sender: \(error != nil ? error!.localizedDescription : "unknown error")")
+                self.displayAlert(title: "Error", message: "Failed to retrieve sender: \(error != nil ? error!.localizedDescription : "unknown error")", completion: nil)
                 return
             }
             

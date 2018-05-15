@@ -92,7 +92,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
             request.predicate = NSPredicate(format: "senderID = %d", user.id)
         }
         
-        fetchedResultsController = NSFetchedResultsController<CommunityMessage>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: "CommunityMessages")
+        fetchedResultsController = NSFetchedResultsController<CommunityMessage>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController?.delegate = self
         
         try? fetchedResultsController?.performFetch()
@@ -132,7 +132,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
         userManager.findUserById(Int(message.senderID), context: searchContext) { user, error in
             guard let user = user else {
                 // handle failed user lookup
-                self.displayAlert(title: "Error", message: "Failed to retrieve sender: \(error != nil ? error!.localizedDescription : "unknown error")")
+                self.displayAlert(title: "Error", message: "Failed to retrieve sender: \(error != nil ? error!.localizedDescription : "unknown error")", completion: nil)
                 return
             }
             

@@ -22,12 +22,13 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var radiusSlider: UISlider!
     
-    @IBOutlet weak var minLabel: EdgeInsetLabel!
-    @IBOutlet weak var maxLabel: EdgeInsetLabel!
+    //@IBOutlet weak var minLabel: EdgeInsetLabel!
+    @IBOutlet weak var valLabel: EdgeInsetLabel!
     
     // MARK: - Private Properties
     private var geofence: MKCircle?
     private let colorPalette: ColorPalette
+    private let lengthFormatter: LengthFormatter
     
     private let initualRadius: Double
     private var setInitialGeofence = false
@@ -46,13 +47,14 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
     private var saveBarButtonItem: UIBarButtonItem!
     
     // MARK: - Initialization
-    init(radius: Double?, min: Double, max: Double, identifier: String, colorPalette: ColorPalette) {
+    init(radius: Double?, min: Double, max: Double, identifier: String, colorPalette: ColorPalette, lengthFormatter: LengthFormatter) {
         self.initualRadius = radius ?? 5000
         self.radius = self.initualRadius
         self.min = min
         self.max = max
         self.identifier = identifier
         self.colorPalette = colorPalette
+        self.lengthFormatter = lengthFormatter
         
         super.init(nibName: nil, bundle: nil)
         
@@ -74,8 +76,9 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
         radiusSlider.maximumValue = Float(max)
         radiusSlider.isContinuous = true
         
-        minLabel.text = String(min)
-        maxLabel.text = String(max)
+        valLabel.text = "\(radiusSlider.value)"
+        //minLabel.text = lengthFormatter.string(fromMeters: min)
+        //maxLabel.text = lengthFormatter.string(fromMeters: max)
         
         mapView.delegate = self
         mapView.showsUserLocation = true
@@ -94,6 +97,7 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
     @IBAction func didChangeRadius(_ sender: UISlider) {
         let roundedValue = round(sender.value / stepSize) * stepSize
         sender.value = roundedValue
+        valLabel.text = "\(roundedValue)"
         radius = Double(roundedValue)
         
         if radius != initualRadius {
