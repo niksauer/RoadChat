@@ -107,7 +107,8 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
 
         let userLocation = mapView.userLocation.coordinate
         let newGeofence = MKCircle(center: userLocation, radius: radius)
-        let newVisibleMapRect = MKMapRect(origin: newGeofence.boundingMapRect.origin, size: newGeofence.boundingMapRect.size + 15)
+        let geofenceContainer = MKMapSize(width: newGeofence.boundingMapRect.size.width + 150, height: newGeofence.boundingMapRect.size.height + 150)
+        let newVisibleMapRect = MKMapRect(origin: newGeofence.boundingMapRect.origin, size: geofenceContainer)
         mapView.setVisibleMapRect(newVisibleMapRect, animated: true)
         mapView.add(newGeofence)
         geofence = newGeofence
