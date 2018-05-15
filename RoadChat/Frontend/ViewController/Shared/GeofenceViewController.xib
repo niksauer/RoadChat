@@ -12,9 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GeofenceViewController" customModule="RoadChat" customModuleProvider="target">
             <connections>
+                <outlet property="currentRadiusLabel" destination="1n8-2e-JeB" id="kqN-7f-L94"/>
                 <outlet property="mapView" destination="Fpp-yT-VNI" id="lWG-il-agp"/>
-                <outlet property="maxLabel" destination="1n8-2e-JeB" id="hGf-c5-vS4"/>
-                <outlet property="minLabel" destination="ucI-1b-Rdd" id="H3G-m3-aIU"/>
                 <outlet property="radiusSlider" destination="ekk-O1-CSP" id="8pC-t9-wyF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -27,32 +26,8 @@
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Fpp-yT-VNI">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </mapView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="760" text="min" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucI-1b-Rdd" customClass="EdgeInsetLabel" customModule="RoadChat" customModuleProvider="target">
-                    <rect key="frame" x="16" y="619.5" width="23.5" height="17"/>
-                    <color key="backgroundColor" red="0.94901960780000005" green="0.95294117649999999" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
-                    <color key="textColor" red="0.52156862749999999" green="0.52156862749999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="4"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="leftTextInset">
-                            <real key="value" value="4"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="rightTextInset">
-                            <real key="value" value="4"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="topTextInset">
-                            <real key="value" value="2"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="bottomTextInset">
-                            <real key="value" value="2"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="max" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1n8-2e-JeB" customClass="EdgeInsetLabel" customModule="RoadChat" customModuleProvider="target">
-                    <rect key="frame" x="332" y="619.5" width="27" height="17"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="val" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1n8-2e-JeB" customClass="EdgeInsetLabel" customModule="RoadChat" customModuleProvider="target">
+                    <rect key="frame" x="340.5" y="619.5" width="18.5" height="17"/>
                     <color key="backgroundColor" red="0.94901960780000005" green="0.95294117649999999" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                     <color key="textColor" red="0.52156862749999999" green="0.52156862749999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -76,10 +51,10 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <view clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="240" translatesAutoresizingMaskIntoConstraints="NO" id="i31-RW-i0P" userLabel="Slider Container">
-                    <rect key="frame" x="55.5" y="605" width="260.5" height="46"/>
+                    <rect key="frame" x="16" y="605" width="308.5" height="46"/>
                     <subviews>
                         <slider opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="740" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25000" minValue="5" maxValue="50000" translatesAutoresizingMaskIntoConstraints="NO" id="ekk-O1-CSP">
-                            <rect key="frame" x="6" y="8" width="248.5" height="31"/>
+                            <rect key="frame" x="6" y="8" width="296.5" height="31"/>
                             <connections>
                                 <action selector="didChangeRadius:" destination="-1" eventType="valueChanged" id="JrW-kY-1cg"/>
                             </connections>
@@ -115,15 +90,13 @@
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1n8-2e-JeB" secondAttribute="trailing" constant="16" id="FSE-6F-lcs"/>
                 <constraint firstItem="Fpp-yT-VNI" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="FbZ-Cs-LtZ"/>
-                <constraint firstItem="i31-RW-i0P" firstAttribute="leading" secondItem="ucI-1b-Rdd" secondAttribute="trailing" constant="16" id="Fnd-jf-tep"/>
                 <constraint firstItem="1n8-2e-JeB" firstAttribute="centerY" secondItem="i31-RW-i0P" secondAttribute="centerY" id="Jaz-q0-ScM"/>
-                <constraint firstItem="ucI-1b-Rdd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Mym-7n-28u"/>
                 <constraint firstItem="Fpp-yT-VNI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="PtM-DO-NhZ"/>
                 <constraint firstItem="Fpp-yT-VNI" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Vfu-zD-6Kb"/>
                 <constraint firstItem="Fpp-yT-VNI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aFb-Pe-Ecq"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="i31-RW-i0P" secondAttribute="bottom" constant="16" id="dLP-EM-9rC"/>
-                <constraint firstItem="i31-RW-i0P" firstAttribute="centerY" secondItem="ucI-1b-Rdd" secondAttribute="centerY" id="j9i-qo-nZu"/>
                 <constraint firstItem="1n8-2e-JeB" firstAttribute="leading" secondItem="i31-RW-i0P" secondAttribute="trailing" constant="16" id="kat-KZ-bsd"/>
+                <constraint firstItem="i31-RW-i0P" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="vsA-fz-mKC"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="33.5" y="53.5"/>

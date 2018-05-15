@@ -10,7 +10,7 @@ import UIKit
 import RoadChatKit
 
 class CreateOrEditProfileViewController: UIViewController {
-
+    
     // MARK: - Typealiases
     typealias ColorPalette = BasicColorPalette & SexColorPalette
     
@@ -44,7 +44,7 @@ class CreateOrEditProfileViewController: UIViewController {
     private let dateFormatter: DateFormatter
     private let colorPalette: ColorPalette
     private let bioTextViewPlaceholder = "RoadChats #1 Fan"
-
+    
     private var sex: SexType? {
         didSet {
             switch sex {
@@ -80,7 +80,7 @@ class CreateOrEditProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // keyboard notification
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -91,8 +91,8 @@ class CreateOrEditProfileViewController: UIViewController {
         view.addGestureRecognizer(tapGestureRecognizer)
         
         // profile image appearance
-//        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
-//        profileImageView.clipsToBounds = true
+        //        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+        //        profileImageView.clipsToBounds = true
         
         // birth date picker
         datePickerView.timeZone = TimeZone.current
@@ -202,7 +202,7 @@ class CreateOrEditProfileViewController: UIViewController {
     @IBAction func didPressAddImageButton(_ sender: UIButton) {
         // TODO
     }
-
+    
     // MARK: - Keyboard Notifications
     @objc func keyboardWillShow(_ notification: Notification) {
         let userInfo = notification.userInfo! as NSDictionary
@@ -216,5 +216,5 @@ class CreateOrEditProfileViewController: UIViewController {
     @objc func keyboardWillHide(_ notification: Notification) {
         bottomConstraint.constant = 0
     }
-        
+    
 }
