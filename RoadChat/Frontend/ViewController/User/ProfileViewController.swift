@@ -188,7 +188,7 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func editButtonPressed(_ sender: UIBarButtonItem) {
-        let createProfileViewController = viewFactory.makeCreateProfileViewController(for: user)
+        let createProfileViewController = viewFactory.makeCreateOrEditProfileViewController(for: user)
         let createProfileNavigationController = UINavigationController(rootViewController: createProfileViewController)
         present(createProfileNavigationController, animated: true, completion: nil)
     }

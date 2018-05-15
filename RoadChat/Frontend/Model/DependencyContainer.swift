@@ -75,7 +75,7 @@ struct DependencyContainer {
 }
 
 extension DependencyContainer: ViewControllerFactory {
-
+    
     // General
     func makeSetupViewController() -> SetupViewController {
         return SetupViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, credentials: credentials)
@@ -177,11 +177,11 @@ extension DependencyContainer: ViewControllerFactory {
         return ProfilePageViewController(viewFactory: self, user: user, activeUser: activeUser, colorPalette: colorPalette)
     }
     
-    func makeCreateCarViewController(for user: User) -> CreateCarViewController {
-        return CreateCarViewController(user: user, colorPalette: colorPalette)
+    func makeCreateOrEditCarViewController(for user: User, car: Car?) -> CreateOrEditCarViewController {
+        return CreateOrEditCarViewController(user: user, car: car, productionDateFormatter: monthYearDateFormatter, colorPalette: colorPalette)
     }
 
-    func makeCreateProfileViewController(for user: User) -> CreateOrEditProfileViewController {
+    func makeCreateOrEditProfileViewController(for user: User) -> CreateOrEditProfileViewController {
         return CreateOrEditProfileViewController(user: user, dateFormatter: shortDateFormatter, colorPalette: colorPalette)
     }
     

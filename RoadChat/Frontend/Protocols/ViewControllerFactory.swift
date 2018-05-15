@@ -46,13 +46,13 @@ protocol ViewControllerFactory {
     func makeSecurityViewController(for user: User) -> SecurityViewController
     func makeChangePasswordViewController(for user: User) -> ChangePasswordViewController
     func makeChangeEmailViewController(for user: User) -> ChangeEmailViewController
+    func makeLogDataViewController() -> LogDataViewController
     
     // User
     func makeProfileViewController(for user: User, activeUser: User) -> ProfileViewController
     func makeProfilePageViewController(for user: User, activeUser: User) -> ProfilePageViewController
-    func makeCreateCarViewController(for user: User) -> CreateCarViewController
-    func makeCreateProfileViewController(for user: User) -> CreateOrEditProfileViewController
-    func makeLogDataViewController() -> LogDataViewController
+    func makeCreateOrEditCarViewController(for user: User, car: Car?) -> CreateOrEditCarViewController
+    func makeCreateOrEditProfileViewController(for user: User) -> CreateOrEditProfileViewController
     
     // Car
     func makeCarsViewController(for user: User, activeUser: User) -> CarsViewController
