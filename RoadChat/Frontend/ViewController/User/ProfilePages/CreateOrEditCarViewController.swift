@@ -31,6 +31,7 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
     // MARK: - Views
     private let monthYearDatePickerView = MonthYearPickerView()
     private var saveBarButtonItem: UIBarButtonItem!
+    private var adjustBrightnessLabel: UILabel!
     private let colorPickerView = ColorCircle()
 
     // MARK: - Private Properties
@@ -111,12 +112,18 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         colorPickerView.addTarget(self, action: #selector(didChangeColor), for: .valueChanged)
         colorPickerView.translatesAutoresizingMaskIntoConstraints = false
         
+        adjustBrightnessLabel.text = "Pinch to adjust Brightness"
+        adjustBrightnessLabel.textColor = .white
+        
         colorPickerContainer.backgroundColor = colorPalette.controlBackgroundColor
         colorPickerContainer.addSubview(colorPickerView)
+        colorPickerContainer.addSubview(adjustBrightnessLabel)
     
         NSLayoutConstraint.activate([
             colorPickerView.centerYAnchor.constraint(equalTo: colorPickerContainer.centerYAnchor),
             colorPickerView.centerXAnchor.constraint(equalTo: colorPickerContainer.centerXAnchor),
+            adjustBrightnessLabel.centerXAnchor.constraint(equalTo: colorPickerContainer.centerXAnchor)
+            adjustBrightnessLabel.centerYAnchor.constraint(equalTo: colorPickerContainer.bottomAnchor, constant: 20)
         ])
         
         // textfield delegate
