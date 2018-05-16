@@ -58,6 +58,11 @@ class ConversationsViewController: FetchedResultsTableViewController {
     }
     
     @objc private func radarButtonPressed() {
+        guard user.privacy!.shareLocation else {
+            displayAlert(title: "Warning", message: "Please enable location sharing in order to discover nearby users: \nProfile > Settings > Privacy > Location ", completion: nil)
+            return
+        }
+        
         let nearbyViewController = viewFactory.makeNearbyViewController(activeUser: user)
         let nearbyNavigationController = UINavigationController(rootViewController: nearbyViewController)
         self.present(nearbyNavigationController, animated: true, completion: nil)

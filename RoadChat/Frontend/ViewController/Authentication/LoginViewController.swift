@@ -19,12 +19,14 @@ class LoginViewController: UIViewController {
     private let viewFactory: ViewControllerFactory
     private let appDelegate: AppDelegate
     private let authenticationManager: AuthenticationManager
+    private let locationManager: LocationManager
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager) {
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, locationManager: LocationManager) {
         self.viewFactory = viewFactory
         self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
+        self.locationManager = locationManager
     
         super.init(nibName: nil, bundle: nil)
         self.title = "RoadChat"
@@ -62,6 +64,10 @@ class LoginViewController: UIViewController {
                 // handle login error
                 return
             }
+            
+            // configure locationManager
+            self.locationManager.managedUser = user
+            self.locationManager.startPolling()
             
             // show home screen
             let homeTabBarController = self.viewFactory.makeHomeTabBarController(activeUser: user)

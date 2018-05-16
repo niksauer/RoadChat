@@ -82,7 +82,7 @@ extension DependencyContainer: ViewControllerFactory {
     
     // General
     func makeSetupViewController() -> SetupViewController {
-        return SetupViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, credentials: credentials)
+        return SetupViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, credentials: credentials, locationManager: locationManager)
     }
     
     func makeHomeTabBarController(activeUser user: User) -> HomeTabBarController {
@@ -104,11 +104,11 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeLoginViewController() -> LoginViewController {
-        return LoginViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager)
+        return LoginViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, locationManager: locationManager)
     }
 
     func makeRegisterViewController() -> RegisterViewController {
-        return RegisterViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, userManager: userManager)
+        return RegisterViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, userManager: userManager, locationManager: locationManager)
     }
 
     // Community

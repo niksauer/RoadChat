@@ -104,6 +104,7 @@ class User: NSManagedObject, ReportOwner {
         getCars(completion: nil)
         getConversations(completion: nil)
         getCommunityMessages(completion: nil)
+        getTrafficMessages(completion: nil)
     }
     
     // MARK: - Public Methods

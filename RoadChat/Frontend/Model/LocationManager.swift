@@ -8,9 +8,10 @@
 
 import Foundation
 import CoreLocation
+import RoadChatKit
 
 protocol LocationManagerDelegate {
-    func didUpdateLocation(to location: CLLocation?)
+    func didUpdateRemoteLocation()
 }
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
@@ -22,6 +23,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     var lastLocation: CLLocation?
     var distanceFilter: CLLocationDistance = 200
     var delegate: LocationManagerDelegate?
+    var managedUser: User?
     
     // MARK: - Private Properties
     private let locationManager = CLLocationManager()
@@ -43,10 +45,27 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
     
+    // MARK: - Private Methods
+    private func updateRemoteLocation() {
+        guard let location = lastLocation, location.horizontalAccuracy <= distanceFilter, let user = managedUser, user.privacy!.shareLocation else {
+            return
+        }
+        
+        let locationRequest = LocationRequest(coreLocation: location)
+        
+        user.updateLocation(to: locationRequest) { error in
+            guard error == nil else {
+                return
+            }
+            
+            self.delegate?.didUpdateRemoteLocation()
+        }
+    }
+    
     // MARK: - CLLocationManagerDelegate Protocol
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         lastLocation = locations.last
-        delegate?.didUpdateLocation(to: lastLocation)
+        updateRemoteLocation()
     }
-    
+
 }

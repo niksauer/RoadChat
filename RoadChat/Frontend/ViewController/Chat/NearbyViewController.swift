@@ -10,10 +10,11 @@ import UIKit
 import MapKit
 import RoadChatKit
 
-class NearbyViewController: UIViewController, MKMapViewDelegate {
+class NearbyViewController: UIViewController, MKMapViewDelegate, LocationManagerDelegate {
     
     // MARK: - Views
     private let mapView = MKMapView()
+    private var createBarButton: UIBarButtonItem!
     
     // MARK: - Private Properties
     private let activeUser: User
@@ -32,7 +33,8 @@ class NearbyViewController: UIViewController, MKMapViewDelegate {
         
         self.title = "Nearby"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new_glyph"), style: .plain, target: self, action: #selector(createButtonPressed))
+        createBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new_glyph"), style: .plain, target: self, action: #selector(createButtonPressed))
+        self.navigationItem.rightBarButtonItem = createBarButton
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,16 +44,18 @@ class NearbyViewController: UIViewController, MKMapViewDelegate {
     // MARK: - Customization
     override func viewDidLoad() {
         mapView.delegate = self
+        mapView.showsUserLocation = true
         mapView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(mapView)
         mapView.pin(to: view)
+        
+        createBarButton.isEnabled = false
+        locationManager.delegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-//        locationManager.delegate = self
-        mapView.showsUserLocation = true
-        mapView.centerCoordinate = mapView.userLocation.coordinate
+    override func viewDidAppear(_ animated: Bool) {
+        updateUI()
     }
     
     // MARK: - Private Methods
@@ -63,6 +67,39 @@ class NearbyViewController: UIViewController, MKMapViewDelegate {
         
     }
     
+    private func updateUI() {
+        conversationManager.getNearbyUsers { users, error in
+            guard let users = users else {
+                self.displayAlert(title: "Error", message: "Failed to retrieve nearby users: \(error!)") {
+                    self.dismiss(animated: true, completion: nil)
+                }
+                
+                return
+            }
+            
+            var annotations = [MKAnnotation]()
+            
+            for user in users {
+                guard let location = user.location else {
+                    continue
+                }
+                
+                let coreLocation = CLLocation(location: location)
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = coreLocation.coordinate
+                
+                annotations.append(annotation)
+            }
+            
+            self.mapView.addAnnotations(annotations)
+            
+            let userLocation = self.mapView.userLocation.coordinate
+            let region = MKCoordinateRegion(center: userLocation, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+            self.mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    // MARK: - MKMapView Delegate
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         guard let userLocation = userLocation.location, userLocation.horizontalAccuracy <= 500 else {
             return
@@ -70,45 +107,13 @@ class NearbyViewController: UIViewController, MKMapViewDelegate {
         
         if !setInitialUserLocation {
             mapView.centerCoordinate = userLocation.coordinate
+            setInitialUserLocation = true
         }
-        
     }
     
     // MARK: - LocationManager Delegate
-//    func didUpdateLocation(to location: CLLocation?) {
-//        guard let location = location else {
-//            return
-//        }
-//
-//        let locationRequest = LocationRequest(coreLocation: location)
-//
-//        activeUser.updateLocation(to: locationRequest) { error in
-//            self.conversationManager.getNearbyUsers { users, error in
-//                guard let users = users else {
-//                    self.displayAlert(title: "Error", message: "Failed to retrieve nearby users: \(error!)") {
-//                        self.dismiss(animated: true, completion: nil)
-//                    }
-//
-//                    return
-//                }
-//
-//                var annotations = [MKAnnotation]()
-//
-//                for user in users {
-//                    guard let location = user.location else {
-//                        continue
-//                    }
-//
-//                    let coreLocation = CLLocation(location: location)
-//                    let annotation = MKPointAnnotation()
-//                    annotation.coordinate = coreLocation.coordinate
-//
-//                    annotations.append(annotation)
-//                }
-//
-//                self.mapView.addAnnotations(annotations)
-//                self.mapView.showsUserLocation = true
-//            }
-//        }
-//    }
+    func didUpdateRemoteLocation() {
+        updateUI()
+    }
+
 }
