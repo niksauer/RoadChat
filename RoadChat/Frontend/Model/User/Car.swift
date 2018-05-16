@@ -11,7 +11,7 @@ import CoreData
 import RoadChatKit
 import UIKit
 
-class Car: NSManagedObject {
+class Car: NSManagedObject, ReportOwner {
     
     // MARK: - Public Class Methods
     class func createOrUpdate(from prototype: RoadChatKit.Car.PublicCar, in context: NSManagedObjectContext) throws -> Car {
@@ -63,4 +63,101 @@ class Car: NSManagedObject {
         return UIColor(hexString: color)
     }
     
+    // MARK: - Private Properties
+    private let carService = CarService(config: DependencyContainer().config)
+    private let context = CoreDataStack.shared.viewContext
+    
+    // MARK: - ReportOwner Protocol
+    var logDescription: String {
+        return "'Car' [id: '\(self.id)']"
+    }
+    
+    // MARK: - Initialization
+    override func awakeFromFetch() {
+        super.awakeFromFetch()
+        get(completion: nil)
+    }
+    
+    // MARK: - Public Methods
+    func get(completion: ((Error?) -> Void)?) {
+        carService.get(carID: Int(id)) { car, error in
+            guard let car = car else {
+                // pass service error
+                let report = Report(.failedServerOperation(.retrieve, resource: nil, isMultiple: false, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            do {
+                _ = try Car.createOrUpdate(from: car, in: self.context)
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: nil, isMultiple: false), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                let report = Report(.failedCoreDataOperation(.create, resource: nil, isMultiple: false, error: error), owner: self)
+                log.error(report)
+                completion?(error)
+            }
+        }
+    }
+    
+    func save(completion: ((Error?) -> Void)?) {
+        let carRequest = CarRequest(manufacturer: manufacturer!, model: model!, production: production!, performance: Int(performance), color: color)
+        
+        do {
+            try carService.update(carID: Int(id), to: carRequest) { error in
+                guard error == nil else {
+                    let report = Report(.failedServerOperation(.update, resource: nil, isMultiple: false, error: error!), owner: self)
+                    log.error(report)
+                    completion?(error!)
+                    return
+                }
+                
+                do {
+                    try self.context.save()
+                    
+                    let report = Report(.successfulCoreDataOperation(.update, resource: nil, isMultiple: false), owner: self)
+                    log.debug(report)
+                    
+                    completion?(nil)
+                } catch {
+                    // pass core data error
+                    let report = Report(.failedCoreDataOperation(.update, resource: nil, isMultiple: false, error: error), owner: self)
+                    log.error(report)
+                    completion?(error)
+                }
+            }
+        } catch {
+            // pass body encoding error
+            let report = Report(.failedServerRequest(requestType: "CarRequest", error: error), owner: self)
+            log.error(report)
+            completion?(error)
+        }
+    }
+    
+    func delete(completion: ((Error?) -> Void)?) {
+        carService.delete(carID: Int(id)) { error in
+            guard error == nil else {
+                let report = Report(.failedServerOperation(.delete, resource: nil, isMultiple: false, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            do {
+                self.context.delete(self)
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.delete, resource: nil, isMultiple: false), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                let report = Report(.failedCoreDataOperation(.delete, resource: nil, isMultiple: false, error: error), owner: self)
+                log.error(report)
+                completion?(error)
+            }
+        }
+    }
+
 }
