@@ -81,8 +81,8 @@ extension DependencyContainer: ViewControllerFactory {
         return SetupViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, credentials: credentials)
     }
     
-    func makeHomeTabBarController(activeUser user: User, privacy: Privacy) -> HomeTabBarController {
-        return HomeTabBarController(viewFactory: self, activeUser: user, privacy: privacy)
+    func makeHomeTabBarController(activeUser user: User) -> HomeTabBarController {
+        return HomeTabBarController(viewFactory: self, activeUser: user)
     }
 
     // Shared
@@ -148,8 +148,8 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     // User
-    func makeSettingsViewController(for user: User, settings: Settings, privacy: Privacy) -> SettingsViewController {
-        return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user, settings: settings, privacy: privacy, colorPalette: colorPalette, lengthFormatter: lengthFormatter)
+    func makeSettingsViewController(for user: User, settings: Settings) -> SettingsViewController {
+        return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user, settings: settings, colorPalette: colorPalette, lengthFormatter: lengthFormatter)
     }
     
     func makePrivacyViewController(with privacy: Privacy) -> PrivacyViewController {
@@ -169,12 +169,12 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     // User
-    func makeProfileViewController(for user: User, privacy: Privacy, activeUser: User) -> ProfileViewController {
-        return ProfileViewController(viewFactory: self, user: user, privacy: privacy, activeUser: activeUser, colorPalette: colorPalette)
+    func makeProfileViewController(for user: User, activeUser: User) -> ProfileViewController {
+        return ProfileViewController(viewFactory: self, user: user, activeUser: activeUser, colorPalette: colorPalette)
     }
     
-    func makeProfilePageViewController(for user: User, privacy: Privacy, activeUser: User) -> ProfilePageViewController {
-        return ProfilePageViewController(viewFactory: self, user: user, privacy: privacy, activeUser: activeUser, colorPalette: colorPalette)
+    func makeProfilePageViewController(for user: User, activeUser: User) -> ProfilePageViewController {
+        return ProfilePageViewController(viewFactory: self, user: user, activeUser: activeUser, colorPalette: colorPalette)
     }
     
     func makeCreateOrEditCarViewController(for user: User, car: Car?) -> CreateOrEditCarViewController {
@@ -199,8 +199,8 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     // Profile Pages
-    func makeAboutViewController(for user: User, privacy: Privacy, activeUser: User) -> AboutViewController {
-        return AboutViewController(viewFactory: self, user: user, privacy: privacy, activeUser: activeUser, dateFormatter: shortDateFormatter, registryDateFormatter: timeSinceDateFormatter, colorPalette: colorPalette)
+    func makeAboutViewController(for user: User, activeUser: User) -> AboutViewController {
+        return AboutViewController(viewFactory: self, user: user, activeUser: activeUser, dateFormatter: shortDateFormatter, registryDateFormatter: timeSinceDateFormatter, colorPalette: colorPalette)
     }
 
 }

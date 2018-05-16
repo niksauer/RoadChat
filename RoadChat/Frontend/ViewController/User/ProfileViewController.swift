@@ -45,10 +45,10 @@ class ProfileViewController: UIViewController {
     }
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, user: User, privacy: Privacy, activeUser: User, colorPalette: ColorPalette) {
+    init(viewFactory: ViewControllerFactory, user: User, activeUser: User, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
         self.user = user
-        self.privacy = privacy
+        self.privacy = user.privacy!
         self.activeUser = activeUser
         self.colorPalette = colorPalette
         
@@ -84,7 +84,7 @@ class ProfileViewController: UIViewController {
         updateUI()
         
         // setup profile page view controller
-        let pageViewController = viewFactory.makeProfilePageViewController(for: user, privacy: privacy, activeUser: activeUser)
+        let pageViewController = viewFactory.makeProfilePageViewController(for: user, activeUser: activeUser)
         addChildViewController(pageViewController)
         pageViewContainer.addSubview(pageViewController.view)
         pageViewController.didMove(toParentViewController: self)
@@ -184,21 +184,7 @@ class ProfileViewController: UIViewController {
             return
         }
         
-        guard let privacy = user.privacy else {
-            user.getPrivacy { error in
-                guard error == nil else {
-                    // handle failed privacy request error
-                    return
-                }
-                
-                self.settingsButtonPressed(sender)
-            }
-            
-            // handle no privacy error
-            return
-        }
-        
-        let settingsViewController = viewFactory.makeSettingsViewController(for: user, settings: settings, privacy: privacy)
+        let settingsViewController = viewFactory.makeSettingsViewController(for: user, settings: settings)
         let settingsNavigationViewController = UINavigationController(rootViewController: settingsViewController)
         navigationController?.present(settingsNavigationViewController, animated: true, completion: nil)
     }

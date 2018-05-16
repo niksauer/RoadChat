@@ -83,13 +83,8 @@ class RegisterViewController: UIViewController {
                     return
                 }
                 
-                guard let privacy = user.privacy else {
-                    return
-                    // display privacy error
-                }
-                
                 // show home screen
-                let homeTabBarController = self.viewFactory.makeHomeTabBarController(activeUser: user, privacy: privacy)
+                let homeTabBarController = self.viewFactory.makeHomeTabBarController(activeUser: user)
                 self.appDelegate.show(homeTabBarController)
             }
         }

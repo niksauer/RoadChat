@@ -153,12 +153,7 @@ class TrafficMessageDetailViewController: UIViewController {
     }
     
     @IBAction func didPressProfileButton(_ sender: UIButton) {
-        guard let privacy = self.sender.privacy else {
-            // downoad privacy for sender
-            return
-        }
-        
-        let profileViewController = viewFactory.makeProfileViewController(for: self.sender, privacy: privacy, activeUser: activeUser)
+        let profileViewController = viewFactory.makeProfileViewController(for: self.sender, activeUser: activeUser)
         profileViewController.showsPublicProfile = true
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
