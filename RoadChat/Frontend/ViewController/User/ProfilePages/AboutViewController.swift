@@ -31,6 +31,7 @@ class AboutViewController: UIViewController {
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let user: User
+    private let privacy: Privacy
     private let activeUser: User
     private let dateFormatter: DateFormatter
     private let registryDateFormatter: DateFormatter
@@ -40,6 +41,7 @@ class AboutViewController: UIViewController {
     init(viewFactory: ViewControllerFactory, user: User, activeUser: User, dateFormatter: DateFormatter, registryDateFormatter: DateFormatter, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
         self.user = user
+        self.privacy = user.privacy!
         self.activeUser = activeUser
         self.dateFormatter = dateFormatter
         self.registryDateFormatter = registryDateFormatter
@@ -79,12 +81,18 @@ class AboutViewController: UIViewController {
         trafficKarmaLevelLabel.text = "\(user.trafficKarma)"
         accountAgeLabel.text = registryDateFormatter.string(from: user.registry!)
         
+        let isOwner = (user.id == activeUser.id)
+        
         // email
-        emailLabel.text = user.email!
+        if isOwner || privacy.showEmail {
+            emailLabel.text = user.email!
+        } else {
+            emailStackView.isHidden = true
+        }
         
         if let profile = user.profile {
             // birth
-            if let birth = profile.birth {
+            if let birth = profile.birth, (isOwner || privacy.showBirth) {
                 birthLabel.text = dateFormatter.string(from: birth)
                 birthStackView.isHidden = false
             } else {
@@ -93,10 +101,19 @@ class AboutViewController: UIViewController {
             
             // address
             let cnAddress = CNMutablePostalAddress()
-            cnAddress.street = "\(profile.streetNumber) \(profile.streetName ?? "")"
-            cnAddress.postalCode = "\(profile.postalCode)"
-            cnAddress.city = "\(profile.city ?? "")"
-            cnAddress.country = "\(profile.country ?? "")"
+            
+            if (isOwner || privacy.showStreet) {
+                cnAddress.street = "\(profile.streetNumber) \(profile.streetName ?? "")"
+            }
+            
+            if (isOwner || privacy.showCity) {
+                cnAddress.postalCode = "\(profile.postalCode)"
+                cnAddress.city = "\(profile.city ?? "")"
+            }
+            
+            if (isOwner || privacy.showCountry) {
+                cnAddress.country = "\(profile.country ?? "")"
+            }
             
             let localizedAddress = CNPostalAddressFormatter.string(from: cnAddress, style: .mailingAddress)
             

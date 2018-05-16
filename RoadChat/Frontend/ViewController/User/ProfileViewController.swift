@@ -22,21 +22,22 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var sexImageView: UIImageView!
     @IBOutlet weak var biographyLabel: UILabel!
-    
     @IBOutlet weak var pageViewContainer: UIView!
     
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let user: User
+    private let privacy: Privacy
     private let activeUser: User
     private let colorPalette: ColorPalette
     
+    // MARK: - Views
     private var refreshControl: UIRefreshControl?
     
     // MARK: - Public Properties
-    var showsSenderProfile: Bool = false {
+    var showsPublicProfile: Bool = false {
         didSet {
-            if showsSenderProfile {
+            if showsPublicProfile {
                 self.navigationItem.leftBarButtonItem = nil
                 self.navigationItem.rightBarButtonItem = nil
             }
@@ -47,6 +48,7 @@ class ProfileViewController: UIViewController {
     init(viewFactory: ViewControllerFactory, user: User, activeUser: User, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
         self.user = user
+        self.privacy = user.privacy!
         self.activeUser = activeUser
         self.colorPalette = colorPalette
         
@@ -104,44 +106,55 @@ class ProfileViewController: UIViewController {
     }
     
     func updateUI() {
+        let isOwner = (user.id == activeUser.id)
+        
         // username
         usernameLabel.text = user.username
         
         if let profile = user.profile {
             // age
-            let calendar = Calendar.current
-            let ageComponents = calendar.dateComponents([.year], from: profile.birth!, to: Date())
-            let age = ageComponents.year!
-            
-            ageLabel.text = "(\(age)y)"
+            if privacy.showBirth || isOwner {
+                let calendar = Calendar.current
+                let ageComponents = calendar.dateComponents([.year], from: profile.birth!, to: Date())
+                let age = ageComponents.year!
+                ageLabel.text = "(\(age)y)"
+            } else {
+                ageLabel.text = nil
+            }
             
             // full name
             nameLabel.text = "\(profile.firstName!) \(profile.lastName!)"
             
             // sex
-            switch profile.storedSex {
-            case .male?:
-                sexImageView.image = #imageLiteral(resourceName: "male")
-                sexImageView.tintColor = colorPalette.maleColor
-            case .female?:
-                sexImageView.image = #imageLiteral(resourceName: "female")
-                sexImageView.tintColor = colorPalette.femaleColor
-            case .other?:
-                sexImageView.image = #imageLiteral(resourceName: "genderqueer")
-                sexImageView.tintColor = colorPalette.otherColor
-            default:
+            if let sex = profile.storedSex, privacy.showSex || isOwner {
+                switch sex {
+                case .male:
+                    sexImageView.image = #imageLiteral(resourceName: "male")
+                    sexImageView.tintColor = colorPalette.maleColor
+                case .female:
+                    sexImageView.image = #imageLiteral(resourceName: "female")
+                    sexImageView.tintColor = colorPalette.femaleColor
+                case .other:
+                    sexImageView.image = #imageLiteral(resourceName: "genderqueer")
+                    sexImageView.tintColor = colorPalette.otherColor
+                }
+            } else {
                 sexImageView.image = nil
                 sexImageView.tintColor = nil
             }
             
             // biography
-            if let biography = profile.biography {
-                // localized quotation marks
-                let locale = Locale.current
-                let quoteBegin = locale.quotationBeginDelimiter ?? "\""
-                let quoteEnd = locale.quotationEndDelimiter ?? "\""
-                
-                biographyLabel.text = "\(quoteBegin)\(biography)\(quoteEnd)"
+            if privacy.showBiography || isOwner {
+                if let biography = profile.biography {
+                    // localized quotation marks
+                    let locale = Locale.current
+                    let quoteBegin = locale.quotationBeginDelimiter ?? "\""
+                    let quoteEnd = locale.quotationEndDelimiter ?? "\""
+                    
+                    biographyLabel.text = "\(quoteBegin)\(biography)\(quoteEnd)"
+                } else {
+                    biographyLabel.text = nil
+                }
             } else {
                 biographyLabel.text = nil
             }
@@ -168,21 +181,7 @@ class ProfileViewController: UIViewController {
             return
         }
         
-        guard let privacy = user.privacy else {
-            user.getPrivacy { error in
-                guard error == nil else {
-                    // handle failed privacy request error
-                    return
-                }
-                
-                self.settingsButtonPressed(sender)
-            }
-            
-            // handle no privacy error
-            return
-        }
-        
-        let settingsViewController = viewFactory.makeSettingsViewController(for: user, settings: settings, privacy: privacy)
+        let settingsViewController = viewFactory.makeSettingsViewController(for: user, settings: settings)
         let settingsNavigationViewController = UINavigationController(rootViewController: settingsViewController)
         navigationController?.present(settingsNavigationViewController, animated: true, completion: nil)
     }

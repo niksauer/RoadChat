@@ -148,8 +148,8 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     // User
-    func makeSettingsViewController(for user: User, settings: Settings, privacy: Privacy) -> SettingsViewController {
-        return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user, settings: settings, privacy: privacy, colorPalette: colorPalette, lengthFormatter: lengthFormatter)
+    func makeSettingsViewController(for user: User, settings: Settings) -> SettingsViewController {
+        return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user, settings: settings, colorPalette: colorPalette, lengthFormatter: lengthFormatter)
     }
     
     func makePrivacyViewController(with privacy: Privacy) -> PrivacyViewController {

@@ -26,7 +26,6 @@
 		240D10F920481843008C5E39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D10F820481843008C5E39 /* AppDelegate.swift */; };
 		240D110220481843008C5E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D110120481843008C5E39 /* Assets.xcassets */; };
 		240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D110320481843008C5E39 /* LaunchScreen.storyboard */; };
-		2412D6E020647B5D0066A51C /* SetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2412D6DF20647B5D0066A51C /* SetupViewController.xib */; };
 		2418C117207E36A4004D1632 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2418C116207E36A4004D1632 /* UIViewController.swift */; };
 		24207DE4207686D200851A73 /* Parchment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24207DCE207686B100851A73 /* Parchment.framework */; };
 		24207DE5207686D200851A73 /* Parchment.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24207DCE207686B100851A73 /* Parchment.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -75,6 +74,7 @@
 		24A46B142083DE9B00F775C7 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A46B122083DE9B00F775C7 /* SwitchCell.xib */; };
 		24A46B1620840DF400F775C7 /* GroupedOptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A46B1520840DF400F775C7 /* GroupedOptionTableViewController.swift */; };
 		24A49592208119390076E472 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A49591208119390076E472 /* UIView.swift */; };
+		24AF370020AC1DD9007C63FF /* SetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24AF36FF20AC1DD9007C63FF /* SetupViewController.xib */; };
 		24AF5096207B693500477DC0 /* CommunityMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */; };
 		24AF50AC207B6C1200477DC0 /* CommunityMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF50AA207B6C1200477DC0 /* CommunityMessageCell.swift */; };
 		24AF50AD207B6C1200477DC0 /* CommunityMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24AF50AB207B6C1200477DC0 /* CommunityMessageCell.xib */; };
@@ -378,7 +378,6 @@
 		240D110120481843008C5E39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		240D110420481843008C5E39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		240D110620481844008C5E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2412D6DF20647B5D0066A51C /* SetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetupViewController.xib; sourceTree = "<group>"; };
 		2418C116207E36A4004D1632 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		24207DBB207686B100851A73 /* Parchment.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parchment.xcodeproj; path = Frameworks/Parchment/Parchment.xcodeproj; sourceTree = "<group>"; };
 		24207DEC2076AB1800851A73 /* ProfilePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageViewController.swift; sourceTree = "<group>"; };
@@ -427,6 +426,7 @@
 		24A46B1520840DF400F775C7 /* GroupedOptionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedOptionTableViewController.swift; sourceTree = "<group>"; };
 		24A49591208119390076E472 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
+		24AF36FF20AC1DD9007C63FF /* SetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetupViewController.xib; sourceTree = "<group>"; };
 		24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessagesViewController.swift; sourceTree = "<group>"; };
 		24AF50AA207B6C1200477DC0 /* CommunityMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessageCell.swift; sourceTree = "<group>"; };
 		24AF50AB207B6C1200477DC0 /* CommunityMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunityMessageCell.xib; sourceTree = "<group>"; };
@@ -654,7 +654,7 @@
 		243F1EB320483BAD00B45955 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				2412D6DF20647B5D0066A51C /* SetupViewController.xib */,
+				24AF36FF20AC1DD9007C63FF /* SetupViewController.xib */,
 				242089BD205EB1C700FFEC90 /* SetupViewController.swift */,
 				247F6D3A206081320006FBC7 /* HomeTabBarController.swift */,
 				247F6D06205F097D0006FBC7 /* Tools */,
@@ -1218,7 +1218,6 @@
 				24045D7C2084E28100E7CF19 /* GeofenceViewController.xib in Resources */,
 				24EB889120878C2900B7A285 /* TextFieldCell.xib in Resources */,
 				24A46AF92083D35E00F775C7 /* CenterLabelCell.xib in Resources */,
-				2412D6E020647B5D0066A51C /* SetupViewController.xib in Resources */,
 				249515CE20644DB100E734E4 /* ProfileViewController.xib in Resources */,
 				24B134652063254F00B894BF /* LoginViewController.xib in Resources */,
 				24D68BB02080D908002B6D6C /* CarCell.xib in Resources */,
@@ -1226,6 +1225,7 @@
 				C9150A28207CFE0D00A69078 /* TrafficMessageCell.xib in Resources */,
 				24D34A70208523D700D3390F /* CreateNewCellView.xib in Resources */,
 				24AF50AD207B6C1200477DC0 /* CommunityMessageCell.xib in Resources */,
+				24AF370020AC1DD9007C63FF /* SetupViewController.xib in Resources */,
 				24B134672063C10C00B894BF /* RegisterViewController.xib in Resources */,
 				240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */,
 				24A46B142083DE9B00F775C7 /* SwitchCell.xib in Resources */,
