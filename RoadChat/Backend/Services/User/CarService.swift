@@ -20,5 +20,23 @@ struct CarService: JSendService {
     }
     
     // MARK: - Public Methods
+    func get(carID: RoadChatKit.Car.ID, completion: @escaping (PrimaryResource?, Error?) -> Void) {
+        client.makeGETRequest(to: "/\(carID)") { result in
+            let result = self.decodeResource(from: result)
+            completion(result.instance, result.error)
+        }
+    }
+    
+    func update(carID: RoadChatKit.Car.ID, to car: RoadChatKit.CarRequest, completion: @escaping (Error?) -> Void) throws {
+        try client.makePUTRequest(to: "/\(carID)", body: car) { result in
+            completion(self.getError(from: result))
+        }
+    }
+    
+    func delete(carID: RoadChatKit.Car.ID, completion: @escaping (Error?) -> Void) {
+        client.makeDELETERequest(to: "/\(carID)") { result in
+            completion(self.getError(from: result))
+        }
+    }
     
 }
