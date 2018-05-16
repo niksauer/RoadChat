@@ -101,6 +101,7 @@ class User: NSManagedObject, ReportOwner {
         super.awakeFromFetch()
         get(completion: nil)
         getProfile(completion: nil)
+        getCars(completion: nil)
         getConversations(completion: nil)
         getCommunityMessages(completion: nil)
     }

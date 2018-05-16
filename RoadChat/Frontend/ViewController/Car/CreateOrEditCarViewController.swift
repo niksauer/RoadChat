@@ -142,6 +142,8 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
             return
         }
         
+        self.title = "Edit Car"
+        
         manufacturerTextField.text = car.manufacturer
         modelTextField.text = car.model
         performanceTextField.text = String(car.performance)
@@ -167,16 +169,36 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         let hexColorString = colorPickerField.backgroundColor!.toHexString()
         let createCarRequest = CarRequest(manufacturer: manufacturer, model: model, production: production, performance: performance, color: hexColorString)
     
-        user.createCar(createCarRequest) { error in
-            guard error == nil else {
-                self.displayAlert(title: "Error", message: "Failed to create Car: \(error!)") {
-                    self.dismiss(animated: true, completion: nil)
+        if let car = car {
+            car.manufacturer = manufacturer
+            car.model = model
+            car.performance = Int16(performance)
+            car.production = production
+            car.color = hexColorString
+            
+            car.save { error in
+                guard error == nil else {
+                    self.displayAlert(title: "Error", message: "Failed to update Car: \(error!)") {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    
+                    return
                 }
                 
-                return
+                self.dismiss(animated: true, completion: nil)
             }
-        
-            self.dismiss(animated: true, completion: nil)
+        } else {
+            user.createCar(createCarRequest) { error in
+                guard error == nil else {
+                    self.displayAlert(title: "Error", message: "Failed to create Car: \(error!)") {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    
+                    return
+                }
+                
+                self.dismiss(animated: true, completion: nil)
+            }
         }
     }
 
@@ -199,6 +221,20 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         saveBarButtonItem.isEnabled = true
     }
 
+    @IBAction func didPressDeleteButton(_ sender: UIButton) {
+        car?.delete { error in
+            guard error == nil else {
+                self.displayAlert(title: "Error", message: "Failed to delete Car: \(error!)") {
+                    self.dismiss(animated: true, completion: nil)
+                }
+                
+                return
+            }
+            
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
     // Mark: - TextField Delegate
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         validateSaveButton()

@@ -711,20 +711,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		24207E002076C41300851A73 /* ProfilePages */ = {
-			isa = PBXGroup;
-			children = (
-				2461F2EC2080A75800053A4B /* CarsViewController.swift */,
-				24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */,
-				24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */,
-				24207DF02076BC8E00851A73 /* AboutViewController.swift */,
-				24207DF12076BC8E00851A73 /* AboutViewController.xib */,
-				D45FD6FE2083D79300C35949 /* CreateOrEditCarViewController.swift */,
-				D45FD6FF2083D79300C35949 /* CreateOrEditCarViewController.xib */,
-			);
-			path = ProfilePages;
-			sourceTree = "<group>";
-		};
 		2422D00120514FEA0081A552 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -768,6 +754,7 @@
 				243A479D207EDCC5002F3BF4 /* Shared */,
 				2422D01B205155CF0081A552 /* Authentication */,
 				243F1EB420483BC100B45955 /* User */,
+				24AF372020AC2D06007C63FF /* Car */,
 				243F1EB620483BD100B45955 /* Community */,
 				243F1EB520483BC500B45955 /* Traffic */,
 				248D379220493ED000B21C3D /* Chat */,
@@ -779,12 +766,7 @@
 			isa = PBXGroup;
 			children = (
 				24EB88722087860E00B7A285 /* Settings */,
-				24B1346C20641A8C00B894BF /* ProfileViewController.swift */,
-				249515CD20644DB100E734E4 /* ProfileViewController.xib */,
-				24207DEC2076AB1800851A73 /* ProfilePageViewController.swift */,
-				24207E002076C41300851A73 /* ProfilePages */,
-				D45FD72D2084FB5500C35949 /* CreateOrEditProfileViewController.swift */,
-				D45FD72E2084FB5500C35949 /* CreateOrEditProfileViewController.xib */,
+				24AF372120AC2D40007C63FF /* Profile */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -792,11 +774,11 @@
 		243F1EB520483BC500B45955 /* Traffic */ = {
 			isa = PBXGroup;
 			children = (
-				C9150A9420809A1900A69078 /* TrafficMessageDetailViewController.xib */,
 				24B13478206421EE00B894BF /* TrafficBoardViewController.swift */,
 				24207DF82076C37300851A73 /* TrafficMessagesViewController.swift */,
 				C966B6FC207949590007CA4F /* CreateTrafficMessageViewController.swift */,
 				C966B6FD207949590007CA4F /* CreateTrafficMessageViewController.xib */,
+				C9150A9420809A1900A69078 /* TrafficMessageDetailViewController.xib */,
 				C9150A7D208099C100A69078 /* TrafficMessageDetailViewController.swift */,
 			);
 			path = Traffic;
@@ -805,12 +787,12 @@
 		243F1EB620483BD100B45955 /* Community */ = {
 			isa = PBXGroup;
 			children = (
-				24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */,
 				24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */,
-				D45FD694207E4EB900C35949 /* CommunityMessageDetailViewController.swift */,
-				D45FD695207E4EB900C35949 /* CommunityMessageDetailViewController.xib */,
+				24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */,
 				D44F4B87205297A7009A6239 /* CreateCommunityMessageViewController.swift */,
 				24B134762064202800B894BF /* CreateCommunityMessageViewController.xib */,
+				D45FD694207E4EB900C35949 /* CommunityMessageDetailViewController.swift */,
+				D45FD695207E4EB900C35949 /* CommunityMessageDetailViewController.xib */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -955,6 +937,32 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		24AF372020AC2D06007C63FF /* Car */ = {
+			isa = PBXGroup;
+			children = (
+				2461F2EC2080A75800053A4B /* CarsViewController.swift */,
+				D45FD6FE2083D79300C35949 /* CreateOrEditCarViewController.swift */,
+				D45FD6FF2083D79300C35949 /* CreateOrEditCarViewController.xib */,
+				24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */,
+				24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */,
+			);
+			path = Car;
+			sourceTree = "<group>";
+		};
+		24AF372120AC2D40007C63FF /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				24B1346C20641A8C00B894BF /* ProfileViewController.swift */,
+				249515CD20644DB100E734E4 /* ProfileViewController.xib */,
+				D45FD72D2084FB5500C35949 /* CreateOrEditProfileViewController.swift */,
+				D45FD72E2084FB5500C35949 /* CreateOrEditProfileViewController.xib */,
+				24207DEC2076AB1800851A73 /* ProfilePageViewController.swift */,
+				24207DF02076BC8E00851A73 /* AboutViewController.swift */,
+				24207DF12076BC8E00851A73 /* AboutViewController.xib */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		24AFEE8F206566A30097810E /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -972,11 +980,11 @@
 		24EB88722087860E00B7A285 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				24EB888A20878BA900B7A285 /* ChangePasswordViewController.swift */,
-				24EB8892208798FD00B7A285 /* ChangeEmailViewController.swift */,
 				249515C92064483400E734E4 /* SettingsViewController.swift */,
 				24A46B0D2083DC4600F775C7 /* PrivacyViewController.swift */,
 				24EB8886208787E300B7A285 /* SecurityViewController.swift */,
+				24EB8892208798FD00B7A285 /* ChangeEmailViewController.swift */,
+				24EB888A20878BA900B7A285 /* ChangePasswordViewController.swift */,
 				24D34A3D20850F4300D3390F /* LogDataViewController.swift */,
 				24D34A3E20850F4300D3390F /* LogDataViewController.xib */,
 			);
