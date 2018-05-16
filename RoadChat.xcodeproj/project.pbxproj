@@ -76,7 +76,7 @@
 		24A46B1620840DF400F775C7 /* GroupedOptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A46B1520840DF400F775C7 /* GroupedOptionTableViewController.swift */; };
 		24A49592208119390076E472 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A49591208119390076E472 /* UIView.swift */; };
 		24AF370020AC1DD9007C63FF /* SetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24AF36FF20AC1DD9007C63FF /* SetupViewController.xib */; };
-		24AF374420AC49EE007C63FF /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF374320AC49EE007C63FF /* NearbyViewController.swift */; };
+		24AF374420AC49EE007C63FF /* RadarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF374320AC49EE007C63FF /* RadarViewController.swift */; };
 		24AF5096207B693500477DC0 /* CommunityMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */; };
 		24AF50AC207B6C1200477DC0 /* CommunityMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF50AA207B6C1200477DC0 /* CommunityMessageCell.swift */; };
 		24AF50AD207B6C1200477DC0 /* CommunityMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24AF50AB207B6C1200477DC0 /* CommunityMessageCell.xib */; };
@@ -100,6 +100,8 @@
 		24D68B8B2080CCB5002B6D6C /* CarDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */; };
 		24D68BB02080D908002B6D6C /* CarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D68BAF2080D908002B6D6C /* CarCell.xib */; };
 		24D68BB22080E72E002B6D6C /* TimeSinceDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68BB12080E72E002B6D6C /* TimeSinceDateFormatter.swift */; };
+		24E0578D20ACBF6F00788E52 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E0578B20ACBF6F00788E52 /* ConversationViewController.swift */; };
+		24E0578E20ACBF6F00788E52 /* ConversationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24E0578C20ACBF6F00788E52 /* ConversationViewController.xib */; };
 		24EB886520877DDA00B7A285 /* MonthYearPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EB885120877DDA00B7A285 /* MonthYearPickerView.swift */; };
 		24EB8888208787E300B7A285 /* SecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EB8886208787E300B7A285 /* SecurityViewController.swift */; };
 		24EB888B20878BA900B7A285 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EB888A20878BA900B7A285 /* ChangePasswordViewController.swift */; };
@@ -430,7 +432,7 @@
 		24A49591208119390076E472 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
 		24AF36FF20AC1DD9007C63FF /* SetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetupViewController.xib; sourceTree = "<group>"; };
-		24AF374320AC49EE007C63FF /* NearbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
+		24AF374320AC49EE007C63FF /* RadarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarViewController.swift; sourceTree = "<group>"; };
 		24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessagesViewController.swift; sourceTree = "<group>"; };
 		24AF50AA207B6C1200477DC0 /* CommunityMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessageCell.swift; sourceTree = "<group>"; };
 		24AF50AB207B6C1200477DC0 /* CommunityMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunityMessageCell.xib; sourceTree = "<group>"; };
@@ -454,6 +456,8 @@
 		24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarDetailViewController.xib; sourceTree = "<group>"; };
 		24D68BAF2080D908002B6D6C /* CarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarCell.xib; sourceTree = "<group>"; };
 		24D68BB12080E72E002B6D6C /* TimeSinceDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSinceDateFormatter.swift; sourceTree = "<group>"; };
+		24E0578B20ACBF6F00788E52 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		24E0578C20ACBF6F00788E52 /* ConversationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationViewController.xib; sourceTree = "<group>"; };
 		24EB885120877DDA00B7A285 /* MonthYearPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MonthYearPickerView.swift; path = Frameworks/MonthYearPickerView/MonthYearPickerView.swift; sourceTree = SOURCE_ROOT; };
 		24EB8886208787E300B7A285 /* SecurityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityViewController.swift; sourceTree = "<group>"; };
 		24EB888A20878BA900B7A285 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
@@ -725,7 +729,9 @@
 			isa = PBXGroup;
 			children = (
 				24B1347C2064229100B894BF /* ConversationsViewController.swift */,
-				24AF374320AC49EE007C63FF /* NearbyViewController.swift */,
+				24AF374320AC49EE007C63FF /* RadarViewController.swift */,
+				24E0578B20ACBF6F00788E52 /* ConversationViewController.swift */,
+				24E0578C20ACBF6F00788E52 /* ConversationViewController.xib */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1239,6 +1245,7 @@
 				C9150A28207CFE0D00A69078 /* TrafficMessageCell.xib in Resources */,
 				24D34A70208523D700D3390F /* CreateNewCellView.xib in Resources */,
 				24AF50AD207B6C1200477DC0 /* CommunityMessageCell.xib in Resources */,
+				24E0578E20ACBF6F00788E52 /* ConversationViewController.xib in Resources */,
 				24AF370020AC1DD9007C63FF /* SetupViewController.xib in Resources */,
 				24B134672063C10C00B894BF /* RegisterViewController.xib in Resources */,
 				240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */,
@@ -1270,9 +1277,10 @@
 				247F6D21205F3C9C0006FBC7 /* UserManager.swift in Sources */,
 				24207DFA2076C37300851A73 /* TrafficMessagesViewController.swift in Sources */,
 				24D68B872080C535002B6D6C /* UIColor.swift in Sources */,
+				24E0578D20ACBF6F00788E52 /* ConversationViewController.swift in Sources */,
 				24A069BB20520367006F8401 /* AuthenticationManager.swift in Sources */,
 				247F6D3D20614E380006FBC7 /* TrafficBoard.swift in Sources */,
-				24AF374420AC49EE007C63FF /* NearbyViewController.swift in Sources */,
+				24AF374420AC49EE007C63FF /* RadarViewController.swift in Sources */,
 				24FEFFEC207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift in Sources */,
 				247F6D3720605E240006FBC7 /* DependencyContainer.swift in Sources */,
 				C9150A2A207D0C1F00A69078 /* TrafficColorPalette.swift in Sources */,
