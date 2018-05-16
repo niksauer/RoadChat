@@ -29,6 +29,14 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDC-jC-MYs">
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="fhT-FY-KH4" appends="YES" id="oTM-oJ-RAK"/>
+                    </connections>
+                </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QNx-qb-Kkl">
                     <rect key="frame" x="0.0" y="64" width="375" height="170"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -206,23 +214,39 @@
                         <constraint firstItem="qnx-5z-aIu" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" id="yPY-VB-L0z"/>
                     </constraints>
                 </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDC-jC-MYs">
-                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <gestureRecognizers/>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="fhT-FY-KH4" appends="YES" id="oTM-oJ-RAK"/>
-                    </connections>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gdI-aG-uW1" userLabel="Delete View">
+                    <rect key="frame" x="0.0" y="596" width="375" height="45"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjH-Yu-dx0">
+                            <rect key="frame" x="162.5" y="6.5" width="50" height="33"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="Delete">
+                                <color key="titleColor" red="0.87450980392156863" green="0.32156862745098036" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="didPressDeleteButton:" destination="-1" eventType="touchUpInside" id="TP0-o8-2QF"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="yjH-Yu-dx0" firstAttribute="centerY" secondItem="gdI-aG-uW1" secondAttribute="centerY" id="7zz-1O-kur"/>
+                        <constraint firstItem="yjH-Yu-dx0" firstAttribute="centerX" secondItem="gdI-aG-uW1" secondAttribute="centerX" id="JPu-ug-dM9"/>
+                        <constraint firstAttribute="height" constant="45" id="QP7-8Z-P1x"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="sMx-Pl-eso" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="0Rp-Fl-okX"/>
+                <constraint firstItem="gdI-aG-uW1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="4q1-FO-giW"/>
                 <constraint firstItem="Lrq-LG-bc9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6DS-gG-Zcw"/>
                 <constraint firstItem="Lrq-LG-bc9" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="DJt-NO-OSs"/>
+                <constraint firstItem="gdI-aG-uW1" firstAttribute="top" secondItem="sMx-Pl-eso" secondAttribute="bottom" constant="32" id="E8O-WZ-kFX"/>
                 <constraint firstItem="QNx-qb-Kkl" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="HVo-Th-RnQ"/>
                 <constraint firstItem="KDC-jC-MYs" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="HlN-dV-CQZ"/>
                 <constraint firstItem="QNx-qb-Kkl" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="IgO-Ly-WY5"/>
+                <constraint firstItem="gdI-aG-uW1" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="J0N-4l-VJx"/>
                 <constraint firstItem="KDC-jC-MYs" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="LzM-9N-Znf"/>
                 <constraint firstItem="Lrq-LG-bc9" firstAttribute="top" secondItem="QNx-qb-Kkl" secondAttribute="bottom" id="Tbx-gl-P5v"/>
                 <constraint firstItem="sMx-Pl-eso" firstAttribute="top" secondItem="Lrq-LG-bc9" secondAttribute="bottom" id="aZI-6w-uRA"/>

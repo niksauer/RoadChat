@@ -209,6 +209,20 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         saveBarButtonItem.isEnabled = true
     }
 
+    @IBAction func didPressDeleteButton(_ sender: UIButton) {
+        car?.delete { error in
+            guard error == nil else {
+                self.displayAlert(title: "Error", message: "Failed to delete Car: \(error!)") {
+                    self.dismiss(animated: true, completion: nil)
+                }
+                
+                return
+            }
+            
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
     // Mark: - TextField Delegate
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         validateSaveButton()
