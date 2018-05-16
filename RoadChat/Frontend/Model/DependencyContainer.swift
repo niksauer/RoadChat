@@ -37,6 +37,10 @@ struct DependencyContainer {
         return TrafficBoard(trafficService: TrafficService(config: config), context: viewContext)
     }
     
+    private var conversationManager: ConversationManager {
+        return ConversationManager(conversationService: ConversationService(config: config), context: viewContext)
+    }
+    
     private var colorPalette: ColorContainer {
         return ColorContainer()
     }
@@ -145,6 +149,10 @@ extension DependencyContainer: ViewControllerFactory {
     // Chat
     func makeConversationsViewController(for user: User) -> ConversationsViewController {
         return ConversationsViewController(viewFactory: self, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter)
+    }
+    
+    func makeNearbyViewController(activeUser: User) -> NearbyViewController {
+        return NearbyViewController(activeUser: activeUser, conversationManager: conversationManager, locationManager: locationManager)
     }
     
     // User

@@ -82,11 +82,11 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
     }
     
     // MARK: - Public Methods
-    @IBAction func cancelButtonPressed(_ sender: UIButton) {
+    @objc func cancelButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func saveButtonPressed(_ sender: UIButton) {
+    @objc func saveButtonPressed(_ sender: UIButton) {
         delegate?.didUpdateRadius(self)
         self.dismiss(animated: true, completion: nil)
     }
@@ -129,17 +129,15 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        guard let userLocation = userLocation.location else {
+        guard let userLocation = userLocation.location, userLocation.horizontalAccuracy <= 500, !setInitialGeofence else {
             return
         }
 
-        if userLocation.horizontalAccuracy <= 500, !setInitialGeofence {
-            let newGeofence = MKCircle(center: userLocation.coordinate, radius: 10000)
-            mapView.setVisibleMapRect(newGeofence.boundingMapRect, animated: true)
-            mapView.add(newGeofence)
-            geofence = newGeofence
-            setInitialGeofence = true
-        }
+        let newGeofence = MKCircle(center: userLocation.coordinate, radius: 10000)
+        mapView.setVisibleMapRect(newGeofence.boundingMapRect, animated: true)
+        mapView.add(newGeofence)
+        geofence = newGeofence
+        setInitialGeofence = true
     }
     
 }

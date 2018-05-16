@@ -9,6 +9,10 @@
 import Foundation
 import CoreLocation
 
+protocol LocationManagerDelegate {
+    func didUpdateLocation(to location: CLLocation?)
+}
+
 class LocationManager: NSObject, CLLocationManagerDelegate {
     
     // MARK: - Singleton
@@ -17,6 +21,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     // MARK: - Public Properties
     var lastLocation: CLLocation?
     var distanceFilter: CLLocationDistance = 200
+    var delegate: LocationManagerDelegate?
     
     // MARK: - Private Properties
     private let locationManager = CLLocationManager()
@@ -41,6 +46,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     // MARK: - CLLocationManagerDelegate Protocol
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         lastLocation = locations.last
+        delegate?.didUpdateLocation(to: lastLocation)
     }
     
 }
