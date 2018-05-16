@@ -37,6 +37,10 @@ struct DependencyContainer {
         return TrafficBoard(trafficService: TrafficService(config: config), context: viewContext)
     }
     
+    private var conversationManager: ConversationManager {
+        return ConversationManager(conversationService: ConversationService(config: config), context: viewContext)
+    }
+    
     private var colorPalette: ColorContainer {
         return ColorContainer()
     }
@@ -78,7 +82,7 @@ extension DependencyContainer: ViewControllerFactory {
     
     // General
     func makeSetupViewController() -> SetupViewController {
-        return SetupViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, credentials: credentials)
+        return SetupViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, credentials: credentials, locationManager: locationManager)
     }
     
     func makeHomeTabBarController(activeUser user: User) -> HomeTabBarController {
@@ -100,11 +104,11 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeLoginViewController() -> LoginViewController {
-        return LoginViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager)
+        return LoginViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, locationManager: locationManager)
     }
 
     func makeRegisterViewController() -> RegisterViewController {
-        return RegisterViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, userManager: userManager)
+        return RegisterViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, userManager: userManager, locationManager: locationManager)
     }
 
     // Community
@@ -145,6 +149,10 @@ extension DependencyContainer: ViewControllerFactory {
     // Chat
     func makeConversationsViewController(for user: User) -> ConversationsViewController {
         return ConversationsViewController(viewFactory: self, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter)
+    }
+    
+    func makeNearbyViewController(activeUser: User) -> NearbyViewController {
+        return NearbyViewController(activeUser: activeUser, conversationManager: conversationManager, locationManager: locationManager)
     }
     
     // User

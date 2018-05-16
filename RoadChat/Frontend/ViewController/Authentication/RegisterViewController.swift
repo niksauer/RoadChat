@@ -23,13 +23,15 @@ class RegisterViewController: UIViewController {
     private let appDelegate: AppDelegate
     private let authenticationManager: AuthenticationManager
     private let userManager: UserManager
+    private let locationManager: LocationManager
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, userManager: UserManager) {
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, userManager: UserManager, locationManager: LocationManager) {
         self.viewFactory = viewFactory
         self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
         self.userManager = userManager
+        self.locationManager = locationManager
         
         super.init(nibName: nil, bundle: nil)
         self.title = "Sign Up"
@@ -82,6 +84,10 @@ class RegisterViewController: UIViewController {
                     self.navigationController?.popViewController(animated: true)
                     return
                 }
+                
+                // configure locationManager
+                self.locationManager.managedUser = user
+                self.locationManager.startPolling()
                 
                 // show home screen
                 let homeTabBarController = self.viewFactory.makeHomeTabBarController(activeUser: user)
