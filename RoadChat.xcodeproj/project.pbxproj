@@ -129,10 +129,6 @@
 		D421C5FF20AC322500D049CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D421C5FE20AC322500D049CC /* Assets.xcassets */; };
 		D421C60420AC322500D049CC /* RoadChatWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D421C5E720AC322500D049CC /* RoadChatWatch.app */; };
 		D421C62020AC518F00D049CC /* CreateTrafficMessageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421C61F20AC518F00D049CC /* CreateTrafficMessageInterfaceController.swift */; };
-		D421C62120AC575D00D049CC /* RoadChatKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; };
-		D421C62220AC575D00D049CC /* RoadChatKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D421C62620AC57FB00D049CC /* RoadChatKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; };
-		D421C62720AC57FB00D049CC /* RoadChatKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D44F4B7D20528076009A6239 /* CommunityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F4B7C20528076009A6239 /* CommunityService.swift */; };
 		D44F4B88205297A7009A6239 /* CreateCommunityMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F4B87205297A7009A6239 /* CreateCommunityMessageViewController.swift */; };
 		D45FD696207E4EB900C35949 /* CommunityMessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FD694207E4EB900C35949 /* CommunityMessageDetailViewController.swift */; };
@@ -356,20 +352,6 @@
 			remoteGlobalIDString = D421C5E620AC322500D049CC;
 			remoteInfo = RoadChatWatch;
 		};
-		D421C62320AC575D00D049CC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = "RoadChatKit::RoadChatKit";
-			remoteInfo = RoadChatKit;
-		};
-		D421C62820AC57FB00D049CC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = "RoadChatKit::RoadChatKit";
-			remoteInfo = RoadChatKit;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -409,28 +391,6 @@
 				D421C5F420AC322500D049CC /* RoadChatWatch Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D421C62520AC575D00D049CC /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D421C62220AC575D00D049CC /* RoadChatKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D421C62B20AC57FB00D049CC /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D421C62720AC57FB00D049CC /* RoadChatKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -589,7 +549,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D421C62120AC575D00D049CC /* RoadChatKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,7 +556,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D421C62620AC57FB00D049CC /* RoadChatKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1131,13 +1089,11 @@
 				D421C5E520AC322500D049CC /* Resources */,
 				D421C61D20AC322500D049CC /* Embed App Extensions */,
 				D421C62A20AC57FB00D049CC /* Frameworks */,
-				D421C62B20AC57FB00D049CC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				D421C5F620AC322500D049CC /* PBXTargetDependency */,
-				D421C62920AC57FB00D049CC /* PBXTargetDependency */,
 			);
 			name = RoadChatWatch;
 			productName = RoadChatWatch;
@@ -1151,12 +1107,10 @@
 				D421C5EF20AC322500D049CC /* Sources */,
 				D421C5F020AC322500D049CC /* Frameworks */,
 				D421C5F120AC322500D049CC /* Resources */,
-				D421C62520AC575D00D049CC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D421C62420AC575D00D049CC /* PBXTargetDependency */,
 			);
 			name = "RoadChatWatch Extension";
 			productName = "RoadChatWatch Extension";
@@ -1591,16 +1545,6 @@
 			isa = PBXTargetDependency;
 			target = D421C5E620AC322500D049CC /* RoadChatWatch */;
 			targetProxy = D421C60220AC322500D049CC /* PBXContainerItemProxy */;
-		};
-		D421C62420AC575D00D049CC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RoadChatKit;
-			targetProxy = D421C62320AC575D00D049CC /* PBXContainerItemProxy */;
-		};
-		D421C62920AC57FB00D049CC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RoadChatKit;
-			targetProxy = D421C62820AC57FB00D049CC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
