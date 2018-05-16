@@ -126,20 +126,17 @@ class ProfileViewController: UIViewController {
             nameLabel.text = "\(profile.firstName!) \(profile.lastName!)"
             
             // sex
-            if privacy.showSex || isOwner {
-                switch profile.storedSex {
-                case .male?:
+            if let sex = profile.storedSex, privacy.showSex || isOwner {
+                switch sex {
+                case .male:
                     sexImageView.image = #imageLiteral(resourceName: "male")
                     sexImageView.tintColor = colorPalette.maleColor
-                case .female?:
+                case .female:
                     sexImageView.image = #imageLiteral(resourceName: "female")
                     sexImageView.tintColor = colorPalette.femaleColor
-                case .other?:
+                case .other:
                     sexImageView.image = #imageLiteral(resourceName: "genderqueer")
                     sexImageView.tintColor = colorPalette.otherColor
-                default:
-                    sexImageView.image = nil
-                    sexImageView.tintColor = nil
                 }
             } else {
                 sexImageView.image = nil
