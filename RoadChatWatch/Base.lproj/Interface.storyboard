@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13756"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="RoadChatWatch" customModuleProvider="target">
+                    <items>
+                        <group width="1" alignment="center" verticalAlignment="center" layout="vertical" spacing="10" id="38q-NK-fYP">
+                            <items>
+                                <button width="1" alignment="left" title="+" backgroundImage="add" id="5MP-Z6-QGm">
+                                    <fontDescription key="font" type="system" pointSize="32"/>
+                                    <connections>
+                                        <segue destination="2jP-Dk-2b8" kind="push" id="6xj-Pk-fNv"/>
+                                    </connections>
+                                </button>
+                                <label alignment="left" text="Post Traffic Message" minimumScaleFactor="0.69999999999999996" id="apu-ZX-xRQ"/>
+                            </items>
+                        </group>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="220" y="345"/>
+        </scene>
+        <!--Create Traffic Message Interface Controller-->
+        <scene sceneID="rLm-QQ-VFN">
+            <objects>
+                <controller id="2jP-Dk-2b8" customClass="CreateTrafficMessageInterfaceController" customModule="RoadChatWatch_Extension">
+                    <items>
+                        <group height="1" alignment="center" contentMode="center" layout="vertical" spacing="5" id="Ym4-lW-ZLS">
+                            <items>
+                                <group height="0.5" alignment="left" spacing="5" id="V9e-Dd-BcS">
+                                    <items>
+                                        <button width="0.5" height="1" alignment="left" title="Jam" id="tA5-p5-Fe0">
+                                            <fontDescription key="font" type="system" pointSize="12"/>
+                                            <connections>
+                                                <action selector="jamButtonPressed" destination="2jP-Dk-2b8" id="lkp-yL-AvV"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.5" height="1" alignment="left" title="Detour" id="Bzu-YB-K5U">
+                                            <fontDescription key="font" type="system" pointSize="12"/>
+                                            <connections>
+                                                <action selector="detourButtonPressed" destination="2jP-Dk-2b8" id="0cp-aa-pUG"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                                <group height="0.5" alignment="left" spacing="5" id="JjU-nf-8Q0">
+                                    <items>
+                                        <button width="0.5" height="1" alignment="left" title="Accident" id="6or-fb-ZBU">
+                                            <fontDescription key="font" type="system" pointSize="12"/>
+                                            <connections>
+                                                <action selector="accidentButtonPressed" destination="2jP-Dk-2b8" id="CPi-24-MOS"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.5" height="1" alignment="left" title="Danger" id="Qpn-pF-GiV">
+                                            <fontDescription key="font" type="system" pointSize="12"/>
+                                            <connections>
+                                                <action selector="dangerButtonPressed" destination="2jP-Dk-2b8" id="RZm-aQ-INC"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="accidentButtonPressed" destination="6or-fb-ZBU" id="dsA-tR-5o0"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="508" y="345"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="RoadChatWatch" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+    </scenes>
+</document>

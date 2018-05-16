@@ -120,6 +120,19 @@
 		C966B6FF207949590007CA4F /* CreateTrafficMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C966B6FD207949590007CA4F /* CreateTrafficMessageViewController.xib */; };
 		C988ACA52052BB3200EDCEAC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988ACA42052BB3200EDCEAC /* LocationManager.swift */; };
 		D40B2059205145B1000823E4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B2058205145B1000823E4 /* RegisterViewController.swift */; };
+		D421C5EB20AC322500D049CC /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D421C5E920AC322500D049CC /* Interface.storyboard */; };
+		D421C5ED20AC322500D049CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D421C5EC20AC322500D049CC /* Assets.xcassets */; };
+		D421C5F420AC322500D049CC /* RoadChatWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D421C5F320AC322500D049CC /* RoadChatWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D421C5F920AC322500D049CC /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421C5F820AC322500D049CC /* InterfaceController.swift */; };
+		D421C5FB20AC322500D049CC /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421C5FA20AC322500D049CC /* ExtensionDelegate.swift */; };
+		D421C5FD20AC322500D049CC /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421C5FC20AC322500D049CC /* NotificationController.swift */; };
+		D421C5FF20AC322500D049CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D421C5FE20AC322500D049CC /* Assets.xcassets */; };
+		D421C60420AC322500D049CC /* RoadChatWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D421C5E720AC322500D049CC /* RoadChatWatch.app */; };
+		D421C62020AC518F00D049CC /* CreateTrafficMessageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421C61F20AC518F00D049CC /* CreateTrafficMessageInterfaceController.swift */; };
+		D421C62120AC575D00D049CC /* RoadChatKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; };
+		D421C62220AC575D00D049CC /* RoadChatKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D421C62620AC57FB00D049CC /* RoadChatKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; };
+		D421C62720AC57FB00D049CC /* RoadChatKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D44F4B7D20528076009A6239 /* CommunityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F4B7C20528076009A6239 /* CommunityService.swift */; };
 		D44F4B88205297A7009A6239 /* CreateCommunityMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F4B87205297A7009A6239 /* CreateCommunityMessageViewController.swift */; };
 		D45FD696207E4EB900C35949 /* CommunityMessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FD694207E4EB900C35949 /* CommunityMessageDetailViewController.swift */; };
@@ -329,6 +342,34 @@
 			remoteGlobalIDString = 9EDCE3E31C09D211002FA4A7;
 			remoteInfo = "SwiftyBeaver (iOS)";
 		};
+		D421C5F520AC322500D049CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 240D10ED20481843008C5E39 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D421C5F220AC322500D049CC;
+			remoteInfo = "RoadChatWatch Extension";
+		};
+		D421C60220AC322500D049CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 240D10ED20481843008C5E39 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D421C5E620AC322500D049CC;
+			remoteInfo = RoadChatWatch;
+		};
+		D421C62320AC575D00D049CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "RoadChatKit::RoadChatKit";
+			remoteInfo = RoadChatKit;
+		};
+		D421C62820AC57FB00D049CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "RoadChatKit::RoadChatKit";
+			remoteInfo = RoadChatKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -354,8 +395,42 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
+				D421C60420AC322500D049CC /* RoadChatWatch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D421C61D20AC322500D049CC /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D421C5F420AC322500D049CC /* RoadChatWatch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D421C62520AC575D00D049CC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D421C62220AC575D00D049CC /* RoadChatKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D421C62B20AC57FB00D049CC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D421C62720AC57FB00D049CC /* RoadChatKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -471,6 +546,18 @@
 		C966B6FD207949590007CA4F /* CreateTrafficMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateTrafficMessageViewController.xib; sourceTree = "<group>"; };
 		C988ACA42052BB3200EDCEAC /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		D40B2058205145B1000823E4 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		D421C5E720AC322500D049CC /* RoadChatWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadChatWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D421C5EA20AC322500D049CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		D421C5EC20AC322500D049CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D421C5EE20AC322500D049CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D421C5F320AC322500D049CC /* RoadChatWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "RoadChatWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D421C5F820AC322500D049CC /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		D421C5FA20AC322500D049CC /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		D421C5FC20AC322500D049CC /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		D421C5FE20AC322500D049CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D421C60020AC322500D049CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D421C60120AC322500D049CC /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		D421C61F20AC518F00D049CC /* CreateTrafficMessageInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTrafficMessageInterfaceController.swift; sourceTree = "<group>"; };
 		D44F4B7C20528076009A6239 /* CommunityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityService.swift; sourceTree = "<group>"; };
 		D44F4B87205297A7009A6239 /* CreateCommunityMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommunityMessageViewController.swift; sourceTree = "<group>"; };
 		D45FD694207E4EB900C35949 /* CommunityMessageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessageDetailViewController.swift; sourceTree = "<group>"; };
@@ -495,6 +582,22 @@
 				240AB0132050870000324028 /* Locksmith.framework in Frameworks */,
 				240AB0182050877000324028 /* RoadChatKit.framework in Frameworks */,
 				24045D5E2084D27100E7CF19 /* ColorModel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D421C5F020AC322500D049CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D421C62120AC575D00D049CC /* RoadChatKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D421C62A20AC57FB00D049CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D421C62620AC57FB00D049CC /* RoadChatKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +645,8 @@
 				24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */,
 				24207DBB207686B100851A73 /* Parchment.xcodeproj */,
 				240D10F720481843008C5E39 /* RoadChat */,
+				D421C5E820AC322500D049CC /* RoadChatWatch */,
+				D421C5F720AC322500D049CC /* RoadChatWatch Extension */,
 				240D10F620481843008C5E39 /* Products */,
 				244BFB7D2049A6EE00B2481D /* Frameworks */,
 			);
@@ -551,6 +656,8 @@
 			isa = PBXGroup;
 			children = (
 				240D10F520481843008C5E39 /* RoadChat.app */,
+				D421C5E720AC322500D049CC /* RoadChatWatch.app */,
+				D421C5F320AC322500D049CC /* RoadChatWatch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -949,6 +1056,30 @@
 			path = Traffic;
 			sourceTree = "<group>";
 		};
+		D421C5E820AC322500D049CC /* RoadChatWatch */ = {
+			isa = PBXGroup;
+			children = (
+				D421C5E920AC322500D049CC /* Interface.storyboard */,
+				D421C5EC20AC322500D049CC /* Assets.xcassets */,
+				D421C5EE20AC322500D049CC /* Info.plist */,
+			);
+			path = RoadChatWatch;
+			sourceTree = "<group>";
+		};
+		D421C5F720AC322500D049CC /* RoadChatWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D421C5F820AC322500D049CC /* InterfaceController.swift */,
+				D421C5FA20AC322500D049CC /* ExtensionDelegate.swift */,
+				D421C5FC20AC322500D049CC /* NotificationController.swift */,
+				D421C5FE20AC322500D049CC /* Assets.xcassets */,
+				D421C60020AC322500D049CC /* Info.plist */,
+				D421C60120AC322500D049CC /* PushNotificationPayload.apns */,
+				D421C61F20AC518F00D049CC /* CreateTrafficMessageInterfaceController.swift */,
+			);
+			path = "RoadChatWatch Extension";
+			sourceTree = "<group>";
+		};
 		D44F4B7B20528045009A6239 /* Community */ = {
 			isa = PBXGroup;
 			children = (
@@ -978,11 +1109,51 @@
 				24F1DD4320517B9D00A726AA /* PBXTargetDependency */,
 				24207DE7207686D200851A73 /* PBXTargetDependency */,
 				24045D392084CC8600E7CF19 /* PBXTargetDependency */,
+				D421C60320AC322500D049CC /* PBXTargetDependency */,
 			);
 			name = RoadChat;
 			productName = RoadChat;
 			productReference = 240D10F520481843008C5E39 /* RoadChat.app */;
 			productType = "com.apple.product-type.application";
+		};
+		D421C5E620AC322500D049CC /* RoadChatWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D421C61E20AC322500D049CC /* Build configuration list for PBXNativeTarget "RoadChatWatch" */;
+			buildPhases = (
+				D421C5E520AC322500D049CC /* Resources */,
+				D421C61D20AC322500D049CC /* Embed App Extensions */,
+				D421C62A20AC57FB00D049CC /* Frameworks */,
+				D421C62B20AC57FB00D049CC /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D421C5F620AC322500D049CC /* PBXTargetDependency */,
+				D421C62920AC57FB00D049CC /* PBXTargetDependency */,
+			);
+			name = RoadChatWatch;
+			productName = RoadChatWatch;
+			productReference = D421C5E720AC322500D049CC /* RoadChatWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		D421C5F220AC322500D049CC /* RoadChatWatch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D421C61C20AC322500D049CC /* Build configuration list for PBXNativeTarget "RoadChatWatch Extension" */;
+			buildPhases = (
+				D421C5EF20AC322500D049CC /* Sources */,
+				D421C5F020AC322500D049CC /* Frameworks */,
+				D421C5F120AC322500D049CC /* Resources */,
+				D421C62520AC575D00D049CC /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D421C62420AC575D00D049CC /* PBXTargetDependency */,
+			);
+			name = "RoadChatWatch Extension";
+			productName = "RoadChatWatch Extension";
+			productReference = D421C5F320AC322500D049CC /* RoadChatWatch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -1002,6 +1173,14 @@
 								enabled = 1;
 							};
 						};
+					};
+					D421C5E620AC322500D049CC = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					D421C5F220AC322500D049CC = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1041,6 +1220,8 @@
 			projectRoot = "";
 			targets = (
 				240D10F420481843008C5E39 /* RoadChat */,
+				D421C5E620AC322500D049CC /* RoadChatWatch */,
+				D421C5F220AC322500D049CC /* RoadChatWatch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -1242,6 +1423,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D421C5E520AC322500D049CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D421C5ED20AC322500D049CC /* Assets.xcassets in Resources */,
+				D421C5EB20AC322500D049CC /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D421C5F120AC322500D049CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D421C5FF20AC322500D049CC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1337,6 +1535,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D421C5EF20AC322500D049CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D421C5FD20AC322500D049CC /* NotificationController.swift in Sources */,
+				D421C62020AC518F00D049CC /* CreateTrafficMessageInterfaceController.swift in Sources */,
+				D421C5FB20AC322500D049CC /* ExtensionDelegate.swift in Sources */,
+				D421C5F920AC322500D049CC /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1365,6 +1574,26 @@
 			name = "SwiftyBeaver (iOS)";
 			targetProxy = 24F1DD4220517B9D00A726AA /* PBXContainerItemProxy */;
 		};
+		D421C5F620AC322500D049CC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D421C5F220AC322500D049CC /* RoadChatWatch Extension */;
+			targetProxy = D421C5F520AC322500D049CC /* PBXContainerItemProxy */;
+		};
+		D421C60320AC322500D049CC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D421C5E620AC322500D049CC /* RoadChatWatch */;
+			targetProxy = D421C60220AC322500D049CC /* PBXContainerItemProxy */;
+		};
+		D421C62420AC575D00D049CC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RoadChatKit;
+			targetProxy = D421C62320AC575D00D049CC /* PBXContainerItemProxy */;
+		};
+		D421C62920AC57FB00D049CC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RoadChatKit;
+			targetProxy = D421C62820AC57FB00D049CC /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1374,6 +1603,14 @@
 				240D110420481843008C5E39 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D421C5E920AC322500D049CC /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D421C5EA20AC322500D049CC /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1530,6 +1767,80 @@
 			};
 			name = Release;
 		};
+		D421C60520AC322500D049CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C23UW3NA42;
+				IBSC_MODULE = RoadChatWatch_Extension;
+				INFOPLIST_FILE = RoadChatWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hpe.dhbw.RoadChat.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Debug;
+		};
+		D421C60620AC322500D049CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C23UW3NA42;
+				IBSC_MODULE = RoadChatWatch_Extension;
+				INFOPLIST_FILE = RoadChatWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hpe.dhbw.RoadChat.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Release;
+		};
+		D421C60720AC322500D049CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "RoadChatWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hpe.dhbw.RoadChat.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Debug;
+		};
+		D421C60820AC322500D049CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "RoadChatWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hpe.dhbw.RoadChat.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1547,6 +1858,24 @@
 			buildConfigurations = (
 				240D110A20481844008C5E39 /* Debug */,
 				240D110B20481844008C5E39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D421C61C20AC322500D049CC /* Build configuration list for PBXNativeTarget "RoadChatWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D421C60720AC322500D049CC /* Debug */,
+				D421C60820AC322500D049CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D421C61E20AC322500D049CC /* Build configuration list for PBXNativeTarget "RoadChatWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D421C60520AC322500D049CC /* Debug */,
+				D421C60620AC322500D049CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
