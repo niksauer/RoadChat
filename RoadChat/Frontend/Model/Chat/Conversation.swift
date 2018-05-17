@@ -141,6 +141,8 @@ class Conversation: NSManagedObject, ReportOwner {
             let coreMessages: [DirectMessage] = messages.compactMap {
                 do {
                     return try DirectMessage.create(from: $0, conversationID: Int(self.id), in: self.context)
+                } catch DirectMessageError.duplicate {
+                    return nil
                 } catch {
                     let report = Report(.failedCoreDataOperation(.create, resource: "DirectMessage", isMultiple: true, error: error), owner: self)
                     log.error(report)

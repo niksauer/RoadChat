@@ -112,7 +112,6 @@
 		24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		24F2971320AD780700EDA138 /* DirectMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2971220AD780700EDA138 /* DirectMessagesViewController.swift */; };
 		24F2972920AD7B4C00EDA138 /* DirectMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2972720AD7B4C00EDA138 /* DirectMessageCell.swift */; };
-		24F2972A20AD7B4C00EDA138 /* DirectMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F2972820AD7B4C00EDA138 /* DirectMessageCell.xib */; };
 		24FE0002207CDDC300F0D657 /* CommunityBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */; };
 		24FE0059207D51D200F0D657 /* BasicColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE0058207D51D200F0D657 /* BasicColorPalette.swift */; };
 		24FE005C207D564500F0D657 /* EdgeInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE005B207D564500F0D657 /* EdgeInsetLabel.swift */; };
@@ -470,7 +469,6 @@
 		24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyBeaver.xcodeproj; path = Frameworks/SwiftyBeaver/SwiftyBeaver.xcodeproj; sourceTree = "<group>"; };
 		24F2971220AD780700EDA138 /* DirectMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessagesViewController.swift; sourceTree = "<group>"; };
 		24F2972720AD7B4C00EDA138 /* DirectMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessageCell.swift; sourceTree = "<group>"; };
-		24F2972820AD7B4C00EDA138 /* DirectMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DirectMessageCell.xib; sourceTree = "<group>"; };
 		24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoardViewController.swift; sourceTree = "<group>"; };
 		24FE0058207D51D200F0D657 /* BasicColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicColorPalette.swift; sourceTree = "<group>"; };
 		24FE005B207D564500F0D657 /* EdgeInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetLabel.swift; sourceTree = "<group>"; };
@@ -919,7 +917,6 @@
 			isa = PBXGroup;
 			children = (
 				24F2972720AD7B4C00EDA138 /* DirectMessageCell.swift */,
-				24F2972820AD7B4C00EDA138 /* DirectMessageCell.xib */,
 				249515CF206460F800E734E4 /* ConversationCell.swift */,
 				249515D0206460F800E734E4 /* ConversationCell.xib */,
 			);
@@ -1265,7 +1262,6 @@
 				D45FD7302084FB5500C35949 /* CreateOrEditProfileViewController.xib in Resources */,
 				24B134772064202800B894BF /* CreateCommunityMessageViewController.xib in Resources */,
 				24207DF32076BC8E00851A73 /* AboutViewController.xib in Resources */,
-				24F2972A20AD7B4C00EDA138 /* DirectMessageCell.xib in Resources */,
 				C9150A9520809A1900A69078 /* TrafficMessageDetailViewController.xib in Resources */,
 				D45FD6C9207FEB7E00C35949 /* LocationViewController.xib in Resources */,
 				240D110220481843008C5E39 /* Assets.xcassets in Resources */,
