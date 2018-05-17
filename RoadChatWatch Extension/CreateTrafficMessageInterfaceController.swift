@@ -8,13 +8,19 @@
 
 import Foundation
 import WatchKit
+import RoadChatKitWatch
+import WatchConnectivity
 
-
-class CreateTrafficMessageInterfaceController: WKInterfaceController {
+class CreateTrafficMessageInterfaceController: WKInterfaceController, WCSessionDelegate {
+    
+    var session : WCSession?
 
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
+        session = WCSession.default
+        session?.delegate = self
+        session?.activate()
         
         // Configure interface objects here.
     }
@@ -39,5 +45,22 @@ class CreateTrafficMessageInterfaceController: WKInterfaceController {
     }
     @IBAction func detourButtonPressed() {
     }
+    
+    private func sendTrafficMessage(type: String){
+     
+        session?.sendMessage(["type" : type],
+                             replyHandler: { (response) in
+                                print(response)
+                                }
+        )
+        
+    }
+    
+            // MARK: - WCSessionDelegate
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        //LOG
+    }
+    
     
 }
