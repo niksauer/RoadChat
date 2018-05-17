@@ -49,6 +49,7 @@ class CreateTrafficMessageInterfaceController: WKInterfaceController, WCSessionD
             // handle response from iPhone
             print(response)
         })
+        print("sent message to iPhone: \(type.rawValue)")
     }
     
     // MARK: - WCSessionDelegate
