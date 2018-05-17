@@ -14,17 +14,17 @@ class DirectMessageCell: UICollectionViewCell {
 //    typealias ColorPalette =
     
     // MARK: - Outlets
-    @IBOutlet weak var textView: UITextView!
+//    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var timeLabel: UILabel!
     
     // MARK: - Public Methods
     func configure(message: DirectMessage, dateFormatter: DateFormatter) {
-        textView.text = message.message
+//        textView.text = message.message
         timeLabel.text = dateFormatter.string(from: message.time!)
     }
 
     func reset() {
-        textView.text = nil
+//        textView.text = nil
         timeLabel.text = nil
     }
     

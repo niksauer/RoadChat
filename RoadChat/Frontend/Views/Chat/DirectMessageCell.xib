@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,41 +14,40 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="DirectMessageCell" customModule="RoadChat" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="310" height="81"/>
+            <rect key="frame" x="0.0" y="0.0" width="310" height="88"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="310" height="81"/>
+                <rect key="frame" x="0.0" y="0.0" width="310" height="88"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Ich geh auch trainieren aber seh zu dass ich um 18:30 wieder home bin" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eos-ea-FZe">
-                        <rect key="frame" x="8" y="8" width="294" height="49"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    </textView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15:21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1g-Ly-g3v">
-                        <rect key="frame" x="276" y="61" width="26" height="12"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="261" verticalCompressionResistancePriority="760" text="15:21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1g-Ly-g3v">
+                        <rect key="frame" x="276" y="68" width="26" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hallo, wie gehts? Ich gehe heute nicht ins Training, da ich noch die App fertig machen muss." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b32-J8-s6l">
+                        <rect key="frame" x="16" y="8" width="278" height="56"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
-            <color key="backgroundColor" red="0.87450980389999999" green="0.32156862749999998" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="eos-ea-FZe" secondAttribute="trailing" constant="8" id="3eL-MR-4cL"/>
+                <constraint firstItem="b32-J8-s6l" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leadingMargin" id="Ef6-6Y-kuO"/>
                 <constraint firstAttribute="trailing" secondItem="k1g-Ly-g3v" secondAttribute="trailing" constant="8" id="Jie-eK-Qgl"/>
-                <constraint firstItem="eos-ea-FZe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="RbO-RU-hBO"/>
-                <constraint firstItem="eos-ea-FZe" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="dSE-nF-X2z"/>
-                <constraint firstItem="k1g-Ly-g3v" firstAttribute="top" secondItem="eos-ea-FZe" secondAttribute="bottom" constant="4" id="nhd-Tj-iem"/>
+                <constraint firstAttribute="trailingMargin" secondItem="b32-J8-s6l" secondAttribute="trailing" id="df6-oA-BR1"/>
+                <constraint firstItem="k1g-Ly-g3v" firstAttribute="top" secondItem="b32-J8-s6l" secondAttribute="bottom" constant="4" id="eC8-wC-UoN"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="k1g-Ly-g3v" secondAttribute="bottom" constant="8" id="tXs-TI-vJK"/>
+                <constraint firstItem="b32-J8-s6l" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="topMargin" constant="8" id="yOh-dQ-7eq"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="310" height="81"/>
+            <size key="customSize" width="310" height="88"/>
             <connections>
-                <outlet property="textView" destination="eos-ea-FZe" id="K0j-c1-nLm"/>
                 <outlet property="timeLabel" destination="k1g-Ly-g3v" id="KZL-JG-wdb"/>
             </connections>
-            <point key="canvasLocation" x="183" y="-31.5"/>
+            <point key="canvasLocation" x="183" y="-28"/>
         </collectionViewCell>
     </objects>
 </document>
