@@ -56,9 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        // start polling for location updates
-        container.locationManager.startPolling()
-        
         // start connectivity handler
         if WCSession.isSupported() {
             connectivityHandler = container.connectivityHandler
@@ -86,12 +83,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // stop polling for location updates
         container.locationManager.stopPolling()
-    
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-        
+        guard let _ = window?.rootViewController as? HomeTabBarController else {
+            return
+        }
         
         // start polling for location updates
         container.locationManager.startPolling()

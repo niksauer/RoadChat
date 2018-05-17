@@ -104,6 +104,7 @@ class User: NSManagedObject, ReportOwner {
         getCars(completion: nil)
         getConversations(completion: nil)
         getCommunityMessages(completion: nil)
+        getTrafficMessages(completion: nil)
     }
     
     // MARK: - Public Methods
@@ -374,70 +375,71 @@ class User: NSManagedObject, ReportOwner {
         }
     }
     
-    func createConversation(_ conversation: ConversationRequest, completion: @escaping (Error?) -> Void) {
+    func updateLocation(to location: LocationRequest, completion: ((Error?) -> Void)?) {
         do {
-            try conversationService.create(conversation) { conversation, error in
-                guard let conversation = conversation else {
+            try userService.updateLocation(userID: Int(id), to: location) { error in
+                guard error == nil else {
                     // pass service error
-                    let report = Report(.failedServerOperation(.create, resource: "Conversation", isMultiple: false, error: error!), owner: self)
+                    let report = Report(.failedServerOperation(.update, resource: "Location", isMultiple: false, error: error!), owner: self)
                     log.error(report)
-                    completion(error!)
+                    completion?(error!)
                     return
                 }
-    
+                
                 do {
-                    let conversation = try Conversation.createOrUpdate(from: conversation, in: self.context)
-                    self.addToConversations(conversation)
+                    let location = RoadChatKit.Location(locationRequest: location)
+                    let coreLocation = try Location.create(from: RoadChatKit.Location.PublicLocation(location: location), in: self.context)
+                    self.location = coreLocation
                     try self.context.save()
-    
-                    let report = Report(.successfulCoreDataOperation(.create, resource: "Conversation", isMultiple: false), owner: self)
+                    
+                    let report = Report(.successfulCoreDataOperation(.update, resource: "Location", isMultiple: false), owner: self)
                     log.debug(report)
-    
-                    completion(nil)
+                    
+                    completion?(nil)
                 } catch {
                     // pass core data error
-                    let report = Report(.failedCoreDataOperation(.create, resource: "Conversation", isMultiple: false, error: error), owner: self)
+                    let report = Report(.failedCoreDataOperation(.update, resource: "Location", isMultiple: false, error: error), owner: self)
                     log.error(report)
-                    completion(error)
+                    completion?(error)
                 }
             }
         } catch {
             // pass body encoding error
-            let report = Report(.failedServerRequest(requestType: "ConversationRequest", error: error), owner: self)
+            let report = Report(.failedServerRequest(requestType: "LocationRequest", error: error), owner: self)
             log.error(report)
-            completion(error)
+            completion?(error)
         }
     }
     
-    func getConversations(completion: ((Error?) -> Void)?) {
-        userService.getConversations(userID: Int(id)) { conversations, error in
-            guard let conversations = conversations else {
+    func getTrafficMessages(completion: ((Error?) -> Void)?) {
+        userService.getTrafficMessages(userID: Int(id)) { messages, error in
+            guard let messages = messages else {
                 // pass service error
-                let report = Report(.failedServerOperation(.retrieve, resource: "Conversation", isMultiple: true, error: error!), owner: self)
+                let report = Report(.failedServerOperation(.retrieve, resource: "TrafficMessage", isMultiple: true, error: error!), owner: self)
                 log.error(report)
                 completion?(error!)
                 return
             }
-    
-            let coreConversations: [Conversation] = conversations.compactMap {
+            
+            let coreMessages: [TrafficMessage] = messages.compactMap {
                 do {
-                    return try Conversation.createOrUpdate(from: $0, in: self.context)
+                    return try TrafficMessage.createOrUpdate(from: $0, in: self.context)
                 } catch {
-                    let report = Report(.failedCoreDataOperation(.create, resource: "Conversation", isMultiple: false, error: error), owner: self)
+                    let report = Report(.failedCoreDataOperation(.create, resource: "TrafficMessage", isMultiple: false, error: error), owner: self)
                     log.error(report)
                     return nil
                 }
             }
-    
-            self.addToConversations(NSSet(array: coreConversations))
-    
+            
+            self.addToTrafficMessages(NSSet(array: coreMessages))
+            
             do {
                 try self.context.save()
-                let report = Report(.successfulCoreDataOperation(.retrieve, resource: "Conversation", isMultiple: true), owner: self)
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: "TrafficMessage", isMultiple: true), owner: self)
                 log.debug(report)
                 completion?(nil)
             } catch {
-                let report = Report(.failedCoreDataOperation(.retrieve, resource: "Conversation", isMultiple: true, error: error), owner: self)
+                let report = Report(.failedCoreDataOperation(.retrieve, resource: "TrafficMessage", isMultiple: true, error: error), owner: self)
                 log.error(report)
                 completion?(error)
             }
@@ -478,5 +480,75 @@ class User: NSManagedObject, ReportOwner {
             }
         }
     }
-
+    
+    func createConversation(_ conversation: ConversationRequest, completion: @escaping (Error?) -> Void) {
+        do {
+            try conversationService.create(conversation) { conversation, error in
+                guard let conversation = conversation else {
+                    // pass service error
+                    let report = Report(.failedServerOperation(.create, resource: "Conversation", isMultiple: false, error: error!), owner: self)
+                    log.error(report)
+                    completion(error!)
+                    return
+                }
+                
+                do {
+                    let conversation = try Conversation.createOrUpdate(from: conversation, in: self.context)
+                    self.addToConversations(conversation)
+                    try self.context.save()
+                    
+                    let report = Report(.successfulCoreDataOperation(.create, resource: "Conversation", isMultiple: false), owner: self)
+                    log.debug(report)
+                    
+                    completion(nil)
+                } catch {
+                    // pass core data error
+                    let report = Report(.failedCoreDataOperation(.create, resource: "Conversation", isMultiple: false, error: error), owner: self)
+                    log.error(report)
+                    completion(error)
+                }
+            }
+        } catch {
+            // pass body encoding error
+            let report = Report(.failedServerRequest(requestType: "ConversationRequest", error: error), owner: self)
+            log.error(report)
+            completion(error)
+        }
+    }
+    
+    func getConversations(completion: ((Error?) -> Void)?) {
+        userService.getConversations(userID: Int(id)) { conversations, error in
+            guard let conversations = conversations else {
+                // pass service error
+                let report = Report(.failedServerOperation(.retrieve, resource: "Conversation", isMultiple: true, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            let coreConversations: [Conversation] = conversations.compactMap {
+                do {
+                    return try Conversation.createOrUpdate(from: $0, in: self.context)
+                } catch {
+                    let report = Report(.failedCoreDataOperation(.create, resource: "Conversation", isMultiple: false, error: error), owner: self)
+                    log.error(report)
+                    return nil
+                }
+            }
+            
+            self.addToConversations(NSSet(array: coreConversations))
+            
+            do {
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: "Conversation", isMultiple: true), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                let report = Report(.failedCoreDataOperation(.retrieve, resource: "Conversation", isMultiple: true, error: error), owner: self)
+                log.error(report)
+                completion?(error)
+            }
+        }
+    }
+    
 }

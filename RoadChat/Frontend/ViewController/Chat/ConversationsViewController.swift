@@ -30,7 +30,7 @@ class ConversationsViewController: FetchedResultsTableViewController {
         
         self.title = "Chat"
         self.tabBarItem = UITabBarItem(title: "Chat", image: #imageLiteral(resourceName: "speech_buble_glyph"), tag: 2)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "create_new_glyph"), style: .plain, target: nil, action: nil)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "worldwide_location"), style: .plain, target: self, action: #selector(radarButtonPressed))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -55,6 +55,17 @@ class ConversationsViewController: FetchedResultsTableViewController {
         try? fetchedResultsController?.performFetch()
         
         tableView.reloadData()
+    }
+    
+    @objc private func radarButtonPressed() {
+        guard user.privacy!.shareLocation else {
+            displayAlert(title: "Warning", message: "Please enable location sharing in order to discover nearby users: \nProfile > Settings > Privacy > Location ", completion: nil)
+            return
+        }
+        
+        let radarViewController = viewFactory.makeRadarController(activeUser: user)
+        let radarNavigationController = UINavigationController(rootViewController: radarViewController)
+        self.present(radarNavigationController, animated: true, completion: nil)
     }
     
     // MARK: - Table View Data Source

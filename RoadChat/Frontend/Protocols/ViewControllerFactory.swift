@@ -39,6 +39,8 @@ protocol ViewControllerFactory {
     
     // Chat
     func makeConversationsViewController(for user: User) -> ConversationsViewController
+    func makeRadarController(activeUser: User) -> RadarViewController
+    func makeConversationViewController(activeUser: User, recipient: User) -> ConversationViewController
     
     // Settings
     func makeSettingsViewController(for user: User, settings: Settings) -> SettingsViewController
