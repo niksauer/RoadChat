@@ -81,7 +81,7 @@ class RadarViewController: UIViewController, MKMapViewDelegate, LocationManagerD
             let conversationController = self.viewFactory.makeConversationViewController(for: conversation, activeUser: activeUser)
             self.navigationController?.pushViewController(conversationController, animated: true)
         } else {
-            let request = ConversationRequest(title: selectedUser.username, participants: [selectedUser.id])
+            let request = ConversationRequest(title: nil, participants: [selectedUser.id])
             
             activeUser.createConversation(request) { conversation, error in
                 guard let conversation = conversation else {
