@@ -36,7 +36,7 @@ class SetupViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        // try? credentials.reset()
+//        try? credentials.reset()
     
         authenticationManager.getAuthenticatedUser { user in
             guard let user = user else {

@@ -175,7 +175,7 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makePrivacyViewController(with privacy: Privacy) -> PrivacyViewController {
-        return PrivacyViewController(privacy: privacy)
+        return PrivacyViewController(privacy: privacy, locationManager: locationManager)
     }
     
     func makeSecurityViewController(for user: User) -> SecurityViewController {

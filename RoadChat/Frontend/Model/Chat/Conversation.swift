@@ -40,7 +40,7 @@ class Conversation: NSManagedObject, ReportOwner {
         
         // create new conversation
         let conversation = Conversation(context: context)
-        conversation.id = Int32(prototype.id)
+        conversation.id = Int32(prototype.id - 1)
         conversation.creatorID = Int32(prototype.creatorID)
         conversation.title = prototype.title
         conversation.creation = prototype.creation
@@ -71,6 +71,14 @@ class Conversation: NSManagedObject, ReportOwner {
     private let conversationService = ConversationService(config: DependencyContainer().config)
     private let context: NSManagedObjectContext = CoreDataStack.shared.viewContext
 
+    // MARK: - Initialization
+    override func awakeFromFetch() {
+        super.awakeFromFetch()
+        get(completion: nil)
+        getMessages(completion: nil)
+        getParticipants(completion: nil)
+    }
+    
     // MARK: - Public Methods
     func get(completion: ((Error?) -> Void)?) {
         conversationService.get(conversationID: Int(id)) { conversation, error in

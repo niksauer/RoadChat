@@ -12,10 +12,15 @@ class PrivacyViewController: GroupedOptionTableViewController {
 
     // MARK: - Private Properties
     private let privacy: Privacy
+    private let locationManager: LocationManager
+    
+    private let sharesLocation: Bool
     
     // MARK: - Initialization
-    init(privacy: Privacy) {
+    init(privacy: Privacy, locationManager: LocationManager) {
         self.privacy = privacy
+        self.sharesLocation = privacy.shareLocation
+        self.locationManager = locationManager
         
         let sectionForOptionName = [
             "Location":     0,
@@ -70,6 +75,10 @@ class PrivacyViewController: GroupedOptionTableViewController {
             guard error == nil else {
                 // handle error
                 return
+            }
+            
+            if self.privacy.shareLocation && !self.sharesLocation {
+                self.locationManager.updateRemoteLocation()
             }
         }
     }

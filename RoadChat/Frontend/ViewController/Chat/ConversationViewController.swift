@@ -24,7 +24,7 @@ class ConversationViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.title = conversation.title
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "profile_glyph"), style: .plain, target: self, action: #selector(didPressProfileButton))
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "profile_glyph"), style: .plain, target: self, action: #selector(didPressProfileButton))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -44,9 +44,9 @@ class ConversationViewController: UIViewController {
     }
     
     // MARK: - Private Methods
-    @objc private func didPressProfileButton() {
+//    @objc private func didPressProfileButton() {
 //        let profileViewController = viewFactory.makeProfileViewController(for: conv, activeUser: activeUser)
 //        navigationController?.pushViewController(profileViewController, animated: true)
-    }
+//    }
 
 }
