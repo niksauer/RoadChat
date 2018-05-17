@@ -29,4 +29,38 @@ struct ConversationManager {
         }
     }
     
+    func findConversationByParticipants(_ participants: [RoadChatKit.User.PublicUser], requestor: User, context: NSManagedObjectContext) -> Conversation? {
+        let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
+        request.predicate = NSPredicate(format: "user.id == %d", requestor.id)
+        
+        guard let conversations = try? context.fetch(request), conversations.count >= 1 else {
+            return nil
+        }
+        
+        struct User: Hashable {
+            let id: Int
+        }
+        
+        return conversations.first { conversation in
+            if conversation.creatorID == requestor.id {
+                let participants = Set(conversation.storedParticipants.map { User(id: Int($0.userID)) })
+                let recipients = Set(participants.map { User(id: $0.id) })
+                
+                return participants == recipients
+            } else {
+                guard participants.contains(where: { recipient in
+                    recipient.id == conversation.creatorID
+                }) else {
+                    return false
+                }
+                
+                let participants = Set(conversation.storedParticipants.map { User(id: Int($0.userID)) })
+                var recipients = Set(participants.map { User(id: $0.id) })
+                recipients.insert(User(id: Int(requestor.id)))
+                
+                return participants == recipients
+            }
+        }
+    }
+    
 }

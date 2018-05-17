@@ -77,14 +77,24 @@ class RadarViewController: UIViewController, MKMapViewDelegate, LocationManagerD
             return
         }
         
-        userManager.findUserById(selectedUser.id, context: searchContext) { user, error in
-            guard let recipient = user else {
-                self.displayAlert(title: "Error", message: "Failed to fetch details of nearby user: \(error!)", completion: nil)
-                return
-            }
+        if let conversation = conversationManager.findConversationByParticipants([selectedUser], requestor: activeUser, context: searchContext) {
+            let conversationController = self.viewFactory.makeConversationViewController(for: conversation, activeUser: activeUser)
+            self.navigationController?.pushViewController(conversationController, animated: true)
+        } else {
+            let request = ConversationRequest(title: selectedUser.username, participants: [selectedUser.id])
             
-            let createConversationController = self.viewFactory.makeConversationViewController(activeUser: self.activeUser, recipient: recipient)
-            self.navigationController?.pushViewController(createConversationController, animated: true)
+            activeUser.createConversation(request) { conversation, error in
+                guard let conversation = conversation else {
+                    self.displayAlert(title: "Error", message: "Failed to create conversation: \(error!)") {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    
+                    return
+                }
+                
+                let conversationController = self.viewFactory.makeConversationViewController(for: conversation, activeUser: self.activeUser)
+                self.navigationController?.pushViewController(conversationController, animated: true)
+            }
         }
     }
     

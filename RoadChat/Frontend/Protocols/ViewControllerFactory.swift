@@ -38,9 +38,10 @@ protocol ViewControllerFactory {
     func makeTrafficMessageDetailViewController(for message: TrafficMessage, sender: User, activeUser: User) -> TrafficMessageDetailViewController
     
     // Chat
-    func makeConversationsViewController(for user: User) -> ConversationsViewController
     func makeRadarController(activeUser: User) -> RadarViewController
-    func makeConversationViewController(activeUser: User, recipient: User) -> ConversationViewController
+    func makeConversationsViewController(for user: User) -> ConversationsViewController
+    func makeConversationViewController(for conversation: Conversation, activeUser: User) -> ConversationViewController
+    func makeDirectMessagesViewController(for conversation: Conversation, activeUser: User) -> DirectMessagesViewController
     
     // Settings
     func makeSettingsViewController(for user: User, settings: Settings) -> SettingsViewController

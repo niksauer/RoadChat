@@ -481,14 +481,14 @@ class User: NSManagedObject, ReportOwner {
         }
     }
     
-    func createConversation(_ conversation: ConversationRequest, completion: @escaping (Error?) -> Void) {
+    func createConversation(_ conversation: ConversationRequest, completion: @escaping (Conversation?, Error?) -> Void) {
         do {
             try conversationService.create(conversation) { conversation, error in
                 guard let conversation = conversation else {
                     // pass service error
                     let report = Report(.failedServerOperation(.create, resource: "Conversation", isMultiple: false, error: error!), owner: self)
                     log.error(report)
-                    completion(error!)
+                    completion(nil, error!)
                     return
                 }
                 
@@ -500,19 +500,19 @@ class User: NSManagedObject, ReportOwner {
                     let report = Report(.successfulCoreDataOperation(.create, resource: "Conversation", isMultiple: false), owner: self)
                     log.debug(report)
                     
-                    completion(nil)
+                    completion(conversation, nil)
                 } catch {
                     // pass core data error
                     let report = Report(.failedCoreDataOperation(.create, resource: "Conversation", isMultiple: false, error: error), owner: self)
                     log.error(report)
-                    completion(error)
+                    completion(nil, error)
                 }
             }
         } catch {
             // pass body encoding error
             let report = Report(.failedServerRequest(requestType: "ConversationRequest", error: error), owner: self)
             log.error(report)
-            completion(error)
+            completion(nil, error)
         }
     }
     
