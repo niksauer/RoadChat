@@ -151,8 +151,12 @@ extension DependencyContainer: ViewControllerFactory {
         return ConversationsViewController(viewFactory: self, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter)
     }
     
-    func makeNearbyViewController(activeUser: User) -> NearbyViewController {
-        return NearbyViewController(activeUser: activeUser, conversationManager: conversationManager, locationManager: locationManager)
+    func makeRadarController(activeUser: User) -> RadarViewController {
+        return RadarViewController(viewFactory: self, activeUser: activeUser, conversationManager: conversationManager, locationManager: locationManager, userManager: userManager, searchContext: viewContext)
+    }
+    
+    func makeConversationViewController(activeUser: User, recipient: User) -> ConversationViewController {
+        return ConversationViewController(viewFactory: self, activeUser: activeUser, recipient: recipient)
     }
     
     // User
