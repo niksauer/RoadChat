@@ -641,6 +641,7 @@
 				240AB0172050871500324028 /* RoadChat.entitlements */,
 				240D110620481844008C5E39 /* Info.plist */,
 				248D37B42049528A00B21C3D /* Frontend */,
+				D421C6C120ADBBB600D049CC /* Watch */,
 				248D37B8204952C300B21C3D /* Backend */,
 				241017FF2052F3AC002AEC9A /* Support */,
 			);
@@ -882,7 +883,6 @@
 		248D37B8204952C300B21C3D /* Backend */ = {
 			isa = PBXGroup;
 			children = (
-				D421C6C120ADBBB600D049CC /* Watch */,
 				2489C4B62055E01E005C937E /* APIClient.swift */,
 				243357252049817A00CD5F87 /* JSendAPIClient.swift */,
 				2404A25A204EAFAC009AC7E1 /* JSendService.swift */,

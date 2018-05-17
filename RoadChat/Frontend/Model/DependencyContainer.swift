@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import CoreLocation
+import WatchConnectivity
 
 struct DependencyContainer {
     
@@ -63,6 +64,7 @@ struct DependencyContainer {
     
     // Public Properties
     var appDelegate: AppDelegate!
+    let connectivitySession: WCSession = WCSession.default
     let credentials: APICredentialStore = KeychainManager.shared
     let userDefaults: UserDefaults = UserDefaults.standard
     let coreData: CoreDataStack = CoreDataStack.shared
@@ -71,6 +73,10 @@ struct DependencyContainer {
     
     var config: APIConfiguration {
         return RoadChatAPI(credentials: credentials)
+    }
+    
+    var connectivityHandler: ConnectivityHandler {
+        return ConnectivityHandler(session: connectivitySession, trafficBoard: trafficBoard, locationManager: locationManager)
     }
 }
 

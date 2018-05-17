@@ -13,11 +13,13 @@ import WatchConnectivity
 
 class CreateTrafficMessageInterfaceController: WKInterfaceController, WCSessionDelegate {
     
-    var session : WCSession?
+    // MARK: - Private Properties
+    private var session: WCSession?
 
-    
+    // MARK: - Initialization
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
+        
         session = WCSession.default
         session?.delegate = self
         session?.activate()
@@ -25,42 +27,33 @@ class CreateTrafficMessageInterfaceController: WKInterfaceController, WCSessionD
         // Configure interface objects here.
     }
     
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        super.willActivate()
+    // MARK: - Private Methods
+    @IBAction private func jamButtonPressed() {
+        sendTrafficMessage(type: .jam)
     }
     
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
-        super.didDeactivate()
+    @IBAction private func accidentButtonPressed() {
+        sendTrafficMessage(type: .accident)
     }
     
-    
-
-    @IBAction func jamButtonPressed() {
-    }
-    @IBAction func accidentButtonPressed() {
-    }
-    @IBAction func dangerButtonPressed() {
-    }
-    @IBAction func detourButtonPressed() {
+    @IBAction private func dangerButtonPressed() {
+        sendTrafficMessage(type: .danger)
     }
     
-    private func sendTrafficMessage(type: String){
-     
-        session?.sendMessage(["type" : type],
-                             replyHandler: { (response) in
-                                print(response)
-                                }
-        )
-        
+    @IBAction private func detourButtonPressed() {
+        sendTrafficMessage(type: .detour)
     }
     
-            // MARK: - WCSessionDelegate
+    private func sendTrafficMessage(type: TrafficType) {
+        session?.sendMessage(["type" : type.rawValue], replyHandler: { response in
+            // handle response from iPhone
+            print(response)
+        })
+    }
     
+    // MARK: - WCSessionDelegate
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        //LOG
+        print("session active")
     }
-    
     
 }

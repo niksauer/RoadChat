@@ -8,12 +8,15 @@
 
 import UIKit
 import SwiftyBeaver
+import WatchConnectivity
 
 let log = SwiftyBeaver.self
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-     var window: UIWindow?
+    
+    var window: UIWindow?
+    var connectivityHandler: ConnectivityHandler?
     
     // dependency injection
     var container = DependencyContainer()
@@ -55,6 +58,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // start polling for location updates
         container.locationManager.startPolling()
+        
+        // start connectivity handler
+        if WCSession.isSupported() {
+            connectivityHandler = container.connectivityHandler
+        } else {
+            log.debug("Watch connectivity is not supported.")
+        }
         
         // non-storyboard UI configuration
         window = UIWindow(frame: UIScreen.main.bounds)
