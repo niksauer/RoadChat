@@ -16,13 +16,14 @@ class ConnectivityHandler: NSObject, WCSessionDelegate {
     private let session: WCSession
     private let trafficBoard: TrafficBoard
     private let locationManager: LocationManager
+    private var errorString: String
     
     // MARK: - Initialization
     init(session: WCSession, trafficBoard: TrafficBoard, locationManager: LocationManager) {
         self.session = session
         self.trafficBoard = trafficBoard
         self.locationManager = locationManager
-        
+        errorString = ""
         super.init()
         
         session.delegate = self
@@ -56,6 +57,7 @@ class ConnectivityHandler: NSObject, WCSessionDelegate {
         }
     
         createTrafficMessage(type: trafficType)
+        replyHandler(["type" : errorString])
     }
     
     // MARK: - Private Methods
@@ -69,11 +71,13 @@ class ConnectivityHandler: NSObject, WCSessionDelegate {
         
         trafficBoard.postMessage(request) { error in
             guard error == nil else {
+                self.errorString = "\(error)"
                 // handle traffic board error -> return failure message
                 return
             }
             
             // return success message
+            self.errorString = "success"
         }
     }
 
