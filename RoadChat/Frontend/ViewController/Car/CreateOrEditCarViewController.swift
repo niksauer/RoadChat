@@ -96,13 +96,6 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         addImageButton.tintColor = colorPalette.createColor
         addImageButton.backgroundColor = colorPalette.contentBackgroundColor
         
-//        addImageButton.backgroundColor?.withAlphaComponent(0.5)
-//        addImageButton.layer.shadowColor = UIColor.black.cgColor
-//        addImageButton.layer.shadowOffset = CGSize.zero
-//        addImageButton.layer.shadowOpacity = 1
-//        addImageButton.layer.shadowRadius = 10
-//        addImageButton.layer.shouldRasterize = true
-        
         // color picker
         colorPickerField.backgroundColor = colorPalette.defaultCarColor
         colorPickerField.layer.cornerRadius = 10
@@ -120,7 +113,7 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         adjustBrightnessLabel.text = "Pinch to adjust Brightness"
         adjustBrightnessLabel.textColor = colorPalette.textColor
         
-        colorPickerContainer.backgroundColor = colorPalette.controlBackgroundColor
+        colorPickerContainer.backgroundColor = colorPalette.overlayColor
         colorPickerContainer.addSubview(colorPickerView)
         colorPickerContainer.addSubview(adjustBrightnessLabel)
     

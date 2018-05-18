@@ -12,10 +12,12 @@ import UIKit
 protocol BasicColorPalette {
     var backgroundColor: UIColor { get }
     var contentBackgroundColor: UIColor { get }
-    var controlBackgroundColor: UIColor { get }
+    var controlColor: UIColor { get }
+    var overlayColor: UIColor { get }
     var textColor: UIColor { get }
     var lightTextColor: UIColor { get }
     var tintColor: UIColor { get }
     var destructiveColor: UIColor { get }
     var createColor: UIColor { get }
+    var seperatorColor: UIColor { get }
 }

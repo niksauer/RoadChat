@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette, SexColorPalette, CarColorPalette, GeofenceColorPalette {
+struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette, SexColorPalette, CarColorPalette, GeofenceColorPalette, ChatColorPalette {
     
     // General
     private let yellow = UIColor(displayP3Red: 243/255, green: 211/255, blue: 93/255, alpha: 1)
@@ -24,16 +24,19 @@ struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette
     private let white = UIColor.white
     private let clear = UIColor.clear
     private let green = UIColor(displayP3Red: 118/255, green: 216/255, blue: 115/255, alpha: 1)
+    private let blue = UIColor(red: 0, green: 137/255, blue: 249/255, alpha: 1)
     
     // BasicColorPalette
     var backgroundColor: UIColor { return lightGray }
-    var controlBackgroundColor: UIColor { return darkGrey.withAlphaComponent(0.6) }
+    var overlayColor: UIColor { return darkGrey.withAlphaComponent(0.6) }
     var contentBackgroundColor: UIColor { return white }
     var textColor: UIColor { return black }
     var lightTextColor: UIColor { return lightGray }
     var tintColor: UIColor { return lightBlue }
     var destructiveColor: UIColor { return red }
     var createColor: UIColor { return green }
+    var seperatorColor: UIColor { return UIColor(displayP3Red: 204/255, green: 204/255, blue: 204/255, alpha: 1) }
+    var controlColor: UIColor { return UIColor(displayP3Red: 249/255, green: 249/255, blue: 249/255, alpha: 1) }
     
     // KarmaColorPalette
     var upvoteBgColor: UIColor { return darkOrange }
@@ -59,7 +62,13 @@ struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette
     // CarColorPalette
     var defaultCarColor: UIColor { return yellow }
     
-    // CarColorPalette
+    // GeofenceColorPalette
     var geofenceBackgroundColor: UIColor { return red.withAlphaComponent(0.1) }
     
+    // ChatColorPalette
+    var outgoingTextColor: UIColor { return white }
+    var outgoingBubbleColor: UIColor { return blue }
+    var incomingTextColor: UIColor { return black }
+    var incomingBubbleColor: UIColor { return lightGray }
+//    UIColor(white: 0.95, alpha: 1)
 }
