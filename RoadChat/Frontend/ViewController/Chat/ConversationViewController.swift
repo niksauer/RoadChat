@@ -11,6 +11,9 @@ import RoadChatKit
 
 class ConversationViewController: UIViewController, UITextFieldDelegate {
     
+    // MARK: - Typealiases
+    typealias ColorPalette = BasicColorPalette
+    
     // MARK: - Outlets
     @IBOutlet weak var messagesContainer: UIView!
     @IBOutlet weak var inputContainer: UIView!
@@ -25,12 +28,14 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     private let viewFactory: ViewControllerFactory
     private let conversation: Conversation
     private let activeUser: User
+    private let colorPalette: ColorPalette
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, conversation: Conversation, activeUser: User) {
+    init(viewFactory: ViewControllerFactory, conversation: Conversation, activeUser: User, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
         self.conversation = conversation
         self.activeUser = activeUser
+        self.colorPalette = colorPalette
         
         super.init(nibName: nil, bundle: nil)
         
@@ -60,6 +65,7 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         directMessagesViewController.view.pin(to: messagesContainer)
         
         // additional view setup
+        inputContainer.backgroundColor = colorPalette.interfaceControlColor
         sendButton.isEnabled = false
         messageTextField.delegate = self
         messageTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)

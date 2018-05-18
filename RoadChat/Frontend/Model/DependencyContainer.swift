@@ -162,7 +162,7 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeConversationViewController(for conversation: Conversation, activeUser: User) -> ConversationViewController {
-        return ConversationViewController(viewFactory: self, conversation: conversation, activeUser: activeUser)
+        return ConversationViewController(viewFactory: self, conversation: conversation, activeUser: activeUser, colorPalette: colorPalette)
     }
     
     func makeDirectMessagesViewController(for conversation: Conversation, activeUser: User) -> DirectMessagesViewController {

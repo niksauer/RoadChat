@@ -30,25 +30,36 @@
                     <rect key="frame" x="0.0" y="730" width="375" height="82"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="240" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="srf-6O-GEs">
-                            <rect key="frame" x="16" y="8" width="299" height="30"/>
+                            <rect key="frame" x="16" y="8" width="291" height="30"/>
                             <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="760" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N6o-uH-Mbt">
-                            <rect key="frame" x="323" y="8" width="36" height="30"/>
+                            <rect key="frame" x="315" y="6.6666666666666288" width="44" height="34"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                             <state key="normal" title="Send"/>
                             <connections>
                                 <action selector="didPressSendButton:" destination="-1" eventType="touchUpInside" id="aDZ-eN-vu2"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hg8-DU-GAK" userLabel="Seperator">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                            <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="dJy-wU-aAY"/>
+                            </constraints>
+                        </view>
                     </subviews>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="hg8-DU-GAK" firstAttribute="leading" secondItem="sXg-Dy-BOD" secondAttribute="leading" id="22F-L0-Jph"/>
                         <constraint firstItem="srf-6O-GEs" firstAttribute="leading" secondItem="sXg-Dy-BOD" secondAttribute="leading" constant="16" id="27I-Mr-3Ha"/>
+                        <constraint firstItem="hg8-DU-GAK" firstAttribute="top" secondItem="sXg-Dy-BOD" secondAttribute="top" id="4YS-db-SSH"/>
                         <constraint firstItem="srf-6O-GEs" firstAttribute="top" secondItem="sXg-Dy-BOD" secondAttribute="top" constant="8" id="6YG-yK-T2o"/>
                         <constraint firstItem="N6o-uH-Mbt" firstAttribute="leading" secondItem="srf-6O-GEs" secondAttribute="trailing" constant="8" id="9wO-8j-se1"/>
                         <constraint firstItem="N6o-uH-Mbt" firstAttribute="centerY" secondItem="srf-6O-GEs" secondAttribute="centerY" id="eEs-f6-qBb"/>
+                        <constraint firstAttribute="trailing" secondItem="hg8-DU-GAK" secondAttribute="trailing" id="hM7-cn-BaE"/>
                         <constraint firstAttribute="trailing" secondItem="N6o-uH-Mbt" secondAttribute="trailing" constant="16" id="yB9-fk-8f4"/>
                     </constraints>
                 </view>
