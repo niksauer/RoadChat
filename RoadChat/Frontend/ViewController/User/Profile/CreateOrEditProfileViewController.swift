@@ -179,7 +179,7 @@ class CreateOrEditProfileViewController: UIViewController {
     }
     
     @objc func didChangeBirthDate(sender: UIDatePicker) {
-        birthTextField.textColor = colorPalette.textColor
+        birthTextField.textColor = colorPalette.darkTextColor
         
         // get the date string applied date format
         let selectedDate = dateFormatter.string(from: sender.date)

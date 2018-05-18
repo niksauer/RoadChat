@@ -111,9 +111,9 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         adjustBrightnessLabel.clipsToBounds = true
         adjustBrightnessLabel.backgroundColor = colorPalette.contentBackgroundColor
         adjustBrightnessLabel.text = "Pinch to adjust Brightness"
-        adjustBrightnessLabel.textColor = colorPalette.textColor
+        adjustBrightnessLabel.textColor = colorPalette.darkTextColor
         
-        colorPickerContainer.backgroundColor = colorPalette.overlayColor
+        colorPickerContainer.backgroundColor = colorPalette.overlayBackgroundColor
         colorPickerContainer.addSubview(colorPickerView)
         colorPickerContainer.addSubview(adjustBrightnessLabel)
     
@@ -196,7 +196,7 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
     }
 
     func didChangeProductionDate(month: Int, year: Int) {
-        self.productionTextField.textColor = self.colorPalette.textColor
+        self.productionTextField.textColor = self.colorPalette.darkTextColor
         self.productionTextField.text = String(format: "%02d/%d", month, year)
         validateSaveButton()
     }

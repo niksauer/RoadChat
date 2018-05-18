@@ -28,15 +28,14 @@ struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette
     
     // BasicColorPalette
     var backgroundColor: UIColor { return lightGray }
-    var overlayColor: UIColor { return darkGrey.withAlphaComponent(0.6) }
+    var overlayBackgroundColor: UIColor { return darkGrey.withAlphaComponent(0.6) }
     var contentBackgroundColor: UIColor { return white }
-    var textColor: UIColor { return black }
+    var darkTextColor: UIColor { return black }
     var lightTextColor: UIColor { return lightGray }
     var tintColor: UIColor { return lightBlue }
     var destructiveColor: UIColor { return red }
     var createColor: UIColor { return green }
-    var seperatorColor: UIColor { return UIColor(displayP3Red: 204/255, green: 204/255, blue: 204/255, alpha: 1) }
-    var controlColor: UIColor { return UIColor(displayP3Red: 249/255, green: 249/255, blue: 249/255, alpha: 1) }
+    var interfaceControlColor: UIColor { return UIColor(displayP3Red: 249/255, green: 249/255, blue: 249/255, alpha: 1) }
     
     // KarmaColorPalette
     var upvoteBgColor: UIColor { return darkOrange }
@@ -70,5 +69,5 @@ struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette
     var outgoingBubbleColor: UIColor { return blue }
     var incomingTextColor: UIColor { return black }
     var incomingBubbleColor: UIColor { return lightGray }
-//    UIColor(white: 0.95, alpha: 1)
+    
 }

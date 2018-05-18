@@ -65,7 +65,7 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         directMessagesViewController.view.pin(to: messagesContainer)
         
         // additional view setup
-        inputContainer.backgroundColor = colorPalette.controlColor
+        inputContainer.backgroundColor = colorPalette.interfaceControlColor
         sendButton.isEnabled = false
         messageTextField.delegate = self
         messageTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
