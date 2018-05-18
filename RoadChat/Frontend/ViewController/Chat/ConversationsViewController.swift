@@ -78,6 +78,13 @@ class ConversationsViewController: FetchedResultsTableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let conversation = fetchedResultsController!.object(at: indexPath)
+        
+        let conversationViewController = viewFactory.makeConversationViewController(for: conversation, activeUser: user)
+        navigationController?.pushViewController(conversationViewController, animated: true)
+    }
+    
 }
 
 // MARK: - Table View Data Source

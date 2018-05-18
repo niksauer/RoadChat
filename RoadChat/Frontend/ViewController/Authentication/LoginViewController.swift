@@ -73,6 +73,7 @@ class LoginViewController: UIViewController {
             // configure locationManager
             self.locationManager.managedUser = user
             self.locationManager.startPolling()
+            self.locationManager.updateRemoteLocation()
             
             // send successful login message to watch
             do {
