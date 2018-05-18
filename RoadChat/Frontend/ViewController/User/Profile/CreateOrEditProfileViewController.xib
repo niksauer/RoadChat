@@ -32,14 +32,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="vJ3-H0-GZI">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="915"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3g8-Bx-58Q">
-                    <rect key="frame" x="0.0" y="64" width="375" height="802"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="MPS-Df-w7J">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="685.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="701.5"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pkb-Ar-G76">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
@@ -105,13 +105,19 @@
                                     </constraints>
                                     <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
                                 </stackView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p20-cJ-fX8" userLabel="Seperator">
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JeJ-hz-Vvj">
                                     <rect key="frame" x="0.0" y="368.5" width="375" height="1"/>
-                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="1" id="jVB-1n-Dkf"/>
-                                    </constraints>
-                                </view>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p20-cJ-fX8" userLabel="Seperator">
+                                            <rect key="frame" x="8" y="0.0" width="359" height="1"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="jVB-1n-Dkf"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <edgeInsets key="layoutMargins" top="0.0" left="8" bottom="0.0" right="8"/>
+                                </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="B15-HQ-nes">
                                     <rect key="frame" x="0.0" y="385.5" width="375" height="132.5"/>
                                     <subviews>
@@ -195,13 +201,19 @@
                                     </constraints>
                                     <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
                                 </stackView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sba-vt-BRX" userLabel="Seperator">
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bNz-q2-Byi">
                                     <rect key="frame" x="0.0" y="534" width="375" height="1"/>
-                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="1" id="rEz-sr-WC0"/>
-                                    </constraints>
-                                </view>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sba-vt-BRX" userLabel="Seperator">
+                                            <rect key="frame" x="8" y="0.0" width="359" height="1"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="rEz-sr-WC0"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <edgeInsets key="layoutMargins" top="0.0" left="8" bottom="0.0" right="8"/>
+                                </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yeI-oK-jR6">
                                     <rect key="frame" x="0.0" y="551" width="375" height="134.5"/>
                                     <subviews>
@@ -296,6 +308,7 @@
                                 <constraint firstItem="rmu-hC-Sv0" firstAttribute="leading" secondItem="IX4-eN-Kc2" secondAttribute="leading" id="U9b-e6-OPD"/>
                                 <constraint firstItem="z71-yj-wnZ" firstAttribute="leading" secondItem="twX-8Z-M4F" secondAttribute="leading" id="vNW-PD-yBT"/>
                             </constraints>
+                            <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="16" right="0.0"/>
                         </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68a-z1-RuS">
                             <rect key="frame" x="306" y="147.5" width="45" height="45"/>
@@ -325,11 +338,10 @@
                 <constraint firstItem="3g8-Bx-58Q" firstAttribute="top" secondItem="uKe-kD-WLb" secondAttribute="top" id="FvQ-Eo-cbg"/>
                 <constraint firstItem="3g8-Bx-58Q" firstAttribute="leading" secondItem="uKe-kD-WLb" secondAttribute="leading" id="KeO-qa-pro"/>
                 <constraint firstItem="uKe-kD-WLb" firstAttribute="trailing" secondItem="3g8-Bx-58Q" secondAttribute="trailing" id="Wfi-5d-JIi"/>
-                <constraint firstItem="uKe-kD-WLb" firstAttribute="bottom" secondItem="3g8-Bx-58Q" secondAttribute="bottom" id="dlU-cS-kmk"/>
+                <constraint firstAttribute="bottom" secondItem="3g8-Bx-58Q" secondAttribute="bottom" id="dlU-cS-kmk"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
             <viewLayoutGuide key="safeArea" id="uKe-kD-WLb"/>
             <point key="canvasLocation" x="576.5" y="670.5"/>
         </view>
