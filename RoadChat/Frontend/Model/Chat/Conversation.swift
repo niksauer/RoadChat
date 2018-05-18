@@ -19,7 +19,7 @@ class Conversation: NSManagedObject, ReportOwner {
     // MARK: - Public Class Methods
     class func createOrUpdate(from prototype: RoadChatKit.Conversation.PublicConversation, in context: NSManagedObjectContext) throws -> Conversation {
         let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %d", prototype.id)
+        request.predicate = NSPredicate(format: "id = %d", prototype.id - 1)
         
         do {
             let matches = try context.fetch(request)
@@ -40,7 +40,7 @@ class Conversation: NSManagedObject, ReportOwner {
         
         // create new conversation
         let conversation = Conversation(context: context)
-        conversation.id = Int32(prototype.id)
+        conversation.id = Int32(prototype.id - 1)
         conversation.creatorID = Int32(prototype.creatorID)
         conversation.title = prototype.title
         conversation.creation = prototype.creation
@@ -71,6 +71,14 @@ class Conversation: NSManagedObject, ReportOwner {
     private let conversationService = ConversationService(config: DependencyContainer().config)
     private let context: NSManagedObjectContext = CoreDataStack.shared.viewContext
 
+    // MARK: - Initialization
+    override func awakeFromFetch() {
+        super.awakeFromFetch()
+        get(completion: nil)
+        getMessages(completion: nil)
+        getParticipants(completion: nil)
+    }
+    
     // MARK: - Public Methods
     func get(completion: ((Error?) -> Void)?) {
         conversationService.get(conversationID: Int(id)) { conversation, error in
@@ -133,6 +141,8 @@ class Conversation: NSManagedObject, ReportOwner {
             let coreMessages: [DirectMessage] = messages.compactMap {
                 do {
                     return try DirectMessage.create(from: $0, conversationID: Int(self.id), in: self.context)
+                } catch DirectMessageError.duplicate {
+                    return nil
                 } catch {
                     let report = Report(.failedCoreDataOperation(.create, resource: "DirectMessage", isMultiple: true, error: error), owner: self)
                     log.error(report)
@@ -167,7 +177,8 @@ class Conversation: NSManagedObject, ReportOwner {
                 }
                 
                 do {
-                    _ = try DirectMessage.create(from: message, conversationID: Int(self.id), in: self.context)
+                    let message = try DirectMessage.create(from: message, conversationID: Int(self.id), in: self.context)
+                    self.addToMessages(message)
                     try self.context.save()
                     let report = Report(.successfulCoreDataOperation(.create, resource: "DirectMessage", isMultiple: false), owner: self)
                     log.debug(report)

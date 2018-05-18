@@ -37,16 +37,17 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
 
     // MARK: - Public Methods
     func startPolling() {
+        log.debug("Started polling user location.")
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
     
     func stopPolling() {
+        log.debug("Stopped polling user location.")
         locationManager.stopUpdatingLocation()
     }
     
-    // MARK: - Private Methods
-    private func updateRemoteLocation() {
+    func updateRemoteLocation() {
         guard let location = lastLocation, location.horizontalAccuracy <= distanceFilter, let user = managedUser, user.privacy!.shareLocation else {
             return
         }

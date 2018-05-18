@@ -88,6 +88,7 @@ class RegisterViewController: UIViewController {
                 // configure locationManager
                 self.locationManager.managedUser = user
                 self.locationManager.startPolling()
+                self.locationManager.updateRemoteLocation()
                 
                 // show home screen
                 let homeTabBarController = self.viewFactory.makeHomeTabBarController(activeUser: user)
