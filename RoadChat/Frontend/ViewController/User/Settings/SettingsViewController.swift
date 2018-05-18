@@ -237,13 +237,13 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
                     }
                     
                     // send successful logout message to watch
-                    
                     self.connectivityHandler.session.sendMessage(["isLoggedIn": false], replyHandler: nil)
-                    let appGroupID = "group.com.codingexplorer.WatchDataSharingTutorial"
-                    if let defaults = UserDefaults(suiteName: appGroupID) {
-                        defaults.setValue(false, forKey: "isLoggedInKey")
-                    }
+                    let appGroupID = "group.hpe.dhbw.SauerStudios"
                     
+                    if let defaults = UserDefaults(suiteName: appGroupID) {
+                        defaults.setValue(false, forKey: "isLoggedIn")
+                        defaults.synchronize()
+                    }
                     
                     let authenticationViewController = self.viewFactory.makeAuthenticationViewController()
                     self.appDelegate.show(authenticationViewController)

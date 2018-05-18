@@ -18,7 +18,7 @@ class AwaitLoginInterfaceController: WKInterfaceController, WCSessionDelegate {
     // MARK: - Initialization
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        
+
         session = WCSession.default
         session?.delegate = self
         session?.activate()
@@ -30,11 +30,21 @@ class AwaitLoginInterfaceController: WKInterfaceController, WCSessionDelegate {
     }
 
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        OperationQueue.main.addOperation {
+            print(message)
+        }
+        
         guard let isLoggedIn = message["isLoggedIn"] as? Bool, isLoggedIn else {
             return
         }
         
-        self.popToRootController()
+        OperationQueue.main.addOperation {
+//            WKInterfaceController.reloadRootControllers(withNames: ["TrafficMessageHome"], contexts: nil)
+            WKInterfaceController.reloadRootPageControllers(withNames: ["TrafficMessageHome"], contexts: nil, orientation: .horizontal, pageIndex: 0)
+            
+            self.popToRootController()
+        }
+        
     }
     
 
