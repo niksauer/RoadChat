@@ -77,9 +77,11 @@ class LoginViewController: UIViewController {
             
             // send successful login message to watch
             self.connectivityHandler.session.sendMessage(["isLoggedIn": true], replyHandler: nil)
-            let appGroupID = "group.com.codingexplorer.WatchDataSharingTutorial"
+            let appGroupID = "group.hpe.dhbw.SauerStudios"
+            
             if let defaults = UserDefaults(suiteName: appGroupID) {
-                defaults.setValue(true, forKey: "isLoggedInKey")
+                defaults.setValue(true, forKey: "isLoggedIn")
+                defaults.synchronize()
             }
             
             // show home screen

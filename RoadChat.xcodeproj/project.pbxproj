@@ -421,6 +421,7 @@
 		2404A255204E92D2009AC7E1 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		2404A25A204EAFAC009AC7E1 /* JSendService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSendService.swift; sourceTree = "<group>"; };
 		2404A25D204ED162009AC7E1 /* CarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarService.swift; sourceTree = "<group>"; };
+		24096F5B20AF169D009F103B /* RoadChatWatch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RoadChatWatch Extension.entitlements"; sourceTree = "<group>"; };
 		240AAFFB205086ED00324028 /* Locksmith.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Locksmith.xcodeproj; path = Frameworks/Locksmith/Locksmith.xcodeproj; sourceTree = "<group>"; };
 		240AB0172050871500324028 /* RoadChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RoadChat.entitlements; sourceTree = "<group>"; };
 		240AB01C2050878100324028 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -1082,6 +1083,7 @@
 		D421C5F720AC322500D049CC /* RoadChatWatch Extension */ = {
 			isa = PBXGroup;
 			children = (
+				24096F5B20AF169D009F103B /* RoadChatWatch Extension.entitlements */,
 				D421C5FA20AC322500D049CC /* ExtensionDelegate.swift */,
 				D421C5FC20AC322500D049CC /* NotificationController.swift */,
 				246118B920AEF8640035B8FF /* AwaitLoginInterfaceController.swift */,
@@ -1210,6 +1212,11 @@
 					D421C5F220AC322500D049CC = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1850,6 +1857,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "RoadChatWatch Extension/RoadChatWatch Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JPC698935F;
 				INFOPLIST_FILE = "RoadChatWatch Extension/Info.plist";
@@ -1868,6 +1876,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "RoadChatWatch Extension/RoadChatWatch Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JPC698935F;
 				INFOPLIST_FILE = "RoadChatWatch Extension/Info.plist";
