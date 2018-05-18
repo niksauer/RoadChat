@@ -46,6 +46,13 @@ class SetupViewController: UIViewController {
                 return
             }
             
+            // send successful login message to watch
+            do {
+                try self.connectivityHandler.session.updateApplicationContext(["isLoggedIn": true])
+            } catch {
+                log.error("Failed to update login status on Apple Watch: \(error)")
+            }
+            
             // configure locationManager
             self.locationManager.managedUser = user
             self.locationManager.startPolling()

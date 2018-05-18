@@ -23,8 +23,6 @@ class CreateTrafficMessageInterfaceController: WKInterfaceController, WCSessionD
         session = WCSession.default
         session?.delegate = self
         session?.activate()
-        
-        // Configure interface objects here.
     }
     
     // MARK: - Private Methods
@@ -52,6 +50,7 @@ class CreateTrafficMessageInterfaceController: WKInterfaceController, WCSessionD
         session?.sendMessage(["type" : type.rawValue], replyHandler: { response in
             // handle response from iPhone
             print(response)
+            
             if (response["type"] as? String == "success") {
                 self.presentAlert(withTitle: "Success", message: "Trafficmessage was successfully posted", preferredStyle: .alert, actions: [WKAlertAction(title: "OK", style: .default){
                     //something after clicking OK
@@ -59,23 +58,24 @@ class CreateTrafficMessageInterfaceController: WKInterfaceController, WCSessionD
             } else {
                 self.presentAlert(withTitle: "Error", message: "Trafficmessage failed", preferredStyle: .alert, actions: [WKAlertAction(title: "OK", style: .default){
                     //something after clicking OK
-                    }])
+                }])
             }
         })
+        
         print("sent message to iPhone: \(type.rawValue)")
     }
     
     // MARK: - WCSessionDelegate
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        print("session active")
+        
     }
     
-    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
-        if (applicationContext["loginState"] as! Bool) {
-            self.presentController(withName: "indexIC", context: self)
-        } else {
-            self.presentController(withName: "awaitIC", context: self)
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
+        guard let isLoggedIn = applicationContext["isLoggedIn"] as? Bool, !isLoggedIn else {
+            return
         }
+        
+        self.presentController(withName: "AwaitLogin", context: nil)
     }
     
 }

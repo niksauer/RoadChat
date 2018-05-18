@@ -236,9 +236,12 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
                         return
                     }
                     
-                    //send logout message to watch
-                    LoginViewController.loginState = false
-                    try! self.connectivityHandler.session.updateApplicationContext(["loginState": LoginViewController.loginState])
+                    // send successful logout message to watch
+                    do {
+                        try self.connectivityHandler.session.updateApplicationContext(["isLoggedIn": false])
+                    } catch {
+                        log.error("Failed to update login status on Apple Watch: \(error)")
+                    }
                     
                     let authenticationViewController = self.viewFactory.makeAuthenticationViewController()
                     self.appDelegate.show(authenticationViewController)
