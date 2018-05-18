@@ -76,10 +76,10 @@ class LoginViewController: UIViewController {
             self.locationManager.updateRemoteLocation()
             
             // send successful login message to watch
-            do {
-                try self.connectivityHandler.session.updateApplicationContext(["isLoggedIn": true])
-            } catch {
-                log.error("Failed to update login status on Apple Watch: \(error)")
+            self.connectivityHandler.session.sendMessage(["isLoggedIn": true], replyHandler: nil)
+            let appGroupID = "group.com.codingexplorer.WatchDataSharingTutorial"
+            if let defaults = UserDefaults(suiteName: appGroupID) {
+                defaults.setValue(true, forKey: "isLoggedInKey")
             }
             
             // show home screen

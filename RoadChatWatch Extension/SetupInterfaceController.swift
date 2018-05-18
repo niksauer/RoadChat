@@ -10,11 +10,20 @@ import WatchKit
 import Foundation
 
 class SetupInterfaceController: WKInterfaceController {
+   
     
     // MARK: - Initialization
     override func awake(withContext context: Any?) {
-        super.awake(withContext: context)
+        let appGroupID = "group.com.codingexplorer.WatchDataSharingTutorial"
+        let defaults = UserDefaults(suiteName: appGroupID)
+        let isLoggedIn = defaults?.bool(forKey: "isLoggedInKey")
         
+        if isLoggedIn! {
+            self.pushController(withName: "AwaitLogin", context: nil)
+        } else {
+            self.pushController(withName: "TrafficMessageHome", context: nil)
+        }
+        super.awake(withContext: context)
     }
     
 }

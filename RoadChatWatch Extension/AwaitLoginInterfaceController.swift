@@ -29,13 +29,16 @@ class AwaitLoginInterfaceController: WKInterfaceController, WCSessionDelegate {
         
     }
 
-    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
-        guard let isLoggedIn = applicationContext["isLoggedIn"] as? Bool, isLoggedIn else {
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        guard let isLoggedIn = message["isLoggedIn"] as? Bool, isLoggedIn else {
             return
         }
         
-        self.presentController(withName: "TrafficMessageHome", context: nil)
+        self.popToRootController()
     }
+    
+
+      
     
 }
 
