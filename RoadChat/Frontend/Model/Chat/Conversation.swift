@@ -177,7 +177,8 @@ class Conversation: NSManagedObject, ReportOwner {
                 }
                 
                 do {
-                    _ = try DirectMessage.create(from: message, conversationID: Int(self.id), in: self.context)
+                    let message = try DirectMessage.create(from: message, conversationID: Int(self.id), in: self.context)
+                    self.addToMessages(message)
                     try self.context.save()
                     let report = Report(.successfulCoreDataOperation(.create, resource: "DirectMessage", isMultiple: false), owner: self)
                     log.debug(report)
