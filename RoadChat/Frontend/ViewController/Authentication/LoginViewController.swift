@@ -8,8 +8,11 @@
 
 import UIKit
 import RoadChatKit
+import WatchConnectivity
 
 class LoginViewController: UIViewController {
+    
+    static var loginState: Bool = false
     
     // MARK: - Outlets
     @IBOutlet weak var usernameTextField: UITextField!
@@ -20,6 +23,7 @@ class LoginViewController: UIViewController {
     private let appDelegate: AppDelegate
     private let authenticationManager: AuthenticationManager
     private let locationManager: LocationManager
+    private let connectivityHandler: ConnectivityHandler!
     
     // MARK: - Initialization
     init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, locationManager: LocationManager) {
@@ -27,7 +31,8 @@ class LoginViewController: UIViewController {
         self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
         self.locationManager = locationManager
-    
+        self.connectivityHandler = (UIApplication.shared.delegate as? AppDelegate)?.connectivityHandler
+        
         super.init(nibName: nil, bundle: nil)
         self.title = "RoadChat"
     }
@@ -68,6 +73,10 @@ class LoginViewController: UIViewController {
             // configure locationManager
             self.locationManager.managedUser = user
             self.locationManager.startPolling()
+            
+            //send login message to Watch
+            loginState = true
+            try! self.connectivityHandler.session.updateApplicationContext(["loginState": loginState])
             
             // show home screen
             let homeTabBarController = self.viewFactory.makeHomeTabBarController(activeUser: user)

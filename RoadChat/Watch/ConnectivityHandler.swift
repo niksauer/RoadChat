@@ -12,8 +12,8 @@ import RoadChatKit
 
 class ConnectivityHandler: NSObject, WCSessionDelegate {
     
+    let session: WCSession
     // MARK: - Private Properties
-    private let session: WCSession
     private let trafficBoard: TrafficBoard
     private let locationManager: LocationManager
     private var errorString: String

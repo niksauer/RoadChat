@@ -70,4 +70,12 @@ class CreateTrafficMessageInterfaceController: WKInterfaceController, WCSessionD
         print("session active")
     }
     
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        if (applicationContext["loginState"] as! Bool) {
+            self.presentController(withName: "indexIC", context: self)
+        } else {
+            self.presentController(withName: "awaitIC", context: self)
+        }
+    }
+    
 }

@@ -21,6 +21,7 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
     private let settings: Settings
     private let colorPalette: ColorPalette
     private let lengthFormatter: LengthFormatter
+    private let connectivityHandler: ConnectivityHandler!
     
     // MARK: - Initialization
     init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, user: User, settings: Settings, colorPalette: ColorPalette, lengthFormatter: LengthFormatter) {
@@ -31,6 +32,7 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
         self.settings = settings
         self.colorPalette = colorPalette
         self.lengthFormatter = lengthFormatter
+        self.connectivityHandler = (UIApplication.shared.delegate as? AppDelegate)?.connectivityHandler
         
         super.init(style: .grouped)
         
@@ -233,6 +235,10 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
                         self.displayAlert(title: "Error", message: "Failed to logout: \(error!)", completion: nil)
                         return
                     }
+                    
+                    //send logout message to watch
+                    LoginViewController.loginState = false
+                    try! self.connectivityHandler.session.updateApplicationContext(["loginState": LoginViewController.loginState])
                     
                     let authenticationViewController = self.viewFactory.makeAuthenticationViewController()
                     self.appDelegate.show(authenticationViewController)
