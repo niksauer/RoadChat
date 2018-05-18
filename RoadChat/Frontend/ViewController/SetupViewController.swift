@@ -16,14 +16,16 @@ class SetupViewController: UIViewController {
     private let authenticationManager: AuthenticationManager
     private let credentials: APICredentialStore
     private let locationManager: LocationManager
+    private let connectivityHandler: ConnectivityHandler
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, credentials: APICredentialStore, locationManager: LocationManager) {
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, credentials: APICredentialStore, locationManager: LocationManager, connectivityHandler: ConnectivityHandler) {
         self.viewFactory = viewFactory
         self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
         self.credentials = credentials
         self.locationManager = locationManager
+        self.connectivityHandler = connectivityHandler
         
         super.init(nibName: nil, bundle: nil)
     }

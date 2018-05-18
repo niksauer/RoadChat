@@ -74,9 +74,12 @@ class LoginViewController: UIViewController {
             self.locationManager.managedUser = user
             self.locationManager.startPolling()
             
-            //send login message to Watch
-            loginState = true
-            try! self.connectivityHandler.session.updateApplicationContext(["loginState": loginState])
+            // send successful login message to watch
+            do {
+                try self.connectivityHandler.session.updateApplicationContext(["isLoggedIn": true])
+            } catch {
+                log.error("Failed to update login status on Apple Watch: \(error)")
+            }
             
             // show home screen
             let homeTabBarController = self.viewFactory.makeHomeTabBarController(activeUser: user)
