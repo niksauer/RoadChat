@@ -17,6 +17,8 @@ class AboutViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var aboutStackView: UIStackView!
+    @IBOutlet weak var separatorStackView: UIStackView!
+    @IBOutlet weak var informationStackView: UIStackView!
     @IBOutlet weak var emailStackView: UIStackView!
     @IBOutlet weak var birthStackView: UIStackView!
     @IBOutlet weak var addressStackView: UIStackView!
@@ -82,9 +84,11 @@ class AboutViewController: UIViewController {
         accountAgeLabel.text = registryDateFormatter.string(from: user.registry!)
         
         let isOwner = (user.id == activeUser.id)
+        var showsAnyInformation = false
         
         // email
         if isOwner || privacy.showEmail {
+            showsAnyInformation = true
             emailLabel.text = user.email!
         } else {
             emailStackView.isHidden = true
@@ -93,6 +97,7 @@ class AboutViewController: UIViewController {
         if let profile = user.profile {
             // birth
             if let birth = profile.birth, (isOwner || privacy.showBirth) {
+                showsAnyInformation = true
                 birthLabel.text = dateFormatter.string(from: birth)
                 birthStackView.isHidden = false
             } else {
@@ -103,21 +108,25 @@ class AboutViewController: UIViewController {
             let cnAddress = CNMutablePostalAddress()
             
             if (isOwner || privacy.showStreet) {
+                showsAnyInformation = true
                 cnAddress.street = "\(profile.streetNumber) \(profile.streetName ?? "")"
             }
             
             if (isOwner || privacy.showCity) {
+                showsAnyInformation = true
                 cnAddress.postalCode = "\(profile.postalCode)"
                 cnAddress.city = "\(profile.city ?? "")"
             }
             
             if (isOwner || privacy.showCountry) {
+                showsAnyInformation = true
                 cnAddress.country = "\(profile.country ?? "")"
             }
             
             let localizedAddress = CNPostalAddressFormatter.string(from: cnAddress, style: .mailingAddress)
             
             if localizedAddress.count >= 1 {
+                showsAnyInformation = true
                 addressLabel.text = localizedAddress
                 addressStackView.isHidden = false
             } else {
@@ -126,6 +135,11 @@ class AboutViewController: UIViewController {
         } else {
             birthStackView.isHidden = true
             addressStackView.isHidden = true
+        }
+        
+        if !showsAnyInformation {
+            separatorStackView.isHidden = true
+            informationStackView.isHidden = true
         }
     }
     
