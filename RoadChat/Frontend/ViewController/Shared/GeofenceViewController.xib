@@ -26,21 +26,33 @@
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Fpp-yT-VNI">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </mapView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="val" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1n8-2e-JeB" customClass="EdgeInsetLabel" customModule="RoadChat" customModuleProvider="target">
-                    <rect key="frame" x="340.5" y="619.5" width="18.5" height="17"/>
-                    <color key="backgroundColor" red="0.94901960780000005" green="0.95294117649999999" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="val" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1n8-2e-JeB" customClass="EdgeInsetLabel" customModule="RoadChat" customModuleProvider="target">
+                    <rect key="frame" x="328" y="605" width="31" height="46"/>
+                    <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                     <color key="textColor" red="0.52156862749999999" green="0.52156862749999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="4"/>
+                            <integer key="value" value="7"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="leftTextInset">
                             <real key="value" value="4"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="rightTextInset">
                             <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                            <size key="value" width="0.0" height="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                            <integer key="value" value="5"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="topTextInset">
                             <real key="value" value="2"/>
@@ -50,17 +62,17 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <view clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="240" translatesAutoresizingMaskIntoConstraints="NO" id="i31-RW-i0P" userLabel="Slider Container">
-                    <rect key="frame" x="16" y="605" width="308.5" height="46"/>
+                <view clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="240" translatesAutoresizingMaskIntoConstraints="NO" id="i31-RW-i0P" userLabel="Slider Container">
+                    <rect key="frame" x="16" y="605" width="296" height="46"/>
                     <subviews>
                         <slider opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="740" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25000" minValue="5" maxValue="50000" translatesAutoresizingMaskIntoConstraints="NO" id="ekk-O1-CSP">
-                            <rect key="frame" x="6" y="8" width="296.5" height="31"/>
+                            <rect key="frame" x="6" y="8" width="284" height="31"/>
                             <connections>
                                 <action selector="didChangeRadius:" destination="-1" eventType="valueChanged" id="JrW-kY-1cg"/>
                             </connections>
                         </slider>
                     </subviews>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="ekk-O1-CSP" firstAttribute="leading" secondItem="i31-RW-i0P" secondAttribute="leading" constant="8" id="Ykh-X6-1nx"/>
                         <constraint firstAttribute="bottom" secondItem="ekk-O1-CSP" secondAttribute="bottom" constant="8" id="eVX-dz-WFJ"/>
@@ -92,10 +104,11 @@
                 <constraint firstItem="Fpp-yT-VNI" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="FbZ-Cs-LtZ"/>
                 <constraint firstItem="1n8-2e-JeB" firstAttribute="centerY" secondItem="i31-RW-i0P" secondAttribute="centerY" id="Jaz-q0-ScM"/>
                 <constraint firstItem="Fpp-yT-VNI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="PtM-DO-NhZ"/>
-                <constraint firstItem="Fpp-yT-VNI" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Vfu-zD-6Kb"/>
+                <constraint firstItem="Fpp-yT-VNI" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="Vfu-zD-6Kb"/>
                 <constraint firstItem="Fpp-yT-VNI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aFb-Pe-Ecq"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="i31-RW-i0P" secondAttribute="bottom" constant="16" id="dLP-EM-9rC"/>
                 <constraint firstItem="1n8-2e-JeB" firstAttribute="leading" secondItem="i31-RW-i0P" secondAttribute="trailing" constant="16" id="kat-KZ-bsd"/>
+                <constraint firstItem="1n8-2e-JeB" firstAttribute="top" secondItem="i31-RW-i0P" secondAttribute="top" id="vJp-dA-jEb"/>
                 <constraint firstItem="i31-RW-i0P" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="vsA-fz-mKC"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
