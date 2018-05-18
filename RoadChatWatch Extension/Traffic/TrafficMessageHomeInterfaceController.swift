@@ -21,20 +21,23 @@ class TrafficMessageHomeInterfaceController: WKInterfaceController, WCSessionDel
         
         session = WCSession.default
         session?.delegate = self
-        session?.activate()
     }
 
     // MARK: - WCSessionDelegate
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        print("session active: \(activationState)")
+        
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        print("(TrafficHome) received message: \(message)")
+        
         guard let isLoggedIn = message["isLoggedIn"] as? Bool, !isLoggedIn else {
             return
         }
         
-        self.popToRootController()
+        OperationQueue.main.addOperation {
+            WKInterfaceController.reloadRootPageControllers(withNames: ["AwaitLogin"], contexts: nil, orientation: .horizontal, pageIndex: 0)
+        }
     }
     
 }

@@ -18,16 +18,18 @@ class AwaitLoginInterfaceController: WKInterfaceController, WCSessionDelegate {
     // MARK: - Initialization
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-
     }
     
     override func willActivate() {
-        print("Setup will appear")
-        
         session = WCSession.default
         session?.delegate = self
         session?.activate()
         
+        showTrafficHomeIfPossible()
+    }
+    
+    // MARK: - Private Methods
+    private func showTrafficHomeIfPossible() {
         let appGroupID = "group.hpe.dhbw.SauerStudios"
         let defaults = UserDefaults(suiteName: appGroupID)
         
@@ -35,13 +37,13 @@ class AwaitLoginInterfaceController: WKInterfaceController, WCSessionDelegate {
             return
         }
         
-        print("has login status: \(isLoggedIn)")
-        if isLoggedIn {
-
-            self.pushController(withName: "TrafficMessageHome", context: nil)
-            
-        }
+        print("login status: \(isLoggedIn)")
         
+        if isLoggedIn {
+            OperationQueue.main.addOperation {
+                WKInterfaceController.reloadRootPageControllers(withNames: ["TrafficMessageHome"], contexts: nil, orientation: .horizontal, pageIndex: 0)
+            }
+        }
     }
     
     // MARK: - WCSessionDelegate
@@ -50,25 +52,18 @@ class AwaitLoginInterfaceController: WKInterfaceController, WCSessionDelegate {
     }
 
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        OperationQueue.main.addOperation {
-            print(message)
-        }
+        print("(AwaitLogin) received message: \(message)")
         
         guard let isLoggedIn = message["isLoggedIn"] as? Bool, isLoggedIn else {
             return
         }
         
         OperationQueue.main.addOperation {
-//            WKInterfaceController.reloadRootControllers(withNames: ["TrafficMessageHome"], contexts: nil)
             WKInterfaceController.reloadRootPageControllers(withNames: ["TrafficMessageHome"], contexts: nil, orientation: .horizontal, pageIndex: 0)
-            
-            self.popToRootController()
         }
         
+//        showTrafficHomeIfPossible()
     }
-    
-
-      
     
 }
 
