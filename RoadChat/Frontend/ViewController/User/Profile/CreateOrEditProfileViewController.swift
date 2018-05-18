@@ -108,8 +108,8 @@ class CreateOrEditProfileViewController: UIViewController {
         // loading existing user data
         usernameTextField.text = user.username
         
-        biographyTextView.layer.borderWidth = 1
-        biographyTextView.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+        biographyTextView.layer.borderWidth = 0.3
+        biographyTextView.layer.borderColor = colorPalette.separatorColor.cgColor
         biographyTextView.layer.cornerRadius = 5
         biographyTextView.text = user.profile?.biography
         
@@ -210,7 +210,7 @@ class CreateOrEditProfileViewController: UIViewController {
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
         
-        bottomConstraint.constant = keyboardHeight
+        bottomConstraint.constant = keyboardHeight - view.safeAreaInsets.bottom
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {

@@ -28,6 +28,8 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
     @IBOutlet weak var colorPickerContainer: UIView!
     @IBOutlet weak var colorPickerField: UIView!
 
+    @IBOutlet weak var deleteButton: UIButton!
+    
     // MARK: - Views
     private let monthYearDatePickerView = MonthYearPickerView()
     private var saveBarButtonItem: UIBarButtonItem!
@@ -64,9 +66,13 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // enable keyboard dismissal
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         tapGestureRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGestureRecognizer)
+        
+        // additional view setup
+        deleteButton.tintColor = colorPalette.destructiveColor
         
         // production date
         monthYearDatePickerView.years = {

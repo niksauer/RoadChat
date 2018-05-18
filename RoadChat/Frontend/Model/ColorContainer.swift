@@ -36,6 +36,7 @@ struct ColorContainer: BasicColorPalette, KarmaColorPalette, TrafficColorPalette
     var destructiveColor: UIColor { return red }
     var createColor: UIColor { return green }
     var interfaceControlColor: UIColor { return UIColor(displayP3Red: 249/255, green: 249/255, blue: 249/255, alpha: 1) }
+    var separatorColor: UIColor { return UIColor(displayP3Red: 204/255, green: 204/255, blue: 204/255, alpha: 1) }
     
     // KarmaColorPalette
     var upvoteBgColor: UIColor { return darkOrange }

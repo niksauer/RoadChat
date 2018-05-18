@@ -13,6 +13,7 @@ protocol BasicColorPalette {
     var backgroundColor: UIColor { get }
     var contentBackgroundColor: UIColor { get }
     var overlayBackgroundColor: UIColor { get }
+    var separatorColor: UIColor { get }
     
     var interfaceControlColor: UIColor { get }
     
