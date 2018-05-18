@@ -41,7 +41,7 @@ class ProfilePageViewController: UIViewController {
         let communityViewController = viewFactory.makeCommunityMessagesViewController(for: user, activeUser: activeUser)
         let trafficViewController = viewFactory.makeTrafficMessagesViewController(for: user, activeUser: activeUser)
         let carsViewController = viewFactory.makeCarsViewController(for: user, activeUser:  activeUser)
-        let aboutViewController = viewFactory.makeAboutViewController(for: user, activeUser: user)
+        let aboutViewController = viewFactory.makeAboutViewController(for: user, activeUser: activeUser)
         
         let pagingViewController = FixedPagingViewController(viewControllers: [communityViewController, trafficViewController, carsViewController, aboutViewController])
         pagingViewController.menuItemSize = .sizeToFit(minWidth: 90, height: 40)

@@ -34,6 +34,7 @@ class DirectMessage: NSManagedObject {
         
         // create new message
         let message = DirectMessage(context: context)
+        message.id = Int32(prototype.id)
         message.senderID = Int32(prototype.senderID)
         message.time = prototype.time
         message.message = prototype.message

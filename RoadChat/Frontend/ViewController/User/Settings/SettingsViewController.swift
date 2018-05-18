@@ -19,18 +19,16 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
     private let authenticationManager: AuthenticationManager
     private let user: User
     private let settings: Settings
-    private let privacy: Privacy
     private let colorPalette: ColorPalette
     private let lengthFormatter: LengthFormatter
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, user: User, settings: Settings, privacy: Privacy, colorPalette: ColorPalette, lengthFormatter: LengthFormatter) {
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, user: User, settings: Settings, colorPalette: ColorPalette, lengthFormatter: LengthFormatter) {
         self.viewFactory = viewFactory
         self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
         self.user = user
         self.settings = settings
-        self.privacy = privacy
         self.colorPalette = colorPalette
         self.lengthFormatter = lengthFormatter
         
@@ -221,7 +219,7 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
             switch row {
             case 0:
                 // privacy
-                let privacyViewController = viewFactory.makePrivacyViewController(with: privacy)
+                let privacyViewController = viewFactory.makePrivacyViewController(with: user.privacy!)
                 self.navigationController?.pushViewController(privacyViewController, animated: true)
             case 1:
                 // security

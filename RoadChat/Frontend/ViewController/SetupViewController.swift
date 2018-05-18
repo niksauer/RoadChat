@@ -15,13 +15,15 @@ class SetupViewController: UIViewController {
     private let appDelegate: AppDelegate
     private let authenticationManager: AuthenticationManager
     private let credentials: APICredentialStore
+    private let locationManager: LocationManager
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, credentials: APICredentialStore) {
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, credentials: APICredentialStore, locationManager: LocationManager) {
         self.viewFactory = viewFactory
         self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
         self.credentials = credentials
+        self.locationManager = locationManager
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -34,7 +36,7 @@ class SetupViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        //try? credentials.reset()
+//        try? credentials.reset()
     
         authenticationManager.getAuthenticatedUser { user in
             guard let user = user else {
@@ -43,6 +45,10 @@ class SetupViewController: UIViewController {
                 self.appDelegate.show(authenticationViewController)
                 return
             }
+            
+            // configure locationManager
+            self.locationManager.managedUser = user
+            self.locationManager.startPolling()
             
             // show home screen
             let homeTabBarController = self.viewFactory.makeHomeTabBarController(activeUser: user)

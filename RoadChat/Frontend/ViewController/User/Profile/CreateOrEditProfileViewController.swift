@@ -55,7 +55,7 @@ class CreateOrEditProfileViewController: UIViewController {
             case .other?:
                 sexTypeSegmentedControl.selectedSegmentIndex = 2
             default:
-                return
+                sexTypeSegmentedControl.selectedSegmentIndex = -1
             }
         }
     }
@@ -195,7 +195,7 @@ class CreateOrEditProfileViewController: UIViewController {
         case 2:
             sex = .other
         default:
-            break
+            return
         }
     }
     

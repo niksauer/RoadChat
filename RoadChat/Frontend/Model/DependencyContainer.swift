@@ -37,6 +37,10 @@ struct DependencyContainer {
         return TrafficBoard(trafficService: TrafficService(config: config), context: viewContext)
     }
     
+    private var conversationManager: ConversationManager {
+        return ConversationManager(conversationService: ConversationService(config: config), context: viewContext)
+    }
+    
     private var colorPalette: ColorContainer {
         return ColorContainer()
     }
@@ -61,6 +65,12 @@ struct DependencyContainer {
         return dateFormatter
     }()
     
+    private var shortTimeDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .short
+        return dateFormatter
+    }()
+
     // Public Properties
     var appDelegate: AppDelegate!
     let credentials: APICredentialStore = KeychainManager.shared
@@ -75,10 +85,10 @@ struct DependencyContainer {
 }
 
 extension DependencyContainer: ViewControllerFactory {
-    
+
     // General
     func makeSetupViewController() -> SetupViewController {
-        return SetupViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, credentials: credentials)
+        return SetupViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, credentials: credentials, locationManager: locationManager)
     }
     
     func makeHomeTabBarController(activeUser user: User) -> HomeTabBarController {
@@ -100,11 +110,11 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeLoginViewController() -> LoginViewController {
-        return LoginViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager)
+        return LoginViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, locationManager: locationManager)
     }
 
     func makeRegisterViewController() -> RegisterViewController {
-        return RegisterViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, userManager: userManager)
+        return RegisterViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, userManager: userManager, locationManager: locationManager)
     }
 
     // Community
@@ -147,13 +157,25 @@ extension DependencyContainer: ViewControllerFactory {
         return ConversationsViewController(viewFactory: self, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter)
     }
     
+    func makeRadarController(activeUser: User) -> RadarViewController {
+        return RadarViewController(viewFactory: self, activeUser: activeUser, conversationManager: conversationManager, locationManager: locationManager, userManager: userManager, searchContext: viewContext)
+    }
+    
+    func makeConversationViewController(for conversation: Conversation, activeUser: User) -> ConversationViewController {
+        return ConversationViewController(viewFactory: self, conversation: conversation, activeUser: activeUser)
+    }
+    
+    func makeDirectMessagesViewController(for conversation: Conversation, activeUser: User) -> DirectMessagesViewController {
+        return DirectMessagesViewController(viewFactory: self, conversation: conversation, activeUser: activeUser, searchContext: viewContext, cellDateFormatter: shortTimeDateFormatter, colorPalette: colorPalette)
+    }
+    
     // User
-    func makeSettingsViewController(for user: User, settings: Settings, privacy: Privacy) -> SettingsViewController {
-        return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user, settings: settings, privacy: privacy, colorPalette: colorPalette, lengthFormatter: lengthFormatter)
+    func makeSettingsViewController(for user: User, settings: Settings) -> SettingsViewController {
+        return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user, settings: settings, colorPalette: colorPalette, lengthFormatter: lengthFormatter)
     }
     
     func makePrivacyViewController(with privacy: Privacy) -> PrivacyViewController {
-        return PrivacyViewController(privacy: privacy)
+        return PrivacyViewController(privacy: privacy, locationManager: locationManager)
     }
     
     func makeSecurityViewController(for user: User) -> SecurityViewController {

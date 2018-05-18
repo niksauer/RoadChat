@@ -38,10 +38,13 @@ protocol ViewControllerFactory {
     func makeTrafficMessageDetailViewController(for message: TrafficMessage, sender: User, activeUser: User) -> TrafficMessageDetailViewController
     
     // Chat
+    func makeRadarController(activeUser: User) -> RadarViewController
     func makeConversationsViewController(for user: User) -> ConversationsViewController
+    func makeConversationViewController(for conversation: Conversation, activeUser: User) -> ConversationViewController
+    func makeDirectMessagesViewController(for conversation: Conversation, activeUser: User) -> DirectMessagesViewController
     
     // Settings
-    func makeSettingsViewController(for user: User, settings: Settings, privacy: Privacy) -> SettingsViewController
+    func makeSettingsViewController(for user: User, settings: Settings) -> SettingsViewController
     func makePrivacyViewController(with privacy: Privacy) -> PrivacyViewController
     func makeSecurityViewController(for user: User) -> SecurityViewController
     func makeChangePasswordViewController(for user: User) -> ChangePasswordViewController

@@ -33,10 +33,21 @@ extension CLLocation {
         let coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
         self.init(coordinate: coordinate, altitude: location.altitude, horizontalAccuracy: location.horizontalAccuracy, verticalAccuracy: location.verticalAccuracy, course: location.course, speed: location.speed, timestamp: location.timestamp!)
     }
+    
+    convenience init(location: RoadChatKit.Location.PublicLocation) {
+        let coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+        self.init(coordinate: coordinate, altitude: location.altitude, horizontalAccuracy: location.horizontalAccuracy, verticalAccuracy: location.verticalAccuracy, course: location.course, speed: location.speed, timestamp: location.timestamp)
+    }
 }
 
 extension RoadChatKit.Location {
     convenience init(coreLocation: CLLocation) {
         self.init(timestamp: coreLocation.timestamp, latitude: coreLocation.coordinate.latitude, longitude: coreLocation.coordinate.longitude, altitude: coreLocation.altitude, horizontalAccuracy: coreLocation.horizontalAccuracy, verticalAccuracy: coreLocation.verticalAccuracy, course: coreLocation.course, speed: coreLocation.speed)
+    }
+}
+
+extension RoadChatKit.LocationRequest {
+    init(coreLocation: CLLocation) {
+        self.init(time: coreLocation.timestamp, latitude: coreLocation.coordinate.latitude, longitude: coreLocation.coordinate.longitude, altitude: coreLocation.altitude, horizontalAccuracy: coreLocation.horizontalAccuracy, verticalAccuracy: coreLocation.verticalAccuracy, course: coreLocation.course, speed: coreLocation.speed)
     }
 }

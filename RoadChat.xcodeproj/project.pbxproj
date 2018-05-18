@@ -26,7 +26,6 @@
 		240D10F920481843008C5E39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D10F820481843008C5E39 /* AppDelegate.swift */; };
 		240D110220481843008C5E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D110120481843008C5E39 /* Assets.xcassets */; };
 		240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D110320481843008C5E39 /* LaunchScreen.storyboard */; };
-		2412D6E020647B5D0066A51C /* SetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2412D6DF20647B5D0066A51C /* SetupViewController.xib */; };
 		2418C117207E36A4004D1632 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2418C116207E36A4004D1632 /* UIViewController.swift */; };
 		24207DE4207686D200851A73 /* Parchment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24207DCE207686B100851A73 /* Parchment.framework */; };
 		24207DE5207686D200851A73 /* Parchment.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24207DCE207686B100851A73 /* Parchment.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -65,6 +64,7 @@
 		249515CE20644DB100E734E4 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249515CD20644DB100E734E4 /* ProfileViewController.xib */; };
 		249515D1206460F800E734E4 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249515CF206460F800E734E4 /* ConversationCell.swift */; };
 		249515D2206460F800E734E4 /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249515D0206460F800E734E4 /* ConversationCell.xib */; };
+		249E0E9220AC512E00987BCA /* ConversationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E0E9120AC512E00987BCA /* ConversationManager.swift */; };
 		24A069B12051EFC8006F8401 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A069B02051EFC8006F8401 /* CoreDataStack.swift */; };
 		24A069BB20520367006F8401 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A069BA20520367006F8401 /* AuthenticationManager.swift */; };
 		24A3512520836D73001FC1C4 /* SexColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A3512420836D73001FC1C4 /* SexColorPalette.swift */; };
@@ -75,6 +75,8 @@
 		24A46B142083DE9B00F775C7 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A46B122083DE9B00F775C7 /* SwitchCell.xib */; };
 		24A46B1620840DF400F775C7 /* GroupedOptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A46B1520840DF400F775C7 /* GroupedOptionTableViewController.swift */; };
 		24A49592208119390076E472 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A49591208119390076E472 /* UIView.swift */; };
+		24AF370020AC1DD9007C63FF /* SetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24AF36FF20AC1DD9007C63FF /* SetupViewController.xib */; };
+		24AF374420AC49EE007C63FF /* RadarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF374320AC49EE007C63FF /* RadarViewController.swift */; };
 		24AF5096207B693500477DC0 /* CommunityMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */; };
 		24AF50AC207B6C1200477DC0 /* CommunityMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF50AA207B6C1200477DC0 /* CommunityMessageCell.swift */; };
 		24AF50AD207B6C1200477DC0 /* CommunityMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24AF50AB207B6C1200477DC0 /* CommunityMessageCell.xib */; };
@@ -98,6 +100,8 @@
 		24D68B8B2080CCB5002B6D6C /* CarDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */; };
 		24D68BB02080D908002B6D6C /* CarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D68BAF2080D908002B6D6C /* CarCell.xib */; };
 		24D68BB22080E72E002B6D6C /* TimeSinceDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68BB12080E72E002B6D6C /* TimeSinceDateFormatter.swift */; };
+		24E0578D20ACBF6F00788E52 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E0578B20ACBF6F00788E52 /* ConversationViewController.swift */; };
+		24E0578E20ACBF6F00788E52 /* ConversationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24E0578C20ACBF6F00788E52 /* ConversationViewController.xib */; };
 		24EB886520877DDA00B7A285 /* MonthYearPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EB885120877DDA00B7A285 /* MonthYearPickerView.swift */; };
 		24EB8888208787E300B7A285 /* SecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EB8886208787E300B7A285 /* SecurityViewController.swift */; };
 		24EB888B20878BA900B7A285 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EB888A20878BA900B7A285 /* ChangePasswordViewController.swift */; };
@@ -106,6 +110,8 @@
 		24EB8893208798FD00B7A285 /* ChangeEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EB8892208798FD00B7A285 /* ChangeEmailViewController.swift */; };
 		24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; };
 		24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		24F2971320AD780700EDA138 /* DirectMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2971220AD780700EDA138 /* DirectMessagesViewController.swift */; };
+		24F2972920AD7B4C00EDA138 /* DirectMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2972720AD7B4C00EDA138 /* DirectMessageCell.swift */; };
 		24FE0002207CDDC300F0D657 /* CommunityBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */; };
 		24FE0059207D51D200F0D657 /* BasicColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE0058207D51D200F0D657 /* BasicColorPalette.swift */; };
 		24FE005C207D564500F0D657 /* EdgeInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE005B207D564500F0D657 /* EdgeInsetLabel.swift */; };
@@ -378,7 +384,6 @@
 		240D110120481843008C5E39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		240D110420481843008C5E39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		240D110620481844008C5E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2412D6DF20647B5D0066A51C /* SetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetupViewController.xib; sourceTree = "<group>"; };
 		2418C116207E36A4004D1632 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		24207DBB207686B100851A73 /* Parchment.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parchment.xcodeproj; path = Frameworks/Parchment/Parchment.xcodeproj; sourceTree = "<group>"; };
 		24207DEC2076AB1800851A73 /* ProfilePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageViewController.swift; sourceTree = "<group>"; };
@@ -416,6 +421,7 @@
 		249515CD20644DB100E734E4 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		249515CF206460F800E734E4 /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		249515D0206460F800E734E4 /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
+		249E0E9120AC512E00987BCA /* ConversationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationManager.swift; sourceTree = "<group>"; };
 		24A069B02051EFC8006F8401 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		24A069BA20520367006F8401 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthenticationManager.swift; path = RoadChat/Frontend/Model/AuthenticationManager.swift; sourceTree = SOURCE_ROOT; };
 		24A3512420836D73001FC1C4 /* SexColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SexColorPalette.swift; sourceTree = "<group>"; };
@@ -427,6 +433,8 @@
 		24A46B1520840DF400F775C7 /* GroupedOptionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedOptionTableViewController.swift; sourceTree = "<group>"; };
 		24A49591208119390076E472 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
+		24AF36FF20AC1DD9007C63FF /* SetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetupViewController.xib; sourceTree = "<group>"; };
+		24AF374320AC49EE007C63FF /* RadarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarViewController.swift; sourceTree = "<group>"; };
 		24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessagesViewController.swift; sourceTree = "<group>"; };
 		24AF50AA207B6C1200477DC0 /* CommunityMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessageCell.swift; sourceTree = "<group>"; };
 		24AF50AB207B6C1200477DC0 /* CommunityMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunityMessageCell.xib; sourceTree = "<group>"; };
@@ -450,6 +458,8 @@
 		24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarDetailViewController.xib; sourceTree = "<group>"; };
 		24D68BAF2080D908002B6D6C /* CarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarCell.xib; sourceTree = "<group>"; };
 		24D68BB12080E72E002B6D6C /* TimeSinceDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSinceDateFormatter.swift; sourceTree = "<group>"; };
+		24E0578B20ACBF6F00788E52 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		24E0578C20ACBF6F00788E52 /* ConversationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationViewController.xib; sourceTree = "<group>"; };
 		24EB885120877DDA00B7A285 /* MonthYearPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MonthYearPickerView.swift; path = Frameworks/MonthYearPickerView/MonthYearPickerView.swift; sourceTree = SOURCE_ROOT; };
 		24EB8886208787E300B7A285 /* SecurityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityViewController.swift; sourceTree = "<group>"; };
 		24EB888A20878BA900B7A285 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
@@ -457,6 +467,8 @@
 		24EB888F20878C2900B7A285 /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 		24EB8892208798FD00B7A285 /* ChangeEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmailViewController.swift; sourceTree = "<group>"; };
 		24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyBeaver.xcodeproj; path = Frameworks/SwiftyBeaver/SwiftyBeaver.xcodeproj; sourceTree = "<group>"; };
+		24F2971220AD780700EDA138 /* DirectMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessagesViewController.swift; sourceTree = "<group>"; };
+		24F2972720AD7B4C00EDA138 /* DirectMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessageCell.swift; sourceTree = "<group>"; };
 		24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoardViewController.swift; sourceTree = "<group>"; };
 		24FE0058207D51D200F0D657 /* BasicColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicColorPalette.swift; sourceTree = "<group>"; };
 		24FE005B207D564500F0D657 /* EdgeInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetLabel.swift; sourceTree = "<group>"; };
@@ -604,20 +616,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		24207E002076C41300851A73 /* ProfilePages */ = {
-			isa = PBXGroup;
-			children = (
-				2461F2EC2080A75800053A4B /* CarsViewController.swift */,
-				24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */,
-				24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */,
-				24207DF02076BC8E00851A73 /* AboutViewController.swift */,
-				24207DF12076BC8E00851A73 /* AboutViewController.xib */,
-				D45FD6FE2083D79300C35949 /* CreateOrEditCarViewController.swift */,
-				D45FD6FF2083D79300C35949 /* CreateOrEditCarViewController.xib */,
-			);
-			path = ProfilePages;
-			sourceTree = "<group>";
-		};
 		2422D00120514FEA0081A552 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,13 +652,14 @@
 		243F1EB320483BAD00B45955 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				2412D6DF20647B5D0066A51C /* SetupViewController.xib */,
+				24AF36FF20AC1DD9007C63FF /* SetupViewController.xib */,
 				242089BD205EB1C700FFEC90 /* SetupViewController.swift */,
 				247F6D3A206081320006FBC7 /* HomeTabBarController.swift */,
 				247F6D06205F097D0006FBC7 /* Tools */,
 				243A479D207EDCC5002F3BF4 /* Shared */,
 				2422D01B205155CF0081A552 /* Authentication */,
 				243F1EB420483BC100B45955 /* User */,
+				24AF372020AC2D06007C63FF /* Car */,
 				243F1EB620483BD100B45955 /* Community */,
 				243F1EB520483BC500B45955 /* Traffic */,
 				248D379220493ED000B21C3D /* Chat */,
@@ -672,12 +671,7 @@
 			isa = PBXGroup;
 			children = (
 				24EB88722087860E00B7A285 /* Settings */,
-				24B1346C20641A8C00B894BF /* ProfileViewController.swift */,
-				249515CD20644DB100E734E4 /* ProfileViewController.xib */,
-				24207DEC2076AB1800851A73 /* ProfilePageViewController.swift */,
-				24207E002076C41300851A73 /* ProfilePages */,
-				D45FD72D2084FB5500C35949 /* CreateOrEditProfileViewController.swift */,
-				D45FD72E2084FB5500C35949 /* CreateOrEditProfileViewController.xib */,
+				24AF372120AC2D40007C63FF /* Profile */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -685,11 +679,11 @@
 		243F1EB520483BC500B45955 /* Traffic */ = {
 			isa = PBXGroup;
 			children = (
-				C9150A9420809A1900A69078 /* TrafficMessageDetailViewController.xib */,
 				24B13478206421EE00B894BF /* TrafficBoardViewController.swift */,
 				24207DF82076C37300851A73 /* TrafficMessagesViewController.swift */,
 				C966B6FC207949590007CA4F /* CreateTrafficMessageViewController.swift */,
 				C966B6FD207949590007CA4F /* CreateTrafficMessageViewController.xib */,
+				C9150A9420809A1900A69078 /* TrafficMessageDetailViewController.xib */,
 				C9150A7D208099C100A69078 /* TrafficMessageDetailViewController.swift */,
 			);
 			path = Traffic;
@@ -698,12 +692,12 @@
 		243F1EB620483BD100B45955 /* Community */ = {
 			isa = PBXGroup;
 			children = (
-				24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */,
 				24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */,
-				D45FD694207E4EB900C35949 /* CommunityMessageDetailViewController.swift */,
-				D45FD695207E4EB900C35949 /* CommunityMessageDetailViewController.xib */,
+				24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */,
 				D44F4B87205297A7009A6239 /* CreateCommunityMessageViewController.swift */,
 				24B134762064202800B894BF /* CreateCommunityMessageViewController.xib */,
+				D45FD694207E4EB900C35949 /* CommunityMessageDetailViewController.swift */,
+				D45FD695207E4EB900C35949 /* CommunityMessageDetailViewController.xib */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -738,7 +732,11 @@
 		248D379220493ED000B21C3D /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				24AF374320AC49EE007C63FF /* RadarViewController.swift */,
 				24B1347C2064229100B894BF /* ConversationsViewController.swift */,
+				24E0578B20ACBF6F00788E52 /* ConversationViewController.swift */,
+				24E0578C20ACBF6F00788E52 /* ConversationViewController.xib */,
+				24F2971220AD780700EDA138 /* DirectMessagesViewController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -789,6 +787,7 @@
 		248D37B22049506000B21C3D /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				249E0E9120AC512E00987BCA /* ConversationManager.swift */,
 				248D37A620494F7E00B21C3D /* Conversation.swift */,
 				248D37AC20494FFB00B21C3D /* DirectMessage.swift */,
 				248D37A820494F9900B21C3D /* Participant.swift */,
@@ -848,6 +847,32 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		24AF372020AC2D06007C63FF /* Car */ = {
+			isa = PBXGroup;
+			children = (
+				2461F2EC2080A75800053A4B /* CarsViewController.swift */,
+				D45FD6FE2083D79300C35949 /* CreateOrEditCarViewController.swift */,
+				D45FD6FF2083D79300C35949 /* CreateOrEditCarViewController.xib */,
+				24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */,
+				24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */,
+			);
+			path = Car;
+			sourceTree = "<group>";
+		};
+		24AF372120AC2D40007C63FF /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				24B1346C20641A8C00B894BF /* ProfileViewController.swift */,
+				249515CD20644DB100E734E4 /* ProfileViewController.xib */,
+				D45FD72D2084FB5500C35949 /* CreateOrEditProfileViewController.swift */,
+				D45FD72E2084FB5500C35949 /* CreateOrEditProfileViewController.xib */,
+				24207DEC2076AB1800851A73 /* ProfilePageViewController.swift */,
+				24207DF02076BC8E00851A73 /* AboutViewController.swift */,
+				24207DF12076BC8E00851A73 /* AboutViewController.xib */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		24AFEE8F206566A30097810E /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -865,11 +890,11 @@
 		24EB88722087860E00B7A285 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				24EB888A20878BA900B7A285 /* ChangePasswordViewController.swift */,
-				24EB8892208798FD00B7A285 /* ChangeEmailViewController.swift */,
 				249515C92064483400E734E4 /* SettingsViewController.swift */,
 				24A46B0D2083DC4600F775C7 /* PrivacyViewController.swift */,
 				24EB8886208787E300B7A285 /* SecurityViewController.swift */,
+				24EB8892208798FD00B7A285 /* ChangeEmailViewController.swift */,
+				24EB888A20878BA900B7A285 /* ChangePasswordViewController.swift */,
 				24D34A3D20850F4300D3390F /* LogDataViewController.swift */,
 				24D34A3E20850F4300D3390F /* LogDataViewController.xib */,
 			);
@@ -891,6 +916,7 @@
 		24FBBC4F2077753000B545D2 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				24F2972720AD7B4C00EDA138 /* DirectMessageCell.swift */,
 				249515CF206460F800E734E4 /* ConversationCell.swift */,
 				249515D0206460F800E734E4 /* ConversationCell.xib */,
 			);
@@ -1218,7 +1244,6 @@
 				24045D7C2084E28100E7CF19 /* GeofenceViewController.xib in Resources */,
 				24EB889120878C2900B7A285 /* TextFieldCell.xib in Resources */,
 				24A46AF92083D35E00F775C7 /* CenterLabelCell.xib in Resources */,
-				2412D6E020647B5D0066A51C /* SetupViewController.xib in Resources */,
 				249515CE20644DB100E734E4 /* ProfileViewController.xib in Resources */,
 				24B134652063254F00B894BF /* LoginViewController.xib in Resources */,
 				24D68BB02080D908002B6D6C /* CarCell.xib in Resources */,
@@ -1226,6 +1251,8 @@
 				C9150A28207CFE0D00A69078 /* TrafficMessageCell.xib in Resources */,
 				24D34A70208523D700D3390F /* CreateNewCellView.xib in Resources */,
 				24AF50AD207B6C1200477DC0 /* CommunityMessageCell.xib in Resources */,
+				24E0578E20ACBF6F00788E52 /* ConversationViewController.xib in Resources */,
+				24AF370020AC1DD9007C63FF /* SetupViewController.xib in Resources */,
 				24B134672063C10C00B894BF /* RegisterViewController.xib in Resources */,
 				240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */,
 				24A46B142083DE9B00F775C7 /* SwitchCell.xib in Resources */,
@@ -1256,9 +1283,12 @@
 				247F6D21205F3C9C0006FBC7 /* UserManager.swift in Sources */,
 				24207DFA2076C37300851A73 /* TrafficMessagesViewController.swift in Sources */,
 				24D68B872080C535002B6D6C /* UIColor.swift in Sources */,
+				24E0578D20ACBF6F00788E52 /* ConversationViewController.swift in Sources */,
 				24A069BB20520367006F8401 /* AuthenticationManager.swift in Sources */,
 				247F6D3D20614E380006FBC7 /* TrafficBoard.swift in Sources */,
+				24AF374420AC49EE007C63FF /* RadarViewController.swift in Sources */,
 				24FEFFEC207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift in Sources */,
+				24F2972920AD7B4C00EDA138 /* DirectMessageCell.swift in Sources */,
 				247F6D3720605E240006FBC7 /* DependencyContainer.swift in Sources */,
 				C9150A2A207D0C1F00A69078 /* TrafficColorPalette.swift in Sources */,
 				D45FD6B0207EBC4600C35949 /* LocationViewController.swift in Sources */,
@@ -1291,8 +1321,10 @@
 				2461F3052080AEA400053A4B /* CarCell.swift in Sources */,
 				24EB8893208798FD00B7A285 /* ChangeEmailViewController.swift in Sources */,
 				249515D1206460F800E734E4 /* ConversationCell.swift in Sources */,
+				249E0E9220AC512E00987BCA /* ConversationManager.swift in Sources */,
 				24AF50AC207B6C1200477DC0 /* CommunityMessageCell.swift in Sources */,
 				2418C117207E36A4004D1632 /* UIViewController.swift in Sources */,
+				24F2971320AD780700EDA138 /* DirectMessagesViewController.swift in Sources */,
 				247F6D1D205F26AE0006FBC7 /* CommunityBoard.swift in Sources */,
 				D44F4B88205297A7009A6239 /* CreateCommunityMessageViewController.swift in Sources */,
 				24FE0059207D51D200F0D657 /* BasicColorPalette.swift in Sources */,
