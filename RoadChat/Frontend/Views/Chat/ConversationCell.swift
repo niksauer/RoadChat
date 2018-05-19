@@ -11,6 +11,7 @@ import UIKit
 class ConversationCell: UITableViewCell {
 
     // MARK: - Outlets
+    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var lastChangeLabel: UILabel!
     @IBOutlet weak var newestMessageLabel: UILabel!
@@ -20,6 +21,10 @@ class ConversationCell: UITableViewCell {
         titleLabel.text = conversation.title ?? "No title"
         lastChangeLabel.text = dateFormatter.string(from: conversation.newestMessage?.time ?? conversation.creation!)
         newestMessageLabel.text = conversation.newestMessage?.message ?? "No messages..."
+        
+        // profile image appearance
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+        profileImageView.clipsToBounds = true
     }
 
 }

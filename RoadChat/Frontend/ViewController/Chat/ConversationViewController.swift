@@ -24,6 +24,9 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     
+    // MARK: - Public Properties
+    var isEntryActive = false
+    
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let conversation: Conversation
@@ -74,6 +77,11 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         tapGestureRecognizer.cancelsTouchesInView = false
         directMessagesViewController.view.addGestureRecognizer(tapGestureRecognizer)
+        
+        // auto-trigger keyboard
+        if isEntryActive {
+            messageTextField.becomeFirstResponder()
+        }
     }
     
     // MARK: - Public Methods
