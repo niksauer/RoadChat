@@ -68,6 +68,14 @@ class Conversation: NSManagedObject, ReportOwner {
         return Array(participants!) as! [Participant]
     }
     
+    var storedTitle: String? {
+        if storedParticipants.count > 1 {
+            return title
+        } else {
+            return storedParticipants.first?.user?.username
+        }
+    }
+    
     // MARK: - ReportOwner Protocol
     var logDescription: String {
         return "'Conversation' [id: '\(self.id)']"
@@ -76,7 +84,7 @@ class Conversation: NSManagedObject, ReportOwner {
     // MARK: - Private Properties
     private let conversationService = ConversationService(config: DependencyContainer().config)
     private let context: NSManagedObjectContext = CoreDataStack.shared.viewContext
-
+    
     // MARK: - Initialization
     override func awakeFromFetch() {
         super.awakeFromFetch()
@@ -288,7 +296,7 @@ class Conversation: NSManagedObject, ReportOwner {
     
     // MARK: - Private Methods
     private func setApprovalStatus(_ status: ApprovalType, completion: (Error?) -> Void) {
-        guard let participation = self.storedParticipants.first(where: { $0.userID == self.user?.id }) else {
+        guard let participation = self.storedParticipants.first(where: { $0.user?.id == self.user?.id }) else {
             // pass model validation error
             log.error("\(self.user!.logDescription) is not participating in \(self.logDescription)")
             completion(ConversationError.notParticipating)
