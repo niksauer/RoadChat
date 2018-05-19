@@ -28,6 +28,10 @@ class User: NSManagedObject, ReportOwner {
                 user.email = prototype.email
                 user.username = prototype.username
                 
+                // update privacy
+                let privacy = try Privacy.createOrUpdate(from: prototype.privacy, userID: Int(user.id), in: context)
+                user.privacy = privacy
+                
                 // update current location if given
                 if let location = prototype.location {
                     let location = try Location.create(from: location, in: context)
@@ -47,16 +51,20 @@ class User: NSManagedObject, ReportOwner {
         user.username = prototype.username
         user.registry = prototype.registry
         
-        // retrieve resources
-        user.getProfile(completion: nil)
-        user.getSettings(completion: nil)
-        user.getConversations(completion: nil)
+        // set privacy
+        let privacy = try Privacy.createOrUpdate(from: prototype.privacy, userID: Int(user.id), in: context)
+        user.privacy = privacy
 
         // set current location if given
         if let location = prototype.location {
             let location = try Location.create(from: location, in: context)
             user.location = location
         }
+        
+        // retrieve resources
+        user.getProfile(completion: nil)
+        user.getSettings(completion: nil)
+        user.getConversations(completion: nil)
         
         return user
     }

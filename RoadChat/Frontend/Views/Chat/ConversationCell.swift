@@ -18,7 +18,7 @@ class ConversationCell: UITableViewCell {
     
     // MARK: - Public Methods
     func configure(conversation: Conversation, dateFormatter: DateFormatter) {
-        titleLabel.text = conversation.title ?? "No title"
+        titleLabel.text = conversation.storedTitle
         lastChangeLabel.text = dateFormatter.string(from: conversation.newestMessage?.time ?? conversation.creation!)
         newestMessageLabel.text = conversation.newestMessage?.message ?? "No messages..."
         

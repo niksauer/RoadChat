@@ -35,8 +35,7 @@ struct UserManager {
                 }
                 
                 do {
-                    let user = try User.createOrUpdate(from: user, in: self.context)
-                    user.privacy = Privacy(context: self.context)
+                    _ = try User.createOrUpdate(from: user, in: self.context)
                     try self.context.save()
                     
                     let report = Report(ReportType.successfulCoreDataOperation(.create, resource: "User", isMultiple: false), owner: nil)
@@ -71,28 +70,17 @@ struct UserManager {
                     return
                 }
                 
-                self.userService.getPrivacy(userID: user.id) { privacy, error in
-                    guard let privacy = privacy else {
-                        // pass service error
-                        let report = Report(ReportType.failedServerOperation(.retrieve, resource: "Privacy", isMultiple: false, error: error!), owner: nil)
-                        log.error(report)
-                        completion(nil, error!)
-                        return
-                    }
-                    
-                    do {
-                        let user = try User.createOrUpdate(from: user, in: self.context)
-                        user.privacy = try Privacy.createOrUpdate(from: privacy, userID: Int(user.id), in: self.context)
-                        try self.context.save()
-                        let report = Report(ReportType.successfulCoreDataOperation(.retrieve, resource: "User", isMultiple: false), owner: nil)
-                        log.debug(report)
-                        completion(user, nil)
-                    } catch {
-                        // pass core data error
-                        let report = Report(ReportType.failedCoreDataOperation(.retrieve, resource: "User", isMultiple: false, error: error), owner: nil)
-                        log.error(report)
-                        completion(nil, error)
-                    }
+                do {
+                    let user = try User.createOrUpdate(from: user, in: self.context)
+                    try self.context.save()
+                    let report = Report(ReportType.successfulCoreDataOperation(.retrieve, resource: "User", isMultiple: false), owner: nil)
+                    log.debug(report)
+                    completion(user, nil)
+                } catch {
+                    // pass core data error
+                    let report = Report(ReportType.failedCoreDataOperation(.retrieve, resource: "User", isMultiple: false, error: error), owner: nil)
+                    log.error(report)
+                    completion(nil, error)
                 }
             }
         }

@@ -68,6 +68,14 @@ class Conversation: NSManagedObject, ReportOwner {
         return Array(participants!) as! [Participant]
     }
     
+    var storedTitle: String? {
+        if storedParticipants.count > 1 {
+            return title
+        } else {
+            return storedParticipants.first?.user?.username
+        }
+    }
+    
     // MARK: - ReportOwner Protocol
     var logDescription: String {
         return "'Conversation' [id: '\(self.id)']"

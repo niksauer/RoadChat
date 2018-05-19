@@ -42,9 +42,14 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         
         super.init(nibName: nil, bundle: nil)
         
-        self.title = conversation.title
+        self.title = conversation.storedTitle
         hidesBottomBarWhenPushed = true
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "profile_glyph"), style: .plain, target: self, action: #selector(didPressProfileButton))
+        
+//        let infoButton = UIButton(type: .infoLight)
+//        let barButtonItem = UIBarButtonItem(customView: infoButton)
+//        barButtonItem.target = self
+//        barButtonItem.action = #selector(didPressInfoButton(_:))
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -104,6 +109,10 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
             
             self.messageTextField.text = nil
         }
+    }
+    
+    @objc private func didPressInfoButton(_ sender: UIButton) {
+        
     }
     
     // MARK: - TextFieldDelegate
