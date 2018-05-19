@@ -90,10 +90,6 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Public Methods
-    @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        view.endEditing(true)
-    }
-    
     @IBAction func didPressSendButton(_ sender: UIButton) {
         guard let message = messageTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), message.count >= 1 else {
             return
@@ -109,6 +105,11 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
             
             self.messageTextField.text = nil
         }
+    }
+    
+    // MARK: - Private Methods
+    @objc private func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
     
     @objc private func didPressInfoButton(_ sender: UIButton) {
@@ -140,10 +141,4 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         bottomConstraint.constant = 0
     }
     
-    // MARK: - Private Methods
-//    @objc private func didPressProfileButton() {
-//        let profileViewController = viewFactory.makeProfileViewController(for: conv, activeUser: activeUser)
-//        navigationController?.pushViewController(profileViewController, animated: true)
-//    }
-
 }

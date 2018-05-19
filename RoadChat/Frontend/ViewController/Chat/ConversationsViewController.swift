@@ -42,10 +42,23 @@ class ConversationsViewController: FetchedResultsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib.init(nibName: "ConversationCell", bundle: nil), forCellReuseIdentifier: "ConversationCell")
+        
+        // pull to refresh
+        refreshControl = UIRefreshControl()
+        refreshControl?.layer.zPosition = -1
+        refreshControl?.addTarget(self, action: #selector(updateData), for: .valueChanged)
+        self.tableView.addSubview(refreshControl!)
+        
         updateUI()
     }
     
     // MARK: - Private Methods
+    @objc private func updateData() {
+        user.getConversations { _ in
+            self.refreshControl?.endRefreshing()
+        }
+    }
+    
     private func updateUI() {
         let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
         request.predicate = NSPredicate(format: "user.id = %d", user.id)
