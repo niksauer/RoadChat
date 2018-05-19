@@ -148,8 +148,10 @@ class Conversation: NSManagedObject, ReportOwner {
                 do {
                     let message = try DirectMessage.create(from: $0, conversationID: Int(self.id), in: self.context)
                     
-                    if let newestMessage = self.newestMessage, message.time! < newestMessage.time! {
-                        self.newestMessage = message
+                    if let newestMessage = self.newestMessage {
+                        if message.time! > newestMessage.time! {
+                            self.newestMessage = message
+                        }
                     } else {
                         self.newestMessage = message
                     }
@@ -194,8 +196,10 @@ class Conversation: NSManagedObject, ReportOwner {
                     let message = try DirectMessage.create(from: message, conversationID: Int(self.id), in: self.context)
                     self.addToMessages(message)
                     
-                    if let newestMessage = self.newestMessage, message.time! < newestMessage.time! {
-                        self.newestMessage = message
+                    if let newestMessage = self.newestMessage {
+                        if message.time! > newestMessage.time! {
+                            self.newestMessage = message
+                        }
                     } else {
                         self.newestMessage = message
                     }

@@ -16,10 +16,10 @@ class ConversationCell: UITableViewCell {
     @IBOutlet weak var newestMessageLabel: UILabel!
     
     // MARK: - Public Methods
-    func configure(conversation: Conversation, newestMessage: DirectMessage?, dateFormatter: DateFormatter) {
+    func configure(conversation: Conversation, dateFormatter: DateFormatter) {
         titleLabel.text = conversation.title ?? "No title"
         lastChangeLabel.text = dateFormatter.string(from: conversation.newestMessage?.time ?? conversation.creation!)
-        newestMessageLabel.text = newestMessage?.message ?? "No messages..."
+        newestMessageLabel.text = conversation.newestMessage?.message ?? "No messages..."
     }
 
 }

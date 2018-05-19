@@ -73,7 +73,7 @@ class ConversationsViewController: FetchedResultsTableViewController {
         let conversation = fetchedResultsController!.object(at: indexPath)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationCell", for: indexPath) as! ConversationCell
-        cell.configure(conversation: conversation, newestMessage: conversation.newestMessage, dateFormatter: cellDateFormatter)
+        cell.configure(conversation: conversation, dateFormatter: cellDateFormatter)
         
         return cell
     }
