@@ -86,7 +86,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
     
     private func updateUI() {
         let request: NSFetchRequest<CommunityMessage> = CommunityMessage.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "time", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "time", ascending: false)]
         
         if let user = sender {
             request.predicate = NSPredicate(format: "senderID = %d", user.id)

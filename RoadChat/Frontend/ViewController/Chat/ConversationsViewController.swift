@@ -48,7 +48,7 @@ class ConversationsViewController: FetchedResultsTableViewController {
     private func updateUI() {
         let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
         request.predicate = NSPredicate(format: "user.id = %d", user.id)
-        request.sortDescriptors = [NSSortDescriptor(key: "lastChange", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "newestMessage.time", ascending: false)]
         
         fetchedResultsController = NSFetchedResultsController<Conversation>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController?.delegate = self
@@ -73,7 +73,7 @@ class ConversationsViewController: FetchedResultsTableViewController {
         let conversation = fetchedResultsController!.object(at: indexPath)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationCell", for: indexPath) as! ConversationCell
-        cell.configure(conversation: conversation, newestMessage: conversation.newestMessage, dateFormatter: cellDateFormatter)
+        cell.configure(conversation: conversation, dateFormatter: cellDateFormatter)
         
         return cell
     }

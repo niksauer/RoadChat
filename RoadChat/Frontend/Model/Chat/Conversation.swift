@@ -30,7 +30,12 @@ class Conversation: NSManagedObject, ReportOwner {
                 // update existing conversation
                 let conversation = matches.first!
                 conversation.title = prototype.title
-                conversation.lastChange = prototype.newestMessage?.time ?? prototype.creation
+                
+                // set last message
+                if let newestMessage = prototype.newestMessage, let message = try? DirectMessage.create(from: newestMessage, conversationID: Int(conversation.id), in: context) {
+                    conversation.newestMessage = message
+                    message.conversation = conversation
+                }
                 
                 return conversation
             }
@@ -44,7 +49,12 @@ class Conversation: NSManagedObject, ReportOwner {
         conversation.creatorID = Int32(prototype.creatorID)
         conversation.title = prototype.title
         conversation.creation = prototype.creation
-        conversation.lastChange = prototype.newestMessage?.time ?? prototype.creation
+        
+        // set last message
+        if let newestMessage = prototype.newestMessage, let message = try? DirectMessage.create(from: newestMessage, conversationID: Int(conversation.id), in: context) {
+            conversation.newestMessage = message
+            message.conversation = conversation
+        }
         
         // retrieve resources
         conversation.getMessages(completion: nil)
@@ -56,10 +66,6 @@ class Conversation: NSManagedObject, ReportOwner {
     // MARK: - Public Properties
     var storedParticipants: [Participant] {
         return Array(participants!) as! [Participant]
-    }
-    
-    var newestMessage: DirectMessage? {
-        return (Array(messages!) as! [DirectMessage]).sorted(by: { $0.time! > $1.time! }).first
     }
     
     // MARK: - ReportOwner Protocol
@@ -140,7 +146,17 @@ class Conversation: NSManagedObject, ReportOwner {
             
             let coreMessages: [DirectMessage] = messages.compactMap {
                 do {
-                    return try DirectMessage.create(from: $0, conversationID: Int(self.id), in: self.context)
+                    let message = try DirectMessage.create(from: $0, conversationID: Int(self.id), in: self.context)
+                    
+                    if let newestMessage = self.newestMessage {
+                        if message.time! > newestMessage.time! {
+                            self.newestMessage = message
+                        }
+                    } else {
+                        self.newestMessage = message
+                    }
+                    
+                    return message
                 } catch DirectMessageError.duplicate {
                     return nil
                 } catch {
@@ -151,7 +167,7 @@ class Conversation: NSManagedObject, ReportOwner {
             }
             
             self.addToMessages(NSSet(array: coreMessages))
-
+            
             do {
                 try self.context.save()
                 let report = Report(.successfulCoreDataOperation(.retrieve, resource: "DirectMessage", isMultiple: true), owner: self)
@@ -179,6 +195,15 @@ class Conversation: NSManagedObject, ReportOwner {
                 do {
                     let message = try DirectMessage.create(from: message, conversationID: Int(self.id), in: self.context)
                     self.addToMessages(message)
+                    
+                    if let newestMessage = self.newestMessage {
+                        if message.time! > newestMessage.time! {
+                            self.newestMessage = message
+                        }
+                    } else {
+                        self.newestMessage = message
+                    }
+                    
                     try self.context.save()
                     let report = Report(.successfulCoreDataOperation(.create, resource: "DirectMessage", isMultiple: false), owner: self)
                     log.debug(report)

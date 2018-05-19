@@ -56,8 +56,7 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
         self.lengthFormatter = lengthFormatter
         
         super.init(nibName: nil, bundle: nil)
-        
-        self.title = "Geofence"
+    
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed(_:)))
         self.saveBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonPressed(_:)))
         self.saveBarButtonItem.isEnabled = false
