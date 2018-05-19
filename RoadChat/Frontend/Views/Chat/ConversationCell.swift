@@ -13,14 +13,13 @@ class ConversationCell: UITableViewCell {
     // MARK: - Outlets
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var lastChangeLabel: UILabel!
-    @IBOutlet weak var lastMessageLabel: UILabel!
+    @IBOutlet weak var newestMessageLabel: UILabel!
     
     // MARK: - Public Methods
     func configure(conversation: Conversation, newestMessage: DirectMessage?, dateFormatter: DateFormatter) {
         titleLabel.text = conversation.title ?? "No title"
-
-        lastChangeLabel.text = dateFormatter.string(from: conversation.lastChange!)
-        lastMessageLabel.text = newestMessage?.message ?? "No messages..."
+        lastChangeLabel.text = dateFormatter.string(from: conversation.newestMessage?.time ?? conversation.creation!)
+        newestMessageLabel.text = newestMessage?.message ?? "No messages..."
     }
 
 }

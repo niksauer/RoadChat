@@ -205,11 +205,13 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
             case 0:
                 let geofenceViewController = viewFactory.makeGeofenceViewController(radius: Double(Int(settings.communityRadius)*1000), min: 0, max: 500*1000, identifier: "Community")
                 geofenceViewController.delegate = self
+                geofenceViewController.title = "Community"
                 let geofenceNavigationController = UINavigationController(rootViewController: geofenceViewController)
                 navigationController?.present(geofenceNavigationController, animated: true, completion: nil)
             case 1:
                 let geofenceViewController = viewFactory.makeGeofenceViewController(radius: Double(Int(settings.trafficRadius)*1000), min: 0, max: 500*1000, identifier: "Traffic")
                 geofenceViewController.delegate = self
+                geofenceViewController.title = "Traffic"
                 let geofenceNavigationController = UINavigationController(rootViewController: geofenceViewController)
                 navigationController?.present(geofenceNavigationController, animated: true, completion: nil)
             default:

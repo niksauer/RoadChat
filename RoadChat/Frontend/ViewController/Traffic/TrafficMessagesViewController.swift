@@ -86,7 +86,7 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
     
     private func updateUI() {
         let request: NSFetchRequest<TrafficMessage> = TrafficMessage.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "time", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "time", ascending: false)]
         
         if let user = sender {
             request.predicate = NSPredicate(format: "senderID = %d", user.id)
