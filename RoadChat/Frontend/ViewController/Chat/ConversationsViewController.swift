@@ -30,6 +30,7 @@ class ConversationsViewController: FetchedResultsTableViewController {
         
         self.title = "Chat"
         self.tabBarItem = UITabBarItem(title: "Chat", image: #imageLiteral(resourceName: "speech_buble_glyph"), tag: 2)
+        self.navigationItem.leftBarButtonItem = editButtonItem
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "worldwide_location"), style: .plain, target: self, action: #selector(radarButtonPressed))
     }
     
@@ -83,6 +84,22 @@ class ConversationsViewController: FetchedResultsTableViewController {
         
         let conversationViewController = viewFactory.makeConversationViewController(for: conversation, activeUser: user)
         navigationController?.pushViewController(conversationViewController, animated: true)
+    }
+    
+    // MARK: - Table View Delegate
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            let conversation = fetchedResultsController?.object(at: indexPath)
+            conversation?.delete { error in
+                guard error == nil else {
+                    // present delete error
+                    return
+                }
+            }
+        default:
+            return
+        }
     }
     
 }
