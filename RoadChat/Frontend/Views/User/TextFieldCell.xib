@@ -27,9 +27,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CNG-h0-c26">
-                        <rect key="frame" x="94" y="12.5" width="210" height="17"/>
+                        <rect key="frame" x="94" y="10.5" width="210" height="21"/>
                         <nil key="textColor"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <textInputTraits key="textInputTraits"/>
                         <connections>
                             <action selector="edititingChanged:" destination="KGk-i7-Jjw" eventType="editingChanged" id="JfX-GL-i4l"/>

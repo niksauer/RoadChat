@@ -79,6 +79,7 @@ class RadarViewController: UIViewController, MKMapViewDelegate, LocationManagerD
         
         if let conversation = conversationManager.findConversationByParticipants([selectedUser], requestor: activeUser, context: searchContext) {
             let conversationController = self.viewFactory.makeConversationViewController(for: conversation, activeUser: activeUser)
+            conversationController.isEntryActive = true
             self.navigationController?.pushViewController(conversationController, animated: true)
         } else {
             let request = ConversationRequest(title: nil, participants: [selectedUser.id])
@@ -93,6 +94,7 @@ class RadarViewController: UIViewController, MKMapViewDelegate, LocationManagerD
                 }
                 
                 let conversationController = self.viewFactory.makeConversationViewController(for: conversation, activeUser: self.activeUser)
+                conversationController.isEntryActive = true
                 self.navigationController?.pushViewController(conversationController, animated: true)
             }
         }
