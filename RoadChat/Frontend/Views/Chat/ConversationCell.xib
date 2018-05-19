@@ -20,9 +20,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="76.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Willy Wonka" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQo-aP-1aQ">
-                        <rect key="frame" x="16" y="11" width="103.5" height="26"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="241" verticalHuggingPriority="251" text="Willy Wonka" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQo-aP-1aQ">
+                        <rect key="frame" x="56" y="11" width="197" height="26"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -32,8 +32,16 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cVU-y2-AlF">
+                        <rect key="frame" x="8" y="18" width="40" height="40"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="5BR-1T-iNj"/>
+                            <constraint firstAttribute="height" constant="40" id="MFx-wD-qrn"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wollt ihr noch mehr Schokolade?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ReQ-DT-Kwl">
-                        <rect key="frame" x="16" y="45" width="288" height="21"/>
+                        <rect key="frame" x="56" y="45" width="248" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="800-F1-XCd"/>
                         </constraints>
@@ -43,20 +51,25 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="ReQ-DT-Kwl" firstAttribute="leading" secondItem="QQo-aP-1aQ" secondAttribute="leading" id="BWo-PZ-VcV"/>
+                    <constraint firstItem="qZ8-vL-joU" firstAttribute="leading" secondItem="QQo-aP-1aQ" secondAttribute="trailing" constant="8" id="GNj-zw-9BH"/>
                     <constraint firstItem="qZ8-vL-joU" firstAttribute="centerY" secondItem="QQo-aP-1aQ" secondAttribute="centerY" id="Gbm-Wu-ulZ"/>
+                    <constraint firstItem="cVU-y2-AlF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="KKa-U0-nzu"/>
                     <constraint firstItem="qZ8-vL-joU" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="RdF-N6-XfD"/>
                     <constraint firstItem="ReQ-DT-Kwl" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="Tem-7c-f6G"/>
+                    <constraint firstItem="cVU-y2-AlF" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ult-Dj-TB0"/>
                     <constraint firstItem="ReQ-DT-Kwl" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Vkk-bJ-UZG"/>
-                    <constraint firstItem="ReQ-DT-Kwl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="ezb-XS-8iJ"/>
+                    <constraint firstItem="QQo-aP-1aQ" firstAttribute="leading" secondItem="cVU-y2-AlF" secondAttribute="trailing" constant="8" id="VzD-S2-EEF"/>
                     <constraint firstItem="QQo-aP-1aQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="gYi-lF-wNE"/>
                     <constraint firstItem="ReQ-DT-Kwl" firstAttribute="top" secondItem="QQo-aP-1aQ" secondAttribute="bottom" constant="8" id="n6x-sJ-oZ5"/>
-                    <constraint firstItem="QQo-aP-1aQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="xEn-aF-kwv"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <inset key="separatorInset" minX="56" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="lastChangeLabel" destination="qZ8-vL-joU" id="KJl-il-vva"/>
                 <outlet property="newestMessageLabel" destination="ReQ-DT-Kwl" id="rvl-BZ-qLY"/>
+                <outlet property="profileImageView" destination="cVU-y2-AlF" id="bdR-46-BMQ"/>
                 <outlet property="titleLabel" destination="QQo-aP-1aQ" id="vtk-7X-0IU"/>
             </connections>
             <point key="canvasLocation" x="37" y="93.5"/>
