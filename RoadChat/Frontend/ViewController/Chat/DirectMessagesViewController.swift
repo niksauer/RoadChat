@@ -62,7 +62,7 @@ class DirectMessagesViewController: FetchedResultsCollectionViewController<Direc
         self.collectionView?.addSubview(refreshControl!)
         
         // aditional view setup
-        conversation.getMessages(completion: nil)
+        updateData()
         updateUI()
     }
     

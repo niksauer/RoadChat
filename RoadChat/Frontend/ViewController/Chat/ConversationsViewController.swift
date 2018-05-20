@@ -49,6 +49,7 @@ class ConversationsViewController: FetchedResultsTableViewController {
         refreshControl?.addTarget(self, action: #selector(updateData), for: .valueChanged)
         self.tableView.addSubview(refreshControl!)
         
+        updateData()
         updateUI()
     }
     

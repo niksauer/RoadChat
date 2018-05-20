@@ -73,7 +73,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
         self.collectionView?.addSubview(refreshControl!)
         
         // aditional view setup
-        communityBoard.getMessages(completion: nil)
+        updateData()
         updateUI()
     }
     

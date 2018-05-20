@@ -73,7 +73,7 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
         self.collectionView?.addSubview(refreshControl!)
         
         // aditional view setup
-        trafficBoard.getMessages(completion: nil)
+        updateData()
         updateUI()
     }
     

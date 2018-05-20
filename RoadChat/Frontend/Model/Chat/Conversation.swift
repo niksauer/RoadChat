@@ -37,10 +37,6 @@ class Conversation: NSManagedObject, ReportOwner {
                     message.conversation = conversation
                 }
                 
-                // retrieve public resources
-                conversation.getMessages(completion: nil)
-                conversation.getParticipants(completion: nil)
-                
                 return conversation
             }
         } catch {

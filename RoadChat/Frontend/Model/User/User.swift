@@ -38,14 +38,6 @@ class User: NSManagedObject, ReportOwner {
                     user.location = location
                 }
                 
-                // retrieve public resources
-//                user.getSettings(completion: nil)
-                user.getProfile(completion: nil)
-                user.getCars(completion: nil)
-//                user.getConversations(completion: nil)
-                user.getCommunityMessages(completion: nil)
-                user.getTrafficMessages(completion: nil)
-                
                 return user
             }
         } catch {
