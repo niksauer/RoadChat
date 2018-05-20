@@ -19,7 +19,7 @@ class Conversation: NSManagedObject, ReportOwner {
     // MARK: - Public Class Methods
     class func createOrUpdate(from prototype: RoadChatKit.Conversation.PublicConversation, in context: NSManagedObjectContext) throws -> Conversation {
         let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %d", prototype.id - 1)
+        request.predicate = NSPredicate(format: "id = %d", prototype.id)
         
         do {
             let matches = try context.fetch(request)
@@ -45,7 +45,7 @@ class Conversation: NSManagedObject, ReportOwner {
         
         // create new conversation
         let conversation = Conversation(context: context)
-        conversation.id = Int32(prototype.id - 1)
+        conversation.id = Int32(prototype.id)
         conversation.creatorID = Int32(prototype.creatorID)
         conversation.title = prototype.title
         conversation.creation = prototype.creation

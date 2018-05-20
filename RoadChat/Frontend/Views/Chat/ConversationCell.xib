@@ -21,13 +21,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="241" verticalHuggingPriority="251" text="Willy Wonka" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQo-aP-1aQ">
-                        <rect key="frame" x="56" y="11" width="197" height="26"/>
+                        <rect key="frame" x="56" y="11" width="205" height="26"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23:12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZ8-vL-joU">
-                        <rect key="frame" x="261" y="13.5" width="43" height="21"/>
+                        <rect key="frame" x="269" y="13.5" width="43" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -41,7 +41,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wollt ihr noch mehr Schokolade?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ReQ-DT-Kwl">
-                        <rect key="frame" x="56" y="45" width="248" height="21"/>
+                        <rect key="frame" x="56" y="45" width="256" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="800-F1-XCd"/>
                         </constraints>
@@ -55,10 +55,10 @@
                     <constraint firstItem="qZ8-vL-joU" firstAttribute="leading" secondItem="QQo-aP-1aQ" secondAttribute="trailing" constant="8" id="GNj-zw-9BH"/>
                     <constraint firstItem="qZ8-vL-joU" firstAttribute="centerY" secondItem="QQo-aP-1aQ" secondAttribute="centerY" id="Gbm-Wu-ulZ"/>
                     <constraint firstItem="cVU-y2-AlF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="KKa-U0-nzu"/>
-                    <constraint firstItem="qZ8-vL-joU" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="RdF-N6-XfD"/>
+                    <constraint firstAttribute="trailing" secondItem="qZ8-vL-joU" secondAttribute="trailing" constant="8" id="RdF-N6-XfD"/>
                     <constraint firstItem="ReQ-DT-Kwl" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="Tem-7c-f6G"/>
                     <constraint firstItem="cVU-y2-AlF" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ult-Dj-TB0"/>
-                    <constraint firstItem="ReQ-DT-Kwl" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Vkk-bJ-UZG"/>
+                    <constraint firstItem="ReQ-DT-Kwl" firstAttribute="trailing" secondItem="qZ8-vL-joU" secondAttribute="trailing" id="Vkk-bJ-UZG"/>
                     <constraint firstItem="QQo-aP-1aQ" firstAttribute="leading" secondItem="cVU-y2-AlF" secondAttribute="trailing" constant="8" id="VzD-S2-EEF"/>
                     <constraint firstItem="QQo-aP-1aQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="gYi-lF-wNE"/>
                     <constraint firstItem="ReQ-DT-Kwl" firstAttribute="top" secondItem="QQo-aP-1aQ" secondAttribute="bottom" constant="8" id="n6x-sJ-oZ5"/>
