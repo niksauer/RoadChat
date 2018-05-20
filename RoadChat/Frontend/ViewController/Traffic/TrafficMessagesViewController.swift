@@ -8,11 +8,19 @@
 
 import UIKit
 import CoreData
+import RoadChatKit
 
 class TrafficMessagesViewController: FetchedResultsCollectionViewController<TrafficMessage>, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Typealiases
     typealias ColorPalette = BasicColorPalette & TrafficMessageCell.ColorPalette
+    
+    // MARK: - Public Properties
+    var filter: TrafficType? {
+        didSet {
+            updateUI()
+        }
+    }
     
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
@@ -88,9 +96,17 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
         let request: NSFetchRequest<TrafficMessage> = TrafficMessage.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "time", ascending: false)]
         
+        var predicates = [NSPredicate]()
+        
         if let user = sender {
-            request.predicate = NSPredicate(format: "senderID = %d", user.id)
+            predicates.append(NSPredicate(format: "senderID = %d", user.id))
         }
+        
+        if let filter = filter {
+            predicates.append(NSPredicate(format: "type = %@", filter.rawValue))
+        }
+        
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         
         fetchedResultsController = NSFetchedResultsController<TrafficMessage>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController?.delegate = self
