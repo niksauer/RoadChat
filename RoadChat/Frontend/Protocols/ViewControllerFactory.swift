@@ -42,6 +42,7 @@ protocol ViewControllerFactory {
     func makeConversationsViewController(for user: User) -> ConversationsViewController
     func makeConversationViewController(for conversation: Conversation, activeUser: User) -> ConversationViewController
     func makeDirectMessagesViewController(for conversation: Conversation, activeUser: User) -> DirectMessagesViewController
+    func makeParticipantsViewController(for conversation: Conversation, activeUser: User) -> ParticipantsViewController
     
     // Settings
     func makeSettingsViewController(for user: User, settings: Settings) -> SettingsViewController

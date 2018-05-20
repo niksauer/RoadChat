@@ -169,6 +169,10 @@ extension DependencyContainer: ViewControllerFactory {
         return DirectMessagesViewController(viewFactory: self, conversation: conversation, activeUser: activeUser, searchContext: viewContext, cellDateFormatter: shortTimeDateFormatter, colorPalette: colorPalette)
     }
     
+    func makeParticipantsViewController(for conversation: Conversation, activeUser: User) -> ParticipantsViewController {
+        return ParticipantsViewController(viewFactory: self, conversation: conversation, activeUser: activeUser, colorPalette: colorPalette)
+    }
+    
     // User
     func makeSettingsViewController(for user: User, settings: Settings) -> SettingsViewController {
         return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user, settings: settings, colorPalette: colorPalette, lengthFormatter: lengthFormatter)

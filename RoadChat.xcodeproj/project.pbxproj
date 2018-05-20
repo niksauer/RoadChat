@@ -36,6 +36,7 @@
 		242089BE205EB1C700FFEC90 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242089BD205EB1C700FFEC90 /* SetupViewController.swift */; };
 		242F8F2E204D6EA80052087B /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F8F2D204D6EA80052087B /* AuthenticationService.swift */; };
 		243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243357252049817A00CD5F87 /* JSendAPIClient.swift */; };
+		245D261220B195FD00ECE7A4 /* ParticipantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245D261120B195FD00ECE7A4 /* ParticipantsViewController.swift */; };
 		245EAE332051346600821B4B /* ConversationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245EAE322051346600821B4B /* ConversationService.swift */; };
 		2461188020AEE5320035B8FF /* ChatColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2461187F20AEE5320035B8FF /* ChatColorPalette.swift */; };
 		24615DA520508E5400ED11A1 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24615DA420508E5400ED11A1 /* KeychainManager.swift */; };
@@ -394,6 +395,7 @@
 		242089BD205EB1C700FFEC90 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		242F8F2D204D6EA80052087B /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		243357252049817A00CD5F87 /* JSendAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JSendAPIClient.swift; path = RoadChat/Backend/JSendAPIClient.swift; sourceTree = SOURCE_ROOT; };
+		245D261120B195FD00ECE7A4 /* ParticipantsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsViewController.swift; sourceTree = "<group>"; };
 		245EAE322051346600821B4B /* ConversationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationService.swift; sourceTree = "<group>"; };
 		2461187F20AEE5320035B8FF /* ChatColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatColorPalette.swift; sourceTree = "<group>"; };
 		24615DA420508E5400ED11A1 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
@@ -737,6 +739,7 @@
 				24AF374320AC49EE007C63FF /* RadarViewController.swift */,
 				24B1347C2064229100B894BF /* ConversationsViewController.swift */,
 				24E0578B20ACBF6F00788E52 /* ConversationViewController.swift */,
+				245D261120B195FD00ECE7A4 /* ParticipantsViewController.swift */,
 				24E0578C20ACBF6F00788E52 /* ConversationViewController.xib */,
 				24F2971220AD780700EDA138 /* DirectMessagesViewController.swift */,
 			);
@@ -1299,6 +1302,7 @@
 				248D379C20494E1F00B21C3D /* Settings.swift in Sources */,
 				2461188020AEE5320035B8FF /* ChatColorPalette.swift in Sources */,
 				24D68B8A2080CCB5002B6D6C /* CarDetailViewController.swift in Sources */,
+				245D261220B195FD00ECE7A4 /* ParticipantsViewController.swift in Sources */,
 				24D68BB22080E72E002B6D6C /* TimeSinceDateFormatter.swift in Sources */,
 				2489C4B72055E01E005C937E /* APIClient.swift in Sources */,
 				24045D7B2084E28100E7CF19 /* GeofenceViewController.swift in Sources */,

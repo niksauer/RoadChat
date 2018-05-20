@@ -88,6 +88,7 @@ class ConversationsViewController: FetchedResultsTableViewController {
         let conversation = fetchedResultsController!.object(at: indexPath)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationCell", for: indexPath) as! ConversationCell
+        cell.accessoryType = .disclosureIndicator
         cell.configure(conversation: conversation, activeUser: user, dateFormatter: cellDateFormatter)
         
         return cell

@@ -45,11 +45,17 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         self.title = conversation.getTitle(activeUser: activeUser)
         hidesBottomBarWhenPushed = true
         
-//        let infoButton = UIButton(type: .infoLight)
-//        let barButtonItem = UIBarButtonItem(customView: infoButton)
-//        barButtonItem.target = self
-//        barButtonItem.action = #selector(didPressInfoButton(_:))
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
+        let infoButton = UIButton(type: .infoLight)
+        infoButton.addTarget(self, action: #selector(didPressInfoButton(_:)), for: .touchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
+        
+//        if conversation.storedParticipants.count > 2 {
+//            let infoButton = UIButton(type: .infoLight)
+//            infoButton.addTarget(self, action: #selector(didPressInfoButton(_:)), for: .touchUpInside)
+//            self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
+//        } else {
+//            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "profile_glyph"), style: .plain, target: self, action: #selector(didPressProfileButton))
+//        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -113,8 +119,18 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc private func didPressInfoButton(_ sender: UIButton) {
-        
+        let participantsViewController = viewFactory.makeParticipantsViewController(for: conversation, activeUser: activeUser)
+        navigationController?.pushViewController(participantsViewController, animated: true)
     }
+    
+//    @objc private func didPressProfileButton() {
+//        guard let participant = conversation.storedParticipants.first(where: { $0.user?.id != activeUser.id }) else {
+//            return
+//        }
+//
+//        let profileViewController = viewFactory.makeProfileViewController(for: participant.user!, activeUser: activeUser)
+//        navigationController?.pushViewController(profileViewController, animated: true)
+//    }
     
     // MARK: - TextFieldDelegate
     @objc func textFieldDidChange(_ textField: UITextField) {
