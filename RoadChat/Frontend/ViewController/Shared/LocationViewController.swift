@@ -10,17 +10,31 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class LocationViewController: UIViewController, MKMapViewDelegate {
+class LocationViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: - Outlets
     @IBOutlet weak var mapView: MKMapView!
-   
+    @IBOutlet weak var locateButton: UIButton!
+    
     // MARK: - Views
     private var locateUserButton: UIButton!
     
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let location: CLLocation
+    
+    private var trackingMode: MKUserTrackingMode = .none {
+        didSet {
+            mapView.userTrackingMode = trackingMode
+            
+            switch trackingMode {
+            case .none:
+                locateButton.setImage(#imageLiteral(resourceName: "location-arrow"), for: .normal)
+            case .follow, .followWithHeading:
+                locateButton.setImage(#imageLiteral(resourceName: "location-arrow-filled"), for: .normal)
+            }
+        }
+    }
     
     // MARK: - Initialization
     init(viewFactory: ViewControllerFactory, location: CLLocation) {
@@ -44,23 +58,48 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
 
         let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
         mapView.setRegion(region, animated: true)
-
+        trackingMode = .none
         mapView.showsUserLocation = true
+        
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didDragMapView))
+        panGestureRecognizer.delegate = self
+        mapView.addGestureRecognizer(panGestureRecognizer)
     }
     
     // MARK: - Private Methods
     @IBAction func didPressLocateButton(_ sender: UIButton) {
-        let userLocationAnnotation = MKMapPointForCoordinate(mapView.userLocation.coordinate)
-        let senderLocationAnnotation = MKMapPointForCoordinate(location.coordinate)
-        let userLocationPoint: MKMapRect = MKMapRectMake(userLocationAnnotation.x, userLocationAnnotation.y, 0, 0)
-        let senderLocationPoint: MKMapRect = MKMapRectMake(senderLocationAnnotation.x, senderLocationAnnotation.y, 0, 0)
+        if mapView.isUserLocationVisible {
+            trackingMode = trackingMode == .none ? .follow : .none
+        } else {
+            trackingMode = .none
+            
+            let userLocationAnnotation = MKMapPointForCoordinate(mapView.userLocation.coordinate)
+            let senderLocationAnnotation = MKMapPointForCoordinate(location.coordinate)
+            let userLocationPoint: MKMapRect = MKMapRectMake(userLocationAnnotation.x, userLocationAnnotation.y, 0, 0)
+            let senderLocationPoint: MKMapRect = MKMapRectMake(senderLocationAnnotation.x, senderLocationAnnotation.y, 0, 0)
+            
+            let zoomRect: MKMapRect = MKMapRectUnion(userLocationPoint, senderLocationPoint)
+            var region = MKCoordinateRegionForMapRect(zoomRect)
+            region.span.latitudeDelta = 0.1
+            region.span.longitudeDelta = 0.1
+            
+            mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    @objc private func didDragMapView(panGestureRecognizer: UIPanGestureRecognizer) {
+        guard panGestureRecognizer.state == .ended else {
+            return
+        }
         
-        let zoomRect: MKMapRect = MKMapRectUnion(userLocationPoint, senderLocationPoint)
-        var region = MKCoordinateRegionForMapRect(zoomRect)
-        region.span.latitudeDelta = 0.1
-        region.span.longitudeDelta = 0.1
-        
-        mapView.setRegion(region, animated: true)
+        if trackingMode == .follow {
+            trackingMode = .none
+        }
+    }
+    
+    // MARK: - UIGestureRecognizerDelegate
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
     
 }
