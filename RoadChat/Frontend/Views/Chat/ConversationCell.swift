@@ -17,8 +17,8 @@ class ConversationCell: UITableViewCell {
     @IBOutlet weak var newestMessageLabel: UILabel!
     
     // MARK: - Public Methods
-    func configure(conversation: Conversation, dateFormatter: DateFormatter) {
-        titleLabel.text = conversation.storedTitle
+    func configure(conversation: Conversation, activeUser: User, dateFormatter: DateFormatter) {
+        titleLabel.text = conversation.getTitle(activeUser: activeUser)
         lastChangeLabel.text = dateFormatter.string(from: conversation.newestMessage?.time ?? conversation.creation!)
         newestMessageLabel.text = conversation.newestMessage?.message ?? "No messages..."
         

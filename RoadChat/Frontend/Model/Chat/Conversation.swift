@@ -37,6 +37,10 @@ class Conversation: NSManagedObject, ReportOwner {
                     message.conversation = conversation
                 }
                 
+                // retrieve public resources
+                conversation.getMessages(completion: nil)
+                conversation.getParticipants(completion: nil)
+                
                 return conversation
             }
         } catch {
@@ -56,7 +60,7 @@ class Conversation: NSManagedObject, ReportOwner {
             message.conversation = conversation
         }
         
-        // retrieve resources
+        // retrieve public resources
         conversation.getMessages(completion: nil)
         conversation.getParticipants(completion: nil)
         
@@ -66,14 +70,6 @@ class Conversation: NSManagedObject, ReportOwner {
     // MARK: - Public Properties
     var storedParticipants: [Participant] {
         return Array(participants!) as! [Participant]
-    }
-    
-    var storedTitle: String? {
-        if storedParticipants.count > 1 {
-            return title
-        } else {
-            return storedParticipants.first?.user?.username
-        }
     }
     
     // MARK: - ReportOwner Protocol
@@ -291,6 +287,14 @@ class Conversation: NSManagedObject, ReportOwner {
             }
             
             self.setApprovalStatus(.denied, completion: completion)
+        }
+    }
+    
+    func getTitle(activeUser: User) -> String? {
+        if storedParticipants.count > 2 {
+            return title
+        } else {
+            return storedParticipants.first(where: { $0.user!.id != activeUser.id })?.user?.username
         }
     }
     

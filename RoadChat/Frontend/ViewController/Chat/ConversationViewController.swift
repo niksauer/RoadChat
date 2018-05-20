@@ -42,7 +42,7 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         
         super.init(nibName: nil, bundle: nil)
         
-        self.title = conversation.storedTitle
+        self.title = conversation.getTitle(activeUser: activeUser)
         hidesBottomBarWhenPushed = true
         
 //        let infoButton = UIButton(type: .infoLight)
