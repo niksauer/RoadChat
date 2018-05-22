@@ -53,7 +53,7 @@ protocol ViewControllerFactory {
     func makeLogDataViewController() -> LogDataViewController
     
     // User
-    func makeProfileViewController(for user: User, activeUser: User) -> ProfileViewController
+    func makeProfileViewController(for user: User, activeUser: User, showsPublicProfile: Bool) -> ProfileViewController
     func makeProfilePageViewController(for user: User, activeUser: User) -> ProfilePageViewController
     func makeCreateOrEditCarViewController(for user: User, car: Car?) -> CreateOrEditCarViewController
     func makeCreateOrEditProfileViewController(for user: User) -> CreateOrEditProfileViewController

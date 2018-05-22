@@ -195,8 +195,8 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     // User
-    func makeProfileViewController(for user: User, activeUser: User) -> ProfileViewController {
-        return ProfileViewController(viewFactory: self, user: user, activeUser: activeUser, colorPalette: colorPalette)
+    func makeProfileViewController(for user: User, activeUser: User, showsPublicProfile: Bool) -> ProfileViewController {
+        return ProfileViewController(viewFactory: self, user: user, activeUser: activeUser, showsPublicProfile: showsPublicProfile, colorPalette: colorPalette)
     }
     
     func makeProfilePageViewController(for user: User, activeUser: User) -> ProfilePageViewController {
