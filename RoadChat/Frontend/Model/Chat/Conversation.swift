@@ -56,9 +56,15 @@ class Conversation: NSManagedObject, ReportOwner {
             message.conversation = conversation
         }
         
+        // set participants
+        let participants = prototype.participants.compactMap {
+            try? Participant.createOrUpdate(from: $0, conversationID: prototype.id, in: context)
+        }
+        
+        conversation.addToParticipants(NSSet(array: participants))
+        
         // retrieve public resources
         conversation.getMessages(completion: nil)
-        conversation.getParticipants(completion: nil)
         
         return conversation
     }
@@ -302,12 +308,12 @@ class Conversation: NSManagedObject, ReportOwner {
                 return
             }
             
-            self.setApprovalStatus(.denied, completion: completion)
+            self.setApprovalStatus(.accepted, completion: completion)
         }
     }
     
     func deny(completion: @escaping (Error?) -> Void) {
-        conversationService.delete(conversationID: Int(id)) { error in
+        conversationService.deny(conversationID: Int(id)) { error in
             guard error == nil else {
                 // pass service error
                 let report = Report(.failedServerOperation(.update, resource: "ApprovalStatus", isMultiple: false, error: error!), owner: self)
@@ -326,6 +332,18 @@ class Conversation: NSManagedObject, ReportOwner {
         } else {
             return storedParticipants.first(where: { $0.user!.id != activeUser.id })?.user?.username
         }
+    }
+    
+    func getApprovalStatus(activeUser: User) -> ApprovalType? {
+        guard let participation = storedParticipants.first(where: { $0.user?.id == activeUser.id }) else {
+            return nil
+        }
+        
+        guard let status = participation.approvalStatus, let approval = ApprovalType(rawValue: status) else {
+            return nil
+        }
+        
+        return approval
     }
     
     // MARK: - Private Methods

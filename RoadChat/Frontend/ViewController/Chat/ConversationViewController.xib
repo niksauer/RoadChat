@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_9" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConversationViewController" customModule="RoadChat" customModuleProvider="target">
             <connections>
+                <outlet property="approvalStatusContainer" destination="rY6-YL-obj" id="SNn-dL-JaO"/>
                 <outlet property="bottomConstraint" destination="UDu-XY-WC9" id="Yva-v9-E3U"/>
                 <outlet property="inputContainer" destination="sXg-Dy-BOD" id="fQG-Hw-22I"/>
                 <outlet property="messageTextField" destination="srf-6O-GEs" id="meD-Bh-Qm9"/>
@@ -23,11 +24,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sXg-Dy-BOD" userLabel="InputContainer">
-                    <rect key="frame" x="0.0" y="730" width="375" height="82"/>
+                    <rect key="frame" x="0.0" y="619" width="375" height="48"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="240" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="srf-6O-GEs">
                             <rect key="frame" x="16" y="8" width="291" height="30"/>
@@ -36,7 +37,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="760" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N6o-uH-Mbt">
-                            <rect key="frame" x="315" y="6.6666666666666288" width="44" height="34"/>
+                            <rect key="frame" x="315" y="6.5" width="44" height="34"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                             <state key="normal" title="Send"/>
                             <connections>
@@ -64,16 +65,57 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fqj-aW-cZG" userLabel="MessagesContainer">
-                    <rect key="frame" x="0.0" y="88" width="375" height="642"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="555"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rY6-YL-obj" userLabel="ApprovalStatusContainer">
+                    <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thc-qb-osb">
+                            <rect key="frame" x="322" y="7" width="37" height="30"/>
+                            <state key="normal" title="Allow"/>
+                            <connections>
+                                <action selector="didPressAcceptButton:" destination="-1" eventType="touchUpInside" id="t3O-eD-v0M"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7U-hi-wt5">
+                            <rect key="frame" x="278" y="7" width="36" height="30"/>
+                            <size key="titleShadowOffset" width="0.0" height="-1"/>
+                            <state key="normal" title="Deny"/>
+                            <connections>
+                                <action selector="didPressDenyButton:" destination="-1" eventType="touchUpInside" id="smp-EN-DIz"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ah2-sU-jva" userLabel="Separator">
+                            <rect key="frame" x="0.0" y="43" width="375" height="1"/>
+                            <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="P8S-aB-1zf"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="a7U-hi-wt5" firstAttribute="centerY" secondItem="Thc-qb-osb" secondAttribute="centerY" id="13J-ak-ohy"/>
+                        <constraint firstAttribute="bottom" secondItem="ah2-sU-jva" secondAttribute="bottom" id="30B-8H-Yvf"/>
+                        <constraint firstAttribute="trailing" secondItem="Thc-qb-osb" secondAttribute="trailing" constant="16" id="CAS-n3-LPt"/>
+                        <constraint firstItem="Thc-qb-osb" firstAttribute="centerY" secondItem="rY6-YL-obj" secondAttribute="centerY" id="JIa-rP-6Vu"/>
+                        <constraint firstAttribute="height" constant="44" id="VLD-ZJ-SVP"/>
+                        <constraint firstAttribute="trailing" secondItem="ah2-sU-jva" secondAttribute="trailing" id="cM3-xV-USG"/>
+                        <constraint firstItem="ah2-sU-jva" firstAttribute="leading" secondItem="rY6-YL-obj" secondAttribute="leading" id="qxY-yM-Wap"/>
+                        <constraint firstItem="Thc-qb-osb" firstAttribute="leading" secondItem="a7U-hi-wt5" secondAttribute="trailing" constant="8" id="zAk-qr-sJJ"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rY6-YL-obj" secondAttribute="trailing" id="0rz-BT-xsk"/>
                 <constraint firstItem="sXg-Dy-BOD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="FNR-Ks-YZN"/>
                 <constraint firstItem="sXg-Dy-BOD" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="UDu-XY-WC9"/>
+                <constraint firstItem="rY6-YL-obj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="V0X-FI-lQn"/>
                 <constraint firstItem="fqj-aW-cZG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Wag-xD-co8"/>
                 <constraint firstItem="sXg-Dy-BOD" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Z7v-Ue-7Fo"/>
+                <constraint firstItem="rY6-YL-obj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="f0T-OE-3xf"/>
                 <constraint firstItem="sXg-Dy-BOD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="bottom" constant="-48" id="g1g-ML-hxB"/>
                 <constraint firstItem="fqj-aW-cZG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="i0D-M8-pUg"/>
                 <constraint firstItem="sXg-Dy-BOD" firstAttribute="top" secondItem="fqj-aW-cZG" secondAttribute="bottom" id="udg-9p-g1u"/>

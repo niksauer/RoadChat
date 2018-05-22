@@ -62,10 +62,8 @@ class User: NSManagedObject, ReportOwner {
         }
         
         // retrieve public resources
-//        user.getSettings(completion: nil)
         user.getProfile(completion: nil)
         user.getCars(completion: nil)
-//        user.getConversations(completion: nil)
         user.getCommunityMessages(completion: nil)
         user.getTrafficMessages(completion: nil)
     
@@ -113,7 +111,6 @@ class User: NSManagedObject, ReportOwner {
         get(completion: nil)
         getProfile(completion: nil)
         getCars(completion: nil)
-        getConversations(completion: nil)
         getCommunityMessages(completion: nil)
         getTrafficMessages(completion: nil)
     }

@@ -19,6 +19,7 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var inputContainer: UIView!
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var approvalStatusContainer: UIView!
     
     // MARK: - Constraints
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
@@ -85,6 +86,16 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         if isEntryActive {
             messageTextField.becomeFirstResponder()
         }
+        
+        // trigger approval status container
+        if let approvalStatus = conversation.getApprovalStatus(activeUser: activeUser) {
+            switch approvalStatus {
+            case .requested:
+                approvalStatusContainer.isHidden = false
+            default:
+                approvalStatusContainer.isHidden = true
+            }
+        }
     }
     
     // MARK: - Public Methods
@@ -101,10 +112,35 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             
+            self.sendButton.isEnabled = false
             self.messageTextField.text = nil
         }
     }
     
+    @IBAction func didPressAcceptButton(_ sender: UIButton) {
+        conversation.accept { error in
+            guard error == nil else {
+                // handle error
+                return
+            }
+            
+            self.approvalStatusContainer.isHidden = true
+        }
+    }
+    
+    @IBAction func didPressDenyButton(_ sender: UIButton) {
+        displayConfirmationDialog(title: "Deny Conversation", message: "Do you really want to deny this conversation? You will not be able to receive any further messages.", onCancel: nil) { _ in
+            self.conversation.deny { error in
+                guard error == nil else {
+                    // handle error
+                    return
+                }
+                
+                self.approvalStatusContainer.isHidden = true
+            }
+        }
+    }
+
     // MARK: - Private Methods
     @objc private func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
