@@ -41,6 +41,12 @@ struct ConversationService: JSendService {
         }
     }
     
+    func update(conversationID: RoadChatKit.Conversation.ID, to conversation: ConversationUpdateRequest, completion: @escaping (Error?) -> Void) throws {
+        try client.makePUTRequest(to: "/\(conversationID)", body: conversation) { result in
+            completion(self.getError(from: result))
+        }
+    }
+    
     func delete(conversationID: RoadChatKit.Conversation.ID, completion: @escaping (Error?) -> Void) {
         client.makeDELETERequest(to: "/\(conversationID)") { result in
             completion(self.getError(from: result))

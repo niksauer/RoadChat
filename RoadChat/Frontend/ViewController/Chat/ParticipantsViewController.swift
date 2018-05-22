@@ -37,7 +37,7 @@ class ParticipantsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        tableView.register(UINib(nibName: "ParticipantCell", bundle: nil), forCellReuseIdentifier: "ParticipantCell")
         tableView.register(UINib(nibName: "TextFieldCell", bundle: nil), forCellReuseIdentifier: "TextFieldCell")
         tableView.register(UINib(nibName: "CenterLabelCell", bundle: nil), forCellReuseIdentifier: "CenterLabelCell")
     }
@@ -75,15 +75,14 @@ class ParticipantsViewController: UITableViewController {
         
         switch section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldCell", for: indexPath) as! TextFieldCell
-            cell.textField.placeholder = "Enter title"
-            cell.textField.text = conversation.getTitle(activeUser: activeUser)
-            cell.configure(text: "Title", onChange: didChangeTitle(_:))
+            let cell = UITableViewCell(style: .default, reuseIdentifier: "TitleCell")
+            cell.textLabel?.text = conversation.title ?? "Enter title.."
+            cell.accessoryType = .disclosureIndicator
             return cell
         case 1:
             let participant = conversation.storedParticipants[row]
-            let cell = UITableViewCell(style: .default, reuseIdentifier: "PartcipantCell")
-            cell.textLabel?.text = participant.user?.username
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ParticipantCell", for: indexPath) as! ParticipantCell
+            cell.configure(participant: participant)
             cell.accessoryType = .disclosureIndicator
             return cell
         case 2:
@@ -99,7 +98,7 @@ class ParticipantsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Conversation"
+            return "Title"
         case 1:
             return "Participants"
         default:
@@ -113,6 +112,9 @@ class ParticipantsViewController: UITableViewController {
         let row = indexPath.row
         
         switch section {
+        case 0:
+            let changeTitleViewController = viewFactory.makeChangeTitleViewController(for: conversation)
+            navigationController?.pushViewController(changeTitleViewController, animated: true)
         case 1:
             let participant = conversation.storedParticipants[row]
             let profileViewController = viewFactory.makeProfileViewController(for: participant.user!, activeUser: activeUser, showsPublicProfile: true)

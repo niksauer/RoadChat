@@ -173,6 +173,10 @@ extension DependencyContainer: ViewControllerFactory {
         return ParticipantsViewController(viewFactory: self, conversation: conversation, activeUser: activeUser, colorPalette: colorPalette)
     }
     
+    func makeChangeTitleViewController(for conversation: Conversation) -> ChangeTitleViewController {
+        return ChangeTitleViewController(conversation: conversation)
+    }
+    
     // User
     func makeSettingsViewController(for user: User, settings: Settings) -> SettingsViewController {
         return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user, settings: settings, colorPalette: colorPalette, lengthFormatter: lengthFormatter)

@@ -22,6 +22,9 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
     private let colorPalette: ColorPalette
     private let lengthFormatter: LengthFormatter
     
+    private var oldCommunityRadius: Int16
+    private var oldTrafficRadius: Int16
+    
     // MARK: - Initialization
     init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, user: User, settings: Settings, colorPalette: ColorPalette, lengthFormatter: LengthFormatter) {
         self.viewFactory = viewFactory
@@ -31,6 +34,9 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
         self.settings = settings
         self.colorPalette = colorPalette
         self.lengthFormatter = lengthFormatter
+        
+        self.oldCommunityRadius = settings.communityRadius
+        self.oldTrafficRadius = settings.trafficRadius
         
         super.init(style: .grouped)
         
@@ -51,6 +57,21 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
 
     // MARK: - Public Methods
     @objc func doneButtonPressed(_ sender: UIBarButtonItem) {
+        var hasChangedSettings = false
+        
+        if oldCommunityRadius != settings.communityRadius {
+            hasChangedSettings = true
+        }
+        
+        if oldTrafficRadius != settings.trafficRadius {
+            hasChangedSettings = true
+        }
+        
+        guard hasChangedSettings else {
+            dismiss(animated: true, completion: nil)
+            return
+        }
+    
         settings.save { error in
             guard error == nil else {
                 // handle error
