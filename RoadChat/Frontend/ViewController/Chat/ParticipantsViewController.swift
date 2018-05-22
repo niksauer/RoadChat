@@ -116,6 +116,7 @@ class ParticipantsViewController: UITableViewController {
         case 1:
             let participant = conversation.storedParticipants[row]
             let profileViewController = viewFactory.makeProfileViewController(for: participant.user!, activeUser: activeUser)
+            profileViewController.showsPublicProfile = true
             navigationController?.pushViewController(profileViewController, animated: true)
         case 2:
             conversation.delete { error in
