@@ -20,7 +20,6 @@ class HomeTabBarController: UITabBarController {
         let trafficBoardViewController = viewFactory.makeTrafficBoardViewController(activeUser: activeUser)
         let conversationsViewController = viewFactory.makeConversationsViewController(for: activeUser)
         let profileViewController = viewFactory.makeProfileViewController(for: activeUser, activeUser: activeUser, showsPublicProfile: false)
-//        profileViewController.showsPublicProfile = false
         
         viewControllers = [communityBoardViewController, trafficBoardViewController, conversationsViewController, profileViewController]
         

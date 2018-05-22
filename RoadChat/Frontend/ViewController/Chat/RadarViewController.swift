@@ -109,7 +109,7 @@ class RadarViewController: UIViewController, MKMapViewDelegate, LocationManagerD
                 
                 return
             }
-        
+            
             // add delta updates
             let newNearbyUsers = users.filter { newNearbyUser in
                 !self.annotations.contains { existingAnnotation in
@@ -128,6 +128,7 @@ class RadarViewController: UIViewController, MKMapViewDelegate, LocationManagerD
                 return annotation
             }
             
+            self.annotations.append(contentsOf: newAnnotations)
             self.mapView.addAnnotations(newAnnotations)
             
             // remove delta updates
@@ -135,6 +136,14 @@ class RadarViewController: UIViewController, MKMapViewDelegate, LocationManagerD
                 !users.contains { newNearbyUser in
                     existingAnnotation.user.id == newNearbyUser.id
                 }
+            }
+            
+            for oldAnnotation in oldAnnotations {
+                guard let index = self.annotations.index(of: oldAnnotation) else {
+                    continue
+                }
+                
+                self.annotations.remove(at: index)
             }
             
             self.mapView.removeAnnotations(oldAnnotations)
