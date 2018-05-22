@@ -12,23 +12,19 @@ import CoreData
 class FetchedResultsTableViewController<T: NSManagedObject>: UITableViewController, NSFetchedResultsControllerDelegate {
 
     // MARK: - Public Properties
-    var fetchedResultsController: NSFetchedResultsController<T>?
+    var fetchedResultsController: NSFetchedResultsController<T>!
     
     // MARK: - Table View Data Source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController?.sections?.count ?? 1
+        return fetchedResultsController.sections?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let sections = fetchedResultsController?.sections, sections.count > 0 {
-            return sections[section].numberOfObjects
-        } else {
-            return 0
-        }
+        return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let sections = fetchedResultsController?.sections, sections.count > 0 {
+        if let sections = fetchedResultsController.sections, sections.count > 0 {
             return sections[section].name
         } else {
             return nil
@@ -36,11 +32,11 @@ class FetchedResultsTableViewController<T: NSManagedObject>: UITableViewControll
     }
     
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return fetchedResultsController?.sectionIndexTitles
+        return fetchedResultsController.sectionIndexTitles
     }
     
     override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        return fetchedResultsController?.section(forSectionIndexTitle: title, at: index) ?? 0
+        return fetchedResultsController.section(forSectionIndexTitle: title, at: index)
     }
     
     // MARK: - FetchedResultsControllerDelegate
@@ -68,8 +64,7 @@ class FetchedResultsTableViewController<T: NSManagedObject>: UITableViewControll
         case .update:
             tableView.reloadRows(at: [indexPath!], with: .fade)
         case .move:
-            tableView.deleteRows(at: [indexPath!], with: .fade)
-            tableView.insertRows(at: [newIndexPath!], with: .fade)
+            tableView.moveRow(at: indexPath!, to: newIndexPath!)
         }
     }
     

@@ -96,10 +96,9 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
         request.predicate = NSPredicate(format: "userID = %d", owner.id)
         
         fetchedResultsController = NSFetchedResultsController<Car>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultsController?.delegate = self
+        fetchedResultsController.delegate = self
         
-        try? fetchedResultsController?.performFetch()
-        collectionView?.reloadData()
+        try? fetchedResultsController.performFetch()
     }
     
     // MARK: - Private Methods
@@ -111,7 +110,7 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
     
     // MARK: UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let car = fetchedResultsController!.object(at: indexPath)
+        let car = fetchedResultsController.object(at: indexPath)
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CarCell
         cell.configure(car: car, dateFormatter: cellDateFormatter)
@@ -122,7 +121,7 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
     // MARK: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // item for which size should be calculated
-        let car = fetchedResultsController!.object(at: indexPath)
+        let car = fetchedResultsController.object(at: indexPath)
         
         // width cell should use
         let width = collectionView.frame.width
@@ -153,7 +152,7 @@ class CarsViewController: FetchedResultsCollectionViewController<Car>, UICollect
             return
         }
         
-        let car = fetchedResultsController!.object(at: indexPath)
+        let car = fetchedResultsController.object(at: indexPath)
         let editCarViewController = viewFactory.makeCreateOrEditCarViewController(for: activeUser, car: car)
         let editCarNavigationController = UINavigationController(rootViewController: editCarViewController)
         self.navigationController?.present(editCarNavigationController, animated: true, completion: nil)

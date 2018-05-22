@@ -79,15 +79,14 @@ class DirectMessagesViewController: FetchedResultsCollectionViewController<Direc
         request.predicate = NSPredicate(format: "conversation.id = %d", conversation.id)
         
         fetchedResultsController = NSFetchedResultsController<DirectMessage>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultsController?.delegate = self
+        fetchedResultsController.delegate = self
         
-        try? fetchedResultsController?.performFetch()
-        collectionView?.reloadData()
+        try? fetchedResultsController.performFetch()
     }
     
     // MARK: UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let message = fetchedResultsController!.object(at: indexPath)
+        let message = fetchedResultsController.object(at: indexPath)
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! DirectMessageCell
         cell.configure(message: message, activeUserID: Int(activeUser.id), colorPalette: colorPalette)
@@ -98,7 +97,7 @@ class DirectMessagesViewController: FetchedResultsCollectionViewController<Direc
     // MARK: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // item for which size should be calculated
-        let message = fetchedResultsController!.object(at: indexPath)
+        let message = fetchedResultsController.object(at: indexPath)
         
         // width cell should use
         let width = collectionView.frame.width

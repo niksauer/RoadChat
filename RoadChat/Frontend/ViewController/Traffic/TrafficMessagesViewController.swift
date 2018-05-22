@@ -109,15 +109,14 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         
         fetchedResultsController = NSFetchedResultsController<TrafficMessage>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultsController?.delegate = self
+        fetchedResultsController.delegate = self
         
-        try? fetchedResultsController?.performFetch()
-        collectionView?.reloadData()
+        try? fetchedResultsController.performFetch()
     }
     
     // MARK: UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let message = fetchedResultsController!.object(at: indexPath)
+        let message = fetchedResultsController.object(at: indexPath)
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TrafficMessageCell
         cell.delegate = self
@@ -129,7 +128,7 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
     // MARK: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // item for which size should be calculated
-        let message = fetchedResultsController!.object(at: indexPath)
+        let message = fetchedResultsController.object(at: indexPath)
         
         // width cell should use
         let width = collectionView.frame.width
@@ -143,7 +142,7 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
     
     //MARK: - UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let message = fetchedResultsController!.object(at: indexPath)
+        let message = fetchedResultsController.object(at: indexPath)
         
         userManager.findUserById(Int(message.senderID), context: searchContext) { user, error in
             guard let user = user else {
@@ -167,7 +166,7 @@ extension TrafficMessagesViewController: TrafficMessageCellDelegate {
             return
         }
         
-        let message = fetchedResultsController!.object(at: indexPath)
+        let message = fetchedResultsController.object(at: indexPath)
         
         message.upvote { error in
             guard error == nil else {
@@ -185,7 +184,7 @@ extension TrafficMessagesViewController: TrafficMessageCellDelegate {
             return
         }
         
-        let message = fetchedResultsController!.object(at: indexPath)
+        let message = fetchedResultsController.object(at: indexPath)
         
         message.downvote { error in
             guard error == nil else {

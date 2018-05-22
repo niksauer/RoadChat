@@ -12,18 +12,18 @@ import CoreData
 class FetchedResultsCollectionViewController<T: NSManagedObject>: UICollectionViewController, NSFetchedResultsControllerDelegate {
     
     // MARK: - Public Properties
-    var fetchedResultsController: NSFetchedResultsController<T>?
+    var fetchedResultsController: NSFetchedResultsController<T>!
     
     // MARK: - Private Properties
     private var blockOperations = [BlockOperation]()
     
     // MARK: UICollectionViewDataSource
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return fetchedResultsController?.sections?.count ?? 0
+        return fetchedResultsController.sections?.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return fetchedResultsController?.sections?[section].numberOfObjects ?? 0
+        return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
     // MARK: - FetchedResultsControllerDelegate

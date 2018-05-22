@@ -64,10 +64,9 @@ class ConversationsViewController: FetchedResultsTableViewController<Conversatio
         request.sortDescriptors = [NSSortDescriptor(key: "newestMessage.time", ascending: false)]
         
         fetchedResultsController = NSFetchedResultsController<Conversation>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultsController?.delegate = self
-        try? fetchedResultsController?.performFetch()
+        fetchedResultsController.delegate = self
         
-        tableView.reloadData()
+        try? fetchedResultsController.performFetch()
     }
     
     @objc private func radarButtonPressed() {
@@ -83,7 +82,7 @@ class ConversationsViewController: FetchedResultsTableViewController<Conversatio
     
     // MARK: - Table View Data Source
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let conversation = fetchedResultsController!.object(at: indexPath)
+        let conversation = fetchedResultsController.object(at: indexPath)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationCell", for: indexPath) as! ConversationCell
         cell.accessoryType = .disclosureIndicator
@@ -93,7 +92,7 @@ class ConversationsViewController: FetchedResultsTableViewController<Conversatio
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let conversation = fetchedResultsController!.object(at: indexPath)
+        let conversation = fetchedResultsController.object(at: indexPath)
         
         let conversationViewController = viewFactory.makeConversationViewController(for: conversation, activeUser: user)
         navigationController?.pushViewController(conversationViewController, animated: true)
@@ -103,8 +102,9 @@ class ConversationsViewController: FetchedResultsTableViewController<Conversatio
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
-            let conversation = fetchedResultsController?.object(at: indexPath)
-            conversation?.delete { error in
+            let conversation = fetchedResultsController.object(at: indexPath)
+            
+            conversation.delete { error in
                 guard error == nil else {
                     // present delete error
                     return
