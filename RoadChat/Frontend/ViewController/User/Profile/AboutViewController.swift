@@ -109,12 +109,12 @@ class AboutViewController: UIViewController {
             
             if (isOwner || privacy.showStreet) {
                 showsAnyInformation = true
-                cnAddress.street = "\(profile.streetNumber) \(profile.streetName ?? "")"
+                cnAddress.street = "\(profile.streetNumber != -1 ? String(profile.streetNumber) : "")\(profile.streetName ?? "")".trimmingCharacters(in: .whitespacesAndNewlines)
             }
             
             if (isOwner || privacy.showCity) {
                 showsAnyInformation = true
-                cnAddress.postalCode = "\(profile.postalCode)"
+                cnAddress.postalCode = "\(profile.postalCode != -1 ? String(profile.postalCode) : "")".trimmingCharacters(in: .whitespaces)
                 cnAddress.city = "\(profile.city ?? "")"
             }
             

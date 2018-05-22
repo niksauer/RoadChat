@@ -125,11 +125,11 @@ class CreateOrEditProfileViewController: UIViewController {
         
         streetNameTextField.text = user.profile?.streetName
         
-        if let streetNumber = user.profile?.streetNumber {
+        if let streetNumber = user.profile?.streetNumber, streetNumber != -1 {
             streetNumberTextField.text = String(streetNumber)
         }
         
-        if let postalCode = user.profile?.postalCode {
+        if let postalCode = user.profile?.postalCode, postalCode != -1 {
             postalCodeTextField.text = String(postalCode)
         }
         

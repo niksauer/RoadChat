@@ -145,7 +145,7 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         
         manufacturerTextField.text = car.manufacturer
         modelTextField.text = car.model
-        performanceTextField.text = String(car.performance)
+        performanceTextField.text = car.performance != 1 ? String(car.performance) : nil
         
         if let production = car.production {
             productionTextField.text = productionDateFormatter.string(from: production)
