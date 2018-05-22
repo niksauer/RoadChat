@@ -76,7 +76,7 @@ class ParticipantsViewController: UITableViewController {
         switch section {
         case 0:
             let cell = UITableViewCell(style: .default, reuseIdentifier: "TitleCell")
-            cell.textLabel?.text = conversation.title ?? "Enter title.."
+            cell.textLabel?.text = conversation.title ?? "No title"
             cell.accessoryType = .disclosureIndicator
             return cell
         case 1:

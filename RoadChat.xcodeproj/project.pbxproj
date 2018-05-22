@@ -745,10 +745,10 @@
 				24AF374320AC49EE007C63FF /* RadarViewController.swift */,
 				24B1347C2064229100B894BF /* ConversationsViewController.swift */,
 				24E0578B20ACBF6F00788E52 /* ConversationViewController.swift */,
-				245D261120B195FD00ECE7A4 /* ParticipantsViewController.swift */,
 				24E0578C20ACBF6F00788E52 /* ConversationViewController.xib */,
-				2486B81820B441710049DEFF /* ChangeTitleViewController.swift */,
 				24F2971220AD780700EDA138 /* DirectMessagesViewController.swift */,
+				245D261120B195FD00ECE7A4 /* ParticipantsViewController.swift */,
+				2486B81820B441710049DEFF /* ChangeTitleViewController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
