@@ -36,13 +36,13 @@
 		242089BE205EB1C700FFEC90 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242089BD205EB1C700FFEC90 /* SetupViewController.swift */; };
 		242F8F2E204D6EA80052087B /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F8F2D204D6EA80052087B /* AuthenticationService.swift */; };
 		243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243357252049817A00CD5F87 /* JSendAPIClient.swift */; };
+		24548BDE20B5B3B60070A773 /* RoadChatKitWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D421C6BF20ADA50D00D049CC /* RoadChatKitWatch.framework */; };
 		245D261220B195FD00ECE7A4 /* ParticipantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245D261120B195FD00ECE7A4 /* ParticipantsViewController.swift */; };
 		245EAE332051346600821B4B /* ConversationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245EAE322051346600821B4B /* ConversationService.swift */; };
-		2461182620ADD1460035B8FF /* RoadChatKitWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D421C6BF20ADA50D00D049CC /* RoadChatKitWatch.framework */; };
+		2461188020AEE5320035B8FF /* ChatColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2461187F20AEE5320035B8FF /* ChatColorPalette.swift */; };
 		246118B620AEF6510035B8FF /* TrafficMessageHomeInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246118B520AEF64E0035B8FF /* TrafficMessageHomeInterfaceController.swift */; };
 		246118B820AEF7C40035B8FF /* SetupInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246118B720AEF7C40035B8FF /* SetupInterfaceController.swift */; };
 		246118BA20AEF8640035B8FF /* AwaitLoginInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246118B920AEF8640035B8FF /* AwaitLoginInterfaceController.swift */; };
-		2461188020AEE5320035B8FF /* ChatColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2461187F20AEE5320035B8FF /* ChatColorPalette.swift */; };
 		24615DA520508E5400ED11A1 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24615DA420508E5400ED11A1 /* KeychainManager.swift */; };
 		2461F2ED2080A75800053A4B /* CarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2461F2EC2080A75800053A4B /* CarsViewController.swift */; };
 		2461F3052080AEA400053A4B /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2461F3032080AEA400053A4B /* CarCell.swift */; };
@@ -445,12 +445,13 @@
 		242089BD205EB1C700FFEC90 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		242F8F2D204D6EA80052087B /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		243357252049817A00CD5F87 /* JSendAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JSendAPIClient.swift; path = RoadChat/Backend/JSendAPIClient.swift; sourceTree = SOURCE_ROOT; };
+		24548BDC20B5B3B10070A773 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS4.3.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		245D261120B195FD00ECE7A4 /* ParticipantsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsViewController.swift; sourceTree = "<group>"; };
 		245EAE322051346600821B4B /* ConversationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationService.swift; sourceTree = "<group>"; };
+		2461187F20AEE5320035B8FF /* ChatColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatColorPalette.swift; sourceTree = "<group>"; };
 		246118B520AEF64E0035B8FF /* TrafficMessageHomeInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMessageHomeInterfaceController.swift; sourceTree = "<group>"; };
 		246118B720AEF7C40035B8FF /* SetupInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetupInterfaceController.swift; path = "RoadChatWatch Extension/SetupInterfaceController.swift"; sourceTree = SOURCE_ROOT; };
 		246118B920AEF8640035B8FF /* AwaitLoginInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwaitLoginInterfaceController.swift; sourceTree = "<group>"; };
-		2461187F20AEE5320035B8FF /* ChatColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatColorPalette.swift; sourceTree = "<group>"; };
 		24615DA420508E5400ED11A1 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		2461F2EC2080A75800053A4B /* CarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsViewController.swift; sourceTree = "<group>"; };
 		2461F3032080AEA400053A4B /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
@@ -588,6 +589,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24548BDE20B5B3B60070A773 /* RoadChatKitWatch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,7 +597,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2461182620ADD1460035B8FF /* RoadChatKitWatch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,6 +801,7 @@
 		244BFB7D2049A6EE00B2481D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24548BDC20B5B3B10070A773 /* AVFoundation.framework */,
 				D421C66420ADA35200D049CC /* RoadChatKitWatch */,
 				24045D5C2084D23900E7CF19 /* ColorModel.framework */,
 				240AB01C2050878100324028 /* Security.framework */,
