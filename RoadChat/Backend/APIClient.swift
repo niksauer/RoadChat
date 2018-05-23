@@ -30,15 +30,28 @@ protocol APICredentialStore {
 }
 
 protocol APIClient {
-    var baseURL: String { get }
+    var hostname: String { get }
+    var port: Int? { get }
+    var basePath: String? { get }
     var credentials: APICredentialStore? { get }
-    
-    init(baseURL: String, credentials: APICredentialStore?)
+    var baseURL: String { get }
+
+    init(hostname: String, port: Int?, basePath: String?, credentials: APICredentialStore?)
     
     func makeGETRequest(to path: String?, params: JSON?, completion: @escaping (APIResult) -> Void)
     func makePOSTRequest<T: Encodable>(to path: String?, params: JSON?, body: T, completion: @escaping (APIResult) -> Void) throws
     func makePUTRequest<T: Encodable>(to path: String?, params: JSON?, body: T, completion: @escaping (APIResult) -> Void) throws
     func makeDELETERequest(to path: String?, params: JSON?, completion: @escaping (APIResult) -> Void)
+}
+
+extension APIClient {
+    init(config: APIConfiguration, basePath: String?) {
+        self.init(hostname: config.hostname, port: config.port, basePath: basePath, credentials: config.credentials)
+    }
+    
+    var baseURL: String {
+        return "http://\(hostname):\(port ?? 80)\(basePath != nil ? "/\(basePath!)" : "")"
+    }
 }
 
 enum HTTPMethod: String {

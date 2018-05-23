@@ -26,6 +26,8 @@
 		240D10F920481843008C5E39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D10F820481843008C5E39 /* AppDelegate.swift */; };
 		240D110220481843008C5E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D110120481843008C5E39 /* Assets.xcassets */; };
 		240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D110320481843008C5E39 /* LaunchScreen.storyboard */; };
+		240DAEA420B5EF0D002A17EB /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240DAE8F20B5EF0D002A17EB /* UIImage+FixOrientation.swift */; };
+		240DAEA520B5EF0D002A17EB /* UIImageCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240DAEA320B5EF0D002A17EB /* UIImageCropper.swift */; };
 		2418C117207E36A4004D1632 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2418C116207E36A4004D1632 /* UIViewController.swift */; };
 		24207DE4207686D200851A73 /* Parchment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24207DCE207686B100851A73 /* Parchment.framework */; };
 		24207DE5207686D200851A73 /* Parchment.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24207DCE207686B100851A73 /* Parchment.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -389,6 +391,8 @@
 		240D110120481843008C5E39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		240D110420481843008C5E39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		240D110620481844008C5E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		240DAE8F20B5EF0D002A17EB /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+FixOrientation.swift"; path = "Frameworks/UIImageCropper/UIImageCropper/UIImage+FixOrientation.swift"; sourceTree = SOURCE_ROOT; };
+		240DAEA320B5EF0D002A17EB /* UIImageCropper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageCropper.swift; path = Frameworks/UIImageCropper/UIImageCropper/UIImageCropper.swift; sourceTree = SOURCE_ROOT; };
 		2418C116207E36A4004D1632 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		24207DBB207686B100851A73 /* Parchment.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parchment.xcodeproj; path = Frameworks/Parchment/Parchment.xcodeproj; sourceTree = "<group>"; };
 		24207DEC2076AB1800851A73 /* ProfilePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageViewController.swift; sourceTree = "<group>"; };
@@ -967,6 +971,8 @@
 		24FE005A207D563000F0D657 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				240DAE8F20B5EF0D002A17EB /* UIImage+FixOrientation.swift */,
+				240DAEA320B5EF0D002A17EB /* UIImageCropper.swift */,
 				24EB885120877DDA00B7A285 /* MonthYearPickerView.swift */,
 				24FE005B207D564500F0D657 /* EdgeInsetLabel.swift */,
 			);
@@ -1330,10 +1336,12 @@
 				248D37AB20494FE200B21C3D /* Location.swift in Sources */,
 				240D10F920481843008C5E39 /* AppDelegate.swift in Sources */,
 				C9150A7F208099C100A69078 /* TrafficMessageDetailViewController.swift in Sources */,
+				240DAEA420B5EF0D002A17EB /* UIImage+FixOrientation.swift in Sources */,
 				D44F4B7D20528076009A6239 /* CommunityService.swift in Sources */,
 				24FE005C207D564500F0D657 /* EdgeInsetLabel.swift in Sources */,
 				247F6D26206057950006FBC7 /* ViewControllerFactory.swift in Sources */,
 				24B1347E2064229100B894BF /* ConversationsViewController.swift in Sources */,
+				240DAEA520B5EF0D002A17EB /* UIImageCropper.swift in Sources */,
 				C966B6FE207949590007CA4F /* CreateTrafficMessageViewController.swift in Sources */,
 				24207DF22076BC8E00851A73 /* AboutViewController.swift in Sources */,
 				D45FD7002083D79300C35949 /* CreateOrEditCarViewController.swift in Sources */,

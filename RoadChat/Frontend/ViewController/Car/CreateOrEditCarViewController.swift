@@ -10,7 +10,7 @@ import UIKit
 import RoadChatKit
 import ColorCircle
 
-class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate {
+class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate, UIImageCropperProtocol {
 
     // MARK: - Typealiases
     typealias ColorPalette = BasicColorPalette & CarColorPalette
@@ -31,12 +31,15 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
     @IBOutlet weak var deleteButton: UIButton!
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var carImageViewHeightConstraint: NSLayoutConstraint!
     
     // MARK: - Views
     private let monthYearDatePickerView = MonthYearPickerView()
     private var saveBarButtonItem: UIBarButtonItem!
     private var adjustBrightnessLabel = EdgeInsetLabel()
     private let colorPickerView = ColorCircle()
+    private let imagePicker = UIImagePickerController()
+    private let imageCropper = UIImageCropper(cropRatio: 4/3)
 
     // MARK: - Private Properties
     private let user: User
@@ -67,6 +70,16 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
     // MARK: - Customization
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // car image view height
+        carImageViewHeightConstraint.constant = (view.frame.width/4)*3
+        
+        // image picker & cropper
+        imageCropper.picker = imagePicker
+        imageCropper.delegate = self
+        imageCropper.autoClosePicker = true
+        imageCropper.cancelButtonText = "Cancel"
+        imageCropper.cropButtonText = "Select"
         
         // keyboard notification
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -158,6 +171,10 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         }
         
         colorPickerField.backgroundColor = car.storedColor
+        
+        if let imageData = car.imageData {
+            carImageView.image = UIImage(data: imageData)
+        }
     }
     
     // MARK: - Public Methods
@@ -174,6 +191,12 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         let hexColorString = colorPickerField.backgroundColor!.toHexString()
         let createCarRequest = CarRequest(manufacturer: manufacturer, model: model, production: production, performance: performance, color: hexColorString)
     
+        var shouldUploadImage = false
+        
+        if carImageView.image != nil {
+            shouldUploadImage = true
+        }
+        
         if let car = car {
             car.manufacturer = manufacturer
             car.model = model
@@ -190,11 +213,25 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
                     return
                 }
                 
-                self.dismiss(animated: true, completion: nil)
+                if shouldUploadImage {
+                    car.uploadImage(self.carImageView.image!) { error in
+                        guard error == nil else {
+                            self.displayAlert(title: "Error", message: "Failed to upload image for Car: \(error!)") {
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                            
+                            return
+                        }
+                        
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                } else {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
         } else {
-            user.createCar(createCarRequest) { error in
-                guard error == nil else {
+            user.createCar(createCarRequest) { car, error in
+                guard let car = car else {
                     self.displayAlert(title: "Error", message: "Failed to create Car: \(error!)") {
                         self.dismiss(animated: true, completion: nil)
                     }
@@ -202,7 +239,21 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
                     return
                 }
                 
-                self.dismiss(animated: true, completion: nil)
+                if shouldUploadImage {
+                    car.uploadImage(self.carImageView.image!) { error in
+                        guard error == nil else {
+                            self.displayAlert(title: "Error", message: "Failed to upload image for Car: \(error!)") {
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                            
+                            return
+                        }
+                        
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                } else {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
         }
     }
@@ -214,7 +265,7 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
     }
     
     @IBAction func didPressAddImageButton(_ sender: UIButton) {
-        // TODO
+        navigationController?.present(imagePicker, animated: true, completion: nil)
     }
     
     func validateSaveButton() {
@@ -244,6 +295,11 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         validateSaveButton()
         return true
+    }
+    
+    // Mark: - UIImageCropper Delegate
+    func didCropImage(originalImage: UIImage?, croppedImage: UIImage?) {
+        carImageView.image = croppedImage
     }
     
     // Mark: - Tap Gesture Recognizer

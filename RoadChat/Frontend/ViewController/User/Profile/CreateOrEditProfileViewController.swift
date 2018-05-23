@@ -9,7 +9,7 @@
 import UIKit
 import RoadChatKit
 
-class CreateOrEditProfileViewController: UIViewController {
+class CreateOrEditProfileViewController: UIViewController, UIImageCropperProtocol {
     
     // MARK: - Typealiases
     typealias ColorPalette = BasicColorPalette & SexColorPalette
@@ -34,10 +34,13 @@ class CreateOrEditProfileViewController: UIViewController {
     @IBOutlet weak var countryTextField: UITextField!
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var profileImageViewHeightConstraint: NSLayoutConstraint!
     
     //MARK: - Views
     private let datePickerView = UIDatePicker()
     private var saveBarButtonItem: UIBarButtonItem!
+    private let imagePicker = UIImagePickerController()
+    private let imageCropper = UIImageCropper(cropRatio: 4/3)
     
     // MARK: - Private Properties
     private let user: User
@@ -80,6 +83,16 @@ class CreateOrEditProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // car image view height
+        profileImageViewHeightConstraint.constant = (view.frame.width/4)*3
+        
+        // image picker & cropper
+        imageCropper.picker = imagePicker
+        imageCropper.delegate = self
+        imageCropper.autoClosePicker = true
+        imageCropper.cancelButtonText = "Cancel"
+        imageCropper.cropButtonText = "Select"
         
         // keyboard notification
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -200,7 +213,12 @@ class CreateOrEditProfileViewController: UIViewController {
     }
     
     @IBAction func didPressAddImageButton(_ sender: UIButton) {
-        // TODO
+        navigationController?.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    // Mark: - UIImageCropper Delegate
+    func didCropImage(originalImage: UIImage?, croppedImage: UIImage?) {
+        profileImageView.image = croppedImage
     }
     
     // MARK: - Keyboard Notifications

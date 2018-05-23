@@ -174,13 +174,13 @@ class User: NSManagedObject, ReportOwner {
         }
     }
     
-    func createCar(_ car: CarRequest, completion: ((Error?) -> Void)?) {
+    func createCar(_ car: CarRequest, completion: ((Car?, Error?) -> Void)?) {
         do {
             try userService.createCar(car, userID: Int(id)) { car, error in
                 guard let car = car else {
                     let report = Report(.failedServerOperation(.create, resource: "Car", isMultiple: false, error: error!), owner: self)
                     log.error(report)
-                    completion?(error!)
+                    completion?(nil, error!)
                     return
                 }
     
@@ -192,19 +192,19 @@ class User: NSManagedObject, ReportOwner {
                     let report = Report(.successfulCoreDataOperation(.create, resource: "Car", isMultiple: false), owner: self)
                     log.debug(report)
     
-                    completion?(nil)
+                    completion?(car, nil)
                 } catch {
                     // pass core data error
                     let report = Report(.failedCoreDataOperation(.create, resource: "Car", isMultiple: false, error: error), owner: self)
                     log.error(report)
-                    completion?(error)
+                    completion?(nil, error)
                 }
             }
         } catch {
             // pass body encoding error
             let report = Report(.failedServerRequest(requestType: "CarRequest", error: error), owner: self)
             log.error(report)
-            completion?(error)
+            completion?(nil, error)
         }
     }
     

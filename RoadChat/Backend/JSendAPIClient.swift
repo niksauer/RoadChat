@@ -15,9 +15,11 @@ enum JSendAPIError: Error {
 }
 
 struct JSendAPIClient: APIClient {
-    
+
     // MARK: - Public Properties
-    let baseURL: String
+    let hostname: String
+    let port: Int?
+    let basePath: String?
     let credentials: APICredentialStore?
     
     // MARK: - Private Properties
@@ -29,6 +31,14 @@ struct JSendAPIClient: APIClient {
         case error(String?)
     }
 
+    // MARK: - Initialization
+    init(hostname: String, port: Int?, basePath: String?, credentials: APICredentialStore?) {
+        self.hostname = hostname
+        self.port = port
+        self.basePath = basePath
+        self.credentials = credentials
+    }
+    
     // MARK: - Public Methods
     func makeGETRequest(to path: String? = nil, params: JSON? = nil, completion: @escaping (APIResult) -> Void) {
         let url = URL(baseURL: baseURL, path: path, params: params)
@@ -59,7 +69,7 @@ struct JSendAPIClient: APIClient {
     }
     
     // MARK: - Private Methods
-    private func executeSessionDataTask(request: URLRequest, completion: @escaping (APIResult) -> Void) {
+    func executeSessionDataTask(request: URLRequest, completion: @escaping (APIResult) -> Void) {
         var request = request
         
         // set bearer authorization header

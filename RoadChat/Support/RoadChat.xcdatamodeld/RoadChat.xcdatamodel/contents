@@ -3,6 +3,7 @@
     <entity name="Car" representedClassName=".Car" syncable="YES" codeGenerationType="category">
         <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="manufacturer" attributeType="String" syncable="YES"/>
         <attribute name="model" attributeType="String" syncable="YES"/>
         <attribute name="performance" optional="YES" attributeType="Integer 16" defaultValueString="-1" usesScalarValueType="YES" syncable="YES"/>
@@ -114,7 +115,7 @@
         <relationship name="trafficMessages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TrafficMessage" inverseName="user" inverseEntity="TrafficMessage" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Car" positionX="-137" positionY="-72" width="128" height="165"/>
+        <element name="Car" positionX="-137" positionY="-72" width="128" height="180"/>
         <element name="CommunityMessage" positionX="-299" positionY="513" width="128" height="180"/>
         <element name="Conversation" positionX="-414" positionY="-315" width="128" height="180"/>
         <element name="DirectMessage" positionX="-218" positionY="-378" width="128" height="120"/>

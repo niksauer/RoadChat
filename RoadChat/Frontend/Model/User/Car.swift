@@ -51,6 +51,8 @@ class Car: NSManagedObject, ReportOwner {
         car.performance = Int16(prototype.performance ?? -1)
         car.color = prototype.color
         
+        car.getImage(completion: nil)
+        
         return car
     }
     
@@ -76,6 +78,7 @@ class Car: NSManagedObject, ReportOwner {
     override func awakeFromFetch() {
         super.awakeFromFetch()
         get(completion: nil)
+        getImage(completion: nil)
     }
     
     // MARK: - Public Methods
@@ -117,10 +120,8 @@ class Car: NSManagedObject, ReportOwner {
                 
                 do {
                     try self.context.save()
-                    
                     let report = Report(.successfulCoreDataOperation(.update, resource: nil, isMultiple: false), owner: self)
                     log.debug(report)
-                    
                     completion?(nil)
                 } catch {
                     // pass core data error
@@ -160,4 +161,50 @@ class Car: NSManagedObject, ReportOwner {
         }
     }
 
+    func getImage(completion: ((Error?) -> Void)?) {
+        carService.getImage(carID: Int(id)) { image, error in
+            guard let image = image else {
+                let report = Report(.failedServerOperation(.retrieve, resource: "Image", isMultiple: false, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            do {
+                self.imageData = image.data
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: "Image", isMultiple: false), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                let report = Report(.failedCoreDataOperation(.update, resource: "Image", isMultiple: false, error: error), owner: self)
+                log.error(report)
+                completion?(error)
+            }
+        }
+    }
+    
+    func uploadImage(_ image: UIImage, completion: ((Error?) -> Void)?) {
+        carService.uploadImage(image, carID: Int(id)) { error in
+            guard error == nil else {
+                let report = Report(.failedServerOperation(.update, resource: "Image", isMultiple: false, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            do {
+                self.context.delete(self)
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.update, resource: "Image", isMultiple: false), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                let report = Report(.failedCoreDataOperation(.update, resource: "Image", isMultiple: false, error: error), owner: self)
+                log.error(report)
+                completion?(error)
+            }
+        }
+    }
+    
 }

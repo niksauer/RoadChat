@@ -23,6 +23,7 @@
                 <outlet property="lastNameTextField" destination="6ye-NS-2I0" id="fta-oh-3xY"/>
                 <outlet property="postalCodeTextField" destination="8eO-2U-GpJ" id="iLL-DX-LEU"/>
                 <outlet property="profileImageView" destination="pkb-Ar-G76" id="Vug-Ck-YqK"/>
+                <outlet property="profileImageViewHeightConstraint" destination="P5s-ng-ce1" id="li7-bB-xqh"/>
                 <outlet property="sexTypeSegmentedControl" destination="twX-8Z-M4F" id="PjW-2x-J9m"/>
                 <outlet property="streetNameTextField" destination="z71-yj-wnZ" id="oxj-TG-So1"/>
                 <outlet property="streetNumberTextField" destination="DgF-ad-Hl6" id="TD4-Qc-AE9"/>

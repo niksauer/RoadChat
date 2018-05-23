@@ -16,7 +16,7 @@ struct CommunityService: JSendService {
     let client: JSendAPIClient
     
     init(hostname: String, port: Int, credentials: APICredentialStore?) {
-        self.client = JSendAPIClient(baseURL: "http://\(hostname):\(port)/community", credentials: credentials)
+        self.client = JSendAPIClient(hostname: hostname, port: port, basePath: "community", credentials: credentials)
     }
     
     // MARK: - Public Methods
