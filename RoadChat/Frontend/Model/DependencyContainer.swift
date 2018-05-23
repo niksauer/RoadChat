@@ -55,9 +55,11 @@ struct DependencyContainer {
         return TimeSinceDateFormatter()
     }
     
-    private var lengthFormatter: LengthFormatter {
-        return LengthFormatter()
-    }
+    private var lengthFormatter: LengthFormatter = {
+        let formatter = LengthFormatter()
+        formatter.numberFormatter.maximumFractionDigits = 0
+        return formatter
+    }()
     
     private var monthYearDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -187,7 +189,7 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeSecurityViewController(for user: User) -> SecurityViewController {
-        return SecurityViewController(viewFactory: self, colorPalette: colorPalette, user: user)
+        return SecurityViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, colorPalette: colorPalette, user: user)
     }
     
     func makeChangePasswordViewController(for user: User) -> ChangePasswordViewController {

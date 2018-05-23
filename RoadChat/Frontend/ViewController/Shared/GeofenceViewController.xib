@@ -27,8 +27,11 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </mapView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="val" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1n8-2e-JeB" customClass="EdgeInsetLabel" customModule="RoadChat" customModuleProvider="target">
-                    <rect key="frame" x="328" y="605" width="31" height="46"/>
+                    <rect key="frame" x="309" y="605" width="50" height="46"/>
                     <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="uuS-oc-bcJ"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                     <color key="textColor" red="0.52156862749999999" green="0.52156862749999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
@@ -63,10 +66,10 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <view clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="240" translatesAutoresizingMaskIntoConstraints="NO" id="i31-RW-i0P" userLabel="Slider Container">
-                    <rect key="frame" x="16" y="605" width="296" height="46"/>
+                    <rect key="frame" x="16" y="605" width="277" height="46"/>
                     <subviews>
                         <slider opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="740" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25000" minValue="5" maxValue="50000" translatesAutoresizingMaskIntoConstraints="NO" id="ekk-O1-CSP">
-                            <rect key="frame" x="6" y="8" width="284" height="31"/>
+                            <rect key="frame" x="6" y="8" width="265" height="31"/>
                             <connections>
                                 <action selector="didChangeRadius:" destination="-1" eventType="valueChanged" id="JrW-kY-1cg"/>
                             </connections>
