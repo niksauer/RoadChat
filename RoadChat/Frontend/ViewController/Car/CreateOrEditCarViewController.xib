@@ -17,6 +17,7 @@
                 <outlet property="carImageView" destination="QNx-qb-Kkl" id="NIO-6G-seJ"/>
                 <outlet property="colorPickerContainer" destination="KDC-jC-MYs" id="zLG-7I-a1Y"/>
                 <outlet property="colorPickerField" destination="fkw-ff-1OP" id="Jyc-3L-C0r"/>
+                <outlet property="deleteButton" destination="yjH-Yu-dx0" id="zwG-ff-Pek"/>
                 <outlet property="manufacturerTextField" destination="l4G-4d-yT8" id="eTB-S9-OEo"/>
                 <outlet property="modelTextField" destination="R0j-qz-b8l" id="r4s-U4-ckp"/>
                 <outlet property="performanceTextField" destination="wX2-WZ-uN9" id="iGI-kl-gXC"/>
@@ -39,9 +40,9 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lrq-LG-bc9" userLabel="Seperator">
                     <rect key="frame" x="0.0" y="234" width="375" height="1"/>
-                    <color key="backgroundColor" red="0.69803921570000005" green="0.69803921570000005" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="1" id="pmD-vw-Isr"/>
+                        <constraint firstAttribute="height" constant="0.5" id="pmD-vw-Isr"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sMx-Pl-eso">
@@ -74,14 +75,14 @@
                             </constraints>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qnx-5z-aIu" userLabel="Seperator">
-                            <rect key="frame" x="0.0" y="82" width="375" height="1"/>
+                            <rect key="frame" x="8" y="82" width="359" height="1"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="nbB-0g-Y1F"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aKP-ME-MOI" userLabel="Seperator">
-                            <rect key="frame" x="0.0" y="162.5" width="375" height="1"/>
+                            <rect key="frame" x="8" y="162.5" width="359" height="1"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="beE-YG-aGM"/>
@@ -100,7 +101,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kyn-ye-S2t" userLabel="Seperator">
-                            <rect key="frame" x="0.0" y="244.5" width="375" height="1"/>
+                            <rect key="frame" x="8" y="244.5" width="359" height="1"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="CYk-hM-CIP"/>
@@ -176,13 +177,12 @@
                         <constraint firstItem="xy4-cn-uU3" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" constant="16" id="J6N-w4-FOz"/>
                         <constraint firstItem="HOX-Ax-w9P" firstAttribute="top" secondItem="x4t-Cc-Cep" secondAttribute="bottom" constant="16" id="K0U-5b-NJG"/>
                         <constraint firstItem="x4t-Cc-Cep" firstAttribute="top" secondItem="qnx-5z-aIu" secondAttribute="bottom" constant="8" id="LEL-MN-tho"/>
-                        <constraint firstItem="Kyn-ye-S2t" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" id="Mte-98-5g0"/>
-                        <constraint firstAttribute="trailing" secondItem="qnx-5z-aIu" secondAttribute="trailing" id="OEc-Q5-YNW"/>
+                        <constraint firstItem="Kyn-ye-S2t" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" constant="8" id="Mte-98-5g0"/>
+                        <constraint firstAttribute="trailing" secondItem="qnx-5z-aIu" secondAttribute="trailing" constant="8" id="OEc-Q5-YNW"/>
                         <constraint firstItem="Crf-Fs-L9x" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" constant="16" id="OHW-Ag-L7N"/>
                         <constraint firstItem="fkw-ff-1OP" firstAttribute="centerY" secondItem="Crf-Fs-L9x" secondAttribute="centerY" id="OpA-MF-FMB"/>
                         <constraint firstItem="HOX-Ax-w9P" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" constant="16" id="Ps3-fq-5o8"/>
-                        <constraint firstAttribute="trailing" secondItem="Kyn-ye-S2t" secondAttribute="trailing" id="SVq-bY-ZSN"/>
-                        <constraint firstItem="Kyn-ye-S2t" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" id="U9v-PK-kK1"/>
+                        <constraint firstItem="Kyn-ye-S2t" firstAttribute="trailing" secondItem="sMx-Pl-eso" secondAttribute="trailing" constant="-8" id="SVq-bY-ZSN"/>
                         <constraint firstItem="fkw-ff-1OP" firstAttribute="leading" secondItem="Crf-Fs-L9x" secondAttribute="trailing" constant="8" id="US4-Cw-zvt"/>
                         <constraint firstItem="EyX-k5-270" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" constant="16" id="VKU-cv-kpe"/>
                         <constraint firstItem="7cx-GA-bIB" firstAttribute="top" secondItem="aKP-ME-MOI" secondAttribute="bottom" constant="8" id="WaC-EJ-lBs"/>
@@ -190,20 +190,19 @@
                         <constraint firstItem="wX2-WZ-uN9" firstAttribute="leading" secondItem="HOX-Ax-w9P" secondAttribute="trailing" constant="7" id="ag0-l7-ncA"/>
                         <constraint firstItem="xy4-cn-uU3" firstAttribute="top" secondItem="7cx-GA-bIB" secondAttribute="bottom" constant="16" id="dwI-Ks-2WO"/>
                         <constraint firstItem="qnx-5z-aIu" firstAttribute="top" secondItem="R0j-qz-b8l" secondAttribute="bottom" constant="16" id="fWd-Xu-74c"/>
-                        <constraint firstAttribute="trailing" secondItem="aKP-ME-MOI" secondAttribute="trailing" id="fek-Y7-EQS"/>
+                        <constraint firstAttribute="trailing" secondItem="aKP-ME-MOI" secondAttribute="trailing" constant="8" id="fek-Y7-EQS"/>
                         <constraint firstItem="Kyn-ye-S2t" firstAttribute="top" secondItem="xy4-cn-uU3" secondAttribute="bottom" constant="16" id="gix-ar-JHg"/>
                         <constraint firstItem="Yoo-gZ-yqp" firstAttribute="leading" secondItem="wX2-WZ-uN9" secondAttribute="trailing" id="l72-zs-2pZ"/>
                         <constraint firstItem="eVK-eW-T94" firstAttribute="centerY" secondItem="xy4-cn-uU3" secondAttribute="centerY" id="l7Z-sU-cee"/>
                         <constraint firstItem="R0j-qz-b8l" firstAttribute="top" secondItem="l4G-4d-yT8" secondAttribute="bottom" constant="8" id="lqw-jB-OvP"/>
                         <constraint firstItem="R0j-qz-b8l" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" constant="16" id="mku-9u-Hxu"/>
                         <constraint firstItem="EyX-k5-270" firstAttribute="top" secondItem="Kyn-ye-S2t" secondAttribute="bottom" constant="8" id="pj5-A0-AD1"/>
-                        <constraint firstAttribute="trailing" secondItem="Kyn-ye-S2t" secondAttribute="trailing" id="scH-Qd-LzU"/>
                         <constraint firstItem="Yoo-gZ-yqp" firstAttribute="centerY" secondItem="wX2-WZ-uN9" secondAttribute="centerY" id="v9c-xd-mLm"/>
                         <constraint firstAttribute="trailing" secondItem="BJQ-7h-A1h" secondAttribute="trailing" constant="24" id="vTx-gp-swB"/>
                         <constraint firstItem="aKP-ME-MOI" firstAttribute="top" secondItem="wX2-WZ-uN9" secondAttribute="bottom" constant="16" id="vXc-kC-6ec"/>
-                        <constraint firstItem="aKP-ME-MOI" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" id="wI3-de-ST1"/>
+                        <constraint firstItem="aKP-ME-MOI" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" constant="8" id="wI3-de-ST1"/>
                         <constraint firstItem="x4t-Cc-Cep" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" constant="16" id="xgl-hF-fP2"/>
-                        <constraint firstItem="qnx-5z-aIu" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" id="yPY-VB-L0z"/>
+                        <constraint firstItem="qnx-5z-aIu" firstAttribute="leading" secondItem="sMx-Pl-eso" secondAttribute="leading" constant="8" id="yPY-VB-L0z"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gdI-aG-uW1" userLabel="Delete View">
@@ -212,9 +211,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjH-Yu-dx0">
                             <rect key="frame" x="162.5" y="6.5" width="50" height="33"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <state key="normal" title="Delete">
-                                <color key="titleColor" red="0.87450980392156863" green="0.32156862745098036" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
+                            <state key="normal" title="Delete"/>
                             <connections>
                                 <action selector="didPressDeleteButton:" destination="-1" eventType="touchUpInside" id="TP0-o8-2QF"/>
                             </connections>

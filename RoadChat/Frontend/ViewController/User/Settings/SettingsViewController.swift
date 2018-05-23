@@ -23,6 +23,9 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
     private let lengthFormatter: LengthFormatter
     private let connectivityHandler: ConnectivityHandler!
     
+    private var oldCommunityRadius: Int16
+    private var oldTrafficRadius: Int16
+    
     // MARK: - Initialization
     init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, user: User, settings: Settings, colorPalette: ColorPalette, lengthFormatter: LengthFormatter) {
         self.viewFactory = viewFactory
@@ -34,6 +37,9 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
         self.lengthFormatter = lengthFormatter
         self.connectivityHandler = (UIApplication.shared.delegate as? AppDelegate)?.connectivityHandler
         
+        self.oldCommunityRadius = settings.communityRadius
+        self.oldTrafficRadius = settings.trafficRadius
+        
         super.init(style: .grouped)
         
         self.title = "Settings"
@@ -43,16 +49,24 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - Customization
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        tableView.register(UINib(nibName: "CenterLabelCell", bundle: nil), forCellReuseIdentifier: "CenterLabelCell")
-    }
 
     // MARK: - Public Methods
     @objc func doneButtonPressed(_ sender: UIBarButtonItem) {
+        var hasChangedSettings = false
+        
+        if oldCommunityRadius != settings.communityRadius {
+            hasChangedSettings = true
+        }
+        
+        if oldTrafficRadius != settings.trafficRadius {
+            hasChangedSettings = true
+        }
+        
+        guard hasChangedSettings else {
+            dismiss(animated: true, completion: nil)
+            return
+        }
+    
         settings.save { error in
             guard error == nil else {
                 // handle error
@@ -76,7 +90,7 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
     
     // MARK: - Table View Data Source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,9 +102,6 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
             // account
             return 3
         case 2:
-            // delete account
-            return 1
-        case 3:
             // developer
             return 1
         default:
@@ -147,17 +158,6 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
                 fatalError()
             }
         case 2:
-            // delete account
-            switch row {
-            case 0:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "CenterLabelCell", for: indexPath) as! CenterLabelCell
-                cell.centerTextLabel.text = "Delete Account"
-                cell.centerTextLabel.textColor = colorPalette.destructiveColor
-                return cell
-            default:
-                fatalError()
-            }
-        case 3:
             // developer
             switch row {
             case 0:
@@ -180,7 +180,7 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
             return "Radius"
         case 1:
             return "Account"
-        case 3:
+        case 2:
             return "Developer"
         default:
             return nil
@@ -207,11 +207,13 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
             case 0:
                 let geofenceViewController = viewFactory.makeGeofenceViewController(radius: Double(Int(settings.communityRadius)*1000), min: 0, max: 500*1000, identifier: "Community")
                 geofenceViewController.delegate = self
+                geofenceViewController.title = "Community"
                 let geofenceNavigationController = UINavigationController(rootViewController: geofenceViewController)
                 navigationController?.present(geofenceNavigationController, animated: true, completion: nil)
             case 1:
                 let geofenceViewController = viewFactory.makeGeofenceViewController(radius: Double(Int(settings.trafficRadius)*1000), min: 0, max: 500*1000, identifier: "Traffic")
                 geofenceViewController.delegate = self
+                geofenceViewController.title = "Traffic"
                 let geofenceNavigationController = UINavigationController(rootViewController: geofenceViewController)
                 navigationController?.present(geofenceNavigationController, animated: true, completion: nil)
             default:
@@ -257,27 +259,6 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
                 fatalError()
             }
         case 2:
-            switch row {
-            case 0:
-                // delete account
-                displayConfirmationDialog(title: "Delete Account", message: "Do you really want to delete your account? This includes all data and messages received.", type: .destructive, onCancel: nil) { _ in
-                    self.authenticationManager.deleteAuthenticatedUser { error in
-                        guard error == nil else {
-                            // handle delete user account error
-                            self.displayAlert(title: "Error", message: "Failed to delete account: \(error!)", completion: nil)
-                            return
-                        }
-                        
-                        let authenticationViewController = self.viewFactory.makeAuthenticationViewController()
-                        self.appDelegate.show(authenticationViewController)
-                    }
-                }
-                
-                tableView.deselectRow(at: indexPath, animated: false)
-            default:
-                fatalError()
-            }
-        case 3:
             switch row {
             case 0:
                 let logDataViewController = viewFactory.makeLogDataViewController()

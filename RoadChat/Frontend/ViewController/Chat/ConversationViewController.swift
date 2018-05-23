@@ -11,32 +11,44 @@ import RoadChatKit
 
 class ConversationViewController: UIViewController, UITextFieldDelegate {
     
+    // MARK: - Typealiases
+    typealias ColorPalette = BasicColorPalette
+    
     // MARK: - Outlets
     @IBOutlet weak var messagesContainer: UIView!
     @IBOutlet weak var inputContainer: UIView!
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var approvalStatusContainer: UIView!
     
     // MARK: - Constraints
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     
+    // MARK: - Public Properties
+    var isEntryActive = false
+    
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let conversation: Conversation
     private let activeUser: User
+    private let colorPalette: ColorPalette
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, conversation: Conversation, activeUser: User) {
+    init(viewFactory: ViewControllerFactory, conversation: Conversation, activeUser: User, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
         self.conversation = conversation
         self.activeUser = activeUser
+        self.colorPalette = colorPalette
         
         super.init(nibName: nil, bundle: nil)
         
-        self.title = conversation.title
+        self.title = conversation.getTitle(activeUser: activeUser)
         hidesBottomBarWhenPushed = true
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "profile_glyph"), style: .plain, target: self, action: #selector(didPressProfileButton))
+        
+        let infoButton = UIButton(type: .infoLight)
+        infoButton.addTarget(self, action: #selector(didPressInfoButton(_:)), for: .touchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -60,6 +72,7 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         directMessagesViewController.view.pin(to: messagesContainer)
         
         // additional view setup
+        inputContainer.backgroundColor = colorPalette.interfaceControlColor
         sendButton.isEnabled = false
         messageTextField.delegate = self
         messageTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
@@ -68,13 +81,24 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         tapGestureRecognizer.cancelsTouchesInView = false
         directMessagesViewController.view.addGestureRecognizer(tapGestureRecognizer)
+        
+        // auto-trigger keyboard
+        if isEntryActive {
+            messageTextField.becomeFirstResponder()
+        }
+        
+        // trigger approval status container
+        if let approvalStatus = conversation.getApprovalStatus(activeUser: activeUser) {
+            switch approvalStatus {
+            case .requested:
+                approvalStatusContainer.isHidden = false
+            default:
+                approvalStatusContainer.isHidden = true
+            }
+        }
     }
     
     // MARK: - Public Methods
-    @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        view.endEditing(true)
-    }
-    
     @IBAction func didPressSendButton(_ sender: UIButton) {
         guard let message = messageTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), message.count >= 1 else {
             return
@@ -88,8 +112,43 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             
+            self.sendButton.isEnabled = false
             self.messageTextField.text = nil
         }
+    }
+    
+    @IBAction func didPressAcceptButton(_ sender: UIButton) {
+        conversation.accept { error in
+            guard error == nil else {
+                // handle error
+                return
+            }
+            
+            self.approvalStatusContainer.isHidden = true
+        }
+    }
+    
+    @IBAction func didPressDenyButton(_ sender: UIButton) {
+        displayConfirmationDialog(title: "Deny Conversation", message: "Do you really want to deny this conversation? You will not be able to receive any further messages.", onCancel: nil) { _ in
+            self.conversation.deny { error in
+                guard error == nil else {
+                    // handle error
+                    return
+                }
+                
+                self.approvalStatusContainer.isHidden = true
+            }
+        }
+    }
+
+    // MARK: - Private Methods
+    @objc private func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
+    @objc private func didPressInfoButton(_ sender: UIButton) {
+        let participantsViewController = viewFactory.makeParticipantsViewController(for: conversation, activeUser: activeUser)
+        navigationController?.pushViewController(participantsViewController, animated: true)
     }
     
     // MARK: - TextFieldDelegate
@@ -117,10 +176,4 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         bottomConstraint.constant = 0
     }
     
-    // MARK: - Private Methods
-//    @objc private func didPressProfileButton() {
-//        let profileViewController = viewFactory.makeProfileViewController(for: conv, activeUser: activeUser)
-//        navigationController?.pushViewController(profileViewController, animated: true)
-//    }
-
 }

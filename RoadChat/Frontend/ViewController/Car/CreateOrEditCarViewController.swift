@@ -28,6 +28,8 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
     @IBOutlet weak var colorPickerContainer: UIView!
     @IBOutlet weak var colorPickerField: UIView!
 
+    @IBOutlet weak var deleteButton: UIButton!
+    
     // MARK: - Views
     private let monthYearDatePickerView = MonthYearPickerView()
     private var saveBarButtonItem: UIBarButtonItem!
@@ -64,9 +66,13 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // enable keyboard dismissal
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         tapGestureRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGestureRecognizer)
+        
+        // additional view setup
+        deleteButton.tintColor = colorPalette.destructiveColor
         
         // production date
         monthYearDatePickerView.years = {
@@ -96,13 +102,6 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         addImageButton.tintColor = colorPalette.createColor
         addImageButton.backgroundColor = colorPalette.contentBackgroundColor
         
-//        addImageButton.backgroundColor?.withAlphaComponent(0.5)
-//        addImageButton.layer.shadowColor = UIColor.black.cgColor
-//        addImageButton.layer.shadowOffset = CGSize.zero
-//        addImageButton.layer.shadowOpacity = 1
-//        addImageButton.layer.shadowRadius = 10
-//        addImageButton.layer.shouldRasterize = true
-        
         // color picker
         colorPickerField.backgroundColor = colorPalette.defaultCarColor
         colorPickerField.layer.cornerRadius = 10
@@ -118,9 +117,9 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         adjustBrightnessLabel.clipsToBounds = true
         adjustBrightnessLabel.backgroundColor = colorPalette.contentBackgroundColor
         adjustBrightnessLabel.text = "Pinch to adjust Brightness"
-        adjustBrightnessLabel.textColor = colorPalette.textColor
+        adjustBrightnessLabel.textColor = colorPalette.darkTextColor
         
-        colorPickerContainer.backgroundColor = colorPalette.controlBackgroundColor
+        colorPickerContainer.backgroundColor = colorPalette.overlayBackgroundColor
         colorPickerContainer.addSubview(colorPickerView)
         colorPickerContainer.addSubview(adjustBrightnessLabel)
     
@@ -146,7 +145,7 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         
         manufacturerTextField.text = car.manufacturer
         modelTextField.text = car.model
-        performanceTextField.text = String(car.performance)
+        performanceTextField.text = car.performance != 1 ? String(car.performance) : nil
         
         if let production = car.production {
             productionTextField.text = productionDateFormatter.string(from: production)
@@ -203,7 +202,7 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
     }
 
     func didChangeProductionDate(month: Int, year: Int) {
-        self.productionTextField.textColor = self.colorPalette.textColor
+        self.productionTextField.textColor = self.colorPalette.darkTextColor
         self.productionTextField.text = String(format: "%02d/%d", month, year)
         validateSaveButton()
     }

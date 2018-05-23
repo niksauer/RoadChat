@@ -27,7 +27,7 @@ class RadarViewController: UIViewController, MKMapViewDelegate, LocationManagerD
     
     private var setInitialUserLocation = false
     private var annotations = [NearbyUser]()
-    private var selectedUser: NearbyUser?
+    private var selectedUsers: [NearbyUser]?
     
     // MARK: - Initialization
     init(viewFactory: ViewControllerFactory, activeUser: User, conversationManager: ConversationManager, locationManager: LocationManager, userManager: UserManager, searchContext: NSManagedObjectContext) {
@@ -73,15 +73,16 @@ class RadarViewController: UIViewController, MKMapViewDelegate, LocationManagerD
     }
     
     @objc private func createButtonPressed() {
-        guard let selectedUser = selectedUser?.user else {
+        guard let selectedUsers = selectedUsers else {
             return
         }
         
-        if let conversation = conversationManager.findConversationByParticipants([selectedUser], requestor: activeUser, context: searchContext) {
+        if let conversation = conversationManager.findConversationByRecipients(selectedUsers.map { $0.user }, requestor: activeUser, context: searchContext) {
             let conversationController = self.viewFactory.makeConversationViewController(for: conversation, activeUser: activeUser)
+            conversationController.isEntryActive = true
             self.navigationController?.pushViewController(conversationController, animated: true)
         } else {
-            let request = ConversationRequest(title: nil, participants: [selectedUser.id])
+            let request = ConversationRequest(title: nil, recipients: selectedUsers.map { $0.user.id })
             
             activeUser.createConversation(request) { conversation, error in
                 guard let conversation = conversation else {
@@ -93,6 +94,7 @@ class RadarViewController: UIViewController, MKMapViewDelegate, LocationManagerD
                 }
                 
                 let conversationController = self.viewFactory.makeConversationViewController(for: conversation, activeUser: self.activeUser)
+                conversationController.isEntryActive = true
                 self.navigationController?.pushViewController(conversationController, animated: true)
             }
         }
@@ -107,7 +109,7 @@ class RadarViewController: UIViewController, MKMapViewDelegate, LocationManagerD
                 
                 return
             }
-        
+            
             // add delta updates
             let newNearbyUsers = users.filter { newNearbyUser in
                 !self.annotations.contains { existingAnnotation in
@@ -126,6 +128,7 @@ class RadarViewController: UIViewController, MKMapViewDelegate, LocationManagerD
                 return annotation
             }
             
+            self.annotations.append(contentsOf: newAnnotations)
             self.mapView.addAnnotations(newAnnotations)
             
             // remove delta updates
@@ -133,6 +136,14 @@ class RadarViewController: UIViewController, MKMapViewDelegate, LocationManagerD
                 !users.contains { newNearbyUser in
                     existingAnnotation.user.id == newNearbyUser.id
                 }
+            }
+            
+            for oldAnnotation in oldAnnotations {
+                guard let index = self.annotations.index(of: oldAnnotation) else {
+                    continue
+                }
+                
+                self.annotations.remove(at: index)
             }
             
             self.mapView.removeAnnotations(oldAnnotations)
@@ -168,7 +179,7 @@ class RadarViewController: UIViewController, MKMapViewDelegate, LocationManagerD
             return
         }
         
-        selectedUser = nearbyUser
+        selectedUsers = [nearbyUser]
         createBarButton.isEnabled = true
     }
     
@@ -177,7 +188,7 @@ class RadarViewController: UIViewController, MKMapViewDelegate, LocationManagerD
             return
         }
         
-        selectedUser = nil
+        selectedUsers = nil
         createBarButton.isEnabled = false
     }
     

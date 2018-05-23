@@ -73,7 +73,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
         self.collectionView?.addSubview(refreshControl!)
         
         // aditional view setup
-        communityBoard.getMessages(completion: nil)
+        updateData()
         updateUI()
     }
     
@@ -86,22 +86,21 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
     
     private func updateUI() {
         let request: NSFetchRequest<CommunityMessage> = CommunityMessage.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "time", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "time", ascending: false)]
         
         if let user = sender {
             request.predicate = NSPredicate(format: "senderID = %d", user.id)
         }
         
         fetchedResultsController = NSFetchedResultsController<CommunityMessage>(fetchRequest: request, managedObjectContext: searchContext, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultsController?.delegate = self
+        fetchedResultsController.delegate = self
         
-        try? fetchedResultsController?.performFetch()
-        collectionView?.reloadData()
+        try? fetchedResultsController.performFetch()
     }
     
     // MARK: UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let message = fetchedResultsController!.object(at: indexPath)
+        let message = fetchedResultsController.object(at: indexPath)
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CommunityMessageCell
         cell.delegate = self
@@ -113,7 +112,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
     // MARK: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // item for which size should be calculated
-        let message = fetchedResultsController!.object(at: indexPath)
+        let message = fetchedResultsController.object(at: indexPath)
         
         // width cell should use
         let width = collectionView.frame.width
@@ -127,7 +126,7 @@ class CommunityMessagesViewController: FetchedResultsCollectionViewController<Co
     
     // MARK: - UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let message = fetchedResultsController!.object(at: indexPath)
+        let message = fetchedResultsController.object(at: indexPath)
         
         userManager.findUserById(Int(message.senderID), context: searchContext) { user, error in
             guard let user = user else {
@@ -151,7 +150,7 @@ extension CommunityMessagesViewController: CommunityMessageCellDelegate {
             return
         }
         
-        let message = fetchedResultsController!.object(at: indexPath)
+        let message = fetchedResultsController.object(at: indexPath)
     
         message.upvote { error in
             guard error == nil else {
@@ -169,7 +168,7 @@ extension CommunityMessagesViewController: CommunityMessageCellDelegate {
             return
         }
         
-        let message = fetchedResultsController!.object(at: indexPath)
+        let message = fetchedResultsController.object(at: indexPath)
         
         message.downvote { error in
             guard error == nil else {

@@ -42,6 +42,8 @@ protocol ViewControllerFactory {
     func makeConversationsViewController(for user: User) -> ConversationsViewController
     func makeConversationViewController(for conversation: Conversation, activeUser: User) -> ConversationViewController
     func makeDirectMessagesViewController(for conversation: Conversation, activeUser: User) -> DirectMessagesViewController
+    func makeParticipantsViewController(for conversation: Conversation, activeUser: User) -> ParticipantsViewController
+    func makeChangeTitleViewController(for conversation: Conversation) -> ChangeTitleViewController
     
     // Settings
     func makeSettingsViewController(for user: User, settings: Settings) -> SettingsViewController
@@ -52,7 +54,7 @@ protocol ViewControllerFactory {
     func makeLogDataViewController() -> LogDataViewController
     
     // User
-    func makeProfileViewController(for user: User, activeUser: User) -> ProfileViewController
+    func makeProfileViewController(for user: User, activeUser: User, showsPublicProfile: Bool) -> ProfileViewController
     func makeProfilePageViewController(for user: User, activeUser: User) -> ProfilePageViewController
     func makeCreateOrEditCarViewController(for user: User, car: Car?) -> CreateOrEditCarViewController
     func makeCreateOrEditProfileViewController(for user: User) -> CreateOrEditProfileViewController

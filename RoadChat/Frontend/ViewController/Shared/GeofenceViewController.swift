@@ -56,8 +56,7 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
         self.lengthFormatter = lengthFormatter
         
         super.init(nibName: nil, bundle: nil)
-        
-        self.title = "Geofence"
+    
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed(_:)))
         self.saveBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonPressed(_:)))
         self.saveBarButtonItem.isEnabled = false
@@ -109,7 +108,7 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
         let newGeofence = MKCircle(center: userLocation, radius: radius)
         let geofenceContainer = MKMapSize(width: newGeofence.boundingMapRect.size.width + 250, height: newGeofence.boundingMapRect.size.height + 250)
         let newVisibleMapRect = MKMapRect(origin: newGeofence.boundingMapRect.origin, size: geofenceContainer)
-        mapView.setVisibleMapRect(newVisibleMapRect, animated: true)
+        mapView.setVisibleMapRect(newVisibleMapRect, edgePadding: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16), animated: true)
         mapView.add(newGeofence)
         geofence = newGeofence
 
@@ -136,7 +135,7 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
         }
 
         let newGeofence = MKCircle(center: userLocation.coordinate, radius: 10000)
-        mapView.setVisibleMapRect(newGeofence.boundingMapRect, animated: true)
+        mapView.setVisibleMapRect(newGeofence.boundingMapRect, edgePadding: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16), animated: true)
         mapView.add(newGeofence)
         geofence = newGeofence
         setInitialGeofence = true

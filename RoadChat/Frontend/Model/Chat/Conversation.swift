@@ -19,7 +19,7 @@ class Conversation: NSManagedObject, ReportOwner {
     // MARK: - Public Class Methods
     class func createOrUpdate(from prototype: RoadChatKit.Conversation.PublicConversation, in context: NSManagedObjectContext) throws -> Conversation {
         let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %d", prototype.id - 1)
+        request.predicate = NSPredicate(format: "id = %d", prototype.id)
         
         do {
             let matches = try context.fetch(request)
@@ -30,7 +30,12 @@ class Conversation: NSManagedObject, ReportOwner {
                 // update existing conversation
                 let conversation = matches.first!
                 conversation.title = prototype.title
-                conversation.lastChange = prototype.newestMessage?.time ?? prototype.creation
+                
+                // set last message
+                if let newestMessage = prototype.newestMessage, let message = try? DirectMessage.create(from: newestMessage, conversationID: Int(conversation.id), in: context) {
+                    conversation.newestMessage = message
+                    message.conversation = conversation
+                }
                 
                 return conversation
             }
@@ -40,15 +45,26 @@ class Conversation: NSManagedObject, ReportOwner {
         
         // create new conversation
         let conversation = Conversation(context: context)
-        conversation.id = Int32(prototype.id - 1)
+        conversation.id = Int32(prototype.id)
         conversation.creatorID = Int32(prototype.creatorID)
         conversation.title = prototype.title
         conversation.creation = prototype.creation
-        conversation.lastChange = prototype.newestMessage?.time ?? prototype.creation
         
-        // retrieve resources
+        // set last message
+        if let newestMessage = prototype.newestMessage, let message = try? DirectMessage.create(from: newestMessage, conversationID: Int(conversation.id), in: context) {
+            conversation.newestMessage = message
+            message.conversation = conversation
+        }
+        
+        // set participants
+        let participants = prototype.participants.compactMap {
+            try? Participant.createOrUpdate(from: $0, conversationID: prototype.id, in: context)
+        }
+        
+        conversation.addToParticipants(NSSet(array: participants))
+        
+        // retrieve public resources
         conversation.getMessages(completion: nil)
-        conversation.getParticipants(completion: nil)
         
         return conversation
     }
@@ -56,10 +72,6 @@ class Conversation: NSManagedObject, ReportOwner {
     // MARK: - Public Properties
     var storedParticipants: [Participant] {
         return Array(participants!) as! [Participant]
-    }
-    
-    var newestMessage: DirectMessage? {
-        return (Array(messages!) as! [DirectMessage]).sorted(by: { $0.time! > $1.time! }).first
     }
     
     // MARK: - ReportOwner Protocol
@@ -70,7 +82,7 @@ class Conversation: NSManagedObject, ReportOwner {
     // MARK: - Private Properties
     private let conversationService = ConversationService(config: DependencyContainer().config)
     private let context: NSManagedObjectContext = CoreDataStack.shared.viewContext
-
+    
     // MARK: - Initialization
     override func awakeFromFetch() {
         super.awakeFromFetch()
@@ -104,6 +116,40 @@ class Conversation: NSManagedObject, ReportOwner {
         }
     }
     
+    func save(completion: ((Error?) -> Void)?) {
+        let updateRequest = ConversationUpdateRequest(title: title)
+        
+        do {
+            try conversationService.update(conversationID: Int(id), to: updateRequest) { error in
+                guard error == nil else {
+                    let report = Report(.failedServerOperation(.update, resource: nil, isMultiple: false, error: error!), owner: self)
+                    log.error(report)
+                    completion?(error!)
+                    return
+                }
+                
+                do {
+                    try self.context.save()
+                    
+                    let report = Report(.successfulCoreDataOperation(.update, resource: nil, isMultiple: false), owner: self)
+                    log.debug(report)
+                    
+                    completion?(nil)
+                } catch {
+                    // pass core data error
+                    let report = Report(.failedCoreDataOperation(.update, resource: nil, isMultiple: false, error: error), owner: self)
+                    log.error(report)
+                    completion?(error)
+                }
+            }
+        } catch {
+            // pass body encoding error
+            let report = Report(.failedServerRequest(requestType: "ConversationUpdateRequest", error: error), owner: self)
+            log.error(report)
+            completion?(error)
+        }
+    }
+
     func delete(completion: @escaping (Error?) -> Void) {
         conversationService.delete(conversationID: Int(id)) { error in
             guard error == nil else {
@@ -140,7 +186,17 @@ class Conversation: NSManagedObject, ReportOwner {
             
             let coreMessages: [DirectMessage] = messages.compactMap {
                 do {
-                    return try DirectMessage.create(from: $0, conversationID: Int(self.id), in: self.context)
+                    let message = try DirectMessage.create(from: $0, conversationID: Int(self.id), in: self.context)
+                    
+                    if let newestMessage = self.newestMessage {
+                        if message.time! > newestMessage.time! {
+                            self.newestMessage = message
+                        }
+                    } else {
+                        self.newestMessage = message
+                    }
+                    
+                    return message
                 } catch DirectMessageError.duplicate {
                     return nil
                 } catch {
@@ -151,7 +207,7 @@ class Conversation: NSManagedObject, ReportOwner {
             }
             
             self.addToMessages(NSSet(array: coreMessages))
-
+            
             do {
                 try self.context.save()
                 let report = Report(.successfulCoreDataOperation(.retrieve, resource: "DirectMessage", isMultiple: true), owner: self)
@@ -179,6 +235,15 @@ class Conversation: NSManagedObject, ReportOwner {
                 do {
                     let message = try DirectMessage.create(from: message, conversationID: Int(self.id), in: self.context)
                     self.addToMessages(message)
+                    
+                    if let newestMessage = self.newestMessage {
+                        if message.time! > newestMessage.time! {
+                            self.newestMessage = message
+                        }
+                    } else {
+                        self.newestMessage = message
+                    }
+                    
                     try self.context.save()
                     let report = Report(.successfulCoreDataOperation(.create, resource: "DirectMessage", isMultiple: false), owner: self)
                     log.debug(report)
@@ -243,12 +308,12 @@ class Conversation: NSManagedObject, ReportOwner {
                 return
             }
             
-            self.setApprovalStatus(.denied, completion: completion)
+            self.setApprovalStatus(.accepted, completion: completion)
         }
     }
     
     func deny(completion: @escaping (Error?) -> Void) {
-        conversationService.delete(conversationID: Int(id)) { error in
+        conversationService.deny(conversationID: Int(id)) { error in
             guard error == nil else {
                 // pass service error
                 let report = Report(.failedServerOperation(.update, resource: "ApprovalStatus", isMultiple: false, error: error!), owner: self)
@@ -261,9 +326,29 @@ class Conversation: NSManagedObject, ReportOwner {
         }
     }
     
+    func getTitle(activeUser: User) -> String? {
+        if storedParticipants.count > 2 {
+            return title
+        } else {
+            return storedParticipants.first(where: { $0.user!.id != activeUser.id })?.user?.username
+        }
+    }
+    
+    func getApprovalStatus(activeUser: User) -> ApprovalType? {
+        guard let participation = storedParticipants.first(where: { $0.user?.id == activeUser.id }) else {
+            return nil
+        }
+        
+        guard let status = participation.approvalStatus, let approval = ApprovalType(rawValue: status) else {
+            return nil
+        }
+        
+        return approval
+    }
+    
     // MARK: - Private Methods
     private func setApprovalStatus(_ status: ApprovalType, completion: (Error?) -> Void) {
-        guard let participation = self.storedParticipants.first(where: { $0.userID == self.user?.id }) else {
+        guard let participation = self.storedParticipants.first(where: { $0.user?.id == self.user?.id }) else {
             // pass model validation error
             log.error("\(self.user!.logDescription) is not participating in \(self.logDescription)")
             completion(ConversationError.notParticipating)

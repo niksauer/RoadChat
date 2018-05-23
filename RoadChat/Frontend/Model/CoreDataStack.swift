@@ -61,8 +61,20 @@ final class CoreDataStack {
     }
     
     func reset() {
-        deleteAllRecords(for: "User")
-        deleteAllRecords(for: "Conversation")
+        let userFetchRequest = NSFetchRequest<User>(entityName: "User")
+        if let users = try? userFetchRequest.execute() {
+            _ = users.map {
+                viewContext.delete($0)
+            }
+        }
+        
+        let conversationFetchRequest = NSFetchRequest<Conversation>(entityName: "Conversation")
+        if let users = try? conversationFetchRequest.execute() {
+            _ = users.map {
+                viewContext.delete($0)
+            }
+        }
+    
         deleteAllRecords(for: "CommunityMessage")
         deleteAllRecords(for: "TrafficMessage")
     }

@@ -108,8 +108,8 @@ class CreateOrEditProfileViewController: UIViewController {
         // loading existing user data
         usernameTextField.text = user.username
         
-        biographyTextView.layer.borderWidth = 1
-        biographyTextView.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+        biographyTextView.layer.borderWidth = 0.3
+        biographyTextView.layer.borderColor = colorPalette.separatorColor.cgColor
         biographyTextView.layer.cornerRadius = 5
         biographyTextView.text = user.profile?.biography
         
@@ -125,11 +125,11 @@ class CreateOrEditProfileViewController: UIViewController {
         
         streetNameTextField.text = user.profile?.streetName
         
-        if let streetNumber = user.profile?.streetNumber {
+        if let streetNumber = user.profile?.streetNumber, streetNumber != -1 {
             streetNumberTextField.text = String(streetNumber)
         }
         
-        if let postalCode = user.profile?.postalCode {
+        if let postalCode = user.profile?.postalCode, postalCode != -1 {
             postalCodeTextField.text = String(postalCode)
         }
         
@@ -179,7 +179,7 @@ class CreateOrEditProfileViewController: UIViewController {
     }
     
     @objc func didChangeBirthDate(sender: UIDatePicker) {
-        birthTextField.textColor = colorPalette.textColor
+        birthTextField.textColor = colorPalette.darkTextColor
         
         // get the date string applied date format
         let selectedDate = dateFormatter.string(from: sender.date)
@@ -210,7 +210,7 @@ class CreateOrEditProfileViewController: UIViewController {
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
         
-        bottomConstraint.constant = keyboardHeight
+        bottomConstraint.constant = keyboardHeight - view.safeAreaInsets.bottom
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {

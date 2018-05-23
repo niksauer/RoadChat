@@ -21,6 +21,8 @@
                 <outlet property="communityKarmaLevelLabel" destination="vWt-YI-v8e" id="yTe-4c-p9l"/>
                 <outlet property="emailLabel" destination="gip-Fn-7RC" id="eGA-ys-g8s"/>
                 <outlet property="emailStackView" destination="pBN-ht-UI9" id="Dop-7F-k5K"/>
+                <outlet property="informationStackView" destination="bKe-Qm-RmR" id="6HM-rR-Zcb"/>
+                <outlet property="separatorStackView" destination="6ny-AX-GBK" id="hKL-aK-8sQ"/>
                 <outlet property="trafficKarmaLevelLabel" destination="k5F-jL-0wp" id="V2Y-hu-jpd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

@@ -34,18 +34,8 @@ class ProfileViewController: UIViewController {
     // MARK: - Views
     private var refreshControl: UIRefreshControl?
     
-    // MARK: - Public Properties
-    var showsPublicProfile: Bool = false {
-        didSet {
-            if showsPublicProfile {
-                self.navigationItem.leftBarButtonItem = nil
-                self.navigationItem.rightBarButtonItem = nil
-            }
-        }
-    }
-    
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, user: User, activeUser: User, colorPalette: ColorPalette) {
+    init(viewFactory: ViewControllerFactory, user: User, activeUser: User, showsPublicProfile: Bool, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
         self.user = user
         self.privacy = user.privacy!
@@ -57,7 +47,10 @@ class ProfileViewController: UIViewController {
         self.title = "Profile"
         self.tabBarItem = UITabBarItem(title: "Profile", image: #imageLiteral(resourceName: "profile_glyph"), tag: 3)
         
-        if activeUser.id == user.id {
+        if showsPublicProfile {
+            self.navigationItem.leftBarButtonItem = nil
+            self.navigationItem.rightBarButtonItem = nil
+        } else if activeUser.id == user.id {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settings_glyph"), style: .done, target: self, action: #selector(settingsButtonPressed(_:)))
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonPressed(_:)))
         }
@@ -94,7 +87,6 @@ class ProfileViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         updateUI()
     }
     

@@ -142,7 +142,7 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView == messageTextView, textView.text == messageTextViewPlaceholder {
             textView.text = ""
-            textView.textColor = colorPalette.textColor
+            textView.textColor = colorPalette.darkTextColor
         }
     }
     

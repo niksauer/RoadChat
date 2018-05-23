@@ -37,8 +37,8 @@
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gXY-GK-FjS">
-                    <rect key="frame" x="16" y="74" width="343" height="1"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gXY-GK-FjS" userLabel="Seperator">
+                    <rect key="frame" x="8" y="74" width="359" height="1"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="ehw-cn-YTc"/>
@@ -85,12 +85,12 @@
                 <constraint firstItem="m9u-Nq-oPd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="Pga-L5-uiW"/>
                 <constraint firstItem="Lt2-c1-r8j" firstAttribute="leading" secondItem="m9u-Nq-oPd" secondAttribute="trailing" constant="8" id="QRA-Pg-KAH"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Lt2-c1-r8j" secondAttribute="trailing" constant="16" id="R6y-4F-lYN"/>
-                <constraint firstItem="gXY-GK-FjS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="RN3-Wr-FEE"/>
+                <constraint firstItem="gXY-GK-FjS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="RN3-Wr-FEE"/>
                 <constraint firstItem="1t4-1i-Qyg" firstAttribute="top" secondItem="gXY-GK-FjS" secondAttribute="bottom" constant="8" id="WyM-ts-83m"/>
                 <constraint firstItem="Lt2-c1-r8j" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="18" id="Ykk-Ns-cdD"/>
                 <constraint firstItem="Lt2-c1-r8j" firstAttribute="centerY" secondItem="m9u-Nq-oPd" secondAttribute="centerY" id="ZyE-rP-Wwf"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="wpq-pO-gu2" secondAttribute="bottom" constant="8" id="hlY-Am-dcm"/>
-                <constraint firstAttribute="trailing" secondItem="gXY-GK-FjS" secondAttribute="trailing" constant="16" id="kcO-vH-8nr"/>
+                <constraint firstAttribute="trailing" secondItem="gXY-GK-FjS" secondAttribute="trailing" constant="8" id="kcO-vH-8nr"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

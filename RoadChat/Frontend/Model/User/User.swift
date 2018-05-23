@@ -28,6 +28,10 @@ class User: NSManagedObject, ReportOwner {
                 user.email = prototype.email
                 user.username = prototype.username
                 
+                // update privacy
+                let privacy = try Privacy.createOrUpdate(from: prototype.privacy, userID: Int(user.id), in: context)
+                user.privacy = privacy
+                
                 // update current location if given
                 if let location = prototype.location {
                     let location = try Location.create(from: location, in: context)
@@ -47,10 +51,9 @@ class User: NSManagedObject, ReportOwner {
         user.username = prototype.username
         user.registry = prototype.registry
         
-        // retrieve resources
-        user.getProfile(completion: nil)
-        user.getSettings(completion: nil)
-        user.getConversations(completion: nil)
+        // set privacy
+        let privacy = try Privacy.createOrUpdate(from: prototype.privacy, userID: Int(user.id), in: context)
+        user.privacy = privacy
 
         // set current location if given
         if let location = prototype.location {
@@ -58,6 +61,12 @@ class User: NSManagedObject, ReportOwner {
             user.location = location
         }
         
+        // retrieve public resources
+        user.getProfile(completion: nil)
+        user.getCars(completion: nil)
+        user.getCommunityMessages(completion: nil)
+        user.getTrafficMessages(completion: nil)
+    
         return user
     }
     
@@ -102,7 +111,6 @@ class User: NSManagedObject, ReportOwner {
         get(completion: nil)
         getProfile(completion: nil)
         getCars(completion: nil)
-        getConversations(completion: nil)
         getCommunityMessages(completion: nil)
         getTrafficMessages(completion: nil)
     }

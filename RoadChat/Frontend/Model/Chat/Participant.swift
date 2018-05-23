@@ -15,7 +15,7 @@ class Participant: NSManagedObject {
     // MARK: - Public Class Methods
     class func createOrUpdate(from prototype: RoadChatKit.Participation.PublicParticipant, conversationID: Int, in context: NSManagedObjectContext) throws -> Participant {
         let request: NSFetchRequest<Participant> = Participant.fetchRequest()
-        request.predicate = NSPredicate(format: "conversation.id = %d AND userID = %d", conversationID, prototype.userID)
+        request.predicate = NSPredicate(format: "conversation.id = %d AND user.id = %d", conversationID, prototype.user.id)
         
         do {
             let matches = try context.fetch(request)
@@ -36,13 +36,21 @@ class Participant: NSManagedObject {
         
         // create new participant
         let participant = Participant(context: context)
-        participant.userID = Int32(prototype.userID)
         participant.approvalStatus = prototype.approval.rawValue
         participant.joining = prototype.joining
+        
+        // set user
+        let user = try User.createOrUpdate(from: prototype.user, in: context)
+        participant.user = user
         
         return participant
     }
 
+    // MARK: - Public Properties
+    var storedApprovalStatus: ApprovalType {
+        return ApprovalType(rawValue: approvalStatus!)!
+    }
+    
     // MARK: - Public Methods
     func setApprovalStatus(_ status: ApprovalType) {
         approvalStatus = status.rawValue

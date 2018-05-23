@@ -56,9 +56,11 @@ struct DependencyContainer {
         return TimeSinceDateFormatter()
     }
     
-    private var lengthFormatter: LengthFormatter {
-        return LengthFormatter()
-    }
+    private var lengthFormatter: LengthFormatter = {
+        let formatter = LengthFormatter()
+        formatter.numberFormatter.maximumFractionDigits = 0
+        return formatter
+    }()
     
     private var monthYearDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -168,11 +170,19 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeConversationViewController(for conversation: Conversation, activeUser: User) -> ConversationViewController {
-        return ConversationViewController(viewFactory: self, conversation: conversation, activeUser: activeUser)
+        return ConversationViewController(viewFactory: self, conversation: conversation, activeUser: activeUser, colorPalette: colorPalette)
     }
     
     func makeDirectMessagesViewController(for conversation: Conversation, activeUser: User) -> DirectMessagesViewController {
         return DirectMessagesViewController(viewFactory: self, conversation: conversation, activeUser: activeUser, searchContext: viewContext, cellDateFormatter: shortTimeDateFormatter, colorPalette: colorPalette)
+    }
+    
+    func makeParticipantsViewController(for conversation: Conversation, activeUser: User) -> ParticipantsViewController {
+        return ParticipantsViewController(viewFactory: self, conversation: conversation, activeUser: activeUser, colorPalette: colorPalette)
+    }
+    
+    func makeChangeTitleViewController(for conversation: Conversation) -> ChangeTitleViewController {
+        return ChangeTitleViewController(conversation: conversation)
     }
     
     // User
@@ -185,7 +195,7 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeSecurityViewController(for user: User) -> SecurityViewController {
-        return SecurityViewController(viewFactory: self, colorPalette: colorPalette, user: user)
+        return SecurityViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, colorPalette: colorPalette, user: user)
     }
     
     func makeChangePasswordViewController(for user: User) -> ChangePasswordViewController {
@@ -197,8 +207,8 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     // User
-    func makeProfileViewController(for user: User, activeUser: User) -> ProfileViewController {
-        return ProfileViewController(viewFactory: self, user: user, activeUser: activeUser, colorPalette: colorPalette)
+    func makeProfileViewController(for user: User, activeUser: User, showsPublicProfile: Bool) -> ProfileViewController {
+        return ProfileViewController(viewFactory: self, user: user, activeUser: activeUser, showsPublicProfile: showsPublicProfile, colorPalette: colorPalette)
     }
     
     func makeProfilePageViewController(for user: User, activeUser: User) -> ProfilePageViewController {

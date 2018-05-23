@@ -30,7 +30,7 @@ class Car: NSManagedObject, ReportOwner {
                 car.production = prototype.production
                 
                 // TODO: remove defaults for optionals
-                car.performance = Int16(prototype.performance ?? 0)
+                car.performance = Int16(prototype.performance ?? -1)
                 car.color = prototype.color
                 
                 return car
@@ -48,7 +48,7 @@ class Car: NSManagedObject, ReportOwner {
         car.production = prototype.production
         
         // TODO: remove defaults for optionals
-        car.performance = Int16(prototype.performance ?? 0)
+        car.performance = Int16(prototype.performance ?? -1)
         car.color = prototype.color
         
         return car
