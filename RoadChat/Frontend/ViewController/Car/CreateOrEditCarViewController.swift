@@ -30,6 +30,8 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
 
     @IBOutlet weak var deleteButton: UIButton!
     
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
     // MARK: - Views
     private let monthYearDatePickerView = MonthYearPickerView()
     private var saveBarButtonItem: UIBarButtonItem!
@@ -66,7 +68,11 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // enable keyboard dismissal
+        // keyboard notification
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        // dismiss keyboard
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         tapGestureRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGestureRecognizer)
@@ -259,5 +265,20 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         colorPickerField.backgroundColor = colorPickerView.color
         validateSaveButton()
     }
+    
+    // MARK: - Keyboard Notifications
+    @objc func keyboardWillShow(_ notification: Notification) {
+        let userInfo = notification.userInfo! as NSDictionary
+        let keyboardFrame = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.cgRectValue
+        let keyboardHeight = keyboardRectangle.height
+        
+        bottomConstraint.constant = keyboardHeight - view.safeAreaInsets.bottom
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        bottomConstraint.constant = 0
+    }
+    
     
 }

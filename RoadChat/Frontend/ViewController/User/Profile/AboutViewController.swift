@@ -109,7 +109,7 @@ class AboutViewController: UIViewController {
             
             if (isOwner || privacy.showStreet) {
                 showsAnyInformation = true
-                cnAddress.street = "\(profile.streetNumber != -1 ? String(profile.streetNumber) : "")\(profile.streetName ?? "")".trimmingCharacters(in: .whitespacesAndNewlines)
+                cnAddress.street = "\(profile.streetNumber != -1 ? String(profile.streetNumber) : "") \(profile.streetName ?? "")".trimmingCharacters(in: .whitespacesAndNewlines)
             }
             
             if (isOwner || privacy.showCity) {

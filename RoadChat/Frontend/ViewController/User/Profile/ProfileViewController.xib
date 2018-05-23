@@ -79,13 +79,19 @@
                             </subviews>
                             <directionalEdgeInsets key="directionalLayoutMargins" top="16" leading="16" bottom="0.0" trailing="16"/>
                         </stackView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PM4-jw-TWQ">
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZDr-dj-ISH">
                             <rect key="frame" x="0.0" y="201" width="375" height="72"/>
-                            <string key="text">Informatik Student der DHBW Stuttgart. Pendle am Wochenende zwischen FFM, Wiesbaden und Stuttgart. Macht echt viel Spaß, aber ich weis nicht was ich schreiben soll.</string>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PM4-jw-TWQ">
+                                    <rect key="frame" x="16" y="0.0" width="343" height="72"/>
+                                    <string key="text">Informatik Student der DHBW Stuttgart. Pendle am Wochenende zwischen FFM, Wiesbaden und Stuttgart. Macht echt viel Spaß, aber ich weis nicht was ich schreiben soll.</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
+                        </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y3O-XY-4fB">
                             <rect key="frame" x="0.0" y="289" width="375" height="358"/>
                         </view>
