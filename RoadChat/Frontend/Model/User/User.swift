@@ -536,7 +536,9 @@ class User: NSManagedObject, ReportOwner {
             
             let coreConversations: [Conversation] = conversations.compactMap {
                 do {
-                    return try Conversation.createOrUpdate(from: $0, in: self.context)
+                    let conversation = try Conversation.createOrUpdate(from: $0, in: self.context)
+                    conversation.approvalStatus = conversation.getApprovalStatus(activeUser: self)?.rawValue
+                    return conversation
                 } catch {
                     let report = Report(.failedCoreDataOperation(.create, resource: "Conversation", isMultiple: false, error: error), owner: self)
                     log.error(report)
