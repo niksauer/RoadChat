@@ -13,12 +13,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConversationViewController" customModule="RoadChat" customModuleProvider="target">
             <connections>
                 <outlet property="approvalStatusContainer" destination="rY6-YL-obj" id="SNn-dL-JaO"/>
-                <outlet property="bottomConstraint" destination="UDu-XY-WC9" id="Yva-v9-E3U"/>
+                <outlet property="bottomInputContainerConstraint" destination="UDu-XY-WC9" id="Yva-v9-E3U"/>
                 <outlet property="inputContainer" destination="sXg-Dy-BOD" id="fQG-Hw-22I"/>
                 <outlet property="messageTextField" destination="srf-6O-GEs" id="meD-Bh-Qm9"/>
                 <outlet property="messagesContainer" destination="fqj-aW-cZG" id="cG5-kP-5zC"/>
                 <outlet property="sendButton" destination="N6o-uH-Mbt" id="dzy-Nb-Dly"/>
-                <outlet property="topConstraint" destination="g1g-ML-hxB" id="9y9-PY-9nd"/>
+                <outlet property="topInputContainerConstraint" destination="g1g-ML-hxB" id="9y9-PY-9nd"/>
+                <outlet property="topMessageContainerConstraint" destination="Wag-xD-co8" id="6Hw-g6-nnQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
