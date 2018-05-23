@@ -9,10 +9,17 @@
 import UIKit
 import RoadChatKit
 
+protocol ChangeTitleViewControllerDelegate {
+    func didChangeTitle()
+}
+
 class ChangeTitleViewController: UITableViewController {
 
     // MARK: - Views
     private var doneBarButton: UIBarButtonItem!
+    
+    // MARK: - Public Properties
+    var delegate: ChangeTitleViewControllerDelegate?
     
     // MARK: - Private Properties
     private let conversation: Conversation
