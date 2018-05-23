@@ -49,7 +49,7 @@ struct CarService: JSendService {
 
     /// https://stackoverflow.com/questions/29623187/upload-image-with-multipart-form-data-ios-in-swift
     func uploadImage(_ image: UIImage, carID: RoadChatKit.Car.ID, completion: @escaping (Error?) -> Void) {
-        var url = URL(string: "\(client.baseURL)/\(carID)/upload")!
+        var url = URL(string: "\(client.baseURL)/\(carID)/image")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
 
