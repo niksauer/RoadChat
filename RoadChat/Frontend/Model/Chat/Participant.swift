@@ -46,6 +46,11 @@ class Participant: NSManagedObject {
         return participant
     }
 
+    // MARK: - Public Properties
+    var storedApprovalStatus: ApprovalType {
+        return ApprovalType(rawValue: approvalStatus!)!
+    }
+    
     // MARK: - Public Methods
     func setApprovalStatus(_ status: ApprovalType) {
         approvalStatus = status.rawValue

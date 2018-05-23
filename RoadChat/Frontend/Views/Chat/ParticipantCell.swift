@@ -13,10 +13,12 @@ class ParticipantCell: UITableViewCell {
     // MARK: - Outlets
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var approvalStatusLabel: UILabel!
     
     // MARK: - Public Methods
-    func configure(participant: Participant) {
+    func configure(participant: Participant, isAwaitingRequest: Bool) {
         usernameLabel.text = participant.user?.username
+        approvalStatusLabel.text = isAwaitingRequest ? "requested" : nil
         
         // profile image appearance
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2

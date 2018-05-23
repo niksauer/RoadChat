@@ -29,7 +29,7 @@ struct ConversationManager {
         }
     }
     
-    func findConversationByParticipants(_ participants: [RoadChatKit.User.PublicUser], requestor: User, context: NSManagedObjectContext) -> Conversation? {
+    func findConversationByRecipients(_ recipients: [RoadChatKit.User.PublicUser], requestor: User, context: NSManagedObjectContext) -> Conversation? {
         let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
         request.predicate = NSPredicate(format: "user.id == %d", requestor.id)
         
@@ -48,7 +48,7 @@ struct ConversationManager {
                 
                 return participants == recipients
             } else {
-                guard participants.contains(where: { recipient in
+                guard recipients.contains(where: { recipient in
                     recipient.id == conversation.creatorID
                 }) else {
                     return false

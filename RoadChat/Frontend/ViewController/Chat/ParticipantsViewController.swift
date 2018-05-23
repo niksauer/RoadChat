@@ -94,7 +94,7 @@ class ParticipantsViewController: UITableViewController, ChangeTitleViewControll
             case 1:
                 let participant = conversation.storedParticipants[row]
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ParticipantCell", for: indexPath) as! ParticipantCell
-                cell.configure(participant: participant)
+                cell.configure(participant: participant, isAwaitingRequest: participant.storedApprovalStatus == .requested)
                 cell.accessoryType = .disclosureIndicator
                 return cell
             case 2:
@@ -110,7 +110,7 @@ class ParticipantsViewController: UITableViewController, ChangeTitleViewControll
             case 0:
                 let participant = conversation.storedParticipants[row]
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ParticipantCell", for: indexPath) as! ParticipantCell
-                cell.configure(participant: participant)
+                cell.configure(participant: participant, isAwaitingRequest: participant.storedApprovalStatus == .requested)
                 cell.accessoryType = .disclosureIndicator
                 return cell
             case 1:
