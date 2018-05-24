@@ -102,58 +102,60 @@ class ProfileViewController: UIViewController {
         
         // username
         usernameLabel.text = user.username
+        profileImageView.image = user.storedImage
         
-        if let profile = user.profile {
-            // age
-            if privacy.showBirth || isOwner {
-                let calendar = Calendar.current
-                let ageComponents = calendar.dateComponents([.year], from: profile.birth!, to: Date())
-                let age = ageComponents.year!
-                ageLabel.text = "(\(age)y)"
-            } else {
-                ageLabel.text = nil
+        guard let profile = user.profile else {
+            ageLabel.text = nil
+            nameLabel.text = nil
+            sexImageView.image = nil
+            biographyLabel.text = nil
+            return
+        }
+        
+        // age
+        if privacy.showBirth || isOwner {
+            let calendar = Calendar.current
+            let ageComponents = calendar.dateComponents([.year], from: profile.birth!, to: Date())
+            let age = ageComponents.year!
+            ageLabel.text = "(\(age)y)"
+        } else {
+            ageLabel.text = nil
+        }
+        
+        // full name
+        nameLabel.text = "\(profile.firstName!) \(profile.lastName!)"
+        
+        // sex
+        if let sex = profile.storedSex, privacy.showSex || isOwner {
+            switch sex {
+            case .male:
+                sexImageView.image = #imageLiteral(resourceName: "male")
+                sexImageView.tintColor = colorPalette.maleColor
+            case .female:
+                sexImageView.image = #imageLiteral(resourceName: "female")
+                sexImageView.tintColor = colorPalette.femaleColor
+            case .other:
+                sexImageView.image = #imageLiteral(resourceName: "genderqueer")
+                sexImageView.tintColor = colorPalette.otherColor
             }
-            
-            // full name
-            nameLabel.text = "\(profile.firstName!) \(profile.lastName!)"
-            
-            // sex
-            if let sex = profile.storedSex, privacy.showSex || isOwner {
-                switch sex {
-                case .male:
-                    sexImageView.image = #imageLiteral(resourceName: "male")
-                    sexImageView.tintColor = colorPalette.maleColor
-                case .female:
-                    sexImageView.image = #imageLiteral(resourceName: "female")
-                    sexImageView.tintColor = colorPalette.femaleColor
-                case .other:
-                    sexImageView.image = #imageLiteral(resourceName: "genderqueer")
-                    sexImageView.tintColor = colorPalette.otherColor
-                }
-            } else {
-                sexImageView.image = nil
-                sexImageView.tintColor = nil
-            }
-            
-            // biography
-            if privacy.showBiography || isOwner {
-                if let biography = profile.biography {
-                    // localized quotation marks
-                    let locale = Locale.current
-                    let quoteBegin = locale.quotationBeginDelimiter ?? "\""
-                    let quoteEnd = locale.quotationEndDelimiter ?? "\""
-                    
-                    biographyLabel.text = "\(quoteBegin)\(biography)\(quoteEnd)"
-                } else {
-                    biographyLabel.text = nil
-                }
+        } else {
+            sexImageView.image = nil
+            sexImageView.tintColor = nil
+        }
+        
+        // biography
+        if privacy.showBiography || isOwner {
+            if let biography = profile.biography {
+                // localized quotation marks
+                let locale = Locale.current
+                let quoteBegin = locale.quotationBeginDelimiter ?? "\""
+                let quoteEnd = locale.quotationEndDelimiter ?? "\""
+                
+                biographyLabel.text = "\(quoteBegin)\(biography)\(quoteEnd)"
             } else {
                 biographyLabel.text = nil
             }
         } else {
-            ageLabel.text = nil
-            nameLabel.text = nil
-            sexImageView.image = nil
             biographyLabel.text = nil
         }
     }

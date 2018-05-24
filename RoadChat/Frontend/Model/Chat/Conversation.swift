@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import RoadChatKit
+import UIKit
 
 enum ConversationError: Error {
     case notParticipating
@@ -331,6 +332,14 @@ class Conversation: NSManagedObject, ReportOwner {
             return title
         } else {
             return storedParticipants.first(where: { $0.user!.id != activeUser.id })?.user?.username
+        }
+    }
+    
+    func getImage(activeUser: User) -> UIImage? {
+        if storedParticipants.count > 2 {
+            return nil
+        } else {
+            return storedParticipants.first(where: { $0.user!.id != activeUser.id })?.user?.storedImage
         }
     }
     

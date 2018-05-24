@@ -3,6 +3,7 @@
     <entity name="Car" representedClassName=".Car" syncable="YES" codeGenerationType="category">
         <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="manufacturer" attributeType="String" syncable="YES"/>
         <attribute name="model" attributeType="String" syncable="YES"/>
         <attribute name="performance" optional="YES" attributeType="Integer 16" defaultValueString="-1" usesScalarValueType="YES" syncable="YES"/>
@@ -75,7 +76,6 @@
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" attributeType="String" syncable="YES"/>
         <attribute name="lastName" attributeType="String" syncable="YES"/>
-        <attribute name="photoURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postalCode" optional="YES" attributeType="Integer 32" defaultValueString="-1" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="sex" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="streetName" optional="YES" attributeType="String" syncable="YES"/>
@@ -102,6 +102,7 @@
     <entity name="User" representedClassName=".User" syncable="YES" codeGenerationType="category">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="registry" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="username" attributeType="String" syncable="YES"/>
         <relationship name="cars" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Car" inverseName="user" inverseEntity="Car" syncable="YES"/>
@@ -114,16 +115,16 @@
         <relationship name="trafficMessages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TrafficMessage" inverseName="user" inverseEntity="TrafficMessage" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Car" positionX="-137" positionY="-72" width="128" height="165"/>
+        <element name="Car" positionX="-137" positionY="-72" width="128" height="180"/>
         <element name="CommunityMessage" positionX="-299" positionY="513" width="128" height="180"/>
         <element name="Conversation" positionX="-414" positionY="-315" width="128" height="180"/>
         <element name="DirectMessage" positionX="-218" positionY="-378" width="128" height="120"/>
         <element name="Location" positionX="-722" positionY="-301" width="128" height="165"/>
         <element name="Participant" positionX="-218" positionY="-243" width="128" height="105"/>
         <element name="Privacy" positionX="-749" positionY="-91" width="128" height="210"/>
-        <element name="Profile" positionX="-747" positionY="86" width="128" height="225"/>
+        <element name="Profile" positionX="-747" positionY="86" width="128" height="210"/>
         <element name="Settings" positionX="-137" positionY="117" width="128" height="90"/>
         <element name="TrafficMessage" positionX="-479" positionY="515" width="128" height="195"/>
-        <element name="User" positionX="-396" positionY="9" width="128" height="225"/>
+        <element name="User" positionX="-396" positionY="9" width="128" height="240"/>
     </elements>
 </model>

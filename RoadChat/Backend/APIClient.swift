@@ -30,15 +30,103 @@ protocol APICredentialStore {
 }
 
 protocol APIClient {
-    var baseURL: String { get }
+    var hostname: String { get }
+    var port: Int? { get }
+    var basePath: String? { get }
     var credentials: APICredentialStore? { get }
-    
-    init(baseURL: String, credentials: APICredentialStore?)
+    var session: URLSession { get }
+    var baseURL: String { get }
+
+    init(hostname: String, port: Int?, basePath: String?, credentials: APICredentialStore?)
     
     func makeGETRequest(to path: String?, params: JSON?, completion: @escaping (APIResult) -> Void)
     func makePOSTRequest<T: Encodable>(to path: String?, params: JSON?, body: T, completion: @escaping (APIResult) -> Void) throws
     func makePUTRequest<T: Encodable>(to path: String?, params: JSON?, body: T, completion: @escaping (APIResult) -> Void) throws
     func makeDELETERequest(to path: String?, params: JSON?, completion: @escaping (APIResult) -> Void)
+    func uploadMultipart(name: String, filename: String, data: Data, to path: String?, method: HTTPMethod, completion: @escaping (APIResult) -> Void) throws
+    
+    func executeSessionDataTask(request: URLRequest, completion: @escaping (APIResult) -> Void)
+    func processSessionDataTask(data: Data?, response: URLResponse?, error: Error?) -> APIResult
+}
+
+extension APIClient {
+    init(config: APIConfiguration, basePath: String?) {
+        self.init(hostname: config.hostname, port: config.port, basePath: basePath, credentials: config.credentials)
+    }
+    
+    var baseURL: String {
+        return "http://\(hostname):\(port ?? 80)\(basePath != nil ? "/\(basePath!)" : "")"
+    }
+    
+    /// https://stackoverflow.com/questions/29623187/upload-image-with-multipart-form-data-ios-in-swift
+    func uploadMultipart(name: String, filename: String, data: Data, to path: String?, method: HTTPMethod, completion: @escaping (APIResult) -> Void) {
+        let url = URL(baseURL: baseURL, path: path, params: nil)
+        var request = URLRequest(url: url, method: method)
+        
+        func generateBoundary() -> String {
+            return "Boundary-\(UUID().uuidString)"
+        }
+        
+        func multipartPart(name: String, filename: String, data: Data, boundary: String) -> Data {
+            var partData = Data()
+            
+            // 1 - Boundary should start with --
+            let lineOne = "--" + boundary + "\r\n"
+            partData.append(lineOne.data(using: .utf8, allowLossyConversion: false)!)
+            
+            // 2
+            let lineTwo = "Content-Disposition: form-data; name=\"\(name)\"; filename=\"\(filename)\"\r\n"
+            partData.append(lineTwo.data(using: .utf8, allowLossyConversion: false)!)
+            
+            // 3
+            let lineThree = "Content-Type: image/jpg\r\n\r\n"
+            partData.append(lineThree.data(using: .utf8, allowLossyConversion: false)!)
+            
+            // 4
+            partData.append(data)
+            
+            // 5
+            let lineFive = "\r\n"
+            partData.append(lineFive.data(using: .utf8, allowLossyConversion: false)!)
+            
+            // 6 - The end. Notice -- at the start and at the end
+            let lineSix = "--" + boundary + "--\r\n"
+            partData.append(lineSix.data(using: .utf8, allowLossyConversion: false)!)
+            
+            return partData
+        }
+        
+        let boundary = generateBoundary()
+        let formData = multipartPart(name: name, filename: filename, data: data, boundary: boundary)
+        
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.setValue(String(formData.count), forHTTPHeaderField: "Content-Length")
+        request.httpBody = formData
+        request.httpShouldHandleCookies = false
+        
+        executeSessionDataTask(request: request) { result in
+            completion(result)
+        }
+    }
+
+    func executeSessionDataTask(request: URLRequest, completion: @escaping (APIResult) -> Void) {
+        var request = request
+        
+        // set bearer authorization header
+        if let token = credentials?.getToken() {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+        
+        let task = session.dataTask(with: request) { (data, response, error) -> Void in
+            let result = self.processSessionDataTask(data: data, response: response, error: error)
+            
+            OperationQueue.main.addOperation {
+                completion(result)
+            }
+        }
+        
+        task.resume()
+    }
 }
 
 enum HTTPMethod: String {
@@ -90,7 +178,7 @@ extension URLRequest {
                 formatter.timeZone = TimeZone(secondsFromGMT: 0)
                 formatter.locale = Locale(identifier: "en_US_POSIX")
                 return formatter
-                }())
+            }())
             
             httpBody = try encoder.encode(body)
         default:

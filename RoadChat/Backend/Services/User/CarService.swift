@@ -8,6 +8,7 @@
 
 import Foundation
 import RoadChatKit
+import UIKit
 
 struct CarService: JSendService {
     
@@ -16,7 +17,7 @@ struct CarService: JSendService {
     let client: JSendAPIClient
 
     init(hostname: String, port: Int, credentials: APICredentialStore?) {
-        self.client = JSendAPIClient(baseURL: "http://\(hostname):\(port)/car", credentials: credentials)
+        self.client = JSendAPIClient(hostname: hostname, port: port, basePath: "car", credentials: credentials)
     }
     
     // MARK: - Public Methods
@@ -39,4 +40,22 @@ struct CarService: JSendService {
         }
     }
     
+    func getImage(carID: RoadChatKit.Car.ID, completion: @escaping (RoadChatKit.PublicImage?, Error?) -> Void) {
+        client.makeGETRequest(to: "/\(carID)/image") { result in
+            let result = self.decode(RoadChatKit.PublicImage.self, from: result)
+            completion(result.instance, result.error)
+        }
+    }
+
+    func uploadImage(_ image: UIImage, carID: RoadChatKit.Car.ID, completion: @escaping (Data?, Error?) -> Void) {
+        guard let imageData = UIImageJPEGRepresentation(image, 1) else {
+            completion(nil, ImageError.invalidFormat)
+            return
+        }
+        
+        client.uploadMultipart(name: "file", filename: "car\(carID).jpg", data: imageData, to: "/\(carID)/image", method: .put) { result in
+            completion(imageData, self.getError(from: result))
+        }
+    }
+
 }
