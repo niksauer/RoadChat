@@ -15,20 +15,30 @@ enum JSendAPIError: Error {
 }
 
 struct JSendAPIClient: APIClient {
-    
+
     // MARK: - Public Properties
-    let baseURL: String
+    let hostname: String
+    let port: Int?
+    let basePath: String?
     let credentials: APICredentialStore?
     
-    // MARK: - Private Properties
-    private let session = URLSession(configuration: .default)
+    let session = URLSession(configuration: .default)
     
+    // MARK: - Private Properties
     private enum JSendResponse {
         case success(Data?)
         case fail(String?)
         case error(String?)
     }
 
+    // MARK: - Initialization
+    init(hostname: String, port: Int?, basePath: String?, credentials: APICredentialStore?) {
+        self.hostname = hostname
+        self.port = port
+        self.basePath = basePath
+        self.credentials = credentials
+    }
+    
     // MARK: - Public Methods
     func makeGETRequest(to path: String? = nil, params: JSON? = nil, completion: @escaping (APIResult) -> Void) {
         let url = URL(baseURL: baseURL, path: path, params: params)
@@ -59,33 +69,20 @@ struct JSendAPIClient: APIClient {
     }
     
     // MARK: - Private Methods
-    private func executeSessionDataTask(request: URLRequest, completion: @escaping (APIResult) -> Void) {
-        var request = request
+    func processSessionDataTask(data: Data?, response: URLResponse?, error: Error?) -> APIResult {
+        let result: APIResult
         
-        // set bearer authorization header
-        if let token = credentials?.getToken() {
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        }
-    
-        let task = session.dataTask(with: request) { (data, response, error) -> Void in
-            let result: APIResult
-            
-            if let data = data {
-                do {
-                    result = try self.getResult(for: try self.getResponse(for: data))
-                } catch {
-                    result = APIResult.failure(error)
-                }
-            } else {
-                result = APIResult.failure(error!)
+        if let data = data {
+            do {
+                result = try self.getResult(for: try self.getResponse(for: data))
+            } catch {
+                result = APIResult.failure(error)
             }
-            
-            OperationQueue.main.addOperation {
-                completion(result)
-            }
+        } else {
+            result = APIResult.failure(error!)
         }
         
-        task.resume()
+        return result
     }
  
     private func getResponse(for data: Data) throws -> JSendResponse {

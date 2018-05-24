@@ -22,8 +22,9 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var approvalStatusContainer: UIView!
     
     // MARK: - Constraints
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet weak var topMessageContainerConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomInputContainerConstraint: NSLayoutConstraint!
+    @IBOutlet weak var topInputContainerConstraint: NSLayoutConstraint!
     
     // MARK: - Public Properties
     var isEntryActive = false
@@ -88,14 +89,7 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         }
         
         // trigger approval status container
-        if let approvalStatus = conversation.getApprovalStatus(activeUser: activeUser) {
-            switch approvalStatus {
-            case .requested:
-                approvalStatusContainer.isHidden = false
-            default:
-                approvalStatusContainer.isHidden = true
-            }
-        }
+        self.setupApprovalStatusContainer()
     }
     
     // MARK: - Public Methods
@@ -124,7 +118,7 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             
-            self.approvalStatusContainer.isHidden = true
+            self.setupApprovalStatusContainer()
         }
     }
     
@@ -136,11 +130,11 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
                     return
                 }
                 
-                self.approvalStatusContainer.isHidden = true
+                self.setupApprovalStatusContainer()
             }
         }
     }
-
+    
     // MARK: - Private Methods
     @objc private func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
@@ -149,6 +143,21 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     @objc private func didPressInfoButton(_ sender: UIButton) {
         let participantsViewController = viewFactory.makeParticipantsViewController(for: conversation, activeUser: activeUser)
         navigationController?.pushViewController(participantsViewController, animated: true)
+    }
+    
+    private func setupApprovalStatusContainer() {
+        guard let approvalStatus = conversation.getApprovalStatus(activeUser: activeUser) else {
+            return
+        }
+        
+        switch approvalStatus {
+        case .requested:
+            approvalStatusContainer.isHidden = false
+            topMessageContainerConstraint.constant = inputContainer.frame.height
+        default:
+            approvalStatusContainer.isHidden = true
+            topMessageContainerConstraint.constant = 0
+        }
     }
     
     // MARK: - TextFieldDelegate
@@ -167,13 +176,13 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
         
-        topConstraint.constant = -48 - keyboardHeight + view.safeAreaInsets.bottom
-        bottomConstraint.constant = -keyboardHeight
+        topInputContainerConstraint.constant = -48 - keyboardHeight + view.safeAreaInsets.bottom
+        bottomInputContainerConstraint.constant = -keyboardHeight
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {
-        topConstraint.constant = -48
-        bottomConstraint.constant = 0
+        topInputContainerConstraint.constant = -48
+        bottomInputContainerConstraint.constant = 0
     }
     
 }

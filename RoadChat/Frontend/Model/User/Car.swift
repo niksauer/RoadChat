@@ -13,6 +13,15 @@ import UIKit
 
 class Car: NSManagedObject, ReportOwner {
     
+    // MARK: - Public Types
+    struct Copy: Equatable {
+        let manufacturer: String
+        let model: String
+        let production: Date
+        let performance: Int?
+        let color: String?
+    }
+    
     // MARK: - Public Class Methods
     class func createOrUpdate(from prototype: RoadChatKit.Car.PublicCar, in context: NSManagedObjectContext) throws -> Car {
         let request: NSFetchRequest<Car> = Car.fetchRequest()
@@ -29,7 +38,6 @@ class Car: NSManagedObject, ReportOwner {
                 car.model = prototype.model
                 car.production = prototype.production
                 
-                // TODO: remove defaults for optionals
                 car.performance = Int16(prototype.performance ?? -1)
                 car.color = prototype.color
                 
@@ -47,9 +55,11 @@ class Car: NSManagedObject, ReportOwner {
         car.model = prototype.model
         car.production = prototype.production
         
-        // TODO: remove defaults for optionals
         car.performance = Int16(prototype.performance ?? -1)
         car.color = prototype.color
+        
+        // update resources
+        car.getImage(completion: nil)
         
         return car
     }
@@ -61,6 +71,14 @@ class Car: NSManagedObject, ReportOwner {
         }
         
         return UIColor(hexString: color)
+    }
+    
+    var storedImage: UIImage? {
+        guard let imageData = imageData else {
+            return nil
+        }
+        
+        return UIImage(data: imageData)
     }
     
     // MARK: - Private Properties
@@ -76,6 +94,7 @@ class Car: NSManagedObject, ReportOwner {
     override func awakeFromFetch() {
         super.awakeFromFetch()
         get(completion: nil)
+        getImage(completion: nil)
     }
     
     // MARK: - Public Methods
@@ -117,10 +136,8 @@ class Car: NSManagedObject, ReportOwner {
                 
                 do {
                     try self.context.save()
-                    
                     let report = Report(.successfulCoreDataOperation(.update, resource: nil, isMultiple: false), owner: self)
                     log.debug(report)
-                    
                     completion?(nil)
                 } catch {
                     // pass core data error
@@ -160,4 +177,50 @@ class Car: NSManagedObject, ReportOwner {
         }
     }
 
+    func getImage(completion: ((Error?) -> Void)?) {
+        carService.getImage(carID: Int(id)) { image, error in
+            guard let image = image else {
+                let report = Report(.failedServerOperation(.retrieve, resource: "Image", isMultiple: false, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            do {
+                self.imageData = image.data
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: "Image", isMultiple: false), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                let report = Report(.failedCoreDataOperation(.update, resource: "Image", isMultiple: false, error: error), owner: self)
+                log.error(report)
+                completion?(error)
+            }
+        }
+    }
+    
+    func uploadImage(_ image: UIImage, completion: ((Error?) -> Void)?) {
+        carService.uploadImage(image, carID: Int(id)) { data, error in
+            guard let data = data else {
+                let report = Report(.failedServerOperation(.update, resource: "Image", isMultiple: false, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            do {
+                self.imageData = data
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.update, resource: "Image", isMultiple: false), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                let report = Report(.failedCoreDataOperation(.update, resource: "Image", isMultiple: false, error: error), owner: self)
+                log.error(report)
+                completion?(error)
+            }
+        }
+    }
+    
 }

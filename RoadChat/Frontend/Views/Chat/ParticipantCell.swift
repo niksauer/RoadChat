@@ -17,6 +17,7 @@ class ParticipantCell: UITableViewCell {
     
     // MARK: - Public Methods
     func configure(participant: Participant, isAwaitingRequest: Bool) {
+        profileImageView.image = participant.user?.storedImage
         usernameLabel.text = participant.user?.username
         approvalStatusLabel.text = isAwaitingRequest ? "requested" : nil
         

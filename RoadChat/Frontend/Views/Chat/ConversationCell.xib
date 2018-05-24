@@ -23,18 +23,18 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="241" verticalHuggingPriority="251" text="Willy Wonka" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQo-aP-1aQ">
-                        <rect key="frame" x="56" y="11" width="213" height="20.5"/>
+                        <rect key="frame" x="56" y="11" width="211.5" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23:12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZ8-vL-joU">
-                        <rect key="frame" x="277" y="11.5" width="43" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="275.5" y="11.5" width="40.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cVU-y2-AlF">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cVU-y2-AlF">
                         <rect key="frame" x="8" y="13.5" width="40" height="40"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -43,7 +43,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wollt ihr noch mehr Schokolade?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ReQ-DT-Kwl">
-                        <rect key="frame" x="56" y="35" width="264" height="21"/>
+                        <rect key="frame" x="56" y="35" width="260" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="800-F1-XCd"/>
                         </constraints>
@@ -58,7 +58,7 @@
                     <constraint firstItem="qZ8-vL-joU" firstAttribute="centerY" secondItem="QQo-aP-1aQ" secondAttribute="centerY" id="Gbm-Wu-ulZ"/>
                     <constraint firstAttribute="bottomMargin" secondItem="ReQ-DT-Kwl" secondAttribute="bottom" id="HZv-TZ-ngm"/>
                     <constraint firstItem="cVU-y2-AlF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="KKa-U0-nzu"/>
-                    <constraint firstAttribute="trailing" secondItem="qZ8-vL-joU" secondAttribute="trailing" id="RdF-N6-XfD"/>
+                    <constraint firstAttribute="trailing" secondItem="qZ8-vL-joU" secondAttribute="trailing" constant="4" id="Of8-NV-wEk"/>
                     <constraint firstItem="cVU-y2-AlF" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ult-Dj-TB0"/>
                     <constraint firstItem="ReQ-DT-Kwl" firstAttribute="trailing" secondItem="qZ8-vL-joU" secondAttribute="trailing" id="Vkk-bJ-UZG"/>
                     <constraint firstItem="QQo-aP-1aQ" firstAttribute="leading" secondItem="cVU-y2-AlF" secondAttribute="trailing" constant="8" id="VzD-S2-EEF"/>
@@ -69,9 +69,9 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <inset key="separatorInset" minX="56" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
+                <outlet property="conversationImageView" destination="cVU-y2-AlF" id="bdR-46-BMQ"/>
                 <outlet property="lastChangeLabel" destination="qZ8-vL-joU" id="KJl-il-vva"/>
                 <outlet property="newestMessageLabel" destination="ReQ-DT-Kwl" id="rvl-BZ-qLY"/>
-                <outlet property="profileImageView" destination="cVU-y2-AlF" id="bdR-46-BMQ"/>
                 <outlet property="titleLabel" destination="QQo-aP-1aQ" id="vtk-7X-0IU"/>
             </connections>
             <point key="canvasLocation" x="37" y="88.5"/>

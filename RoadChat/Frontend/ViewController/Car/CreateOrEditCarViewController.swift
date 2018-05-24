@@ -10,7 +10,7 @@ import UIKit
 import RoadChatKit
 import ColorCircle
 
-class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate {
+class CreateOrEditCarViewController: UIViewController, UIImageCropperProtocol {
 
     // MARK: - Typealiases
     typealias ColorPalette = BasicColorPalette & CarColorPalette
@@ -21,7 +21,6 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
     
     @IBOutlet weak var manufacturerTextField: UITextField!
     @IBOutlet weak var modelTextField: UITextField!
-    
     @IBOutlet weak var performanceTextField: UITextField!
     @IBOutlet weak var productionTextField: UITextField!
     
@@ -30,11 +29,16 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
 
     @IBOutlet weak var deleteButton: UIButton!
     
+    @IBOutlet weak var viewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var carImageViewHeightConstraint: NSLayoutConstraint!
+    
     // MARK: - Views
-    private let monthYearDatePickerView = MonthYearPickerView()
     private var saveBarButtonItem: UIBarButtonItem!
-    private var adjustBrightnessLabel = EdgeInsetLabel()
+    private let monthYearDatePickerView = MonthYearPickerView()
     private let colorPickerView = ColorCircle()
+    private let adjustBrightnessLabel = EdgeInsetLabel()
+    private let imagePicker = UIImagePickerController()
+    private let imageCropper = UIImageCropper(cropRatio: 4/3)
 
     // MARK: - Private Properties
     private let user: User
@@ -42,6 +46,11 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
     private let productionDateFormatter: DateFormatter
     private let colorPalette: ColorPalette
     
+    private let oldCar: Car.Copy?
+    private var requestedCar: Car.Copy?
+    private var shouldUploadCar = false
+    private var shouldUploadImage = false
+
     // MARK: - Initialization
     init(user: User, car: Car?, productionDateFormatter: DateFormatter, colorPalette: ColorPalette) {
         self.user = user
@@ -49,9 +58,14 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         self.productionDateFormatter = productionDateFormatter
         self.colorPalette = colorPalette
         
-        super.init(nibName: nil, bundle: nil)
+        if let car = car {
+            oldCar = Car.Copy(manufacturer: car.manufacturer!, model: car.model!, production: car.production!, performance: Int(car.performance), color: car.color)
+        } else {
+            oldCar = nil
+        }
         
-        self.title = "New Car"
+        super.init(nibName: nil, bundle: nil)
+    
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed(_:)))
         self.saveBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonPressed(_:)))
         self.saveBarButtonItem.isEnabled = false
@@ -66,7 +80,21 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // enable keyboard dismissal
+        // car image view height
+        carImageViewHeightConstraint.constant = (view.frame.width/4)*3
+        
+        // image picker & cropper
+        imageCropper.picker = imagePicker
+        imageCropper.delegate = self
+        imageCropper.autoClosePicker = true
+        imageCropper.cancelButtonText = "Cancel"
+        imageCropper.cropButtonText = "Select"
+        
+        // keyboard notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        // dismiss keyboard
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         tapGestureRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGestureRecognizer)
@@ -74,7 +102,7 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         // additional view setup
         deleteButton.tintColor = colorPalette.destructiveColor
         
-        // production date
+        // production date picker
         monthYearDatePickerView.years = {
             let maxYearsAgo = 70
             let currentYear = Calendar(identifier: Calendar.Identifier.gregorian).component(.year, from: Date())
@@ -96,13 +124,13 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         monthYearDatePickerView.onDateSelected = didChangeProductionDate(month:year:)
         productionTextField.inputView = monthYearDatePickerView
         
-        // add photo
+        // add photo button appearance
         addImageButton.layer.cornerRadius = addImageButton.frame.size.width / 2
         addImageButton.clipsToBounds = true
         addImageButton.tintColor = colorPalette.createColor
         addImageButton.backgroundColor = colorPalette.contentBackgroundColor
         
-        // color picker
+        // color picker container
         colorPickerField.backgroundColor = colorPalette.defaultCarColor
         colorPickerField.layer.cornerRadius = 10
         
@@ -116,7 +144,7 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         adjustBrightnessLabel.layer.cornerRadius = 4
         adjustBrightnessLabel.clipsToBounds = true
         adjustBrightnessLabel.backgroundColor = colorPalette.contentBackgroundColor
-        adjustBrightnessLabel.text = "Pinch to adjust Brightness"
+        adjustBrightnessLabel.text = "Pinch to adjust brightness"
         adjustBrightnessLabel.textColor = colorPalette.darkTextColor
         
         colorPickerContainer.backgroundColor = colorPalette.overlayBackgroundColor
@@ -131,21 +159,22 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         ])
         
         // textfield delegate
-        manufacturerTextField.delegate = self
-        modelTextField.delegate = self
-        performanceTextField.delegate = self
-        
+        manufacturerTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        modelTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        performanceTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         // populate with existing information
         guard let car = car else {
+            self.title = "New Car"
             return
         }
         
         self.title = "Edit Car"
         
+        carImageView.image = car.storedImage
         manufacturerTextField.text = car.manufacturer
         modelTextField.text = car.model
-        performanceTextField.text = car.performance != 1 ? String(car.performance) : nil
+        performanceTextField.text = car.performance != -1 ? String(car.performance) : nil
         
         if let production = car.production {
             productionTextField.text = productionDateFormatter.string(from: production)
@@ -160,70 +189,81 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        guard let manufacturer = manufacturerTextField.text, let model = modelTextField.text, let performanceString = performanceTextField.text, let performance = Int(performanceString), let productionString = productionTextField.text, let production = productionDateFormatter.date(from: productionString) else {
-            // handle missing fields error
-            return
+        func uploadImage(_ image: UIImage, for car: Car) {
+            car.uploadImage(image) { error in
+                guard error == nil else {
+                    self.displayAlert(title: "Error", message: "Failed to upload image for car: \(error!)") {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    
+                    return
+                }
+                
+                self.dismiss(animated: true, completion: nil)
+            }
         }
-    
-        let hexColorString = colorPickerField.backgroundColor!.toHexString()
-        let createCarRequest = CarRequest(manufacturer: manufacturer, model: model, production: production, performance: performance, color: hexColorString)
-    
-        if let car = car {
-            car.manufacturer = manufacturer
-            car.model = model
-            car.performance = Int16(performance)
-            car.production = production
-            car.color = hexColorString
+        
+        guard shouldUploadCar, let requestedCar = requestedCar else {
+            if let car = car, shouldUploadImage {
+                uploadImage(self.carImageView.image!, for: car)
+            }
             
-            car.save { error in
-                guard error == nil else {
-                    self.displayAlert(title: "Error", message: "Failed to update Car: \(error!)") {
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                    
-                    return
-                }
-                
-                self.dismiss(animated: true, completion: nil)
-            }
-        } else {
-            user.createCar(createCarRequest) { error in
-                guard error == nil else {
-                    self.displayAlert(title: "Error", message: "Failed to create Car: \(error!)") {
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                    
-                    return
-                }
-                
-                self.dismiss(animated: true, completion: nil)
-            }
-        }
-    }
-
-    func didChangeProductionDate(month: Int, year: Int) {
-        self.productionTextField.textColor = self.colorPalette.darkTextColor
-        self.productionTextField.text = String(format: "%02d/%d", month, year)
-        validateSaveButton()
-    }
-    
-    @IBAction func didPressAddImageButton(_ sender: UIButton) {
-        // TODO
-    }
-    
-    func validateSaveButton() {
-        guard let manufacturer = manufacturerTextField.text, !manufacturer.isEmpty, let model = modelTextField.text, !model.isEmpty, let performanceString = performanceTextField.text, let _ = Int(performanceString) else {
-            saveBarButtonItem.isEnabled = false
             return
         }
         
-        saveBarButtonItem.isEnabled = true
+        if let car = car {
+            car.manufacturer = requestedCar.manufacturer
+            car.model = requestedCar.model
+            car.production = requestedCar.production
+            car.performance = Int16(requestedCar.performance ?? -1)
+            car.color = requestedCar.color
+            
+            car.save { error in
+                guard error == nil else {
+                    self.displayAlert(title: "Error", message: "Failed to update car: \(error!)") {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    
+                    return
+                }
+                
+                guard self.shouldUploadImage else {
+                    self.dismiss(animated: true, completion: nil)
+                    return
+                }
+                
+                uploadImage(self.carImageView.image!, for: car)
+            }
+        } else {
+            let carRequest = CarRequest(manufacturer: requestedCar.manufacturer, model: requestedCar.model, production: requestedCar.production, performance: requestedCar.performance, color: requestedCar.color)
+            
+            user.createCar(carRequest) { car, error in
+                guard let car = car else {
+                    self.displayAlert(title: "Error", message: "Failed to create car: \(error!)") {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    
+                    return
+                }
+                
+                guard self.shouldUploadImage else {
+                    self.dismiss(animated: true, completion: nil)
+                    return
+                }
+                
+                uploadImage(self.carImageView.image!, for: car)
+            }
+        }
     }
 
-    @IBAction func didPressDeleteButton(_ sender: UIButton) {
+    @IBAction func addImageButtonPressed(_ sender: UIButton) {
+        navigationController?.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func deleteButtonPressed(_ sender: UIButton) {
         car?.delete { error in
             guard error == nil else {
-                self.displayAlert(title: "Error", message: "Failed to delete Car: \(error!)") {
+                self.displayAlert(title: "Error", message: "Failed to delete car: \(error!)") {
                     self.dismiss(animated: true, completion: nil)
                 }
                 
@@ -234,10 +274,46 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         }
     }
     
-    // Mark: - TextField Delegate
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func validateSaveButton() {
+        if let manufacturer = manufacturerTextField.text, !manufacturer.isEmpty, let model = modelTextField.text, !model.isEmpty, let productionString = productionTextField.text, let production = productionDateFormatter.date(from: productionString), let performanceString = performanceTextField.text, let performance = Int(performanceString), let hexColorString = colorPickerField.backgroundColor?.toHexString() {
+            
+            // prepare new car
+            requestedCar = Car.Copy(manufacturer: manufacturer, model: model, production: production, performance: performance, color: hexColorString)
+            
+            if let oldCar = oldCar {
+                // check whether existing car has been modified
+                shouldUploadCar = requestedCar != oldCar
+            } else {
+                shouldUploadCar = true
+            }
+        } else {
+            // handle missing required fields error
+            shouldUploadCar = false
+        }
+        
+        if oldCar == nil {
+            shouldUploadImage = false
+        }
+        
+        saveBarButtonItem.isEnabled = shouldUploadCar || shouldUploadImage
+    }
+    
+    // Mark: - ColorPickerView Delegate
+    @objc func didChangeColor() {
+        colorPickerField.backgroundColor = colorPickerView.color
         validateSaveButton()
-        return true
+    }
+    
+    // Mark: - MonthYearDatePickerView Delegate
+    func didChangeProductionDate(month: Int, year: Int) {
+        self.productionTextField.textColor = self.colorPalette.darkTextColor
+        self.productionTextField.text = String(format: "%02d/%d", month, year)
+        validateSaveButton()
+    }
+    
+    // Mark: - TextField Delegate
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        validateSaveButton()
     }
     
     // Mark: - Tap Gesture Recognizer
@@ -245,19 +321,39 @@ class CreateOrEditCarViewController: UIViewController, UIPickerViewDelegate, UIT
         view.endEditing(true)
     }
     
-    @IBAction func didPressColorField(_ sender: UITapGestureRecognizer) {
-        view.endEditing(true)
+    @IBAction func didTapColorField(_ sender: UITapGestureRecognizer) {
+        dismissKeyboard(sender)
         colorPickerContainer.isHidden = false
     }
     
-    @IBAction func didPressOutsideColorPicker(_ sender: UITapGestureRecognizer) {
+    @IBAction func didTapOutsideColorPicker(_ sender: UITapGestureRecognizer) {
         colorPickerContainer.isHidden = true
     }
     
-    // Mark: - Private Methods
-    @objc private func didChangeColor() {
-        colorPickerField.backgroundColor = colorPickerView.color
+    // Mark: - ImageCropper Delegate
+    func didCropImage(originalImage: UIImage?, croppedImage: UIImage?) {
+        if let image = croppedImage {
+            shouldUploadImage = true
+            carImageView.image = image
+        } else {
+            shouldUploadImage = false
+        }
+        
         validateSaveButton()
+    }
+    
+    // MARK: - Keyboard Notifications
+    @objc func keyboardWillShow(_ notification: Notification) {
+        let userInfo = notification.userInfo! as NSDictionary
+        let keyboardFrame = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.cgRectValue
+        let keyboardHeight = keyboardRectangle.height
+        
+        viewBottomConstraint.constant = keyboardHeight - view.safeAreaInsets.bottom
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        viewBottomConstraint.constant = 0
     }
     
 }

@@ -12,6 +12,20 @@ import RoadChatKit
 
 class Profile: NSManagedObject {
     
+    // MARK: - Public Types
+    struct Copy: Equatable {
+        let firstName: String
+        let lastName: String
+        let birth: Date
+        let sex: SexType?
+        let streetName: String?
+        let streetNumber: Int?
+        let postalCode: Int?
+        let city: String?
+        let country: String?
+        let biography: String?
+    }
+    
     // MARK: - Public Class Methods
     class func createOrUpdate(from prototype: RoadChatKit.Profile.PublicProfile, userID: Int, in context: NSManagedObjectContext) throws -> Profile {
         let request: NSFetchRequest<Profile> = Profile.fetchRequest()
