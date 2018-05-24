@@ -60,6 +60,14 @@ class ConnectivityHandler: NSObject, WCSessionDelegate {
         replyHandler(["type" : errorString])
     }
     
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
+        guard let typeString = userInfo["type"] as? String, let trafficType = TrafficType(rawValue: typeString) else {
+            return
+        }
+        
+        createTrafficMessage(type: trafficType)
+    }
+    
     // MARK: - Private Methods
     private func createTrafficMessage(type: TrafficType) {
         guard let location = locationManager.lastLocation else {

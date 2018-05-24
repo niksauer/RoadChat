@@ -47,20 +47,25 @@ class CreateTrafficMessageInterfaceController: WKInterfaceController, WCSessionD
     }
     
     private func sendTrafficMessage(type: TrafficType) {
-        session?.sendMessage(["type" : type.rawValue], replyHandler: { response in
-            // handle response from iPhone
-            print(response)
-            
-            if (response["type"] as? String == "success") {
-                self.presentAlert(withTitle: "Success", message: "Trafficmessage was successfully posted", preferredStyle: .alert, actions: [WKAlertAction(title: "OK", style: .default){
-                    //something after clicking OK
-                    }])
-            } else {
-                self.presentAlert(withTitle: "Error", message: "Trafficmessage failed", preferredStyle: .alert, actions: [WKAlertAction(title: "OK", style: .default){
-                    //something after clicking OK
-                }])
-            }
-        })
+        if (session?.isReachable)! {
+            session?.sendMessage(["type" : type.rawValue], replyHandler: { response in
+                // handle response from iPhone
+                print(response)
+                
+                if (response["type"] as? String == "success") {
+                    self.presentAlert(withTitle: "Success", message: "Trafficmessage was successfully posted", preferredStyle: .alert, actions: [WKAlertAction(title: "OK", style: .default){
+                        //something after clicking OK
+                        }])
+                } else {
+                    self.presentAlert(withTitle: "Error", message: "Trafficmessage failed", preferredStyle: .alert, actions: [WKAlertAction(title: "OK", style: .default){
+                        //something after clicking OK
+                        }])
+                }
+            })
+        } else {
+            session?.transferUserInfo(["type" : type.rawValue])
+        }
+      
         
         print("sent message to iPhone: \(type.rawValue)")
     }
