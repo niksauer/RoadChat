@@ -76,7 +76,12 @@ class LoginViewController: UIViewController {
             self.locationManager.updateRemoteLocation()
             
             // send successful login message to watch
+            if self.connectivityHandler.session.isReachable {
             self.connectivityHandler.session.sendMessage(["isLoggedIn": true], replyHandler: nil)
+            } else {
+                try self.connectivityHandler.session.updateApplicationContex(["isLoggedIn": true])
+            }
+            
             let appGroupID = "group.hpe.dhbw.SauerStudios"
             
             if let defaults = UserDefaults(suiteName: appGroupID) {

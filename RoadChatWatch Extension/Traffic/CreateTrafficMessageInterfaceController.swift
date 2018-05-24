@@ -75,7 +75,22 @@ class CreateTrafficMessageInterfaceController: WKInterfaceController, WCSessionD
             return
         }
         
-        self.popToRootController()
+        OperationQueue.main.addOperation {
+            WKInterfaceController.reloadRootPageControllers(withNames: ["AwaitLogin"], contexts: nil, orientation: .horizontal, pageIndex: 0)
+        }
+    }
+    
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        print("(TrafficHome) received message: \(applicationContext)")
+        
+        guard let isLoggedIn = applicationContext["isLoggedIn"] as? Bool, isLoggedIn else {
+            return
+        }
+        
+        OperationQueue.main.addOperation {
+            WKInterfaceController.reloadRootPageControllers(withNames: ["AwaitLogin"], contexts: nil, orientation: .horizontal, pageIndex: 0)
+        }
+        
     }
     
 }

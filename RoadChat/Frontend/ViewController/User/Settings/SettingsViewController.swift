@@ -239,9 +239,14 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
                     }
                     
                     // send successful logout message to watch
-                    self.connectivityHandler.session.sendMessage(["isLoggedIn": false], replyHandler: { response in
-                        log.info("received response from watch: \(response)")
-                    })
+                    if self.connectivityHandler.session.isReachable {
+                        self.connectivityHandler.session.sendMessage(["isLoggedIn": false], replyHandler: { response in
+                            log.info("received response from watch: \(response)")
+                        })
+                    } else {
+                      try self.connectivityHandler.session.updateApplicationContex(["isLoggedIn": false])
+                    }
+                    
                     
                     log.info("sent logout message to watch")
                     

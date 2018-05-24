@@ -16,6 +16,21 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationDidBecomeActive() {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        let appGroupID = "group.hpe.dhbw.SauerStudios"
+        let defaults = UserDefaults(suiteName: appGroupID)
+        
+        guard let isLoggedIn = defaults?.bool(forKey: "isLoggedInKey") else {
+            return
+        }
+        
+        print("login status: \(isLoggedIn)")
+        
+        if isLoggedIn {
+            OperationQueue.main.addOperation {
+                WKInterfaceController.reloadRootPageControllers(withNames: ["TrafficMessageHome"], contexts: nil, orientation: .horizontal, pageIndex: 0)
+            }
+        }
     }
 
     func applicationWillResignActive() {

@@ -51,6 +51,18 @@ class AwaitLoginInterfaceController: WKInterfaceController, WCSessionDelegate {
         
     }
 
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        print("(AwaitLogin) received message: \(applicationContext)")
+        
+        guard let isLoggedIn = applicationContext["isLoggedIn"] as? Bool, isLoggedIn else {
+            return
+        }
+        
+        OperationQueue.main.addOperation {
+            WKInterfaceController.reloadRootPageControllers(withNames: ["TrafficMessageHome"], contexts: nil, orientation: .horizontal, pageIndex: 0)
+        }
+        
+    }
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         print("(AwaitLogin) received message: \(message)")
         
