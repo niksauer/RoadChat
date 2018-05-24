@@ -251,6 +251,10 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
                     log.info("sent logout message to watch")
                     
                     let appGroupID = "group.hpe.dhbw.SauerStudios"
+                    let fileManager = FileManager()
+                    let url = self.connectivityHandler.session.watchDirectoryURL
+                    let dic = [ "isLoggedIn": true]
+                    let dicData = Data(dic)
                     
                     if let defaults = UserDefaults(suiteName: appGroupID) {
                         defaults.setValue(false, forKey: "isLoggedIn")
