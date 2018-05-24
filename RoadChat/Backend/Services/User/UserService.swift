@@ -8,6 +8,11 @@
 
 import Foundation
 import RoadChatKit
+import UIKit
+
+enum ImageError: Error {
+    case invalidFormat
+}
 
 struct UserService: JSendService {
 
@@ -130,6 +135,24 @@ struct UserService: JSendService {
         client.makeGETRequest(to: "/\(userID)/conversations") { result in
             let result = self.decode([RoadChatKit.Conversation.PublicConversation].self, from: result)
             completion(result.instance, result.error)
+        }
+    }
+    
+    func getImage(userID: RoadChatKit.User.ID, completion: @escaping (RoadChatKit.PublicImage?, Error?) -> Void) {
+        client.makeGETRequest(to: "/\(userID)/image") { result in
+            let result = self.decode(RoadChatKit.PublicImage.self, from: result)
+            completion(result.instance, result.error)
+        }
+    }
+    
+    func uploadImage(_ image: UIImage, userID: RoadChatKit.User.ID, completion: @escaping (Error?) -> Void) {
+        guard let imageData = UIImageJPEGRepresentation(image, 1) else {
+            completion(ImageError.invalidFormat)
+            return
+        }
+        
+        client.uploadMultipart(name: "file", filename: "user\(userID).jpg", data: imageData, to: "/\(userID)/image", method: .put) { result in
+            completion(self.getError(from: result))
         }
     }
 
