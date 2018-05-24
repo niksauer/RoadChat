@@ -118,7 +118,7 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeLoginViewController() -> LoginViewController {
-        return LoginViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, locationManager: locationManager)
+        return LoginViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, locationManager: locationManager, connectivityHandler: connectivityHandler)
     }
 
     func makeRegisterViewController() -> RegisterViewController {
@@ -187,7 +187,7 @@ extension DependencyContainer: ViewControllerFactory {
     
     // User
     func makeSettingsViewController(for user: User, settings: Settings) -> SettingsViewController {
-        return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user, settings: settings, colorPalette: colorPalette, lengthFormatter: lengthFormatter)
+        return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user, settings: settings, colorPalette: colorPalette, lengthFormatter: lengthFormatter, connectivityHandler: connectivityHandler)
     }
     
     func makePrivacyViewController(with privacy: Privacy) -> PrivacyViewController {

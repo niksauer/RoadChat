@@ -49,13 +49,7 @@ class SetupViewController: UIViewController {
             }
             
             // send successful login message to watch
-            self.connectivityHandler.session.sendMessage(["isLoggedIn": true], replyHandler: nil)
-            let appGroupID = "group.hpe.dhbw.SauerStudios"
-            
-            if let defaults = UserDefaults(suiteName: appGroupID) {
-                defaults.setValue(true, forKey: "isLoggedIn")
-                defaults.synchronize()
-            }
+            self.connectivityHandler.sendMessage(["isLoggedIn": true])
             
             // configure locationManager
             self.locationManager.managedUser = user

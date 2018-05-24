@@ -23,15 +23,15 @@ class LoginViewController: UIViewController {
     private let appDelegate: AppDelegate
     private let authenticationManager: AuthenticationManager
     private let locationManager: LocationManager
-    private let connectivityHandler: ConnectivityHandler!
+    private let connectivityHandler: ConnectivityHandler
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, locationManager: LocationManager) {
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, locationManager: LocationManager, connectivityHandler: ConnectivityHandler) {
         self.viewFactory = viewFactory
         self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
         self.locationManager = locationManager
-        self.connectivityHandler = (UIApplication.shared.delegate as? AppDelegate)?.connectivityHandler
+        self.connectivityHandler = connectivityHandler
         
         super.init(nibName: nil, bundle: nil)
         self.title = "RoadChat"
@@ -76,18 +76,7 @@ class LoginViewController: UIViewController {
             self.locationManager.updateRemoteLocation()
             
             // send successful login message to watch
-            if self.connectivityHandler.session.isReachable {
-            self.connectivityHandler.session.sendMessage(["isLoggedIn": true], replyHandler: nil)
-            } else {
-                try self.connectivityHandler.session.updateApplicationContex(["isLoggedIn": true])
-            }
-            
-            let appGroupID = "group.hpe.dhbw.SauerStudios"
-            
-            if let defaults = UserDefaults(suiteName: appGroupID) {
-                defaults.setValue(true, forKey: "isLoggedIn")
-                defaults.synchronize()
-            }
+            self.connectivityHandler.sendMessage(["isLoggedIn": true])
             
             // show home screen
             let homeTabBarController = self.viewFactory.makeHomeTabBarController(activeUser: user)

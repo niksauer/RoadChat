@@ -21,13 +21,13 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
     private let settings: Settings
     private let colorPalette: ColorPalette
     private let lengthFormatter: LengthFormatter
-    private let connectivityHandler: ConnectivityHandler!
+    private let connectivityHandler: ConnectivityHandler
     
     private var oldCommunityRadius: Int16
     private var oldTrafficRadius: Int16
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, user: User, settings: Settings, colorPalette: ColorPalette, lengthFormatter: LengthFormatter) {
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, user: User, settings: Settings, colorPalette: ColorPalette, lengthFormatter: LengthFormatter, connectivityHandler: ConnectivityHandler) {
         self.viewFactory = viewFactory
         self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
@@ -35,7 +35,7 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
         self.settings = settings
         self.colorPalette = colorPalette
         self.lengthFormatter = lengthFormatter
-        self.connectivityHandler = (UIApplication.shared.delegate as? AppDelegate)?.connectivityHandler
+        self.connectivityHandler = connectivityHandler
         
         self.oldCommunityRadius = settings.communityRadius
         self.oldTrafficRadius = settings.trafficRadius
@@ -239,27 +239,7 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
                     }
                     
                     // send successful logout message to watch
-                    if self.connectivityHandler.session.isReachable {
-                        self.connectivityHandler.session.sendMessage(["isLoggedIn": false], replyHandler: { response in
-                            log.info("received response from watch: \(response)")
-                        })
-                    } else {
-                      try self.connectivityHandler.session.updateApplicationContex(["isLoggedIn": false])
-                    }
-                    
-                    
-                    log.info("sent logout message to watch")
-                    
-                    let appGroupID = "group.hpe.dhbw.SauerStudios"
-                    let fileManager = FileManager()
-                    let url = self.connectivityHandler.session.watchDirectoryURL
-                    let dic = [ "isLoggedIn": true]
-                    let dicData = Data(dic)
-                    
-                    if let defaults = UserDefaults(suiteName: appGroupID) {
-                        defaults.setValue(false, forKey: "isLoggedIn")
-                        defaults.synchronize()
-                    }
+                    self.connectivityHandler.sendMessage(["isLoggedIn": false])
                     
                     let authenticationViewController = self.viewFactory.makeAuthenticationViewController()
                     self.appDelegate.show(authenticationViewController)
