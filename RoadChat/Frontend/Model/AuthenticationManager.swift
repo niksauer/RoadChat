@@ -17,13 +17,15 @@ class AuthenticationManager {
     private let authenticationService: AuthenticationService
     private let userManager: UserManager
     private let searchContext: NSManagedObjectContext
+    private let connectivityHandler: ConnectivityHandler
     
     // MARK: - Initialization
-    init(credentials: APICredentialStore, authenticationService: AuthenticationService, userManager: UserManager, searchContext: NSManagedObjectContext) {
+    init(credentials: APICredentialStore, authenticationService: AuthenticationService, userManager: UserManager, searchContext: NSManagedObjectContext, connectivityHandler: ConnectivityHandler) {
         self.credentials = credentials
         self.authenticationService = authenticationService
         self.userManager = userManager
         self.searchContext = searchContext
+        self.connectivityHandler = connectivityHandler
     }
     
     // MARK: - Public Methods
@@ -49,7 +51,8 @@ class AuthenticationManager {
                             completion(nil, error)
                             return
                         }
-                    
+                        
+                        self.connectivityHandler.updateLoginState(isLoggedIn: true)
                         completion(user, nil)
                     }
                 } catch {
@@ -79,7 +82,7 @@ class AuthenticationManager {
                 // remove credentials
                 try self.credentials.reset()
                 log.info("Successfully logged out user.")
-                
+                self.connectivityHandler.updateLoginState(isLoggedIn: false)
                 completion(nil)
             } catch {
                 // pass keychain error
@@ -134,6 +137,7 @@ class AuthenticationManager {
                 
                 do {
                     try self.credentials.reset()
+                    self.connectivityHandler.updateLoginState(isLoggedIn: false)
                     completion(nil)
                 } catch {
                     completion(error)

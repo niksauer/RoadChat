@@ -17,6 +17,8 @@ class ConnectivityHandler: NSObject, WCSessionDelegate {
     private let trafficBoard: TrafficBoard
     private let locationManager: LocationManager
     
+    private var shouldCommunicate = false
+    
     // MARK: - Initialization
     init(session: WCSession, trafficBoard: TrafficBoard, locationManager: LocationManager) {
         self.session = session
@@ -27,8 +29,6 @@ class ConnectivityHandler: NSObject, WCSessionDelegate {
         
         session.delegate = self
         session.activate()
-        
-        log.info("Watch is paired: \(session.isPaired), Watch App is installed: \(session.isWatchAppInstalled)")
     }
     
     // MARK: - Private Methods
@@ -51,13 +51,24 @@ class ConnectivityHandler: NSObject, WCSessionDelegate {
     }
     
     // MARK: - Public Methods
-    func sendMessage(_ message: [String: Any]) {
+    func updateLoginState(isLoggedIn: Bool) {
+        sendMessage(["isLoggedIn": isLoggedIn])
+    }
+    
+    // MARK: - Public Methods
+    private func sendMessage(_ message: [String: Any]) {
+        guard shouldCommunicate else {
+            return
+        }
+
         if session.isReachable {
+            log.verbose("Will send live message.")
             session.sendMessage(message, replyHandler: nil, errorHandler: { error in
                 log.error("Failed to send live message: \(error)")
             })
         } else {
             do {
+                log.verbose("Will update application context.")
                 try session.updateApplicationContext(message)
             } catch {
                 log.error("Failed to update application context: \(error)")
@@ -65,45 +76,52 @@ class ConnectivityHandler: NSObject, WCSessionDelegate {
         }
     }
     
+    private func processMessage(_ message: [String: Any]) {
+        if let trafficTypeString = message["trafficType"] as? String, let trafficType = TrafficType(rawValue: trafficTypeString) {
+            log.debug("Received trafficType message with: \(trafficType)")
+            
+            guard let location = locationManager.lastLocation else {
+                // handle no location error
+                return
+            }
+            
+            let messageRequest = TrafficMessageRequest(type: trafficType, time: Date(), message: nil, location: RoadChatKit.Location(coreLocation: location))
+            
+            trafficBoard.postMessage(messageRequest) { error in
+                guard error == nil else {
+                    // handle post error
+                    return
+                }
+            }
+        }
+    }
+    
     // MARK: - WCSessionDelegate
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        log.debug("activationDidCompleteWith activationState:\(activationState) error: \(error)")
+        log.info("Activated session with: activation state '\(activationState.rawValue)', \(session.isPaired ? "paired" : "non-paired") Apple Watch and \(session.isWatchAppInstalled ? "installed" : "non-installed") WatchKit extension app.")
+        shouldCommunicate = (session.activationState == .activated && session.isPaired && session.isWatchAppInstalled)
     }
 
     func sessionDidBecomeInactive(_ session: WCSession) {
-        log.debug("sessionDidBecomeInactive: \(session)")
+//        log.info("sessionDidBecomeInactive: \(session)")
     }
 
     func sessionDidDeactivate(_ session: WCSession) {
-        log.debug("sessionDidDeactivate: \(session)")
+//        log.info("sessionDidDeactivate: \(session)")
     }
 
-//    func sessionWatchStateDidChange(_ session: WCSession) {
-//        NSLog("%@", "sessionWatchStateDidChange: \(session)")
-//    }
+    func sessionWatchStateDidChange(_ session: WCSession) {
+        log.debug("sessionWatchStateDidCange: \(session)")
+        shouldCommunicate = session.isPaired && session.isWatchAppInstalled
+    }
     
-//    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
-//        print("received message from watch: \(message)")
-//
-//        guard let typeString = message["type"] as? String, let trafficType = TrafficType(rawValue: typeString) else {
-//            return
-//        }
-//
-//        createTrafficMessage(type: trafficType)
-//    }
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        processMessage(message)
+    }
     
-//    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
-//        guard let typeString = userInfo["type"] as? String, let trafficType = TrafficType(rawValue: typeString) else {
-//            return
-//        }
-//
-//        createTrafficMessage(type: trafficType)
-//    }
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        processMessage(applicationContext)
+    }
     
 }
-
-//                    let fileManager = FileManager()
-//                    let url = self.connectivityHandler.session.watchDirectoryURL
-//                    let preferences = ["isLoggedIn": true]
-//                    let dicData = Data(preferences)
 

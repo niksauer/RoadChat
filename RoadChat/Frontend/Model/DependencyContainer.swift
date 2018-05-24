@@ -27,14 +27,14 @@ struct DependencyContainer {
     }
     
     private var authenticationManager: AuthenticationManager {
-        return AuthenticationManager(credentials: credentials, authenticationService: AuthenticationService(config: config), userManager: userManager, searchContext: viewContext)
+        return AuthenticationManager(credentials: credentials, authenticationService: AuthenticationService(config: config), userManager: userManager, searchContext: viewContext, connectivityHandler: connectivityHandler)
     }
     
     private var communityBoard: CommunityBoard {
         return CommunityBoard(communityService: CommunityService(config: config), context: viewContext)
     }
     
-    private var trafficBoard: TrafficBoard {
+    var trafficBoard: TrafficBoard {
         return TrafficBoard(trafficService: TrafficService(config: config), context: viewContext)
     }
     
@@ -76,7 +76,8 @@ struct DependencyContainer {
 
     // Public Properties
     var appDelegate: AppDelegate!
-    let connectivitySession: WCSession = WCSession.default
+    var connectivityHandler: ConnectivityHandler!
+
     let credentials: APICredentialStore = KeychainManager.shared
     let userDefaults: UserDefaults = UserDefaults.standard
     let coreData: CoreDataStack = CoreDataStack.shared
@@ -87,9 +88,6 @@ struct DependencyContainer {
         return RoadChatAPI(credentials: credentials)
     }
     
-    var connectivityHandler: ConnectivityHandler {
-        return ConnectivityHandler(session: connectivitySession, trafficBoard: trafficBoard, locationManager: locationManager)
-    }
 }
 
 extension DependencyContainer: ViewControllerFactory {
@@ -118,11 +116,11 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeLoginViewController() -> LoginViewController {
-        return LoginViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, locationManager: locationManager, connectivityHandler: connectivityHandler)
+        return LoginViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, locationManager: locationManager)
     }
 
     func makeRegisterViewController() -> RegisterViewController {
-        return RegisterViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, userManager: userManager, locationManager: locationManager, connectivityHandler: connectivityHandler)
+        return RegisterViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, userManager: userManager, locationManager: locationManager)
     }
 
     // Community
@@ -187,7 +185,7 @@ extension DependencyContainer: ViewControllerFactory {
     
     // User
     func makeSettingsViewController(for user: User, settings: Settings) -> SettingsViewController {
-        return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user, settings: settings, colorPalette: colorPalette, lengthFormatter: lengthFormatter, connectivityHandler: connectivityHandler)
+        return SettingsViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, user: user, settings: settings, colorPalette: colorPalette, lengthFormatter: lengthFormatter)
     }
     
     func makePrivacyViewController(with privacy: Privacy) -> PrivacyViewController {

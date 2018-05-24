@@ -21,13 +21,12 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
     private let settings: Settings
     private let colorPalette: ColorPalette
     private let lengthFormatter: LengthFormatter
-    private let connectivityHandler: ConnectivityHandler
     
     private var oldCommunityRadius: Int16
     private var oldTrafficRadius: Int16
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, user: User, settings: Settings, colorPalette: ColorPalette, lengthFormatter: LengthFormatter, connectivityHandler: ConnectivityHandler) {
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, user: User, settings: Settings, colorPalette: ColorPalette, lengthFormatter: LengthFormatter) {
         self.viewFactory = viewFactory
         self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
@@ -35,7 +34,6 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
         self.settings = settings
         self.colorPalette = colorPalette
         self.lengthFormatter = lengthFormatter
-        self.connectivityHandler = connectivityHandler
         
         self.oldCommunityRadius = settings.communityRadius
         self.oldTrafficRadius = settings.trafficRadius
@@ -237,9 +235,6 @@ class SettingsViewController: UITableViewController, GeofenceViewControllerDeleg
                         self.displayAlert(title: "Error", message: "Failed to logout: \(error!)", completion: nil)
                         return
                     }
-                    
-                    // send successful logout message to watch
-                    self.connectivityHandler.sendMessage(["isLoggedIn": false])
                     
                     let authenticationViewController = self.viewFactory.makeAuthenticationViewController()
                     self.appDelegate.show(authenticationViewController)

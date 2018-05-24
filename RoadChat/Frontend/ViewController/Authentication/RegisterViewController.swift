@@ -24,16 +24,14 @@ class RegisterViewController: UIViewController {
     private let authenticationManager: AuthenticationManager
     private let userManager: UserManager
     private let locationManager: LocationManager
-    private let connectivityHandler: ConnectivityHandler
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, userManager: UserManager, locationManager: LocationManager, connectivityHandler: ConnectivityHandler) {
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, userManager: UserManager, locationManager: LocationManager) {
         self.viewFactory = viewFactory
         self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
         self.userManager = userManager
         self.locationManager = locationManager
-        self.connectivityHandler = connectivityHandler
         
         super.init(nibName: nil, bundle: nil)
         self.title = "Sign Up"
@@ -91,9 +89,6 @@ class RegisterViewController: UIViewController {
                 self.locationManager.managedUser = user
                 self.locationManager.startPolling()
                 self.locationManager.updateRemoteLocation()
-                
-                // send successful login message to watch
-                self.connectivityHandler.sendMessage(["isLoggedIn": true])
                 
                 // show home screen
                 let homeTabBarController = self.viewFactory.makeHomeTabBarController(activeUser: user)

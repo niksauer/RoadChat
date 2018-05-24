@@ -58,8 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // start connectivity handler
         if WCSession.isSupported() {
-            connectivityHandler = container.connectivityHandler
-            log.debug("Initialized watch connectivity handler.")
+            connectivityHandler = ConnectivityHandler(session: WCSession.default, trafficBoard: container.trafficBoard, locationManager: container.locationManager)
+            container.connectivityHandler = connectivityHandler
         } else {
             log.debug("Watch connectivity is not supported.")
         }

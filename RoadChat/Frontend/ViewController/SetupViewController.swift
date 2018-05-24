@@ -49,7 +49,7 @@ class SetupViewController: UIViewController {
             }
             
             // send successful login message to watch
-            self.connectivityHandler.sendMessage(["isLoggedIn": true])
+            self.connectivityHandler.updateLoginState(isLoggedIn: true)
             
             // configure locationManager
             self.locationManager.managedUser = user

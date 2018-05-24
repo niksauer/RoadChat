@@ -12,7 +12,7 @@
         <!--RoadChat-->
         <scene sceneID="55M-Rq-zEQ">
             <objects>
-                <controller identifier="AwaitLogin" title="RoadChat" id="8yY-8Q-ITs" customClass="AwaitLoginInterfaceController" customModule="RoadChatWatch" customModuleProvider="target">
+                <controller identifier="AwaitLogin" title="RoadChat" hidesWhenLoading="NO" id="8yY-8Q-ITs" customClass="AwaitLoginInterfaceController" customModule="RoadChatWatch" customModuleProvider="target">
                     <items>
                         <label alignment="center" verticalAlignment="center" text="Please login on iPhone" textAlignment="center" numberOfLines="0" id="gdU-gA-sDk"/>
                     </items>
@@ -20,17 +20,10 @@
             </objects>
             <point key="canvasLocation" x="220" y="25"/>
         </scene>
-        <!--Setup-->
-        <scene sceneID="R4f-sl-yUr">
-            <objects>
-                <controller identifier="Setup" id="vOQ-cz-qmP" customClass="SetupInterfaceController" customModule="RoadChatWatch" customModuleProvider="target"/>
-            </objects>
-            <point key="canvasLocation" x="-100" y="266"/>
-        </scene>
         <!--RoadChat-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller identifier="TrafficMessageHome" title="RoadChat" id="AgC-eL-Hgc" customClass="TrafficMessageHomeInterfaceController" customModule="RoadChatWatch" customModuleProvider="target">
+                <controller identifier="TrafficMessageHome" title="RoadChat" hidesWhenLoading="NO" id="AgC-eL-Hgc" customClass="TrafficMessageHomeInterfaceController" customModule="RoadChatWatch" customModuleProvider="target">
                     <items>
                         <group width="1" alignment="center" verticalAlignment="center" layout="vertical" spacing="10" id="38q-NK-fYP">
                             <items>
@@ -51,7 +44,7 @@
         <!--RoadChat-->
         <scene sceneID="rLm-QQ-VFN">
             <objects>
-                <controller identifier="CreateTrafficMessage" title="RoadChat" id="2jP-Dk-2b8" customClass="CreateTrafficMessageInterfaceController" customModule="RoadChatWatch" customModuleProvider="target">
+                <controller identifier="CreateTrafficMessage" title="RoadChat" hidesWhenLoading="NO" id="2jP-Dk-2b8" customClass="CreateTrafficMessageInterfaceController" customModule="RoadChatWatch" customModuleProvider="target">
                     <items>
                         <group height="1" alignment="center" contentMode="center" layout="vertical" spacing="5" id="Ym4-lW-ZLS">
                             <items>
@@ -60,13 +53,13 @@
                                         <button width="0.5" height="1" alignment="left" title="Jam" id="tA5-p5-Fe0">
                                             <fontDescription key="font" type="system" pointSize="12"/>
                                             <connections>
-                                                <action selector="jamButtonPressed" destination="2jP-Dk-2b8" id="lkp-yL-AvV"/>
+                                                <action selector="jamButtonPressed" destination="2jP-Dk-2b8" id="X1z-tj-ck5"/>
                                             </connections>
                                         </button>
                                         <button width="0.5" height="1" alignment="left" title="Detour" id="Bzu-YB-K5U">
                                             <fontDescription key="font" type="system" pointSize="12"/>
                                             <connections>
-                                                <action selector="detourButtonPressed" destination="2jP-Dk-2b8" id="0cp-aa-pUG"/>
+                                                <action selector="detourButtonPressed" destination="2jP-Dk-2b8" id="CyV-4l-GOp"/>
                                             </connections>
                                         </button>
                                     </items>
@@ -76,13 +69,13 @@
                                         <button width="0.5" height="1" alignment="left" title="Accident" id="6or-fb-ZBU">
                                             <fontDescription key="font" type="system" pointSize="12"/>
                                             <connections>
-                                                <action selector="accidentButtonPressed" destination="2jP-Dk-2b8" id="CPi-24-MOS"/>
+                                                <action selector="accidentButtonPressed" destination="2jP-Dk-2b8" id="WGF-kh-fOm"/>
                                             </connections>
                                         </button>
                                         <button width="0.5" height="1" alignment="left" title="Danger" id="Qpn-pF-GiV">
                                             <fontDescription key="font" type="system" pointSize="12"/>
                                             <connections>
-                                                <action selector="dangerButtonPressed" destination="2jP-Dk-2b8" id="RZm-aQ-INC"/>
+                                                <action selector="dangerButtonPressed" destination="2jP-Dk-2b8" id="3jE-0I-eLB"/>
                                             </connections>
                                         </button>
                                     </items>
@@ -90,9 +83,6 @@
                             </items>
                         </group>
                     </items>
-                    <connections>
-                        <outlet property="accidentButtonPressed" destination="6or-fb-ZBU" id="dsA-tR-5o0"/>
-                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="508" y="345"/>
@@ -118,7 +108,7 @@
             <objects>
                 <controller id="4sK-HA-Art" customClass="NotificationController" customModule="RoadChatWatch" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="468" y="643"/>
+            <point key="canvasLocation" x="508" y="643"/>
         </scene>
     </scenes>
 </document>
