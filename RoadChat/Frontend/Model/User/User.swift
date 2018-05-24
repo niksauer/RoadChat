@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import RoadChatKit
+import UIKit
 
 class User: NSManagedObject, ReportOwner {
     
@@ -66,6 +67,7 @@ class User: NSManagedObject, ReportOwner {
         user.getCars(completion: nil)
         user.getCommunityMessages(completion: nil)
         user.getTrafficMessages(completion: nil)
+        user.getImage(completion: nil)
     
         return user
     }
@@ -95,6 +97,14 @@ class User: NSManagedObject, ReportOwner {
         return Int(storedTrafficMessages.reduce(0, { $0 + $1.upvotes }))
     }
     
+    var storedImage: UIImage? {
+        guard let imageData = imageData else {
+            return nil
+        }
+        
+        return UIImage(data: imageData)
+    }
+    
     // MARK: - Private Properties
     private let userService = UserService(config: DependencyContainer().config)
     private let conversationService = ConversationService(config: DependencyContainer().config)
@@ -113,6 +123,7 @@ class User: NSManagedObject, ReportOwner {
         getCars(completion: nil)
         getCommunityMessages(completion: nil)
         getTrafficMessages(completion: nil)
+        getImage(completion: nil)
     }
     
     // MARK: - Public Methods
@@ -555,6 +566,52 @@ class User: NSManagedObject, ReportOwner {
                 completion?(nil)
             } catch {
                 let report = Report(.failedCoreDataOperation(.retrieve, resource: "Conversation", isMultiple: true, error: error), owner: self)
+                log.error(report)
+                completion?(error)
+            }
+        }
+    }
+    
+    func getImage(completion: ((Error?) -> Void)?) {
+        userService.getImage(userID: Int(id)) { image, error in
+            guard let image = image else {
+                let report = Report(.failedServerOperation(.retrieve, resource: "Image", isMultiple: false, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            do {
+                self.imageData = image.data
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.retrieve, resource: "Image", isMultiple: false), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                let report = Report(.failedCoreDataOperation(.update, resource: "Image", isMultiple: false, error: error), owner: self)
+                log.error(report)
+                completion?(error)
+            }
+        }
+    }
+    
+    func uploadImage(_ image: UIImage, completion: ((Error?) -> Void)?) {
+        userService.uploadImage(image, userID: Int(id)) { data, error in
+            guard let data = data else {
+                let report = Report(.failedServerOperation(.update, resource: "Image", isMultiple: false, error: error!), owner: self)
+                log.error(report)
+                completion?(error!)
+                return
+            }
+            
+            do {
+                self.imageData = data
+                try self.context.save()
+                let report = Report(.successfulCoreDataOperation(.update, resource: "Image", isMultiple: false), owner: self)
+                log.debug(report)
+                completion?(nil)
+            } catch {
+                let report = Report(.failedCoreDataOperation(.update, resource: "Image", isMultiple: false, error: error), owner: self)
                 log.error(report)
                 completion?(error)
             }

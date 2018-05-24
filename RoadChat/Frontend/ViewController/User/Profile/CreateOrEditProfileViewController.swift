@@ -9,7 +9,7 @@
 import UIKit
 import RoadChatKit
 
-class CreateOrEditProfileViewController: UIViewController, UIImageCropperProtocol {
+class CreateOrEditProfileViewController: UIViewController, UIImageCropperProtocol, UITextViewDelegate {
     
     // MARK: - Typealiases
     typealias ColorPalette = BasicColorPalette & SexColorPalette
@@ -18,9 +18,9 @@ class CreateOrEditProfileViewController: UIViewController, UIImageCropperProtoco
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var addImageButton: UIButton!
     
-    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var biographyTextView: UITextView!
-    
+
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     
@@ -33,35 +33,24 @@ class CreateOrEditProfileViewController: UIViewController, UIImageCropperProtoco
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var countryTextField: UITextField!
     
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var viewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var profileImageViewHeightConstraint: NSLayoutConstraint!
     
     //MARK: - Views
-    private let datePickerView = UIDatePicker()
     private var saveBarButtonItem: UIBarButtonItem!
+    private let datePickerView = UIDatePicker()
     private let imagePicker = UIImagePickerController()
-    private let imageCropper = UIImageCropper(cropRatio: 4/3)
+    private let imageCropper = UIImageCropper(cropRatio: 1)
     
     // MARK: - Private Properties
     private let user: User
     private let dateFormatter: DateFormatter
     private let colorPalette: ColorPalette
-    private let bioTextViewPlaceholder = "RoadChats #1 Fan"
     
-    private var sex: SexType? {
-        didSet {
-            switch sex {
-            case .male?:
-                sexTypeSegmentedControl.selectedSegmentIndex = 0
-            case .female?:
-                sexTypeSegmentedControl.selectedSegmentIndex = 1
-            case .other?:
-                sexTypeSegmentedControl.selectedSegmentIndex = 2
-            default:
-                sexTypeSegmentedControl.selectedSegmentIndex = -1
-            }
-        }
-    }
+    private let oldProfile: Profile.Copy?
+    private var requestedProfile: Profile.Copy?
+    private var shouldUploadProfile = false
+    private var shouldUploadImage = false
     
     // MARK: - Initialization
     init(user: User, dateFormatter: DateFormatter, colorPalette: ColorPalette) {
@@ -69,11 +58,18 @@ class CreateOrEditProfileViewController: UIViewController, UIImageCropperProtoco
         self.dateFormatter = dateFormatter
         self.colorPalette = colorPalette
         
+        if let profile = user.profile {
+            oldProfile = Profile.Copy(firstName: profile.firstName!, lastName: profile.lastName!, birth: profile.birth!, sex: profile.storedSex, streetName: profile.streetName, streetNumber: Int(profile.streetNumber), postalCode: Int(profile.postalCode), city: profile.city, country: profile.country, biography: profile.biography)
+        } else {
+            oldProfile = nil
+        }
+        
         super.init(nibName: nil, bundle: nil)
         
         self.title = "Edit Profile"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed(_:)))
         self.saveBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonPressed(_:)))
+        self.saveBarButtonItem.isEnabled = false
         self.navigationItem.rightBarButtonItem = saveBarButtonItem
     }
     
@@ -81,10 +77,11 @@ class CreateOrEditProfileViewController: UIViewController, UIImageCropperProtoco
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Customization
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // car image view height
+        // profile image view height
         profileImageViewHeightConstraint.constant = (view.frame.width/4)*3
         
         // image picker & cropper
@@ -94,7 +91,7 @@ class CreateOrEditProfileViewController: UIViewController, UIImageCropperProtoco
         imageCropper.cancelButtonText = "Cancel"
         imageCropper.cropButtonText = "Select"
         
-        // keyboard notification
+        // keyboard notifications
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
@@ -103,80 +100,89 @@ class CreateOrEditProfileViewController: UIViewController, UIImageCropperProtoco
         tapGestureRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGestureRecognizer)
         
-        // profile image appearance
-        //        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
-        //        profileImageView.clipsToBounds = true
-        
         // birth date picker
         datePickerView.timeZone = TimeZone.current
         datePickerView.datePickerMode = UIDatePickerMode.date
         datePickerView.addTarget(self, action: #selector(didChangeBirthDate(sender:)), for: .valueChanged)
+        birthTextField.inputView = datePickerView
         
-        // add photo
+        // add photo button appearance
         addImageButton.layer.cornerRadius = addImageButton.frame.size.width / 2
         addImageButton.clipsToBounds = true
         addImageButton.backgroundColor = colorPalette.contentBackgroundColor
         addImageButton.tintColor = colorPalette.createColor
         
-        // loading existing user data
-        usernameTextField.text = user.username
+        // textView delegate
+        biographyTextView.delegate = self
         
+        // textField delegate
+        firstNameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        lastNameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        streetNameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        streetNumberTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        postalCodeTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        cityTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        countryTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        
+        // biography text view appearance
         biographyTextView.layer.borderWidth = 0.3
         biographyTextView.layer.borderColor = colorPalette.separatorColor.cgColor
         biographyTextView.layer.cornerRadius = 5
-        biographyTextView.text = user.profile?.biography
         
-        firstNameTextField.text = user.profile?.firstName
-        lastNameTextField.text = user.profile?.lastName
-        birthTextField.inputView = datePickerView
+        // populate with existing information
+        usernameLabel.text = user.username
+        profileImageView.image = user.storedImage
         
-        if let birth = user.profile?.birth {
+        guard let profile = user.profile else {
+            return
+        }
+        
+        biographyTextView.text = profile.biography
+        firstNameTextField.text = profile.firstName
+        lastNameTextField.text = profile.lastName
+        
+        if let birth = profile.birth {
             birthTextField.text = dateFormatter.string(from: birth)
         }
         
-        sex = user.profile?.storedSex
+        sexTypeSegmentedControl.selectedSegmentIndex = profile.storedSex?.secondRawValue ?? -1
         
-        streetNameTextField.text = user.profile?.streetName
-        
-        if let streetNumber = user.profile?.streetNumber, streetNumber != -1 {
-            streetNumberTextField.text = String(streetNumber)
-        }
-        
-        if let postalCode = user.profile?.postalCode, postalCode != -1 {
-            postalCodeTextField.text = String(postalCode)
-        }
-        
-        cityTextField.text = user.profile?.city
-        countryTextField.text = user.profile?.country
+        streetNameTextField.text = profile.streetName
+        streetNumberTextField.text = profile.streetNumber != -1 ? String(profile.streetNumber) : nil
+        postalCodeTextField.text = profile.postalCode != -1 ? String(profile.postalCode) : nil
+        cityTextField.text = profile.city
+        countryTextField.text = profile.country
     }
     
     // MARK: - Public Methods
-    @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        view.endEditing(true)
-    }
-    
     @objc func cancelButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @objc func saveButtonPressed(_ sender: UIButton) {
-        guard let firstName = firstNameTextField.text, let lastName = lastNameTextField.text, let birthString = birthTextField.text, let birth = dateFormatter.date(from: birthString) else {
+        func uploadImage(_ image: UIImage, for user: User) {
+            user.uploadImage(image) { error in
+                guard error == nil else {
+                    self.displayAlert(title: "Error", message: "Failed to upload image for car: \(error!)") {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    
+                    return
+                }
+                
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        
+        guard shouldUploadProfile, let requestedProfile = requestedProfile else {
+            if shouldUploadImage {
+                uploadImage(profileImageView.image!, for: user)
+            }
+            
             return
         }
-        
-        var streetNumber: Int?
-        
-        if let streetNumberString = streetNumberTextField.text {
-            streetNumber = Int(streetNumberString)
-        }
-        
-        var postalCode: Int?
-        
-        if let postalCodeString = postalCodeTextField.text {
-            postalCode = Int(postalCodeString)
-        }
-        
-        let profileRequest = ProfileRequest(firstName: firstName, lastName: lastName, birth: birth, sex: sex, biography: biographyTextView.text, streetName: streetNameTextField.text, streetNumber: streetNumber, postalCode: postalCode, city: cityTextField.text, country: countryTextField.text)
+
+        let profileRequest = ProfileRequest(firstName: requestedProfile.firstName, lastName: requestedProfile.lastName, birth: requestedProfile.birth, sex: requestedProfile.sex, biography: requestedProfile.biography, streetName: requestedProfile.streetName, streetNumber: requestedProfile.streetNumber, postalCode: requestedProfile.postalCode, city: requestedProfile.city, country: requestedProfile.country)
         
         user.createOrUpdateProfile(profileRequest) { error in
             guard error == nil else {
@@ -187,38 +193,113 @@ class CreateOrEditProfileViewController: UIViewController, UIImageCropperProtoco
                 return
             }
             
-            self.dismiss(animated: true, completion: nil)
+            guard self.shouldUploadImage else {
+                self.dismiss(animated: true, completion: nil)
+                return
+            }
+            
+            uploadImage(self.profileImageView.image!, for: self.user)
         }
     }
     
+    @IBAction func addImageButtonPressed(_ sender: UIButton) {
+        navigationController?.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func validateSaveButton() {
+        if let firstName = firstNameTextField.text, let lastName = lastNameTextField.text, let birthString = birthTextField.text, let birthDate = dateFormatter.date(from: birthString) {
+            // retrieve optional fields
+            let sex = SexType(secondRawValue: sexTypeSegmentedControl.selectedSegmentIndex)
+            
+            let streetName: String?
+            if let streetNameString = streetNameTextField.text, !streetNameString.isEmpty {
+                streetName = streetNameString
+            } else {
+                streetName = nil
+            }
+            
+            let streetNumber = Int(streetNumberTextField.text!) ?? -1
+            let postalCode = Int(postalCodeTextField.text!) ?? -1
+            
+            let city: String?
+            if let cityString = cityTextField.text, !cityString.isEmpty {
+                city = cityString
+            } else {
+                city = nil
+            }
+            
+            let country: String?
+            if let countryString = countryTextField.text, !countryString.isEmpty {
+                country = countryString
+            } else {
+                country = nil
+            }
+            
+            let biography: String?
+            if let biographyString = biographyTextView.text, !biographyString.isEmpty {
+                biography = biographyString
+            } else {
+                biography = nil
+            }
+            
+            // prepare new car
+            requestedProfile = Profile.Copy(firstName: firstName, lastName: lastName, birth: birthDate, sex: sex, streetName: streetName, streetNumber: streetNumber, postalCode: postalCode, city: city, country: country, biography: biography)
+            
+            if let oldProfile = oldProfile {
+                // check whether existing profile has been modified
+                shouldUploadProfile = requestedProfile != oldProfile
+            } else {
+                shouldUploadProfile = true
+            }
+        } else {
+            // handle missing required fields error
+            shouldUploadProfile = false
+        }
+        
+        saveBarButtonItem.isEnabled = shouldUploadProfile || shouldUploadImage
+    }
+    
+    // Mark: - DatePicker Delegate
     @objc func didChangeBirthDate(sender: UIDatePicker) {
         birthTextField.textColor = colorPalette.darkTextColor
         
         // get the date string applied date format
         let selectedDate = dateFormatter.string(from: sender.date)
         birthTextField.text = selectedDate
+        
+        validateSaveButton()
     }
     
+    // Mark: - SegmentedControl Delegate
     @IBAction func didChangeSexType(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            sex = .male
-        case 1:
-            sex = .female
-        case 2:
-            sex = .other
-        default:
-            return
-        }
+        validateSaveButton()
     }
     
-    @IBAction func didPressAddImageButton(_ sender: UIButton) {
-        navigationController?.present(imagePicker, animated: true, completion: nil)
+    // Mark: - TextView Delegate
+    func textViewDidChange(_ textView: UITextView) {
+        validateSaveButton()
+    }
+    
+    // Mark: - TextField Delegate
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        validateSaveButton()
+    }
+    
+    // Mark: - Tap Gesture Recognizer
+    @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
     
     // Mark: - UIImageCropper Delegate
     func didCropImage(originalImage: UIImage?, croppedImage: UIImage?) {
-        profileImageView.image = croppedImage
+        if let image = croppedImage {
+            shouldUploadImage = true
+            profileImageView.image = image
+        } else {
+            shouldUploadImage = false
+        }
+        
+        validateSaveButton()
     }
     
     // MARK: - Keyboard Notifications
@@ -228,11 +309,11 @@ class CreateOrEditProfileViewController: UIViewController, UIImageCropperProtoco
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
         
-        bottomConstraint.constant = keyboardHeight - view.safeAreaInsets.bottom
+        viewBottomConstraint.constant = keyboardHeight - view.safeAreaInsets.bottom
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {
-        bottomConstraint.constant = 0
+        viewBottomConstraint.constant = 0
     }
     
 }

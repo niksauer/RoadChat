@@ -47,14 +47,14 @@ struct CarService: JSendService {
         }
     }
 
-    func uploadImage(_ image: UIImage, carID: RoadChatKit.Car.ID, completion: @escaping (Error?) -> Void) {
+    func uploadImage(_ image: UIImage, carID: RoadChatKit.Car.ID, completion: @escaping (Data?, Error?) -> Void) {
         guard let imageData = UIImageJPEGRepresentation(image, 1) else {
-            completion(ImageError.invalidFormat)
+            completion(nil, ImageError.invalidFormat)
             return
         }
         
         client.uploadMultipart(name: "file", filename: "car\(carID).jpg", data: imageData, to: "/\(carID)/image", method: .put) { result in
-            completion(self.getError(from: result))
+            completion(imageData, self.getError(from: result))
         }
     }
 
