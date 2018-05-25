@@ -84,26 +84,16 @@ class CreateTrafficMessageViewController: UIViewController, UITextFieldDelegate,
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func sendButtonPressed(_ sender: UIButton) {
-        guard let coreLocation = locationManager.lastLocation else {
-            log.warning("Failed to retrieve current user location.")
-            return
-        }
-        
-        guard let type = typeTextField.text, let message = messageTextView.text else {
+    @IBAction func sendButtonPressed(_ sender: UIButton) {        
+        guard let type = typeTextField.text, let trafficType = TrafficType(rawValue: type.lowercased()) else {
             // assert user interaction by text view delegate methods
             return
         }
         
-        let location = RoadChatKit.Location(coreLocation: coreLocation)
+        var message = messageTextView.text
+        message = messageCharacterCount > 0 ? message : nil
         
-        guard let trafficType = TrafficType(rawValue: type.lowercased()) else {
-            return
-        }
-        
-        let trafficMessageRequest = TrafficMessageRequest(type: trafficType, time: Date(), message: messageCharacterCount > 0 ? message : "", location: location)
-        
-        trafficBoard.postMessage(trafficMessageRequest) { error in
+        trafficBoard.postMessage(type: trafficType, message: message, time: Date()) { error in
             guard error == nil else {
                 self.displayAlert(title: "Error", message: "Failed to post message: \(error!)", completion: nil)
                 return

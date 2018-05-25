@@ -26,16 +26,16 @@ struct DependencyContainer {
         return UserManager(userService: UserService(config: config), context: viewContext)
     }
     
-    private var authenticationManager: AuthenticationManager {
-        return AuthenticationManager(credentials: credentials, authenticationService: AuthenticationService(config: config), userManager: userManager, searchContext: viewContext, connectivityHandler: connectivityHandler)
-    }
+//    private var authenticationManager: AuthenticationManager {
+//        return AuthenticationManager(credentials: credentials, authenticationService: AuthenticationService(config: config), userManager: userManager, searchContext: viewContext)
+//    }
     
     private var communityBoard: CommunityBoard {
         return CommunityBoard(communityService: CommunityService(config: config), context: viewContext)
     }
     
-    var trafficBoard: TrafficBoard {
-        return TrafficBoard(trafficService: TrafficService(config: config), context: viewContext)
+    private var trafficBoard: TrafficBoard {
+        return TrafficBoard(trafficService: TrafficService(config: config), context: viewContext, locationManager: locationManager)
     }
     
     private var conversationManager: ConversationManager {
@@ -76,8 +76,8 @@ struct DependencyContainer {
 
     // Public Properties
     var appDelegate: AppDelegate!
-    var connectivityHandler: ConnectivityHandler!
-
+    var authenticationManager: AuthenticationManager!
+    let connectivityManager: WatchConnectivityManager = WatchConnectivityManager.shared
     let credentials: APICredentialStore = KeychainManager.shared
     let userDefaults: UserDefaults = UserDefaults.standard
     let coreData: CoreDataStack = CoreDataStack.shared
@@ -88,13 +88,21 @@ struct DependencyContainer {
         return RoadChatAPI(credentials: credentials)
     }
     
+    var companionApp: WatchCompanion {
+        return WatchCompanion(connectivityManager: connectivityManager, trafficBoard: trafficBoard, authenticationManager: authenticationManager)
+    }
+    
+    func makeAuthenticationManager() -> AuthenticationManager {
+        return AuthenticationManager(credentials: credentials, authenticationService: AuthenticationService(config: config), userManager: userManager, searchContext: viewContext)
+    }
+    
 }
 
 extension DependencyContainer: ViewControllerFactory {
 
     // General
     func makeSetupViewController() -> SetupViewController {
-        return SetupViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, credentials: credentials, locationManager: locationManager, connectivityHandler: connectivityHandler)
+        return SetupViewController(viewFactory: self, appDelegate: appDelegate, authenticationManager: authenticationManager, credentials: credentials, locationManager: locationManager)
     }
     
     func makeHomeTabBarController(activeUser user: User) -> HomeTabBarController {

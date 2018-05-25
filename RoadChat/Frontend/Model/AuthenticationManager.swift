@@ -10,22 +10,27 @@ import Foundation
 import RoadChatKit
 import CoreData
 
+protocol AuthenticationManagerDelegate {
+    func authenticationManager(_ authenticationManager: AuthenticationManager, didVerifyUserAuthentication isLoggedIn: Bool)
+}
+
 class AuthenticationManager {
+    
+    // MARK: - Public Properties
+    var delegate: AuthenticationManagerDelegate?
     
     // MARK: - Private Properties
     private let credentials: APICredentialStore
     private let authenticationService: AuthenticationService
     private let userManager: UserManager
     private let searchContext: NSManagedObjectContext
-    private let connectivityHandler: ConnectivityHandler
     
     // MARK: - Initialization
-    init(credentials: APICredentialStore, authenticationService: AuthenticationService, userManager: UserManager, searchContext: NSManagedObjectContext, connectivityHandler: ConnectivityHandler) {
+    init(credentials: APICredentialStore, authenticationService: AuthenticationService, userManager: UserManager, searchContext: NSManagedObjectContext) {
         self.credentials = credentials
         self.authenticationService = authenticationService
         self.userManager = userManager
         self.searchContext = searchContext
-        self.connectivityHandler = connectivityHandler
     }
     
     // MARK: - Public Methods
@@ -52,7 +57,7 @@ class AuthenticationManager {
                             return
                         }
                         
-                        self.connectivityHandler.updateLoginState(isLoggedIn: true)
+                        self.delegate?.authenticationManager(self, didVerifyUserAuthentication: true)
                         completion(user, nil)
                     }
                 } catch {
@@ -82,7 +87,7 @@ class AuthenticationManager {
                 // remove credentials
                 try self.credentials.reset()
                 log.info("Successfully logged out user.")
-                self.connectivityHandler.updateLoginState(isLoggedIn: false)
+                self.delegate?.authenticationManager(self, didVerifyUserAuthentication: false)
                 completion(nil)
             } catch {
                 // pass keychain error
@@ -105,7 +110,8 @@ class AuthenticationManager {
                 guard let user = user else {
                     fatalError("Unable to retrieve currently authenticated user: \(error != nil ? error!.localizedDescription : "")")
                 }
-                
+            
+                self.delegate?.authenticationManager(self, didVerifyUserAuthentication: true)
                 completion(user)
             }
         } else {
@@ -118,6 +124,7 @@ class AuthenticationManager {
                 }
             }
             
+            self.delegate?.authenticationManager(self, didVerifyUserAuthentication: false)
             completion(nil)
         }
     }
@@ -137,7 +144,7 @@ class AuthenticationManager {
                 
                 do {
                     try self.credentials.reset()
-                    self.connectivityHandler.updateLoginState(isLoggedIn: false)
+                    self.delegate?.authenticationManager(self, didVerifyUserAuthentication: false)
                     completion(nil)
                 } catch {
                     completion(error)

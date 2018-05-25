@@ -11,9 +11,13 @@ import WatchConnectivity
 import SwiftyBeaver
 
 let log = SwiftyBeaver.self
-var connectivityHandler: ConnectivityHandler?
+var connectivityManager: WatchConnectivityManager?
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
+    
+//    func watchConnectivityManager(_ watchConnectivityManager: WatchConnectivityManager, didActivateSession: Bool) {
+//        watchConnectivityManager.requestLoginStatus()
+//    }
     
     func applicationDidFinishLaunching() {
         // SwiftyBeaver configuration
@@ -23,7 +27,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         
         // start connectivity handler
         if WCSession.isSupported() {
-            connectivityHandler = ConnectivityHandler.shared
+            connectivityManager = WatchConnectivityManager.shared
+//            connectivityManager?.delegate = self
         } else {
             log.debug("Watch connectivity is not supported.")
         }

@@ -9,7 +9,7 @@
 import WatchKit
 import Foundation
 
-class TrafficMessageHomeInterfaceController: WKInterfaceController, ConnectivityHandlerDelegate {
+class TrafficMessageHomeInterfaceController: WKInterfaceController {
   
     // MARK: - Customization
     override func awake(withContext context: Any?) {

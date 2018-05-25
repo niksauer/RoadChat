@@ -9,13 +9,13 @@
 import Foundation
 import RoadChatKit
 import CoreData
-import CoreLocation
 
 struct TrafficBoard: ReportOwner {
     
     // MARK: - Private Properties
     private let trafficService: TrafficService
     private let context: NSManagedObjectContext
+    private let locationManager: LocationManager
     
     // MARK: - ReportOwner Protocol
     var logDescription: String {
@@ -23,15 +23,23 @@ struct TrafficBoard: ReportOwner {
     }
     
     // MARK: - Initialization
-    init(trafficService: TrafficService, context: NSManagedObjectContext) {
+    init(trafficService: TrafficService, context: NSManagedObjectContext, locationManager: LocationManager) {
         self.trafficService = trafficService
         self.context = context
+        self.locationManager = locationManager
     }
     
     // MARK: - Public Methods
-    func postMessage(_ message: TrafficMessageRequest, completion: @escaping (Error?) -> Void) {
+    func postMessage(type: TrafficType, message: String?, time: Date, completion: @escaping (Error?) -> Void) {
+        guard let location = locationManager.lastLocation else {
+            completion(LocationError.noLocation)
+            return
+        }
+        
         do {
-            try trafficService.create(message) { message, error in
+            let request = TrafficMessageRequest(type: type, time: time, message: message, location: RoadChatKit.Location(coreLocation: location))
+            
+            try trafficService.create(request) { message, error in
                 guard let message = message else {
                     // pass service error
                     let report = Report(.failedServerOperation(.create, resource: "TrafficMessage", isMultiple: false, error: error!), owner: self)

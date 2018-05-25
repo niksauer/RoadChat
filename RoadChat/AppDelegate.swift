@@ -16,13 +16,15 @@ let log = SwiftyBeaver.self
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    var connectivityHandler: ConnectivityHandler?
+    var companionApp: WatchCompanion?
     
     // dependency injection
     var container = DependencyContainer()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // setup container
         container.appDelegate = self
+        container.authenticationManager = container.makeAuthenticationManager()
         
         // SwiftyBeaver configuration
         let console = ConsoleDestination()
@@ -58,8 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // start connectivity handler
         if WCSession.isSupported() {
-            connectivityHandler = ConnectivityHandler(session: WCSession.default, trafficBoard: container.trafficBoard, locationManager: container.locationManager)
-            container.connectivityHandler = connectivityHandler
+            companionApp = container.companionApp
         } else {
             log.debug("Watch connectivity is not supported.")
         }

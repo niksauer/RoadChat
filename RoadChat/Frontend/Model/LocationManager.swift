@@ -14,6 +14,10 @@ protocol LocationManagerDelegate {
     func didUpdateRemoteLocation()
 }
 
+enum LocationError: Error {
+    case noLocation
+}
+
 class LocationManager: NSObject, CLLocationManagerDelegate {
     
     // MARK: - Singleton

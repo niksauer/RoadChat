@@ -9,7 +9,7 @@
 import WatchKit
 import Foundation
 
-class AwaitLoginInterfaceController: WKInterfaceController, ConnectivityHandlerDelegate {
+class AwaitLoginInterfaceController: WKInterfaceController {
     
     // MARK: - Customization
     override func awake(withContext context: Any?) {
@@ -18,16 +18,6 @@ class AwaitLoginInterfaceController: WKInterfaceController, ConnectivityHandlerD
     
     override func willActivate() {
         super.willActivate()
-//        connectivityHandler?.delegate = self
     }
-    
-    // MARK: - ConnectivityHandler Delegate
-//    func didChangeLoginState(_ isLoggedIn: Bool) {
-//        guard isLoggedIn else {
-//            return
-//        }
-//
-//        WKInterfaceController.reloadRootPageControllers(withNames: ["TrafficMessageHome"], contexts: nil, orientation: .horizontal, pageIndex: 0)
-//    }
     
 }

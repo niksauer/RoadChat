@@ -23,7 +23,7 @@
 		240AB0192050877000324028 /* RoadChatKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		240AB01D2050878100324028 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240AB01C2050878100324028 /* Security.framework */; };
 		240B9B8620534FAA00216E68 /* FetchedResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240B9B8520534FAA00216E68 /* FetchedResultsTableViewController.swift */; };
-		240C16D420B73DF0001BB413 /* ConnectivityHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240C16D320B73DF0001BB413 /* ConnectivityHandler.swift */; };
+		240C16D420B73DF0001BB413 /* WatchConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240C16D320B73DF0001BB413 /* WatchConnectivityManager.swift */; };
 		240D10F920481843008C5E39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D10F820481843008C5E39 /* AppDelegate.swift */; };
 		240D110220481843008C5E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D110120481843008C5E39 /* Assets.xcassets */; };
 		240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D110320481843008C5E39 /* LaunchScreen.storyboard */; };
@@ -48,6 +48,7 @@
 		2461F2ED2080A75800053A4B /* CarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2461F2EC2080A75800053A4B /* CarsViewController.swift */; };
 		2461F3052080AEA400053A4B /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2461F3032080AEA400053A4B /* CarCell.swift */; };
 		247EE47020B801B4004C913E /* RadarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 247EE46F20B801B4004C913E /* RadarViewController.xib */; };
+		247EE4BE20B8783E004C913E /* WatchCompanion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247EE4BD20B8783E004C913E /* WatchCompanion.swift */; };
 		247F6D1D205F26AE0006FBC7 /* CommunityBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D1C205F26AE0006FBC7 /* CommunityBoard.swift */; };
 		247F6D21205F3C9C0006FBC7 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D20205F3C9C0006FBC7 /* UserManager.swift */; };
 		247F6D26206057950006FBC7 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D25206057950006FBC7 /* ViewControllerFactory.swift */; };
@@ -149,7 +150,7 @@
 		D421C5FF20AC322500D049CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D421C5FE20AC322500D049CC /* Assets.xcassets */; };
 		D421C60420AC322500D049CC /* RoadChatWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D421C5E720AC322500D049CC /* RoadChatWatch.app */; };
 		D421C62020AC518F00D049CC /* CreateTrafficMessageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421C61F20AC518F00D049CC /* CreateTrafficMessageInterfaceController.swift */; };
-		D421C6C320ADBBDE00D049CC /* ConnectivityHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421C6C220ADBBDE00D049CC /* ConnectivityHandler.swift */; };
+		D421C6C320ADBBDE00D049CC /* WatchConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D421C6C220ADBBDE00D049CC /* WatchConnectivityManager.swift */; };
 		D44F4B7D20528076009A6239 /* CommunityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F4B7C20528076009A6239 /* CommunityService.swift */; };
 		D44F4B88205297A7009A6239 /* CreateCommunityMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44F4B87205297A7009A6239 /* CreateCommunityMessageViewController.swift */; };
 		D45FD696207E4EB900C35949 /* CommunityMessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45FD694207E4EB900C35949 /* CommunityMessageDetailViewController.swift */; };
@@ -463,7 +464,7 @@
 		240AB01C2050878100324028 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		240B9B8520534FAA00216E68 /* FetchedResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableViewController.swift; sourceTree = "<group>"; };
 		240C16D220B738CF001BB413 /* RoadChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RoadChat.entitlements; sourceTree = "<group>"; };
-		240C16D320B73DF0001BB413 /* ConnectivityHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityHandler.swift; sourceTree = "<group>"; };
+		240C16D320B73DF0001BB413 /* WatchConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityManager.swift; sourceTree = "<group>"; };
 		240D10F520481843008C5E39 /* RoadChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		240D10F820481843008C5E39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		240D110120481843008C5E39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -490,6 +491,7 @@
 		2461F2EC2080A75800053A4B /* CarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsViewController.swift; sourceTree = "<group>"; };
 		2461F3032080AEA400053A4B /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
 		247EE46F20B801B4004C913E /* RadarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RadarViewController.xib; sourceTree = "<group>"; };
+		247EE4BD20B8783E004C913E /* WatchCompanion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchCompanion.swift; sourceTree = "<group>"; };
 		247F6D1C205F26AE0006FBC7 /* CommunityBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoard.swift; sourceTree = "<group>"; };
 		247F6D20205F3C9C0006FBC7 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		247F6D25206057950006FBC7 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
@@ -592,7 +594,7 @@
 		D421C61F20AC518F00D049CC /* CreateTrafficMessageInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTrafficMessageInterfaceController.swift; sourceTree = "<group>"; };
 		D421C66420ADA35200D049CC /* RoadChatKitWatch */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RoadChatKitWatch; path = ../RoadChatKitWatch; sourceTree = "<group>"; };
 		D421C6BA20ADA50C00D049CC /* RoadChatKitWatch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKitWatch.xcodeproj; path = Frameworks/RoadChatKitWatch/RoadChatKitWatch.xcodeproj; sourceTree = "<group>"; };
-		D421C6C220ADBBDE00D049CC /* ConnectivityHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityHandler.swift; sourceTree = "<group>"; };
+		D421C6C220ADBBDE00D049CC /* WatchConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityManager.swift; sourceTree = "<group>"; };
 		D44F4B7C20528076009A6239 /* CommunityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityService.swift; sourceTree = "<group>"; };
 		D44F4B87205297A7009A6239 /* CreateCommunityMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommunityMessageViewController.swift; sourceTree = "<group>"; };
 		D45FD694207E4EB900C35949 /* CommunityMessageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMessageDetailViewController.swift; sourceTree = "<group>"; };
@@ -674,7 +676,7 @@
 		240C16D620B750C4001BB413 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				240C16D320B73DF0001BB413 /* ConnectivityHandler.swift */,
+				240C16D320B73DF0001BB413 /* WatchConnectivityManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1179,7 +1181,8 @@
 		D421C6C120ADBBB600D049CC /* Watch */ = {
 			isa = PBXGroup;
 			children = (
-				D421C6C220ADBBDE00D049CC /* ConnectivityHandler.swift */,
+				247EE4BD20B8783E004C913E /* WatchCompanion.swift */,
+				D421C6C220ADBBDE00D049CC /* WatchConnectivityManager.swift */,
 			);
 			path = Watch;
 			sourceTree = "<group>";
@@ -1580,6 +1583,7 @@
 				24207DFA2076C37300851A73 /* TrafficMessagesViewController.swift in Sources */,
 				24D68B872080C535002B6D6C /* UIColor.swift in Sources */,
 				24E0578D20ACBF6F00788E52 /* ConversationViewController.swift in Sources */,
+				247EE4BE20B8783E004C913E /* WatchCompanion.swift in Sources */,
 				24A069BB20520367006F8401 /* AuthenticationManager.swift in Sources */,
 				247F6D3D20614E380006FBC7 /* TrafficBoard.swift in Sources */,
 				24AF374420AC49EE007C63FF /* RadarViewController.swift in Sources */,
@@ -1640,7 +1644,7 @@
 				2483A72B207E0ED7008568E2 /* RoadChatAPI.swift in Sources */,
 				24AF50B1207B945B00477DC0 /* ColorContainer.swift in Sources */,
 				24FE0002207CDDC300F0D657 /* CommunityBoardViewController.swift in Sources */,
-				D421C6C320ADBBDE00D049CC /* ConnectivityHandler.swift in Sources */,
+				D421C6C320ADBBDE00D049CC /* WatchConnectivityManager.swift in Sources */,
 				248D378F20485DC100B21C3D /* RoadChat.xcdatamodeld in Sources */,
 				248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */,
 				D45FD72F2084FB5500C35949 /* CreateOrEditProfileViewController.swift in Sources */,
@@ -1679,7 +1683,7 @@
 				D421C5FD20AC322500D049CC /* NotificationController.swift in Sources */,
 				246118BA20AEF8640035B8FF /* AwaitLoginInterfaceController.swift in Sources */,
 				246118B620AEF6510035B8FF /* TrafficMessageHomeInterfaceController.swift in Sources */,
-				240C16D420B73DF0001BB413 /* ConnectivityHandler.swift in Sources */,
+				240C16D420B73DF0001BB413 /* WatchConnectivityManager.swift in Sources */,
 				D421C62020AC518F00D049CC /* CreateTrafficMessageInterfaceController.swift in Sources */,
 				D421C5FB20AC322500D049CC /* ExtensionDelegate.swift in Sources */,
 			);

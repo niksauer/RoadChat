@@ -16,16 +16,14 @@ class SetupViewController: UIViewController {
     private let authenticationManager: AuthenticationManager
     private let credentials: APICredentialStore
     private let locationManager: LocationManager
-    private let connectivityHandler: ConnectivityHandler
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, credentials: APICredentialStore, locationManager: LocationManager, connectivityHandler: ConnectivityHandler) {
+    init(viewFactory: ViewControllerFactory, appDelegate: AppDelegate, authenticationManager: AuthenticationManager, credentials: APICredentialStore, locationManager: LocationManager) {
         self.viewFactory = viewFactory
         self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
         self.credentials = credentials
         self.locationManager = locationManager
-        self.connectivityHandler = connectivityHandler
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -47,9 +45,6 @@ class SetupViewController: UIViewController {
                 self.appDelegate.show(authenticationViewController)
                 return
             }
-            
-            // send successful login message to watch
-            self.connectivityHandler.updateLoginState(isLoggedIn: true)
             
             // configure locationManager
             self.locationManager.managedUser = user

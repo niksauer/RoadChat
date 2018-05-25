@@ -9,7 +9,7 @@
 import Foundation
 import WatchKit
 
-class CreateTrafficMessageInterfaceController: WKInterfaceController, ConnectivityHandlerDelegate {
+class CreateTrafficMessageInterfaceController: WKInterfaceController {
  
     // MARK: - Customization
     override func awake(withContext context: Any?) {
@@ -22,22 +22,22 @@ class CreateTrafficMessageInterfaceController: WKInterfaceController, Connectivi
     
     // MARK: - Public Methods
     @IBAction func jamButtonPressed() {
-        connectivityHandler?.sendTrafficMessage(type: .jam)
+        connectivityManager?.sendTrafficMessage(type: .jam)
         self.pop()
     }
 
     @IBAction func detourButtonPressed() {
-        connectivityHandler?.sendTrafficMessage(type: .detour)
+        connectivityManager?.sendTrafficMessage(type: .detour)
         self.pop()
     }
     
     @IBAction func accidentButtonPressed() {
-        connectivityHandler?.sendTrafficMessage(type: .accident)
+        connectivityManager?.sendTrafficMessage(type: .accident)
         self.pop()
     }
 
     @IBAction func dangerButtonPressed() {
-        connectivityHandler?.sendTrafficMessage(type: .danger)
+        connectivityManager?.sendTrafficMessage(type: .danger)
         self.pop()
     }
 

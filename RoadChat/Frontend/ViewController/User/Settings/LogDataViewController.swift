@@ -36,7 +36,7 @@ class LogDataViewController: UIViewController {
         do {
             let log = try String(contentsOf: path, encoding: .utf8)
             textView.text = log
-        } catch let error {
+        } catch {
             log.debug("Failed to load log from file: \(error)")
         }
     }
