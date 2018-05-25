@@ -38,6 +38,13 @@ class Conversation: NSManagedObject, ReportOwner {
                     message.conversation = conversation
                 }
                 
+                // set participants
+                let participants = prototype.participants.compactMap {
+                    try? Participant.createOrUpdate(from: $0, conversationID: prototype.id, in: context)
+                }
+                
+                conversation.addToParticipants(NSSet(array: participants))
+                
                 return conversation
             }
         } catch {

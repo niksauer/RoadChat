@@ -112,6 +112,7 @@ class TrafficMessagesViewController: FetchedResultsCollectionViewController<Traf
         fetchedResultsController.delegate = self
         
         try? fetchedResultsController.performFetch()
+        collectionView?.reloadData()
     }
     
     // MARK: UICollectionViewDataSource
