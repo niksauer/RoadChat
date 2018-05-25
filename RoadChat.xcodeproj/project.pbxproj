@@ -44,6 +44,7 @@
 		24615DA520508E5400ED11A1 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24615DA420508E5400ED11A1 /* KeychainManager.swift */; };
 		2461F2ED2080A75800053A4B /* CarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2461F2EC2080A75800053A4B /* CarsViewController.swift */; };
 		2461F3052080AEA400053A4B /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2461F3032080AEA400053A4B /* CarCell.swift */; };
+		247EE47020B801B4004C913E /* RadarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 247EE46F20B801B4004C913E /* RadarViewController.xib */; };
 		247F6D1D205F26AE0006FBC7 /* CommunityBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D1C205F26AE0006FBC7 /* CommunityBoard.swift */; };
 		247F6D21205F3C9C0006FBC7 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D20205F3C9C0006FBC7 /* UserManager.swift */; };
 		247F6D26206057950006FBC7 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F6D25206057950006FBC7 /* ViewControllerFactory.swift */; };
@@ -408,6 +409,7 @@
 		24615DA420508E5400ED11A1 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		2461F2EC2080A75800053A4B /* CarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsViewController.swift; sourceTree = "<group>"; };
 		2461F3032080AEA400053A4B /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
+		247EE46F20B801B4004C913E /* RadarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RadarViewController.xib; sourceTree = "<group>"; };
 		247F6D1C205F26AE0006FBC7 /* CommunityBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoard.swift; sourceTree = "<group>"; };
 		247F6D20205F3C9C0006FBC7 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		247F6D25206057950006FBC7 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
@@ -747,6 +749,7 @@
 			isa = PBXGroup;
 			children = (
 				24AF374320AC49EE007C63FF /* RadarViewController.swift */,
+				247EE46F20B801B4004C913E /* RadarViewController.xib */,
 				24B1347C2064229100B894BF /* ConversationsViewController.swift */,
 				24E0578B20ACBF6F00788E52 /* ConversationViewController.swift */,
 				24E0578C20ACBF6F00788E52 /* ConversationViewController.xib */,
@@ -1282,6 +1285,7 @@
 				249515D2206460F800E734E4 /* ConversationCell.xib in Resources */,
 				D45FD7302084FB5500C35949 /* CreateOrEditProfileViewController.xib in Resources */,
 				24B134772064202800B894BF /* CreateCommunityMessageViewController.xib in Resources */,
+				247EE47020B801B4004C913E /* RadarViewController.xib in Resources */,
 				24207DF32076BC8E00851A73 /* AboutViewController.xib in Resources */,
 				2486B80420B43BD30049DEFF /* ParticipantCell.xib in Resources */,
 				C9150A9520809A1900A69078 /* TrafficMessageDetailViewController.xib in Resources */,

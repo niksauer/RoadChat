@@ -43,8 +43,12 @@ class ParticipantsViewController: UITableViewController, ChangeTitleViewControll
     }
 
     // MARK: - ChangeTitleViewController Delegate
-    func didChangeTitle() {
+    func didChangeTitle(to title: String) {
         tableView.reloadSections(IndexSet(integer: 0), with: .none)
+        
+        if let viewController = navigationController?.viewControllers, let conversationViewController = viewController[viewController.count-3] as? ConversationViewController {
+            conversationViewController.title = title
+        }
     }
     
     // MARK: - TableView Data Source
