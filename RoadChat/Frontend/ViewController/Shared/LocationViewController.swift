@@ -12,16 +12,18 @@ import CoreLocation
 
 class LocationViewController: UIViewController, UIGestureRecognizerDelegate {
     
+    // MARK: - Typealiases
+    typealias ColorPalette = BasicColorPalette
+    
     // MARK: - Outlets
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var locateButtonContainer: UIView!
     @IBOutlet weak var locateButton: UIButton!
-    
-    // MARK: - Views
-    private var locateUserButton: UIButton!
     
     // MARK: - Private Properties
     private let viewFactory: ViewControllerFactory
     private let location: CLLocation
+    private let colorPalette: ColorPalette
     
     private var trackingMode: MKUserTrackingMode = .none {
         didSet {
@@ -37,9 +39,10 @@ class LocationViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, location: CLLocation) {
+    init(viewFactory: ViewControllerFactory, location: CLLocation, colorPalette: ColorPalette) {
         self.location = location
         self.viewFactory = viewFactory
+        self.colorPalette = colorPalette
     
         super.init(nibName: nil, bundle: nil)
     }
@@ -50,6 +53,9 @@ class LocationViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: - Customization
     override func viewDidLoad() {
+        locateButtonContainer.backgroundColor = colorPalette.interfaceControlColor
+        locateButton.backgroundColor = colorPalette.interfaceControlColor
+        
         let annotation = MKPointAnnotation()
         annotation.coordinate = location.coordinate
 

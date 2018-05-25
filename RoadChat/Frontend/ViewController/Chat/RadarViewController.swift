@@ -13,6 +13,9 @@ import CoreData
 
 class RadarViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, LocationManagerDelegate {
     
+    // MARK: - Typealiases
+    typealias ColorPalette = BasicColorPalette
+    
     // MARK: - Private Types
     private class NearbyUserAnnotation: NSObject, MKAnnotation {
         let coordinate: CLLocationCoordinate2D
@@ -46,6 +49,7 @@ class RadarViewController: UIViewController, MKMapViewDelegate, UITableViewDataS
     private let userManager: UserManager
     private let searchContext: NSManagedObjectContext
     private let lengthFormatter: LengthFormatter
+    private let colorPalette: ColorPalette
     
     private var setInitialUserLocation = false
     private var annotations = [NearbyUserAnnotation]()
@@ -57,7 +61,7 @@ class RadarViewController: UIViewController, MKMapViewDelegate, UITableViewDataS
     }
     
     // MARK: - Initialization
-    init(viewFactory: ViewControllerFactory, activeUser: User, conversationManager: ConversationManager, locationManager: LocationManager, userManager: UserManager, searchContext: NSManagedObjectContext, lengthFormatter: LengthFormatter) {
+    init(viewFactory: ViewControllerFactory, activeUser: User, conversationManager: ConversationManager, locationManager: LocationManager, userManager: UserManager, searchContext: NSManagedObjectContext, lengthFormatter: LengthFormatter, colorPalette: ColorPalette) {
         self.viewFactory = viewFactory
         self.activeUser = activeUser
         self.conversationManager = conversationManager
@@ -65,6 +69,7 @@ class RadarViewController: UIViewController, MKMapViewDelegate, UITableViewDataS
         self.userManager = userManager
         self.searchContext = searchContext
         self.lengthFormatter = lengthFormatter
+        self.colorPalette = colorPalette
         
         super.init(nibName: nil, bundle: nil)
         
@@ -83,6 +88,7 @@ class RadarViewController: UIViewController, MKMapViewDelegate, UITableViewDataS
         mapView.delegate = self
         mapView.showsUserLocation = true
         
+        tableView.backgroundColor = colorPalette.interfaceControlColor
         tableView.register(UINib(nibName: "ParticipantCell", bundle: nil), forCellReuseIdentifier: "ParticipantCell")
         tableView.dataSource = self
         tableView.delegate = self

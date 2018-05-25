@@ -16,10 +16,11 @@ protocol GeofenceViewControllerDelegate {
 class GeofenceViewController: UIViewController, MKMapViewDelegate {
 
     // MARK: - Typealiases
-    typealias ColorPalette = GeofenceColorPalette
+    typealias ColorPalette = GeofenceColorPalette & BasicColorPalette
     
     // MARK: - Outlets
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var radiusSliderContainer: UIView!
     @IBOutlet weak var radiusSlider: UISlider!
 
     @IBOutlet weak var currentRadiusLabel: EdgeInsetLabel!
@@ -69,6 +70,9 @@ class GeofenceViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: - Customization
     override func viewDidLoad() {
+        radiusSliderContainer.backgroundColor = colorPalette.interfaceControlColor
+        currentRadiusLabel.backgroundColor = colorPalette.interfaceControlColor
+        
         radiusSlider.value = Float(radius)
         radiusSlider.minimumValue = Float(min)
         radiusSlider.maximumValue = Float(max)

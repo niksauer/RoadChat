@@ -99,7 +99,7 @@ extension DependencyContainer: ViewControllerFactory {
 
     // Shared
     func makeLocationViewController(for location: CLLocation) -> LocationViewController {
-        return LocationViewController(viewFactory: self, location: location)
+        return LocationViewController(viewFactory: self, location: location, colorPalette: colorPalette)
     }
     
     func makeGeofenceViewController(radius: Double?, min: Double, max: Double, identifier: String) -> GeofenceViewController {
@@ -160,7 +160,7 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeRadarController(activeUser: User) -> RadarViewController {
-        return RadarViewController(viewFactory: self, activeUser: activeUser, conversationManager: conversationManager, locationManager: locationManager, userManager: userManager, searchContext: viewContext, lengthFormatter: lengthFormatter)
+        return RadarViewController(viewFactory: self, activeUser: activeUser, conversationManager: conversationManager, locationManager: locationManager, userManager: userManager, searchContext: viewContext, lengthFormatter: lengthFormatter, colorPalette: colorPalette)
     }
     
     func makeConversationViewController(for conversation: Conversation, activeUser: User) -> ConversationViewController {
