@@ -15,6 +15,7 @@
                 <outlet property="currentRadiusLabel" destination="1n8-2e-JeB" id="kqN-7f-L94"/>
                 <outlet property="mapView" destination="Fpp-yT-VNI" id="lWG-il-agp"/>
                 <outlet property="radiusSlider" destination="ekk-O1-CSP" id="8pC-t9-wyF"/>
+                <outlet property="radiusSliderContainer" destination="i31-RW-i0P" id="5fQ-nI-0ef"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

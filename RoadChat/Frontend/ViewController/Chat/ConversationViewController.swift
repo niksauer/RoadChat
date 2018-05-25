@@ -123,7 +123,7 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func didPressDenyButton(_ sender: UIButton) {
-        displayConfirmationDialog(title: "Deny Conversation", message: "Do you really want to deny this conversation? You will not be able to receive any further messages.", onCancel: nil) { _ in
+        displayConfirmationDialog(title: "Deny Conversation", message: "Do you really want to deny this conversation? You will not be able to receive any further messages.", type: .destructive, onCancel: nil) { _ in
             self.conversation.deny { error in
                 guard error == nil else {
                     // handle error

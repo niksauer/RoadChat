@@ -51,6 +51,11 @@ class ConversationsViewController: FetchedResultsTableViewController<Conversatio
         updateUI()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        setEditing(false, animated: true)
+    }
+    
     // MARK: - Private Methods
     @objc private func updateData() {
         user.getConversations { _ in
