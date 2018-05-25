@@ -108,8 +108,6 @@
 		24D34A6F208523D700D3390F /* CreateNewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D34A6D208523D700D3390F /* CreateNewCellView.swift */; };
 		24D34A70208523D700D3390F /* CreateNewCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D34A6E208523D700D3390F /* CreateNewCellView.xib */; };
 		24D68B872080C535002B6D6C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68B862080C535002B6D6C /* UIColor.swift */; };
-		24D68B8A2080CCB5002B6D6C /* CarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */; };
-		24D68B8B2080CCB5002B6D6C /* CarDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */; };
 		24D68BB02080D908002B6D6C /* CarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D68BAF2080D908002B6D6C /* CarCell.xib */; };
 		24D68BB22080E72E002B6D6C /* TimeSinceDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D68BB12080E72E002B6D6C /* TimeSinceDateFormatter.swift */; };
 		24E0578D20ACBF6F00788E52 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E0578B20ACBF6F00788E52 /* ConversationViewController.swift */; };
@@ -552,8 +550,6 @@
 		24D34A6D208523D700D3390F /* CreateNewCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewCellView.swift; sourceTree = "<group>"; };
 		24D34A6E208523D700D3390F /* CreateNewCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateNewCellView.xib; sourceTree = "<group>"; };
 		24D68B862080C535002B6D6C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = RoadChat/Frontend/Extensions/UIColor.swift; sourceTree = SOURCE_ROOT; };
-		24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailViewController.swift; sourceTree = "<group>"; };
-		24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarDetailViewController.xib; sourceTree = "<group>"; };
 		24D68BAF2080D908002B6D6C /* CarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarCell.xib; sourceTree = "<group>"; };
 		24D68BB12080E72E002B6D6C /* TimeSinceDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSinceDateFormatter.swift; sourceTree = "<group>"; };
 		24E0578B20ACBF6F00788E52 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
@@ -1018,8 +1014,6 @@
 				2461F2EC2080A75800053A4B /* CarsViewController.swift */,
 				D45FD6FE2083D79300C35949 /* CreateOrEditCarViewController.swift */,
 				D45FD6FF2083D79300C35949 /* CreateOrEditCarViewController.xib */,
-				24D68B882080CCB5002B6D6C /* CarDetailViewController.swift */,
-				24D68B892080CCB5002B6D6C /* CarDetailViewController.xib */,
 			);
 			path = Car;
 			sourceTree = "<group>";
@@ -1527,7 +1521,6 @@
 				249515CE20644DB100E734E4 /* ProfileViewController.xib in Resources */,
 				24B134652063254F00B894BF /* LoginViewController.xib in Resources */,
 				24D68BB02080D908002B6D6C /* CarCell.xib in Resources */,
-				24D68B8B2080CCB5002B6D6C /* CarDetailViewController.xib in Resources */,
 				C9150A28207CFE0D00A69078 /* TrafficMessageCell.xib in Resources */,
 				24D34A70208523D700D3390F /* CreateNewCellView.xib in Resources */,
 				24AF50AD207B6C1200477DC0 /* CommunityMessageCell.xib in Resources */,
@@ -1596,7 +1589,6 @@
 				243357262049817A00CD5F87 /* JSendAPIClient.swift in Sources */,
 				248D379C20494E1F00B21C3D /* Settings.swift in Sources */,
 				2461188020AEE5320035B8FF /* ChatColorPalette.swift in Sources */,
-				24D68B8A2080CCB5002B6D6C /* CarDetailViewController.swift in Sources */,
 				2486B81920B441710049DEFF /* ChangeTitleViewController.swift in Sources */,
 				245D261220B195FD00ECE7A4 /* ParticipantsViewController.swift in Sources */,
 				24D68BB22080E72E002B6D6C /* TimeSinceDateFormatter.swift in Sources */,

@@ -32,7 +32,7 @@
             <rect key="frame" x="0.0" y="0.0" width="273" height="385"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sAc-Hh-JC5">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sAc-Hh-JC5">
                     <rect key="frame" x="0.0" y="0.0" width="273" height="385"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PFn-QB-e7K" userLabel="Stack View Container">
@@ -68,16 +68,16 @@ Karma</string>
                                             </constraints>
                                         </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="w8W-01-u9h" userLabel="Traffic Stack View">
-                                            <rect key="frame" x="123.33333333333333" y="0.0" width="53.666666666666671" height="67"/>
+                                            <rect key="frame" x="123.33333333333333" y="0.0" width="54.666666666666671" height="67"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="760" text="69" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5F-jL-0wp">
-                                                    <rect key="frame" x="0.3333333333333286" y="0.0" width="53.666666666666664" height="26.333333333333332"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="54.666666666666664" height="26.333333333333332"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="760" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIU-ze-KY2">
-                                                    <rect key="frame" x="0.3333333333333286" y="26.333333333333339" width="53.666666666666664" height="40.666666666666657"/>
+                                                    <rect key="frame" x="0.0" y="26.333333333333339" width="54.666666666666664" height="40.666666666666657"/>
                                                     <string key="text">Traffic 
 Karma</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>

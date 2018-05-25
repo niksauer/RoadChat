@@ -61,7 +61,6 @@ protocol ViewControllerFactory {
     
     // Car
     func makeCarsViewController(for user: User, activeUser: User) -> CarsViewController
-    func makeCarDetailViewController(for car: Car, activeUser: User) -> CarDetailViewController
     
     // Profile Pages
     func makeAboutViewController(for user: User, activeUser: User) -> AboutViewController

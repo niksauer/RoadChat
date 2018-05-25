@@ -99,6 +99,7 @@ class User: NSManagedObject, ReportOwner {
     
     var storedImage: UIImage? {
         guard let imageData = imageData else {
+//            return UIImage(named: "profile-placeholder")
             return nil
         }
         
