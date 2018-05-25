@@ -77,26 +77,20 @@ class RadarViewController: UIViewController, MKMapViewDelegate, LocationManagerD
             return
         }
         
-        if let conversation = conversationManager.findConversationByRecipients(selectedUsers.map { $0.user }, requestor: activeUser, context: searchContext) {
-            let conversationController = self.viewFactory.makeConversationViewController(for: conversation, activeUser: activeUser)
-            conversationController.isEntryActive = true
-            self.navigationController?.pushViewController(conversationController, animated: true)
-        } else {
-            let request = ConversationRequest(title: nil, recipients: selectedUsers.map { $0.user.id })
-            
-            activeUser.createConversation(request) { conversation, error in
-                guard let conversation = conversation else {
-                    self.displayAlert(title: "Error", message: "Failed to create conversation: \(error!)") {
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                    
-                    return
+        let request = ConversationRequest(title: nil, recipients: selectedUsers.map { $0.user.id })
+        
+        activeUser.createConversation(request) { conversation, error in
+            guard let conversation = conversation else {
+                self.displayAlert(title: "Error", message: "Failed to create conversation: \(error!)") {
+                    self.dismiss(animated: true, completion: nil)
                 }
                 
-                let conversationController = self.viewFactory.makeConversationViewController(for: conversation, activeUser: self.activeUser)
-                conversationController.isEntryActive = true
-                self.navigationController?.pushViewController(conversationController, animated: true)
+                return
             }
+            
+            let conversationController = self.viewFactory.makeConversationViewController(for: conversation, activeUser: self.activeUser)
+            conversationController.isEntryActive = true
+            self.navigationController?.pushViewController(conversationController, animated: true)
         }
     }
     
