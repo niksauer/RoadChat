@@ -34,8 +34,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="requested" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FBK-M7-v8q">
-                        <rect key="frame" x="238.5" y="19.5" width="65.5" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FBK-M7-v8q">
+                        <rect key="frame" x="304" y="28" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -53,8 +53,8 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <inset key="separatorInset" minX="59" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
-                <outlet property="approvalStatusLabel" destination="FBK-M7-v8q" id="rHL-mZ-DhV"/>
                 <outlet property="profileImageView" destination="fDI-BJ-wD0" id="t3B-Dt-xPg"/>
+                <outlet property="rightLabel" destination="FBK-M7-v8q" id="rHL-mZ-DhV"/>
                 <outlet property="usernameLabel" destination="OIi-kH-GBD" id="F5N-Ra-fVx"/>
             </connections>
             <point key="canvasLocation" x="31" y="55"/>

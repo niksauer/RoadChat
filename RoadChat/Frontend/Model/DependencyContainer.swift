@@ -160,7 +160,7 @@ extension DependencyContainer: ViewControllerFactory {
     }
     
     func makeRadarController(activeUser: User) -> RadarViewController {
-        return RadarViewController(viewFactory: self, activeUser: activeUser, conversationManager: conversationManager, locationManager: locationManager, userManager: userManager, searchContext: viewContext)
+        return RadarViewController(viewFactory: self, activeUser: activeUser, conversationManager: conversationManager, locationManager: locationManager, userManager: userManager, searchContext: viewContext, lengthFormatter: lengthFormatter)
     }
     
     func makeConversationViewController(for conversation: Conversation, activeUser: User) -> ConversationViewController {

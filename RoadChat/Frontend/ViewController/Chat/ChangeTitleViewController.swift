@@ -10,7 +10,7 @@ import UIKit
 import RoadChatKit
 
 protocol ChangeTitleViewControllerDelegate {
-    func didChangeTitle()
+    func didChangeTitle(to title: String)
 }
 
 class ChangeTitleViewController: UITableViewController {
@@ -68,6 +68,7 @@ class ChangeTitleViewController: UITableViewController {
                 return
             }
             
+            self.delegate?.didChangeTitle(to: title)
             self.navigationController?.popViewController(animated: true)
         }
     }
@@ -77,7 +78,7 @@ class ChangeTitleViewController: UITableViewController {
     }
     
     func validateDoneButton() {
-        guard let title = newTitle else {
+        guard let title = newTitle, !title.isEmpty else {
             doneBarButton.isEnabled = false
             return
         }
