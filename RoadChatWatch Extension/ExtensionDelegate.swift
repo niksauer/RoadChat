@@ -13,12 +13,12 @@ import SwiftyBeaver
 let log = SwiftyBeaver.self
 var connectivityManager: WatchConnectivityManager?
 
-class ExtensionDelegate: NSObject, WKExtensionDelegate {
+class ExtensionDelegate: NSObject, WKExtensionDelegate, WatchConnectivityManagerDelegate {
     
-//    func watchConnectivityManager(_ watchConnectivityManager: WatchConnectivityManager, didActivateSession: Bool) {
-//        watchConnectivityManager.requestLoginStatus()
-//    }
+    // Mark: - Private Properties
+    private let userDefaults = UserDefaults.standard
     
+    // Mark: - ExtensionDelegate
     func applicationDidFinishLaunching() {
         // SwiftyBeaver configuration
         let console = ConsoleDestination()
@@ -28,9 +28,15 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         // start connectivity handler
         if WCSession.isSupported() {
             connectivityManager = WatchConnectivityManager.shared
-//            connectivityManager?.delegate = self
+            connectivityManager?.delegate = self
         } else {
             log.debug("Watch connectivity is not supported.")
+        }
+        
+        // check login status
+        if let isLoggedIn = userDefaults.value(forKey: "isLoggedIn") as? Bool {
+            let newRootInterfaceController = isLoggedIn ? "TrafficMessageHome" : "AwaitLogin"
+            WKInterfaceController.reloadRootPageControllers(withNames: [newRootInterfaceController], contexts: nil, orientation: .horizontal, pageIndex: 0)
         }
     }
 
@@ -67,4 +73,17 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         }
     }
 
+    // Mark: - WatchConnectivityManagerDelegate    
+    func watchConnectivityManager(_ watchConnecitivtyManager: WatchConnectivityManager, didAuthenticateUser isLoggedIn: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(isLoggedIn, forKey: "isLoggedIn")
+        userDefaults.synchronize()
+        
+        let newRootInterfaceController = isLoggedIn ? "TrafficMessageHome" : "AwaitLogin"
+        
+        OperationQueue.main.addOperation {
+            WKInterfaceController.reloadRootPageControllers(withNames: [newRootInterfaceController], contexts: nil, orientation: .horizontal, pageIndex: 0)
+        }
+    }
+    
 }
