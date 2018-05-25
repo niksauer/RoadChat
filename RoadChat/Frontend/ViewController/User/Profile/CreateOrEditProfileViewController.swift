@@ -17,15 +17,13 @@ class CreateOrEditProfileViewController: UIViewController, UIImageCropperProtoco
     // MARK: - Outlets
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var addImageButton: UIButton!
-    
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var biographyTextView: UITextView!
-
+    
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
-    
     @IBOutlet weak var birthTextField: UITextField!
     @IBOutlet weak var sexTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var biographyTextView: UITextView!
     
     @IBOutlet weak var streetNameTextField: UITextField!
     @IBOutlet weak var streetNumberTextField: UITextField!
@@ -34,7 +32,6 @@ class CreateOrEditProfileViewController: UIViewController, UIImageCropperProtoco
     @IBOutlet weak var countryTextField: UITextField!
     
     @IBOutlet weak var viewBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var profileImageViewHeightConstraint: NSLayoutConstraint!
     
     //MARK: - Views
     private var saveBarButtonItem: UIBarButtonItem!
@@ -82,7 +79,8 @@ class CreateOrEditProfileViewController: UIViewController, UIImageCropperProtoco
         super.viewDidLoad()
         
         // profile image view height
-        profileImageViewHeightConstraint.constant = (view.frame.width/4)*3
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+        profileImageView.clipsToBounds = true
         
         // image picker & cropper
         imageCropper.picker = imagePicker
@@ -130,8 +128,8 @@ class CreateOrEditProfileViewController: UIViewController, UIImageCropperProtoco
         biographyTextView.layer.cornerRadius = 5
         
         // populate with existing information
-        usernameLabel.text = user.username
         profileImageView.image = user.storedImage
+        usernameLabel.text = user.username
         
         guard let profile = user.profile else {
             return

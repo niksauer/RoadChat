@@ -10,7 +10,14 @@ import Foundation
 import RoadChatKit
 import CoreData
 
+protocol AuthenticationManagerDelegate {
+    func authenticationManager(_ authenticationManager: AuthenticationManager, didVerifyUserAuthentication isLoggedIn: Bool)
+}
+
 class AuthenticationManager {
+    
+    // MARK: - Public Properties
+    var delegate: AuthenticationManagerDelegate?
     
     // MARK: - Private Properties
     private let credentials: APICredentialStore
@@ -49,7 +56,8 @@ class AuthenticationManager {
                             completion(nil, error)
                             return
                         }
-                    
+                        
+                        self.delegate?.authenticationManager(self, didVerifyUserAuthentication: true)
                         completion(user, nil)
                     }
                 } catch {
@@ -79,7 +87,7 @@ class AuthenticationManager {
                 // remove credentials
                 try self.credentials.reset()
                 log.info("Successfully logged out user.")
-                
+                self.delegate?.authenticationManager(self, didVerifyUserAuthentication: false)
                 completion(nil)
             } catch {
                 // pass keychain error
@@ -102,7 +110,8 @@ class AuthenticationManager {
                 guard let user = user else {
                     fatalError("Unable to retrieve currently authenticated user: \(error != nil ? error!.localizedDescription : "")")
                 }
-                
+            
+                self.delegate?.authenticationManager(self, didVerifyUserAuthentication: true)
                 completion(user)
             }
         } else {
@@ -115,6 +124,7 @@ class AuthenticationManager {
                 }
             }
             
+            self.delegate?.authenticationManager(self, didVerifyUserAuthentication: false)
             completion(nil)
         }
     }
@@ -134,6 +144,7 @@ class AuthenticationManager {
                 
                 do {
                     try self.credentials.reset()
+                    self.delegate?.authenticationManager(self, didVerifyUserAuthentication: false)
                     completion(nil)
                 } catch {
                     completion(error)

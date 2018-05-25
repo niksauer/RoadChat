@@ -24,6 +24,10 @@
 	path = Frameworks/MonthYearPickerView
 	url = git@github.com:bendodson/MonthYearPickerView-Swift.git
 	ignore = dirty
+[submodule "Frameworks/RoadChatKitWatch"]
+	path = Frameworks/RoadChatKitWatch
+	url = git@github.com:niksauer/RoadChatKitWatch.git
+	ignore = dirty
 [submodule "Frameworks/UIImageCropper"]
 	path = Frameworks/UIImageCropper
 	url = git@github.com:jvk75/UIImageCropper.git

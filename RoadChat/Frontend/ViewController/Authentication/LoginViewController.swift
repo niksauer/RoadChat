@@ -8,8 +8,11 @@
 
 import UIKit
 import RoadChatKit
+import WatchConnectivity
 
 class LoginViewController: UIViewController {
+    
+    static var loginState: Bool = false
     
     // MARK: - Outlets
     @IBOutlet weak var usernameTextField: UITextField!
@@ -27,7 +30,7 @@ class LoginViewController: UIViewController {
         self.appDelegate = appDelegate
         self.authenticationManager = authenticationManager
         self.locationManager = locationManager
-    
+        
         super.init(nibName: nil, bundle: nil)
         self.title = "RoadChat"
     }

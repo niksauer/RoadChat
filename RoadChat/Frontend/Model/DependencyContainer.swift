@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import CoreLocation
+import WatchConnectivity
 
 struct DependencyContainer {
     
@@ -25,16 +26,16 @@ struct DependencyContainer {
         return UserManager(userService: UserService(config: config), context: viewContext)
     }
     
-    private var authenticationManager: AuthenticationManager {
-        return AuthenticationManager(credentials: credentials, authenticationService: AuthenticationService(config: config), userManager: userManager, searchContext: viewContext)
-    }
+//    private var authenticationManager: AuthenticationManager {
+//        return AuthenticationManager(credentials: credentials, authenticationService: AuthenticationService(config: config), userManager: userManager, searchContext: viewContext)
+//    }
     
     private var communityBoard: CommunityBoard {
         return CommunityBoard(communityService: CommunityService(config: config), context: viewContext)
     }
     
     private var trafficBoard: TrafficBoard {
-        return TrafficBoard(trafficService: TrafficService(config: config), context: viewContext)
+        return TrafficBoard(trafficService: TrafficService(config: config), context: viewContext, locationManager: locationManager)
     }
     
     private var conversationManager: ConversationManager {
@@ -75,6 +76,8 @@ struct DependencyContainer {
 
     // Public Properties
     var appDelegate: AppDelegate!
+    var authenticationManager: AuthenticationManager!
+    let connectivityManager: WatchConnectivityManager = WatchConnectivityManager.shared
     let credentials: APICredentialStore = KeychainManager.shared
     let userDefaults: UserDefaults = UserDefaults.standard
     let coreData: CoreDataStack = CoreDataStack.shared
@@ -84,6 +87,15 @@ struct DependencyContainer {
     var config: APIConfiguration {
         return RoadChatAPI(credentials: credentials)
     }
+    
+    var companionApp: WatchCompanion {
+        return WatchCompanion(connectivityManager: connectivityManager, trafficBoard: trafficBoard, authenticationManager: authenticationManager)
+    }
+    
+    func makeAuthenticationManager() -> AuthenticationManager {
+        return AuthenticationManager(credentials: credentials, authenticationService: AuthenticationService(config: config), userManager: userManager, searchContext: viewContext)
+    }
+    
 }
 
 extension DependencyContainer: ViewControllerFactory {
