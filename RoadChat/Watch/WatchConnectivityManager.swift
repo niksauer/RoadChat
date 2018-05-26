@@ -18,6 +18,7 @@ protocol WatchConnectivityManagerTrafficDelegate {
     func watchConnectivityManager(_ connectivityManager: WatchConnectivityManager, didReceiveCreateTrafficMessageRequest type: TrafficType, time: Date)
 }
 
+/// https://developer.apple.com/library/content/samplecode/QuickSwitch/Listings/Shared_WatchConnectivityManager_swift.html
 class WatchConnectivityManager: NSObject, WCSessionDelegate {
     
     // MARK: - Singleton

@@ -73,6 +73,13 @@ struct DependencyContainer {
         dateFormatter.timeStyle = .short
         return dateFormatter
     }()
+    
+    private var oralDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.doesRelativeDateFormatting = true
+        return dateFormatter
+    }()
 
     // Public Properties
     var appDelegate: AppDelegate!
@@ -168,7 +175,7 @@ extension DependencyContainer: ViewControllerFactory {
 
     // Chat
     func makeConversationsViewController(for user: User) -> ConversationsViewController {
-        return ConversationsViewController(viewFactory: self, user: user, searchContext: viewContext, cellDateFormatter: shortDateFormatter)
+        return ConversationsViewController(viewFactory: self, user: user, searchContext: viewContext, cellDateFormatter: oralDateFormatter)
     }
     
     func makeRadarController(activeUser: User) -> RadarViewController {
