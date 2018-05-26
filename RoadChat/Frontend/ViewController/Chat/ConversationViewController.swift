@@ -17,6 +17,8 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Outlets
     @IBOutlet weak var messagesContainer: UIView!
     @IBOutlet weak var inputContainer: UIView!
+    @IBOutlet weak var denyButton: UIButton!
+    
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var approvalStatusContainer: UIView!
@@ -74,6 +76,7 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         
         // additional view setup
         inputContainer.backgroundColor = colorPalette.interfaceControlColor
+        denyButton.tintColor = colorPalette.destructiveColor
         sendButton.isEnabled = false
         messageTextField.delegate = self
         messageTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)

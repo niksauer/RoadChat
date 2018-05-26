@@ -27,6 +27,7 @@ class CreateOrEditCarViewController: UIViewController, UIImageCropperProtocol {
     @IBOutlet weak var colorPickerContainer: UIView!
     @IBOutlet weak var colorPickerField: UIView!
 
+    @IBOutlet weak var deleteContainer: UIView!
     @IBOutlet weak var deleteButton: UIButton!
     
     @IBOutlet weak var viewBottomConstraint: NSLayoutConstraint!
@@ -41,8 +42,9 @@ class CreateOrEditCarViewController: UIViewController, UIImageCropperProtocol {
     private let imageCropper = UIImageCropper(cropRatio: 4/3)
 
     // MARK: - Private Properties
-    private let user: User
+    private let owner: User
     private let car: Car?
+    private let activeUser: User
     private let productionDateFormatter: DateFormatter
     private let colorPalette: ColorPalette
     
@@ -52,24 +54,36 @@ class CreateOrEditCarViewController: UIViewController, UIImageCropperProtocol {
     private var shouldUploadImage = false
 
     // MARK: - Initialization
-    init(user: User, car: Car?, productionDateFormatter: DateFormatter, colorPalette: ColorPalette) {
-        self.user = user
+    init(owner: User, car: Car?, activeUser: User, productionDateFormatter: DateFormatter, colorPalette: ColorPalette) {
+        self.owner = owner
         self.car = car
+        self.activeUser = activeUser
         self.productionDateFormatter = productionDateFormatter
         self.colorPalette = colorPalette
-        
-        if let car = car {
-            oldCar = Car.Copy(manufacturer: car.manufacturer!, model: car.model!, production: car.production!, performance: Int(car.performance), color: car.color)
+    
+        if activeUser.id == owner.id {
+            if let car = car {
+                // edit car
+                oldCar = Car.Copy(manufacturer: car.manufacturer!, model: car.model!, production: car.production!, performance: Int(car.performance), color: car.color)
+                super.init(nibName: nil, bundle: nil)
+                self.title = "Edit Car"
+            } else {
+                // create car
+                oldCar = nil
+                super.init(nibName: nil, bundle: nil)
+                self.title = "New Car"
+            }
+            
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed(_:)))
+            self.saveBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonPressed(_:)))
+            self.saveBarButtonItem.isEnabled = false
+            self.navigationItem.rightBarButtonItem = saveBarButtonItem
         } else {
             oldCar = nil
+            super.init(nibName: nil, bundle: nil)
+            self.title = "New Car"
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(cancelButtonPressed(_:)))
         }
-        
-        super.init(nibName: nil, bundle: nil)
-    
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed(_:)))
-        self.saveBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonPressed(_:)))
-        self.saveBarButtonItem.isEnabled = false
-        self.navigationItem.rightBarButtonItem = saveBarButtonItem
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -79,10 +93,41 @@ class CreateOrEditCarViewController: UIViewController, UIImageCropperProtocol {
     // MARK: - Customization
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         // car image view height
         carImageViewHeightConstraint.constant = (view.frame.width/4)*3
         
+        // color picker container
+        colorPickerField.backgroundColor = colorPalette.defaultCarColor
+        colorPickerField.layer.cornerRadius = 10
+        
+        // populate with existing information
+        if let car = car {
+            carImageView.image = car.storedImage
+            manufacturerTextField.text = car.manufacturer
+            modelTextField.text = car.model
+            performanceTextField.text = car.performance != -1 ? String(car.performance) : nil
+            
+            if let production = car.production {
+                productionTextField.text = productionDateFormatter.string(from: production)
+            }
+            
+            colorPickerField.backgroundColor = car.storedColor
+        }
+    
+        guard activeUser.id == owner.id else {
+            // external visitor
+            deleteContainer.isHidden = true
+            addImageButton.isHidden = true
+            self.title = nil
+            
+            manufacturerTextField.isEnabled = false
+            modelTextField.isEnabled = false
+            performanceTextField.isEnabled = false
+            productionTextField.isEnabled = false
+            return
+        }
+
         // image picker & cropper
         imageCropper.picker = imagePicker
         imageCropper.delegate = self
@@ -98,6 +143,10 @@ class CreateOrEditCarViewController: UIViewController, UIImageCropperProtocol {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         tapGestureRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGestureRecognizer)
+        
+        // color picker tapping
+        let colorPickerViewTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapColorField(_:)))
+        colorPickerView.addGestureRecognizer(colorPickerViewTapGestureRecognizer)
         
         // additional view setup
         deleteButton.tintColor = colorPalette.destructiveColor
@@ -130,10 +179,7 @@ class CreateOrEditCarViewController: UIViewController, UIImageCropperProtocol {
         addImageButton.tintColor = colorPalette.createColor
         addImageButton.backgroundColor = colorPalette.contentBackgroundColor
         
-        // color picker container
-        colorPickerField.backgroundColor = colorPalette.defaultCarColor
-        colorPickerField.layer.cornerRadius = 10
-        
+        // color picker view
         colorPickerView.setColor(colorPalette.defaultCarColor, animated: false, sendEvent: false)
         colorPickerView.frame = CGRect(x: view.frame.width / 2, y: view.frame.height / 2, width: 200, height: 200)
         colorPickerView.addTarget(self, action: #selector(didChangeColor), for: .valueChanged)
@@ -162,25 +208,6 @@ class CreateOrEditCarViewController: UIViewController, UIImageCropperProtocol {
         manufacturerTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         modelTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         performanceTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        
-        // populate with existing information
-        guard let car = car else {
-            self.title = "New Car"
-            return
-        }
-        
-        self.title = "Edit Car"
-        
-        carImageView.image = car.storedImage
-        manufacturerTextField.text = car.manufacturer
-        modelTextField.text = car.model
-        performanceTextField.text = car.performance != -1 ? String(car.performance) : nil
-        
-        if let production = car.production {
-            productionTextField.text = productionDateFormatter.string(from: production)
-        }
-        
-        colorPickerField.backgroundColor = car.storedColor
     }
     
     // MARK: - Public Methods
@@ -237,7 +264,7 @@ class CreateOrEditCarViewController: UIViewController, UIImageCropperProtocol {
         } else {
             let carRequest = CarRequest(manufacturer: requestedCar.manufacturer, model: requestedCar.model, production: requestedCar.production, performance: requestedCar.performance, color: requestedCar.color)
             
-            user.createCar(carRequest) { car, error in
+            activeUser.createCar(carRequest) { car, error in
                 guard let car = car else {
                     self.displayAlert(title: "Error", message: "Failed to create car: \(error!)") {
                         self.dismiss(animated: true, completion: nil)
@@ -321,7 +348,7 @@ class CreateOrEditCarViewController: UIViewController, UIImageCropperProtocol {
         view.endEditing(true)
     }
     
-    @IBAction func didTapColorField(_ sender: UITapGestureRecognizer) {
+    @objc func didTapColorField(_ sender: UITapGestureRecognizer) {
         dismissKeyboard(sender)
         colorPickerContainer.isHidden = false
     }

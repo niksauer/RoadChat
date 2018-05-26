@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="approvalStatusContainer" destination="rY6-YL-obj" id="SNn-dL-JaO"/>
                 <outlet property="bottomInputContainerConstraint" destination="UDu-XY-WC9" id="Yva-v9-E3U"/>
+                <outlet property="denyButton" destination="a7U-hi-wt5" id="Lsg-Mt-qAF"/>
                 <outlet property="inputContainer" destination="sXg-Dy-BOD" id="fQG-Hw-22I"/>
                 <outlet property="messageTextField" destination="srf-6O-GEs" id="meD-Bh-Qm9"/>
                 <outlet property="messagesContainer" destination="fqj-aW-cZG" id="cG5-kP-5zC"/>

@@ -85,6 +85,8 @@ class RadarViewController: UIViewController, MKMapViewDelegate, UITableViewDataS
     
     // MARK: - Customization
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         mapView.delegate = self
         mapView.showsUserLocation = true
         
@@ -93,7 +95,6 @@ class RadarViewController: UIViewController, MKMapViewDelegate, UITableViewDataS
         tableView.dataSource = self
         tableView.delegate = self
         tableView.layer.cornerRadius = 15
-        tableView.allowsSelection = false
         updateTableViewConstraints()
         
         createBarButton.isEnabled = false
@@ -101,7 +102,17 @@ class RadarViewController: UIViewController, MKMapViewDelegate, UITableViewDataS
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         updateUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedIndexPath, animated: animated)
+        }
     }
     
     // MARK: - Private Methods
@@ -277,6 +288,7 @@ class RadarViewController: UIViewController, MKMapViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let nearbyUser = selectedUsers[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ParticipantCell", for: indexPath) as! ParticipantCell
+        cell.accessoryType = .disclosureIndicator
         cell.configure(user: nearbyUser.user)
         
         if let userLocation = mapView.userLocation.location {
@@ -302,6 +314,12 @@ class RadarViewController: UIViewController, MKMapViewDelegate, UITableViewDataS
         default:
             break
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let recipient = selectedUsers[indexPath.row].user
+        let profileViewController = viewFactory.makeProfileViewController(for: recipient, activeUser: activeUser, showsPublicProfile: true)
+        navigationController?.pushViewController(profileViewController, animated: true)
     }
     
     // MARK: - LocationManager Delegate

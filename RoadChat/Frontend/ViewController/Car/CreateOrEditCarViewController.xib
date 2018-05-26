@@ -19,6 +19,7 @@
                 <outlet property="colorPickerContainer" destination="KDC-jC-MYs" id="zLG-7I-a1Y"/>
                 <outlet property="colorPickerField" destination="fkw-ff-1OP" id="Jyc-3L-C0r"/>
                 <outlet property="deleteButton" destination="yjH-Yu-dx0" id="zwG-ff-Pek"/>
+                <outlet property="deleteContainer" destination="gdI-aG-uW1" id="IIj-yA-fkL"/>
                 <outlet property="manufacturerTextField" destination="l4G-4d-yT8" id="eTB-S9-OEo"/>
                 <outlet property="modelTextField" destination="R0j-qz-b8l" id="r4s-U4-ckp"/>
                 <outlet property="performanceTextField" destination="wX2-WZ-uN9" id="iGI-kl-gXC"/>
@@ -38,14 +39,6 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZV-RY-M16">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="585"/>
                             <subviews>
-                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDC-jC-MYs">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="585"/>
-                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <gestureRecognizers/>
-                                    <connections>
-                                        <outletCollection property="gestureRecognizers" destination="fhT-FY-KH4" appends="YES" id="oTM-oJ-RAK"/>
-                                    </connections>
-                                </view>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QNx-qb-Kkl">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -156,9 +149,6 @@
                                                 <constraint firstAttribute="height" constant="25" id="GvT-Xk-K4x"/>
                                                 <constraint firstAttribute="width" constant="240" id="TDy-AV-fl8"/>
                                             </constraints>
-                                            <connections>
-                                                <outletCollection property="gestureRecognizers" destination="Q9U-ev-TYF" appends="YES" id="DxF-As-whM"/>
-                                            </connections>
                                         </view>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08/2007" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eVK-eW-T94">
                                             <rect key="frame" x="43" y="200" width="316" height="17"/>
@@ -242,6 +232,14 @@
                                         <constraint firstAttribute="height" constant="45" id="QP7-8Z-P1x"/>
                                     </constraints>
                                 </view>
+                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDC-jC-MYs">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="585"/>
+                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <gestureRecognizers/>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="fhT-FY-KH4" appends="YES" id="oTM-oJ-RAK"/>
+                                    </connections>
+                                </view>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="sMx-Pl-eso" firstAttribute="top" secondItem="Lrq-LG-bc9" secondAttribute="bottom" id="B1H-AE-Ibo"/>
@@ -286,11 +284,6 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="-157.5" y="-34"/>
         </view>
-        <tapGestureRecognizer id="Q9U-ev-TYF" userLabel="Color Field Tap Gesture Recognizer">
-            <connections>
-                <action selector="didTapColorField:" destination="-1" id="kww-QJ-oY0"/>
-            </connections>
-        </tapGestureRecognizer>
         <tapGestureRecognizer id="fhT-FY-KH4" userLabel="Outside ColorPicker Tap Gesture Recognizer">
             <connections>
                 <action selector="didTapOutsideColorPicker:" destination="-1" id="4dh-5v-fKV"/>
