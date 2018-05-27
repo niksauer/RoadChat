@@ -40,9 +40,9 @@ struct CarService: JSendService {
         }
     }
     
-    func getImage(carID: RoadChatKit.Car.ID, completion: @escaping (RoadChatKit.PublicImage?, Error?) -> Void) {
+    func getImage(carID: RoadChatKit.Car.ID, completion: @escaping (RoadChatKit.PublicFile?, Error?) -> Void) {
         client.makeGETRequest(to: "/\(carID)/image") { result in
-            let result = self.decode(RoadChatKit.PublicImage.self, from: result)
+            let result = self.decode(RoadChatKit.PublicFile.self, from: result)
             completion(result.instance, result.error)
         }
     }

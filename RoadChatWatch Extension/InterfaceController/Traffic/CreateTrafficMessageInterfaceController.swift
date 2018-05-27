@@ -22,22 +22,22 @@ class CreateTrafficMessageInterfaceController: WKInterfaceController {
     
     // MARK: - Public Methods
     @IBAction func jamButtonPressed() {
-        connectivityManager?.sendTrafficMessage(type: .jam)
+        connectivityManager?.sendTrafficMessage(type: "jam")
         self.pop()
     }
 
     @IBAction func detourButtonPressed() {
-        connectivityManager?.sendTrafficMessage(type: .detour)
+        connectivityManager?.sendTrafficMessage(type: "detour")
         self.pop()
     }
     
     @IBAction func accidentButtonPressed() {
-        connectivityManager?.sendTrafficMessage(type: .accident)
+        connectivityManager?.sendTrafficMessage(type: "accident")
         self.pop()
     }
 
     @IBAction func dangerButtonPressed() {
-        connectivityManager?.sendTrafficMessage(type: .danger)
+        connectivityManager?.sendTrafficMessage(type: "danger")
         self.pop()
     }
 

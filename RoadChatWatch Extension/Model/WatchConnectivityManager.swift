@@ -9,7 +9,6 @@
 import WatchKit
 import Foundation
 import WatchConnectivity
-import RoadChatKitWatch
 
 protocol WatchConnectivityManagerDelegate {
     func watchConnectivityManager(_ watchConnecitivtyManager: WatchConnectivityManager, didAuthenticateUser isLoggedIn: Bool)
@@ -37,8 +36,8 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate {
     }
     
     // MARK: - Public Methods
-    func sendTrafficMessage(type: TrafficType) {
-        sendMessage(["trafficType": type.rawValue])
+    func sendTrafficMessage(type: String) {
+        sendMessage(["trafficType": type])
     }
     
     func requestLoginStatus() {

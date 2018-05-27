@@ -138,9 +138,9 @@ struct UserService: JSendService {
         }
     }
     
-    func getImage(userID: RoadChatKit.User.ID, completion: @escaping (RoadChatKit.PublicImage?, Error?) -> Void) {
+    func getImage(userID: RoadChatKit.User.ID, completion: @escaping (RoadChatKit.PublicFile?, Error?) -> Void) {
         client.makeGETRequest(to: "/\(userID)/image") { result in
-            let result = self.decode(RoadChatKit.PublicImage.self, from: result)
+            let result = self.decode(RoadChatKit.PublicFile.self, from: result)
             completion(result.instance, result.error)
         }
     }
