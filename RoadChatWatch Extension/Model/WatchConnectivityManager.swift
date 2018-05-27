@@ -14,6 +14,13 @@ protocol WatchConnectivityManagerDelegate {
     func watchConnectivityManager(_ watchConnecitivtyManager: WatchConnectivityManager, didAuthenticateUser isLoggedIn: Bool)
 }
 
+enum TrafficType: String {
+    case jam
+    case accident
+    case danger
+    case detour
+}
+
 class WatchConnectivityManager: NSObject, WCSessionDelegate {
     
     // MARK: - Singleton
@@ -36,8 +43,8 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate {
     }
     
     // MARK: - Public Methods
-    func sendTrafficMessage(type: String) {
-        sendMessage(["trafficType": type])
+    func sendTrafficMessage(type: TrafficType) {
+        sendMessage(["trafficType": type.rawValue])
     }
     
     func requestLoginStatus() {

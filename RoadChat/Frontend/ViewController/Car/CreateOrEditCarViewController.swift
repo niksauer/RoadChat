@@ -140,13 +140,16 @@ class CreateOrEditCarViewController: UIViewController, UIImageCropperProtocol {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         // dismiss keyboard
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard (_:)))
         tapGestureRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGestureRecognizer)
         
         // color picker tapping
-        let colorPickerViewTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapColorField(_:)))
-        colorPickerView.addGestureRecognizer(colorPickerViewTapGestureRecognizer)
+        let colorPickerViewTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapColorField(_:)))
+        colorPickerField.addGestureRecognizer(colorPickerViewTapGestureRecognizer)
+        
+        let outsideColorPickerViewTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapOutsideColorPicker(_:)))
+        colorPickerContainer.addGestureRecognizer(outsideColorPickerViewTapGestureRecognizer)
         
         // additional view setup
         deleteButton.tintColor = colorPalette.destructiveColor
