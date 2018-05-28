@@ -9,9 +9,12 @@
 <a href="https://swift.org">
     <img src="http://img.shields.io/badge/swift-4.1-brightgreen.svg" alt="Swift 4.0">
 </a>
+<a href="https://swift.org">
+<img src="https://img.shields.io/badge/platform-ios%20%7C%20watchos-lightgrey.svg" alt="Supported Platforms">
+</a>
 
 ### Preview
-<img src="https://github.com/niksauer/RoadChat/blob/beta/Docs/PreviewScreenshot.png">
+<img src="https://github.com/niksauer/RoadChat/blob/beta/Docs/RoadChat_Promo.png">
 
 ### Setup 
 1. `git clone <url>`
