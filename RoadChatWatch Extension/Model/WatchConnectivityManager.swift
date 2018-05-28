@@ -9,16 +9,10 @@
 import WatchKit
 import Foundation
 import WatchConnectivity
+import RoadChatKit
 
 protocol WatchConnectivityManagerDelegate {
     func watchConnectivityManager(_ watchConnecitivtyManager: WatchConnectivityManager, didAuthenticateUser isLoggedIn: Bool)
-}
-
-enum TrafficType: String {
-    case jam
-    case accident
-    case danger
-    case detour
 }
 
 class WatchConnectivityManager: NSObject, WCSessionDelegate {

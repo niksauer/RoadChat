@@ -6,8 +6,8 @@
 //  Copyright © 2018 Niklas Sauer. All rights reserved.
 //
 
-import Foundation
 import WatchKit
+import Foundation
 
 class CreateTrafficMessageInterfaceController: WKInterfaceController {
  

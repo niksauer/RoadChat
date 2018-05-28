@@ -179,7 +179,12 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
         
-        topInputContainerConstraint.constant = -48 - keyboardHeight + view.safeAreaInsets.bottom
+        if #available(iOS 11.0, *) {
+            topInputContainerConstraint.constant = -48 - keyboardHeight + view.safeAreaInsets.bottom
+        } else {
+            topInputContainerConstraint.constant = -48 - keyboardHeight
+        }
+        
         bottomInputContainerConstraint.constant = -keyboardHeight
     }
     

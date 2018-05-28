@@ -10,8 +10,6 @@
 		24045CF32084C6D500E7CF19 /* CarColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24045CF22084C6D500E7CF19 /* CarColorPalette.swift */; };
 		24045D362084CC8600E7CF19 /* ColorCircle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24045D352084CC7A00E7CF19 /* ColorCircle.framework */; };
 		24045D372084CC8600E7CF19 /* ColorCircle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24045D352084CC7A00E7CF19 /* ColorCircle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		24045D5E2084D27100E7CF19 /* ColorModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24045D5C2084D23900E7CF19 /* ColorModel.framework */; };
-		24045D5F2084D27100E7CF19 /* ColorModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24045D5C2084D23900E7CF19 /* ColorModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		24045D7B2084E28100E7CF19 /* GeofenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24045D792084E27900E7CF19 /* GeofenceViewController.swift */; };
 		24045D7C2084E28100E7CF19 /* GeofenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24045D7A2084E28100E7CF19 /* GeofenceViewController.xib */; };
 		2404A256204E92D2009AC7E1 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404A255204E92D2009AC7E1 /* UserService.swift */; };
@@ -19,8 +17,6 @@
 		2404A25E204ED162009AC7E1 /* CarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404A25D204ED162009AC7E1 /* CarService.swift */; };
 		240AB0132050870000324028 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240AB006205086ED00324028 /* Locksmith.framework */; };
 		240AB0142050870000324028 /* Locksmith.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 240AB006205086ED00324028 /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		240AB0182050877000324028 /* RoadChatKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; };
-		240AB0192050877000324028 /* RoadChatKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		240AB01D2050878100324028 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240AB01C2050878100324028 /* Security.framework */; };
 		240B9B8620534FAA00216E68 /* FetchedResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240B9B8520534FAA00216E68 /* FetchedResultsTableViewController.swift */; };
 		240C16D420B73DF0001BB413 /* WatchConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240C16D320B73DF0001BB413 /* WatchConnectivityManager.swift */; };
@@ -76,6 +72,12 @@
 		249515CE20644DB100E734E4 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249515CD20644DB100E734E4 /* ProfileViewController.xib */; };
 		249515D1206460F800E734E4 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249515CF206460F800E734E4 /* ConversationCell.swift */; };
 		249515D2206460F800E734E4 /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249515D0206460F800E734E4 /* ConversationCell.xib */; };
+		24978F3E20BC8F5400BE9F35 /* RoadChatKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24978F3620BC8EEA00BE9F35 /* RoadChatKit.framework */; };
+		24978F3F20BC8F5400BE9F35 /* RoadChatKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24978F3620BC8EEA00BE9F35 /* RoadChatKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		24978F4220BC8F7E00BE9F35 /* ColorModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24045D5C2084D23900E7CF19 /* ColorModel.framework */; };
+		24978F4320BC8F7E00BE9F35 /* ColorModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24045D5C2084D23900E7CF19 /* ColorModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		24978F4420BC8FB500BE9F35 /* RoadChatKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24978F3A20BC8EEA00BE9F35 /* RoadChatKit.framework */; };
+		24978F4520BC8FB500BE9F35 /* RoadChatKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24978F3A20BC8EEA00BE9F35 /* RoadChatKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		249E0E9220AC512E00987BCA /* ConversationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E0E9120AC512E00987BCA /* ConversationManager.swift */; };
 		24A069B12051EFC8006F8401 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A069B02051EFC8006F8401 /* CoreDataStack.swift */; };
 		24A069BB20520367006F8401 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A069BA20520367006F8401 /* AuthenticationManager.swift */; };
@@ -230,13 +232,6 @@
 			remoteGlobalIDString = 0EC25C581BA385AA004191AF;
 			remoteInfo = "Locksmith iOS";
 		};
-		240AB01A2050877000324028 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = "RoadChatKit::RoadChatKit";
-			remoteInfo = RoadChatKit;
-		};
 		24207DCD207686B100851A73 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 24207DBB207686B100851A73 /* Parchment.xcodeproj */;
@@ -307,12 +302,40 @@
 			remoteGlobalIDString = 3EA04A4A1C53BFE40054E5E0;
 			remoteInfo = Parchment;
 		};
-		24AED4B5204CC2EB002A1703 /* PBXContainerItemProxy */ = {
+		24978F3520BC8EEA00BE9F35 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = "RoadChatKit::RoadChatKit::Product";
-			remoteInfo = RoadChatKit;
+			remoteGlobalIDString = 24978C1F20BC80AE00BE9F35;
+			remoteInfo = RoadChatKit_iOS;
+		};
+		24978F3720BC8EEA00BE9F35 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 24978C2F20BC80F700BE9F35;
+			remoteInfo = RoadChatKit_macOS;
+		};
+		24978F3920BC8EEA00BE9F35 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 24978C3C20BC810C00BE9F35;
+			remoteInfo = RoadChatKit_watchOS;
+		};
+		24978F4020BC8F5400BE9F35 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 24978C1E20BC80AE00BE9F35;
+			remoteInfo = RoadChatKit_iOS;
+		};
+		24978F4620BC8FB500BE9F35 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 24978C3B20BC810C00BE9F35;
+			remoteInfo = RoadChatKit_watchOS;
 		};
 		24ED754C20B760AF0079E273 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -389,9 +412,9 @@
 				24045D372084CC8600E7CF19 /* ColorCircle.framework in Embed Frameworks */,
 				240AB0142050870000324028 /* Locksmith.framework in Embed Frameworks */,
 				24207DE5207686D200851A73 /* Parchment.framework in Embed Frameworks */,
+				24978F3F20BC8F5400BE9F35 /* RoadChatKit.framework in Embed Frameworks */,
+				24978F4320BC8F7E00BE9F35 /* ColorModel.framework in Embed Frameworks */,
 				24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */,
-				24045D5F2084D27100E7CF19 /* ColorModel.framework in Embed Frameworks */,
-				240AB0192050877000324028 /* RoadChatKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,6 +426,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				24ED754B20B760AF0079E273 /* SwiftyBeaver.framework in Embed Frameworks */,
+				24978F4520BC8FB500BE9F35 /* RoadChatKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -571,7 +595,6 @@
 		D421C60020AC322500D049CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D421C60120AC322500D049CC /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		D421C61F20AC518F00D049CC /* CreateTrafficMessageInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTrafficMessageInterfaceController.swift; sourceTree = "<group>"; };
-		D421C66420ADA35200D049CC /* RoadChatKitWatch */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RoadChatKitWatch; path = ../RoadChatKitWatch; sourceTree = "<group>"; };
 		D421C6C220ADBBDE00D049CC /* WatchConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityManager.swift; sourceTree = "<group>"; };
 		D44F4B7C20528076009A6239 /* CommunityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityService.swift; sourceTree = "<group>"; };
 		D44F4B87205297A7009A6239 /* CreateCommunityMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommunityMessageViewController.swift; sourceTree = "<group>"; };
@@ -593,10 +616,10 @@
 				24045D362084CC8600E7CF19 /* ColorCircle.framework in Frameworks */,
 				24207DE4207686D200851A73 /* Parchment.framework in Frameworks */,
 				240AB01D2050878100324028 /* Security.framework in Frameworks */,
+				24978F3E20BC8F5400BE9F35 /* RoadChatKit.framework in Frameworks */,
 				24F1DD4020517B9D00A726AA /* SwiftyBeaver.framework in Frameworks */,
 				240AB0132050870000324028 /* Locksmith.framework in Frameworks */,
-				240AB0182050877000324028 /* RoadChatKit.framework in Frameworks */,
-				24045D5E2084D27100E7CF19 /* ColorModel.framework in Frameworks */,
+				24978F4220BC8F7E00BE9F35 /* ColorModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +628,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24ED754A20B760AF0079E273 /* SwiftyBeaver.framework in Frameworks */,
+				24978F4420BC8FB500BE9F35 /* RoadChatKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -833,7 +857,6 @@
 			isa = PBXGroup;
 			children = (
 				24548BDC20B5B3B10070A773 /* AVFoundation.framework */,
-				D421C66420ADA35200D049CC /* RoadChatKitWatch */,
 				24045D5C2084D23900E7CF19 /* ColorModel.framework */,
 				240AB01C2050878100324028 /* Security.framework */,
 			);
@@ -983,7 +1006,9 @@
 		24AED4AD204CC2EB002A1703 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */,
+				24978F3620BC8EEA00BE9F35 /* RoadChatKit.framework */,
+				24978F3820BC8EEA00BE9F35 /* RoadChatKit.framework */,
+				24978F3A20BC8EEA00BE9F35 /* RoadChatKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1178,11 +1203,11 @@
 			);
 			dependencies = (
 				240AB0162050870000324028 /* PBXTargetDependency */,
-				240AB01B2050877000324028 /* PBXTargetDependency */,
 				24F1DD4320517B9D00A726AA /* PBXTargetDependency */,
 				24207DE7207686D200851A73 /* PBXTargetDependency */,
 				24045D392084CC8600E7CF19 /* PBXTargetDependency */,
 				D421C60320AC322500D049CC /* PBXTargetDependency */,
+				24978F4120BC8F5400BE9F35 /* PBXTargetDependency */,
 			);
 			name = RoadChat;
 			productName = RoadChat;
@@ -1220,6 +1245,7 @@
 			);
 			dependencies = (
 				24ED754D20B760AF0079E273 /* PBXTargetDependency */,
+				24978F4720BC8FB500BE9F35 /* PBXTargetDependency */,
 			);
 			name = "RoadChatWatch Extension";
 			productName = "RoadChatWatch Extension";
@@ -1425,11 +1451,25 @@
 			remoteRef = 24207DDD207686B100851A73 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		24AED4B6204CC2EB002A1703 /* RoadChatKit.framework */ = {
+		24978F3620BC8EEA00BE9F35 /* RoadChatKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = RoadChatKit.framework;
-			remoteRef = 24AED4B5204CC2EB002A1703 /* PBXContainerItemProxy */;
+			remoteRef = 24978F3520BC8EEA00BE9F35 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24978F3820BC8EEA00BE9F35 /* RoadChatKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RoadChatKit.framework;
+			remoteRef = 24978F3720BC8EEA00BE9F35 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24978F3A20BC8EEA00BE9F35 /* RoadChatKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RoadChatKit.framework;
+			remoteRef = 24978F3920BC8EEA00BE9F35 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		24F1DD3720517B8E00A726AA /* SwiftyBeaver.framework */ = {
@@ -1654,15 +1694,20 @@
 			name = "Locksmith iOS";
 			targetProxy = 240AB0152050870000324028 /* PBXContainerItemProxy */;
 		};
-		240AB01B2050877000324028 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RoadChatKit;
-			targetProxy = 240AB01A2050877000324028 /* PBXContainerItemProxy */;
-		};
 		24207DE7207686D200851A73 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Parchment;
 			targetProxy = 24207DE6207686D200851A73 /* PBXContainerItemProxy */;
+		};
+		24978F4120BC8F5400BE9F35 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RoadChatKit_iOS;
+			targetProxy = 24978F4020BC8F5400BE9F35 /* PBXContainerItemProxy */;
+		};
+		24978F4720BC8FB500BE9F35 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RoadChatKit_watchOS;
+			targetProxy = 24978F4620BC8FB500BE9F35 /* PBXContainerItemProxy */;
 		};
 		24ED754D20B760AF0079E273 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1827,6 +1872,7 @@
 				DEVELOPMENT_TEAM = JPC698935F;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = RoadChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hpe.dhbw.RoadChat;
@@ -1847,6 +1893,7 @@
 				DEVELOPMENT_TEAM = JPC698935F;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = RoadChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hpe.dhbw.RoadChat;
@@ -1873,7 +1920,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Debug;
 		};
@@ -1893,7 +1940,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -1912,7 +1959,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Debug;
 		};
@@ -1931,7 +1978,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};

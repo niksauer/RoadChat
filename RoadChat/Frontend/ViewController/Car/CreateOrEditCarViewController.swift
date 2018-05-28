@@ -379,7 +379,11 @@ class CreateOrEditCarViewController: UIViewController, UIImageCropperProtocol {
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
         
-        viewBottomConstraint.constant = keyboardHeight - view.safeAreaInsets.bottom
+        if #available(iOS 11.0, *) {
+            viewBottomConstraint.constant = keyboardHeight - view.safeAreaInsets.bottom
+        } else {
+            viewBottomConstraint.constant = keyboardHeight
+        }
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {
