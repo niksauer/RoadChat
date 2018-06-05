@@ -8,6 +8,7 @@
 
 import Foundation
 import RoadChatKit
+import NetworkKit
 
 struct TrafficService: JSendService {
     

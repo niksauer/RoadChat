@@ -27,3 +27,8 @@
 [submodule "Frameworks/UIImageCropper"]
 	path = Frameworks/UIImageCropper
 	url = git@github.com:jvk75/UIImageCropper.git
+	ignore = dirty
+[submodule "Frameworks/NetworkKit"]
+	path = Frameworks/NetworkKit
+	url = git@github.com:niksauer/NetworkKit.git
+	ignore = dirty

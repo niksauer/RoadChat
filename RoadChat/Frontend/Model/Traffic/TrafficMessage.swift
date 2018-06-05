@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 import RoadChatKit
 import CoreLocation
+import NetworkKit
 
 enum TrafficError: Error {
     case duplicate

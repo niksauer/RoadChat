@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import CoreLocation
 import WatchConnectivity
+import NetworkKit
 
 struct DependencyContainer {
     

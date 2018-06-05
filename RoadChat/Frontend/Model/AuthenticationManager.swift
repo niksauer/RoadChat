@@ -9,6 +9,7 @@
 import Foundation
 import RoadChatKit
 import CoreData
+import NetworkKit
 
 protocol AuthenticationManagerDelegate {
     func authenticationManager(_ authenticationManager: AuthenticationManager, didVerifyUserAuthentication isLoggedIn: Bool)

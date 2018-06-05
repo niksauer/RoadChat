@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NetworkKit
 
 class SetupViewController: UIViewController {
     

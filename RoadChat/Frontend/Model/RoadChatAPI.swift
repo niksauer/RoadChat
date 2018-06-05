@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import NetworkKit
 
 struct RoadChatAPI: APIConfiguration {
     // local: localhost

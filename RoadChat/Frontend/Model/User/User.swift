@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 import RoadChatKit
 import UIKit
+import NetworkKit
 
 class User: NSManagedObject, ReportOwner {
     

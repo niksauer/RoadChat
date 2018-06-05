@@ -8,6 +8,7 @@
 
 import Foundation
 import Locksmith
+import NetworkKit
 
 struct KeychainManager: APICredentialStore {
     

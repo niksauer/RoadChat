@@ -9,6 +9,7 @@
 import Foundation
 import RoadChatKit
 import UIKit
+import NetworkKit
 
 enum ImageError: Error {
     case invalidFormat
