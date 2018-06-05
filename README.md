@@ -9,12 +9,12 @@
 <a href="https://swift.org">
     <img src="http://img.shields.io/badge/swift-4.1-brightgreen.svg" alt="Swift 4.0">
 </a>
-<a href="https://swift.org">
+<a href="https://github.com/niksauer/RoadChat">
 <img src="https://img.shields.io/badge/platform-ios%20%7C%20watchos-lightgrey.svg" alt="Supported Platforms">
 </a>
 
 ### Preview
-<img src="https://github.com/niksauer/RoadChat/blob/beta/Docs/RoadChat_Promo.png">
+<img src="https://github.com/niksauer/RoadChat/blob/master/Docs/RoadChat_Promo.png">
 
 ### Setup 
 1. `git clone <url>`
@@ -23,9 +23,11 @@
 ### Dependencies
 - [ColorCircle](https://github.com/niksauer/ColorCircle)
 - [Locksmith](https://github.com/matthewpalmer/Locksmith)
+- [MonthYearPickerView](https://github.com/bendodson/MonthYearPickerView-Swift)
 - [Parchment](https://github.com/rechsteiner/Parchment)
 - [RoadChatKit](https://github.com/niksauer/RoadChatKit)
 - [SwiftyBeaver](https://github.com/SwiftyBeaver/SwiftyBeaver)
+- [UIImageCropper](https://github.com/jvk75/UIImageCropper)
 
 ### Submodules
 This project uses `git submodules` to manage its dependencies. Therefore, setup becomes a two-step process. To **update to** the **newest availble commit** from the tracked branch of each submodule, run: `git submodule update --recursive --remote`.
