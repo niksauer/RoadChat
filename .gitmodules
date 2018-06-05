@@ -1,0 +1,29 @@
+[submodule "Frameworks/RoadChatKit"]
+	path = Frameworks/RoadChatKit
+	url = https://github.com/niksauer/RoadChatKit
+	branch = master
+	ignore = dirty
+[submodule "Frameworks/Locksmith"]
+	path = Frameworks/Locksmith
+	url = https://github.com/matthewpalmer/Locksmith.git
+	branch = master
+	ignore = dirty
+[submodule "Frameworks/SwiftyBeaver"]
+	path = Frameworks/SwiftyBeaver
+	url = https://github.com/SwiftyBeaver/SwiftyBeaver
+	ignore = dirty
+[submodule "Frameworks/Parchment"]
+	path = Frameworks/Parchment
+	url = git@github.com:rechsteiner/Parchment.git
+	ignore = dirty
+[submodule "ColorCircle"]
+	path = Frameworks/ColorCircle
+	url = https://github.com/niksauer/ColorCircle
+	ignore = dirty
+[submodule "Frameworks/MonthYearPickerView"]
+	path = Frameworks/MonthYearPickerView
+	url = git@github.com:bendodson/MonthYearPickerView-Swift.git
+	ignore = dirty
+[submodule "Frameworks/UIImageCropper"]
+	path = Frameworks/UIImageCropper
+	url = git@github.com:jvk75/UIImageCropper.git

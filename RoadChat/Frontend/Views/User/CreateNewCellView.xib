@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CreateNewCellView" id="U6b-Vx-4bR" customClass="CreateNewCellView" customModule="RoadChat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sxp-u6-lIU">
+                    <rect key="frame" x="0.0" y="10" width="320" height="63"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTL-4l-pNf">
+                            <rect key="frame" x="20" y="19" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="XlZ-JS-h7l"/>
+                                <constraint firstAttribute="height" constant="25" id="ehl-6Z-3tE"/>
+                            </constraints>
+                            <state key="normal" title="Button" image="add-filled"/>
+                            <connections>
+                                <action selector="didPressAddButton:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="F3i-eZ-HBb"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Element" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIP-oQ-Ar2">
+                            <rect key="frame" x="53" y="21" width="62" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="xIP-oQ-Ar2" firstAttribute="centerY" secondItem="aTL-4l-pNf" secondAttribute="centerY" id="Ky2-tg-5mp"/>
+                        <constraint firstItem="aTL-4l-pNf" firstAttribute="centerY" secondItem="Sxp-u6-lIU" secondAttribute="centerY" id="Uk7-42-Ug8"/>
+                        <constraint firstItem="aTL-4l-pNf" firstAttribute="leading" secondItem="Sxp-u6-lIU" secondAttribute="leading" constant="20" id="apH-f4-hXy"/>
+                        <constraint firstItem="xIP-oQ-Ar2" firstAttribute="leading" secondItem="aTL-4l-pNf" secondAttribute="trailing" constant="8" id="eBe-8s-Rrn"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Sxp-u6-lIU" firstAttribute="trailing" secondItem="VXr-Tz-HHm" secondAttribute="trailing" id="EMt-ud-y5v"/>
+                <constraint firstItem="Sxp-u6-lIU" firstAttribute="top" secondItem="VXr-Tz-HHm" secondAttribute="top" constant="10" id="PjI-Sq-ysb"/>
+                <constraint firstItem="Sxp-u6-lIU" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="mhx-P1-NX3"/>
+                <constraint firstItem="Sxp-u6-lIU" firstAttribute="bottom" secondItem="VXr-Tz-HHm" secondAttribute="bottom" id="qcd-bo-Jwe"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <connections>
+                <outlet property="addButton" destination="aTL-4l-pNf" id="Ruk-HY-d4N"/>
+                <outlet property="elementLabel" destination="xIP-oQ-Ar2" id="u4W-o7-RKH"/>
+            </connections>
+            <point key="canvasLocation" x="35" y="65.5"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="add-filled" width="100" height="100"/>
+    </resources>
+</document>
