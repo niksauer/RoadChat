@@ -21,7 +21,7 @@ struct UserService: JSendService {
     typealias PrimaryResource = RoadChatKit.User.PublicUser
     let client: JSendAPIClient
     
-    init(hostname: String, port: Int, credentials: APICredentialStore?) {
+    init(hostname: String, port: Int?, credentials: APICredentialStore?) {
         self.client = JSendAPIClient(hostname: hostname, port: port, basePath: "user", credentials: credentials)
     }
     
