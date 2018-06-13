@@ -8,6 +8,7 @@
 
 import UIKit
 import RoadChatKit
+import ToolKit
 
 class ChangeEmailViewController: UITableViewController {
 
@@ -42,7 +43,8 @@ class ChangeEmailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UINib(nibName: "TextFieldCell", bundle: nil), forCellReuseIdentifier: "TextFieldCell")
+        tableView.register(TextFieldCell.self, forCellReuseIdentifier: "TextFieldCell")
+        
         tableView.allowsSelection = false
         doneBarButton.isEnabled = false
     }
@@ -69,7 +71,7 @@ class ChangeEmailViewController: UITableViewController {
         }
     }
 
-    func didChangeEmail(_ sender: UITextField) {
+    @objc func didChangeEmail(_ sender: UITextField) {
         email = sender.text
     }
     
@@ -116,7 +118,7 @@ class ChangeEmailViewController: UITableViewController {
                 cell.textField.placeholder = "Enter email"
                 cell.textField.text = user.email
                 cell.textField.textContentType = .emailAddress
-                cell.configure(text: "Email", onChange: didChangeEmail(_:))
+                cell.textField.addTarget(self, action: #selector(didChangeEmail(_:)), for: .editingChanged)
                 return cell
             default:
                 fatalError()

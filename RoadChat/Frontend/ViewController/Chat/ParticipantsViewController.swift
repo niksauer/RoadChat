@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ToolKit
 
 class ParticipantsViewController: UITableViewController, ChangeTitleViewControllerDelegate {
 
@@ -38,8 +39,8 @@ class ParticipantsViewController: UITableViewController, ChangeTitleViewControll
         super.viewDidLoad()
         
         tableView.register(UINib(nibName: "ParticipantCell", bundle: nil), forCellReuseIdentifier: "ParticipantCell")
-        tableView.register(UINib(nibName: "TextFieldCell", bundle: nil), forCellReuseIdentifier: "TextFieldCell")
-        tableView.register(UINib(nibName: "CenterLabelCell", bundle: nil), forCellReuseIdentifier: "CenterLabelCell")
+        tableView.register(TextFieldCell.self, forCellReuseIdentifier: "TextFieldCell")
+        tableView.register(DeleteCell.self, forCellReuseIdentifier: "DeleteCell")
     }
 
     // MARK: - ChangeTitleViewController Delegate
@@ -102,9 +103,8 @@ class ParticipantsViewController: UITableViewController, ChangeTitleViewControll
                 cell.accessoryType = .disclosureIndicator
                 return cell
             case 2:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "CenterLabelCell", for: indexPath) as! CenterLabelCell
-                cell.centerTextLabel.text = "Delete"
-                cell.centerTextLabel.textColor = colorPalette.destructiveColor
+                let cell = tableView.dequeueReusableCell(withIdentifier: "DeleteCell", for: indexPath) as! DeleteCell
+                cell.label.text = "Delete"
                 return cell
             default:
                 fatalError()
@@ -118,9 +118,8 @@ class ParticipantsViewController: UITableViewController, ChangeTitleViewControll
                 cell.accessoryType = .disclosureIndicator
                 return cell
             case 1:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "CenterLabelCell", for: indexPath) as! CenterLabelCell
-                cell.centerTextLabel.text = "Delete"
-                cell.centerTextLabel.textColor = colorPalette.destructiveColor
+                let cell = tableView.dequeueReusableCell(withIdentifier: "DeleteCell", for: indexPath) as! DeleteCell
+                cell.label.text = "Delete"
                 return cell
             default:
                 fatalError()

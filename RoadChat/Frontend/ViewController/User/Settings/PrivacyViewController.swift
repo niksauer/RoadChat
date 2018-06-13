@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ToolKit
 
 class PrivacyViewController: GroupedOptionTableViewController {
 
@@ -65,10 +66,6 @@ class PrivacyViewController: GroupedOptionTableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        guard hasChangedOption else {
-            return
-        }
-        
         privacy.options = options.map { $0.option }
         
         privacy.save { error in
@@ -113,15 +110,15 @@ class PrivacyViewController: GroupedOptionTableViewController {
         }
     }
 
-    // MARK: - Switch Cell Delegate
-    override func switchCellDidChangeState(_ sender: SwitchCell) {
-        super.switchCellDidChangeState(sender)
+    // MARK: - GroupedOptionCell Delegate
+    override func groupedOptionCellDidChangeIsOn(_ groupedOptionCell: GroupedOptionCell) {
+        super.groupedOptionCellDidChangeIsOn(groupedOptionCell)
         
-        guard let groupedOption = groupedOption(for: sender) else {
+        guard let groupedOption = groupedOption(for: groupedOptionCell) else {
             return
         }
         
-        if sender.switchLabel.text == "Location" {
+        if groupedOption.option.name == "Location" {
             guard let locationFooter = tableView.footerView(forSection: 0) else {
                 return
             }
@@ -133,7 +130,7 @@ class PrivacyViewController: GroupedOptionTableViewController {
             let infoText: String
             
             if groupedOption.option.isEnabled {
-                 infoText = "Your location is shared with other users. You can be found on a map and contacted via in-app chat."
+                infoText = "Your location is shared with other users. You can be found on a map and contacted via in-app chat."
             } else {
                 infoText = "Your location is not shared with other users. You cannot be found on a map and contacted via in-app chat."
             }
@@ -147,5 +144,3 @@ class PrivacyViewController: GroupedOptionTableViewController {
     }
 
 }
-
-

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import ToolKit
 
 class ConversationsViewController: FetchedResultsTableViewController<Conversation> {
     
@@ -39,6 +40,7 @@ class ConversationsViewController: FetchedResultsTableViewController<Conversatio
     // MARK: - Customization
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.register(UINib.init(nibName: "ConversationCell", bundle: nil), forCellReuseIdentifier: "ConversationCell")
         
         // pull to refresh

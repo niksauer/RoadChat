@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import RoadChatKit
+import ToolKit
 
 class Privacy: NSManagedObject {
     
@@ -78,9 +79,9 @@ class Privacy: NSManagedObject {
     }
     
     // MARK: - Public Properties
-    var options: [Option] {
+    var options: [GroupedOptionTableViewController.Option] {
         get {
-            return stateForOption.map { Option(name: $0.key, isEnabled: stateForOption[$0.key]!) }
+            return stateForOption.map { GroupedOptionTableViewController.Option(name: $0.key, isEnabled: stateForOption[$0.key]!) }
         }
         
         set {

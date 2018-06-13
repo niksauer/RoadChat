@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import RoadChatKit
+import ToolKit
 
 class TrafficMessagesViewController: FetchedResultsCollectionViewController<TrafficMessage>, UICollectionViewDelegateFlowLayout {
     

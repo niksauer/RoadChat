@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import ToolKit
 
 class DirectMessagesViewController: FetchedResultsCollectionViewController<DirectMessage>, UICollectionViewDelegateFlowLayout {
     

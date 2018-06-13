@@ -8,6 +8,7 @@
 
 import UIKit
 import RoadChatKit
+import ToolKit
 
 class ChangePasswordViewController: UITableViewController {
 
@@ -47,7 +48,10 @@ class ChangePasswordViewController: UITableViewController {
     
     // MARK: - Customization
     override func viewDidLoad() {
-        tableView.register(UINib(nibName: "TextFieldCell", bundle: nil), forCellReuseIdentifier: "TextFieldCell")
+        super.viewDidLoad()
+        
+        tableView.register(TextFieldCell.self, forCellReuseIdentifier: "TextFieldCell")
+        
         tableView.allowsSelection = false
         changeBarButton.isEnabled = false
     }
@@ -78,11 +82,11 @@ class ChangePasswordViewController: UITableViewController {
         }
     }
 
-    func didChangePassword(_ sender: UITextField) {
+    @objc func didChangePassword(_ sender: UITextField) {
         password = sender.text
     }
     
-    func didChangePasswordRepeat(_ sender: UITextField) {
+    @objc func didChangePasswordRepeat(_ sender: UITextField) {
         passwordRepeat = sender.text
     }
     
@@ -120,15 +124,15 @@ class ChangePasswordViewController: UITableViewController {
                 // new password
                 let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldCell", for: indexPath) as! TextFieldCell
                 cell.textField.isSecureTextEntry = true
-                cell.textField.placeholder = "Enter password"
-                cell.configure(text: "New", onChange: didChangePassword(_:))
+                cell.textField.placeholder = "New password"
+                cell.textField.addTarget(self, action: #selector(didChangePassword(_:)), for: .editingChanged)
                 return cell
             case 1:
                 // repeat new password
                 let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldCell", for: indexPath) as! TextFieldCell
                 cell.textField.isSecureTextEntry = true
                 cell.textField.placeholder = "Repeat password"
-                cell.configure(text: "Repeat", onChange: didChangePasswordRepeat(_:))
+                cell.textField.addTarget(self, action: #selector(didChangePasswordRepeat(_:)), for: .editingChanged)
                 return cell
             default:
                 fatalError()

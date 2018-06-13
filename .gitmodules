@@ -32,3 +32,6 @@
 	path = Frameworks/NetworkKit
 	url = git@github.com:niksauer/NetworkKit.git
 	ignore = dirty
+[submodule "Frameworks/ToolKit"]
+	path = Frameworks/ToolKit
+	url = git@github.com:niksauer/ToolKit.git

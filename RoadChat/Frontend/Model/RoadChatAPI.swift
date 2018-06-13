@@ -13,7 +13,7 @@ struct RoadChatAPI: APIConfiguration {
     // local: localhost
     // remote: 141.52.39.100
     
-    let hostname = "141.52.39.100"
+    let hostURL: String = "http://141.52.39.100"
     let port: Int? = 8080
     let credentials: APICredentialStore?
     

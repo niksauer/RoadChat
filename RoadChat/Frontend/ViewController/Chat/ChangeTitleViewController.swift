@@ -8,6 +8,7 @@
 
 import UIKit
 import RoadChatKit
+import ToolKit
 
 protocol ChangeTitleViewControllerDelegate {
     func didChangeTitle(to title: String)
@@ -49,7 +50,7 @@ class ChangeTitleViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UINib(nibName: "TextFieldCell", bundle: nil), forCellReuseIdentifier: "TextFieldCell")
+        tableView.register(TextFieldCell.self, forCellReuseIdentifier: "TextFieldCell")
         tableView.allowsSelection = false
         doneBarButton.isEnabled = false
     }
@@ -73,7 +74,7 @@ class ChangeTitleViewController: UITableViewController {
         }
     }
 
-    func didChangeTitle(_ sender: UITextField) {
+    @objc func didChangeTitle(_ sender: UITextField) {
         newTitle = sender.text
     }
     
@@ -112,7 +113,7 @@ class ChangeTitleViewController: UITableViewController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldCell", for: indexPath) as! TextFieldCell
                 cell.textField.placeholder = "Enter title"
                 cell.textField.text = conversation.title
-                cell.configure(text: "Title", onChange: didChangeTitle(_:))
+                cell.textField.addTarget(self, action: #selector(didChangeTitle(_:)), for: .editingChanged)
                 return cell
             default:
                 fatalError()

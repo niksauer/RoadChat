@@ -17,14 +17,12 @@
 		240AB0132050870000324028 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240AB006205086ED00324028 /* Locksmith.framework */; };
 		240AB0142050870000324028 /* Locksmith.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 240AB006205086ED00324028 /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		240AB01D2050878100324028 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 240AB01C2050878100324028 /* Security.framework */; };
-		240B9B8620534FAA00216E68 /* FetchedResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240B9B8520534FAA00216E68 /* FetchedResultsTableViewController.swift */; };
 		240C16D420B73DF0001BB413 /* WatchConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240C16D320B73DF0001BB413 /* WatchConnectivityManager.swift */; };
 		240D10F920481843008C5E39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D10F820481843008C5E39 /* AppDelegate.swift */; };
 		240D110220481843008C5E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D110120481843008C5E39 /* Assets.xcassets */; };
 		240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D110320481843008C5E39 /* LaunchScreen.storyboard */; };
 		240DAEA420B5EF0D002A17EB /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240DAE8F20B5EF0D002A17EB /* UIImage+FixOrientation.swift */; };
 		240DAEA520B5EF0D002A17EB /* UIImageCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240DAEA320B5EF0D002A17EB /* UIImageCropper.swift */; };
-		2418C117207E36A4004D1632 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2418C116207E36A4004D1632 /* UIViewController.swift */; };
 		24207DE4207686D200851A73 /* Parchment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24207DCE207686B100851A73 /* Parchment.framework */; };
 		24207DE5207686D200851A73 /* Parchment.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24207DCE207686B100851A73 /* Parchment.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		24207DED2076AB1800851A73 /* ProfilePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24207DEC2076AB1800851A73 /* ProfilePageViewController.swift */; };
@@ -35,6 +33,8 @@
 		242F8F2E204D6EA80052087B /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F8F2D204D6EA80052087B /* AuthenticationService.swift */; };
 		245D261220B195FD00ECE7A4 /* ParticipantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245D261120B195FD00ECE7A4 /* ParticipantsViewController.swift */; };
 		245EAE332051346600821B4B /* ConversationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245EAE322051346600821B4B /* ConversationService.swift */; };
+		245F8E5020D19F4300B2BC74 /* ToolKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245F8E4B20D19F3B00B2BC74 /* ToolKit.framework */; };
+		245F8E5120D19F4300B2BC74 /* ToolKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 245F8E4B20D19F3B00B2BC74 /* ToolKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2461188020AEE5320035B8FF /* ChatColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2461187F20AEE5320035B8FF /* ChatColorPalette.swift */; };
 		246118B620AEF6510035B8FF /* TrafficMessageHomeInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246118B520AEF64E0035B8FF /* TrafficMessageHomeInterfaceController.swift */; };
 		246118BA20AEF8640035B8FF /* AwaitLoginInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246118B920AEF8640035B8FF /* AwaitLoginInterfaceController.swift */; };
@@ -79,13 +79,7 @@
 		24A069B12051EFC8006F8401 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A069B02051EFC8006F8401 /* CoreDataStack.swift */; };
 		24A069BB20520367006F8401 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A069BA20520367006F8401 /* AuthenticationManager.swift */; };
 		24A3512520836D73001FC1C4 /* SexColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A3512420836D73001FC1C4 /* SexColorPalette.swift */; };
-		24A46AF82083D35E00F775C7 /* CenterLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A46AF62083D35E00F775C7 /* CenterLabelCell.swift */; };
-		24A46AF92083D35E00F775C7 /* CenterLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A46AF72083D35E00F775C7 /* CenterLabelCell.xib */; };
 		24A46B0E2083DC4600F775C7 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A46B0D2083DC4600F775C7 /* PrivacyViewController.swift */; };
-		24A46B132083DE9B00F775C7 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A46B112083DE9B00F775C7 /* SwitchCell.swift */; };
-		24A46B142083DE9B00F775C7 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A46B122083DE9B00F775C7 /* SwitchCell.xib */; };
-		24A46B1620840DF400F775C7 /* GroupedOptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A46B1520840DF400F775C7 /* GroupedOptionTableViewController.swift */; };
-		24A49592208119390076E472 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A49591208119390076E472 /* UIView.swift */; };
 		24AF370020AC1DD9007C63FF /* SetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24AF36FF20AC1DD9007C63FF /* SetupViewController.xib */; };
 		24AF374420AC49EE007C63FF /* RadarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF374320AC49EE007C63FF /* RadarViewController.swift */; };
 		24AF5096207B693500477DC0 /* CommunityMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF5095207B693500477DC0 /* CommunityMessagesViewController.swift */; };
@@ -116,8 +110,6 @@
 		24EB886520877DDA00B7A285 /* MonthYearPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EB885120877DDA00B7A285 /* MonthYearPickerView.swift */; };
 		24EB8888208787E300B7A285 /* SecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EB8886208787E300B7A285 /* SecurityViewController.swift */; };
 		24EB888B20878BA900B7A285 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EB888A20878BA900B7A285 /* ChangePasswordViewController.swift */; };
-		24EB889020878C2900B7A285 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EB888E20878C2900B7A285 /* TextFieldCell.swift */; };
-		24EB889120878C2900B7A285 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24EB888F20878C2900B7A285 /* TextFieldCell.xib */; };
 		24EB8893208798FD00B7A285 /* ChangeEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EB8892208798FD00B7A285 /* ChangeEmailViewController.swift */; };
 		24ED754A20B760AF0079E273 /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3B20517B8E00A726AA /* SwiftyBeaver.framework */; };
 		24ED754B20B760AF0079E273 /* SwiftyBeaver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24F1DD3B20517B8E00A726AA /* SwiftyBeaver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -128,7 +120,6 @@
 		24FE0002207CDDC300F0D657 /* CommunityBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */; };
 		24FE0059207D51D200F0D657 /* BasicColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE0058207D51D200F0D657 /* BasicColorPalette.swift */; };
 		24FE005C207D564500F0D657 /* EdgeInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE005B207D564500F0D657 /* EdgeInsetLabel.swift */; };
-		24FEFFEC207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FEFFEB207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift */; };
 		C9150A28207CFE0D00A69078 /* TrafficMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9150A27207CFE0D00A69078 /* TrafficMessageCell.xib */; };
 		C9150A2A207D0C1F00A69078 /* TrafficColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9150A29207D0C1F00A69078 /* TrafficColorPalette.swift */; };
 		C9150A7F208099C100A69078 /* TrafficMessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9150A7D208099C100A69078 /* TrafficMessageDetailViewController.swift */; };
@@ -301,6 +292,41 @@
 			remoteGlobalIDString = 3EA04A4A1C53BFE40054E5E0;
 			remoteInfo = Parchment;
 		};
+		245F8E4820D19F3B00B2BC74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 245F8E4120D19F3B00B2BC74 /* ToolKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2470338D20D15DBC002B5F5D;
+			remoteInfo = ToolKit_macOS;
+		};
+		245F8E4A20D19F3B00B2BC74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 245F8E4120D19F3B00B2BC74 /* ToolKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2470334A20D15AE1002B5F5D;
+			remoteInfo = ToolKit_iOS;
+		};
+		245F8E4C20D19F3B00B2BC74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 245F8E4120D19F3B00B2BC74 /* ToolKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2470336720D15B5E002B5F5D;
+			remoteInfo = ToolKit_watchOS;
+		};
+		245F8E4E20D19F3B00B2BC74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 245F8E4120D19F3B00B2BC74 /* ToolKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2470335A20D15B44002B5F5D;
+			remoteInfo = ToolKit_tvOS;
+		};
+		245F8E5220D19F4300B2BC74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 245F8E4120D19F3B00B2BC74 /* ToolKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2470334920D15AE1002B5F5D;
+			remoteInfo = ToolKit_iOS;
+		};
 		24978F3520BC8EEA00BE9F35 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */;
@@ -446,6 +472,7 @@
 				24045D372084CC8600E7CF19 /* ColorCircle.framework in Embed Frameworks */,
 				240AB0142050870000324028 /* Locksmith.framework in Embed Frameworks */,
 				24207DE5207686D200851A73 /* Parchment.framework in Embed Frameworks */,
+				245F8E5120D19F4300B2BC74 /* ToolKit.framework in Embed Frameworks */,
 				24978F3F20BC8F5400BE9F35 /* RoadChatKit.framework in Embed Frameworks */,
 				24978F4320BC8F7E00BE9F35 /* ColorModel.framework in Embed Frameworks */,
 				24F1DD4120517B9D00A726AA /* SwiftyBeaver.framework in Embed Frameworks */,
@@ -501,7 +528,6 @@
 		24096F5B20AF169D009F103B /* RoadChatWatch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RoadChatWatch Extension.entitlements"; sourceTree = "<group>"; };
 		240AAFFB205086ED00324028 /* Locksmith.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Locksmith.xcodeproj; path = Frameworks/Locksmith/Locksmith.xcodeproj; sourceTree = "<group>"; };
 		240AB01C2050878100324028 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		240B9B8520534FAA00216E68 /* FetchedResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableViewController.swift; sourceTree = "<group>"; };
 		240C16D220B738CF001BB413 /* RoadChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RoadChat.entitlements; sourceTree = "<group>"; };
 		240C16D320B73DF0001BB413 /* WatchConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityManager.swift; sourceTree = "<group>"; };
 		240D10F520481843008C5E39 /* RoadChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -511,7 +537,6 @@
 		240D110620481844008C5E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		240DAE8F20B5EF0D002A17EB /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+FixOrientation.swift"; path = "Frameworks/UIImageCropper/UIImageCropper/UIImage+FixOrientation.swift"; sourceTree = SOURCE_ROOT; };
 		240DAEA320B5EF0D002A17EB /* UIImageCropper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageCropper.swift; path = Frameworks/UIImageCropper/UIImageCropper/UIImageCropper.swift; sourceTree = SOURCE_ROOT; };
-		2418C116207E36A4004D1632 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		24207DBB207686B100851A73 /* Parchment.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parchment.xcodeproj; path = Frameworks/Parchment/Parchment.xcodeproj; sourceTree = "<group>"; };
 		24207DEC2076AB1800851A73 /* ProfilePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageViewController.swift; sourceTree = "<group>"; };
 		24207DF02076BC8E00851A73 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -522,6 +547,7 @@
 		24548BDC20B5B3B10070A773 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS4.3.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		245D261120B195FD00ECE7A4 /* ParticipantsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsViewController.swift; sourceTree = "<group>"; };
 		245EAE322051346600821B4B /* ConversationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationService.swift; sourceTree = "<group>"; };
+		245F8E4120D19F3B00B2BC74 /* ToolKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToolKit.xcodeproj; path = Frameworks/ToolKit/ToolKit.xcodeproj; sourceTree = "<group>"; };
 		2461187F20AEE5320035B8FF /* ChatColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatColorPalette.swift; sourceTree = "<group>"; };
 		246118B520AEF64E0035B8FF /* TrafficMessageHomeInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMessageHomeInterfaceController.swift; sourceTree = "<group>"; };
 		246118B920AEF8640035B8FF /* AwaitLoginInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwaitLoginInterfaceController.swift; sourceTree = "<group>"; };
@@ -560,13 +586,7 @@
 		24A069B02051EFC8006F8401 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		24A069BA20520367006F8401 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthenticationManager.swift; path = RoadChat/Frontend/Model/AuthenticationManager.swift; sourceTree = SOURCE_ROOT; };
 		24A3512420836D73001FC1C4 /* SexColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SexColorPalette.swift; sourceTree = "<group>"; };
-		24A46AF62083D35E00F775C7 /* CenterLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterLabelCell.swift; sourceTree = "<group>"; };
-		24A46AF72083D35E00F775C7 /* CenterLabelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CenterLabelCell.xib; sourceTree = "<group>"; };
 		24A46B0D2083DC4600F775C7 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
-		24A46B112083DE9B00F775C7 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
-		24A46B122083DE9B00F775C7 /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
-		24A46B1520840DF400F775C7 /* GroupedOptionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedOptionTableViewController.swift; sourceTree = "<group>"; };
-		24A49591208119390076E472 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		24AED4AC204CC2EB002A1703 /* RoadChatKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoadChatKit.xcodeproj; path = Frameworks/RoadChatKit/RoadChatKit.xcodeproj; sourceTree = "<group>"; };
 		24AF36FF20AC1DD9007C63FF /* SetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetupViewController.xib; sourceTree = "<group>"; };
 		24AF374320AC49EE007C63FF /* RadarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarViewController.swift; sourceTree = "<group>"; };
@@ -597,8 +617,6 @@
 		24EB885120877DDA00B7A285 /* MonthYearPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MonthYearPickerView.swift; path = Frameworks/MonthYearPickerView/MonthYearPickerView.swift; sourceTree = SOURCE_ROOT; };
 		24EB8886208787E300B7A285 /* SecurityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityViewController.swift; sourceTree = "<group>"; };
 		24EB888A20878BA900B7A285 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
-		24EB888E20878C2900B7A285 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
-		24EB888F20878C2900B7A285 /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 		24EB8892208798FD00B7A285 /* ChangeEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmailViewController.swift; sourceTree = "<group>"; };
 		24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyBeaver.xcodeproj; path = Frameworks/SwiftyBeaver/SwiftyBeaver.xcodeproj; sourceTree = "<group>"; };
 		24F2971220AD780700EDA138 /* DirectMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessagesViewController.swift; sourceTree = "<group>"; };
@@ -606,7 +624,6 @@
 		24FE0000207CDDC300F0D657 /* CommunityBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityBoardViewController.swift; sourceTree = "<group>"; };
 		24FE0058207D51D200F0D657 /* BasicColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicColorPalette.swift; sourceTree = "<group>"; };
 		24FE005B207D564500F0D657 /* EdgeInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetLabel.swift; sourceTree = "<group>"; };
-		24FEFFEB207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsCollectionViewController.swift; sourceTree = "<group>"; };
 		C9150A27207CFE0D00A69078 /* TrafficMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrafficMessageCell.xib; sourceTree = "<group>"; };
 		C9150A29207D0C1F00A69078 /* TrafficColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficColorPalette.swift; sourceTree = "<group>"; };
 		C9150A7D208099C100A69078 /* TrafficMessageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficMessageDetailViewController.swift; sourceTree = "<group>"; };
@@ -648,6 +665,7 @@
 			files = (
 				24045D362084CC8600E7CF19 /* ColorCircle.framework in Frameworks */,
 				24207DE4207686D200851A73 /* Parchment.framework in Frameworks */,
+				245F8E5020D19F4300B2BC74 /* ToolKit.framework in Frameworks */,
 				24B4A25B20C6F7FF007AEB28 /* NetworkKit.framework in Frameworks */,
 				240AB01D2050878100324028 /* Security.framework in Frameworks */,
 				24978F3E20BC8F5400BE9F35 /* RoadChatKit.framework in Frameworks */,
@@ -728,6 +746,7 @@
 		240D10EC20481843008C5E39 = {
 			isa = PBXGroup;
 			children = (
+				245F8E4120D19F3B00B2BC74 /* ToolKit.xcodeproj */,
 				24B4A24C20C6F7F9007AEB28 /* NetworkKit.xcodeproj */,
 				24045D2F2084CC7A00E7CF19 /* ColorCircle.xcodeproj */,
 				240AAFFB205086ED00324028 /* Locksmith.xcodeproj */,
@@ -779,8 +798,6 @@
 		2418C102207E3691004D1632 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2418C116207E36A4004D1632 /* UIViewController.swift */,
-				24A49591208119390076E472 /* UIView.swift */,
 				24D68B862080C535002B6D6C /* UIColor.swift */,
 			);
 			path = Extensions;
@@ -841,7 +858,6 @@
 				24AF36FF20AC1DD9007C63FF /* SetupViewController.xib */,
 				242089BD205EB1C700FFEC90 /* SetupViewController.swift */,
 				247F6D3A206081320006FBC7 /* HomeTabBarController.swift */,
-				247F6D06205F097D0006FBC7 /* Tools */,
 				243A479D207EDCC5002F3BF4 /* Shared */,
 				2422D01B205155CF0081A552 /* Authentication */,
 				243F1EB420483BC100B45955 /* User */,
@@ -906,6 +922,17 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		245F8E4220D19F3B00B2BC74 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				245F8E4920D19F3B00B2BC74 /* ToolKit.framework */,
+				245F8E4B20D19F3B00B2BC74 /* ToolKit.framework */,
+				245F8E4D20D19F3B00B2BC74 /* ToolKit.framework */,
+				245F8E4F20D19F3B00B2BC74 /* ToolKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		246118BB20AEFACE0035B8FF /* Traffic */ = {
 			isa = PBXGroup;
 			children = (
@@ -913,16 +940,6 @@
 				D421C61F20AC518F00D049CC /* CreateTrafficMessageInterfaceController.swift */,
 			);
 			path = Traffic;
-			sourceTree = "<group>";
-		};
-		247F6D06205F097D0006FBC7 /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-				24A46B1520840DF400F775C7 /* GroupedOptionTableViewController.swift */,
-				240B9B8520534FAA00216E68 /* FetchedResultsTableViewController.swift */,
-				24FEFFEB207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift */,
-			);
-			path = Tools;
 			sourceTree = "<group>";
 		};
 		248D379220493ED000B21C3D /* Chat */ = {
@@ -1136,14 +1153,8 @@
 		24FBBC6A20778A5E00B545D2 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				24EB888E20878C2900B7A285 /* TextFieldCell.swift */,
-				24EB888F20878C2900B7A285 /* TextFieldCell.xib */,
 				24D34A6D208523D700D3390F /* CreateNewCellView.swift */,
 				24D34A6E208523D700D3390F /* CreateNewCellView.xib */,
-				24A46B112083DE9B00F775C7 /* SwitchCell.swift */,
-				24A46B122083DE9B00F775C7 /* SwitchCell.xib */,
-				24A46AF62083D35E00F775C7 /* CenterLabelCell.swift */,
-				24A46AF72083D35E00F775C7 /* CenterLabelCell.xib */,
 				2461F3032080AEA400053A4B /* CarCell.swift */,
 				24D68BAF2080D908002B6D6C /* CarCell.xib */,
 			);
@@ -1252,6 +1263,7 @@
 				D421C60320AC322500D049CC /* PBXTargetDependency */,
 				24978F4120BC8F5400BE9F35 /* PBXTargetDependency */,
 				24B4A25E20C6F7FF007AEB28 /* PBXTargetDependency */,
+				245F8E5320D19F4300B2BC74 /* PBXTargetDependency */,
 			);
 			name = RoadChat;
 			productName = RoadChat;
@@ -1368,6 +1380,10 @@
 				{
 					ProductGroup = 24F1DD2620517B8E00A726AA /* Products */;
 					ProjectRef = 24F1DD2520517B8E00A726AA /* SwiftyBeaver.xcodeproj */;
+				},
+				{
+					ProductGroup = 245F8E4220D19F3B00B2BC74 /* Products */;
+					ProjectRef = 245F8E4120D19F3B00B2BC74 /* ToolKit.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1499,6 +1515,34 @@
 			remoteRef = 24207DDD207686B100851A73 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		245F8E4920D19F3B00B2BC74 /* ToolKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ToolKit.framework;
+			remoteRef = 245F8E4820D19F3B00B2BC74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		245F8E4B20D19F3B00B2BC74 /* ToolKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ToolKit.framework;
+			remoteRef = 245F8E4A20D19F3B00B2BC74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		245F8E4D20D19F3B00B2BC74 /* ToolKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ToolKit.framework;
+			remoteRef = 245F8E4C20D19F3B00B2BC74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		245F8E4F20D19F3B00B2BC74 /* ToolKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ToolKit.framework;
+			remoteRef = 245F8E4E20D19F3B00B2BC74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		24978F3620BC8EEA00BE9F35 /* RoadChatKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1592,8 +1636,6 @@
 			files = (
 				D45FD697207E4EB900C35949 /* CommunityMessageDetailViewController.xib in Resources */,
 				24045D7C2084E28100E7CF19 /* GeofenceViewController.xib in Resources */,
-				24EB889120878C2900B7A285 /* TextFieldCell.xib in Resources */,
-				24A46AF92083D35E00F775C7 /* CenterLabelCell.xib in Resources */,
 				249515CE20644DB100E734E4 /* ProfileViewController.xib in Resources */,
 				24B134652063254F00B894BF /* LoginViewController.xib in Resources */,
 				24D68BB02080D908002B6D6C /* CarCell.xib in Resources */,
@@ -1604,7 +1646,6 @@
 				24AF370020AC1DD9007C63FF /* SetupViewController.xib in Resources */,
 				24B134672063C10C00B894BF /* RegisterViewController.xib in Resources */,
 				240D110520481843008C5E39 /* LaunchScreen.storyboard in Resources */,
-				24A46B142083DE9B00F775C7 /* SwitchCell.xib in Resources */,
 				C966B6FF207949590007CA4F /* CreateTrafficMessageViewController.xib in Resources */,
 				D45FD7012083D79300C35949 /* CreateOrEditCarViewController.xib in Resources */,
 				249515D2206460F800E734E4 /* ConversationCell.xib in Resources */,
@@ -1656,7 +1697,6 @@
 				24A069BB20520367006F8401 /* AuthenticationManager.swift in Sources */,
 				247F6D3D20614E380006FBC7 /* TrafficBoard.swift in Sources */,
 				24AF374420AC49EE007C63FF /* RadarViewController.swift in Sources */,
-				24FEFFEC207CD97D00F0D657 /* FetchedResultsCollectionViewController.swift in Sources */,
 				24F2972920AD7B4C00EDA138 /* DirectMessageCell.swift in Sources */,
 				247F6D3720605E240006FBC7 /* DependencyContainer.swift in Sources */,
 				C9150A2A207D0C1F00A69078 /* TrafficColorPalette.swift in Sources */,
@@ -1670,7 +1710,6 @@
 				24045D7B2084E28100E7CF19 /* GeofenceViewController.swift in Sources */,
 				248D37A920494F9900B21C3D /* Participant.swift in Sources */,
 				24AFEE9E206566B30097810E /* Report.swift in Sources */,
-				240B9B8620534FAA00216E68 /* FetchedResultsTableViewController.swift in Sources */,
 				D45FD696207E4EB900C35949 /* CommunityMessageDetailViewController.swift in Sources */,
 				24A069B12051EFC8006F8401 /* CoreDataStack.swift in Sources */,
 				2404A25E204ED162009AC7E1 /* CarService.swift in Sources */,
@@ -1695,13 +1734,11 @@
 				249515D1206460F800E734E4 /* ConversationCell.swift in Sources */,
 				249E0E9220AC512E00987BCA /* ConversationManager.swift in Sources */,
 				24AF50AC207B6C1200477DC0 /* CommunityMessageCell.swift in Sources */,
-				2418C117207E36A4004D1632 /* UIViewController.swift in Sources */,
 				24F2971320AD780700EDA138 /* DirectMessagesViewController.swift in Sources */,
 				247F6D1D205F26AE0006FBC7 /* CommunityBoard.swift in Sources */,
 				D44F4B88205297A7009A6239 /* CreateCommunityMessageViewController.swift in Sources */,
 				24FE0059207D51D200F0D657 /* BasicColorPalette.swift in Sources */,
 				24EB8888208787E300B7A285 /* SecurityViewController.swift in Sources */,
-				24EB889020878C2900B7A285 /* TextFieldCell.swift in Sources */,
 				249515CB2064483400E734E4 /* SettingsViewController.swift in Sources */,
 				C988ACA52052BB3200EDCEAC /* LocationManager.swift in Sources */,
 				24EB886520877DDA00B7A285 /* MonthYearPickerView.swift in Sources */,
@@ -1715,13 +1752,11 @@
 				248D37AF2049501100B21C3D /* CommunityMessage.swift in Sources */,
 				D45FD72F2084FB5500C35949 /* CreateOrEditProfileViewController.swift in Sources */,
 				24615DA520508E5400ED11A1 /* KeychainManager.swift in Sources */,
-				24A46B132083DE9B00F775C7 /* SwitchCell.swift in Sources */,
 				2404A256204E92D2009AC7E1 /* UserService.swift in Sources */,
 				248D37B12049504B00B21C3D /* Car.swift in Sources */,
 				24D34A3F20850F4300D3390F /* LogDataViewController.swift in Sources */,
 				245EAE332051346600821B4B /* ConversationService.swift in Sources */,
 				24B1347A206421EE00B894BF /* TrafficBoardViewController.swift in Sources */,
-				24A46AF82083D35E00F775C7 /* CenterLabelCell.swift in Sources */,
 				24AF50AF207B943500477DC0 /* KarmaColorPalette.swift in Sources */,
 				24B134642063254F00B894BF /* LoginViewController.swift in Sources */,
 				248D37A020494EC000B21C3D /* Privacy.swift in Sources */,
@@ -1732,8 +1767,6 @@
 				24D34A6F208523D700D3390F /* CreateNewCellView.swift in Sources */,
 				24EB888B20878BA900B7A285 /* ChangePasswordViewController.swift in Sources */,
 				24A46B0E2083DC4600F775C7 /* PrivacyViewController.swift in Sources */,
-				24A46B1620840DF400F775C7 /* GroupedOptionTableViewController.swift in Sources */,
-				24A49592208119390076E472 /* UIView.swift in Sources */,
 				24B1346E20641A8C00B894BF /* ProfileViewController.swift in Sources */,
 				248D379820494D0900B21C3D /* User.swift in Sources */,
 				242089BE205EB1C700FFEC90 /* SetupViewController.swift in Sources */,
@@ -1771,6 +1804,11 @@
 			isa = PBXTargetDependency;
 			name = Parchment;
 			targetProxy = 24207DE6207686D200851A73 /* PBXContainerItemProxy */;
+		};
+		245F8E5320D19F4300B2BC74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ToolKit_iOS;
+			targetProxy = 245F8E5220D19F4300B2BC74 /* PBXContainerItemProxy */;
 		};
 		24978F4120BC8F5400BE9F35 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

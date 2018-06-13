@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ToolKit
 
 class SecurityViewController: UITableViewController {
 
@@ -40,7 +41,7 @@ class SecurityViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UINib(nibName: "CenterLabelCell", bundle: nil), forCellReuseIdentifier: "CenterLabelCell")
+        tableView.register(DeleteCell.self, forCellReuseIdentifier: "DeleteCell")
     }
     
     // MARK: - Table View Data Source
@@ -97,9 +98,8 @@ class SecurityViewController: UITableViewController {
             // delete account
             switch row {
             case 0:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "CenterLabelCell", for: indexPath) as! CenterLabelCell
-                cell.centerTextLabel.text = "Delete Account"
-                cell.centerTextLabel.textColor = colorPalette.destructiveColor
+                let cell = tableView.dequeueReusableCell(withIdentifier: "DeleteCell", for: indexPath) as! DeleteCell
+                cell.label.text = "Delete Account"
                 return cell
             default:
                 fatalError()
